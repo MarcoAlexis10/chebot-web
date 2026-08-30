@@ -35,6 +35,31 @@ writePage('registrar-negocio',layout({title:'Registrá tu restaurante o bar | Ch
 writePage('privacidad',layout({title:'Política de privacidad | Chebot',description:'Política de privacidad de Chebot.',canonical:'/privacidad',body:`<main class="legal"><h1>Política de privacidad</h1><p>Última actualización: 30 de agosto de 2026.</p><h2>Información que recibimos</h2><p>Cuando contactás a Chebot por WhatsApp, recibimos el número asociado a tu cuenta y el contenido de los mensajes que enviás. Si decidís compartir ubicación, la usamos para calcular recomendaciones cercanas. También podemos recibir datos técnicos básicos de navegación del sitio.</p><h2>Reseñas de usuarios</h2><p>Después de elegir un establecimiento podés enviar voluntariamente una puntuación y un comentario escrito. Chebot no solicita ni acepta fotografías para reseñas de usuarios. Solicitamos autorización antes de publicar la puntuación o el comentario y todo contenido queda sujeto a moderación.</p><h2>Cómo usamos la información</h2><p>La utilizamos para responder consultas, mantener el contexto de la conversación, mejorar recomendaciones, prevenir abusos y cumplir obligaciones legales. No vendemos datos personales y procuramos no conservar la ubicación precisa más tiempo del necesario.</p><h2>Seguridad</h2><p>Chebot nunca solicitará contraseñas, datos bancarios ni pagos dentro de WhatsApp. No envíes información sensible por el chat.</p><h2>Servicios externos</h2><p>Chebot utiliza proveedores tecnológicos para operar el sitio y la mensajería. Al abrir enlaces externos se aplican las políticas del proveedor correspondiente.</p><h2>Tus opciones</h2><p>Podés solicitar acceso, corrección o eliminación de tus datos y contenido desde nuestra página de contacto.</p></main>`}));
 writePage('terminos',layout({title:'Términos y aviso de afiliados | Chebot',description:'Condiciones de uso y aviso de afiliados de Chebot.',canonical:'/terminos',body:`<main class="legal"><h1>Términos y aviso de afiliados</h1><p>Chebot ofrece orientación turística general y no actúa como agencia de viajes ni garantiza la disponibilidad, calidad o condiciones de servicios de terceros.</p><h2>Reservas, pagos y terceros</h2><p>Chebot no procesa pagos dentro de WhatsApp ni solicita contraseñas o datos bancarios. Las compras o reservas se realizan directamente con proveedores externos que el usuario decide abrir. Antes de contratar, revisá precios, horarios, cancelaciones y condiciones en el sitio oficial del proveedor.</p><h2>Enlaces de afiliados</h2><p>Algunos enlaces pueden ser de afiliados. Chebot podría recibir una comisión cuando una persona realiza una reserva a través de ellos, sin incrementar el precio para el usuario. Las recomendaciones buscan ser relevantes y esta posible comisión no modifica las condiciones ofrecidas por el proveedor.</p><h2>Recomendaciones y establecimientos</h2><p>La incorporación de un establecimiento no garantiza una posición. El orden puede considerar relevancia, cercanía, contexto, disponibilidad, rotación y experiencias moderadas de usuarios.</p><h2>Uso responsable</h2><p>No uses el servicio para actividades ilícitas, abusivas o que afecten su funcionamiento.</p></main>`}));
 
+function replacePublishedCopy(relativeFile, replacements) {
+  const file = path.join(out, relativeFile);
+  let html = fs.readFileSync(file, 'utf8');
+  for (const [before, after] of replacements) html = html.replaceAll(before, after);
+  fs.writeFileSync(file, html);
+}
+
+replacePublishedCopy('index.html', [
+  ['Chebot | Tu guía turística por WhatsApp', 'Chebot | Restaurantes y bares por WhatsApp'],
+  ['Descubrí qué hacer, dónde comer y cómo moverte en siete grandes ciudades con la ayuda de Chebot por WhatsApp.', 'Encontrá restaurantes y bares verificados en siete grandes ciudades con la ayuda de Chebot por WhatsApp.'],
+  ['Orientación turística rápida y sencilla directamente por WhatsApp.', 'Recomendaciones de restaurantes y bares directamente por WhatsApp.'],
+  ['Hola%20Chebot%2C%20quiero%20planificar%20mi%20viaje', 'Hola%20Chebot%2C%20quiero%20encontrar%20un%20restaurante%20o%20bar'],
+  ['Ideas para organizar tu viaje y encontrar experiencias, gastronomía, alojamiento y transporte.', 'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa.'],
+  ['Contale a Chebot qué ciudad visitarás y qué tipo de experiencia buscás.', 'Contale a Chebot en qué ciudad estás y si querés comer o tomar algo.'],
+  ['Hola%20Chebot%2C%20necesito%20ayuda%20para%20elegir%20mi%20destino', 'Hola%20Chebot%2C%20quiero%20comer%20o%20tomar%20algo'],
+]);
+
+replacePublishedCopy(path.join('como-funciona', 'index.html'), [
+  ['Conocé cómo usar Chebot para obtener orientación turística mediante WhatsApp.', 'Conocé cómo usar Chebot para recibir recomendaciones de restaurantes y bares mediante WhatsApp.'],
+  ['Tu guía de viaje en tres pasos', 'Recomendaciones en tres pasos'],
+  ['Contanos si buscás actividades, comida, alojamiento o transporte.', 'Contanos en qué barrio estás, si querés comer o tomar algo y con quién estás.'],
+  ['Chebot te acerca ideas y enlaces útiles para organizar el viaje.', 'Chebot te muestra opciones disponibles y el enlace de Google Maps para el lugar que elijas.'],
+  ['Chebot brinda información turística general. Verificá horarios, precios, disponibilidad y condiciones directamente con cada proveedor antes de reservar.', 'Chebot ofrece recomendaciones de restaurantes y bares. Verificá horarios, precios, disponibilidad y condiciones directamente con cada establecimiento antes de ir.'],
+]);
+
 const sitemap=['','como-funciona','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://chebot.chat/${s}</loc></url>`).join('');
 fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);
 fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://chebot.chat/sitemap.xml\n');
