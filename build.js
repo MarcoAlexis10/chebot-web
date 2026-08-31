@@ -10,6 +10,7 @@ const publicAssets = ['favicon.png', 'apple-touch-icon.png', 'og-chebot.png'];
 publicAssets.forEach(file => fs.copyFileSync(path.join(__dirname, file), path.join(out, file)));
 
 const whatsapp = 'https://wa.me/541176689413';
+const contactEmail = 'Chebot2026@gmail.com';
 const cities = [
   { slug:'buenos-aires', name:'Buenos Aires', country:'Argentina', image:'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1800&q=85', intro:'Tango, arquitectura, cafés históricos y barrios con personalidad propia.', picks:['Caminar por San Telmo y Plaza de Mayo','Descubrir Palermo y sus restaurantes','Vivir una noche de tango','Recorrer Recoleta y su arquitectura'] },
   { slug:'madrid', name:'Madrid', country:'España', image:'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1800&q=85', intro:'Arte, tapas, parques y una energía que se disfruta a cualquier hora.', picks:['Visitar el Museo del Prado','Pasear por el Retiro','Probar tapas en La Latina','Recorrer el Madrid de los Austrias'] },
@@ -60,6 +61,22 @@ const coverage = [
   { city:'Medellín', neighborhoods:['Centro','El Poblado','Las Palmas','Laureles','Manila','Provenza'] },
   { city:'Río de Janeiro', neighborhoods:['Botafogo','Centro','Copacabana','Ipanema','Jardim Botânico','Leblon','Santa Teresa','Urca'] },
 ];
+const registrationCoverageCards = coverage.map(item=>`<article class="card"><b>${item.city}</b><span>${item.neighborhoods.join(' · ')}</span></article>`).join('');
+const registrationCoverageData = JSON.stringify(Object.fromEntries(coverage.map(item=>[item.city,item.neighborhoods]))).replaceAll('<','\\u003c');
+replacePublishedCopy(path.join('registrar-negocio','index.html'), [
+  [
+    '<form class="form" id="venue-form">',
+    `<section aria-labelledby="cobertura-postulaciones"><span class="eyebrow">Cobertura actual</span><h2 id="cobertura-postulaciones">Ciudades y barrios habilitados por el momento</h2><p>Solo aceptamos postulaciones de restaurantes y bares ubicados en las siguientes zonas:</p><div class="grid">${registrationCoverageCards}</div><div class="notice"><b>¿Tu barrio no figura?</b> Todavía no podemos aceptar la postulación. Podés avisarnos a <a href="mailto:${contactEmail}?subject=Nueva%20zona%20para%20Chebot">${contactEmail}</a> para que lo tengamos en cuenta al ampliar la cobertura.</div></section><form class="form" id="venue-form">`,
+  ],
+  [
+    '<input id="neighborhood" name="neighborhood" maxlength="100">',
+    '<select id="neighborhood" name="neighborhood" required aria-describedby="neighborhood-help"><option value="">Elegí primero una ciudad</option></select><small class="field-help" id="neighborhood-help">Solo se muestran barrios y zonas con cobertura actual.</small>',
+  ],
+  [
+    "<script>document.getElementById('venue-form').addEventListener",
+    `<script>const coverageByCity=${registrationCoverageData};const cityField=document.getElementById('city');const neighborhoodField=document.getElementById('neighborhood');function updateNeighborhoods(){const selected=neighborhoodField.value;const available=coverageByCity[cityField.value]||[];neighborhoodField.replaceChildren();const firstOption=document.createElement('option');firstOption.value='';firstOption.textContent='Seleccioná un barrio o zona';neighborhoodField.append(firstOption);available.forEach(function(neighborhood){const option=document.createElement('option');option.value=neighborhood;option.textContent=neighborhood;neighborhoodField.append(option)});if(available.includes(selected))neighborhoodField.value=selected}cityField.addEventListener('change',updateNeighborhoods);updateNeighborhoods();document.getElementById('venue-form').addEventListener`,
+  ],
+]);
 const coverageCards = coverage.map(item=>`<article class="card"><b>${item.city}</b><span><strong>Disponible:</strong> restaurantes y bares.</span><p><strong>Barrios y zonas:</strong> ${item.neighborhoods.join(' · ')}</p></article>`).join('');
 writePage('cobertura',layout({title:'Cobertura de Chebot | Ciudades y barrios',description:'Consultá las ciudades, barrios y zonas con cobertura disponible de restaurantes y bares en Chebot.',canonical:'/cobertura',body:`<main class="section"><span class="eyebrow">Cobertura actual</span><h2>Ciudades y barrios disponibles</h2><p class="lead">Chebot recomienda restaurantes y bares en las zonas que ya cuentan con catálogo activo. La cobertura se amplía progresivamente.</p><div class="grid">${coverageCards}</div><div class="notice"><b>¿Tu zona no aparece?</b> Actualmente no estamos llegando a esa zona; pronto estaremos. Chebot te mostrará las zonas disponibles para que puedas elegir otra cercana.</div></main>`}));
 
@@ -152,6 +169,48 @@ replacePublishedCopy(path.join('registrar-negocio','index.html'), [
   ],
 ]);
 
+replacePublishedCopy(path.join('registrar-negocio','index.html'), [
+  [
+    '<p>Completá los datos básicos. Chebot verificará la información antes de activar el perfil para proteger a viajeros y negocios.</p>',
+    `<p>Completá la postulación con los datos del local. La solicitud quedará pendiente hasta que el equipo de Chebot la revise y responda al contacto indicado.</p><p>Las consultas y decisiones sobre altas se comunican desde <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>`,
+  ],
+  [
+    '<div class="field full"><label for="description">Descripción y tipo de ambiente</label><textarea id="description" name="description" maxlength="700"></textarea></div>',
+    '<div class="field full"><label for="short_description">Breve resumen del local</label><textarea id="short_description" name="short_description" required maxlength="350" aria-describedby="summary-help"></textarea><small class="field-help" id="summary-help">Contá qué tipo de lugar es y cómo es su ambiente. Máximo 350 caracteres.</small></div><div class="field full"><label for="offerings">Qué se puede consumir o qué ofrece</label><textarea id="offerings" name="offerings" required maxlength="500" aria-describedby="offerings-help"></textarea><small class="field-help" id="offerings-help">Indicá comidas, bebidas, especialidades y opciones destacadas. Máximo 500 caracteres.</small></div>',
+  ],
+  [
+    '<div class="hp"><label>No completar<input name="website_confirm" tabindex="-1" autocomplete="off"></label></div>',
+    `<div class="notice field full"><b>Fotos para verificar el local:</b> después de enviar el formulario, mandá las imágenes a <a href="mailto:${contactEmail}?subject=Fotos%20de%20verificaci%C3%B3n%20del%20local">${contactEmail}</a> e indicá el nombre y la ciudad. Preferimos una foto actual de la fachada donde se vea el nombre. Si el nombre no se distingue, enviá dos fotos: fachada e interior. Una foto del responsable o del equipo dentro del local es opcional y solo debe enviarse con permiso de todas las personas visibles. Las fotos se usan de forma privada para verificar la postulación y no se publican sin autorización.</div><div class="hp"><label>No completar<input name="website_confirm" tabindex="-1" autocomplete="off"></label></div>`,
+  ],
+  [
+    "const data=Object.fromEntries(new FormData(form).entries());data.terms_accepted",
+    "const data=Object.fromEntries(new FormData(form).entries());data.description='Resumen: '+String(data.short_description||'').trim()+'\\nQué ofrece: '+String(data.offerings||'').trim();delete data.short_description;delete data.offerings;data.terms_accepted",
+  ],
+  [
+    'status.textContent=result.message;form.reset()',
+    `status.textContent=(result.message||'Solicitud enviada.')+' Para completar la verificación, enviá las fotos a ${contactEmail} indicando el nombre y la ciudad.';form.reset()`,
+  ],
+]);
+
+replacePublishedCopy(path.join('contacto','index.html'), [
+  [
+    '<p>Para consultas sobre Chebot, sugerencias, correcciones o solicitudes relacionadas con tus datos, escribinos por WhatsApp.</p>',
+    `<p>El correo oficial y exclusivo del sitio web es <a href="mailto:${contactEmail}">${contactEmail}</a>.</p><p>Usalo para postulaciones de restaurantes y bares, envío de fotos de verificación, correcciones, sugerencias o solicitudes relacionadas con tus datos. Chebot comunicará desde esa dirección la aprobación, el rechazo o cualquier información faltante.</p>`,
+  ],
+  [
+    '<p><a class="wa"',
+    `<p><a class="wa" href="mailto:${contactEmail}">Escribir por correo</a></p><p>Para consultas de viajeros también podés escribirnos por WhatsApp.</p><p><a class="wa"`,
+  ],
+]);
+
+replacePublishedCopy(path.join('privacidad','index.html'), [
+  ['Última actualización: 30 de agosto de 2026.', 'Última actualización: 31 de agosto de 2026.'],
+  [
+    '<h2>Cómo usamos la información</h2>',
+    `<h2>Postulaciones de establecimientos</h2><p>Si representás un restaurante o bar, podemos recibir el nombre y la ubicación del local, datos de contacto, una descripción, información sobre su oferta y fotografías enviadas a ${contactEmail}. Las fotos de fachada e interior se usan de forma privada para verificar la postulación. No se publican sin autorización. Si una imagen muestra personas, quien la envía debe contar con su permiso.</p><h2>Cómo usamos la información</h2>`,
+  ],
+]);
+
 replacePublishedCopy(path.join('terminos','index.html'), [
   [
     '<h2>Reservas, pagos y terceros</h2><p>Chebot no procesa pagos dentro de WhatsApp ni solicita contraseñas o datos bancarios. Las compras o reservas se realizan directamente con proveedores externos que el usuario decide abrir. Antes de contratar, revisá precios, horarios, cancelaciones y condiciones en el sitio oficial del proveedor.</p>',
@@ -160,6 +219,10 @@ replacePublishedCopy(path.join('terminos','index.html'), [
   [
     '<h2>Enlaces de afiliados</h2><p>Algunos enlaces pueden ser de afiliados. Chebot podría recibir una comisión cuando una persona realiza una reserva a través de ellos, sin incrementar el precio para el usuario. Las recomendaciones buscan ser relevantes y esta posible comisión no modifica las condiciones ofrecidas por el proveedor.</p>',
     '<h2>Enlaces de afiliados — Próximamente</h2><p>Chebot podrá incorporar enlaces de afiliados en el futuro. Cuando se habiliten, estarán identificados y una eventual comisión no modificará el precio para el usuario ni la relevancia de las recomendaciones.</p>',
+  ],
+  [
+    '<h2>Recomendaciones y establecimientos</h2><p>La incorporación de un establecimiento no garantiza una posición. El orden puede considerar relevancia, cercanía, contexto, disponibilidad, rotación y experiencias moderadas de usuarios.</p>',
+    '<h2>Postulaciones y establecimientos</h2><p>Enviar una postulación no garantiza su incorporación ni una posición específica. Chebot puede solicitar información adicional y aprobar o rechazar el alta después de verificar la identidad del responsable, la ubicación, los datos del local, posibles duplicados y la evidencia visual. Si el establecimiento es incorporado, el orden puede considerar relevancia, cercanía, contexto, disponibilidad, rotación y experiencias moderadas de usuarios.</p>',
   ],
 ]);
 
@@ -177,6 +240,7 @@ const mobileNav = '<details class="mobile-nav"><summary>Menú</summary><div clas
 publishedPageFiles.forEach(file=>replacePublishedCopy(file, [
   ['<a href="/#ciudades">Ciudades</a><a href="/como-funciona">', '<a href="/#ciudades">Ciudades</a><a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/como-funciona">'],
   ['<a href="/privacidad">Privacidad</a>', '<a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/privacidad">Privacidad</a>'],
+  ['<a href="/contacto">Contacto</a></div><small>', `<a href="/contacto">Contacto</a><a href="mailto:${contactEmail}">${contactEmail}</a></div><small>`],
   ['</div></nav>', `</div>${mobileNav}</nav>`],
 ]));
 
