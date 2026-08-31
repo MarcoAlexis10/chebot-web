@@ -60,6 +60,23 @@ replacePublishedCopy(path.join('como-funciona', 'index.html'), [
   ['Chebot brinda información turística general. Verificá horarios, precios, disponibilidad y condiciones directamente con cada proveedor antes de reservar.', 'Chebot ofrece recomendaciones de restaurantes y bares. Verificá horarios, precios, disponibilidad y condiciones directamente con cada establecimiento antes de ir.'],
 ]);
 
+cities.forEach(c => {
+  const touristCards = `<div class="grid">${c.picks.map(x=>`<article class="card"><b>${x}</b><span>Pedile a Chebot horarios, zonas recomendadas y consejos para organizar la visita.</span></article>`).join('')}</div>`;
+  const liveCards = '<div class="grid"><article class="card"><b>Restaurantes</b><span>Pedile opciones para comer según tu zona y con quién estás.</span></article><article class="card"><b>Bares</b><span>Buscá dónde tomar algo según el ambiente que preferís.</span></article><article class="card"><b>Más opciones</b><span>Si ninguna propuesta te convence, pedile a Chebot más alternativas.</span></article></div>';
+  replacePublishedCopy(path.join(c.slug, 'index.html'), [
+    [`Qué hacer en ${c.name} | Chebot`, `Restaurantes y bares en ${c.name} | Chebot`],
+    [`Guía de ${c.name}: lugares imprescindibles, gastronomía, alojamiento y transporte. Consultá a Chebot por WhatsApp.`, `Consultá a Chebot por WhatsApp para buscar restaurantes y bares en ${c.name}.`],
+    ['Primera visita', 'Comer y tomar algo'],
+    [`Ideas para descubrir ${c.name}`, `Restaurantes y bares en ${c.name}`],
+    ['Una selección inicial para inspirarte. Chebot puede ayudarte a ordenar las opciones según tus días, intereses y presupuesto.', 'Chebot te recomienda opciones según la zona, el tipo de plan y con quién estás.'],
+    [touristCards, liveCards],
+    [`Armá tu plan para ${c.name}`, `Encontrá dónde comer o tomar algo en ${c.name}`],
+    ['Escribinos por WhatsApp y contanos qué querés hacer.', 'Escribinos por WhatsApp y contanos en qué zona estás.'],
+    [encodeURIComponent('Hola Chebot, ayúdame a organizar mi viaje a '+c.name), encodeURIComponent('Hola Chebot, quiero comer o tomar algo en '+c.name)],
+    ['Consultar a Chebot', 'Consultar restaurantes y bares'],
+  ]);
+});
+
 const sitemap=['','como-funciona','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://chebot.chat/${s}</loc></url>`).join('');
 fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);
 fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://chebot.chat/sitemap.xml\n');
