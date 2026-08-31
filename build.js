@@ -106,6 +106,27 @@ cities.forEach(c => {
   ]]);
 });
 
+cities.forEach(c=>replacePublishedCopy(path.join(c.slug,'index.html'), [[
+  '<b>Transparencia:</b> algunos enlaces recomendados podrán ser enlaces de afiliados. Si reservás mediante ellos, Chebot podría recibir una comisión sin costo adicional para vos.',
+  '<b>Próximamente:</b> reservas y enlaces de afiliados. Actualmente Chebot muestra recomendaciones, direcciones y Google Maps, pero no permite reservar desde el servicio.',
+]]));
+
+replacePublishedCopy(path.join('registrar-negocio','index.html'), [[
+  '<form class="form" id="venue-form">',
+  '<div class="notice"><b>Funciones comerciales — Próximamente:</b> reservas integradas, campañas promocionales y paneles de estadísticas para establecimientos. Actualmente este formulario solo permite solicitar la incorporación al directorio.</div><form class="form" id="venue-form">',
+]]);
+
+replacePublishedCopy(path.join('terminos','index.html'), [
+  [
+    '<h2>Reservas, pagos y terceros</h2><p>Chebot no procesa pagos dentro de WhatsApp ni solicita contraseñas o datos bancarios. Las compras o reservas se realizan directamente con proveedores externos que el usuario decide abrir. Antes de contratar, revisá precios, horarios, cancelaciones y condiciones en el sitio oficial del proveedor.</p>',
+    '<h2>Reservas — Próximamente</h2><p>Chebot todavía no ofrece reservas integradas y no procesa pagos dentro de WhatsApp. Tampoco solicita contraseñas ni datos bancarios. Si decidís contactar a un establecimiento o abrir un servicio externo, verificá directamente sus precios, horarios, disponibilidad, cancelaciones y condiciones.</p>',
+  ],
+  [
+    '<h2>Enlaces de afiliados</h2><p>Algunos enlaces pueden ser de afiliados. Chebot podría recibir una comisión cuando una persona realiza una reserva a través de ellos, sin incrementar el precio para el usuario. Las recomendaciones buscan ser relevantes y esta posible comisión no modifica las condiciones ofrecidas por el proveedor.</p>',
+    '<h2>Enlaces de afiliados — Próximamente</h2><p>Chebot podrá incorporar enlaces de afiliados en el futuro. Cuando se habiliten, estarán identificados y una eventual comisión no modificará el precio para el usuario ni la relevancia de las recomendaciones.</p>',
+  ],
+]);
+
 replacePublishedCopy('index.html', [[
   'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa.',
   'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa. <a href="/cobertura">Ver cobertura.</a> <a href="/directorio">Ver directorio público.</a>',
