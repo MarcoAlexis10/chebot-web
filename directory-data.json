@@ -1,0 +1,1271 @@
+[
+  {
+    "name": "1881 per Sagardi",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Barceloneta",
+    "address": "Plaça de Pau Vila 3, planta 4, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=1881+per+Sagardi+Pla%C3%A7a+de+Pau+Vila+3%2C+planta+4%2C+Barcelona"
+  },
+  {
+    "name": "Can Paixano",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Barceloneta",
+    "address": "Carrer de la Reina Cristina 7, Barcelona",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Can+Paixano+Carrer+de+la+Reina+Cristina+7%2C+Barcelona"
+  },
+  {
+    "name": "Torre d'Alta Mar",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Barceloneta",
+    "address": "Passeig de Joan de Borbó 88, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Torre+d'Alta+Mar+Passeig+de+Joan+de+Borb%C3%B3+88%2C+Barcelona"
+  },
+  {
+    "name": "Roots & Rolls",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Eixample",
+    "address": "Carrer del Consell de Cent 401, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Roots+%26+Rolls+Carrer+del+Consell+de+Cent+401%2C+Barcelona"
+  },
+  {
+    "name": "Sips",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Eixample",
+    "address": "Carrer de Muntaner 108, Barcelona",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sips+Carrer+de+Muntaner+108%2C+Barcelona"
+  },
+  {
+    "name": "7 Portes",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "El Born",
+    "address": "Passeig d'Isabel II 14, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=7+Portes+Passeig+d'Isabel+II+14%2C+Barcelona"
+  },
+  {
+    "name": "Bar del Pla",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "El Born",
+    "address": "Carrer de Montcada 2, Barcelona",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bar+del+Pla+Carrer+de+Montcada+2%2C+Barcelona"
+  },
+  {
+    "name": "Bodega La Puntual",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "El Born",
+    "address": "Carrer de Montcada 22, Barcelona",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bodega+La+Puntual+Carrer+de+Montcada+22%2C+Barcelona"
+  },
+  {
+    "name": "Dr. Stravinsky",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "El Born",
+    "address": "Carrer dels Mirallers 5, Barcelona",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dr.+Stravinsky+Carrer+dels+Mirallers+5%2C+Barcelona"
+  },
+  {
+    "name": "Paradiso",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "El Born",
+    "address": "Carrer de Rera Palau 4, Barcelona",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Paradiso+Carrer+de+Rera+Palau+4%2C+Barcelona"
+  },
+  {
+    "name": "Can Culleretes",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Gòtic",
+    "address": "Carrer d'en Quintana 5, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Can+Culleretes+Carrer+d'en+Quintana+5%2C+Barcelona"
+  },
+  {
+    "name": "Els 4 Gats",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Gòtic",
+    "address": "Carrer de Montsió 3, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Els+4+Gats+Carrer+de+Montsi%C3%B3+3%2C+Barcelona"
+  },
+  {
+    "name": "Gallo Santo",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Gràcia",
+    "address": "Carrer del Torrent de l'Olla 64, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Gallo+Santo+Carrer+del+Torrent+de+l'Olla+64%2C+Barcelona"
+  },
+  {
+    "name": "M2 Gluten Free",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Les Corts",
+    "address": "Avinguda Diagonal 505, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=M2+Gluten+Free+Avinguda+Diagonal+505%2C+Barcelona"
+  },
+  {
+    "name": "Martínez",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Montjuïc",
+    "address": "Carretera de Miramar 38, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mart%C3%ADnez+Carretera+de+Miramar+38%2C+Barcelona"
+  },
+  {
+    "name": "Boadas Cocktails",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Raval",
+    "address": "Carrer dels Tallers 1, Barcelona",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Boadas+Cocktails+Carrer+dels+Tallers+1%2C+Barcelona"
+  },
+  {
+    "name": "En Ville",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Raval",
+    "address": "Carrer del Doctor Dou 14, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=En+Ville+Carrer+del+Doctor+Dou+14%2C+Barcelona"
+  },
+  {
+    "name": "Teresa Carles",
+    "city": "barcelona",
+    "citySlug": "barcelona",
+    "neighborhood": "Raval",
+    "address": "Carrer de Jovellanos 2, Barcelona",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Teresa+Carles+Carrer+de+Jovellanos+2%2C+Barcelona"
+  },
+  {
+    "name": "29noventa",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Belgrano",
+    "address": "Echeverría 2990, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=29noventa+Echeverria+2990+Buenos+Aires"
+  },
+  {
+    "name": "Alma de Belgrano",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Belgrano",
+    "address": "Mendoza 2304, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Alma+de+Belgrano+Mendoza+2304+Buenos+Aires"
+  },
+  {
+    "name": "Ayguacamole - Belgrano",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Belgrano",
+    "address": "Avenida Juramento 2628, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ayguacamole+Juramento+2628+Buenos+Aires"
+  },
+  {
+    "name": "Down Town Matías - Belgrano",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Belgrano",
+    "address": "Echeverría 3195, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Down+Town+Matias+Echeverria+3195+Buenos+Aires"
+  },
+  {
+    "name": "Piénsate Bravo",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Belgrano",
+    "address": "Capitán General Ramón Freire 2252, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Piensate+Bravo+Freire+2252+Buenos+Aires"
+  },
+  {
+    "name": "Restaurante Larreta",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Belgrano",
+    "address": "Mendoza 2369, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Restaurante+Larreta+Mendoza+2369+Buenos+Aires"
+  },
+  {
+    "name": "Temple Barrio Chino",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Belgrano",
+    "address": "Echeverría 1664, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Temple+Barrio+Chino+Echeverria+1664+Buenos+Aires"
+  },
+  {
+    "name": "Sacro",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Centro",
+    "address": "Costa Rica 6038, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sacro+Costa+Rica+6038%2C+Buenos+Aires"
+  },
+  {
+    "name": "Trade Sky Bar",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Microcentro",
+    "address": "Avenida Corrientes 222, piso 19, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Trade+Sky+Bar+Avenida+Corrientes+222%2C+piso+19%2C+Buenos+Aires"
+  },
+  {
+    "name": "Aldo's Restorán",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Monserrat",
+    "address": "Moreno 372, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Aldo's+Restor%C3%A1n+Moreno+372%2C+Buenos+Aires"
+  },
+  {
+    "name": "Café Tortoni",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Monserrat",
+    "address": "Avenida de Mayo 825, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+Tortoni+Avenida+de+Mayo+825%2C+Buenos+Aires"
+  },
+  {
+    "name": "Campobravo Palermo",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo",
+    "address": "Honduras 5600, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Campobravo+Palermo+Honduras+5600%2C+Buenos+Aires"
+  },
+  {
+    "name": "Casa Munay",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo",
+    "address": "Gorriti 5996, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Casa+Munay+Gorriti+5996%2C+Buenos+Aires"
+  },
+  {
+    "name": "CoChinChina",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo",
+    "address": "Armenia 1540, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=CoChinChina+Armenia+1540%2C+Buenos+Aires"
+  },
+  {
+    "name": "Don Julio",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo",
+    "address": "Guatemala 4699, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Don+Julio+Guatemala+4699%2C+Buenos+Aires"
+  },
+  {
+    "name": "El Preferido de Palermo",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo",
+    "address": "Jorge Luis Borges 2108, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=El+Preferido+de+Palermo+Jorge+Luis+Borges+2108%2C+Buenos+Aires"
+  },
+  {
+    "name": "Mudrá",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo",
+    "address": "Avenida Córdoba 3942, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mudr%C3%A1+Avenida+C%C3%B3rdoba+3942%2C+Buenos+Aires"
+  },
+  {
+    "name": "Tres Monos",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo",
+    "address": "Guatemala 4899, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Tres+Monos+Guatemala+4899%2C+Buenos+Aires"
+  },
+  {
+    "name": "TaccOff Palermo",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Palermo Hollywood",
+    "address": "Nicaragua 5977, Buenos Aires",
+    "category": "cafe",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=TaccOff+Palermo+Nicaragua+5977%2C+Buenos+Aires"
+  },
+  {
+    "name": "Elena",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Recoleta",
+    "address": "Posadas 1086, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Elena+Posadas+1086%2C+Buenos+Aires"
+  },
+  {
+    "name": "Presidente Bar",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Recoleta",
+    "address": "Avenida Presidente Manuel Quintana 188, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Presidente+Bar+Avenida+Presidente+Manuel+Quintana+188%2C+Buenos+Aires"
+  },
+  {
+    "name": "Florería Atlántico",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Retiro",
+    "address": "Arroyo 872, Buenos Aires",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Florer%C3%ADa+Atl%C3%A1ntico+Arroyo+872%2C+Buenos+Aires"
+  },
+  {
+    "name": "El Cuartito",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "San Nicolás",
+    "address": "Talcahuano 937, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=El+Cuartito+Talcahuano+937%2C+Buenos+Aires"
+  },
+  {
+    "name": "Güerrín",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "San Nicolás",
+    "address": "Avenida Corrientes 1368, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=G%C3%BCerr%C3%ADn+Avenida+Corrientes+1368%2C+Buenos+Aires"
+  },
+  {
+    "name": "El Antojo",
+    "city": "buenos aires",
+    "citySlug": "buenos-aires",
+    "neighborhood": "Villa del Parque",
+    "address": "Tinogasta 3174, Buenos Aires",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=El+Antojo+Tinogasta+3174%2C+Buenos+Aires"
+  },
+  {
+    "name": "Chapitô à Mesa",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Alfama",
+    "address": "Costa do Castelo 7, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chapit%C3%B4+%C3%A0+Mesa+Costa+do+Castelo+7%2C+Lisboa"
+  },
+  {
+    "name": "Despensa N.6",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Avenidas Novas",
+    "address": "Avenida Sacadura Cabral 6A, Lisboa",
+    "category": "cafe",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Despensa+N.6+Avenida+Sacadura+Cabral+6A%2C+Lisboa"
+  },
+  {
+    "name": "Rice Me",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Avenidas Novas",
+    "address": "Rua Carlos Testa 18A, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rice+Me+Rua+Carlos+Testa+18A%2C+Lisboa"
+  },
+  {
+    "name": "Foxtrot",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Bairro Alto",
+    "address": "Travessa de Santa Teresa 28, Lisboa",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Foxtrot+Travessa+de+Santa+Teresa+28%2C+Lisboa"
+  },
+  {
+    "name": "As Bifanas do Afonso",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Baixa",
+    "address": "Rua da Madalena 146, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=As+Bifanas+do+Afonso+Rua+da+Madalena+146%2C+Lisboa"
+  },
+  {
+    "name": "Kong",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Baixa",
+    "address": "Rua do Crucifixo 30, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kong+Rua+do+Crucifixo+30%2C+Lisboa"
+  },
+  {
+    "name": "Pastéis de Belém",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Belém",
+    "address": "Rua de Belém 84–92, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Past%C3%A9is+de+Bel%C3%A9m+Rua+de+Bel%C3%A9m+84%E2%80%9392%2C+Lisboa"
+  },
+  {
+    "name": "A Brasileira",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Chiado",
+    "address": "Rua Garrett 122, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=A+Brasileira+Rua+Garrett+122%2C+Lisboa"
+  },
+  {
+    "name": "Jardim das Cerejas",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Chiado",
+    "address": "Calçada do Sacramento 36, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jardim+das+Cerejas+Cal%C3%A7ada+do+Sacramento+36%2C+Lisboa"
+  },
+  {
+    "name": "O Trevo",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Chiado",
+    "address": "Praça Luís de Camões 48, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=O+Trevo+Pra%C3%A7a+Lu%C3%ADs+de+Cam%C3%B5es+48%2C+Lisboa"
+  },
+  {
+    "name": "Via Graça",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Graça",
+    "address": "Rua Damasceno Monteiro 9B, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Via+Gra%C3%A7a+Rua+Damasceno+Monteiro+9B%2C+Lisboa"
+  },
+  {
+    "name": "Cervejaria Ramiro",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Mouraria",
+    "address": "Avenida Almirante Reis 1-H, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cervejaria+Ramiro+Avenida+Almirante+Reis+1-H%2C+Lisboa"
+  },
+  {
+    "name": "The Food Temple",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Mouraria",
+    "address": "Beco do Jasmim 18, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The+Food+Temple+Beco+do+Jasmim+18%2C+Lisboa"
+  },
+  {
+    "name": "Zé da Mouraria",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Mouraria",
+    "address": "Rua João do Outeiro 24, Lisboa",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Z%C3%A9+da+Mouraria+Rua+Jo%C3%A3o+do+Outeiro+24%2C+Lisboa"
+  },
+  {
+    "name": "Monkey Mash",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Príncipe Real",
+    "address": "Praça da Alegria 66B, Lisboa",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Monkey+Mash+Pra%C3%A7a+da+Alegria+66B%2C+Lisboa"
+  },
+  {
+    "name": "Pavilhão Chinês",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Príncipe Real",
+    "address": "Rua Dom Pedro V 89, Lisboa",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Pavilh%C3%A3o+Chin%C3%AAs+Rua+Dom+Pedro+V+89%2C+Lisboa"
+  },
+  {
+    "name": "Red Frog",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Príncipe Real",
+    "address": "Praça da Alegria 66B, Lisboa",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Red+Frog+Pra%C3%A7a+da+Alegria+66B%2C+Lisboa"
+  },
+  {
+    "name": "SEEN Sky Bar",
+    "city": "lisboa",
+    "citySlug": "lisboa",
+    "neighborhood": "Príncipe Real",
+    "address": "Avenida da Liberdade 185, Lisboa",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=SEEN+Sky+Bar+Avenida+da+Liberdade+185%2C+Lisboa"
+  },
+  {
+    "name": "Salmon Guru",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Barrio de las Letras",
+    "address": "Calle de Echegaray 21, Madrid",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Salmon+Guru+Calle+de+Echegaray+21%2C+Madrid"
+  },
+  {
+    "name": "Viva Madrid",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Barrio de las Letras",
+    "address": "Calle de Manuel Fernández y González 7, Madrid",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Viva+Madrid+Calle+de+Manuel+Fern%C3%A1ndez+y+Gonz%C3%A1lez+7%2C+Madrid"
+  },
+  {
+    "name": "Casa Suecia",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Centro",
+    "address": "Calle del Marqués de Casa Riera 4, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Casa+Suecia+Calle+del+Marqu%C3%A9s+de+Casa+Riera+4%2C+Madrid"
+  },
+  {
+    "name": "Dani Brasserie",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Centro",
+    "address": "Calle de Sevilla 3, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dani+Brasserie+Calle+de+Sevilla+3%2C+Madrid"
+  },
+  {
+    "name": "Sobrino de Botín",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Centro",
+    "address": "Calle de Cuchilleros 17, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sobrino+de+Bot%C3%ADn+Calle+de+Cuchilleros+17%2C+Madrid"
+  },
+  {
+    "name": "Angelita",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Chueca",
+    "address": "Calle de la Reina 4, Madrid",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Angelita+Calle+de+la+Reina+4%2C+Madrid"
+  },
+  {
+    "name": "Mad Mad Vegan",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Chueca",
+    "address": "Calle de Pelayo 19, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mad+Mad+Vegan+Calle+de+Pelayo+19%2C+Madrid"
+  },
+  {
+    "name": "Casa Lucio",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "La Latina",
+    "address": "Calle de la Cava Baja 35, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Casa+Lucio+Calle+de+la+Cava+Baja+35%2C+Madrid"
+  },
+  {
+    "name": "1862 Dry Bar",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Malasaña",
+    "address": "Calle del Pez 27, Madrid",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=1862+Dry+Bar+Calle+del+Pez+27%2C+Madrid"
+  },
+  {
+    "name": "Bodega de la Ardosa",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Malasaña",
+    "address": "Calle de Colón 13, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bodega+de+la+Ardosa+Calle+de+Col%C3%B3n+13%2C+Madrid"
+  },
+  {
+    "name": "Okashi Sanda",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Malasaña",
+    "address": "Calle de San Vicente Ferrer 22, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Okashi+Sanda+Calle+de+San+Vicente+Ferrer+22%2C+Madrid"
+  },
+  {
+    "name": "Pez Tortilla",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Malasaña",
+    "address": "Calle del Pez 36, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Pez+Tortilla+Calle+del+Pez+36%2C+Madrid"
+  },
+  {
+    "name": "Vega Luna",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Malasaña",
+    "address": "Calle de la Luna 9, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Vega+Luna+Calle+de+la+Luna+9%2C+Madrid"
+  },
+  {
+    "name": "Florida Retiro",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Retiro",
+    "address": "Paseo de Panamá 1, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Florida+Retiro+Paseo+de+Panam%C3%A1+1%2C+Madrid"
+  },
+  {
+    "name": "Casa Labra",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Sol",
+    "address": "Calle de Tetuán 12, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Casa+Labra+Calle+de+Tetu%C3%A1n+12%2C+Madrid"
+  },
+  {
+    "name": "Chocolatería San Ginés",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Sol",
+    "address": "Pasadizo de San Ginés 5, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chocolater%C3%ADa+San+Gin%C3%A9s+Pasadizo+de+San+Gin%C3%A9s+5%2C+Madrid"
+  },
+  {
+    "name": "Freedom Cakes Café",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Sol",
+    "address": "Calle de Cádiz 7, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Freedom+Cakes+Caf%C3%A9+Calle+de+C%C3%A1diz+7%2C+Madrid"
+  },
+  {
+    "name": "As de Bastos Madrid",
+    "city": "madrid",
+    "citySlug": "madrid",
+    "neighborhood": "Tetuán",
+    "address": "Calle de Castilla 62, Madrid",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=As+de+Bastos+Madrid+Calle+de+Castilla+62%2C+Madrid"
+  },
+  {
+    "name": "Hacienda Junín",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Centro",
+    "address": "Carrera 49 52-98, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hacienda+Jun%C3%ADn+Carrera+49+52-98%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Salón Versalles",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Centro",
+    "address": "Carrera 49 53-39, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sal%C3%B3n+Versalles+Carrera+49+53-39%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Alambique",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Calle 10 43A-30, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Alambique+Calle+10+43A-30%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Carmen",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Carrera 36 10A-27, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Carmen+Carrera+36+10A-27%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Envy Rooftop",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Calle 9A #37-16, Medellín",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Envy+Rooftop+Calle+9A+%2337-16%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Kaime",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Carrera 37 8A-46, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kaime+Carrera+37+8A-46%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "La Makha",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Carrera 25 #10-51, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=La+Makha+Carrera+25+%2310-51%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Mamba Negra",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Calle 2 #20-50, Medellín",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mamba+Negra+Calle+2+%2320-50%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Mondongo's",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Calle 10 38-38, El Poblado, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mondongo's+Calle+10+38-38%2C+El+Poblado%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Mosquito",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Calle 10A #40-19, Medellín",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mosquito+Calle+10A+%2340-19%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "OCI.mde",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "El Poblado",
+    "address": "Carrera 33 7-21, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=OCI.mde+Carrera+33+7-21%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Hatoviejo",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Las Palmas",
+    "address": "Calle 16 28-60, Las Palmas, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hatoviejo+Calle+16+28-60%2C+Las+Palmas%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Saludpan",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Laureles",
+    "address": "Circular 4A #70-84, Medellín",
+    "category": "cafe",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Saludpan+Circular+4A+%2370-84%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Elcielo",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Manila",
+    "address": "Calle 7D 43C-36, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Elcielo+Calle+7D+43C-36%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "La Matriarca",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Manila",
+    "address": "Calle 8 43C-37, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=La+Matriarca+Calle+8+43C-37%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Helecho",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Provenza",
+    "address": "Carrera 35 10B-90, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Helecho+Carrera+35+10B-90%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "La Octava",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Provenza",
+    "address": "Calle 8 #37A-49, Medellín",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=La+Octava+Calle+8+%2337A-49%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Verdeo",
+    "city": "medellin",
+    "citySlug": "medellin",
+    "neighborhood": "Provenza",
+    "address": "Carrera 35 8A-3, Medellín",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Verdeo+Carrera+35+8A-3%2C+Medell%C3%ADn"
+  },
+  {
+    "name": "Quartinho Bar",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Botafogo",
+    "address": "Rua Arnaldo Quintela 124, Rio de Janeiro",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Quartinho+Bar+Rua+Arnaldo+Quintela+124%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Spazziano",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Botafogo",
+    "address": "Rua Voluntários da Pátria 445, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Spazziano+Rua+Volunt%C3%A1rios+da+P%C3%A1tria+445%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Confeitaria Colombo",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Centro",
+    "address": "Rua Gonçalves Dias 32, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Confeitaria+Colombo+Rua+Gon%C3%A7alves+Dias+32%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Xian",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Centro",
+    "address": "Avenida Almirante Silvio de Noronha 365, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Xian+Avenida+Almirante+Silvio+de+Noronha+365%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Churrascaria Palace",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Copacabana",
+    "address": "Rua Rodolfo Dantas 16, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Churrascaria+Palace+Rua+Rodolfo+Dantas+16%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Fit de Fato Copacabana",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Copacabana",
+    "address": "Rua Raul Pompéia 13, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Fit+de+Fato+Copacabana+Rua+Raul+Pomp%C3%A9ia+13%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Galeto Sat's",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Copacabana",
+    "address": "Rua Barata Ribeiro 7, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Galeto+Sat's+Rua+Barata+Ribeiro+7%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Teva",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Copacabana",
+    "address": "Rua Aires Saldanha 98, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Teva+Rua+Aires+Saldanha+98%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Garota de Ipanema",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Ipanema",
+    "address": "Rua Vinícius de Moraes 49, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Garota+de+Ipanema+Rua+Vin%C3%ADcius+de+Moraes+49%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Nosso",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Ipanema",
+    "address": "Rua Maria Quitéria 91, Rio de Janeiro",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nosso+Rua+Maria+Quit%C3%A9ria+91%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Tori Restaurante",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Ipanema",
+    "address": "Rua Visconde de Pirajá 444, loja 127, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Tori+Restaurante+Rua+Visconde+de+Piraj%C3%A1+444%2C+loja+127%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Prana Vegetariano",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Jardim Botânico",
+    "address": "Rua Ererê 11, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Prana+Vegetariano+Rua+Erer%C3%AA+11%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Liz Cocktail & Co",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Leblon",
+    "address": "Rua Dias Ferreira 679A, Rio de Janeiro",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Liz+Cocktail+%26+Co+Rua+Dias+Ferreira+679A%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Aprazível",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Santa Teresa",
+    "address": "Rua Aprazível 62, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Apraz%C3%ADvel+Rua+Apraz%C3%ADvel+62%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Bar do Mineiro",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Santa Teresa",
+    "address": "Rua Paschoal Carlos Magno 99, Rio de Janeiro",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bar+do+Mineiro+Rua+Paschoal+Carlos+Magno+99%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Explorer Bar",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Santa Teresa",
+    "address": "Rua Almirante Alexandrino 399, Rio de Janeiro",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Explorer+Bar+Rua+Almirante+Alexandrino+399%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Bar Urca",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Urca",
+    "address": "Rua Cândido Gaffrée 205, Rio de Janeiro",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bar+Urca+Rua+C%C3%A2ndido+Gaffr%C3%A9e+205%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Terra Brasilis",
+    "city": "rio de janeiro",
+    "citySlug": "rio-de-janeiro",
+    "neighborhood": "Urca",
+    "address": "Praça General Tibúrcio, Urca, Rio de Janeiro",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Terra+Brasilis+Pra%C3%A7a+General+Tib%C3%BArcio%2C+Urca%2C+Rio+de+Janeiro"
+  },
+  {
+    "name": "Antica Hostaria Romanesca",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Campo de' Fiori 40, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Antica+Hostaria+Romanesca+Campo+de+Fiori+40+Roma"
+  },
+  {
+    "name": "Giganti",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Campo de' Fiori 26, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Giganti+Campo+de+Fiori+26+Roma"
+  },
+  {
+    "name": "Giordi",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Campo de' Fiori 16, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Giordi+Campo+de+Fiori+16+Roma"
+  },
+  {
+    "name": "Mercato Hostaria Roma",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Campo de' Fiori 53, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mercato+Hostaria+Campo+de+Fiori+53+Roma"
+  },
+  {
+    "name": "Ristorante Campo de' Fiori",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Via della Corda 3, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ristorante+Campo+de+Fiori+Via+della+Corda+3+Roma"
+  },
+  {
+    "name": "Romoletto",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Campo de' Fiori 47, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Romoletto+Campo+de+Fiori+47+Roma"
+  },
+  {
+    "name": "Roscioli",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Via dei Giubbonari 21, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Roscioli+Via+dei+Giubbonari+21%2C+Roma"
+  },
+  {
+    "name": "Taba Café Campo de' Fiori",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Campo de' Fiori 13/14, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Taba+Cafe+Campo+de+Fiori+13+14+Roma"
+  },
+  {
+    "name": "The Drunken Ship",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Campo de' Fiori",
+    "address": "Campo de' Fiori 20/21, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The+Drunken+Ship+Campo+de+Fiori+20+21+Roma"
+  },
+  {
+    "name": "Armando al Pantheon",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Centro Storico",
+    "address": "Salita dei Crescenzi 31, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Armando+al+Pantheon+Salita+dei+Crescenzi+31%2C+Roma"
+  },
+  {
+    "name": "Casa Coppelle",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Centro Storico",
+    "address": "Piazza delle Coppelle 49, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Casa+Coppelle+Piazza+delle+Coppelle+49%2C+Roma"
+  },
+  {
+    "name": "Jerry Thomas Speakeasy",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Centro Storico",
+    "address": "Vicolo Cellini 30, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jerry+Thomas+Speakeasy+Vicolo+Cellini+30%2C+Roma"
+  },
+  {
+    "name": "Pasta in Corso Pantheon",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Centro Storico",
+    "address": "Via della Maddalena 43, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Pasta+in+Corso+Pantheon+Via+della+Maddalena+43%2C+Roma"
+  },
+  {
+    "name": "Supplizio",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Centro Storico",
+    "address": "Via dei Banchi Vecchi 143, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Supplizio+Via+dei+Banchi+Vecchi+143%2C+Roma"
+  },
+  {
+    "name": "Vrindaa",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Centro Storico",
+    "address": "Via Salaria 203, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Vrindaa+Via+Salaria+203%2C+Roma"
+  },
+  {
+    "name": "Aroma",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Colosseo",
+    "address": "Via Labicana 125, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Aroma+Via+Labicana+125%2C+Roma"
+  },
+  {
+    "name": "The Court",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Colosseo",
+    "address": "Via Labicana 125, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The+Court+Via+Labicana+125%2C+Roma"
+  },
+  {
+    "name": "Drink Kong",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Monti",
+    "address": "Piazza di San Martino ai Monti 8, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Drink+Kong+Piazza+di+San+Martino+ai+Monti+8%2C+Roma"
+  },
+  {
+    "name": "Flower Burger",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Prati",
+    "address": "Via dei Gracchi 87, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Flower+Burger+Via+dei+Gracchi+87%2C+Roma"
+  },
+  {
+    "name": "New Food Gluten Free",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Prati",
+    "address": "Via Germanico 190, Roma",
+    "category": "cafe",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=New+Food+Gluten+Free+Via+Germanico+190%2C+Roma"
+  },
+  {
+    "name": "Pizzarium Bonci",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Prati",
+    "address": "Via della Meloria 43, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Pizzarium+Bonci+Via+della+Meloria+43%2C+Roma"
+  },
+  {
+    "name": "Imàgo",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Spagna",
+    "address": "Piazza della Trinità dei Monti 6, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Im%C3%A0go+Piazza+della+Trinit%C3%A0+dei+Monti+6%2C+Roma"
+  },
+  {
+    "name": "La Matriciana dal 1870",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Termini",
+    "address": "Via del Viminale 44, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=La+Matriciana+dal+1870+Via+del+Viminale+44%2C+Roma"
+  },
+  {
+    "name": "Rifugio Romano",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Termini",
+    "address": "Via Volturno 39–41, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rifugio+Romano+Via+Volturno+39%E2%80%9341%2C+Roma"
+  },
+  {
+    "name": "Freni e Frizioni",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Trastevere",
+    "address": "Via del Politeama 4, Roma",
+    "category": "bar",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Freni+e+Frizioni+Via+del+Politeama+4%2C+Roma"
+  },
+  {
+    "name": "La Renella",
+    "city": "roma",
+    "citySlug": "roma",
+    "neighborhood": "Trastevere",
+    "address": "Via del Moro 15, Roma",
+    "category": "restaurant",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=La+Renella+Via+del+Moro+15%2C+Roma"
+  }
+]

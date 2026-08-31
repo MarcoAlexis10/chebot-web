@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const publicDirectory = require('./directory-data.json');
 
 const out = path.join(__dirname, 'dist');
 fs.rmSync(out, { recursive: true, force: true });
@@ -47,6 +48,13 @@ const coverage = [
 const coverageCards = coverage.map(item=>`<article class="card"><b>${item.city}</b><span><strong>Disponible:</strong> restaurantes y bares.</span><p><strong>Barrios y zonas:</strong> ${item.neighborhoods.join(' · ')}</p></article>`).join('');
 writePage('cobertura',layout({title:'Cobertura de Chebot | Ciudades y barrios',description:'Consultá las ciudades, barrios y zonas con cobertura disponible de restaurantes y bares en Chebot.',canonical:'/cobertura',body:`<main class="section"><span class="eyebrow">Cobertura actual</span><h2>Ciudades y barrios disponibles</h2><p class="lead">Chebot recomienda restaurantes y bares en las zonas que ya cuentan con catálogo activo. La cobertura se amplía progresivamente.</p><div class="grid">${coverageCards}</div><div class="notice"><b>¿Tu zona no aparece?</b> Actualmente no estamos llegando a esa zona; pronto estaremos. Chebot te mostrará las zonas disponibles para que puedas elegir otra cercana.</div></main>`}));
 
+const directoryVenues = publicDirectory.filter(venue=>venue.category === 'restaurant' || venue.category === 'bar');
+const directoryCityCards = cities.map(c=>{
+  const count = directoryVenues.filter(venue=>venue.citySlug === c.slug).length;
+  return `<a class="card" href="/${c.slug}#directorio"><b>${c.name}</b><span>${count} restaurantes y bares con dirección y Google Maps.</span></a>`;
+}).join('');
+writePage('directorio',layout({title:'Directorio de restaurantes y bares | Chebot',description:'Explorá el directorio público de restaurantes y bares de Chebot en siete ciudades.',canonical:'/directorio',body:`<main class="section"><span class="eyebrow">Directorio público</span><h2>Restaurantes y bares por ciudad</h2><p class="lead">Consultá los establecimientos disponibles, su barrio, dirección y enlace de Google Maps. Chebot no muestra distancias ni precios sin información verificable.</p><div class="grid">${directoryCityCards}</div><div class="notice">Los establecimientos pueden cambiar sus condiciones. Verificá horarios y disponibilidad directamente antes de ir.</div></main>`}));
+
 function replacePublishedCopy(relativeFile, replacements) {
   const file = path.join(out, relativeFile);
   let html = fs.readFileSync(file, 'utf8');
@@ -87,23 +95,32 @@ cities.forEach(c => {
     [encodeURIComponent('Hola Chebot, ayúdame a organizar mi viaje a '+c.name), encodeURIComponent('Hola Chebot, quiero comer o tomar algo en '+c.name)],
     ['Consultar a Chebot', 'Consultar restaurantes y bares'],
   ]);
+  const venueCards = directoryVenues.filter(venue=>venue.citySlug === c.slug).map(venue=>{
+    const category = venue.category === 'bar' ? 'Bar' : 'Restaurante';
+    return `<article class="card"><b>${venue.name}</b><span>${category} · ${venue.neighborhood}</span><p>${venue.address}</p><a href="${venue.mapsUrl}" rel="noopener">Abrir en Google Maps</a></article>`;
+  }).join('');
+  const directorySection = `<section class="section" id="directorio"><span class="eyebrow">Directorio público</span><h2>Locales disponibles en ${c.name}</h2><p class="lead">Restaurantes y bares del catálogo activo, con dirección y enlace de Google Maps.</p><div class="grid">${venueCards}</div><div class="notice">Verificá horarios y disponibilidad directamente con cada establecimiento antes de ir.</div></section>`;
+  replacePublishedCopy(path.join(c.slug, 'index.html'), [[
+    '<section class="section"><div class="cta">',
+    `${directorySection}<section class="section"><div class="cta">`,
+  ]]);
 });
 
 replacePublishedCopy('index.html', [[
   'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa.',
-  'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa. <a href="/cobertura">Ver ciudades y barrios con cobertura.</a>',
+  'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa. <a href="/cobertura">Ver cobertura.</a> <a href="/directorio">Ver directorio público.</a>',
 ]]);
 
 const publishedPageFiles = [
   'index.html',
   ...cities.map(c=>path.join(c.slug,'index.html')),
-  ...['como-funciona','contacto','registrar-negocio','privacidad','terminos','cobertura'].map(slug=>path.join(slug,'index.html')),
+  ...['como-funciona','contacto','registrar-negocio','privacidad','terminos','cobertura','directorio'].map(slug=>path.join(slug,'index.html')),
 ];
 publishedPageFiles.forEach(file=>replacePublishedCopy(file, [
-  ['<a href="/#ciudades">Ciudades</a><a href="/como-funciona">', '<a href="/#ciudades">Ciudades</a><a href="/cobertura">Cobertura</a><a href="/como-funciona">'],
-  ['<a href="/privacidad">Privacidad</a>', '<a href="/cobertura">Cobertura</a><a href="/privacidad">Privacidad</a>'],
+  ['<a href="/#ciudades">Ciudades</a><a href="/como-funciona">', '<a href="/#ciudades">Ciudades</a><a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/como-funciona">'],
+  ['<a href="/privacidad">Privacidad</a>', '<a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/privacidad">Privacidad</a>'],
 ]));
 
-const sitemap=['','como-funciona','cobertura','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://chebot.chat/${s}</loc></url>`).join('');
+const sitemap=['','como-funciona','cobertura','directorio','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://chebot.chat/${s}</loc></url>`).join('');
 fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);
 fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://chebot.chat/sitemap.xml\n');
