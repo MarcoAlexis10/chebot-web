@@ -35,6 +35,18 @@ writePage('registrar-negocio',layout({title:'Registrá tu restaurante o bar | Ch
 writePage('privacidad',layout({title:'Política de privacidad | Chebot',description:'Política de privacidad de Chebot.',canonical:'/privacidad',body:`<main class="legal"><h1>Política de privacidad</h1><p>Última actualización: 30 de agosto de 2026.</p><h2>Información que recibimos</h2><p>Cuando contactás a Chebot por WhatsApp, recibimos el número asociado a tu cuenta y el contenido de los mensajes que enviás. Si decidís compartir ubicación, la usamos para calcular recomendaciones cercanas. También podemos recibir datos técnicos básicos de navegación del sitio.</p><h2>Reseñas de usuarios</h2><p>Después de elegir un establecimiento podés enviar voluntariamente una puntuación y un comentario escrito. Chebot no solicita ni acepta fotografías para reseñas de usuarios. Solicitamos autorización antes de publicar la puntuación o el comentario y todo contenido queda sujeto a moderación.</p><h2>Cómo usamos la información</h2><p>La utilizamos para responder consultas, mantener el contexto de la conversación, mejorar recomendaciones, prevenir abusos y cumplir obligaciones legales. No vendemos datos personales y procuramos no conservar la ubicación precisa más tiempo del necesario.</p><h2>Seguridad</h2><p>Chebot nunca solicitará contraseñas, datos bancarios ni pagos dentro de WhatsApp. No envíes información sensible por el chat.</p><h2>Servicios externos</h2><p>Chebot utiliza proveedores tecnológicos para operar el sitio y la mensajería. Al abrir enlaces externos se aplican las políticas del proveedor correspondiente.</p><h2>Tus opciones</h2><p>Podés solicitar acceso, corrección o eliminación de tus datos y contenido desde nuestra página de contacto.</p></main>`}));
 writePage('terminos',layout({title:'Términos y aviso de afiliados | Chebot',description:'Condiciones de uso y aviso de afiliados de Chebot.',canonical:'/terminos',body:`<main class="legal"><h1>Términos y aviso de afiliados</h1><p>Chebot ofrece orientación turística general y no actúa como agencia de viajes ni garantiza la disponibilidad, calidad o condiciones de servicios de terceros.</p><h2>Reservas, pagos y terceros</h2><p>Chebot no procesa pagos dentro de WhatsApp ni solicita contraseñas o datos bancarios. Las compras o reservas se realizan directamente con proveedores externos que el usuario decide abrir. Antes de contratar, revisá precios, horarios, cancelaciones y condiciones en el sitio oficial del proveedor.</p><h2>Enlaces de afiliados</h2><p>Algunos enlaces pueden ser de afiliados. Chebot podría recibir una comisión cuando una persona realiza una reserva a través de ellos, sin incrementar el precio para el usuario. Las recomendaciones buscan ser relevantes y esta posible comisión no modifica las condiciones ofrecidas por el proveedor.</p><h2>Recomendaciones y establecimientos</h2><p>La incorporación de un establecimiento no garantiza una posición. El orden puede considerar relevancia, cercanía, contexto, disponibilidad, rotación y experiencias moderadas de usuarios.</p><h2>Uso responsable</h2><p>No uses el servicio para actividades ilícitas, abusivas o que afecten su funcionamiento.</p></main>`}));
 
+const coverage = [
+  { city:'Buenos Aires', neighborhoods:['Belgrano','Centro','Microcentro','Monserrat','Palermo','Palermo Hollywood','Recoleta','Retiro','San Nicolás','Villa del Parque'] },
+  { city:'Madrid', neighborhoods:['Barrio de las Letras','Centro','Chueca','La Latina','Malasaña','Retiro','Sol','Tetuán'] },
+  { city:'Barcelona', neighborhoods:['Barceloneta','Eixample','El Born','Gòtic','Gràcia','Les Corts','Montjuïc','Raval'] },
+  { city:'Roma', neighborhoods:["Campo de' Fiori",'Centro Storico','Colosseo','Monti','Prati','Spagna','Termini','Trastevere'] },
+  { city:'Lisboa', neighborhoods:['Alfama','Avenidas Novas','Bairro Alto','Baixa','Belém','Chiado','Graça','Mouraria','Príncipe Real'] },
+  { city:'Medellín', neighborhoods:['Centro','El Poblado','Las Palmas','Laureles','Manila','Provenza'] },
+  { city:'Río de Janeiro', neighborhoods:['Botafogo','Centro','Copacabana','Ipanema','Jardim Botânico','Leblon','Santa Teresa','Urca'] },
+];
+const coverageCards = coverage.map(item=>`<article class="card"><b>${item.city}</b><span><strong>Disponible:</strong> restaurantes y bares.</span><p><strong>Barrios y zonas:</strong> ${item.neighborhoods.join(' · ')}</p></article>`).join('');
+writePage('cobertura',layout({title:'Cobertura de Chebot | Ciudades y barrios',description:'Consultá las ciudades, barrios y zonas con cobertura disponible de restaurantes y bares en Chebot.',canonical:'/cobertura',body:`<main class="section"><span class="eyebrow">Cobertura actual</span><h2>Ciudades y barrios disponibles</h2><p class="lead">Chebot recomienda restaurantes y bares en las zonas que ya cuentan con catálogo activo. La cobertura se amplía progresivamente.</p><div class="grid">${coverageCards}</div><div class="notice"><b>¿Tu zona no aparece?</b> Actualmente no estamos llegando a esa zona; pronto estaremos. Chebot te mostrará las zonas disponibles para que puedas elegir otra cercana.</div></main>`}));
+
 function replacePublishedCopy(relativeFile, replacements) {
   const file = path.join(out, relativeFile);
   let html = fs.readFileSync(file, 'utf8');
@@ -77,6 +89,21 @@ cities.forEach(c => {
   ]);
 });
 
-const sitemap=['','como-funciona','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://chebot.chat/${s}</loc></url>`).join('');
+replacePublishedCopy('index.html', [[
+  'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa.',
+  'Recomendaciones de restaurantes y bares en las zonas donde Chebot tiene cobertura activa. <a href="/cobertura">Ver ciudades y barrios con cobertura.</a>',
+]]);
+
+const publishedPageFiles = [
+  'index.html',
+  ...cities.map(c=>path.join(c.slug,'index.html')),
+  ...['como-funciona','contacto','registrar-negocio','privacidad','terminos','cobertura'].map(slug=>path.join(slug,'index.html')),
+];
+publishedPageFiles.forEach(file=>replacePublishedCopy(file, [
+  ['<a href="/#ciudades">Ciudades</a><a href="/como-funciona">', '<a href="/#ciudades">Ciudades</a><a href="/cobertura">Cobertura</a><a href="/como-funciona">'],
+  ['<a href="/privacidad">Privacidad</a>', '<a href="/cobertura">Cobertura</a><a href="/privacidad">Privacidad</a>'],
+]));
+
+const sitemap=['','como-funciona','cobertura','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://chebot.chat/${s}</loc></url>`).join('');
 fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);
 fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://chebot.chat/sitemap.xml\n');
