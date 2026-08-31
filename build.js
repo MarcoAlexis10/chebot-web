@@ -23,6 +23,7 @@ const cities = [
 const css = `:root{--cream:#fffbf0;--ink:#16302d;--teal:#0f766e;--teal2:#115e59;--white:#fff;--muted:#5d6b68}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6}a{color:inherit}.nav{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:rgba(255,251,240,.96);position:sticky;top:0;z-index:5;border-bottom:1px solid #e8e1d2}.brand{font-size:1.45rem;font-weight:900;text-decoration:none}.brand span{color:var(--teal)}.navlinks{display:flex;gap:20px;font-size:.93rem}.navlinks a{text-decoration:none}.hero{min-height:72vh;display:grid;place-items:center;text-align:center;color:#fff;background:linear-gradient(#062d2a80,#062d2ab5),var(--hero) center/cover;padding:80px 20px}.hero small{text-transform:uppercase;letter-spacing:.18em;font-weight:800}.hero h1{font-size:clamp(2.8rem,8vw,6.2rem);line-height:1;margin:.16em 0}.hero p{font-size:clamp(1.05rem,2.2vw,1.35rem);max-width:720px;margin:18px auto 30px}.wa{display:inline-flex;align-items:center;justify-content:center;background:#20a568;color:#fff;padding:18px 28px;border-radius:15px;font-weight:900;text-decoration:none;box-shadow:0 12px 30px #062d2a40}.wa:hover{transform:translateY(-2px)}.section{max-width:1120px;margin:auto;padding:72px 22px}.eyebrow{color:var(--teal);font-weight:900;text-transform:uppercase;letter-spacing:.12em}.section h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin:.25em 0}.lead{color:var(--muted);max-width:760px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:35px}.card{background:#fff;border:1px solid #e9e1d2;border-radius:18px;padding:25px;box-shadow:0 8px 24px #31534f0c}.card b{display:block;font-size:1.15rem;margin-bottom:5px}.cities{grid-template-columns:repeat(3,1fr)}.city{min-height:220px;color:#fff;display:flex;align-items:flex-end;background:linear-gradient(#0002,#052e2bb0),var(--bg) center/cover;text-decoration:none}.city b{font-size:1.45rem}.steps{counter-reset:n}.steps .card:before{counter-increment:n;content:counter(n);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--teal);color:#fff;font-weight:900;margin-bottom:14px}.notice{background:#e5f2ef;border-left:5px solid var(--teal);padding:18px;border-radius:10px;margin-top:28px}.cta{text-align:center;background:var(--teal);color:#fff;border-radius:25px;padding:55px 25px}.cta .wa{background:#fff;color:var(--teal)}footer{background:#102c29;color:#d9e7e4;padding:40px 6%}.foot{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}.foot a{color:#fff;margin-right:15px}.legal{max-width:850px;margin:60px auto;padding:0 22px}.legal h1{font-size:2.7rem}.legal h2{margin-top:32px}.form{max-width:760px;background:#fff;border:1px solid #e9e1d2;border-radius:20px;padding:28px;margin-top:30px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-weight:800}.field input,.field select,.field textarea{width:100%;padding:13px;border:1px solid #b9c5c2;border-radius:10px;font:inherit;background:#fff}.field textarea{min-height:110px;resize:vertical}.submit{border:0;background:var(--teal);color:#fff;padding:15px 22px;border-radius:12px;font-weight:900;font-size:1rem;cursor:pointer}.status{min-height:25px;font-weight:800}.hp{position:absolute;left:-9999px}@media(max-width:760px){.navlinks{display:none}.grid,.cities,.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.hero{min-height:68vh}.section{padding:52px 20px}}`;
 fs.writeFileSync(path.join(out, 'style.css'), css);
 fs.appendFileSync(path.join(out, 'style.css'), `.chat-example{max-width:720px;margin:36px auto 0;background:#efeae2;border:1px solid #ded5c7;border-radius:24px;overflow:hidden;box-shadow:0 14px 34px #31534f18}.chat-head{background:var(--teal);color:#fff;padding:16px 20px;font-weight:900}.chat-body{padding:20px;display:flex;flex-direction:column;gap:12px}.chat-meta{text-align:center;color:var(--muted);font-size:.82rem;margin:2px 0 6px}.bubble{max-width:82%;padding:12px 15px;border-radius:14px;background:#fff;box-shadow:0 2px 7px #31534f12}.bubble.user{align-self:flex-end;background:#d9fdd3}.bubble small{display:block;color:var(--teal2);font-weight:900;margin-bottom:3px}.chat-status{background:#e5f2ef;border:1px solid #bddbd5;border-radius:12px;padding:12px 15px;font-size:.9rem}@media(max-width:760px){.bubble{max-width:92%}.chat-body{padding:15px}}`);
+fs.appendFileSync(path.join(out, 'style.css'), `.mobile-nav{display:none}.field-help{color:var(--muted);font-size:.88rem}.submit:disabled{opacity:.65;cursor:wait}.wa{max-width:100%}@media(max-width:760px){.nav{height:70px;padding:0 20px}.mobile-nav{display:block;position:relative}.mobile-nav summary{list-style:none;cursor:pointer;background:var(--teal);color:#fff;border-radius:10px;padding:9px 13px;font-weight:900}.mobile-nav summary::-webkit-details-marker{display:none}.mobile-menu{position:absolute;right:0;top:calc(100% + 10px);width:min(270px,calc(100vw - 40px));display:grid;background:#fff;border:1px solid #d9d1c2;border-radius:14px;padding:8px;box-shadow:0 14px 30px #16302d2b}.mobile-menu a{text-decoration:none;padding:11px 12px;border-radius:8px}.mobile-menu a:hover,.mobile-menu a:focus{background:#e5f2ef}.legal h1{font-size:clamp(2rem,10vw,2.7rem)}}`);
 
 function layout({title,description,body,canonical=''}){
  const pageUrl = `https://www.chebot.chat${canonical || '/'}`;
@@ -128,10 +129,28 @@ cities.forEach(c=>replacePublishedCopy(path.join(c.slug,'index.html'), [[
   '<b>Próximamente:</b> reservas y enlaces de afiliados. Actualmente Chebot muestra recomendaciones, direcciones y Google Maps, pero no permite reservar desde el servicio.',
 ]]));
 
-replacePublishedCopy(path.join('registrar-negocio','index.html'), [[
-  '<form class="form" id="venue-form">',
-  '<div class="notice"><b>Funciones comerciales — Próximamente:</b> reservas integradas, campañas promocionales y paneles de estadísticas para establecimientos. Actualmente este formulario solo permite solicitar la incorporación al directorio.</div><form class="form" id="venue-form">',
-]]);
+replacePublishedCopy(path.join('registrar-negocio','index.html'), [
+  [
+    '<form class="form" id="venue-form">',
+    '<div class="notice"><b>Funciones comerciales — Próximamente:</b> reservas integradas, campañas promocionales y paneles de estadísticas para establecimientos. Actualmente este formulario solo permite solicitar la incorporación al directorio.</div><form class="form" id="venue-form">',
+  ],
+  ['<option value="cafe">Café</option>', ''],
+  ['<input id="business_name" name="business_name" required maxlength="120">', '<input id="business_name" name="business_name" required maxlength="120" autocomplete="organization">'],
+  ['<input id="neighborhood" name="neighborhood" maxlength="100">', '<input id="neighborhood" name="neighborhood" maxlength="100" autocomplete="address-level3">'],
+  ['<input id="address" name="address" required maxlength="240">', '<input id="address" name="address" required maxlength="240" autocomplete="street-address">'],
+  ['<input id="contact_name" name="contact_name" required maxlength="120">', '<input id="contact_name" name="contact_name" required maxlength="120" autocomplete="name">'],
+  ['<input id="contact_phone" name="contact_phone" maxlength="60">', '<input id="contact_phone" name="contact_phone" type="tel" inputmode="tel" maxlength="60" autocomplete="tel" aria-describedby="contact-help">'],
+  ['<input id="contact_email" name="contact_email" type="email" maxlength="160">', '<input id="contact_email" name="contact_email" type="email" maxlength="160" autocomplete="email" aria-describedby="contact-help"><small class="field-help" id="contact-help">Ingresá al menos un teléfono o un correo electrónico.</small>'],
+  ['Confirmo que represento al establecimiento y que la información es correcta.', 'Confirmo que represento al establecimiento, que la información es correcta y que acepto los <a href="/terminos">Términos</a> y la <a href="/privacidad">Política de privacidad</a>.'],
+  [
+    "data.terms_accepted=form.elements.terms_accepted.checked;status.textContent='Enviando…';try{",
+    "data.terms_accepted=form.elements.terms_accepted.checked;if(!String(data.contact_phone||'').trim()&&!String(data.contact_email||'').trim()){status.textContent='Ingresá un teléfono o un correo electrónico.';form.elements.contact_phone.focus();return}const button=form.querySelector('button[type=submit]');button.disabled=true;status.textContent='Enviando…';try{",
+  ],
+  [
+    'status.textContent=result.message;form.reset()}catch(error){status.textContent=error.message}}</script>',
+    'status.textContent=result.message;form.reset()}catch(error){status.textContent=error.message}finally{button.disabled=false}});</script>',
+  ],
+]);
 
 replacePublishedCopy(path.join('terminos','index.html'), [
   [
@@ -154,9 +173,11 @@ const publishedPageFiles = [
   ...cities.map(c=>path.join(c.slug,'index.html')),
   ...['como-funciona','contacto','registrar-negocio','privacidad','terminos','cobertura','directorio'].map(slug=>path.join(slug,'index.html')),
 ];
+const mobileNav = '<details class="mobile-nav"><summary>Menú</summary><div class="mobile-menu"><a href="/#ciudades">Ciudades</a><a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/como-funciona">Cómo funciona</a><a href="/registrar-negocio">Sumá tu negocio</a><a href="/contacto">Contacto</a></div></details>';
 publishedPageFiles.forEach(file=>replacePublishedCopy(file, [
   ['<a href="/#ciudades">Ciudades</a><a href="/como-funciona">', '<a href="/#ciudades">Ciudades</a><a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/como-funciona">'],
   ['<a href="/privacidad">Privacidad</a>', '<a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/privacidad">Privacidad</a>'],
+  ['</div></nav>', `</div>${mobileNav}</nav>`],
 ]));
 
 const sitemap=['','como-funciona','cobertura','directorio','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://www.chebot.chat/${s}</loc></url>`).join('');
