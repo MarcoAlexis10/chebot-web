@@ -6,6 +6,9 @@ const out = path.join(__dirname, 'dist');
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
 
+const publicAssets = ['favicon.png', 'apple-touch-icon.png', 'og-chebot.png'];
+publicAssets.forEach(file => fs.copyFileSync(path.join(__dirname, file), path.join(out, file)));
+
 const whatsapp = 'https://wa.me/541176689413';
 const cities = [
   { slug:'buenos-aires', name:'Buenos Aires', country:'Argentina', image:'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1800&q=85', intro:'Tango, arquitectura, cafés históricos y barrios con personalidad propia.', picks:['Caminar por San Telmo y Plaza de Mayo','Descubrir Palermo y sus restaurantes','Vivir una noche de tango','Recorrer Recoleta y su arquitectura'] },
@@ -22,7 +25,17 @@ fs.writeFileSync(path.join(out, 'style.css'), css);
 fs.appendFileSync(path.join(out, 'style.css'), `.chat-example{max-width:720px;margin:36px auto 0;background:#efeae2;border:1px solid #ded5c7;border-radius:24px;overflow:hidden;box-shadow:0 14px 34px #31534f18}.chat-head{background:var(--teal);color:#fff;padding:16px 20px;font-weight:900}.chat-body{padding:20px;display:flex;flex-direction:column;gap:12px}.chat-meta{text-align:center;color:var(--muted);font-size:.82rem;margin:2px 0 6px}.bubble{max-width:82%;padding:12px 15px;border-radius:14px;background:#fff;box-shadow:0 2px 7px #31534f12}.bubble.user{align-self:flex-end;background:#d9fdd3}.bubble small{display:block;color:var(--teal2);font-weight:900;margin-bottom:3px}.chat-status{background:#e5f2ef;border:1px solid #bddbd5;border-radius:12px;padding:12px 15px;font-size:.9rem}@media(max-width:760px){.bubble{max-width:92%}.chat-body{padding:15px}}`);
 
 function layout({title,description,body,canonical=''}){
- return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><meta name="description" content="${description}"><meta name="robots" content="index,follow"><link rel="canonical" href="https://chebot.chat${canonical}"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:type" content="website"><link rel="stylesheet" href="/style.css"></head><body><nav class="nav"><a class="brand" href="/">Che<span>bot</span></a><div class="navlinks"><a href="/#ciudades">Ciudades</a><a href="/como-funciona">Cómo funciona</a><a href="/registrar-negocio">Sumá tu negocio</a><a href="/contacto">Contacto</a></div></nav>${body}<footer><div class="foot"><div><b>Chebot</b><br>Tu guía de viaje por WhatsApp.</div><div><a href="/privacidad">Privacidad</a><a href="/terminos">Términos</a><a href="/registrar-negocio">Sumá tu negocio</a><a href="/contacto">Contacto</a></div><small>© ${new Date().getFullYear()} Chebot</small></div></footer></body></html>`;
+ const pageUrl = `https://www.chebot.chat${canonical || '/'}`;
+ const socialImageUrl = 'https://www.chebot.chat/og-chebot.png';
+ const structuredData = JSON.stringify({
+  '@context':'https://schema.org',
+  '@graph':[
+   {'@type':'WebSite','@id':'https://www.chebot.chat/#website',url:'https://www.chebot.chat/',name:'Chebot',description:'Recomendaciones de restaurantes y bares por WhatsApp en siete ciudades.',inLanguage:'es',image:{'@id':'https://www.chebot.chat/#socialimage'}},
+   {'@type':'WebPage','@id':`${pageUrl}#webpage`,url:pageUrl,name:title,description,isPartOf:{'@id':'https://www.chebot.chat/#website'},inLanguage:'es',primaryImageOfPage:{'@id':'https://www.chebot.chat/#socialimage'}},
+   {'@type':'ImageObject','@id':'https://www.chebot.chat/#socialimage',url:socialImageUrl,contentUrl:socialImageUrl,width:1200,height:630,caption:'Chebot — restaurantes y bares por WhatsApp'},
+  ],
+ }).replaceAll('<','\\u003c');
+ return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><meta name="description" content="${description}"><meta name="robots" content="index,follow"><meta name="theme-color" content="#0f766e"><link rel="canonical" href="${pageUrl}"><link rel="icon" type="image/png" sizes="64x64" href="/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:type" content="website"><meta property="og:url" content="${pageUrl}"><meta property="og:site_name" content="Chebot"><meta property="og:locale" content="es_AR"><meta property="og:image" content="${socialImageUrl}"><meta property="og:image:secure_url" content="${socialImageUrl}"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Chebot, recomendaciones de restaurantes y bares por WhatsApp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${title}"><meta name="twitter:description" content="${description}"><meta name="twitter:image" content="${socialImageUrl}"><meta name="twitter:image:alt" content="Chebot, recomendaciones de restaurantes y bares por WhatsApp"><script type="application/ld+json">${structuredData}</script><link rel="stylesheet" href="/style.css"></head><body><nav class="nav"><a class="brand" href="/">Che<span>bot</span></a><div class="navlinks"><a href="/#ciudades">Ciudades</a><a href="/como-funciona">Cómo funciona</a><a href="/registrar-negocio">Sumá tu negocio</a><a href="/contacto">Contacto</a></div></nav>${body}<footer><div class="foot"><div><b>Chebot</b><br>Tu guía de viaje por WhatsApp.</div><div><a href="/privacidad">Privacidad</a><a href="/terminos">Términos</a><a href="/registrar-negocio">Sumá tu negocio</a><a href="/contacto">Contacto</a></div><small>© ${new Date().getFullYear()} Chebot</small></div></footer></body></html>`;
 }
 function writePage(slug, html){const dir=path.join(out,slug);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,'index.html'),html)}
 
@@ -146,6 +159,6 @@ publishedPageFiles.forEach(file=>replacePublishedCopy(file, [
   ['<a href="/privacidad">Privacidad</a>', '<a href="/cobertura">Cobertura</a><a href="/directorio">Directorio</a><a href="/privacidad">Privacidad</a>'],
 ]));
 
-const sitemap=['','como-funciona','cobertura','directorio','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://chebot.chat/${s}</loc></url>`).join('');
+const sitemap=['','como-funciona','cobertura','directorio','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://www.chebot.chat/${s}</loc></url>`).join('');
 fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);
-fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://chebot.chat/sitemap.xml\n');
+fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://www.chebot.chat/sitemap.xml\n');
