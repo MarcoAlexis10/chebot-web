@@ -53,13 +53,13 @@ writePage('privacidad',layout({title:'Política de privacidad | Chebot',descript
 writePage('terminos',layout({title:'Términos y aviso de afiliados | Chebot',description:'Condiciones de uso y aviso de afiliados de Chebot.',canonical:'/terminos',body:`<main class="legal"><h1>Términos y aviso de afiliados</h1><p>Chebot ofrece orientación turística general y no actúa como agencia de viajes ni garantiza la disponibilidad, calidad o condiciones de servicios de terceros.</p><h2>Reservas, pagos y terceros</h2><p>Chebot no procesa pagos dentro de WhatsApp ni solicita contraseñas o datos bancarios. Las compras o reservas se realizan directamente con proveedores externos que el usuario decide abrir. Antes de contratar, revisá precios, horarios, cancelaciones y condiciones en el sitio oficial del proveedor.</p><h2>Enlaces de afiliados</h2><p>Algunos enlaces pueden ser de afiliados. Chebot podría recibir una comisión cuando una persona realiza una reserva a través de ellos, sin incrementar el precio para el usuario. Las recomendaciones buscan ser relevantes y esta posible comisión no modifica las condiciones ofrecidas por el proveedor.</p><h2>Recomendaciones y establecimientos</h2><p>La incorporación de un establecimiento no garantiza una posición. El orden puede considerar relevancia, cercanía, contexto, disponibilidad, rotación y experiencias moderadas de usuarios.</p><h2>Uso responsable</h2><p>No uses el servicio para actividades ilícitas, abusivas o que afecten su funcionamiento.</p></main>`}));
 
 const coverage = [
-  { city:'Buenos Aires', neighborhoods:['Belgrano','Centro','Microcentro','Monserrat','Palermo','Palermo Hollywood','Recoleta','Retiro','San Nicolás','Villa del Parque'] },
-  { city:'Madrid', neighborhoods:['Barrio de las Letras','Centro','Chueca','La Latina','Malasaña','Retiro','Sol','Tetuán'] },
-  { city:'Barcelona', neighborhoods:['Barceloneta','Eixample','El Born','Gòtic','Gràcia','Les Corts','Montjuïc','Raval'] },
-  { city:'Roma', neighborhoods:["Campo de' Fiori",'Centro Storico','Colosseo','Monti','Prati','Spagna','Termini','Trastevere'] },
-  { city:'Lisboa', neighborhoods:['Alfama','Avenidas Novas','Bairro Alto','Baixa','Belém','Chiado','Graça','Mouraria','Príncipe Real'] },
-  { city:'Medellín', neighborhoods:['Centro','El Poblado','Las Palmas','Laureles','Manila','Provenza'] },
-  { city:'Río de Janeiro', neighborhoods:['Botafogo','Centro','Copacabana','Ipanema','Jardim Botânico','Leblon','Santa Teresa','Urca'] },
+  { city:'Buenos Aires', neighborhoods:['Belgrano','Caballito','Chacarita','Microcentro','Palermo','Puerto Madero','Recoleta','San Nicolás','San Telmo','Villa Crespo'] },
+  { city:'Madrid', neighborhoods:['La Latina','Malasaña'] },
+  { city:'Barcelona', neighborhoods:['Gràcia','Poble-sec'] },
+  { city:'Roma', neighborhoods:["Campo de' Fiori",'San Lorenzo','Trastevere'] },
+  { city:'Lisboa', neighborhoods:['Alfama'] },
+  { city:'Medellín', neighborhoods:['El Poblado','Provenza'] },
+  { city:'Río de Janeiro', neighborhoods:['Copacabana','Ipanema'] },
 ];
 const registrationCoverageCards = coverage.map(item=>`<article class="card"><b>${item.city}</b><span>${item.neighborhoods.join(' · ')}</span></article>`).join('');
 const registrationCoverageData = JSON.stringify(Object.fromEntries(coverage.map(item=>[item.city,item.neighborhoods]))).replaceAll('<','\\u003c');
