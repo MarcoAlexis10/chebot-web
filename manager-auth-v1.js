@@ -203,7 +203,7 @@ let html = fs.readFileSync(indexFile, 'utf8');
 
 html = html.replace(
   '<link rel="stylesheet" href="/manager/manager.css">',
-  '<link rel="stylesheet" href="/manager/manager.css">\\n  <link rel="stylesheet" href="/manager/manager-auth.css">'
+  '<link rel="stylesheet" href="/manager/manager.css">\n  <link rel="stylesheet" href="/manager/manager-auth.css">'
 );
 
 html = html.replace(
@@ -233,7 +233,7 @@ html = html.replace(
 );
 
 html = html.replace(
-  '<strong>Vicky & Maty · Demo</strong>\\n        <span class="pill">Modo manager · WhatsApp-first</span>',
+  '<strong>Vicky & Maty · Demo</strong>\n        <span class="pill">Modo manager · WhatsApp-first</span>',
   `<strong id="manager-account-label">Chebot Concierge · Manager</strong>
         <div><span class="manager-auth-session" id="manager-session-label">Sesión verificada</span><button class="manager-auth-logout" id="manager-logout" type="button">Salir</button></div>`
 );
@@ -245,7 +245,7 @@ html = html.replace(
 
 html = html.replace(
   '</body>',
-  '  <script src="/manager/manager-auth.js" defer></script>\\n</body>'
+  '  <script src="/manager/manager-auth.js" defer></script>\n</body>'
 );
 
 fs.writeFileSync(indexFile, html);
