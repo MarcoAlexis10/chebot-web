@@ -247,3 +247,4 @@ publishedPageFiles.forEach(file=>replacePublishedCopy(file, [
 const sitemap=['','como-funciona','cobertura','directorio','contacto','registrar-negocio','privacidad','terminos',...cities.map(c=>c.slug)].map(s=>`<url><loc>https://www.chebot.chat/${s}</loc></url>`).join('');
 fs.writeFileSync(path.join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);
 fs.writeFileSync(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://www.chebot.chat/sitemap.xml\n');
+require('./manager-v1.js')({ out });
