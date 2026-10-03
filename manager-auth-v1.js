@@ -22,6 +22,7 @@ if (!fs.existsSync(indexFile)) {
 
 const css = `
 .manager-auth-pending .shell{display:none!important}
+.manager-auth-screen[hidden]{display:none!important}
 .manager-auth-screen{min-height:100vh;display:grid;place-items:center;padding:28px;background:#f7f4ec;color:#16302d}
 .manager-auth-card{width:min(440px,100%);background:#fff;border:1px solid #e5ddd0;border-radius:20px;padding:26px;box-shadow:0 14px 40px #173d3814}
 .manager-auth-brand{font-size:1.35rem;font-weight:900;margin-bottom:5px}
