@@ -9,6 +9,8 @@ const supabaseUrl = String(process.env.SUPABASE_URL || '').replace(/\/+$/, '');
 const publishableKey = String(process.env.SUPABASE_PUBLISHABLE_KEY || '');
 const backendSessionUrl =
   'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/session';
+const backendPropertiesUrl =
+  'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/properties';
 
 if (!supabaseUrl) {
   throw new Error('SUPABASE_URL is required for Manager Web Preview.');
@@ -53,6 +55,7 @@ const browserJs = `
   const SUPABASE_URL = ${JSON.stringify(supabaseUrl)};
   const SUPABASE_PUBLISHABLE_KEY = ${JSON.stringify(publishableKey)};
   const BACKEND_SESSION_URL = ${JSON.stringify(backendSessionUrl)};
+  const BACKEND_PROPERTIES_URL = ${JSON.stringify(backendPropertiesUrl)};
   const TOKEN_KEY = 'chebot_manager_preview_access_token';
 
   const authScreen = document.getElementById('manager-auth');
@@ -89,6 +92,144 @@ const browserJs = `
     const role = session && session.role ? String(session.role) : 'manager';
     sessionLabel.textContent = 'Sesión verificada · ' + role;
     accountLabel.textContent = 'Chebot Concierge · ' + role;
+  }
+
+  function propertyStatusLabel(statusValue) {
+    const labels = {
+      active: 'Activa',
+      ready_for_review: 'Lista para revisión',
+      draft: 'Borrador',
+      paused: 'Pausada',
+      archived: 'Archivada'
+    };
+    return labels[String(statusValue || '')] || String(statusValue || 'Sin estado');
+  }
+
+  function renderPropertyMetric(properties) {
+    const metrics = Array.from(document.querySelectorAll('.metric'));
+    const card = metrics.find((item) => {
+      const small = item.querySelector('small');
+      return small && small.textContent.trim() === 'Propiedades activas';
+    });
+
+    if (!card) return;
+
+    const activeCount = properties.filter((property) => property.property_status === 'active').length;
+    const totalCount = properties.length;
+    const number = card.querySelector('b');
+    const tag = card.querySelector('.tag');
+
+    if (number) number.textContent = String(activeCount);
+    if (tag) {
+      tag.textContent = totalCount === 1 ? '1 propiedad real' : totalCount + ' propiedades reales';
+      tag.className = 'tag';
+    }
+  }
+
+  function renderProperties(properties) {
+    const list = document.querySelector('#propiedades .list');
+    if (!list) return;
+
+    list.replaceChildren();
+
+    if (!properties.length) {
+      const empty = document.createElement('article');
+      empty.className = 'card';
+      const title = document.createElement('b');
+      title.textContent = 'Sin propiedades disponibles';
+      const detail = document.createElement('p');
+      detail.className = 'muted';
+      detail.textContent = 'No hay propiedades autorizadas para esta cuenta.';
+      empty.append(title, detail);
+      list.appendChild(empty);
+      renderPropertyMetric([]);
+      return;
+    }
+
+    properties.forEach((property) => {
+      const row = document.createElement('article');
+      row.className = 'row';
+
+      const identity = document.createElement('div');
+      const name = document.createElement('b');
+      name.textContent = String(property.internal_name || 'Propiedad');
+      const source = document.createElement('div');
+      source.className = 'muted';
+      source.textContent = 'Concierge Dev · dato real';
+      identity.append(name, source);
+
+      const statusTag = document.createElement('span');
+      statusTag.className =
+        property.property_status === 'active'
+          ? 'tag'
+          : property.property_status === 'ready_for_review'
+            ? 'tag warn'
+            : 'tag';
+      statusTag.textContent = propertyStatusLabel(property.property_status);
+
+      const role = document.createElement('span');
+      role.textContent = 'Acceso: ' + String(property.member_role || 'manager');
+
+      const enabledPermissions = [
+        property.can_manage_stays && 'estadías',
+        property.can_manage_incidents && 'incidencias',
+        property.can_approve_requests && 'solicitudes',
+        property.can_manage_knowledge && 'conocimiento',
+        property.can_manage_secrets && 'secretos',
+        property.can_manage_team && 'equipo'
+      ].filter(Boolean);
+
+      const permissions = document.createElement('span');
+      permissions.textContent = enabledPermissions.length
+        ? 'Permisos: ' + enabledPermissions.join(', ')
+        : 'Sin permisos operativos';
+
+      row.append(identity, statusTag, role, permissions);
+      list.appendChild(row);
+    });
+
+    renderPropertyMetric(properties);
+  }
+
+  function renderPropertiesError() {
+    const list = document.querySelector('#propiedades .list');
+    if (!list) return;
+    list.replaceChildren();
+
+    const errorCard = document.createElement('article');
+    errorCard.className = 'card';
+    const title = document.createElement('b');
+    title.textContent = 'No pudimos cargar las propiedades';
+    const detail = document.createElement('p');
+    detail.className = 'muted';
+    detail.textContent = 'La sesión sigue activa. Reintentá recargando la página.';
+    errorCard.append(title, detail);
+    list.appendChild(errorCard);
+  }
+
+  async function loadManagerProperties(accessToken) {
+    const response = await fetch(BACKEND_PROPERTIES_URL, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-store',
+      headers: {
+        Authorization: 'Bearer ' + accessToken,
+        Accept: 'application/json'
+      }
+    });
+
+    let body = null;
+    try { body = await response.json(); } catch (_) {}
+
+    if (!response.ok || !body || body.ok !== true || !Array.isArray(body.properties)) {
+      const error = body && body.error ? String(body.error) : 'MANAGER_PROPERTIES_LOAD_FAILED';
+      const e = new Error(error);
+      e.code = error;
+      throw e;
+    }
+
+    renderProperties(body.properties);
+    return body.properties;
   }
 
   async function verifyManagerSession(accessToken) {
@@ -157,6 +298,7 @@ const browserJs = `
       password.value = '';
       setStatus('', '');
       showPanel(managerSession);
+      loadManagerProperties(accessToken).catch(renderPropertiesError);
     } catch (error) {
       clearToken();
 
@@ -191,6 +333,7 @@ const browserJs = `
       const managerSession = await verifyManagerSession(existingToken);
       setStatus('', '');
       showPanel(managerSession);
+      loadManagerProperties(existingToken).catch(renderPropertiesError);
     } catch (_) {
       showLogin('Tu sesión venció. Iniciá sesión nuevamente.');
     }
@@ -241,7 +384,17 @@ html = html.replace(
 
 html = html.replace(
   '<b>Preview interna:</b> interfaz ficticia y aislada. El acceso real, autenticación y datos vivos se conectarán al backend Concierge en una etapa posterior.',
-  '<b>Preview autenticada:</b> el acceso ya se valida contra Chebot Concierge Dev. El contenido del panel sigue siendo ficticio hasta conectar las vistas de datos reales.'
+  '<b>Preview autenticada:</b> acceso y Propiedades ya usan datos reales de Chebot Concierge Dev. Las demás secciones continúan con datos ficticios de demostración.'
+);
+
+html = html.replace(
+  'Preview con datos ficticios. Sin secretos ni información real de huéspedes.',
+  'Preview autenticada. Propiedades: datos reales QA. Resto del panel: demostración.'
+);
+
+html = html.replace(
+  'Chebot Concierge Manager Web V1 · Preview interna · Datos ficticios · Sin secretos reales.',
+  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades reales QA · Sin secretos reales.'
 );
 
 html = html.replace(
