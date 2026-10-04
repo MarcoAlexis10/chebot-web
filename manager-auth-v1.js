@@ -11,6 +11,8 @@ const backendSessionUrl =
   'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/session';
 const backendPropertiesUrl =
   'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/properties';
+const backendStaysUrl =
+  'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/stays';
 
 if (!supabaseUrl) {
   throw new Error('SUPABASE_URL is required for Manager Web Preview.');
@@ -56,6 +58,7 @@ const browserJs = `
   const SUPABASE_PUBLISHABLE_KEY = ${JSON.stringify(publishableKey)};
   const BACKEND_SESSION_URL = ${JSON.stringify(backendSessionUrl)};
   const BACKEND_PROPERTIES_URL = ${JSON.stringify(backendPropertiesUrl)};
+  const BACKEND_STAYS_URL = ${JSON.stringify(backendStaysUrl)};
   const TOKEN_KEY = 'chebot_manager_preview_access_token';
 
   const authScreen = document.getElementById('manager-auth');
@@ -232,6 +235,130 @@ const browserJs = `
     return body.properties;
   }
 
+  function stayStatusLabel(statusValue) {
+    const labels = {
+      draft: 'Borrador',
+      scheduled: 'Programada',
+      active: 'Activa',
+      completed: 'Finalizada',
+      cancelled: 'Cancelada',
+      revoked: 'Revocada'
+    };
+    return labels[String(statusValue || '')] || String(statusValue || 'Sin estado');
+  }
+
+  function stayStatusClass(statusValue) {
+    const value = String(statusValue || '');
+    if (value === 'scheduled' || value === 'active' || value === 'completed') return 'tag';
+    if (value === 'draft') return 'tag warn';
+    return 'tag danger';
+  }
+
+  function formatStayDate(value) {
+    if (!value) return '—';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return String(value);
+
+    return new Intl.DateTimeFormat('es-AR', {
+      timeZone: 'America/Argentina/Buenos_Aires',
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).format(date);
+  }
+
+  function renderStays(stays) {
+    const list = document.querySelector('#estadias .list');
+    if (!list) return;
+
+    list.replaceChildren();
+
+    if (!stays.length) {
+      const empty = document.createElement('article');
+      empty.className = 'card';
+      const title = document.createElement('b');
+      title.textContent = 'Sin estadías';
+      const detail = document.createElement('p');
+      detail.className = 'muted';
+      detail.textContent = 'No hay estadías disponibles en las propiedades autorizadas.';
+      empty.append(title, detail);
+      list.appendChild(empty);
+      return;
+    }
+
+    stays.forEach((stay) => {
+      const row = document.createElement('article');
+      row.className = 'row';
+
+      const identity = document.createElement('div');
+      const name = document.createElement('b');
+      name.textContent = String(stay.property_internal_name || 'Propiedad');
+      const source = document.createElement('div');
+      source.className = 'muted';
+      source.textContent = 'Concierge Dev · estadía real';
+      identity.append(name, source);
+
+      const dates = document.createElement('span');
+      dates.textContent =
+        formatStayDate(stay.check_in_at) + ' → ' + formatStayDate(stay.check_out_at);
+
+      const statusTag = document.createElement('span');
+      statusTag.className = stayStatusClass(stay.status);
+      statusTag.textContent = stayStatusLabel(stay.status);
+
+      const access = document.createElement('span');
+      access.textContent =
+        'Acceso: ' + formatStayDate(stay.access_from) + ' → ' + formatStayDate(stay.access_until);
+
+      row.append(identity, dates, statusTag, access);
+      list.appendChild(row);
+    });
+  }
+
+  function renderStaysError() {
+    const list = document.querySelector('#estadias .list');
+    if (!list) return;
+    list.replaceChildren();
+
+    const errorCard = document.createElement('article');
+    errorCard.className = 'card';
+    const title = document.createElement('b');
+    title.textContent = 'No pudimos cargar las estadías';
+    const detail = document.createElement('p');
+    detail.className = 'muted';
+    detail.textContent = 'La sesión sigue activa. Reintentá recargando la página.';
+    errorCard.append(title, detail);
+    list.appendChild(errorCard);
+  }
+
+  async function loadManagerStays(accessToken) {
+    const response = await fetch(BACKEND_STAYS_URL, {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-store',
+      headers: {
+        Authorization: 'Bearer ' + accessToken,
+        Accept: 'application/json'
+      }
+    });
+
+    let body = null;
+    try { body = await response.json(); } catch (_) {}
+
+    if (!response.ok || !body || body.ok !== true || !Array.isArray(body.stays)) {
+      const error = body && body.error ? String(body.error) : 'MANAGER_STAYS_LOAD_FAILED';
+      const e = new Error(error);
+      e.code = error;
+      throw e;
+    }
+
+    renderStays(body.stays);
+    return body.stays;
+  }
+
   async function verifyManagerSession(accessToken) {
     const response = await fetch(BACKEND_SESSION_URL, {
       method: 'GET',
@@ -299,6 +426,7 @@ const browserJs = `
       setStatus('', '');
       showPanel(managerSession);
       loadManagerProperties(accessToken).catch(renderPropertiesError);
+      loadManagerStays(accessToken).catch(renderStaysError);
     } catch (error) {
       clearToken();
 
@@ -334,6 +462,7 @@ const browserJs = `
       setStatus('', '');
       showPanel(managerSession);
       loadManagerProperties(existingToken).catch(renderPropertiesError);
+      loadManagerStays(existingToken).catch(renderStaysError);
     } catch (_) {
       showLogin('Tu sesión venció. Iniciá sesión nuevamente.');
     }
@@ -384,17 +513,17 @@ html = html.replace(
 
 html = html.replace(
   '<b>Preview interna:</b> interfaz ficticia y aislada. El acceso real, autenticación y datos vivos se conectarán al backend Concierge en una etapa posterior.',
-  '<b>Preview autenticada:</b> acceso y Propiedades ya usan datos reales de Chebot Concierge Dev. Las demás secciones continúan con datos ficticios de demostración.'
+  '<b>Preview autenticada:</b> acceso, Propiedades y Estadías ya usan datos reales de Chebot Concierge Dev. Las demás secciones continúan con datos ficticios de demostración.'
 );
 
 html = html.replace(
   'Preview con datos ficticios. Sin secretos ni información real de huéspedes.',
-  'Preview autenticada. Propiedades: datos reales QA. Resto del panel: demostración.'
+  'Preview autenticada. Propiedades y Estadías: datos reales QA. Resto del panel: demostración.'
 );
 
 html = html.replace(
   'Chebot Concierge Manager Web V1 · Preview interna · Datos ficticios · Sin secretos reales.',
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades reales QA · Sin secretos reales.'
+  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades y Estadías reales QA · Sin secretos reales.'
 );
 
 html = html.replace(
