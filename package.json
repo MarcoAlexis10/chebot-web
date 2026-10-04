@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node build.js && node manager-auth-v1.js && node manager-knowledge-v1.js"
+    "build": "node build.js && node manager-auth-v1.js && node manager-knowledge-v1.js && node manager-requests-v1.js"
   }
 }
