@@ -54,7 +54,11 @@ replaceRequired(
       }
       action.appendChild(actionText);
 
-      if (item.latest_guest_response) {
+      const showLatestGuestResponse =
+        item.latest_guest_response &&
+        ['new', 'waiting_manager', 'resolving', 'waiting_guest', 'escalated'].includes(item.status);
+
+      if (showLatestGuestResponse) {
         const guestReply = document.createElement('div');
         guestReply.style.marginTop = '2px';
         guestReply.style.padding = '9px 10px';
