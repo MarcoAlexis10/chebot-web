@@ -107,7 +107,7 @@ replaceRequired(
 
           if (nextStatus === 'waiting_guest') {
             const answer = window.prompt(
-              '¿Qué querés que Chebot le indique al huésped?\n\n' +
+              '¿Qué querés que Chebot le indique al huésped?\\n\\n' +
               'Escribí una instrucción concreta. Ejemplo: "Apagá el aire, esperá 5 minutos y volvé a encenderlo. Si sigue sin enfriar, avisame."'
             );
 
@@ -126,9 +126,9 @@ replaceRequired(
             }
 
             if (!window.confirm(
-              'Chebot va a enviar esta instrucción al huésped:\n\n' +
+              'Chebot va a enviar esta instrucción al huésped:\\n\\n' +
               managerMessage +
-              '\n\n¿Confirmás el envío?'
+              '\\n\\n¿Confirmás el envío?'
             )) return;
           } else {
             if (!window.confirm('¿Confirmás "' + label + '" para esta incidencia?')) return;
