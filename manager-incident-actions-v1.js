@@ -54,6 +54,27 @@ replaceRequired(
       }
       action.appendChild(actionText);
 
+      if (item.latest_guest_response) {
+        const guestReply = document.createElement('div');
+        guestReply.style.marginTop = '2px';
+        guestReply.style.padding = '9px 10px';
+        guestReply.style.borderRadius = '9px';
+        guestReply.style.background = '#fff8e8';
+        guestReply.style.border = '1px solid #eadfbd';
+        guestReply.style.fontSize = '0.92rem';
+        guestReply.style.lineHeight = '1.35';
+
+        const guestReplyLabel = document.createElement('b');
+        guestReplyLabel.textContent = 'Última respuesta del huésped:';
+
+        const guestReplyText = document.createElement('div');
+        guestReplyText.style.marginTop = '4px';
+        guestReplyText.textContent = text(item.latest_guest_response, '—');
+
+        guestReply.append(guestReplyLabel, guestReplyText);
+        action.appendChild(guestReply);
+      }
+
       const controls = document.createElement('div');
       controls.style.display = 'flex';
       controls.style.flexWrap = 'wrap';
