@@ -92,6 +92,76 @@ const browserJs = `
     container.appendChild(tag);
   }
 
+  async function decideKnowledge(item, action, button) {
+    const accessToken = sessionStorage.getItem(TOKEN_KEY);
+    if (!accessToken || !item || !item.id || !item.version || !item.version.id) return;
+
+    const approve = action === 'approve';
+    const promptText = approve
+      ? '¿Aprobar esta propuesta? Una vez aprobada, Chebot podrá usarla como conocimiento activo según su alcance y riesgo.'
+      : '¿Rechazar esta propuesta? No se activará y quedará conservada en el historial.';
+
+    if (!window.confirm(promptText)) return;
+
+    const previousText = button.textContent;
+    button.disabled = true;
+    button.textContent = approve ? 'Aprobando…' : 'Rechazando…';
+
+    try {
+      const response = await fetch(BACKEND_KNOWLEDGE_URL, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-store',
+        headers: {
+          Authorization: 'Bearer ' + accessToken,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          action,
+          knowledge_item_id: item.id,
+          version_id: item.version.id
+        })
+      });
+
+      let body = null;
+      try { body = await response.json(); } catch (_) {}
+
+      if (!response.ok || !body || body.ok !== true) {
+        const code = body && body.error ? String(body.error) : 'KNOWLEDGE_DECISION_FAILED';
+        if (code === 'SAFETY_REVIEW_REQUIRES_SECOND_APPROVER') {
+          window.alert('Esta propuesta requiere una segunda aprobación por seguridad. No fue activada.');
+        } else {
+          window.alert('No se pudo completar la decisión. Código: ' + code);
+        }
+        return;
+      }
+
+      lastLoadedToken = null;
+      await maybeLoadKnowledge();
+    } catch (_) {
+      window.alert('No se pudo conectar con Chebot Concierge. Reintentá en unos segundos.');
+    } finally {
+      button.disabled = false;
+      button.textContent = previousText;
+    }
+  }
+
+  function addDecisionButton(container, label, item, action, danger = false) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = label;
+    button.style.padding = '8px 11px';
+    button.style.borderRadius = '10px';
+    button.style.cursor = 'pointer';
+    button.style.fontWeight = '800';
+    button.style.border = danger ? '1px solid #e7c8bd' : '1px solid #0f766e';
+    button.style.background = danger ? '#fff' : '#0f766e';
+    button.style.color = danger ? '#8b2f18' : '#fff';
+    button.addEventListener('click', () => decideKnowledge(item, action, button));
+    container.appendChild(button);
+  }
+
   function renderKnowledge(items) {
     list.replaceChildren();
 
@@ -172,6 +242,32 @@ const browserJs = `
       }
 
       card.append(title, scope, content, tags, versionMeta);
+
+      const isDraftReview =
+        item.status === 'review' &&
+        item.version &&
+        item.version.status === 'draft' &&
+        item.version.is_current !== true;
+
+      if (isDraftReview) {
+        const reviewNote = document.createElement('p');
+        reviewNote.className = 'muted';
+        reviewNote.style.margin = '10px 0 0';
+        reviewNote.style.fontSize = '.84rem';
+        reviewNote.textContent = 'Propuesta pendiente: revisala antes de convertirla en conocimiento activo.';
+
+        const decisions = document.createElement('div');
+        decisions.style.display = 'flex';
+        decisions.style.flexWrap = 'wrap';
+        decisions.style.gap = '7px';
+        decisions.style.marginTop = '10px';
+
+        addDecisionButton(decisions, 'Aprobar', item, 'approve');
+        addDecisionButton(decisions, 'Rechazar', item, 'reject', true);
+
+        card.append(reviewNote, decisions);
+      }
+
       list.appendChild(card);
     });
   }
