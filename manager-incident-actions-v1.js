@@ -171,7 +171,7 @@ replaceRequired(
 
           if (nextStatus === '__propose_learning__') {
             if (!window.confirm(
-              'Chebot va a crear una propuesta de nueva versión usando la última indicación del manager que el huésped confirmó como efectiva.\n\nLa versión activa actual seguirá vigente hasta que apruebes la propuesta.\n\n¿Continuar?'
+              'Chebot va a crear una propuesta de nueva versión usando la última indicación del manager que el huésped confirmó como efectiva.\\n\\nLa versión activa actual seguirá vigente hasta que apruebes la propuesta.\\n\\n¿Continuar?'
             )) return;
 
             const buttons = Array.from(controls.querySelectorAll('button'));
