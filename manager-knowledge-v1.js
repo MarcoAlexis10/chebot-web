@@ -209,10 +209,17 @@ const browserJs = `
       tags.style.gap = '6px';
       tags.style.marginTop = '10px';
 
+      const visibleVersionIsDraft =
+        item.version &&
+        item.version.status === 'draft' &&
+        item.version.is_current !== true;
+
+      const visibleStatus = visibleVersionIsDraft ? 'review' : item.status;
+
       addTag(
         tags,
-        statusLabels[item.status] || text(item.status, 'Sin estado'),
-        statusClass(item.status)
+        statusLabels[visibleStatus] || text(visibleStatus, 'Sin estado'),
+        statusClass(visibleStatus)
       );
       addTag(
         tags,
@@ -233,7 +240,14 @@ const browserJs = `
         const source = sourceLabels[item.version.source_type] || text(item.version.source_type, 'Fuente no informada');
         versionMeta.textContent =
           source +
-          (item.version.is_current ? ' · versión actual' : ' · versión visible') +
+          (item.version.is_current
+            ? ' · versión actual'
+            : visibleVersionIsDraft
+              ? ' · propuesta pendiente'
+              : ' · versión visible') +
+          (visibleVersionIsDraft && item.current_version_number
+            ? ' · v' + item.current_version_number + ' sigue activa'
+            : '') +
           ' · ' +
           text(item.version_count, '0') +
           (Number(item.version_count) === 1 ? ' versión' : ' versiones');
@@ -243,11 +257,7 @@ const browserJs = `
 
       card.append(title, scope, content, tags, versionMeta);
 
-      const isDraftReview =
-        item.status === 'review' &&
-        item.version &&
-        item.version.status === 'draft' &&
-        item.version.is_current !== true;
+      const isDraftReview = visibleVersionIsDraft;
 
       if (isDraftReview) {
         const reviewNote = document.createElement('p');
