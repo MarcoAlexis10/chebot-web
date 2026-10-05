@@ -54,6 +54,44 @@ replaceRequired(
       }
       action.appendChild(actionText);
 
+      const showAppliedProtocol =
+        item.applied_knowledge &&
+        item.applied_knowledge.content &&
+        ['new', 'waiting_manager', 'resolving', 'waiting_guest', 'escalated'].includes(item.status);
+
+      if (showAppliedProtocol) {
+        const protocolBox = document.createElement('div');
+        protocolBox.style.marginTop = '2px';
+        protocolBox.style.padding = '9px 10px';
+        protocolBox.style.borderRadius = '9px';
+        protocolBox.style.background = '#eef7f5';
+        protocolBox.style.border = '1px solid #c9e2dd';
+        protocolBox.style.fontSize = '0.92rem';
+        protocolBox.style.lineHeight = '1.35';
+
+        const protocolLabel = document.createElement('b');
+        protocolLabel.textContent = 'Chebot ya probó este protocolo aprobado:';
+
+        const protocolText = document.createElement('div');
+        protocolText.style.marginTop = '4px';
+        protocolText.textContent = text(item.applied_knowledge.content, '—');
+
+        const protocolMeta = document.createElement('div');
+        protocolMeta.style.marginTop = '5px';
+        protocolMeta.style.fontSize = '0.82rem';
+        protocolMeta.style.opacity = '0.75';
+        const version = item.applied_knowledge.version_number
+          ? 'v' + item.applied_knowledge.version_number
+          : 'versión aprobada';
+        protocolMeta.textContent =
+          text(item.applied_knowledge.knowledge_key, 'Protocolo de incidencia') +
+          ' · ' +
+          version;
+
+        protocolBox.append(protocolLabel, protocolText, protocolMeta);
+        action.appendChild(protocolBox);
+      }
+
       const showLatestGuestResponse =
         item.latest_guest_response &&
         ['new', 'waiting_manager', 'resolving', 'waiting_guest', 'escalated'].includes(item.status);
