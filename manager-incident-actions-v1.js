@@ -69,7 +69,7 @@ replaceRequired(
           ['Escalar', 'escalated', 'Manager escaló la incidencia.']
         ],
         resolving: [
-          ['Esperar huésped', 'waiting_guest', 'Manager completó su intervención y espera confirmación o respuesta del huésped.'],
+          ['Responder al huésped', 'waiting_guest', 'Manager envió una instrucción al huésped y espera su respuesta.'],
           ['Escalar', 'escalated', 'Manager escaló la incidencia durante la resolución.']
         ],
         waiting_guest: [
@@ -103,7 +103,36 @@ replaceRequired(
         button.style.color = danger ? '#8a3325' : '#fff';
 
         button.addEventListener('click', async () => {
-          if (!window.confirm('¿Confirmás "' + label + '" para esta incidencia?')) return;
+          let managerMessage = '';
+
+          if (nextStatus === 'waiting_guest') {
+            const answer = window.prompt(
+              '¿Qué querés que Chebot le indique al huésped?\n\n' +
+              'Escribí una instrucción concreta. Ejemplo: "Apagá el aire, esperá 5 minutos y volvé a encenderlo. Si sigue sin enfriar, avisame."'
+            );
+
+            if (answer === null) return;
+
+            managerMessage = String(answer).trim();
+
+            if (!managerMessage) {
+              window.alert('Escribí una instrucción antes de enviar la respuesta al huésped.');
+              return;
+            }
+
+            if (managerMessage.length > 3000) {
+              window.alert('La instrucción es demasiado larga. Máximo 3000 caracteres.');
+              return;
+            }
+
+            if (!window.confirm(
+              'Chebot va a enviar esta instrucción al huésped:\n\n' +
+              managerMessage +
+              '\n\n¿Confirmás el envío?'
+            )) return;
+          } else {
+            if (!window.confirm('¿Confirmás "' + label + '" para esta incidencia?')) return;
+          }
 
           const buttons = Array.from(controls.querySelectorAll('button'));
           buttons.forEach((itemButton) => { itemButton.disabled = true; });
@@ -111,6 +140,16 @@ replaceRequired(
           try {
             const accessToken = sessionStorage.getItem(TOKEN_KEY);
             if (!accessToken) throw new Error('AUTH_REQUIRED');
+
+            const payload = {
+              incident_id: item.id,
+              new_status: nextStatus,
+              event_summary: eventSummary
+            };
+
+            if (nextStatus === 'waiting_guest') {
+              payload.manager_message = managerMessage;
+            }
 
             const response = await fetch(BACKEND_INCIDENT_STATE_URL, {
               method: 'POST',
@@ -121,11 +160,7 @@ replaceRequired(
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
               },
-              body: JSON.stringify({
-                incident_id: item.id,
-                new_status: nextStatus,
-                event_summary: eventSummary
-              })
+              body: JSON.stringify(payload)
             });
 
             let body = null;
@@ -140,9 +175,14 @@ replaceRequired(
             renderIncidents(refreshed);
           } catch (error) {
             buttons.forEach((itemButton) => { itemButton.disabled = false; });
+            const code = error && error.message ? String(error.message) : 'Reintentá.';
+            const friendly = {
+              MANAGER_MESSAGE_REQUIRED: 'Escribí una instrucción antes de responder al huésped.',
+              MANAGER_MESSAGE_TOO_LONG: 'La instrucción supera el máximo permitido de 3000 caracteres.'
+            }[code] || code;
+
             window.alert(
-              'No se pudo actualizar la incidencia. ' +
-              (error && error.message ? String(error.message) : 'Reintentá.')
+              'No se pudo actualizar la incidencia. ' + friendly
             );
           }
         });
