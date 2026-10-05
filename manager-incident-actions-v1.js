@@ -21,8 +21,81 @@ replaceRequired(
   const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
   `  const BACKEND_INCIDENTS_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/incidents";
   const BACKEND_INCIDENT_STATE_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/incidents/state";
+  const BACKEND_KNOWLEDGE_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/knowledge";
   const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
-  'incident state endpoint constant'
+  'incident state and knowledge endpoint constants'
+);
+
+replaceRequired(
+  `    return body.incidents;
+  }`,
+  `    const incidents = body.incidents;
+
+    const needsLearningCheck = incidents.some((item) =>
+      item && item.status === 'learning_pending' && item.applied_knowledge && item.applied_knowledge.knowledge_key
+    );
+
+    if (needsLearningCheck) {
+      try {
+        const knowledgeResponse = await fetch(BACKEND_KNOWLEDGE_URL, {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store',
+          headers: {
+            Authorization: 'Bearer ' + accessToken,
+            Accept: 'application/json'
+          }
+        });
+
+        let knowledgeBody = null;
+        try { knowledgeBody = await knowledgeResponse.json(); } catch (_) {}
+
+        if (
+          knowledgeResponse.ok &&
+          knowledgeBody &&
+          knowledgeBody.ok === true &&
+          Array.isArray(knowledgeBody.knowledge)
+        ) {
+          const knowledgeByKey = new Map();
+          knowledgeBody.knowledge.forEach((knowledgeItem) => {
+            if (knowledgeItem && knowledgeItem.knowledge_key) {
+              knowledgeByKey.set(String(knowledgeItem.knowledge_key), knowledgeItem);
+            }
+          });
+
+          incidents.forEach((incident) => {
+            if (!incident || incident.status !== 'learning_pending' || !incident.applied_knowledge) return;
+
+            const applied = incident.applied_knowledge;
+            const key = applied.knowledge_key ? String(applied.knowledge_key) : '';
+            if (!key) return;
+
+            const knowledgeItem = knowledgeByKey.get(key);
+            if (!knowledgeItem) return;
+
+            const appliedVersion = Number(applied.version_number || 0);
+            const visibleVersion = Number(
+              knowledgeItem.version && knowledgeItem.version.version_number
+                ? knowledgeItem.version.version_number
+                : 0
+            );
+            const currentVersion = Number(knowledgeItem.current_version_number || 0);
+            const versionCount = Number(knowledgeItem.version_count || 0);
+            const newestKnownVersion = Math.max(visibleVersion, currentVersion, versionCount);
+
+            incident.learning_proposal_already_created =
+              appliedVersion > 0 && newestKnownVersion > appliedVersion;
+          });
+        }
+      } catch (_) {
+        // Safe fallback: if knowledge cannot be checked, keep the idempotent
+        // "Generar propuesta" action available rather than blocking recovery.
+      }
+    }
+
+    return incidents;
+  }`,
+  'learning proposal state enrichment'
 );
 
 replaceRequired(
@@ -117,6 +190,14 @@ replaceRequired(
         action.appendChild(guestReply);
       }
 
+      if (item.status === 'learning_pending' && item.learning_proposal_already_created === true) {
+        const learningState = document.createElement('span');
+        learningState.className = 'muted';
+        learningState.style.fontSize = '0.84rem';
+        learningState.textContent = 'Propuesta de aprendizaje ya generada.';
+        action.appendChild(learningState);
+      }
+
       const controls = document.createElement('div');
       controls.style.display = 'flex';
       controls.style.flexWrap = 'wrap';
@@ -146,10 +227,14 @@ replaceRequired(
           ['Aprendizaje', 'learning_pending', 'Incidencia resuelta enviada a revisión de aprendizaje.'],
           ['Cerrar', 'closed', 'Manager cerró la incidencia resuelta.']
         ],
-        learning_pending: [
-          ['Generar propuesta', '__propose_learning__', ''],
-          ['Cerrar', 'closed', 'Manager cerró la incidencia después de revisión de aprendizaje.']
-        ]
+        learning_pending: item.learning_proposal_already_created === true
+          ? [
+              ['Cerrar', 'closed', 'Manager cerró la incidencia después de revisión de aprendizaje.']
+            ]
+          : [
+              ['Generar propuesta', '__propose_learning__', ''],
+              ['Cerrar', 'closed', 'Manager cerró la incidencia después de revisión de aprendizaje.']
+            ]
       };
 
       const availableActions = actionMap[item.status] || [];
