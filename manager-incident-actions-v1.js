@@ -147,6 +147,7 @@ replaceRequired(
           ['Cerrar', 'closed', 'Manager cerró la incidencia resuelta.']
         ],
         learning_pending: [
+          ['Generar propuesta', '__propose_learning__', ''],
           ['Cerrar', 'closed', 'Manager cerró la incidencia después de revisión de aprendizaje.']
         ]
       };
@@ -167,6 +168,62 @@ replaceRequired(
 
         button.addEventListener('click', async () => {
           let managerMessage = '';
+
+          if (nextStatus === '__propose_learning__') {
+            if (!window.confirm(
+              'Chebot va a crear una propuesta de nueva versión usando la última indicación del manager que el huésped confirmó como efectiva.\n\nLa versión activa actual seguirá vigente hasta que apruebes la propuesta.\n\n¿Continuar?'
+            )) return;
+
+            const buttons = Array.from(controls.querySelectorAll('button'));
+            buttons.forEach((itemButton) => { itemButton.disabled = true; });
+
+            try {
+              const accessToken = sessionStorage.getItem(TOKEN_KEY);
+              if (!accessToken) throw new Error('AUTH_REQUIRED');
+
+              const response = await fetch(BACKEND_INCIDENT_STATE_URL, {
+                method: 'POST',
+                mode: 'cors',
+                cache: 'no-store',
+                headers: {
+                  Authorization: 'Bearer ' + accessToken,
+                  'Content-Type': 'application/json',
+                  Accept: 'application/json'
+                },
+                body: JSON.stringify({
+                  incident_id: item.id,
+                  action: 'propose_learning'
+                })
+              });
+
+              let body = null;
+              try { body = await response.json(); } catch (_) {}
+
+              if (!response.ok || !body || body.ok !== true || !body.learning || body.learning.ok !== true) {
+                const code =
+                  body && body.learning && body.learning.reason
+                    ? String(body.learning.reason)
+                    : body && body.error
+                      ? String(body.error)
+                      : 'LEARNING_PROPOSAL_FAILED';
+                throw new Error(code);
+              }
+
+              window.location.reload();
+              return;
+            } catch (error) {
+              buttons.forEach((itemButton) => { itemButton.disabled = false; });
+              const code = error && error.message ? String(error.message) : 'Reintentá.';
+              const friendly = {
+                INCIDENT_NOT_READY_FOR_LEARNING: 'La incidencia no está lista para generar aprendizaje.',
+                NO_EXISTING_PROTOCOL_TO_VERSION: 'No encontré un protocolo existente para crear una nueva versión.',
+                NO_MANAGER_RESOLUTION_TO_LEARN: 'No encontré una indicación del manager confirmada como resolución.'
+              }[code] || code;
+
+              window.alert('No se pudo generar la propuesta de aprendizaje. ' + friendly);
+              return;
+            }
+          }
 
           if (nextStatus === 'waiting_guest') {
             const answer = window.prompt(
@@ -232,6 +289,17 @@ replaceRequired(
             if (!response.ok || !body || body.ok !== true) {
               const code = body && body.error ? String(body.error) : 'INCIDENT_STATE_CHANGE_FAILED';
               throw new Error(code);
+            }
+
+            if (nextStatus === 'learning_pending') {
+              if (body.learning && body.learning.ok === false) {
+                window.alert(
+                  'La incidencia pasó a Aprendizaje pendiente, pero Chebot no pudo crear la propuesta automáticamente. ' +
+                  String(body.learning.reason || 'LEARNING_PROPOSAL_FAILED')
+                );
+              }
+              window.location.reload();
+              return;
             }
 
             const refreshed = await loadManagerIncidents(accessToken);
