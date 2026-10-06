@@ -20,10 +20,11 @@ const stayRowBefore = `stays.forEach((stay) => {
 const stayRowAfter = `stays.forEach((stay) => {
       const row = document.createElement('article');
       row.className = 'row';
-      row.dataset.stayId = String(stay.id || '');
+      const stayIdentifier = stay.id || stay.stay_id || '';
+      row.dataset.stayId = String(stayIdentifier);
       row.dataset.stayStatus = String(stay.status || '');`;
 
-if (!authJs.includes('row.dataset.stayId = String(stay.id || \'\');')) {
+if (!authJs.includes("const stayIdentifier = stay.id || stay.stay_id || '';")) {
   if (!authJs.includes(stayRowBefore)) {
     throw new Error('Could not find Manager Web stay renderer hook.');
   }
@@ -175,4 +176,4 @@ if (!html.includes('/manager/manager-invite.js')) {
 }
 fs.writeFileSync(htmlFile, html);
 
-console.log('Manager Web Invite V1 installed.');
+console.log('Manager Web Invite V1.1 installed.');
