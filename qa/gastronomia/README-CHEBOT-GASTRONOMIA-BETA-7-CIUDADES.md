@@ -11,9 +11,15 @@
 - Especialidades con enlaces de evidencia registrados: **47**; pendientes de verificación por fuentes: **112**.
 - Supabase **DEV solamente**: `public.concierge_gastronomy_catalog_staging` con **159 filas**, 7 ciudades y 22 barrios.
 - Los `cuisine_tags` de DEV solo contienen etiquetas `source_backed`; los indicios derivados de nombres se guardan por separado en `cuisine_candidate_tags`, **no aptos para recomendar**.
-- **19 restaurantes tienen un horario semanal publicado y registrado con fuente oficial**, pero **0 tienen confirmación de apertura real ni mesas reservables**. El dato semanal es revisable y no garantiza disponibilidad.
+- **22 restaurantes tienen un horario semanal publicado y registrado con fuente oficial**, pero **0 tienen confirmación de apertura real ni mesas reservables**. El dato semanal es revisable y no garantiza disponibilidad.
 - La tabla de DEV tiene RLS activo. `anon` y `authenticated` no pueden consultarla; se reserva al rol de servicio.
 - GitHub Backend, rama `concierge-v3-design`: `qa/gastronomia/DEV-ONLY-CONCIERGE-GASTRONOMY-STAGING-SCHEMA-2026-10-08.sql`, documento de referencia fuera de migraciones automáticas.
+
+## Avance en Recoleta
+
+En la Demo #1 se mostraba solo Roux. Ahora **Piegari Ristorante, Elena y Duhau Restaurante y Vinoteca** tienen horarios de cena publicados por sus respectivas páginas oficiales para el barrio de Recoleta. Las especialidades principales son pastas italianas (Piegari) y parrilla/carnes (Elena y Duhau); Roux ya tenía información de horarios en el seed del backend. Esto habilita una prueba de WhatsApp con más de una opción sin inventar horarios, pero **no confirma mesas ni apertura real**.
+
+Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://www.fourseasons.com/buenosaires/dining/restaurants/elena.html/), [Duhau (Hyatt)](https://www.hyatt.com/park-hyatt/es-ES/bueph-palacio-duhau-park-hyatt-buenos-aires/dining).
 
 ## Cobertura gastronómica por ciudad
 
@@ -44,9 +50,9 @@
 ## Advertencias operativas detectadas
 
 - **Farinè la Pizza**, San Lorenzo (Roma): el sitio oficial anuncia cierre definitivo el 9 de agosto de 2026. En DEV staging el registro está `closed_permanently` y un constraint impide activarle horarios verificados. Debe excluirse también del directorio visible cuando se audite el sitio.
-- **Veg World India**, Gràcia (Barcelona): su página oficial confirma **Carrer de Bruniquer 24**; hay fuentes que apuntan al 26. Revalidar ubicación exacta antes de recomendar una dirección.
+- **Veg World India**, Gràcia (Barcelona): su página oficial confirma **Carrer de Bruniquer 24**; hay fuentes que apuntan al 26. La dirección del directorio coincide con la oficial, pero se deja aviso QA para reconfirmar el acceso.
 - Horario semanal publicado = **compatibilidad teórica con franja horaria**. Nunca decir «hay mesa» ni afirmar apertura en tiempo real.
-- La llamada de escritura de protección adicional al `index.js` fue bloqueada por controles de herramienta. El constraint de DEV impide que un local cerrado tenga `dinner_hours_status='verified'`, y Farinè no está habilitado para recomendaciones. Reintentar solo mediante una vía autorizada.
+- La llamada de escritura de protección adicional al `index.js` fue bloqueada por controles de herramienta. El constraint de DEV impide que un local cerrado tenga `dinner_hours_status='verified'`, y Farinè no está habilitado para recomendaciones. No eludir los controles de escritura. El registro del cierre debe revisarse antes de cualquier ampliación.
 - No se han activado extensiones post-beta.
 
 ## Bloqueadores antes de activar esta experiencia en el Preview
