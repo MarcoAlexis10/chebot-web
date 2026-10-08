@@ -32,7 +32,6 @@ module.exports = function buildManagerV1({ out }) {
         <a href="#knowledge">Conocimiento</a>
         <a href="#incidencias">Incidencias</a>
         <a href="#solicitudes">Solicitudes</a>
-        <a href="#resultados">Resultados</a>
         <a href="#soporte">Soporte y cuenta</a>
       </nav>
       <div class="side-note">Preview con datos ficticios. Sin secretos ni información real de huéspedes.</div>
@@ -54,7 +53,6 @@ module.exports = function buildManagerV1({ out }) {
             <article class="metric"><small>Solicitudes pendientes</small><b>2</b><span class="tag warn">Decisión requerida</span></article>
             <article class="metric"><small>Incidencias abiertas</small><b>1</b><span class="tag danger">Seguimiento</span></article>
             <article class="metric"><small>Propiedades activas</small><b>1</b><span class="tag">1 en revisión</span></article>
-            <article class="metric"><small>Resoluciones confirmadas</small><b>18</b><span class="tag">Demo Beta</span></article>
           </div>
           <div class="subnav mobile-nav">
             <a href="#propiedades">Propiedades</a><a href="#estadias">Estadías</a><a href="#incidencias">Incidencias</a><a href="#solicitudes">Solicitudes</a>
@@ -100,16 +98,6 @@ module.exports = function buildManagerV1({ out }) {
           <div class="list">
             <article class="row"><div><b>Mariela · Recoleta 2C</b><div class="muted">Huésped principal</div></div><span>03–06 oct</span><span class="tag">Activa</span><span>Acceso según ventana</span></article>
             <article class="row"><div><b>Martina · Palermo 1B</b><div class="muted">Próxima estadía</div></div><span>06–09 oct</span><span class="tag">Programada</span><span>Invitación preparada</span></article>
-          </div>
-        </section>
-
-        <section class="section" id="resultados">
-          <div class="section-head"><h2>Resultados Beta</h2><a href="#resultados">Detalle</a></div>
-          <div class="grid">
-            <article class="metric"><small>Preguntas de propiedad</small><b>24</b><span class="muted">Datos de demostración</span></article>
-            <article class="metric"><small>Resolución automática confirmada</small><b>18</b><span class="muted">No cuenta saludos</span></article>
-            <article class="metric"><small>Mediadas por manager</small><b>4</b><span class="muted">Confirmadas</span></article>
-            <article class="metric"><small>Intervención Sistemas</small><b>20 min</b><span class="muted">Costo humano visible</span></article>
           </div>
         </section>
 
