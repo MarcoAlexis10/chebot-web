@@ -112,6 +112,7 @@ replaceRequired(
             }
 
             const refreshed = await loadManagerRequests(accessToken);
+            if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
             renderRequests(refreshed);
           } catch (error) {
             approve.disabled = false;

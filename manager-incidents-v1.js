@@ -213,6 +213,7 @@ const browserJs = `
 
     if (!panelVisible || !accessToken) {
       lastLoadedToken = null;
+      ++loadSequence;
       return;
     }
 
@@ -223,10 +224,10 @@ const browserJs = `
 
     try {
       const items = await loadManagerIncidents(accessToken);
-      if (sequence !== loadSequence) return;
+      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderIncidents(items);
     } catch (_) {
-      if (sequence !== loadSequence) return;
+      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderIncidentsError();
     }
   }
@@ -275,13 +276,13 @@ replaceRequired(
 
 replaceRequired(
   '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento y Solicitudes ya usan datos reales de Chebot Concierge Dev. Incidencias y Resultados continúan con datos ficticios de demostración.',
-  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Chebot Concierge Dev.',
+  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias ya usan datos reales de Chebot Concierge Dev. Resultados continúa con datos ficticios de demostración.',
   'authenticated preview notice'
 );
 
 replaceRequired(
   'Preview autenticada. Propiedades, Estadías, Conocimiento y Solicitudes: datos reales QA. Incidencias y Resultados: demostración.',
-  'Preview autenticada. Datos reales de Chebot Concierge Dev para las propiedades autorizadas.',
+  'Preview autenticada. Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias: datos reales QA. Resultados: demostración.',
   'sidebar preview note'
 );
 

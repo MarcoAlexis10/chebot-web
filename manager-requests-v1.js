@@ -198,6 +198,7 @@ const browserJs = `
 
     if (!panelVisible || !accessToken) {
       lastLoadedToken = null;
+      ++loadSequence;
       return;
     }
 
@@ -208,10 +209,10 @@ const browserJs = `
 
     try {
       const items = await loadManagerRequests(accessToken);
-      if (sequence !== loadSequence) return;
+      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderRequests(items);
     } catch (_) {
-      if (sequence !== loadSequence) return;
+      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderRequestsError();
     }
   }

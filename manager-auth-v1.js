@@ -80,9 +80,23 @@ const browserJs = `
     sessionStorage.removeItem(TOKEN_KEY);
   }
 
+  function clearPanelData() {
+    for (const selector of ['#propiedades .list', '#estadias .list', '#manager-knowledge-list', '#manager-requests-list', '#manager-incidents-list']) {
+      const list = document.querySelector(selector);
+      if (list) list.replaceChildren();
+    }
+    document.querySelectorAll('.metric').forEach((card) => {
+      const number = card.querySelector('b');
+      const tag = card.querySelector('.tag');
+      if (number) number.textContent = '—';
+      if (tag) { tag.textContent = 'Cargando…'; tag.className = 'tag'; }
+    });
+  }
+
   function showLogin(message) {
     clearToken();
     document.body.classList.add('manager-auth-pending');
+    clearPanelData();
     authScreen.hidden = false;
     if (message) setStatus(message, 'error');
     password.value = '';
@@ -195,6 +209,7 @@ const browserJs = `
   }
 
   function renderPropertiesError() {
+    if (document.body.classList.contains('manager-auth-pending')) return;
     const list = document.querySelector('#propiedades .list');
     if (!list) return;
     list.replaceChildren();
@@ -231,7 +246,7 @@ const browserJs = `
       throw e;
     }
 
-    renderProperties(body.properties);
+    if (sessionStorage.getItem(TOKEN_KEY) === accessToken && !document.body.classList.contains('manager-auth-pending')) renderProperties(body.properties);
     return body.properties;
   }
 
@@ -319,6 +334,7 @@ const browserJs = `
   }
 
   function renderStaysError() {
+    if (document.body.classList.contains('manager-auth-pending')) return;
     const list = document.querySelector('#estadias .list');
     if (!list) return;
     list.replaceChildren();
@@ -355,7 +371,7 @@ const browserJs = `
       throw e;
     }
 
-    renderStays(body.stays);
+    if (sessionStorage.getItem(TOKEN_KEY) === accessToken && !document.body.classList.contains('manager-auth-pending')) renderStays(body.stays);
     return body.stays;
   }
 

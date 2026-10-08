@@ -388,6 +388,7 @@ replaceRequired(
             }
 
             const refreshed = await loadManagerIncidents(accessToken);
+            if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
             renderIncidents(refreshed);
           } catch (error) {
             buttons.forEach((itemButton) => { itemButton.disabled = false; });
