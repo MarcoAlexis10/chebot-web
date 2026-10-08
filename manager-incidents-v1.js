@@ -275,13 +275,13 @@ replaceRequired(
 
 replaceRequired(
   '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento y Solicitudes ya usan datos reales de Chebot Concierge Dev. Incidencias y Resultados continúan con datos ficticios de demostración.',
-  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias ya usan datos reales de Chebot Concierge Dev. Resultados continúa con datos ficticios de demostración.',
+  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Chebot Concierge Dev.',
   'authenticated preview notice'
 );
 
 replaceRequired(
   'Preview autenticada. Propiedades, Estadías, Conocimiento y Solicitudes: datos reales QA. Incidencias y Resultados: demostración.',
-  'Preview autenticada. Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias: datos reales QA. Resultados: demostración.',
+  'Preview autenticada. Datos reales de Chebot Concierge Dev para las propiedades autorizadas.',
   'sidebar preview note'
 );
 
