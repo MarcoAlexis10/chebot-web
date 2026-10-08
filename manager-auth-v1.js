@@ -223,6 +223,15 @@ const browserJs = `
     detail.textContent = 'La sesión sigue activa. Reintentá recargando la página.';
     errorCard.append(title, detail);
     list.appendChild(errorCard);
+    const metric = Array.from(document.querySelectorAll('.metric')).find((card) =>
+      card.querySelector('small')?.textContent.trim() === 'Propiedades activas'
+    );
+    if (metric) {
+      const number = metric.querySelector('b');
+      const tag = metric.querySelector('.tag');
+      if (number) number.textContent = '—';
+      if (tag) { tag.textContent = 'No disponible'; tag.className = 'tag warn'; }
+    }
   }
 
   async function loadManagerProperties(accessToken) {
