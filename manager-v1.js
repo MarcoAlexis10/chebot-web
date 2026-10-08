@@ -50,9 +50,9 @@ module.exports = function buildManagerV1({ out }) {
           <p>Chebot resuelve lo que ya sabe y te muestra únicamente decisiones, excepciones y señales que requieren intervención.</p>
           <div class="notice"><b>Preview interna:</b> interfaz ficticia y aislada. El acceso real, autenticación y datos vivos se conectarán al backend Concierge en una etapa posterior.</div>
           <div class="grid">
-            <article class="metric"><small>Solicitudes pendientes</small><b>2</b><span class="tag warn">Decisión requerida</span></article>
-            <article class="metric"><small>Incidencias abiertas</small><b>1</b><span class="tag danger">Seguimiento</span></article>
-            <article class="metric"><small>Propiedades activas</small><b>1</b><span class="tag">1 en revisión</span></article>
+            <article class="metric"><small>Solicitudes pendientes</small><b>—</b><span class="tag warn">Cargando…</span></article>
+            <article class="metric"><small>Incidencias abiertas</small><b>—</b><span class="tag danger">Cargando…</span></article>
+            <article class="metric"><small>Propiedades activas</small><b>—</b><span class="tag">Cargando…</span></article>
           </div>
           <div class="subnav mobile-nav">
             <a href="#propiedades">Propiedades</a><a href="#estadias">Estadías</a><a href="#incidencias">Incidencias</a><a href="#solicitudes">Solicitudes</a>
