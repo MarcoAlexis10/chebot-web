@@ -490,6 +490,13 @@ fs.writeFileSync(path.join(managerDir, 'manager-auth.js'), browserJs);
 
 let html = fs.readFileSync(indexFile, 'utf8');
 
+function replacePreviewBlock(before, after, label) {
+  if (!html.includes(before)) throw new Error('Manager Auth missing initial block: ' + label);
+  html = html.replace(before, after);
+}
+replacePreviewBlock("            <div class=\"list\">\n              <article class=\"row\"><div><b>Recoleta 2C</b><div class=\"muted\">Buenos Aires</div></div><span class=\"tag\">Activa</span><span>1 estadía vigente</span><span>Knowledge OK</span></article>\n              <article class=\"row\"><div><b>Palermo 1B</b><div class=\"muted\">Buenos Aires</div></div><span class=\"tag warn\">Lista para revisión</span><span>0 estadías vigentes</span><span>Falta contingencia</span></article>\n            </div>", "            <div class=\"list\"><article class=\"card\"><b>Cargando propiedades…</b></article></div>", 'properties');
+replacePreviewBlock("          <div class=\"list\">\n            <article class=\"row\"><div><b>Mariela · Recoleta 2C</b><div class=\"muted\">Huésped principal</div></div><span>03–06 oct</span><span class=\"tag\">Activa</span><span>Acceso según ventana</span></article>\n            <article class=\"row\"><div><b>Martina · Palermo 1B</b><div class=\"muted\">Próxima estadía</div></div><span>06–09 oct</span><span class=\"tag\">Programada</span><span>Invitación preparada</span></article>\n          </div>", "          <div class=\"list\"><article class=\"card\"><b>Cargando estadías…</b></article></div>", 'stays');
+
 html = html.replace(
   '<link rel="stylesheet" href="/manager/manager.css">',
   '<link rel="stylesheet" href="/manager/manager.css">\n  <link rel="stylesheet" href="/manager/manager-auth.css">'
