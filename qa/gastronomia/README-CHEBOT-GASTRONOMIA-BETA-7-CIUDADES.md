@@ -82,6 +82,13 @@ La imagen muestra tres restaurantes de especialidades diferentes, las descripcio
 
 **Causa raíz corregida:** `detectVisitTiming` y `detectVisitDate` tomaban fechas numéricas de texto normalizado que ya había perdido el separador `/`; la búsqueda se evaluaba como «tonight» y, después de medianoche, podía aplicar el día anterior. La solución se encuentra en Backend Preview `concierge-v3-design`, commits `10fdfa1`, `4afd02b` y limpieza `dddb25f`; la regresión está probada por WhatsApp. La regla independiente de no completar «variedad» con cocinas duplicadas se mantuvo. **Cerrar únicamente este escenario de Palermo; no cerrar Demo #1 ni Beta V1.**
 
+### Capturas complementarias WhatsApp — 09/10/2026, 07:55 Argentina
+
+- Mensaje gastronómico repetido de forma independiente: «Quiero cenar el 9/10/2026 a las 23:50 en Palermo con mi pareja. Sorprendeme con variedad».
+- Respuesta real con **Don Julio, SushiClub Las Cañitas e Isla Negra Palermo** y las tres especialidades diferentes. Conserva textos cálidos y advertencia explícita de horarios publicados/mesas sin confirmar.
+- **Los tres botones nativos sí son visibles completos:** «1. Don Julio», «2. SushiClub Las» y «3. Isla Negra» (abreviados solo los títulos de botón, nombre completo en mensaje). Esta captura acredita la presentación de los tres controles, **no** una nueva pulsación ni reserva.
+- **Separación de gates:** esta evidencia es gastronómica; no demuestra recepción de la notificación de checkout de Recoleta E2E QA. Mantener pendiente el gate de entrega/recepción y no cerrar Demo #1.
+
 ## Cobertura gastronómica por ciudad
 
 | Ciudad | Barrios activos | Restaurantes | Con fuentes de especialidad | Pendientes |
