@@ -52,6 +52,15 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 
 Tras aprobar la captura de variedad, se detectó y reprodujo en el algoritmo un falso positivo: al pedir «cenar el 09/10/2026 a las 23:50», un restaurante con horario publicado hasta las 00:00 todavía podía superar el filtro aunque quedaran solo 10 minutos. **Corregido en rama Backend Preview**: para búsquedas de comida con hora puntual, exige margen suficiente (mínimo actual 60 minutos) dentro del horario publicado. La prueba aislada verificó 21:00 = carne+pastas+sushi y 23:50 = carne+sushi (sin pastas que cierra a 00:00), sin relajación de verificaciones. El endpoint Preview del último commit respondió HTTP 200. **Pendiente la confirmación por WhatsApp real**. No implica cocina atendiendo ni mesas libres.
 
+### Prueba WhatsApp real — cena fechada a las 23:50 (09/10/2026)
+
+- Captura recibida a las **00:56** de Argentina, consulta «Quiero cenar el 9/10/2026 a las 23:50 en Palermo con mi pareja. Sorprendeme con variedad.».
+- **APROBADO parcialmente:** Cucina Paradiso (cierre publicado 00:00) fue excluido, coherente con el mínimo de 60 minutos para cena. Siguen presentes la advertencia de horario publicado y el estilo conversacional.
+- **FALLO de diversidad:** WhatsApp propuso Don Julio (parrilla), SushiClub Las Cañitas (sushi) y La Cabrera (parrilla), repitiendo carne en lugar de una tercera cocina. No se marca la regresión como completada.
+- La lectura PostgREST del staging registrada a las 03:56:15 UTC fue **HTTP 200 y ocho filas** para Buenos Aires; prueba técnica con código vigente y staging real: Isla Negra Palermo era elegible a las 23:50, con 70 minutos según horario publicado. Diagnóstico sintético ejecutado en el Backend Preview también la incluyó, sin datos de huésped. La causa precisa de su exclusión en el contexto WhatsApp permanece sin determinar.
+- Mitigación en Backend Preview: cuando se pide **«variedad»**, si solo hay dos estilos válidos en la lista de candidatos, no completar con una segunda parrilla solo para llenar tres lugares (commit `9d4668d`). Regresión automatizada agregada en `test/dated-restaurant-selection.test.js` (commit `e0956df`); prueba aislada de la lógica aprobada. Último Backend Preview `e0956df`: Vercel READY, arranque HTTP 200 y `/api/concierge/router/health` HTTP 200 con referencia DEV correcta. Diagnóstico temporal HTTP quitado, sin cambios en producción.
+- **PENDIENTE:** repetir WhatsApp real con el mismo texto y revisar telemetría acotada, sin números ni identificadores, para establecer si Isla Negra es eliminada por algún filtro de contexto. Mantener Demo #1 abierta.
+
 ## Cobertura gastronómica por ciudad
 
 | Ciudad | Barrios activos | Restaurantes | Con fuentes de especialidad | Pendientes |
@@ -96,7 +105,8 @@ Tras aprobar la captura de variedad, se detectó y reprodujo en el algoritmo un 
 - [x] Ejecutar prueba técnica de `rankVenues` con datos staging: tres estilos a las 21:00; excluir pastas con margen insuficiente a las 23:50; limitar a sushi a las 00:10. Evidencia de prueba aislada 09/10/2026.
 - [x] Prueba **WhatsApp real** del 09/10/2026 a las 21:00 en Palermo con pareja y variedad: Don Julio (carne), Cucina Paradiso (pastas), SushiClub Las Cañitas (sushi), tres botones nativos y textos descriptivos; capturas verificadas.
 - [x] Test técnico de regresión para **fecha y hora explícitas 09/10/2026 23:50**: no recomendar cena en local cuyo cierre publicado sea a las 00:00; conserva opciones compatibles a las 21:00. Corrección en Backend Preview commit `1bc0c30` y prueba persistente commit `f8871d1`; despliegue inmutable `dpl_68S4dGGqbraKeQUM7u5LKWL5Bh8c` HTTP 200 en `/` y `/api/concierge/router/health` con proyecto DEV correcto (09/10/2026). La ejecución independiente del workflow GitHub Actions no fue revisada en esta constancia.
-- [ ] Prueba **WhatsApp real** de cena tardía (23:50 con fecha explícita): no sugerir locales sin margen suficiente antes del cierre publicado. Mantener diferencia entre horario general, cocina y mesas.
+- [x] Captura WhatsApp de cena fechada a las 23:50: **Cucina Paradiso correctamente excluida** por margen insuficiente; además se identificó **duplicación de parrillas**, que requiere nueva prueba.
+- [ ] Confirmar por WhatsApp real a las 23:50 que «variedad» no ofrece estilos duplicados como relleno, y averiguar por qué Isla Negra estuvo ausente de una respuesta aunque elegible en prueba sintética.
 - [ ] Probar peticiones y seguimientos de WhatsApp para las otras seis ciudades y los casos sin horarios respaldados.
 - [x] Reconciliar las tres incorporaciones de Supabase DEV en la matriz QA 162, conservando intacta la versión original de 159. Commit `de2b9f9` en rama `concierge-manager-web-v1` (09/10/2026).
 - [ ] Revisar que ningún cambio modifique `main`, `chebot-production` o los entornos de producción.
