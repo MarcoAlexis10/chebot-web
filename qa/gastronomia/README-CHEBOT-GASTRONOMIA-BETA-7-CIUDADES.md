@@ -27,6 +27,7 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 
 - Backend `concierge-v3-design`: la petición explícita de comer/cenar se interpreta como plan `food`; `companions=couple` se conserva independientemente. Un plan de cita sin comida explícita aún puede tener `plan=date`. Se mantiene la exclusión de bares en las búsquedas de cena.
 - El motor prioriza **carne + pasta + sushi** para pedidos explícitos de «variedad» **si las tres especialidades pasan los filtros** de barrio, horario y evidencia; si falta una, completa con otra cocina verificada cuando puede. Esta preferencia no excluye pizza, bodegón, cocina local, autor ni otras especialidades. No asigna un «estilo» a locales sin especialidad comprobada ni inventa una tercera alternativa.
+- **QA algoritmo 09/10/2026:** `index.js` usa ahora todas las etiquetas respaldadas de cada restaurante para elegir especialidades diferentes (commit Backend `f30e53e`); conserva la preferencia inicial carne/pasta/sushi solo si pasan las reglas. Validación previa al commit con las rutinas actuales y cuatro registros horarios de DEV: viernes 21:00 ⇒ carnes+pastas+sushi; viernes 23:50 ⇒ carnes+sushi+autor; sábado 00:10 ⇒ sushi. Misma elegibilidad con `companions=couple` y `friends`. Tres regresiones adicionales persistidas en `test/dated-restaurant-selection.test.js` (commit `ba7a6f3`). Esto es simulación técnica, **no prueba de respuesta por WhatsApp real**, ni disponibilidad de mesa.
 - A hora muy tardía «esta noche» requiere horario publicado todavía compatible y tiempo suficiente para cenar; no promete que la cocina o las reservas sigan funcionando.
 - Al haber solo uno o dos estilos, lo dice de manera natural y ofrece otro horario o ampliar zona.
 - Tres **suplementos de DEV**, ahora incorporados en la **matriz QA de 162** (no en el directorio público ni en la matriz histórica de 159):
@@ -78,7 +79,8 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 - [ ] Asegurar variedad real por barrio, sin duplicados ni promesas de cercanía.
 - [x] Conectar lectura **Preview**, protegida por `VERCEL_ENV=preview` + referencia Supabase DEV, a fuentes de especialidad y horarios publicados recientes. Esta integración requiere prueba funcional final.
 - [x] Probar recomendaciones en Recoleta, selección, Maps, volver a elegir, «Más opciones» y cambio a Palermo dentro de la Demo Concierge #1.
-- [ ] Repetir prueba en Palermo con **carne, sushi y pastas** en una franja de cena compatible; verificar que a las 23:50 no ofrezca una cocina cuyo horario ya termina a medianoche.
+- [x] Ejecutar prueba técnica de `rankVenues` con datos staging: tres estilos a las 21:00; excluir pastas con margen insuficiente a las 23:50; limitar a sushi a las 00:10. Evidencia de prueba aislada 09/10/2026.
+- [ ] Repetir prueba **WhatsApp real** en Palermo con **carne, sushi y pastas** en una franja de cena compatible; verificar que a las 23:50 no ofrezca una cocina cuyo horario ya termina a medianoche.
 - [ ] Probar peticiones y seguimientos de WhatsApp para las otras seis ciudades y los casos sin horarios respaldados.
 - [x] Reconciliar las tres incorporaciones de Supabase DEV en la matriz QA 162, conservando intacta la versión original de 159. Commit `de2b9f9` en rama `concierge-manager-web-v1` (09/10/2026).
 - [ ] Revisar que ningún cambio modifique `main`, `chebot-production` o los entornos de producción.
