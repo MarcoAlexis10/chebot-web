@@ -38,6 +38,16 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 - La ampliación es **solo staging/Preview**. No implica reserva ni servicio de cocina confirmados; la selección por horario depende de día, hora y evidencia. Las Cañitas figura operacionalmente bajo el área Palermo para recomendaciones, aunque conviene tratarlo como subzona explícita en UI; se validó que SushiClub Báez 268 es RESTÓ, distinto de la sucursal Deli & Take.
 - Los criterios generales se aplican a las siete ciudades, pero **no se considera verificada la variedad completa en los 22 barrios**.
 
+## Evidencia WhatsApp real — Palermo, viernes 09/10/2026
+
+- **Resultado: APROBADO para variedad de tres especialidades y botones nativos.**
+- Evidencia: dos capturas de WhatsApp proporcionadas en la conversación de QA, hora visualizada **00:52** (Argentina), con petición exacta: «Quiero cenar el 9/10/2026 a las 21:00 en Palermo con mi pareja. Sorprendeme con variedad.»
+- Respuesta observada: **1. Don Julio — parrilla y carnes; 2. Cucina Paradiso Palermo Soho — pastas italianas; 3. SushiClub Las Cañitas — sushi y japonés**. Cada uno con breve descripción amistosa.
+- Incluyó advertencia «Horarios publicados: confirmá antes de ir. Mesas sin confirmar.» y **tres botones nativos** «1. Don Julio», «2. Cucina Paradiso», «3. SushiClub Las» (el tercero abreviado por el límite de título de WhatsApp; nombre completo en el texto).
+- **Diferencia esperada vs observada:** la simulación técnica con staging puro seleccionó La Cabrera como parrilla; WhatsApp eligió Don Julio. Ambos pertenecen al mismo estilo. Es compatible con el ranking combinado (seed + staging) y **no requiere forzar un nombre** para aprobar diversidad.
+- Esta captura verifica generación, entrega y presentación de la lista y botones; **no** verifica pulsación de esos botones en esta ejecución, confirmación de cocina/mesa, ni la búsqueda tardía a las **23:50**. Selección y Maps sí tienen evidencia de regresiones anteriores de Recoleta.
+- Mantener abierta Demo #1 por incidencias, solicitudes y regresiones de flujos Concierge. No inferir cobertura homogénea de las siete ciudades.
+
 ## Cobertura gastronómica por ciudad
 
 | Ciudad | Barrios activos | Restaurantes | Con fuentes de especialidad | Pendientes |
@@ -80,7 +90,8 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 - [x] Conectar lectura **Preview**, protegida por `VERCEL_ENV=preview` + referencia Supabase DEV, a fuentes de especialidad y horarios publicados recientes. Esta integración requiere prueba funcional final.
 - [x] Probar recomendaciones en Recoleta, selección, Maps, volver a elegir, «Más opciones» y cambio a Palermo dentro de la Demo Concierge #1.
 - [x] Ejecutar prueba técnica de `rankVenues` con datos staging: tres estilos a las 21:00; excluir pastas con margen insuficiente a las 23:50; limitar a sushi a las 00:10. Evidencia de prueba aislada 09/10/2026.
-- [ ] Repetir prueba **WhatsApp real** en Palermo con **carne, sushi y pastas** en una franja de cena compatible; verificar que a las 23:50 no ofrezca una cocina cuyo horario ya termina a medianoche.
+- [x] Prueba **WhatsApp real** del 09/10/2026 a las 21:00 en Palermo con pareja y variedad: Don Julio (carne), Cucina Paradiso (pastas), SushiClub Las Cañitas (sushi), tres botones nativos y textos descriptivos; capturas verificadas.
+- [ ] Prueba **WhatsApp real** de cena tardía (p. ej. 23:50): no sugerir restaurantes sin tiempo suficiente respecto del cierre publicado; diferenciar horario general, cocina y mesas.
 - [ ] Probar peticiones y seguimientos de WhatsApp para las otras seis ciudades y los casos sin horarios respaldados.
 - [x] Reconciliar las tres incorporaciones de Supabase DEV en la matriz QA 162, conservando intacta la versión original de 159. Commit `de2b9f9` en rama `concierge-manager-web-v1` (09/10/2026).
 - [ ] Revisar que ningún cambio modifique `main`, `chebot-production` o los entornos de producción.
@@ -89,4 +100,4 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 
 ## Estado de la sesión
 
-La ampliación y la separación de compañía/plan están implementadas en Backend Preview. La Demo #1 ya verificó recomendaciones, selección y navegación por WhatsApp, pero **todavía falta validar la combinación de tres estilos en una sesión real de Palermo**, además de otros flujos Concierge. No se declara aprobada toda la Beta #1.
+La ampliación y la separación de compañía/plan están implementadas en Backend Preview. La Demo #1 ya verificó recomendaciones, selección y navegación por WhatsApp en Recoleta, **y la combinación de tres estilos y botones nativos por WhatsApp real en Palermo** (09/10/2026). Siguen pendientes la regresión de horario tardío y otros flujos operativos Concierge; no se declara cerrada Demo #1 ni toda la Beta V1.
