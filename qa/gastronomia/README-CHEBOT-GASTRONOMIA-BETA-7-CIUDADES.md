@@ -71,6 +71,17 @@ Tras aprobar la captura de variedad, se detectó y reprodujo en el algoritmo un 
 - El diagnóstico temporal público ya se retiró anteriormente; la telemetría temporal restante del Backend Preview también se retiró mediante commit `dddb25f`. No guardar teléfonos, identificadores o secretos en reportes QA.
 - **Única regresión inmediata restante:** probar otra vez en el WhatsApp de QA con exactamente la misma petición y revisar si la respuesta incorpora una tercera especialidad. No declarar Demo #1 completa; quedan incidencias y solicitudes Concierge por revisar.
 
+### WhatsApp real — regresión gastronómica de Palermo cerrada (09/10/2026, 01:12 Argentina)
+
+**APROBADA con evidencia de captura real:** con la consulta exacta «Quiero cenar el 9/10/2026 a las 23:50 en Palermo con mi pareja. Sorprendeme con variedad», Chebot respondió:
+1. **Don Julio** — parrilla y carnes.
+2. **SushiClub Las Cañitas** — sushi y japonés.
+3. **Isla Negra Palermo** — cocina de autor.
+
+La imagen muestra tres restaurantes de especialidades diferentes, las descripciones cálidas y «Horarios publicados: confirmá antes de ir. Mesas sin confirmar». No aparece Cucina Paradiso, que cierra a las 00:00 según el horario semanal registrado y no tiene margen suficiente para una cena solicitada a las 23:50. La frase de selección aparece al pie; **los botones inferiores no se ven completos en esta captura**, por lo que su prueba se conserva con las capturas anteriores. La confirmación de cocina funcionando, mesas disponibles y apertura real no forma parte de esta evidencia.
+
+**Causa raíz corregida:** `detectVisitTiming` y `detectVisitDate` tomaban fechas numéricas de texto normalizado que ya había perdido el separador `/`; la búsqueda se evaluaba como «tonight» y, después de medianoche, podía aplicar el día anterior. La solución se encuentra en Backend Preview `concierge-v3-design`, commits `10fdfa1`, `4afd02b` y limpieza `dddb25f`; la regresión está probada por WhatsApp. La regla independiente de no completar «variedad» con cocinas duplicadas se mantuvo. **Cerrar únicamente este escenario de Palermo; no cerrar Demo #1 ni Beta V1.**
+
 ## Cobertura gastronómica por ciudad
 
 | Ciudad | Barrios activos | Restaurantes | Con fuentes de especialidad | Pendientes |
@@ -118,7 +129,7 @@ Tras aprobar la captura de variedad, se detectó y reprodujo en el algoritmo un 
 - [x] Captura WhatsApp de cena fechada a las 23:50: **Cucina Paradiso correctamente excluida** por margen insuficiente; además se identificó **duplicación de parrillas**, que requiere nueva prueba.
 - [x] Repetición WhatsApp real 01:04: ya no muestra dos parrillas para «variedad»; devuelve dos estilos y conserva botones interactivos.
 - [x] Identificar por evidencia runtime la causa de Isla Negra ausente y corregir lectura de fecha explícita al cruzar medianoche (`10fdfa1`, `4afd02b`); simulación integrada con staging DEV aprobada.
-- [ ] Confirmar por WhatsApp real, tras este cambio, que la solicitud fechada 09/10/2026 a las 23:50 incluye una tercera especialidad compatible, sin prometer cocina o mesas.
+- [x] **WhatsApp real 01:12 del 09/10/2026:** confirmadas Don Julio (carne), SushiClub Las Cañitas (sushi) e Isla Negra Palermo (cocina de autor) para el **09/10/2026 a las 23:50**, con descripciones humanas y advertencia explícita sobre horarios/mesas. Regresión de fecha al cruzar medianoche y de diversidad de Palermo **CERRADA**. Los botones de esta captura no son totalmente visibles, pero cuentan con validación previa.
 - [ ] Probar peticiones y seguimientos de WhatsApp para las otras seis ciudades y los casos sin horarios respaldados.
 - [x] Reconciliar las tres incorporaciones de Supabase DEV en la matriz QA 162, conservando intacta la versión original de 159. Commit `de2b9f9` en rama `concierge-manager-web-v1` (09/10/2026).
 - [ ] Revisar que ningún cambio modifique `main`, `chebot-production` o los entornos de producción.
@@ -127,4 +138,4 @@ Tras aprobar la captura de variedad, se detectó y reprodujo en el algoritmo un 
 
 ## Estado de la sesión
 
-La ampliación y la separación de compañía/plan están implementadas en Backend Preview. La Demo #1 ya verificó recomendaciones, selección y navegación por WhatsApp en Recoleta, **y la combinación de tres estilos y botones nativos por WhatsApp real en Palermo** (09/10/2026). Siguen pendientes la regresión de horario tardío y otros flujos operativos Concierge; no se declara cerrada Demo #1 ni toda la Beta V1.
+La ampliación y la separación de compañía/plan están implementadas en Backend Preview. La Demo #1 ya verificó recomendaciones, selección y navegación por WhatsApp en Recoleta, **y la combinación de tres estilos y botones nativos por WhatsApp real en Palermo** (09/10/2026). La regresión de horario tardío con fecha explícita en Palermo se aprobó por WhatsApp real el 09/10/2026 (01:12). Siguen pendientes las validaciones gastronómicas de otras ciudades y los flujos operativos de incidencias, solicitudes y regresión general Concierge; no se declara cerrada Demo #1 ni toda la Beta V1.
