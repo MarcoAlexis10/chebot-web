@@ -48,6 +48,10 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 - Esta captura verifica generación, entrega y presentación de la lista y botones; **no** verifica pulsación de esos botones en esta ejecución, confirmación de cocina/mesa, ni la búsqueda tardía a las **23:50**. Selección y Maps sí tienen evidencia de regresiones anteriores de Recoleta.
 - Mantener abierta Demo #1 por incidencias, solicitudes y regresiones de flujos Concierge. No inferir cobertura homogénea de las siete ciudades.
 
+### Ajuste QA de horarios al pedir fecha explícita (09/10/2026)
+
+Tras aprobar la captura de variedad, se detectó y reprodujo en el algoritmo un falso positivo: al pedir «cenar el 09/10/2026 a las 23:50», un restaurante con horario publicado hasta las 00:00 todavía podía superar el filtro aunque quedaran solo 10 minutos. **Corregido en rama Backend Preview**: para búsquedas de comida con hora puntual, exige margen suficiente (mínimo actual 60 minutos) dentro del horario publicado. La prueba aislada verificó 21:00 = carne+pastas+sushi y 23:50 = carne+sushi (sin pastas que cierra a 00:00), sin relajación de verificaciones. El endpoint Preview del último commit respondió HTTP 200. **Pendiente la confirmación por WhatsApp real**. No implica cocina atendiendo ni mesas libres.
+
 ## Cobertura gastronómica por ciudad
 
 | Ciudad | Barrios activos | Restaurantes | Con fuentes de especialidad | Pendientes |
@@ -91,7 +95,8 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 - [x] Probar recomendaciones en Recoleta, selección, Maps, volver a elegir, «Más opciones» y cambio a Palermo dentro de la Demo Concierge #1.
 - [x] Ejecutar prueba técnica de `rankVenues` con datos staging: tres estilos a las 21:00; excluir pastas con margen insuficiente a las 23:50; limitar a sushi a las 00:10. Evidencia de prueba aislada 09/10/2026.
 - [x] Prueba **WhatsApp real** del 09/10/2026 a las 21:00 en Palermo con pareja y variedad: Don Julio (carne), Cucina Paradiso (pastas), SushiClub Las Cañitas (sushi), tres botones nativos y textos descriptivos; capturas verificadas.
-- [ ] Prueba **WhatsApp real** de cena tardía (p. ej. 23:50): no sugerir restaurantes sin tiempo suficiente respecto del cierre publicado; diferenciar horario general, cocina y mesas.
+- [x] Test técnico de regresión para **fecha y hora explícitas 09/10/2026 23:50**: no recomendar cena en local cuyo cierre publicado sea a las 00:00; conserva opciones compatibles a las 21:00. Corrección en Backend Preview commit `1bc0c30` y prueba persistente commit `f8871d1`; despliegue inmutable `dpl_68S4dGGqbraKeQUM7u5LKWL5Bh8c` HTTP 200 en `/` y `/api/concierge/router/health` con proyecto DEV correcto (09/10/2026). La ejecución independiente del workflow GitHub Actions no fue revisada en esta constancia.
+- [ ] Prueba **WhatsApp real** de cena tardía (23:50 con fecha explícita): no sugerir locales sin margen suficiente antes del cierre publicado. Mantener diferencia entre horario general, cocina y mesas.
 - [ ] Probar peticiones y seguimientos de WhatsApp para las otras seis ciudades y los casos sin horarios respaldados.
 - [x] Reconciliar las tres incorporaciones de Supabase DEV en la matriz QA 162, conservando intacta la versión original de 159. Commit `de2b9f9` en rama `concierge-manager-web-v1` (09/10/2026).
 - [ ] Revisar que ningún cambio modifique `main`, `chebot-production` o los entornos de producción.
