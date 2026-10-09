@@ -1,15 +1,15 @@
 # Chebot Concierge Beta V1 — Catálogo gastronómico, siete ciudades
 
 **Estado:** catálogo DEV en staging y recomendaciones gastronómicas conectadas a **Backend Preview**. La Demo #1 validó respuestas, elección directa, Maps, «Elegir otro» y cambio de barrios; queda regresión de diversidad Palermo y cobertura del resto de ciudades. NO está en producción.
-**Fecha del corte:** 2026-10-08 (ampliación Palermo y criterio de variedad).
-**Origen:** [Matriz CSV de 159 restaurantes](./CHEBOT-MATRIZ-7-CIUDADES-22-BARRIOS-159-RESTAURANTES-2026-10-08.csv) en esta rama.
+**Fecha del corte:** 2026-10-09 (reconciliación DEV ↔ matriz QA, con tres incorporaciones respaldadas para Palermo).
+**Origen actual:** [Matriz CSV de 162 restaurantes (09/10/2026)](./CHEBOT-MATRIZ-7-CIUDADES-22-BARRIOS-162-RESTAURANTES-2026-10-09.csv). Se conserva intacta la [matriz anterior de 159](./CHEBOT-MATRIZ-7-CIUDADES-22-BARRIOS-159-RESTAURANTES-2026-10-08.csv) para auditoría; las tres incorporaciones existen también en Supabase DEV, no en el directorio público.
 
 ## Evidencia verificada en las integraciones
 
 - Directorio web: **318 locales**, repartidos en **159 restaurantes + 159 bares**, siete ciudades y 22 barrios.
-- Matriz gastronómica: **159 filas** y **29 columnas**.
+- Matriz gastronómica QA actual: **162 filas** y **29 columnas**, con los 159 registros originales preservados y tres registros nuevos en Palermo; relectura GitHub sin columnas desalineadas.
 - Especialidades con enlaces de evidencia registrados en DEV: **50**; pendientes de verificación por fuentes: **112** (base inicial + tres verificaciones nuevas).
-- Supabase **DEV solamente**: `public.concierge_gastronomy_catalog_staging` con **162 filas** = **159 de la matriz original + 3 suplementos verificados en Palermo**; 7 ciudades y 22 barrios.
+- Supabase **DEV solamente**: `public.concierge_gastronomy_catalog_staging` con **162 filas** = **159 del directorio original + 3 incorporaciones QA en Palermo**; 7 ciudades y 22 barrios. La matriz QA actual se reconcilió contra esas 162 filas.
 - Los `cuisine_tags` de DEV solo contienen etiquetas `source_backed`; los indicios derivados de nombres se guardan por separado en `cuisine_candidate_tags`, **no aptos para recomendar**.
 - **25 restaurantes tienen horarios semanales publicados registrados con fuentes**; **0 tienen confirmación de apertura en tiempo real ni mesas reservables**. El horario puede diferir del cierre real de cocina.
 - La tabla de DEV tiene RLS activo. `anon` y `authenticated` no pueden consultarla; se reserva al rol de servicio.
@@ -29,12 +29,12 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 - El motor prioriza **carne + pasta + sushi** para pedidos explícitos de «variedad» **si las tres especialidades pasan los filtros** de barrio, horario y evidencia; si falta una, completa con otra cocina verificada cuando puede. Esta preferencia no excluye pizza, bodegón, cocina local, autor ni otras especialidades. No asigna un «estilo» a locales sin especialidad comprobada ni inventa una tercera alternativa.
 - A hora muy tardía «esta noche» requiere horario publicado todavía compatible y tiempo suficiente para cenar; no promete que la cocina o las reservas sigan funcionando.
 - Al haber solo uno o dos estilos, lo dice de manera natural y ofrece otro horario o ampliar zona.
-- Nuevos **suplementos de DEV** (no incorporados a la matriz CSV original ni al directorio web):
+- Tres **suplementos de DEV**, ahora incorporados en la **matriz QA de 162** (no en el directorio público ni en la matriz histórica de 159):
   1. **Cucina Paradiso Palermo Soho** — Armenia 1610; italiana y pastas, todos los días 09:00–00:00 según [sitio oficial](https://www.cucinaparadiso.com/); no debería figurar a las 23:50 como una cena completa.
   2. **SushiClub Las Cañitas (RESTÓ)** — Báez 268; sushi y cocina japonesa, horarios de salón publicados hasta las 01:30 el jueves y las 02:00 viernes/sábado según [locales oficiales](https://www.sushiclub.com.ar/nuestros_espacios.php?provincia=2). **No confundir con SushiClub Palermo Deli & Take (Charcas 3673)**.
   3. **Isla Negra Palermo** — Gurruchaga 1450; cocina de autor de origen regional, pescados y pastas, cierre 00:00 habitual y 01:00 viernes/sábado según [web oficial](https://islanegraresto.com/menu).
 - **QA técnica 2026-10-09:** a las 21:00 del viernes, las franjas publicadas de La Cabrera, Cucina Paradiso Palermo Soho y SushiClub Las Cañitas cubren al menos una hora (además de Isla Negra). Verificación de coincidencia horaria por Supabase DEV; **no es apertura real ni mesa confirmada**. La rutina de diversidad fue probada con casos de tres, dos y una sola cocina, y sin locales inventados. **Falta confirmación por WhatsApp real**.
-- La ampliación es **solo staging/Preview**. No implica reserva ni servicio de cocina confirmados; la selección por horario depende de día, hora y evidencia.
+- La ampliación es **solo staging/Preview**. No implica reserva ni servicio de cocina confirmados; la selección por horario depende de día, hora y evidencia. Las Cañitas figura operacionalmente bajo el área Palermo para recomendaciones, aunque conviene tratarlo como subzona explícita en UI; se validó que SushiClub Báez 268 es RESTÓ, distinto de la sucursal Deli & Take.
 - Los criterios generales se aplican a las siete ciudades, pero **no se considera verificada la variedad completa en los 22 barrios**.
 
 ## Cobertura gastronómica por ciudad
@@ -80,6 +80,7 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 - [x] Probar recomendaciones en Recoleta, selección, Maps, volver a elegir, «Más opciones» y cambio a Palermo dentro de la Demo Concierge #1.
 - [ ] Repetir prueba en Palermo con **carne, sushi y pastas** en una franja de cena compatible; verificar que a las 23:50 no ofrezca una cocina cuyo horario ya termina a medianoche.
 - [ ] Probar peticiones y seguimientos de WhatsApp para las otras seis ciudades y los casos sin horarios respaldados.
+- [x] Reconciliar las tres incorporaciones de Supabase DEV en la matriz QA 162, conservando intacta la versión original de 159. Commit `de2b9f9` en rama `concierge-manager-web-v1` (09/10/2026).
 - [ ] Revisar que ningún cambio modifique `main`, `chebot-production` o los entornos de producción.
 
 > **Regla de liberación:** los registros `pending` y `cuisine_candidate_tags` no habilitan una recomendación por especialidad. Esta preparación es solo staging/QA y no debe convertirse automáticamente en inventario público.
