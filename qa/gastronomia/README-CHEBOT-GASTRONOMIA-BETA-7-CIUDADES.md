@@ -26,13 +26,14 @@ Fuentes: [Piegari](https://www.piegari.com.ar/), [Elena (Four Seasons)](https://
 **Hallazgo de Demo #1:** una búsqueda «cenar en Palermo con mi pareja; sorprendeme con variedad» devolvía dos parrillas, y antes un bar con gastronomía. El atributo «pareja» describe compañía/ocasión, **no una categoría gastronómica**.
 
 - Backend `concierge-v3-design`: la petición explícita de comer/cenar se interpreta como plan `food`; `companions=couple` se conserva independientemente. Un plan de cita sin comida explícita aún puede tener `plan=date`. Se mantiene la exclusión de bares en las búsquedas de cena.
-- El motor prioriza **tres especialidades con fuente** distintas cuando existen entre locales que cumplen horario, ciudad y barrio. No asigna un «estilo» a locales sin especialidad comprobada ni inventa una tercera alternativa.
+- El motor prioriza **carne + pasta + sushi** para pedidos explícitos de «variedad» **si las tres especialidades pasan los filtros** de barrio, horario y evidencia; si falta una, completa con otra cocina verificada cuando puede. Esta preferencia no excluye pizza, bodegón, cocina local, autor ni otras especialidades. No asigna un «estilo» a locales sin especialidad comprobada ni inventa una tercera alternativa.
 - A hora muy tardía «esta noche» requiere horario publicado todavía compatible y tiempo suficiente para cenar; no promete que la cocina o las reservas sigan funcionando.
 - Al haber solo uno o dos estilos, lo dice de manera natural y ofrece otro horario o ampliar zona.
 - Nuevos **suplementos de DEV** (no incorporados a la matriz CSV original ni al directorio web):
   1. **Cucina Paradiso Palermo Soho** — Armenia 1610; italiana y pastas, todos los días 09:00–00:00 según [sitio oficial](https://www.cucinaparadiso.com/); no debería figurar a las 23:50 como una cena completa.
   2. **SushiClub Las Cañitas (RESTÓ)** — Báez 268; sushi y cocina japonesa, horarios de salón publicados hasta las 01:30 el jueves y las 02:00 viernes/sábado según [locales oficiales](https://www.sushiclub.com.ar/nuestros_espacios.php?provincia=2). **No confundir con SushiClub Palermo Deli & Take (Charcas 3673)**.
   3. **Isla Negra Palermo** — Gurruchaga 1450; cocina de autor de origen regional, pescados y pastas, cierre 00:00 habitual y 01:00 viernes/sábado según [web oficial](https://islanegraresto.com/menu).
+- **QA técnica 2026-10-09:** a las 21:00 del viernes, las franjas publicadas de La Cabrera, Cucina Paradiso Palermo Soho y SushiClub Las Cañitas cubren al menos una hora (además de Isla Negra). Verificación de coincidencia horaria por Supabase DEV; **no es apertura real ni mesa confirmada**. La rutina de diversidad fue probada con casos de tres, dos y una sola cocina, y sin locales inventados. **Falta confirmación por WhatsApp real**.
 - La ampliación es **solo staging/Preview**. No implica reserva ni servicio de cocina confirmados; la selección por horario depende de día, hora y evidencia.
 - Los criterios generales se aplican a las siete ciudades, pero **no se considera verificada la variedad completa en los 22 barrios**.
 
