@@ -22,7 +22,8 @@ const stayRowAfter = `stays.forEach((stay) => {
       row.className = 'row';
       const stayIdentifier = stay.id || stay.stay_id || '';
       row.dataset.stayId = String(stayIdentifier);
-      row.dataset.stayStatus = String(stay.status || '');`;
+      row.dataset.stayStatus = String(effectiveStayStatus(stay));
+      row.dataset.stayCheckout = String(stay.check_out_at || '');`;
 
 if (!authJs.includes("const stayIdentifier = stay.id || stay.stay_id || '';")) {
   if (!authJs.includes(stayRowBefore)) {
@@ -51,7 +52,7 @@ const browserJs = `
 
   const TOKEN_KEY = 'chebot_manager_preview_access_token';
   const BACKEND_INVITE_URL = 'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/invites/send';
-  const terminalStatuses = new Set(['completed', 'cancelled', 'revoked']);
+  const invitables = new Set(['scheduled', 'active']);
 
   function errorCopy(code) {
     const messages = {
@@ -134,7 +135,9 @@ const browserJs = `
 
       const stayId = String(row.dataset.stayId || '').trim();
       const stayStatus = String(row.dataset.stayStatus || '').trim();
-      if (!stayId || terminalStatuses.has(stayStatus)) return;
+      const checkout = Date.parse(String(row.dataset.stayCheckout || ''));
+      if (!stayId || !invitables.has(stayStatus)
+          || !Number.isFinite(checkout) || checkout <= Date.now()) return;
 
       const action = document.createElement('div');
       action.className = 'manager-invite-action';
