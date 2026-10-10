@@ -37,6 +37,12 @@ const css = `
 .manager-auth-field{display:grid;gap:6px;margin-top:14px}
 .manager-auth-field label{font-weight:850;font-size:.9rem}
 .manager-auth-field input{width:100%;padding:12px 13px;border:1px solid #b9c5c2;border-radius:11px;font:inherit;background:#fff;color:#16302d}
+.manager-auth-password-wrap{position:relative;display:flex;align-items:center}
+.manager-auth-password-wrap input{padding-right:58px;min-width:0}
+.manager-auth-visibility{position:absolute;right:4px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:8px;background:transparent;color:#0f766e;cursor:pointer}
+.manager-auth-visibility:focus-visible{outline:2px solid #0f766e;outline-offset:-2px}
+.manager-auth-visibility .manager-eye-slash{display:none}
+.manager-auth-visibility[aria-pressed="true"] .manager-eye-slash{display:block}
 .manager-auth-submit,.manager-auth-logout{border:0;border-radius:11px;font:inherit;font-weight:900;cursor:pointer}
 .manager-auth-submit{width:100%;margin-top:18px;padding:13px 16px;background:#0f766e;color:#fff}
 .manager-auth-submit:disabled{opacity:.6;cursor:wait}
@@ -70,6 +76,7 @@ const browserJs = `
   const form = document.getElementById('manager-login-form');
   const email = document.getElementById('manager-email');
   const password = document.getElementById('manager-password');
+  const passwordVisibility = document.getElementById('manager-password-visibility');
   const status = document.getElementById('manager-auth-status');
   const submit = document.getElementById('manager-login-submit');
   const logout = document.getElementById('manager-logout');
@@ -92,6 +99,19 @@ const browserJs = `
     recoveryStatus.className = 'manager-auth-status' + (kind ? ' ' + kind : '');
   }
 
+  function concealManagerPassword() {
+    password.type = 'password';
+    passwordVisibility.setAttribute('aria-pressed', 'false');
+    passwordVisibility.setAttribute('aria-label', 'Mostrar contraseña');
+  }
+
+  passwordVisibility.addEventListener('click', () => {
+    const visible = password.type === 'password';
+    password.type = visible ? 'text' : 'password';
+    passwordVisibility.setAttribute('aria-pressed', String(visible));
+    passwordVisibility.setAttribute('aria-label', visible ? 'Ocultar contraseña' : 'Mostrar contraseña');
+  });
+
   function toggleRecovery(open) {
     recoveryForm.hidden = !open;
     forgot.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -105,6 +125,7 @@ const browserJs = `
       recoveryMessage('');
       recoveryEmail.value = '';
       password.value = '';
+      concealManagerPassword();
       email.focus();
     }
   }
@@ -134,10 +155,13 @@ const browserJs = `
     toggleRecovery(false);
     if (message) setStatus(message, 'error');
     password.value = '';
+    concealManagerPassword();
     setTimeout(() => email.focus(), 0);
   }
 
   function showPanel(session) {
+    password.value = '';
+    concealManagerPassword();
     authScreen.hidden = true;
     document.body.classList.remove('manager-auth-pending');
     const role = session && session.role ? String(session.role) : 'manager';
@@ -613,7 +637,10 @@ html = html.replace(
         </div>
         <div class="manager-auth-field">
           <label for="manager-password">Contraseña</label>
-          <input id="manager-password" name="password" type="password" autocomplete="current-password" required>
+          <div class="manager-auth-password-wrap">
+            <input id="manager-password" name="password" type="password" autocomplete="current-password" required>
+            <button type="button" id="manager-password-visibility" class="manager-auth-visibility" aria-controls="manager-password" aria-label="Mostrar contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path class="manager-eye-slash" d="m4 4 16 16"></path></svg></button>
+          </div>
         </div>
         <button class="manager-auth-submit" id="manager-login-submit" type="submit">Ingresar</button>
         <div class="manager-auth-status" id="manager-auth-status" role="status" aria-live="polite"></div>
