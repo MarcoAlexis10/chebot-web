@@ -46,6 +46,11 @@ const css = `
 .manager-auth-foot{font-size:.78rem!important;margin-top:18px!important}
 .manager-auth-logout{padding:8px 11px;background:#fff;border:1px solid #cfd8d5;color:#16302d;margin-left:8px}
 .manager-auth-session{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:#61706d}
+.manager-auth-card [hidden]{display:none!important}
+.manager-auth-recovery-link,.manager-auth-recovery-cancel{display:block;border:0;background:none;color:#0f766e;font:inherit;font-size:.9rem;font-weight:800;padding:12px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.manager-auth-recovery-link:focus-visible,.manager-auth-recovery-cancel:focus-visible{outline:2px solid #0f766e;outline-offset:3px}
+.manager-auth-recovery-intro{font-size:.9rem}
+.manager-auth-recovery-form{margin-top:10px;border-top:1px solid #e5ddd0;padding-top:12px}
 `;
 
 fs.writeFileSync(path.join(managerDir, 'manager-auth.css'), css);
@@ -68,12 +73,40 @@ const browserJs = `
   const status = document.getElementById('manager-auth-status');
   const submit = document.getElementById('manager-login-submit');
   const logout = document.getElementById('manager-logout');
+  const forgot = document.getElementById('manager-forgot');
+  const recoveryForm = document.getElementById('manager-recovery-form');
+  const recoveryEmail = document.getElementById('manager-recovery-email');
+  const recoverySubmit = document.getElementById('manager-recovery-submit');
+  const recoveryCancel = document.getElementById('manager-recovery-cancel');
+  const recoveryStatus = document.getElementById('manager-recovery-status');
   const sessionLabel = document.getElementById('manager-session-label');
   const accountLabel = document.getElementById('manager-account-label');
 
   function setStatus(message, kind) {
     status.textContent = message || '';
     status.className = 'manager-auth-status' + (kind ? ' ' + kind : '');
+  }
+
+  function recoveryMessage(message, kind) {
+    recoveryStatus.textContent = message || '';
+    recoveryStatus.className = 'manager-auth-status' + (kind ? ' ' + kind : '');
+  }
+
+  function toggleRecovery(open) {
+    recoveryForm.hidden = !open;
+    forgot.setAttribute('aria-expanded', open ? 'true' : 'false');
+    forgot.hidden = open;
+    form.hidden = open;
+    if (open) {
+      recoveryEmail.value = email.value.trim();
+      recoveryMessage('');
+      recoveryEmail.focus();
+    } else {
+      recoveryMessage('');
+      recoveryEmail.value = '';
+      password.value = '';
+      email.focus();
+    }
   }
 
   function clearToken() {
@@ -98,6 +131,7 @@ const browserJs = `
     document.body.classList.add('manager-auth-pending');
     clearPanelData();
     authScreen.hidden = false;
+    toggleRecovery(false);
     if (message) setStatus(message, 'error');
     password.value = '';
     setTimeout(() => email.focus(), 0);
@@ -438,6 +472,47 @@ const browserJs = `
     return body.access_token;
   }
 
+  forgot.addEventListener('click', () => toggleRecovery(true));
+  recoveryCancel.addEventListener('click', () => toggleRecovery(false));
+  recoveryForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const requestedEmail = recoveryEmail.value.trim();
+    if (!recoveryEmail.checkValidity()) {
+      recoveryMessage('Ingresá un correo válido.', 'error');
+      return;
+    }
+    const redirect = 'https://chebot-web-git-concierge-manager-web-v1-chebot.vercel.app/manager/reset-password/';
+    recoverySubmit.disabled = true;
+    recoveryMessage('Solicitando enlace de recuperación…');
+    try {
+      const response = await fetch(
+        SUPABASE_URL + '/auth/v1/recover?redirect_to=' + encodeURIComponent(redirect),
+        {
+          method: 'POST',
+          cache: 'no-store',
+          referrerPolicy: 'no-referrer',
+          headers: {
+            apikey: SUPABASE_PUBLISHABLE_KEY,
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({ email: requestedEmail })
+        }
+      );
+      if (response.status === 429) {
+        recoveryMessage('Por seguridad se alcanzó el límite temporal de correos. Esperá antes de volver a solicitarlo.', 'error');
+      } else if (!response.ok) {
+        recoveryMessage('No se pudo solicitar el enlace en este momento. Intentá más tarde.', 'error');
+      } else {
+        recoveryMessage('Si el correo corresponde a un manager registrado, recibirás un enlace. Abrilo directamente en Chrome. Revisá también Spam.', 'ok');
+      }
+    } catch (_) {
+      recoveryMessage('No pudimos contactar Supabase DEV. Verificá la conexión e intentá más tarde.', 'error');
+    } finally {
+      recoverySubmit.disabled = false;
+    }
+  });
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     submit.disabled = true;
@@ -531,6 +606,17 @@ html = html.replace(
         </div>
         <button class="manager-auth-submit" id="manager-login-submit" type="submit">Ingresar</button>
         <div class="manager-auth-status" id="manager-auth-status" role="status" aria-live="polite"></div>
+      </form>
+      <button type="button" id="manager-forgot" class="manager-auth-recovery-link" aria-controls="manager-recovery-form" aria-expanded="false">¿Olvidaste tu contraseña?</button>
+      <form id="manager-recovery-form" class="manager-auth-recovery-form" hidden>
+        <p class="manager-auth-recovery-intro">Te enviamos un enlace al correo asociado con tu cuenta de manager. Nunca pedimos contraseñas por WhatsApp.</p>
+        <div class="manager-auth-field">
+          <label for="manager-recovery-email">Email del manager</label>
+          <input id="manager-recovery-email" type="email" autocomplete="email" required maxlength="254">
+        </div>
+        <button class="manager-auth-submit" id="manager-recovery-submit" type="submit">Enviar enlace de recuperación</button>
+        <button type="button" id="manager-recovery-cancel" class="manager-auth-recovery-cancel">Volver al ingreso</button>
+        <div class="manager-auth-status" id="manager-recovery-status" role="status" aria-live="polite"></div>
       </form>
       <p class="manager-auth-foot">Preview aislada. La contraseña se envía directamente a Supabase Auth y no se guarda en el sitio.</p>
     </div>
