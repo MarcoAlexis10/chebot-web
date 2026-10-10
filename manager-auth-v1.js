@@ -293,12 +293,23 @@ const browserJs = `
     return body.properties;
   }
 
+  // Display an expired stay as expired even if its DB lifecycle has not
+  // yet transitioned from scheduled/active. Never alter DB state in UI.
+  function effectiveStayStatus(stay) {
+    const status = String(stay?.status || '');
+    const checkout = Date.parse(String(stay?.check_out_at || ''));
+    if (['scheduled', 'active'].includes(status)
+        && Number.isFinite(checkout) && checkout <= Date.now()) return 'expired';
+    return status;
+  }
+
   function stayStatusLabel(statusValue) {
     const labels = {
       draft: 'Borrador',
       scheduled: 'Programada',
       active: 'Activa',
       completed: 'Finalizada',
+      expired: 'Vencida',
       cancelled: 'Cancelada',
       revoked: 'Revocada'
     };
@@ -308,7 +319,7 @@ const browserJs = `
   function stayStatusClass(statusValue) {
     const value = String(statusValue || '');
     if (value === 'scheduled' || value === 'active' || value === 'completed') return 'tag';
-    if (value === 'draft') return 'tag warn';
+    if (value === 'draft' || value === 'expired') return 'tag warn';
     return 'tag danger';
   }
 
@@ -364,8 +375,8 @@ const browserJs = `
         formatStayDate(stay.check_in_at) + ' → ' + formatStayDate(stay.check_out_at);
 
       const statusTag = document.createElement('span');
-      statusTag.className = stayStatusClass(stay.status);
-      statusTag.textContent = stayStatusLabel(stay.status);
+      statusTag.className = stayStatusClass(effectiveStayStatus(stay));
+      statusTag.textContent = stayStatusLabel(effectiveStayStatus(stay));
 
       const access = document.createElement('span');
       access.textContent =
