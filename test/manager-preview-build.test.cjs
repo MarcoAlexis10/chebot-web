@@ -43,7 +43,7 @@ test('expired stays are labeled and cannot initiate guest invites', () => {
   assert.match(js, /checkout <= Date\.now\(\)/);
   assert.match(js, /expired: 'Vencida'/);
   assert.match(js, /row\.dataset\.stayStatus = String\(effectiveStayStatus\(stay\)\)/);
-  assert.match(js, /invitables\.has\(stayStatus\)/);
+  assert.match(file('manager-invite.js'), /invitables\.has\(stayStatus\)/);
 });
 
 test('generated browser scripts contain valid JavaScript', () => {
