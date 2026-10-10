@@ -1,0 +1,27 @@
+name: Concierge Manager Preview - build-only QA
+
+on:
+  push:
+    branches: [concierge-manager-web-v1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manager-preview-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      # Public, deliberately fake build-only values; no Vercel and no Auth calls.
+      SUPABASE_URL: https://tyvwgsdzqipusodxtydv.supabase.co
+      SUPABASE_PUBLISHABLE_KEY: ci-fixture-public-key-not-real
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build Manager Preview locally (NO DEPLOY)
+        run: npm run build
+      - name: Assert recovery, expired stays and JS build
+        run: node --test test/manager-preview-build.test.cjs
