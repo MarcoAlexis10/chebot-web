@@ -37,6 +37,33 @@ test('password recovery page consumes bearer only from URL fragment', () => {
   assert.match(html, /minlength="16"/);
 });
 
+
+test('password eye toggles exist on login and each reset field independently', () => {
+  const login = file('index.html');
+  const loginJs = file('manager-auth.js');
+  const loginCss = file('manager-auth.css');
+  const reset = file('reset-password/index.html');
+
+  assert.match(login, /id="manager-password"[^>]*type="password"/);
+  assert.match(login, /id="manager-password-visibility"[^>]*type="button"|type="button" id="manager-password-visibility"/);
+  assert.match(login, /aria-controls="manager-password" aria-label="Mostrar contraseña" aria-pressed="false"/);
+  assert.match(loginJs, /passwordVisibility\.addEventListener\('click'/);
+  assert.match(loginJs, /password\.type = visible \? 'text' : 'password'/);
+  assert.match(loginJs, /concealManagerPassword\(\)/);
+  assert.match(loginCss, /manager-auth-visibility:focus-visible/);
+  for (const id of ['password', 'confirm']) {
+    assert.match(reset, new RegExp('id="' + id + '" type="password"'));
+    assert.match(reset, new RegExp('type="button" class="password-visibility" data-password-target="' + id + '"'));
+    assert.match(reset, new RegExp('aria-controls="' + id + '"'));
+  }
+  assert.match(reset, /document\.querySelectorAll\('\[data-password-target\]'\)/);
+  assert.match(reset, /field\.type = reveal \? 'text' : 'password'/);
+  assert.match(reset, /\.password-visibility:focus-visible/);
+  const inline = reset.match(/<script>([\s\S]*?)<\/script>/);
+  assert.ok(inline, 'Password reset inline script is present');
+  new (require('node:vm').Script)(inline[1]);
+});
+
 test('expired stays are labeled and cannot initiate guest invites', () => {
   const js = file('manager-auth.js');
   assert.match(js, /function effectiveStayStatus\(stay\)/);
