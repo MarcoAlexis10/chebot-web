@@ -25,6 +25,15 @@ test('invitation issue is explicit and does not send invitations',()=>{
   assert.match(html,/Enlace preparado, NO enviado/);
   assert.doesNotMatch(html,/auth\/v1\/signup|SUPABASE_SERVICE_ROLE_KEY|sendWhatsApp\(/);
 });
+test('screening is a one-time internal decision, not manager provisioning',()=>{
+  assert.match(html,/action:'screen'/);
+  assert.match(html,/confirmScreening:true/);
+  assert.match(html,/shortlisted_pending_go_b/);
+  assert.match(html,/Preseleccionar · requiere GO B/);
+  assert.match(html,/row\.screening/);
+  assert.match(html,/no podrá modificarse desde esta pantalla/);
+  assert.doesNotMatch(html,/auth\/v1\/admin\/users|createManagerAccount\(/);
+});
 test('requests are rendered using textContent, not injected HTML',()=>{
   assert.match(html,/item\.textContent=String\(value\|\|''\)/);
   assert.match(html,/card\.appendChild\(makeText\(/);
