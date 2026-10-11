@@ -116,6 +116,40 @@ async function update(){
        card.appendChild(makeText('p','Aceptación Beta: '+(row.beta_terms_version||'—')+' · Privacidad: '+(row.privacy_accepted?'Sí':'No')));
        card.appendChild(makeText('p','Versión del aviso de privacidad: '+(row.privacy_notice_version||'No registrada')));
        card.appendChild(makeText('p','Recibida: '+dateText(row.submitted_at),'muted'));
+       if(row.screening){
+         var descriptions={
+           needs_owner_followup:'Pendiente de seguimiento humano',
+           not_selected:'No seleccionado para esta Beta',
+           shortlisted_pending_go_b:'Preseleccionado; falta autorización GO B'
+         };
+         card.appendChild(makeText('p','Evaluación interna: '+(descriptions[row.screening.decision]||'Revisar manualmente'),'badge'));
+         card.appendChild(makeText('p','Evaluada: '+dateText(row.screening.reviewed_at),'muted'));
+       }else{
+         card.appendChild(makeText('p','Solo una evaluación interna. Ninguna opción crea cuenta, activa propiedades, envía mensajes ni inicia la Beta.','muted'));
+         var choices=[
+           ['needs_owner_followup','Necesita seguimiento','secondary'],
+           ['not_selected','No seleccionado','danger'],
+           ['shortlisted_pending_go_b','Preseleccionar · requiere GO B','secondary']
+         ];
+         var actions=document.createElement('div');actions.className='actions';
+         for(var choice of choices){
+           var evaluate=document.createElement('button');
+           evaluate.type='button';evaluate.className=choice[2];evaluate.textContent=choice[1];
+           evaluate.addEventListener('click',async function(id,decision,el){
+             if(!window.confirm('¿Registrar esta evaluación interna? No crea cuentas ni aprueba operación comercial. Esta decisión no podrá modificarse desde esta pantalla.'))return;
+             var buttons=actions.querySelectorAll('button');
+             buttons.forEach(function(b){b.disabled=true});
+             try{
+               var rv=await api('POST',{action:'screen',invitationId:id,decision:decision,confirmScreening:true});
+               if(rv.code!==200){window.alert('No se guardó la evaluación. Revisá si ya había sido evaluada.')}
+               await update();
+             }catch(_){message(access,'No se pudo confirmar la evaluación de esta solicitud.',true)}
+             finally{buttons.forEach(function(b){b.disabled=false})}
+           }.bind(null,row.id,choice[0],evaluate));
+           actions.appendChild(evaluate);
+         }
+         card.appendChild(actions);
+       }
      }else if(row.status==='issued'){
        card.appendChild(makeText('p','Vence: '+dateText(row.expires_at),'muted'));
        var revoke=document.createElement('button');
