@@ -31,6 +31,11 @@ test('page explains single property, no auto charges, manual exceptions and pend
 test('preview manager form never substitutes the generic tourism privacy policy',()=>{
   assert.doesNotMatch(html,/href="https:\/\/www\.chebot\.chat\/privacidad"/);
   assert.match(html,/href="\/manager\/privacidad-concierge\/"/);
+  assert.match(html,/href="\/manager\/condiciones-concierge\/"/);
+  assert.match(html,/Leí y acepto las <a href="\/manager\/condiciones-concierge\/"/);
+  assert.match(html,/conforme al <a href="\/manager\/privacidad-concierge\/"/);
+  assert.doesNotMatch(html,/Leí y acepto las condiciones de la Beta privada indicadas arriba/);
+
   assert.match(html,/id="legal-pending"[^>]*hidden/);
   assert.match(html,/var CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED = false/);
   assert.match(html,/if \(!CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED\)/);
