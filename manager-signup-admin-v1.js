@@ -114,6 +114,7 @@ async function update(){
        card.appendChild(makeText('p','Nombre: '+(row.manager_display_name||'—')));
        card.appendChild(makeText('p','Negocio: '+(row.business_display_name||'—')));
        card.appendChild(makeText('p','Aceptación Beta: '+(row.beta_terms_version||'—')+' · Privacidad: '+(row.privacy_accepted?'Sí':'No')));
+       card.appendChild(makeText('p','Versión del aviso de privacidad: '+(row.privacy_notice_version||'No registrada')));
        card.appendChild(makeText('p','Recibida: '+dateText(row.submitted_at),'muted'));
      }else if(row.status==='issued'){
        card.appendChild(makeText('p','Vence: '+dateText(row.expires_at),'muted'));
@@ -150,7 +151,9 @@ issueForm.addEventListener('submit',async function(e){
      issueForm.reset();
      await update();
    }else if(r.code===409)message(issueStatus,'Ese correo ya tiene una invitación pendiente. Revisá la lista antes de preparar otra.',true);
-   else if(r.code===503)message(issueStatus,'Altas cerradas: se requiere autorización explícita.',true);
+   else if(r.code===503)message(issueStatus,r.data.code==='INVITATION_LEGAL_APPROVAL_REQUIRED'
+     ?'Antes de preparar invitaciones, deben aprobarse la privacidad y las condiciones de Concierge.'
+     :'Altas cerradas: se requiere autorización explícita.',true);
    else message(issueStatus,'No se pudo preparar la invitación.',true);
  }catch(_){message(issueStatus,'No se pudo contactar al Backend Preview.',true)}
  finally{issueButton.disabled=false}
