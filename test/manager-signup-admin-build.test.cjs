@@ -34,6 +34,15 @@ test('screening is a one-time internal decision, not manager provisioning',()=>{
   assert.match(html,/no podrá modificarse desde esta pantalla/);
   assert.doesNotMatch(html,/auth\/v1\/admin\/users|createManagerAccount\(/);
 });
+test('owner can close pending follow-up only with confirmation, no automatic provisioning',()=>{
+  assert.match(html,/row\.screening\.decision==='needs_owner_followup'/);
+  assert.match(html,/action:'resolve_followup'/);
+  assert.match(html,/confirmResolution:true/);
+  assert.match(html,/Cerrar: no seleccionado/);
+  assert.match(html,/Cerrar: preseleccionar \(requiere GO B\)/);
+  assert.match(html,/no crea una cuenta ni habilita Concierge/);
+  assert.doesNotMatch(html,/auth\/v1\/admin\/users|createManagerAccount\(/);
+});
 test('requests are rendered using textContent, not injected HTML',()=>{
   assert.match(html,/item\.textContent=String\(value\|\|''\)/);
   assert.match(html,/card\.appendChild\(makeText\(/);
