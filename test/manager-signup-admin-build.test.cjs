@@ -20,6 +20,8 @@ test('invitation issue is explicit and does not send invitations',()=>{
   assert.match(html,/action:'issue'/);
   assert.match(html,/confirmIssue:document\.getElementById\('issue-confirm'\)\.checked/);
   assert.match(html,/INVITATION_PREPARED_NOT_SENT/);
+  assert.match(html,/INVITATION_LEGAL_APPROVAL_REQUIRED/);
+  assert.match(html,/row\.privacy_notice_version/);
   assert.match(html,/Enlace preparado, NO enviado/);
   assert.doesNotMatch(html,/auth\/v1\/signup|SUPABASE_SERVICE_ROLE_KEY|sendWhatsApp\(/);
 });
