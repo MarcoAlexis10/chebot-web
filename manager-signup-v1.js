@@ -47,8 +47,8 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
  <li>No hay reemplazo automático de números ni acceso independiente para acompañantes.</li>
  <li>Las incidencias excepcionales requieren intervención humana; no se promete respuesta humana inmediata 24/7.</li>
  </ul></div>
- <div class="check"><input id="terms" type="checkbox" required><label for="terms">Leí y acepto las condiciones de la Beta privada indicadas arriba.</label></div>
- <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Chebot procese estos datos para evaluar mi incorporación, conforme a la <a href="/manager/privacidad-concierge/" target="_blank" rel="noreferrer noopener">aviso de privacidad específico de Concierge</a>.</label></div>
+ <div class="check"><input id="terms" type="checkbox" required><label for="terms">Leí y acepto las <a href="/manager/condiciones-concierge/" target="_blank" rel="noreferrer noopener">condiciones completas de la Beta privada de Concierge</a>, además del resumen indicado arriba.</label></div>
+ <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Chebot procese estos datos para evaluar mi incorporación, conforme al <a href="/manager/privacidad-concierge/" target="_blank" rel="noreferrer noopener">aviso de privacidad específico de Concierge</a>.</label></div>
  <button id="submit" type="submit">Enviar solicitud de activación</button>
  <div id="form-status" class="status" aria-live="polite" role="status"></div>
 </form>
