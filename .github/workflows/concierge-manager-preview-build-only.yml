@@ -24,4 +24,4 @@ jobs:
       - name: Build Manager Preview locally (NO DEPLOY)
         run: npm run build
       - name: Assert recovery, expired stays and JS build
-        run: node --test test/manager-preview-build.test.cjs test/manager-signup-build.test.cjs test/manager-signup-admin-build.test.cjs
+        run: node --test test/manager-preview-build.test.cjs test/manager-signup-build.test.cjs test/manager-signup-admin-build.test.cjs test/manager-legal-publication-gate.test.cjs
