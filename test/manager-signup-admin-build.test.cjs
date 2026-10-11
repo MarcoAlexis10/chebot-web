@@ -24,7 +24,7 @@ test('invitation issue is explicit and does not send invitations',()=>{
   assert.doesNotMatch(html,/auth\/v1\/signup|SUPABASE_SERVICE_ROLE_KEY|sendWhatsApp\(/);
 });
 test('requests are rendered using textContent, not injected HTML',()=>{
-  assert.match(html,/item\.textContent=String\(value\|\|'\)/);
+  assert.match(html,/item\.textContent=String\(value\|\|''\)/);
   assert.match(html,/card\.appendChild\(makeText\(/);
   assert.doesNotMatch(html,/innerHTML|document\.write\(/);
 });
