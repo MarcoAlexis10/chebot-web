@@ -124,6 +124,31 @@ async function update(){
          };
          card.appendChild(makeText('p','Evaluación interna: '+(descriptions[row.screening.decision]||'Revisar manualmente'),'badge'));
          card.appendChild(makeText('p','Evaluada: '+dateText(row.screening.reviewed_at),'muted'));
+         if(row.screening.decision==='needs_owner_followup'){
+           card.appendChild(makeText('p','Seguimiento pendiente: después de conversar con la persona, podés cerrarlo. Ninguna decisión crea su cuenta.','muted'));
+           var finalActions=document.createElement('div');finalActions.className='actions';
+           var finalChoices=[
+             ['not_selected','Cerrar: no seleccionado','danger'],
+             ['shortlisted_pending_go_b','Cerrar: preseleccionar (requiere GO B)','secondary']
+           ];
+           for(var finalChoice of finalChoices){
+             var finalize=document.createElement('button');
+             finalize.type='button';finalize.className=finalChoice[2];finalize.textContent=finalChoice[1];
+             finalize.addEventListener('click',async function(id,decision,buttonGroup){
+               if(!window.confirm('¿Cerrar el seguimiento? Esta decisión final quedará auditada y no crea una cuenta ni habilita Concierge.'))return;
+               var buttons=buttonGroup.querySelectorAll('button');
+               buttons.forEach(function(button){button.disabled=true});
+               try{
+                 var rv=await api('POST',{action:'resolve_followup',invitationId:id,decision:decision,confirmResolution:true});
+                 if(rv.code!==200)window.alert('No se pudo cerrar el seguimiento. Verificá si ya fue resuelto.');
+                 await update();
+               }catch(_){message(access,'No se pudo confirmar el seguimiento de esta solicitud.',true)}
+               finally{buttons.forEach(function(button){button.disabled=false})}
+             }.bind(null,row.id,finalChoice[0],finalActions));
+             finalActions.appendChild(finalize);
+           }
+           card.appendChild(finalActions);
+         }
        }else{
          card.appendChild(makeText('p','Solo una evaluación interna. Ninguna opción crea cuenta, activa propiedades, envía mensajes ni inicia la Beta.','muted'));
          var choices=[
