@@ -2,6 +2,10 @@
 // No account creation, no passwords, no Meta messages, no secrets in HTML.
 const fs = require('node:fs');
 const path = require('node:path');
+const {legalPublicationGate} = require('./manager-legal-publication-gate-v1.cjs');
+// Absent owner/legal/hosting approval or missing/mismatched pages => false.
+// No approval manifest is installed in the Beta branch.
+const legalPublication = legalPublicationGate(__dirname);
 const dir = path.join(__dirname, 'dist', 'manager', 'activar');
 fs.mkdirSync(dir, { recursive: true });
 const html = String.raw`<!doctype html>
@@ -66,7 +70,7 @@ var noInvite = document.getElementById('no-invite');
 if (!/^[A-Za-z0-9_-]{43}$/.test(token)) { noInvite.hidden = false; return; }
 // Separate owner/legal publication approval is required before showing or
 // accepting ANY personal data. No policy is approved/published as of this build.
-var CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED = false;
+var CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED = ${legalPublication.approved};
 if (!CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED) {
  document.getElementById('legal-pending').hidden = false;
  token = '';
@@ -116,4 +120,4 @@ form.addEventListener('submit', async function(event){
 })();
 </script></body></html>`;
 fs.writeFileSync(path.join(dir, 'index.html'), html);
-console.log('Private Beta manager registration page prepared (no invitation issued).');
+console.log('Private Beta manager registration page prepared (no invitation issued). Legal publication gate: '+legalPublication.reason);
