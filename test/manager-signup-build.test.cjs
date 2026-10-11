@@ -28,6 +28,36 @@ test('page explains single property, no auto charges, manual exceptions and pend
   assert.match(html,/únicamente huéspedes principales verificados/);
   assert.match(html,/Tu cuenta todavía no está activa/);
 });
+test('preview manager form never substitutes the generic tourism privacy policy',()=>{
+  assert.doesNotMatch(html,/href="https:\/\/www\.chebot\.chat\/privacidad"/);
+  assert.match(html,/href="\/manager\/privacidad-concierge\/"/);
+  assert.match(html,/id="legal-pending"[^>]*hidden/);
+  assert.match(html,/var CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED = false/);
+  assert.match(html,/if \(!CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED\)/);
+});
+test('valid invite stays closed before legal approval, without personal-data submission',()=>{
+  const match=html.match(/<script>([\s\S]*?)<\/script>/);
+  assert.ok(match);
+  const elements={
+    'invite-form':{hidden:true,addEventListener:()=>{throw Error('Form must remain unbound')}},
+    'no-invite':{hidden:true},
+    'legal-pending':{hidden:true}
+  };
+  let removedFragment=false, networkCalls=0;
+  vm.runInNewContext(match[1],{
+    URLSearchParams,
+    window:{
+      location:{hash:'#invite='+ 'A'.repeat(43),pathname:'/manager/activar/'},
+      history:{replaceState:()=>{removedFragment=true}}
+    },
+    document:{getElementById(id){if(!(id in elements))throw Error('Unexpected '+id);return elements[id];}},
+    fetch(){networkCalls++;throw Error('Network must not be used');}
+  });
+  assert.equal(removedFragment,true);
+  assert.equal(elements['legal-pending'].hidden,false);
+  assert.equal(elements['invite-form'].hidden,true);
+  assert.equal(networkCalls,0);
+});
 test('inlined browser behavior is valid JavaScript',()=>{
   const inline=html.match(/<script>([\s\S]*?)<\/script>/);
   assert.ok(inline,'script expected');
