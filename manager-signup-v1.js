@@ -35,6 +35,7 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
 <h1>Bienvenido a Chebot Concierge</h1>
 <p>Esta página es exclusivamente para managers invitados. La solicitud queda pendiente de aprobación: no habilita propiedades, huéspedes ni mensajes automáticos.</p>
 <div id="no-invite" class="notice" role="status" hidden>Para continuar necesitás un enlace personal de invitación vigente. No hay registro público.</div>
+<div id="legal-pending" class="notice" role="status" hidden>El registro privado de Concierge todavía está cerrado: falta revisar y publicar las condiciones y el aviso específico de privacidad. No ingreses datos personales por ahora. Tu enlace no activa ninguna cuenta.</div>
 <form id="invite-form" hidden novalidate autocomplete="on">
  <div class="field"><label for="managerName">Nombre y apellido</label><input id="managerName" name="managerName" type="text" maxlength="100" minlength="2" autocomplete="name" required></div>
  <div class="field"><label for="email">Correo de invitación</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
@@ -47,7 +48,7 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
  <li>Las incidencias excepcionales requieren intervención humana; no se promete respuesta humana inmediata 24/7.</li>
  </ul></div>
  <div class="check"><input id="terms" type="checkbox" required><label for="terms">Leí y acepto las condiciones de la Beta privada indicadas arriba.</label></div>
- <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Chebot procese estos datos para evaluar mi incorporación, conforme a la <a href="https://www.chebot.chat/privacidad" target="_blank" rel="noreferrer noopener">política de privacidad</a>.</label></div>
+ <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Chebot procese estos datos para evaluar mi incorporación, conforme a la <a href="/manager/privacidad-concierge/" target="_blank" rel="noreferrer noopener">aviso de privacidad específico de Concierge</a>.</label></div>
  <button id="submit" type="submit">Enviar solicitud de activación</button>
  <div id="form-status" class="status" aria-live="polite" role="status"></div>
 </form>
@@ -63,6 +64,14 @@ window.history.replaceState(null, '', window.location.pathname);
 var form = document.getElementById('invite-form');
 var noInvite = document.getElementById('no-invite');
 if (!/^[A-Za-z0-9_-]{43}$/.test(token)) { noInvite.hidden = false; return; }
+// Separate owner/legal publication approval is required before showing or
+// accepting ANY personal data. No policy is approved/published as of this build.
+var CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED = false;
+if (!CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED) {
+ document.getElementById('legal-pending').hidden = false;
+ token = '';
+ return;
+}
 form.hidden = false;
 var status = document.getElementById('form-status');
 var send = document.getElementById('submit');
