@@ -5,7 +5,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const target=path.join(__dirname,'dist','manager','altas');
 fs.mkdirSync(target,{recursive:true});
-const html=String.raw\`<!doctype html><html lang="es"><head>
+const html=String.raw`<!doctype html><html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
@@ -164,6 +164,6 @@ document.getElementById('copy-link').addEventListener('click',async function(){
 refresh.addEventListener('click',update);
 update();
 })();
-</script></body></html>\`;
+</script></body></html>`;
 fs.writeFileSync(path.join(target,'index.html'),html);
 console.log('Manager invite operator console generated (access denied by default).');
