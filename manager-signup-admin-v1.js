@@ -135,9 +135,9 @@ async function update(){
          for(var choice of choices){
            var evaluate=document.createElement('button');
            evaluate.type='button';evaluate.className=choice[2];evaluate.textContent=choice[1];
-           evaluate.addEventListener('click',async function(id,decision,el){
+           evaluate.addEventListener('click',async function(id,decision,buttonGroup){
              if(!window.confirm('¿Registrar esta evaluación interna? No crea cuentas ni aprueba operación comercial. Esta decisión no podrá modificarse desde esta pantalla.'))return;
-             var buttons=actions.querySelectorAll('button');
+             var buttons=buttonGroup.querySelectorAll('button');
              buttons.forEach(function(b){b.disabled=true});
              try{
                var rv=await api('POST',{action:'screen',invitationId:id,decision:decision,confirmScreening:true});
@@ -145,7 +145,7 @@ async function update(){
                await update();
              }catch(_){message(access,'No se pudo confirmar la evaluación de esta solicitud.',true)}
              finally{buttons.forEach(function(b){b.disabled=false})}
-           }.bind(null,row.id,choice[0],evaluate));
+           }.bind(null,row.id,choice[0],actions));
            actions.appendChild(evaluate);
          }
          card.appendChild(actions);
