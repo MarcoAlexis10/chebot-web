@@ -1,0 +1,42 @@
+name: QA254 Chebot Web/Concierge launch gates (LOCAL BUILD ONLY)
+
+on:
+  push:
+    branches: [qa254-web-readiness-isolated]
+    paths:
+      - ".github/workflows/qa254-web-readiness-build-only.yml"
+      - "test/qa254-generated-directory-and-manager.test.cjs"
+      - "build.js"
+      - "directory-data.json"
+      - "manager-legal-publication-gate-v1.cjs"
+      - "manager-auth-v1.js"
+      - "manager-password-recovery-v1.js"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-static-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CI: "1"
+      # DEV hostname + DELIBERATELY FAKE public fixture only (no Supabase calls).
+      SUPABASE_URL: "https://tyvwgsdzqipusodxtydv.supabase.co"
+      SUPABASE_PUBLISHABLE_KEY: "QA254_FAKE_PUBLIC_KEY_NEVER_AUTHENTICATES"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Build static Free and Concierge preview locally only
+        run: npm run build
+      - name: Run ALL 7 web test modules and QA254 static inventory contract
+        run: node --test test/*.test.cjs
+      - name: Confirm release gates stay closed without legal manifest
+        run: |
+          test ! -e manager-concierge-legal-publication-approval.json
+          test ! -e dist/manager/privacidad-concierge/index.html
+          test ! -e dist/manager/condiciones-concierge/index.html
+          echo 'QA254_NO_LEGAL_RELEASE_NO_REAL_SIGNUP_NO_DEPLOY'
