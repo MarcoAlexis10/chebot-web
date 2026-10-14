@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const publicDirectory = require('./directory-data.json');
+const { escapeDirectoryHtml, verifiedGoogleMapsUrl } = require('./directory-html-safety.cjs');
 
 const out = path.join(__dirname, 'dist');
 fs.rmSync(out, { recursive: true, force: true });
@@ -132,7 +133,9 @@ cities.forEach(c => {
   ]);
   const venueCards = directoryVenues.filter(venue=>venue.citySlug === c.slug).map(venue=>{
     const category = venue.category === 'bar' ? 'Bar' : 'Restaurante';
-    return `<article class="card"><b>${venue.name}</b><span>${category} · ${venue.neighborhood}</span><p>${venue.address}</p><a href="${venue.mapsUrl}" rel="noopener">Abrir en Google Maps</a></article>`;
+    const mapsUrl = verifiedGoogleMapsUrl(venue.mapsUrl);
+    const mapsLink = mapsUrl ? `<a href="${escapeDirectoryHtml(mapsUrl)}" rel="noopener noreferrer">Abrir en Google Maps</a>` : '';
+    return `<article class="card"><b>${escapeDirectoryHtml(venue.name)}</b><span>${category} · ${escapeDirectoryHtml(venue.neighborhood)}</span><p>${escapeDirectoryHtml(venue.address)}</p>${mapsLink}</article>`;
   }).join('');
   const directorySection = `<section class="section" id="directorio"><span class="eyebrow">Directorio público</span><h2>Locales disponibles en ${c.name}</h2><p class="lead">Restaurantes y bares del catálogo activo, con dirección y enlace de Google Maps.</p><div class="grid">${venueCards}</div><div class="notice">Verificá horarios y disponibilidad directamente con cada establecimiento antes de ir.</div></section>`;
   replacePublishedCopy(path.join(c.slug, 'index.html'), [[
