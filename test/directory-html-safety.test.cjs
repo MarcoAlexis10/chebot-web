@@ -30,7 +30,15 @@ test('directory links allow only HTTPS Google Maps destinations',()=>{
 
 test('all current public static data rows have complete and safe directory fields',()=>{
  const data=require('../directory-data.json');
- assert.ok(Array.isArray(data)&&data.length>=318);
+ assert.ok(Array.isArray(data)&&data.length>=393,'public directory must retain 393+ validated venues');
+ const minimumByCity={
+   'buenos-aires':126,'madrid':44,'barcelona':49,'roma':62,
+   'lisboa':32,'medellin':37,'rio-de-janeiro':43
+ };
+ for (const [city,minimum] of Object.entries(minimumByCity)) {
+   const count=data.filter(row=>row.citySlug===city).length;
+   assert.ok(count>=minimum,city+' coverage unexpectedly decreased: '+count);
+ }
  const seen=new Set();
  for(const venue of data) {
    assert.ok(['restaurant','bar'].includes(venue.category));
