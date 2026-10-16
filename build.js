@@ -11,7 +11,7 @@ const publicAssets = ['favicon.png', 'apple-touch-icon.png', 'og-chebot.png'];
 publicAssets.forEach(file => fs.copyFileSync(path.join(__dirname, file), path.join(out, file)));
 
 const whatsapp = 'https://wa.me/541176689413';
-const contactEmail = 'Chebot2026@gmail.com';
+const contactEmail = 'hola.cheveni@gmail.com';
 const cities = [
   { slug:'buenos-aires', name:'Buenos Aires', country:'Argentina', image:'https://images.unsplash.com/photo-1589909202802-8f4aadce1849?auto=format&fit=crop&w=1800&q=85', intro:'Tango, arquitectura, cafés históricos y barrios con personalidad propia.', picks:['Caminar por San Telmo y Plaza de Mayo','Descubrir Palermo y sus restaurantes','Vivir una noche de tango','Recorrer Recoleta y su arquitectura'] },
   { slug:'madrid', name:'Madrid', country:'España', image:'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1800&q=85', intro:'Arte, tapas, parques y una energía que se disfruta a cualquier hora.', picks:['Visitar el Museo del Prado','Pasear por el Retiro','Probar tapas en La Latina','Recorrer el Madrid de los Austrias'] },
