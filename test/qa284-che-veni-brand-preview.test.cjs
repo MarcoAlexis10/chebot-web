@@ -43,8 +43,8 @@ test('QA284: pending legal documents cannot be represented as approved',()=>{
  assert.equal(legalPublicationGate(root).approved,false);
 });
 
-test('QA284: old operational email, WhatsApp number, image URLs and tech identifiers remain stable',()=>{
- const originalEmail='Chebot2026@gmail.com';
+test('QA284: new Che Vení support email and legacy WhatsApp, image URLs and tech identifiers remain stable',()=>{
+ const originalEmail='hola.cheveni@gmail.com';
  const code=fs.readFileSync(path.join(root,'build.js'),'utf8');
  assert.ok(code.includes(originalEmail));
  const home=dist('index.html');
