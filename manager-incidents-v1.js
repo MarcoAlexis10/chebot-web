@@ -275,29 +275,29 @@ function replaceRequired(before, after, label) {
 
 replaceRequired(
   `<div class="list">
-            <article class="row"><div><b>Aire acondicionado</b><div class="muted">Recoleta 2C · severidad media</div></div><span>Chebot ya envió protocolo</span><span class="tag warn">Esperando huésped</span><span>Manager informado</span></article>
+            <article class="row"><div><b>Aire acondicionado</b><div class="muted">Recoleta 2C · severidad media</div></div><span>Che Vení ya envió protocolo</span><span class="tag warn">Esperando huésped</span><span>Manager informado</span></article>
           </div>`,
   `<div class="list" id="manager-incidents-list">
-            <article class="card"><b>Cargando incidencias…</b><p class="muted">Consultando Chebot Concierge Dev.</p></article>
+            <article class="card"><b>Cargando incidencias…</b><p class="muted">Consultando Che Vení Concierge Dev.</p></article>
           </div>`,
   'incidents demo row'
 );
 
 replaceRequired(
-  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento y Solicitudes ya usan datos reales de Chebot Concierge Dev. Incidencias y Resultados continúan con datos ficticios de demostración.',
-  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Chebot Concierge Dev.',
+  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento y Solicitudes ya usan datos reales de Che Vení Concierge Dev. Incidencias y Resultados continúan con datos ficticios de demostración.',
+  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Che Vení Concierge Dev.',
   'authenticated preview notice'
 );
 
 replaceRequired(
   'Preview autenticada. Propiedades, Estadías, Conocimiento y Solicitudes: datos reales QA. Incidencias y Resultados: demostración.',
-  'Preview autenticada. Datos reales de Chebot Concierge Dev para las propiedades autorizadas.',
+  'Preview autenticada. Datos reales de Che Vení Concierge Dev para las propiedades autorizadas.',
   'sidebar preview note'
 );
 
 replaceRequired(
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento y Solicitudes reales QA · Sin secretos reales.',
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias reales QA · Sin secretos reales.',
+  'Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento y Solicitudes reales QA · Sin secretos reales.',
+  'Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias reales QA · Sin secretos reales.',
   'footer preview note'
 );
 
