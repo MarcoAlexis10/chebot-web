@@ -166,7 +166,7 @@ const browserJs = `
     document.body.classList.remove('manager-auth-pending');
     const role = session && session.role ? String(session.role) : 'manager';
     sessionLabel.textContent = 'Sesión verificada · ' + role;
-    accountLabel.textContent = 'Chebot Concierge · ' + role;
+    accountLabel.textContent = 'Che Vení Concierge · ' + role;
   }
 
   function propertyStatusLabel(statusValue) {
@@ -626,10 +626,10 @@ html = html.replace(
   `<body class="manager-auth-pending">
   <section class="manager-auth-screen" id="manager-auth" aria-labelledby="manager-login-title">
     <div class="manager-auth-card">
-      <div class="manager-auth-brand">Che<span>bot</span> Concierge</div>
+      <div class="manager-auth-brand">Che<span> Vení</span> Concierge</div>
       <div class="manager-auth-kicker">Manager Web V1 · Beta interna</div>
       <h1 id="manager-login-title">Ingresá a tu panel</h1>
-      <p>Acceso exclusivo para managers autorizados de Chebot Concierge.</p>
+      <p>Acceso exclusivo para managers autorizados de Che Vení Concierge.</p>
       <form id="manager-login-form" autocomplete="on">
         <div class="manager-auth-field">
           <label for="manager-email">Email</label>
@@ -663,13 +663,13 @@ html = html.replace(
 
 html = html.replace(
   '<strong>Vicky & Maty · Demo</strong>\n        <span class="pill">Modo manager · WhatsApp-first</span>',
-  `<strong id="manager-account-label">Chebot Concierge · Manager</strong>
+  `<strong id="manager-account-label">Che Vení Concierge · Manager</strong>
         <div><span class="manager-auth-session" id="manager-session-label">Sesión verificada</span><button class="manager-auth-logout" id="manager-logout" type="button">Salir</button></div>`
 );
 
 html = html.replace(
   '<b>Preview interna:</b> interfaz ficticia y aislada. El acceso real, autenticación y datos vivos se conectarán al backend Concierge en una etapa posterior.',
-  '<b>Preview autenticada:</b> acceso, Propiedades y Estadías ya usan datos reales de Chebot Concierge Dev. Las demás secciones continúan con datos ficticios de demostración.'
+  '<b>Preview autenticada:</b> acceso, Propiedades y Estadías ya usan datos reales de Che Vení Concierge Dev. Las demás secciones continúan con datos ficticios de demostración.'
 );
 
 html = html.replace(
@@ -678,8 +678,8 @@ html = html.replace(
 );
 
 html = html.replace(
-  'Chebot Concierge Manager Web V1 · Preview interna · Datos ficticios · Sin secretos reales.',
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades y Estadías reales QA · Sin secretos reales.'
+  'Che Vení Concierge Manager Web V1 · Preview interna · Datos ficticios · Sin secretos reales.',
+  'Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades y Estadías reales QA · Sin secretos reales.'
 );
 
 html = html.replace(
