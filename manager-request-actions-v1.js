@@ -28,7 +28,7 @@ replaceRequired(
 replaceRequired(
   `      const decision = document.createElement('span');
       if (item.status === 'new' || item.status === 'waiting_manager') {
-        decision.textContent = 'Chebot espera tu decisión';
+        decision.textContent = 'Che Vení espera tu decisión';
       } else if (item.decision_at) {
         decision.textContent = 'Decidida: ' + text(formatDateTime(item.decision_at), '—');
       } else {

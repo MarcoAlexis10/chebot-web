@@ -143,7 +143,7 @@ replaceRequired(
         protocolBox.style.lineHeight = '1.35';
 
         const protocolLabel = document.createElement('b');
-        protocolLabel.textContent = 'Chebot ya probó este protocolo aprobado:';
+        protocolLabel.textContent = 'Che Vení ya probó este protocolo aprobado:';
 
         const protocolText = document.createElement('div');
         protocolText.style.marginTop = '4px';
@@ -256,7 +256,7 @@ replaceRequired(
 
           if (nextStatus === '__propose_learning__') {
             if (!window.confirm(
-              'Chebot va a crear una propuesta de nueva versión usando la última indicación del manager que el huésped confirmó como efectiva.\\n\\nLa versión activa actual seguirá vigente hasta que apruebes la propuesta.\\n\\n¿Continuar?'
+              'Che Vení va a crear una propuesta de nueva versión usando la última indicación del manager que el huésped confirmó como efectiva.\\n\\nLa versión activa actual seguirá vigente hasta que apruebes la propuesta.\\n\\n¿Continuar?'
             )) return;
 
             const buttons = Array.from(controls.querySelectorAll('button'));
@@ -312,7 +312,7 @@ replaceRequired(
 
           if (nextStatus === 'waiting_guest') {
             const answer = window.prompt(
-              '¿Qué querés que Chebot le indique al huésped?\\n\\n' +
+              '¿Qué querés que Che Vení le indique al huésped?\\n\\n' +
               'Escribí una instrucción concreta. Ejemplo: "Apagá el aire, esperá 5 minutos y volvé a encenderlo. Si sigue sin enfriar, avisame."'
             );
 
@@ -331,7 +331,7 @@ replaceRequired(
             }
 
             if (!window.confirm(
-              'Chebot va a enviar esta instrucción al huésped:\\n\\n' +
+              'Che Vení va a enviar esta instrucción al huésped:\\n\\n' +
               managerMessage +
               '\\n\\n¿Confirmás el envío?'
             )) return;
@@ -379,7 +379,7 @@ replaceRequired(
             if (nextStatus === 'learning_pending') {
               if (body.learning && body.learning.ok === false) {
                 window.alert(
-                  'La incidencia pasó a Aprendizaje pendiente, pero Chebot no pudo crear la propuesta automáticamente. ' +
+                  'La incidencia pasó a Aprendizaje pendiente, pero Che Vení no pudo crear la propuesta automáticamente. ' +
                   String(body.learning.reason || 'LEARNING_PROPOSAL_FAILED')
                 );
               }

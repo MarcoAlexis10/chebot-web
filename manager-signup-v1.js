@@ -1,4 +1,4 @@
-// Chebot Concierge Beta V1: isolated Preview signup-request page.
+// Che Vení Concierge Beta V1: isolated Preview signup-request page.
 // No account creation, no passwords, no Meta messages, no secrets in HTML.
 const fs = require('node:fs');
 const path = require('node:path');
@@ -15,7 +15,7 @@ const html = String.raw`<!doctype html>
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta http-equiv="Cache-Control" content="no-store">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://chebot-backend-git-concierge-v3-design-chebot.vercel.app; form-action 'none'">
-<title>Activar invitación · Chebot Concierge Beta</title>
+<title>Activar invitación · Che Vení Concierge Beta</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#16302d;background:#f7f4ec}
 *{box-sizing:border-box}body{margin:0;padding:22px;min-height:100vh;display:grid;place-items:center}
@@ -35,8 +35,8 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
 .status{margin-top:16px;font-weight:750;min-height:26px}.status.error{color:#9c2e28}
 [hidden]{display:none!important}
 </style></head><body><main>
-<small>Chebot Concierge · Beta privada</small>
-<h1>Bienvenido a Chebot Concierge</h1>
+<small>Che Vení Concierge · Beta privada</small>
+<h1>Bienvenido a Che Vení Concierge</h1>
 <p>Esta página es exclusivamente para managers invitados. La solicitud queda pendiente de aprobación: no habilita propiedades, huéspedes ni mensajes automáticos.</p>
 <div id="no-invite" class="notice" role="status" hidden>Para continuar necesitás un enlace personal de invitación vigente. No hay registro público.</div>
 <div id="legal-pending" class="notice" role="status" hidden>El registro privado de Concierge todavía está cerrado: falta revisar y publicar las condiciones y el aviso específico de privacidad. No ingreses datos personales por ahora. Tu enlace no activa ninguna cuenta.</div>
@@ -45,18 +45,18 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
  <div class="field"><label for="email">Correo de invitación</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
  <div class="field"><label for="businessName">Nombre comercial o del alojamiento</label><input id="businessName" name="businessName" type="text" maxlength="120" minlength="2" required></div>
  <div class="notice"><strong>Condiciones de esta Beta:</strong>
- <ul><li>30 días gratuitos desde la primera estadía real habilitada; posible extensión de hasta 30 días por decisión de Chebot.</li>
+ <ul><li>30 días gratuitos desde la primera estadía real habilitada; posible extensión de hasta 30 días por decisión de Che Vení.</li>
  <li>No hay facturación ni conversión a pago automáticas.</li>
  <li>El primer piloto empieza con una propiedad; únicamente huéspedes principales verificados.</li>
  <li>No hay reemplazo automático de números ni acceso independiente para acompañantes.</li>
  <li>Las incidencias excepcionales requieren intervención humana; no se promete respuesta humana inmediata 24/7.</li>
  </ul></div>
  <div class="check"><input id="terms" type="checkbox" required><label for="terms">Leí y acepto las <a href="/manager/condiciones-concierge/" target="_blank" rel="noreferrer noopener">condiciones completas de la Beta privada de Concierge</a>, además del resumen indicado arriba.</label></div>
- <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Chebot procese estos datos para evaluar mi incorporación, conforme al <a href="/manager/privacidad-concierge/" target="_blank" rel="noreferrer noopener">aviso de privacidad específico de Concierge</a>.</label></div>
+ <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Che Vení procese estos datos para evaluar mi incorporación, conforme al <a href="/manager/privacidad-concierge/" target="_blank" rel="noreferrer noopener">aviso de privacidad específico de Concierge</a>.</label></div>
  <button id="submit" type="submit">Enviar solicitud de activación</button>
  <div id="form-status" class="status" aria-live="polite" role="status"></div>
 </form>
-<div id="completed" class="notice" hidden role="status">Tu solicitud quedó registrada para revisión. Chebot te contactará por el canal acordado cuando exista una decisión. Tu cuenta todavía no está activa.</div>
+<div id="completed" class="notice" hidden role="status">Tu solicitud quedó registrada para revisión. Che Vení te contactará por el canal acordado cuando exista una decisión. Tu cuenta todavía no está activa.</div>
 <p><a href="/manager/">Ya tengo una cuenta: iniciar sesión</a></p>
 </main>
 <script>
@@ -108,12 +108,12 @@ form.addEventListener('submit', async function(event){
      document.getElementById('completed').hidden = false;
      return;
    }
-   if (resp.status === 503) status.textContent = 'La inscripción todavía no está habilitada. Consultá a Chebot antes de continuar.';
+   if (resp.status === 503) status.textContent = 'La inscripción todavía no está habilitada. Consultá a Che Vení antes de continuar.';
    else if (data.code === 'INVITATION_INVALID_OR_EXPIRED') status.textContent = 'La invitación venció o ya se utilizó. Solicitá un enlace nuevo.';
    else status.textContent = 'No se pudo completar la solicitud. Revisá los datos o intentá más tarde.';
    status.className = 'status error';
  } catch (_) {
-   status.textContent = 'No se pudo conectar con Chebot. Intentá más tarde.';
+   status.textContent = 'No se pudo conectar con Che Vení. Intentá más tarde.';
    status.className = 'status error';
  } finally { send.disabled = false; }
 });

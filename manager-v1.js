@@ -15,15 +15,15 @@ module.exports = function buildManagerV1({ out }) {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#0f766e">
-  <title>Chebot Concierge — Manager Web V1</title>
-  <meta name="description" content="Preview interna del panel de Chebot Concierge para managers.">
+  <title>Che Vení Concierge — Manager Web V1</title>
+  <meta name="description" content="Preview interna del panel de Che Vení Concierge para managers.">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="/manager/manager.css">
 </head>
 <body>
   <div class="shell">
     <aside class="side">
-      <div class="brand">Che<span>bot</span> Concierge</div>
+      <div class="brand">Che<span> Vení</span> Concierge</div>
       <div class="beta">Manager Web V1 · Beta interna</div>
       <nav class="nav" aria-label="Secciones del panel">
         <a class="active" href="#inicio">Inicio</a>
@@ -47,7 +47,7 @@ module.exports = function buildManagerV1({ out }) {
         <section class="hero" id="inicio">
           <span class="eyebrow">Necesita tu atención</span>
           <h1>Todo lo importante, sin leer chats completos.</h1>
-          <p>Chebot resuelve lo que ya sabe y te muestra únicamente decisiones, excepciones y señales que requieren intervención.</p>
+          <p>Che Vení resuelve lo que ya sabe y te muestra únicamente decisiones, excepciones y señales que requieren intervención.</p>
           <div class="notice"><b>Preview interna:</b> interfaz ficticia y aislada. El acceso real, autenticación y datos vivos se conectarán al backend Concierge en una etapa posterior.</div>
           <div class="grid">
             <article class="metric"><small>Solicitudes pendientes</small><b>—</b><span class="tag warn">Cargando…</span></article>
@@ -62,7 +62,7 @@ module.exports = function buildManagerV1({ out }) {
         <section class="section" id="solicitudes">
           <div class="section-head"><h2>Solicitudes que requieren decisión</h2><a href="#solicitudes">Ver todas</a></div>
           <div class="list">
-            <article class="row"><div><b>Early check-in · Mariela</b><div class="muted">Recoleta 2C · solicita 11:00</div></div><span>Hoy</span><span class="tag warn">Pendiente</span><span>Chebot espera tu decisión</span></article>
+            <article class="row"><div><b>Early check-in · Mariela</b><div class="muted">Recoleta 2C · solicita 11:00</div></div><span>Hoy</span><span class="tag warn">Pendiente</span><span>Che Vení espera tu decisión</span></article>
             <article class="row"><div><b>Late checkout · Martina</b><div class="muted">Palermo 1B · solicita 13:00</div></div><span>Mañana</span><span class="tag warn">Pendiente</span><span>Revisar próxima estadía</span></article>
           </div>
         </section>
@@ -70,7 +70,7 @@ module.exports = function buildManagerV1({ out }) {
         <section class="section" id="incidencias">
           <div class="section-head"><h2>Incidencias</h2><a href="#incidencias">Ver historial</a></div>
           <div class="list">
-            <article class="row"><div><b>Aire acondicionado</b><div class="muted">Recoleta 2C · severidad media</div></div><span>Chebot ya envió protocolo</span><span class="tag warn">Esperando huésped</span><span>Manager informado</span></article>
+            <article class="row"><div><b>Aire acondicionado</b><div class="muted">Recoleta 2C · severidad media</div></div><span>Che Vení ya envió protocolo</span><span class="tag warn">Esperando huésped</span><span>Manager informado</span></article>
           </div>
         </section>
 
@@ -104,12 +104,12 @@ module.exports = function buildManagerV1({ out }) {
         <section class="section" id="soporte">
           <div class="section-head"><h2>Soporte y cuenta</h2></div>
           <div class="split">
-            <article class="card"><b>Modo manager por WhatsApp</b><p>Podés cargar estadías, responder incidencias y aprobar solicitudes hablando naturalmente con Chebot.</p><span class="tag">Canal principal</span></article>
-            <article class="card"><b>Soporte Chebot</b><p>Durante la Beta, los casos que requieren revisión de Sistemas quedan registrados para medir el costo operativo real.</p><span class="tag">Hasta 24 h</span></article>
+            <article class="card"><b>Modo manager por WhatsApp</b><p>Podés cargar estadías, responder incidencias y aprobar solicitudes hablando naturalmente con Che Vení.</p><span class="tag">Canal principal</span></article>
+            <article class="card"><b>Soporte Che Vení</b><p>Durante la Beta, los casos que requieren revisión de Sistemas quedan registrados para medir el costo operativo real.</p><span class="tag">Hasta 24 h</span></article>
           </div>
         </section>
 
-        <p class="footer-note">Chebot Concierge Manager Web V1 · Preview interna · Datos ficticios · Sin secretos reales.</p>
+        <p class="footer-note">Che Vení Concierge Manager Web V1 · Preview interna · Datos ficticios · Sin secretos reales.</p>
       </div>
     </main>
   </div>

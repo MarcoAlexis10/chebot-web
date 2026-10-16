@@ -139,7 +139,7 @@ const browserJs = `
 
       const decision = document.createElement('span');
       if (item.status === 'new' || item.status === 'waiting_manager') {
-        decision.textContent = 'Chebot espera tu decisión';
+        decision.textContent = 'Che Vení espera tu decisión';
       } else if (item.decision_at) {
         decision.textContent = 'Decidida: ' + text(formatDateTime(item.decision_at), '—');
       } else {
@@ -260,18 +260,18 @@ function replaceRequired(before, after, label) {
 
 replaceRequired(
   `<div class="list">
-            <article class="row"><div><b>Early check-in · Mariela</b><div class="muted">Recoleta 2C · solicita 11:00</div></div><span>Hoy</span><span class="tag warn">Pendiente</span><span>Chebot espera tu decisión</span></article>
+            <article class="row"><div><b>Early check-in · Mariela</b><div class="muted">Recoleta 2C · solicita 11:00</div></div><span>Hoy</span><span class="tag warn">Pendiente</span><span>Che Vení espera tu decisión</span></article>
             <article class="row"><div><b>Late checkout · Martina</b><div class="muted">Palermo 1B · solicita 13:00</div></div><span>Mañana</span><span class="tag warn">Pendiente</span><span>Revisar próxima estadía</span></article>
           </div>`,
   `<div class="list" id="manager-requests-list">
-            <article class="card"><b>Cargando solicitudes…</b><p class="muted">Consultando Chebot Concierge Dev.</p></article>
+            <article class="card"><b>Cargando solicitudes…</b><p class="muted">Consultando Che Vení Concierge Dev.</p></article>
           </div>`,
   'requests demo rows'
 );
 
 replaceRequired(
-  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías y Conocimiento ya usan datos reales de Chebot Concierge Dev. Solicitudes, Incidencias y Resultados continúan con datos ficticios de demostración.',
-  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento y Solicitudes ya usan datos reales de Chebot Concierge Dev. Incidencias y Resultados continúan con datos ficticios de demostración.',
+  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías y Conocimiento ya usan datos reales de Che Vení Concierge Dev. Solicitudes, Incidencias y Resultados continúan con datos ficticios de demostración.',
+  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento y Solicitudes ya usan datos reales de Che Vení Concierge Dev. Incidencias y Resultados continúan con datos ficticios de demostración.',
   'authenticated preview notice'
 );
 
@@ -282,8 +282,8 @@ replaceRequired(
 );
 
 replaceRequired(
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías y Conocimiento reales QA · Sin secretos reales.',
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento y Solicitudes reales QA · Sin secretos reales.',
+  'Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías y Conocimiento reales QA · Sin secretos reales.',
+  'Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento y Solicitudes reales QA · Sin secretos reales.',
   'footer preview note'
 );
 

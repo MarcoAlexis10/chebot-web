@@ -98,7 +98,7 @@ const browserJs = `
 
     const approve = action === 'approve';
     const promptText = approve
-      ? '¿Aprobar esta propuesta? Una vez aprobada, Chebot podrá usarla como conocimiento activo según su alcance y riesgo.'
+      ? '¿Aprobar esta propuesta? Una vez aprobada, Che Vení podrá usarla como conocimiento activo según su alcance y riesgo.'
       : '¿Rechazar esta propuesta? No se activará y quedará conservada en el historial.';
 
     if (!window.confirm(promptText)) return;
@@ -141,7 +141,7 @@ const browserJs = `
       lastLoadedToken = null;
       await maybeLoadKnowledge();
     } catch (_) {
-      window.alert('No se pudo conectar con Chebot Concierge. Reintentá en unos segundos.');
+      window.alert('No se pudo conectar con Che Vení Concierge. Reintentá en unos segundos.');
     } finally {
       button.disabled = false;
       button.textContent = previousText;
@@ -393,14 +393,14 @@ replaceRequired(
               <article class="card"><b>Revisión pendiente</b><span class="muted">Safety review</span><p>1 instrucción pausada hasta segunda aprobación.</p></article>
             </div>`,
   `<div class="quick" id="manager-knowledge-list">
-              <article class="card" style="grid-column:1/-1"><b>Cargando conocimiento…</b><p class="muted">Consultando Chebot Concierge Dev.</p></article>
+              <article class="card" style="grid-column:1/-1"><b>Cargando conocimiento…</b><p class="muted">Consultando Che Vení Concierge Dev.</p></article>
             </div>`,
   'knowledge demo cards'
 );
 
 replaceRequired(
-  '<b>Preview autenticada:</b> acceso, Propiedades y Estadías ya usan datos reales de Chebot Concierge Dev. Las demás secciones continúan con datos ficticios de demostración.',
-  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías y Conocimiento ya usan datos reales de Chebot Concierge Dev. Solicitudes, Incidencias y Resultados continúan con datos ficticios de demostración.',
+  '<b>Preview autenticada:</b> acceso, Propiedades y Estadías ya usan datos reales de Che Vení Concierge Dev. Las demás secciones continúan con datos ficticios de demostración.',
+  '<b>Preview autenticada:</b> acceso, Propiedades, Estadías y Conocimiento ya usan datos reales de Che Vení Concierge Dev. Solicitudes, Incidencias y Resultados continúan con datos ficticios de demostración.',
   'authenticated preview notice'
 );
 
@@ -411,8 +411,8 @@ replaceRequired(
 );
 
 replaceRequired(
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades y Estadías reales QA · Sin secretos reales.',
-  'Chebot Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías y Conocimiento reales QA · Sin secretos reales.',
+  'Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades y Estadías reales QA · Sin secretos reales.',
+  'Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías y Conocimiento reales QA · Sin secretos reales.',
   'footer preview note'
 );
 
