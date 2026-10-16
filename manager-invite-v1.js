@@ -105,7 +105,7 @@ const browserJs = `
       button.textContent = 'Enviar invitación';
       const message = document.createElement('span');
       message.className = 'manager-invite-error';
-      message.textContent = 'No se pudo conectar con Chebot Backend.';
+      message.textContent = 'No se pudo conectar con Che Vení Backend.';
       action.replaceChildren(message);
       return;
     }
@@ -146,7 +146,7 @@ const browserJs = `
       button.type = 'button';
       button.className = 'manager-invite-button';
       button.textContent = 'Enviar invitación';
-      button.setAttribute('aria-label', 'Enviar invitación de Chebot Concierge');
+      button.setAttribute('aria-label', 'Enviar invitación de Che Vení Concierge');
       button.addEventListener('click', () => sendInvite(stayId, button, action));
 
       action.appendChild(button);
