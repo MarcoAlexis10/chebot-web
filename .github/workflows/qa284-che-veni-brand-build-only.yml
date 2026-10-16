@@ -1,0 +1,36 @@
+name: QA284 Che Veni staged brand - offline build (NO DEPLOY)
+on:
+  push:
+    branches: [qa284-che-veni-brand-copy-preview]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  brand-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CI: "1"
+      SUPABASE_URL: https://tyvwgsdzqipusodxtydv.supabase.co
+      SUPABASE_PUBLISHABLE_KEY: ci-fixture-public-key-not-real
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Generate public and manager HTML locally only
+        run: npm run build
+      - name: Validate new brand and legacy contracts
+        run: node --test test/*.test.cjs
+      - name: Confirm build not approved for production
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          assert.equal(fs.existsSync('manager-concierge-legal-publication-approval.json'),false);
+          assert.ok(fs.existsSync('dist/manager/activar/index.html'));
+          const html=fs.readFileSync('dist/index.html','utf8');
+          assert.match(html,/Che Vení/);
+          assert.match(html,/https:\/\/www\.chebot\.chat/);
+          console.log('QA284_ONLY_OFFLINE_BUILD_NO_PRODUCTION_NO_DNS_NO_META');
+          NODE
