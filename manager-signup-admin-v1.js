@@ -11,7 +11,7 @@ const html=String.raw`<!doctype html><html lang="es"><head>
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Cache-Control" content="no-store">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://chebot-backend-git-concierge-v3-design-chebot.vercel.app; form-action 'none'">
-<title>Altas privadas · Chebot Concierge Beta</title>
+<title>Altas privadas · Che Vení Concierge Beta</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f7f4ec;color:#16302d}
 *{box-sizing:border-box}body{margin:0;padding:26px 16px;min-height:100vh}
@@ -34,7 +34,7 @@ a{color:#0f766e}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center
 [hidden]{display:none!important}
 </style></head><body><main>
 <section class="panel">
- <small>Chebot Concierge Beta V1 · uso interno</small>
+ <small>Che Vení Concierge Beta V1 · uso interno</small>
  <h1>Invitaciones de managers</h1>
  <p>Solo el operador autorizado puede preparar invitaciones. La emisión no contacta a nadie ni da de alta cuentas. El registro y el cron permanecen cerrados hasta autorización independiente.</p>
  <div id="access-status" class="notice" role="status" aria-live="polite">Comprobando sesión de operador…</div>
@@ -46,7 +46,7 @@ a{color:#0f766e}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center
  <form id="issue-form">
   <label for="invite-email">Correo del manager invitado</label>
   <input type="email" id="invite-email" required autocomplete="off" maxlength="254" placeholder="correo del candidato">
-  <label class="muted"><input type="checkbox" id="issue-confirm" required style="width:auto;margin-right:8px">Confirmo que el titular de Chebot autorizó preparar esta invitación individual.</label>
+  <label class="muted"><input type="checkbox" id="issue-confirm" required style="width:auto;margin-right:8px">Confirmo que el titular de Che Vení autorizó preparar esta invitación individual.</label>
   <button id="issue-button" type="submit">Preparar enlace privado</button>
  </form>
  <div id="issue-status" role="status" aria-live="polite"></div>
