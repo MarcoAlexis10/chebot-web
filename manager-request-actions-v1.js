@@ -65,7 +65,19 @@ replaceRequired(
         reject.style.background = '#fff';
         reject.style.color = '#8a3325';
 
+        const reviewKey = 'chebot_manager_request_review_v1:' + item.id;
+        if (sessionStorage.getItem(reviewKey) === '1') {
+          approve.disabled = true; reject.disabled = true;
+          const review = document.createElement('span');
+          review.textContent = 'Resultado en revisión. No repitas la decisión; verificá el registro con soporte.';
+          decision.appendChild(review);
+        }
         const runDecision = async (decisionValue) => {
+          if (approve.disabled || reject.disabled || sessionStorage.getItem(reviewKey) === '1') return;
+          let requestStarted = false;
+          let responseReceived = false;
+          let decisionConfirmed = false;
+          let reconciliationRequired = false;
           const verb = decisionValue === 'approved' ? 'aprobar' : 'rechazar';
           if (!window.confirm('¿Confirmás ' + verb + ' esta solicitud?')) return;
 
@@ -91,6 +103,7 @@ replaceRequired(
               payload.approved_at_time = item.requested_at_time;
             }
 
+            requestStarted = true;
             const response = await fetch(BACKEND_REQUEST_DECISION_URL, {
               method: 'POST',
               mode: 'cors',
@@ -103,24 +116,46 @@ replaceRequired(
               body: JSON.stringify(payload)
             });
 
+            responseReceived = true;
             let body = null;
             try { body = await response.json(); } catch (_) {}
 
             if (!response.ok || !body || body.ok !== true) {
+              reconciliationRequired = !body || body.reconciliation_required === true || body.error === 'REQUEST_NOT_PENDING' || response.status >= 500;
               const code = body && body.error ? String(body.error) : 'REQUEST_DECISION_FAILED';
               throw new Error(code);
             }
 
+            if (!body.decision || body.decision.request_id !== item.id ||
+                !['approved','rejected'].includes(body.decision.resulting_status)) {
+              reconciliationRequired = true;
+              throw new Error('REQUEST_DECISION_RESPONSE_INVALID');
+            }
+            decisionConfirmed = true;
             const refreshed = await loadManagerRequests(accessToken);
             if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
             renderRequests(refreshed);
           } catch (error) {
+            if (requestStarted && (!responseReceived || reconciliationRequired || decisionConfirmed)) {
+              sessionStorage.setItem(reviewKey, '1');
+              approve.disabled = true; reject.disabled = true;
+              window.alert(decisionConfirmed
+                ? 'La decisión se registró, pero falta actualizar la vista. Recargá para revisar el estado; no la repitas.'
+                : 'La decisión pudo haberse registrado. No la repitas hasta revisar el resultado con soporte.');
+              return;
+            }
             approve.disabled = false;
             reject.disabled = false;
-            window.alert(
-              'No se pudo registrar la decisión. ' +
-              (error && error.message ? String(error.message) : 'Reintentá.')
-            );
+            const explanations = {
+              AUTH_REQUIRED: 'La sesión venció. Volvé a iniciar sesión.',
+              MANAGER_PERMISSION_DENIED: 'No tenés permiso para decidir esta solicitud. Consultá al manager principal.',
+              GUEST_RUNTIME_AUTHORITY_REQUIRED: 'La solicitud está pausada hasta validar la autorización del huésped.',
+              INVALID_EARLY_CHECKIN_TIME: 'La hora indicada no adelanta el ingreso. Revisá el horario.',
+              INVALID_LATE_CHECKOUT_TIME: 'La hora indicada no extiende la salida. Revisá el horario.',
+              STAY_ACCESS_OVERLAP: 'Ese horario se superpone con otra estadía. Revisá las fechas.'
+            };
+            window.alert(explanations[error && error.message] ||
+              'No pude registrar la decisión. Revisá el estado con soporte antes de intentar otra acción.');
           }
         };
 

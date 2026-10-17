@@ -53,6 +53,19 @@ const browserJs = `
   const TOKEN_KEY = 'chebot_manager_preview_access_token';
   const BACKEND_INVITE_URL = 'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/invites/send';
   const invitables = new Set(['scheduled', 'active']);
+  const REVIEW_KEY = 'chebot_manager_invite_review_v1';
+  const needsReview = (stayId) => sessionStorage.getItem(REVIEW_KEY + ':' + stayId) === '1';
+  function showReview(stayId, button, action) {
+    sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1');
+    button.disabled = true;
+    button.textContent = 'Resultado en revisión';
+    const message = document.createElement('span');
+    message.className = 'manager-invite-error';
+    message.setAttribute('role', 'status');
+    message.textContent = 'El envío pudo haberse procesado. No lo repitas hasta revisar el registro con soporte.';
+    action.replaceChildren(button, message);
+  }
+
 
   function errorCopy(code) {
     const messages = {
@@ -62,16 +75,20 @@ const browserJs = `
       STAY_NOT_INVITABLE: 'Esta estadía ya no admite invitaciones.',
       PRIMARY_GUEST_NOT_FOUND: 'No encontré al huésped principal de la estadía.',
       GUEST_NOT_NOTIFIABLE: 'El huésped no tiene WhatsApp habilitado.',
-      WHATSAPP_CHANNEL_NOT_READY: 'El canal de WhatsApp todavía no está listo.',
+      WHATSAPP_CHANNEL_NOT_READY: 'El huésped debe iniciar el chat y aceptar su invitación para verificar el canal.',
+      INVITE_PRIVACY_AUTHORITY_REQUIRED: 'El envío está pausado hasta verificar el aviso y la autorización del huésped.',
+      INVITE_PRIVACY_AUTHORITY_UNAVAILABLE: 'No pude comprobar la autorización. El envío sigue pausado.',
+      GUEST_INVITE_PRIVACY_HOLD: 'El envío está pausado mientras se completa la revisión de privacidad.',
       WHATSAPP_TEMPLATE_SEND_FAILED: 'Meta no aceptó el envío de la plantilla.',
       AUTH_TOKEN_INVALID: 'La sesión del manager venció.',
       MANAGER_ACCESS_DENIED: 'Tu cuenta no tiene permiso para enviar esta invitación.',
       INVITE_SEND_OWNER_ONLY_BETA: 'Durante la Beta esta acción está limitada al owner.'
     };
-    return messages[String(code || '')] || 'No se pudo enviar la invitación. Reintentá después de revisar el estado.';
+    return messages[String(code || '')] || 'No pude confirmar el envío. Revisá su estado con soporte antes de intentar otra acción.';
   }
 
   async function sendInvite(stayId, button, action) {
+    if (button.disabled || needsReview(stayId)) return;
     const accessToken = sessionStorage.getItem(TOKEN_KEY);
     if (!accessToken) {
       action.replaceChildren();
@@ -101,15 +118,15 @@ const browserJs = `
       });
       try { body = await response.json(); } catch (_) {}
     } catch (_) {
-      button.disabled = false;
-      button.textContent = 'Enviar invitación';
-      const message = document.createElement('span');
-      message.className = 'manager-invite-error';
-      message.textContent = 'No se pudo conectar con Che Vení Backend.';
-      action.replaceChildren(message);
+      showReview(stayId, button, action);
       return;
     }
 
+    if (!body || body.reconciliation_required === true || body.accepted_by_provider === true ||
+        response.status >= 500 && !['INVITE_PRIVACY_AUTHORITY_REQUIRED','INVITE_PRIVACY_AUTHORITY_UNAVAILABLE','GUEST_INVITE_PRIVACY_HOLD'].includes(body.error)) {
+      showReview(stayId, button, action);
+      return;
+    }
     if (!response.ok || !body || body.ok !== true) {
       button.disabled = false;
       button.textContent = 'Enviar invitación';
@@ -120,11 +137,16 @@ const browserJs = `
       return;
     }
 
+    if (!body.invite || !['sent','activated'].includes(body.invite.status) ||
+        !/^[0-9a-f]{8}-[0-9a-f-]{27,28}$/i.test(String(body.invite.id || ''))) {
+      showReview(stayId, button, action);
+      return;
+    }
     button.disabled = true;
     button.classList.add('is-sent');
     button.textContent = body.invite && body.invite.already_sent
-      ? 'Invitación ya enviada'
-      : 'Invitación enviada';
+      ? 'Invitación ya procesada'
+      : 'Envío registrado';
   }
 
   function installButtons() {
@@ -148,6 +170,7 @@ const browserJs = `
       button.textContent = 'Enviar invitación';
       button.setAttribute('aria-label', 'Enviar invitación de Che Vení Concierge');
       button.addEventListener('click', () => sendInvite(stayId, button, action));
+      if (needsReview(stayId)) { showReview(stayId, button, action); row.appendChild(action); return; }
 
       action.appendChild(button);
       row.appendChild(action);

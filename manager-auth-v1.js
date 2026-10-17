@@ -391,7 +391,7 @@ const browserJs = `
       name.textContent = String(stay.property_internal_name || 'Propiedad');
       const source = document.createElement('div');
       source.className = 'muted';
-      source.textContent = 'Concierge Dev · estadía real';
+      source.textContent = 'Estadía registrada';
       identity.append(name, source);
 
       const dates = document.createElement('span');
