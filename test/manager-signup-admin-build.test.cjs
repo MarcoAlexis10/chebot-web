@@ -8,7 +8,7 @@ const html=fs.readFileSync(path.join(__dirname,'..','dist','manager','altas','in
 
 test('console is hidden from search/navigation and relies on backend allowlisting',()=>{
   assert.match(html,/noindex,nofollow,noarchive/);
-  assert.match(html,/chebot-backend-git-concierge-v3-design-chebot\.vercel\.app\/api\/concierge\/manager\/signup-admin/);
+  assert.match(html,/fictional-api\.example\.invalid\/api\/concierge\/manager\/signup-admin/);
   assert.match(html,/sessionStorage\.getItem\(TOKEN_KEY\)/);
   assert.match(html,/Authorization:'Bearer '\+token/);
   assert.match(html,/credentials:'omit'/);

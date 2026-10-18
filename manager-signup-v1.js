@@ -1,3 +1,4 @@
+const config = require('./manager-build-config.cjs').managerBuildConfig();
 // Che Vení Concierge Beta V1: isolated Preview signup-request page.
 // No account creation, no passwords, no Meta messages, no secrets in HTML.
 const fs = require('node:fs');
@@ -14,7 +15,7 @@ const html = String.raw`<!doctype html>
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta http-equiv="Cache-Control" content="no-store">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://chebot-backend-git-concierge-v3-design-chebot.vercel.app; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src ${config.apiOrigin}; form-action 'none'">
 <title>Activar invitación · Che Vení Concierge Beta</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#16302d;background:#f7f4ec}
@@ -90,7 +91,7 @@ form.addEventListener('submit', async function(event){
  send.disabled = true;
  status.textContent = 'Registrando tu solicitud…';
  try {
-   var resp = await fetch('https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/signup-request', {
+   var resp = await fetch('${config.apiOrigin}/api/concierge/manager/signup-request', {
      method:'POST', mode:'cors', credentials:'omit',
      headers: {'Content-Type':'application/json'},
      body:JSON.stringify({

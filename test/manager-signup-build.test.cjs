@@ -15,7 +15,7 @@ test('private form is not a public sign-up or existing Manager login replacement
   assert.match(html,/href="\/manager\/"/);
 });
 test('data submitted only to preview backend, no Supabase browser signup or passwords',()=>{
-  assert.match(html,/chebot-backend-git-concierge-v3-design-chebot\.vercel\.app\/api\/concierge\/manager\/signup-request/);
+  assert.match(html,/fictional-api\.example\.invalid\/api\/concierge\/manager\/signup-request/);
   assert.match(html,/credentials:'omit'/);
   assert.match(html,/acceptBeta:true,acceptPrivacy:true/);
   assert.doesNotMatch(html,/auth\/v1\/signup|service_role|input[^>]*type=["']password/);

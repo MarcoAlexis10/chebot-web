@@ -1,3 +1,4 @@
+const config = require('./manager-build-config.cjs').managerBuildConfig();
 const fs = require('fs');
 const path = require('path');
 
@@ -17,11 +18,11 @@ function replaceRequired(before, after, label) {
 }
 
 replaceRequired(
-  `  const BACKEND_INCIDENTS_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/incidents";
+  `  const BACKEND_INCIDENTS_URL = ${JSON.stringify(config.apiUrl('incidents'))};
   const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
-  `  const BACKEND_INCIDENTS_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/incidents";
-  const BACKEND_INCIDENT_STATE_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/incidents/state";
-  const BACKEND_KNOWLEDGE_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/knowledge";
+  `  const BACKEND_INCIDENTS_URL = ${JSON.stringify(config.apiUrl('incidents'))};
+  const BACKEND_INCIDENT_STATE_URL = ${JSON.stringify(config.apiUrl('incidents/state'))};
+  const BACKEND_KNOWLEDGE_URL = ${JSON.stringify(config.apiUrl('knowledge'))};
   const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
   'incident state and knowledge endpoint constants'
 );

@@ -29,7 +29,7 @@ test('QA284: manager labels are renamed; legacy auth/CSP contracts are preserved
  const signup=dist('manager/activar/index.html');
  assert.match(signup,/Bienvenido a Che Vení Concierge/);
  assert.match(signup,/CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED\s*=\s*false/);
- assert.match(signup,/https:\/\/chebot-backend-git-concierge-v3-design-chebot\.vercel\.app/);
+ assert.match(signup,/https:\/\/fictional-api\.example\.invalid/);
  assert.match(signup,/\/manager\/condiciones-concierge\//);
  assert.match(signup,/\/manager\/privacidad-concierge\//);
  assert.match(dist('manager/manager-auth.js'),/chebot_manager_preview_access_token/);

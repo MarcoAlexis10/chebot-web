@@ -1,3 +1,4 @@
+const config = require('./manager-build-config.cjs').managerBuildConfig();
 // Isolated operator console for invite-only Concierge Beta onboarding.
 // Built as a static Preview page, not linked from public navigation.
 // Access, tenant owner and operator allowlist are ALWAYS enforced by Backend.
@@ -10,7 +11,7 @@ const html=String.raw`<!doctype html><html lang="es"><head>
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Cache-Control" content="no-store">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://chebot-backend-git-concierge-v3-design-chebot.vercel.app; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src ${config.apiOrigin}; form-action 'none'">
 <title>Altas privadas · Che Vení Concierge Beta</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f7f4ec;color:#16302d}
@@ -68,7 +69,7 @@ a{color:#0f766e}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center
 'use strict';
 var TOKEN_KEY='chebot_manager_preview_access_token';
 var token=sessionStorage.getItem(TOKEN_KEY)||'';
-var API='https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/signup-admin';
+var API='${config.apiOrigin}/api/concierge/manager/signup-admin';
 var access=document.getElementById('access-status'),issueStatus=document.getElementById('issue-status');
 var issueForm=document.getElementById('issue-form'),issueButton=document.getElementById('issue-button');
 var result=document.getElementById('result'),preparedLink=document.getElementById('prepared-link');

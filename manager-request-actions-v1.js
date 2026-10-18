@@ -1,3 +1,4 @@
+const config = require('./manager-build-config.cjs').managerBuildConfig();
 const fs = require('fs');
 const path = require('path');
 
@@ -17,10 +18,10 @@ function replaceRequired(before, after, label) {
 }
 
 replaceRequired(
-  `  const BACKEND_REQUESTS_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/requests";
+  `  const BACKEND_REQUESTS_URL = ${JSON.stringify(config.apiUrl('requests'))};
   const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
-  `  const BACKEND_REQUESTS_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/requests";
-  const BACKEND_REQUEST_DECISION_URL = "https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/requests/decision";
+  `  const BACKEND_REQUESTS_URL = ${JSON.stringify(config.apiUrl('requests'))};
+  const BACKEND_REQUEST_DECISION_URL = ${JSON.stringify(config.apiUrl('requests/decision'))};
   const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
   'decision endpoint constant'
 );

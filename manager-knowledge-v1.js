@@ -1,11 +1,11 @@
+const config = require('./manager-build-config.cjs').managerBuildConfig();
 const fs = require('fs');
 const path = require('path');
 
 const out = path.join(__dirname, 'dist');
 const managerDir = path.join(out, 'manager');
 const indexFile = path.join(managerDir, 'index.html');
-const backendKnowledgeUrl =
-  'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/knowledge';
+const backendKnowledgeUrl = config.apiUrl('knowledge');
 
 if (!fs.existsSync(indexFile)) {
   throw new Error('dist/manager/index.html was not generated before Manager Knowledge V1.');

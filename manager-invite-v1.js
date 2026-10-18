@@ -1,3 +1,4 @@
+const config = require('./manager-build-config.cjs').managerBuildConfig();
 const fs = require('fs');
 const path = require('path');
 
@@ -51,7 +52,7 @@ const browserJs = `
   'use strict';
 
   const TOKEN_KEY = 'chebot_manager_preview_access_token';
-  const BACKEND_INVITE_URL = 'https://chebot-backend-git-concierge-v3-design-chebot.vercel.app/api/concierge/manager/invites/send';
+  const BACKEND_INVITE_URL = ${JSON.stringify(config.apiUrl('invites/send'))};
   const invitables = new Set(['scheduled', 'active']);
   const REVIEW_KEY = 'chebot_manager_invite_review_v1';
   const needsReview = (stayId) => sessionStorage.getItem(REVIEW_KEY + ':' + stayId) === '1';

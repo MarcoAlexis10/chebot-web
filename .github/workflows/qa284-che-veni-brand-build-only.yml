@@ -11,8 +11,10 @@ jobs:
     timeout-minutes: 10
     env:
       CI: "1"
+      MANAGER_API_ORIGIN: https://fictional-api.example.invalid
+      MANAGER_WEB_ORIGIN: https://fictional-manager.example.invalid
       SUPABASE_URL: https://tyvwgsdzqipusodxtydv.supabase.co
-      SUPABASE_PUBLISHABLE_KEY: ci-fixture-public-key-not-real
+      SUPABASE_PUBLISHABLE_KEY: sb_publishable_FICTIONAL_LOCAL_ONLY
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

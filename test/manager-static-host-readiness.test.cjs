@@ -58,7 +58,7 @@ test('static hosting alone does NOT migrate the backend: dependency detected', (
   const signup=read('manager/activar/index.html');
   const login=read('manager/manager-auth.js');
   const operator=read('manager/altas/index.html');
-  const backend='chebot-backend-git-concierge-v3-design-chebot.vercel.app';
+  const backend='fictional-api.example.invalid';
   assert.ok(signup.includes(backend),'signup backend dependency must be documented');
   assert.ok(login.includes(backend),'login backend dependency must be documented');
   assert.ok(operator.includes(backend),'admin backend dependency must be documented');
