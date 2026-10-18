@@ -1,3 +1,5 @@
+Actualización de compatibilidad DEV: el código vigente de esta rama se fija en el manifiesto backend y en `ops/CHE-VENI-DEV-COMPATIBILITY-CLOSURE-20261018.md`. La evidencia que sigue corresponde al candidato anterior; se conserva como historial. No instalar DEV con consumidores antiguos activos.
+
 # Che Vení — panel candidato de revisión, 18 de octubre de 2026
 
 Continúa el candidato anterior. Rama `qa/cheveni-web-local-review-20261018`, código validado `02fe3721338bb92ef5739de0a8146a9c63178f29`. Mantiene los controles de incertidumbre de invitaciones y solicitudes, el bloqueo de doble clic y la persistencia por ID opaco al recargar.
@@ -13,3 +15,12 @@ Validación: **55 pruebas aprobadas, cero fallidas**, incluidas diez regresiones
 El backend captura diez assets del commit fijado, incluido `reset-password/index.html`, con hashes de fuentes y salida. Las solicitudes se interceptan antes de DNS y solo van a localhost; no se accede a previews ni bases compartidas. WhatsApp está simulado; no se envían emails ni mensajes reales. La emisión y consumo de recuperación están probados contra Auth real descartable; faltan entrega de correo y redirects del entorno autorizado.
 
 Los despliegues de Git permanecen deshabilitados. No cambia endpoints, credenciales, políticas, manifiestos legales ni producción. La publicación legal sigue cerrada. Falta una instalación coordinada y autorizada para verificar DNS/TLS, CORS y redirects reales. Operación con personas reales: **NO-GO** hasta las aprobaciones de datos y del verificador independiente, la política de retención/eliminación y la validación del entorno.
+
+
+## Delta de compatibilidad del 18 de octubre
+
+`00eae337dbfe6882af9cc5ce9d7d8c5b3a738bdb` elimina las URLs de Concierge grabadas al preview antiguo. `386d99322f9cdffc3c7fc24294ba1cf8347c89a2` valida etiquetas DNS antes de insertar los orígenes en JS/HTML/CSP. El build exige `MANAGER_API_ORIGIN`, `MANAGER_WEB_ORIGIN`, la URL exacta de Supabase DEV y una clave pública admitida. Rechaza claves privadas/de service_role, orígenes inseguros, rutas, credenciales, puertos, caracteres de inyección y otro proyecto. No modifica variables reales ni publica nada.
+
+Todos los módulos del manager usan el mismo origen API elegido. El enlace de recuperación utiliza el origen web elegido; el panel no llama tablas ni RPC de PostgREST directamente. El alta privada sigue cerrada por la aprobación legal ausente. Sus handlers de signup existentes además conservan la restricción al origen legacy: no habilitar este flujo en otro origen ni retirar ese cierre como parte de la instalación. El único manager de Beta V1 se aprovisiona de forma supervisada y con autorización separada.
+
+Build y **62/62 pruebas**, incluyendo siete casos nuevos de configuración, aprobados en el workflow https://github.com/MarcoAlexis10/chebot-web/actions/runs/39177467164. La evidencia del navegador conectado al backend y Auth locales se registra en el manifiesto backend actualizado. Las variables de Auth observadas en Vercel solo están asignadas a la rama web antigua; falta configurar el preview elegido con autorización. No se consultaron valores de credenciales.
