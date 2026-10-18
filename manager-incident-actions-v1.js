@@ -238,6 +238,17 @@ replaceRequired(
       };
 
       const availableActions = actionMap[item.status] || [];
+      const reviewKey = 'chebot_manager_incident_review_v1:' + item.id;
+      let mutationInFlight = false;
+      const reviewNotice = document.createElement('span');
+      reviewNotice.className = 'muted';
+      const freezeForReview = () => {
+        sessionStorage.setItem(reviewKey, '1');
+        controls.querySelectorAll('button').forEach((control) => { control.disabled = true; });
+        reviewNotice.textContent = 'Resultado en revisión. No repitas la acción; verificá el registro con soporte.';
+        action.appendChild(reviewNotice);
+      };
+      if (sessionStorage.getItem(reviewKey) === '1') freezeForReview();
 
       const makeButton = (label, nextStatus, eventSummary, danger = false) => {
         const button = document.createElement('button');
@@ -250,8 +261,11 @@ replaceRequired(
         button.style.cursor = 'pointer';
         button.style.background = danger ? '#fff' : '#0f766e';
         button.style.color = danger ? '#8a3325' : '#fff';
+        button.disabled = sessionStorage.getItem(reviewKey) === '1';
 
         button.addEventListener('click', async () => {
+          if (button.disabled || mutationInFlight || sessionStorage.getItem(reviewKey) === '1') return;
+          let requestStarted = false, responseReceived = false, mutationConfirmed = false, reconciliationRequired = false;
           let managerMessage = '';
 
           if (nextStatus === '__propose_learning__') {
@@ -260,12 +274,14 @@ replaceRequired(
             )) return;
 
             const buttons = Array.from(controls.querySelectorAll('button'));
+            mutationInFlight = true;
             buttons.forEach((itemButton) => { itemButton.disabled = true; });
 
             try {
               const accessToken = sessionStorage.getItem(TOKEN_KEY);
               if (!accessToken) throw new Error('AUTH_REQUIRED');
 
+              requestStarted = true;
               const response = await fetch(BACKEND_INCIDENT_STATE_URL, {
                 method: 'POST',
                 mode: 'cors',
@@ -281,10 +297,12 @@ replaceRequired(
                 })
               });
 
+              responseReceived = true;
               let body = null;
               try { body = await response.json(); } catch (_) {}
 
-              if (!response.ok || !body || body.ok !== true || !body.learning || body.learning.ok !== true) {
+              if (!response.ok || !body || body.ok !== true || body.reconciliation_required === true || !body.learning || body.learning.ok !== true) {
+                reconciliationRequired = !body || response.ok || body.reconciliation_required === true || response.status >= 500;
                 const code =
                   body && body.learning && body.learning.reason
                     ? String(body.learning.reason)
@@ -294,9 +312,12 @@ replaceRequired(
                 throw new Error(code);
               }
 
+              mutationConfirmed = true;
               window.location.reload();
               return;
             } catch (error) {
+              if (requestStarted && (!responseReceived || mutationConfirmed || reconciliationRequired)) { freezeForReview(); return; }
+              mutationInFlight = false;
               buttons.forEach((itemButton) => { itemButton.disabled = false; });
               const code = error && error.message ? String(error.message) : 'Reintentá.';
               const friendly = {
@@ -340,6 +361,7 @@ replaceRequired(
           }
 
           const buttons = Array.from(controls.querySelectorAll('button'));
+          mutationInFlight = true;
           buttons.forEach((itemButton) => { itemButton.disabled = true; });
 
           try {
@@ -356,6 +378,7 @@ replaceRequired(
               payload.manager_message = managerMessage;
             }
 
+            requestStarted = true;
             const response = await fetch(BACKEND_INCIDENT_STATE_URL, {
               method: 'POST',
               mode: 'cors',
@@ -368,12 +391,27 @@ replaceRequired(
               body: JSON.stringify(payload)
             });
 
+            responseReceived = true;
             let body = null;
             try { body = await response.json(); } catch (_) {}
 
-            if (!response.ok || !body || body.ok !== true) {
+            if (!response.ok || !body || body.ok !== true || body.reconciliation_required === true) {
+              reconciliationRequired = !body || response.ok || body.reconciliation_required === true || response.status >= 500;
               const code = body && body.error ? String(body.error) : 'INCIDENT_STATE_CHANGE_FAILED';
               throw new Error(code);
+            }
+            if (!body.incident || body.incident.incident_id !== item.id || body.incident.resulting_status !== nextStatus) {
+              reconciliationRequired = true;
+              throw new Error('INCIDENT_STATE_RESPONSE_INVALID');
+            }
+            mutationConfirmed = true;
+            // A recorded state change does not prove that an attempted WhatsApp
+            // send was rejected. Preserve uncertain provider outcomes for review.
+            const knownNotSent = ['crypto_not_configured','incident_lookup_failed','incident_not_waiting_guest','manager_response_event_failed','guest_not_notifiable','channel_unavailable','template_required','channel_decrypt_failed','notification_authority_required','WHATSAPP_CONFIGURATION_MISSING'];
+            if (body.notification && body.notification.sent !== true &&
+                (body.notification.reconciliation_required === true || !knownNotSent.includes(body.notification.status))) {
+              freezeForReview();
+              return;
             }
 
             if (nextStatus === 'learning_pending') {
@@ -391,6 +429,8 @@ replaceRequired(
             if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
             renderIncidents(refreshed);
           } catch (error) {
+            if (requestStarted && (!responseReceived || mutationConfirmed || reconciliationRequired)) { freezeForReview(); return; }
+            mutationInFlight = false;
             buttons.forEach((itemButton) => { itemButton.disabled = false; });
             const code = error && error.message ? String(error.message) : 'Reintentá.';
             const friendly = {
