@@ -6,7 +6,8 @@ function httpsOrigin(value, name) {
   if (typeof value !== 'string' || !value || !/^[\x21-\x7e]+$/.test(value)) throw new Error(name + ' requires an explicit HTTPS origin');
   let url;
   try { url = new URL(value); } catch { throw new Error(name + ' requires an explicit HTTPS origin'); }
-  if (url.protocol !== 'https:' || url.username || url.password || url.port ||
+  const dnsHost = url.hostname.includes('.') && url.hostname.split('.').every(label => /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i.test(label));
+  if (!dnsHost || url.protocol !== 'https:' || url.username || url.password || url.port ||
       url.pathname !== '/' || url.search || url.hash || url.origin !== value.replace(/\/$/, '')) {
     throw new Error(name + ' requires an explicit HTTPS origin');
   }

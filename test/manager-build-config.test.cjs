@@ -20,7 +20,8 @@ for (const field of ['MANAGER_API_ORIGIN','MANAGER_WEB_ORIGIN','SUPABASE_URL']) 
   test(field + ' rejects missing, non-HTTPS, credentials, paths and injection', () => {
     for (const value of [undefined,'','http://example.invalid','https://a:b@example.invalid',
       'https://example.invalid/path','https://example.invalid?x=1','https://example.invalid/#hash',
-      'https://example.invalid:444','https://example.invalid/\n','https://example.invalid/</script>']) {
+      'https://example.invalid:444','https://example.invalid/\n','https://example.invalid/</script>',
+      "https://foo'bar.example.invalid",'https://foo;bar.example.invalid','https://a..example.invalid']) {
       assert.throws(() => managerBuildConfig({...base,[field]:value}),/requires an explicit HTTPS origin/);
     }
   });
