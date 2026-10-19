@@ -1,5 +1,6 @@
 param([ValidateSet('Inicio','Preflight','Laboratorio','Respaldar','Verificar','Restaurar')][string]$Modo='Inicio',[switch]$SelfTest)
 $ErrorActionPreference='Stop'
+$env:SUPABASE_TELEMETRY_DISABLED='1';$env:DO_NOT_TRACK='1'
 $Script:HomeDir=$PSScriptRoot
 $Script:NodeVersion='24.21.0'
 $Script:NodeHash='158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541'
@@ -55,7 +56,7 @@ function Invoke-PrivateNode([string]$Command,$Payload){
  $psi.StandardOutputEncoding=New-Object System.Text.UTF8Encoding($false);$psi.StandardErrorEncoding=New-Object System.Text.UTF8Encoding($false)
  $process=New-Object System.Diagnostics.Process;$process.StartInfo=$psi;[void]$process.Start()
  $out=$process.StandardOutput.ReadToEndAsync();$err=$process.StandardError.ReadToEndAsync()
- $json=$Payload|ConvertTo-Json -Depth 50 -Compress;$bytes=[System.Text.Encoding]::UTF8.GetBytes($json);$process.StandardInput.BaseStream.Write($bytes,0,$bytes.Length);$process.StandardInput.Close();$json=$null;$bytes=$null
+ $json=$Payload|ConvertTo-Json -Depth 50 -Compress;$bytes=[System.Text.Encoding]::UTF8.GetBytes($json);$process.StandardInput.BaseStream.Write($bytes,0,$bytes.Length);$process.StandardInput.BaseStream.Close();$json=$null;$bytes=$null
  $process.WaitForExit();$raw=$out.Result
  try{$result=$raw|ConvertFrom-Json}catch{Stop-Safe 'HERRAMIENTA_PRIVADA_FALLO'}
  if($process.ExitCode -ne 0 -or -not $result.ok){if($result.code -match '^[A-Z][A-Z0-9_]+$'){Stop-Safe $result.code};Stop-Safe 'HERRAMIENTA_PRIVADA_FALLO'}
@@ -144,7 +145,7 @@ if($SelfTest){
  if(Paths-Separate 'C:\respaldo' 'C:\respaldo\clave'){Stop-Safe 'TEST_ANIDADO'}
  if(Paths-Separate 'C:\respaldo' 'c:\RESPALDO'){Stop-Safe 'TEST_MAYUSCULAS'}
  Write-Output 'WINDOWS_HELPERS_PASS'
- $phrase=[Guid]::NewGuid().ToString('N')+[Guid]::NewGuid().ToString('N');$created=Invoke-PrivateNode 'key-create' @{passphrase=$phrase}
+ $phrase=[Guid]::NewGuid().ToString('N')+[Guid]::NewGuid().ToString('N')+[char]0x00f1;$created=Invoke-PrivateNode 'key-create' @{passphrase=$phrase};Write-Output 'WINDOWS_CREATE_PASS'
  $temp=Join-Path ([IO.Path]::GetTempPath()) ([Guid]::NewGuid().ToString('N')+'.cclave')
  try{[IO.File]::WriteAllBytes($temp,[Convert]::FromBase64String($created.wrapped));$opened=Invoke-PrivateNode 'key-open' @{keyFile=$temp;passphrase=$phrase};if($opened.key -ne $created.key){Stop-Safe 'TEST_PIPE_PRIVADO'};Write-Output 'WINDOWS_PRIVATE_PIPE_PASS';$cli=Ensure-Cli;$version=& $cli --version 2>$null;if($LASTEXITCODE -ne 0 -or "$version".Trim() -ne '2.121.0'){Stop-Safe 'CLI_WINDOWS_NO_VERIFICADA'};Write-Output 'WINDOWS_CLI_PASS'}finally{Remove-Item -LiteralPath $temp -Force;$created=$null;$opened=$null;$phrase=$null}
  exit 0

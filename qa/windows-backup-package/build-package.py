@@ -1,6 +1,6 @@
 import hashlib,json,pathlib,sys,zipfile
 root=pathlib.Path(__file__).resolve().parent
-excluded={'MANIFEST.json','build-package.py'}
+excluded={'MANIFEST.json','build-package.py','windows-backup-package-qa.yml'}
 def files():
     for p in sorted(root.rglob('*')):
         if not p.is_file() or p.is_symlink():continue

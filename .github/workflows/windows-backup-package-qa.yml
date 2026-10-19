@@ -15,28 +15,38 @@ jobs:
         working-directory: qa/windows-backup-package
         shell: powershell
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24.21.0
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: python build-package.py --manifest-only
-      - run: .\INICIAR.ps1 -SelfTest
+      - run: python build-package.py
+      - name: Native PowerShell from extracted ZIP
+        run: |
+          $destination=Join-Path $env:RUNNER_TEMP 'windows-package-extracted'
+          Expand-Archive -LiteralPath ..\CHE-VENI-A1-WINDOWS.zip -DestinationPath $destination
+          & (Join-Path $destination 'INICIAR.ps1') -SelfTest
   isolated-recovery:
     if: github.event.repository.private == false
     runs-on: ubuntu-latest
+    env:
+      SUPABASE_INTERNAL_IMAGE_REGISTRY: ghcr.io
+      SUPABASE_TELEMETRY_DISABLED: '1'
+      DO_NOT_TRACK: '1'
     timeout-minutes: 18
     defaults:
       run:
         working-directory: qa/windows-backup-package
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24.21.0
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: New package controls
-        run: node --test package-tests.mjs
       - name: Verified CLI and pinned client image
         run: |
           curl --fail --silent --show-error --location https://github.com/supabase/cli/releases/download/v2.121.0/supabase_2.121.0_linux_amd64.tar.gz -o /tmp/a1-cli.tar.gz

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Private terminal alternative. Never run in CI; credentials use hidden input."""
-import base64,getpass,json,os,pathlib,secrets,subprocess,sys
+import base64,getpass,hashlib,json,os,pathlib,secrets,subprocess,sys
 HERE=pathlib.Path(__file__).resolve().parent
 PG_IMAGE='postgres:17.11-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826'
 def invoke(mode,payload):
@@ -12,7 +12,16 @@ def invoke(mode,payload):
     if r.returncode or not value.get('ok'): raise RuntimeError(value.get('code','HERRAMIENTA_PRIVADA_FALLO'))
     return value
 def datafile(prompt):return pathlib.Path(input(prompt).strip()).expanduser().resolve()
+def check_package():
+    manifest=json.loads((HERE/'MANIFEST.json').read_text())
+    for item in manifest['files']:
+        relative=pathlib.PurePosixPath(item['path'])
+        if relative.is_absolute() or '..' in relative.parts or ':' in item['path'] or '\\' in item['path']:raise RuntimeError('MANIFEST_INVALIDO')
+        raw=(HERE/relative).read_bytes()
+        if len(raw)!=item['bytes'] or hashlib.sha256(raw).hexdigest()!=item['sha256']:raise RuntimeError('PAQUETE_MODIFICADO')
 def main():
+    check_package()
+    if not sys.stdin.isatty() or not sys.stderr.isatty():raise RuntimeError('TERMINAL_PRIVADA_REQUERIDA')
     if os.getenv('CI') or os.getenv('GITHUB_ACTIONS'):raise RuntimeError('CAPTURA_REAL_BLOQUEADA_EN_CI')
     print('Entorno privado: no se crea un servicio ni un proyecto. Node 24, Docker LOCAL Linux y Python 3 deben estar disponibles.')
     mode=sys.argv[1] if len(sys.argv)>1 else input('Modo: verificar o respaldar (por defecto salir): ').strip()

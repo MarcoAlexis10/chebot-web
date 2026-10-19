@@ -11,6 +11,7 @@ import {localCommand,PG_IMAGE,assertLocalDocker} from './pg-tools.mjs';
 
 // New package integration: no cloud endpoint, credentials or backup input.
 // All values are generated in memory. Never import real data in this mode.
+process.env.SUPABASE_TELEMETRY_DISABLED='1';process.env.DO_NOT_TRACK='1';
 assertLocalDocker();
 const root=mkdtempSync(join(tmpdir(),'cheveni-a1-fictional-'));
 const id=randomBytes(6).toString('hex'),network='cheveni-a1-'+id,project='cheveni_a1_'+id;
