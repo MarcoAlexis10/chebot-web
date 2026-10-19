@@ -37,3 +37,10 @@ test('Storage rechaza rutas ambiguas antes de solicitar bytes o endpoints ajenos
  }
  await assert.rejects(storageExport(async()=>[{id:'..'}]),/STORAGE_RUTA_NO_SEGURA/);
 });
+
+test('cierre ACL no acepta otorgantes ajenos al propietario ni privilegios inesperados',async()=>{
+ const {objectAclClosure}=await import('./restore-isolated.mjs');
+ const r={nspname:'public',relname:'fictional',relkind:'r',owner:'postgres',acl:[{grantor:'other',grantee:'anon',privilege_type:'SELECT',is_grantable:false}]};
+ assert.throws(()=>objectAclClosure({applicationRelations:[r]},['postgres','anon']),/OTORGANTES_ACL/);
+ r.acl[0].grantor='postgres';r.acl[0].privilege_type='UNEXPECTED';assert.throws(()=>objectAclClosure({applicationRelations:[r]},['postgres','anon']),/ACL_REQUIERE_REVISION/);
+});
