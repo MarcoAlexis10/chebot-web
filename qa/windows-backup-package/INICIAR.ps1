@@ -122,7 +122,7 @@ function Invoke-LocalRestore {
  $p=Ask-Fields 'Restauracion SOLO descartable local, con limpieza obligatoria' @(@{Name='backup';Label='Respaldo .cva';Kind='file'},@{Name='keyFile';Label='Clave cifrada .cclave';Kind='file'},@{Name='passphrase';Label='Frase privada';Kind='secret'},@{Name='currentJournal';Label='Registro independiente ACTUAL de revocaciones';Kind='file'},@{Name='confirmation';Label='Escribir RESTAURAR SOLO LOCAL; requiere equipo privado y datos autorizados'})
  if(-not $p){return};if($p.confirmation -ne 'RESTAURAR SOLO LOCAL'){Stop-Safe 'NO_AUTORIZADO'}
  $cli=Ensure-Cli;$key=Invoke-PrivateNode 'key-open' $p;$id=[Guid]::NewGuid().ToString('N').Substring(0,12);$network='cheveni-a1-'+$id
- $ownedInitialized=$false;$ownedNetwork=$false
+ $ownedInitialized=$false;$ownedNetwork=$false;$ownedVolumes=@();$ownedContainers=@()
  $work=Join-Path $env:LOCALAPPDATA ('CheVeniA1\descartables\'+$id);New-Item -ItemType Directory -Path $work|Out-Null
  try{
   & $cli init --workdir $work --yes --agent no 1>$null 2>$null;if($LASTEXITCODE -ne 0){Stop-Safe 'INICIO_LOCAL_FALLO'}
@@ -130,13 +130,14 @@ function Invoke-LocalRestore {
   & docker network create --label ('cheveni.a1.discardable='+$id) -o 'com.docker.network.bridge.host_binding_ipv4=127.0.0.1' $network 1>$null 2>$null;if($LASTEXITCODE -ne 0){Stop-Safe 'RED_LOCAL_FALLO'};$ownedNetwork=$true
   & $cli start --workdir $work --network-id $network --agent no --exclude realtime,imgproxy,mailpit,postgres-meta,studio,edge-runtime,logflare,vector,supavisor 1>$null 2>$null;if($LASTEXITCODE -ne 0){Stop-Safe 'STACK_LOCAL_FALLO'}
   $ids=& docker ps --filter ('network='+$network) --format '{{.ID}}'
-  foreach($container in $ids){$info=(& docker inspect $container|ConvertFrom-Json)[0];if($info.Name -ne ('/supabase_db_cheveni_a1_'+$id)){& docker stop $container 1>$null 2>$null}}
+  foreach($container in $ids){$info=(& docker inspect $container|ConvertFrom-Json)[0];$ownedContainers+= $info.Id;$ownedVolumes+=@($info.Mounts|Where-Object {$_.Type -eq 'volume'}|ForEach-Object {$_.Name});if($info.Name -ne ('/supabase_db_cheveni_a1_'+$id)){& docker stop $container 1>$null 2>$null}}
   $isolated=Invoke-PrivateNode 'isolate-bootstrap' @{container=('supabase_db_cheveni_a1_'+$id);network=$network;runId=$id}
   Show-Result (Invoke-PrivateNode 'restore-local' @{backup=$p.backup;key=$key.key;currentJournal=$p.currentJournal;container=('supabase_db_cheveni_a1_'+$id);network=$network;runId=$id})
  }finally{
   if($ownedInitialized){& $cli stop --workdir $work --no-backup --agent no 1>$null 2>$null}
   $left=& docker ps -a --filter ('network='+$network) --format '{{.ID}}'
-  if($left){Write-Host 'LIMPIEZA_LOCAL_INCOMPLETA_NO_GO'}else{if($ownedNetwork){& docker network rm $network 1>$null 2>$null};Remove-Item -LiteralPath $work -Recurse -Force;Write-Host 'DESTINO_DESCARTABLE_DESTRUIDO'}
+  $remainingIds=@(& docker ps -a --no-trunc --format '{{.ID}}');$remainingVolumes=@(& docker volume ls --format '{{.Name}}');$containersLeft=@($ownedContainers|Where-Object {$remainingIds -contains $_});$volumesLeft=@($ownedVolumes|Where-Object {$remainingVolumes -contains $_})
+  if($left -or $containersLeft.Count -gt 0 -or $volumesLeft.Count -gt 0){Write-Host 'LIMPIEZA_LOCAL_INCOMPLETA_NO_GO'}else{if($ownedNetwork){& docker network rm $network 1>$null 2>$null};Remove-Item -LiteralPath $work -Recurse -Force;Write-Host 'DESTINO_DESCARTABLE_DESTRUIDO'}
   $key=$null;$p=$null
  }
 }

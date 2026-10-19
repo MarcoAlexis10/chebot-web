@@ -60,5 +60,5 @@ try{
  console.log('PACKAGE_LAB_RESULT '+JSON.stringify({checks:count,success:true,realDevContacted:false,realDataUsed:false,fullDevRecoveryVerified:false,paidServices:0}));
 }catch(e){console.error('PACKAGE_LAB_FAILED '+JSON.stringify({stage:count,code:/^[A-Z][A-Z0-9_]+$/.test(e.message)?e.message:'FALLO_FICTICIO_SIN_DATOS',operation:e.operation,pgCommand:e.pgCommand,exit:e.exitStatus,sqlLine:e.sqlLine,reasons:e.reasons}));process.exitCode=1;}
 finally{
- try{await stop();if(ownedNetwork)docker(['network','rm',network]);rmSync(root,{recursive:true,force:true});console.log('PACKAGE_LAB_CLEANUP_OK');}catch{console.log('PACKAGE_LAB_CLEANUP_REQUIRES_REVIEW');process.exitCode=1;}
+ try{await stop();const remainingVolumes=docker(['volume','ls','--format','{{.Name}}']).toString().split('\n');assert.ok(volumes.every(v=>!remainingVolumes.includes(v)));const remainingContainers=docker(['ps','-a','--filter','name=_'+project,'--format','{{.ID}}']).toString().trim();assert.equal(remainingContainers,'');if(ownedNetwork)docker(['network','rm',network]);rmSync(root,{recursive:true,force:true});console.log('PACKAGE_LAB_CLEANUP_OK');}catch{console.log('PACKAGE_LAB_CLEANUP_REQUIRES_REVIEW');process.exitCode=1;}
 }
