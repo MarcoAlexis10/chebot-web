@@ -66,8 +66,11 @@ try{
  cmd('supabase',['init','--workdir',dir,'--yes','--agent','no']);
  docker(['network','create','-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1','portable-recovery-only']);
  await start();sourcePg=pg;await setRoot(root);
+ let authReady=false;
+ for(let i=0;i<80;i++){try{if((await api('/auth/v1/health',{method:'GET'})).ok){authReady=true;break;}}catch{}await delay();}
+ assert.equal(authReady,true,'Auth must recover its database connection after local PostgreSQL restart');
  pass('fresh source stack; exact loopback endpoints; separate random Vault root');
- const created=await api('/auth/v1/admin/users',{body:{email,password,email_confirm:true}});assert.ok(created.ok);userId=created.data.id;
+ const created=await api('/auth/v1/admin/users',{body:{email,password,email_confirm:true}});assert.ok(created.ok,'AUTH_CREATE_STATUS_'+created.status);userId=created.data.id;
  const login=await api('/auth/v1/token?grant_type=password',{key:status.ANON_KEY,body:{email,password}});assert.ok(login.ok);oldRefresh=login.data.refresh_token;
  assert.ok((await api('/auth/v1/logout?scope=global',{key:status.ANON_KEY,token:login.data.access_token})).ok);
  pass('real Auth identity/password and pre-checkpoint revoked refresh fixture');
