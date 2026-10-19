@@ -127,10 +127,11 @@ function Invoke-LocalRestore {
  try{
   & $cli init --workdir $work --yes --agent no 1>$null 2>$null;if($LASTEXITCODE -ne 0){Stop-Safe 'INICIO_LOCAL_FALLO'}
   $config=Join-Path $work 'supabase\config.toml';$text=[IO.File]::ReadAllText($config);$text=$text -replace '(?m)^project_id\s*=.*$',('project_id = "cheveni_a1_'+$id+'"');[IO.File]::WriteAllText($config,$text,(New-Object System.Text.UTF8Encoding($false)));$ownedInitialized=$true
-  & docker network create --internal --label ('cheveni.a1.discardable='+$id) -o 'com.docker.network.bridge.host_binding_ipv4=127.0.0.1' $network 1>$null 2>$null;if($LASTEXITCODE -ne 0){Stop-Safe 'RED_LOCAL_FALLO'};$ownedNetwork=$true
+  & docker network create --label ('cheveni.a1.discardable='+$id) -o 'com.docker.network.bridge.host_binding_ipv4=127.0.0.1' $network 1>$null 2>$null;if($LASTEXITCODE -ne 0){Stop-Safe 'RED_LOCAL_FALLO'};$ownedNetwork=$true
   & $cli start --workdir $work --network-id $network --agent no --exclude realtime,imgproxy,mailpit,postgres-meta,studio,edge-runtime,logflare,vector,supavisor 1>$null 2>$null;if($LASTEXITCODE -ne 0){Stop-Safe 'STACK_LOCAL_FALLO'}
   $ids=& docker ps --filter ('network='+$network) --format '{{.ID}}'
   foreach($container in $ids){$info=(& docker inspect $container|ConvertFrom-Json)[0];if($info.Name -ne ('/supabase_db_cheveni_a1_'+$id)){& docker stop $container 1>$null 2>$null}}
+  $isolated=Invoke-PrivateNode 'isolate-bootstrap' @{container=('supabase_db_cheveni_a1_'+$id);network=$network;runId=$id}
   Show-Result (Invoke-PrivateNode 'restore-local' @{backup=$p.backup;key=$key.key;currentJournal=$p.currentJournal;container=('supabase_db_cheveni_a1_'+$id);network=$network;runId=$id})
  }finally{
   if($ownedInitialized){& $cli stop --workdir $work --no-backup --agent no 1>$null 2>$null}

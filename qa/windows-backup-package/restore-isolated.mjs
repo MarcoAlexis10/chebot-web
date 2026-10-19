@@ -15,6 +15,22 @@ function customRoles(source,target){
  for(const m of source.memberships??[])if(changed.has(m.role)||changed.has(m.member)){sql+='set local role '+q(m.grantor)+';\ngrant '+q(m.role)+' to '+q(m.member)+' with admin '+Boolean(m.admin)+',inherit '+Boolean(m.inherit)+',set '+Boolean(m.set)+';\nreset role;\n';}
  return {sql,missing};
 }
+export function isolateBootstrap({container,network,runId}){
+ assertLocalDocker();
+ if(!/^[a-f0-9]{12}$/.test(runId)||container!=='supabase_db_cheveni_a1_'+runId||network!=='cheveni-a1-'+runId)fail('DESTINO_LOCAL_INVALIDO');
+ const net=JSON.parse(localCommand('docker',['network','inspect',network]))[0];
+ if(net.Name!==network||net.Labels?.['cheveni.a1.discardable']!==runId)fail('DESTINO_LOCAL_INVALIDO');
+ const ids=localCommand('docker',['ps','-a','--filter','network='+network,'--format','{{.ID}}']).toString().trim().split('\n').filter(Boolean);
+ const members=ids.map(id=>JSON.parse(localCommand('docker',['inspect',id]))[0]);
+ if(!members.some(c=>c.Name==='/'+container)||members.some(c=>!c.Name.endsWith('_cheveni_a1_'+runId)||(c.Name!=='/'+container&&c.State.Running)))fail('BOOTSTRAP_LOCAL_NO_CERRADO');
+ for(const c of members){for(const bs of Object.values(c.NetworkSettings.Ports??{}))for(const b of bs??[])if(b.HostIp!=='127.0.0.1')fail('PUERTO_NO_PRIVADO');}
+ for(const c of members)localCommand('docker',['network','disconnect','--force',network,c.Id]);
+ localCommand('docker',['network','rm',network]);
+ localCommand('docker',['network','create','--internal','--label','cheveni.a1.discardable='+runId,'-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1',network]);
+ localCommand('docker',['network','connect',network,container]);
+ const info=JSON.parse(localCommand('docker',['inspect',container]))[0],isolated=JSON.parse(localCommand('docker',['network','inspect',network]))[0];validateDiscardable(info,isolated,runId);
+ return {status:'destino_vacio_aislado_antes_de_cargar_respaldo'};
+}
 export async function restoreIsolated({encrypted,key,currentJournal,container,network,runId}){
  assertLocalDocker();
  const info=JSON.parse(localCommand('docker',['inspect',container]))[0],net=JSON.parse(localCommand('docker',['network','inspect',network]))[0];validateDiscardable(info,net,runId);

@@ -6,7 +6,7 @@ import {join} from 'node:path';
 import assert from 'node:assert/strict';
 import {snapshot} from './backup.mjs';
 import {encryptPayload,decryptPayload,wrapKey,unwrapKey,journalGuard,sha} from './core.mjs';
-import {restoreIsolated} from './restore-isolated.mjs';
+import {restoreIsolated,isolateBootstrap} from './restore-isolated.mjs';
 import {localCommand,PG_IMAGE,assertLocalDocker} from './pg-tools.mjs';
 
 // New package integration: no cloud endpoint, credentials or backup input.
@@ -34,9 +34,9 @@ async function start(){
 async function stop(){await db?.end().catch(()=>{});db=undefined;if(ownedInitialized)run(cli,['stop','--workdir',work,'--no-backup','--agent','no']);}
 try{
  run(cli,['init','--workdir',work,'--yes','--agent','no']);const cfg=join(work,'supabase','config.toml');writeFileSync(cfg,readFileSync(cfg,'utf8').replace(/^project_id\s*=.*$/m,'project_id = "'+project+'"'));ownedInitialized=true;
- docker(['network','create','--internal','--label','cheveni.a1.discardable='+id,'-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1',network]);
+ docker(['network','create','--label','cheveni.a1.discardable='+id,'-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1',network]);
  ownedNetwork=true;
- const status=await start();pass('stack propio con red interna y puertos loopback');
+ const status=await start();pass('bootstrap propio vacio con puertos loopback');
  const password=randomBytes(24).toString('base64url'),email='package-'+id+'@example.invalid';
  const created=await fetch(status.API_URL+'/auth/v1/admin/users',{method:'POST',headers:{apikey:status.SERVICE_ROLE_KEY,Authorization:'Bearer '+status.SERVICE_ROLE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password,email_confirm:true}),redirect:'error'});assert.ok(created.ok);const user=(await created.json()).id;
  await db.query('create role cheveni_fixture_reader nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls');
@@ -55,7 +55,7 @@ try{
  const damaged=Buffer.from(encrypted);damaged[22]^=1;assert.throws(()=>decryptPayload(damaged,key));assert.throws(()=>unwrapKey(wrapped,randomBytes(24).toString('base64url')));assert.throws(()=>journalGuard(payload,Buffer.from('fictional changed')));pass('rechazo de archivo alterado, frase incorrecta y revocaciones posteriores');
  const oldId=JSON.parse(docker(['inspect',container]))[0].Id,oldVolumes=volumes.slice();await stop();assert.equal(docker(['ps','-a','--filter','id='+oldId,'--format','{{.ID}}']).toString().trim(),'');const left=docker(['volume','ls','--format','{{.Name}}']).toString().split('\n');assert.ok(oldVolumes.every(n=>!left.includes(n)));
  await start();docker(['stop',...others]);pass('origen y volumenes destruidos; destino vacio recreado');
- await db.end();db=undefined;
+ await db.end();db=undefined;isolateBootstrap({container,network,runId:id});
  const result=await restoreIsolated({encrypted,key,currentJournal:journal,container,network,runId:id});assert.equal(result.operationalApproval,false);assert.equal(result.integralRecoveryVerified,false);pass('restaurador NUEVO verifica datos/Auth/Vault, FK, RLS, funciones y ACL en destino descartable');
  console.log('PACKAGE_LAB_RESULT '+JSON.stringify({checks:count,success:true,realDevContacted:false,realDataUsed:false,fullDevRecoveryVerified:false,paidServices:0}));
 }catch(e){console.error('PACKAGE_LAB_FAILED '+JSON.stringify({stage:count,code:/^[A-Z][A-Z0-9_]+$/.test(e.message)?e.message:'FALLO_FICTICIO_SIN_DATOS',operation:e.operation,exit:e.exitStatus,sqlLine:e.sqlLine,reasons:e.reasons}));process.exitCode=1;}
