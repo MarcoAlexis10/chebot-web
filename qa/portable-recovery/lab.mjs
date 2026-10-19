@@ -12,7 +12,8 @@ assert.equal(process.env.PORTABLE_RECOVERY_MODE,'fictional-local-only');
 assert.ok(process.env.RUNNER_TEMP);
 const dir=join(process.env.RUNNER_TEMP,'portable-stack');
 const custody=join(process.env.RUNNER_TEMP,'portable-recovery-custody');
-mkdirSync(dir,{recursive:true,mode:0o700});mkdirSync(custody,{recursive:true,mode:0o700});
+// Refuse existing directories before entering the destructive-cleanup scope.
+mkdirSync(dir,{mode:0o700});mkdirSync(custody,{mode:0o700});
 let db,status,pg,storage,services=[],volumeNames=[];let count=0;
 const pass=label=>console.log('PORTABLE_PASS '+(++count)+' '+label);
 function cmd(exe,args,input){
@@ -143,7 +144,10 @@ try{
  docker(['stop',...services]);
  const clear=[];
  for(const s of ['auth','vault','storage']){const ts=(await db.query('select tablename from pg_tables where schemaname=$1 order by tablename',[s])).rows;if(ts.length)clear.push('truncate '+ts.map(t=>quote(s)+'.'+quote(t.tablename)).join(',')+' cascade;');}
- const sql=Buffer.concat([Buffer.from("set local session_replication_role='replica';\nset local role postgres;\n"+bytes.roles+'\nreset role;\n'+clear.join('\n')+'\n'),...['application','auth','vault','storage'].map(n=>docker(['exec','-i',pg,'pg_restore','--file=-'],bytes[n])),Buffer.from("\ncreate policy portable_fixture_deny on storage.objects for select to authenticated using(false);\nset local session_replication_role='origin';\n")]);
+ // Application post-data constraints validate existing rows even with trigger
+ // execution disabled. Restore referenced Auth rows before this fixture's
+ // application data/foreign-key DDL; do not suppress validation errors.
+ const sql=Buffer.concat([Buffer.from("set local session_replication_role='replica';\nset local role postgres;\n"+bytes.roles+'\nreset role;\n'+clear.join('\n')+'\n'),...['auth','vault','storage','application'].map(n=>docker(['exec','-i',pg,'pg_restore','--file=-'],bytes[n])),Buffer.from("\ncreate policy portable_fixture_deny on storage.objects for select to authenticated using(false);\nset local session_replication_role='origin';\n")]);
  docker(['exec','-i',pg,'psql','--username=supabase_admin','--dbname=postgres','--single-transaction','--set=ON_ERROR_STOP=1','--file=-'],sql);
  pass('application DDL, Auth data, Vault ciphertext, Storage metadata and custom roles restored atomically to fresh compatible bootstrap');
  let wrongRootDenied=false;
