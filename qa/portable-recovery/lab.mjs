@@ -13,7 +13,7 @@ assert.ok(process.env.RUNNER_TEMP);
 const dir=join(process.env.RUNNER_TEMP,'portable-stack');
 const custody=join(process.env.RUNNER_TEMP,'portable-recovery-custody');
 mkdirSync(dir,{recursive:true,mode:0o700});mkdirSync(custody,{recursive:true,mode:0o700});
-let db,status,pg,storage,services=[];let count=0;
+let db,status,pg,storage,services=[],volumeNames=[];let count=0;
 const pass=label=>console.log('PORTABLE_PASS '+(++count)+' '+label);
 function cmd(exe,args,input){
  try{return execFileSync(exe,args,{input,maxBuffer:128*1024*1024,stdio:['pipe','pipe','pipe'],timeout:240000});}
@@ -36,8 +36,9 @@ async function start(){
  cmd('supabase',['start','--workdir',dir,'--network-id','portable-recovery-only','--agent','no','--exclude','realtime,imgproxy,mailpit,postgres-meta,studio,edge-runtime,logflare,vector,supavisor']);
  status=localStatus(JSON.parse(cmd('supabase',['status','--workdir',dir,'--agent','no','-o','json'])));
  const ids=docker(['ps','--filter','network=portable-recovery-only','--format','{{.ID}}']).toString().trim().split('\n');
- services=[];pg=undefined;storage=undefined;
+ services=[];pg=undefined;storage=undefined;volumeNames=[];
  for(const id of ids){assert.match(id,/^[a-f0-9]{12,64}$/);const info=JSON.parse(docker(['inspect',id]))[0];
+  for(const m of info.Mounts??[])if(m.Type==='volume')volumeNames.push(m.Name);
   if(/supabase\/postgres:17\./.test(info.Config.Image)){pg=id;assert.deepEqual(info.NetworkSettings.Ports['5432/tcp'],[{HostIp:'127.0.0.1',HostPort:'54322'}]);}
   else {services.push(id);if(/storage-api:/.test(info.Config.Image))storage={id,image:info.Config.Image};}
  }
@@ -61,16 +62,29 @@ async function dataDigest(schemas){
 const email='portable-fixture@example.invalid',password='Fictional-password-only-'+randomBytes(16).toString('hex');
 const root=randomBytes(32).toString('hex'),key=randomBytes(32),canary=randomBytes(30).toString('hex');
 const roleSql='create role portable_reader nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;\ncreate role portable_member nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls;\ngrant portable_reader to portable_member with admin false,inherit false,set true;\n';
-let sourceLayout,sourceDigest,oldRefresh,userId,secretId,sourcePg,blob;
+let sourceLayout,sourceDigest,sourceRoles,sourceMemberships,oldRefresh,userId,secretId,sourcePg,blob;
+const roleInventory="select rolname,rolcanlogin,rolsuper,rolinherit,rolcreaterole,rolcreatedb,rolreplication,rolbypassrls from pg_roles where rolname in ('portable_reader','portable_member') order by rolname";
+const membershipInventory="select r.rolname as role,u.rolname as member,g.rolname as grantor,m.admin_option,m.inherit_option,m.set_option from pg_auth_members m join pg_roles r on r.oid=m.roleid join pg_roles u on u.oid=m.member join pg_roles g on g.oid=m.grantor where r.rolname in ('portable_reader','portable_member') order by 1,2,3";
 try{
  cmd('supabase',['init','--workdir',dir,'--yes','--agent','no']);
  docker(['network','create','-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1','portable-recovery-only']);
  await start();sourcePg=pg;await setRoot(root);
+ // PostgreSQL restart invalidates service pools. Recreate only these local
+ // processes before functional probes, rather than retrying user creation.
+ docker(['restart',...services]);
  let authReady=false;
  for(let i=0;i<80;i++){try{if((await api('/auth/v1/health',{method:'GET'})).ok){authReady=true;break;}}catch{}await delay();}
  assert.equal(authReady,true,'Auth must recover its database connection after local PostgreSQL restart');
  pass('fresh source stack; exact loopback endpoints; separate random Vault root');
- const created=await api('/auth/v1/admin/users',{body:{email,password,email_confirm:true}});assert.ok(created.ok,'AUTH_CREATE_STATUS_'+created.status);userId=created.data.id;
+ const created=await api('/auth/v1/admin/users',{body:{email,password,email_confirm:true}});
+ if(!created.ok){
+  for(const id of services){const info=JSON.parse(docker(['inspect',id]))[0];if(!/gotrue:/.test(info.Config.Image))continue;
+   try{const raw=execFileSync('docker',['logs','--tail','12',id],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
+    for(const line of raw.split('\n'))try{const x=JSON.parse(line);if(x.level==='error')console.log('FICTIONAL_AUTH_DIAGNOSTIC '+String(x.error??x.msg??'unknown').replace(/[a-f0-9]{32,}/gi,'[masked]').replace(/Bearer\s+\S+/gi,'Bearer [masked]').slice(0,700));}catch{}
+   }catch{}
+  }
+ }
+ assert.ok(created.ok,'AUTH_CREATE_STATUS_'+created.status);userId=created.data.id;
  const login=await api('/auth/v1/token?grant_type=password',{key:status.ANON_KEY,body:{email,password}});assert.ok(login.ok);oldRefresh=login.data.refresh_token;
  assert.ok((await api('/auth/v1/logout?scope=global',{key:status.ANON_KEY,token:login.data.access_token})).ok);
  pass('real Auth identity/password and pre-checkpoint revoked refresh fixture');
@@ -88,6 +102,7 @@ try{
  // the snapshot. Database/role changes are solely owned by this fixture script.
  docker(['stop',...services]);
  sourceLayout=await layout();
+ sourceRoles=(await db.query(roleInventory)).rows;sourceMemberships=(await db.query(membershipInventory)).rows;
  await db.query('begin isolation level repeatable read read only');
  const snapshot=(await db.query('select pg_export_snapshot() id')).rows[0].id;assert.match(snapshot,/^[0-9A-F-]+$/i);
  const dump=args=>docker(['exec',pg,'pg_dump','--username=supabase_admin','--dbname=postgres','--format=custom','--snapshot='+snapshot,...args]);
@@ -101,8 +116,11 @@ try{
  const bad=Buffer.from(envelope);bad[30]^=1;assert.throws(()=>open(bad,key));assert.throws(()=>open(envelope,randomBytes(32)));
  assert.throws(()=>verifyJournal(journal,sha256('new-independent-revocation')));
  pass('encrypted archive tampering, missing decryption key and stale revocation journal reject before restoration');
+ const destroyedVolumes=[...new Set(volumeNames)];assert.ok(destroyedVolumes.length>=2);
  await destroy();
  assert.equal(docker(['ps','-a','--filter','id='+sourcePg,'--format','{{.ID}}']).toString().trim(),'');
+ const remainingVolumes=docker(['volume','ls','--format','{{.Name}}']).toString().trim().split('\n');
+ for(const name of destroyedVolumes)assert.equal(remainingVolumes.includes(name),false,'source volume must be absent before fresh target bootstrap');
  await start();assert.notEqual(pg,sourcePg);assert.equal((await db.query('select count(*)::int n from vault.secrets')).rows[0].n,0);
  assert.equal((await db.query("select count(*)::int n from pg_roles where rolname like 'portable_%'")).rows[0].n,0);
  pass('source containers and persisted source volumes destroyed; target freshly bootstrapped');
@@ -112,7 +130,7 @@ try{
  docker(['stop',...services]);
  const clear=[];
  for(const s of ['auth','vault','storage']){const ts=(await db.query('select tablename from pg_tables where schemaname=$1 order by tablename',[s])).rows;if(ts.length)clear.push('truncate '+ts.map(t=>quote(s)+'.'+quote(t.tablename)).join(',')+' cascade;');}
- const sql=Buffer.concat([Buffer.from("set local session_replication_role='replica';\n"+bytes.roles+'\n'+clear.join('\n')+'\n'),...['application','auth','vault','storage'].map(n=>docker(['exec','-i',pg,'pg_restore','--file=-'],bytes[n])),Buffer.from("\ncreate policy portable_fixture_deny on storage.objects for select to authenticated using(false);\nset local session_replication_role='origin';\n")]);
+ const sql=Buffer.concat([Buffer.from("set local session_replication_role='replica';\nset local role postgres;\n"+bytes.roles+'\nreset role;\n'+clear.join('\n')+'\n'),...['application','auth','vault','storage'].map(n=>docker(['exec','-i',pg,'pg_restore','--file=-'],bytes[n])),Buffer.from("\ncreate policy portable_fixture_deny on storage.objects for select to authenticated using(false);\nset local session_replication_role='origin';\n")]);
  docker(['exec','-i',pg,'psql','--username=supabase_admin','--dbname=postgres','--single-transaction','--set=ON_ERROR_STOP=1','--file=-'],sql);
  pass('application DDL, Auth data, Vault ciphertext, Storage metadata and custom roles restored atomically to fresh compatible bootstrap');
  let wrongRootDenied=false;
@@ -126,6 +144,8 @@ try{
  // separately from PostgreSQL; the metadata alone cannot restore file bytes.
  docker(['run','--rm','-i','--network','none','--volumes-from',storage.id,'--user','root','--entrypoint','tar',storage.image,'-xf','-','-C','/var/lib/storage'],bytes['storage-files']);
  assert.equal(await dataDigest(['portable_app','auth','vault','storage']),restored.sourceDigest);
+ assert.deepEqual((await db.query(roleInventory)).rows,sourceRoles);
+ assert.deepEqual((await db.query(membershipInventory)).rows,sourceMemberships);
  assert.equal((await db.query("select relrowsecurity and relforcerowsecurity as ok from pg_class where oid='portable_app.visits'::regclass")).rows[0].ok,true);
  assert.equal((await db.query("select count(*)::int n from pg_auth_members m join pg_roles r on m.roleid=r.oid join pg_roles u on m.member=u.oid where r.rolname='portable_reader' and u.rolname='portable_member' and not m.admin_option and not m.inherit_option and m.set_option")).rows[0].n,1);
  const next=(await db.query('insert into portable_app.visits(user_id) values($1) returning id',[userId])).rows[0].id;assert.equal(next,'2');
