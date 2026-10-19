@@ -17,7 +17,12 @@ let db,status,pg,storage,services=[],volumeNames=[];let count=0;
 const pass=label=>console.log('PORTABLE_PASS '+(++count)+' '+label);
 function cmd(exe,args,input){
  try{return execFileSync(exe,args,{input,maxBuffer:128*1024*1024,stdio:['pipe','pipe','pipe'],timeout:240000});}
- catch(e){throw Error('LOCAL_COMMAND_FAILED '+exe+' '+(e.status??'timeout')+' '+(/permission denied/i.test(String(e.stderr))?'PERMISSION_DENIED':/unhealthy/i.test(String(e.stderr))?'UNHEALTHY':/already exists/i.test(String(e.stderr))?'EXISTS':'MASKED_OUTPUT'));}
+ catch(e){
+  // Only fictional local commands exist in this runner; never print stdin,
+  // successful dump output, Docker environment or root-key material.
+  const detail=String(e.stderr??'').replace(/[a-f0-9]{32,}/gi,'[masked]').replace(/Bearer\s+\S+/gi,'Bearer [masked]').slice(-900);
+  throw Error('LOCAL_COMMAND_FAILED '+exe+' '+JSON.stringify(args.slice(0,12))+' '+(e.status??'timeout')+' '+detail);
+ }
 }
 const docker=(args,input)=>cmd('docker',args,input);
 const quote=s=>'"'+s.replaceAll('"','""')+'"';
