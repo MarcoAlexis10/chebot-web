@@ -11,7 +11,7 @@ function Stop-Safe([string]$Code){throw $Code}
 function Assert-Package {
  $manifest=Join-Path $Script:HomeDir 'MANIFEST.json'
  if(-not(Test-Path -LiteralPath $manifest)){Stop-Safe 'MANIFEST_AUSENTE'}
- foreach($item in (Get-Content -Raw -LiteralPath $manifest|ConvertFrom-Json).files){
+ foreach($item in (Get-Content -Raw -Encoding UTF8 -LiteralPath $manifest|ConvertFrom-Json).files){
   if($item.path -match '(^[\\/]|\.\.|:)'){Stop-Safe 'MANIFEST_INVALIDO'}
   $f=Join-Path $Script:HomeDir $item.path
   if(-not(Test-Path -LiteralPath $f -PathType Leaf)){Stop-Safe 'PAQUETE_INCOMPLETO'}
@@ -102,7 +102,7 @@ function Invoke-Capture {
  if($p.passphrase -ne $p.repeat -or $p.passphrase.Length -lt 20){Stop-Safe 'FRASES_NO_COINCIDEN_O_CORTAS'}
  if(-not(Paths-Separate $p.backupFolder $p.keyFolder) -or -not(Paths-Separate $p.backupFolder $Script:HomeDir) -or -not(Paths-Separate $p.keyFolder $Script:HomeDir)){Stop-Safe 'CARPETAS_DE_CUSTODIA_NO_SEPARADAS'}
  if($p.confirmation -ne 'RESPALDAR DEV'){Stop-Safe 'NO_AUTORIZADO'}
- $receipts=Get-Content -Raw -LiteralPath $p.receipts|ConvertFrom-Json
+ $receipts=Get-Content -Raw -Encoding UTF8 -LiteralPath $p.receipts|ConvertFrom-Json
  if($receipts.confirmation -ne $p.confirmation){Stop-Safe 'RECIBOS_INCOMPLETOS'}
  $key=Invoke-PrivateNode 'key-create' @{passphrase=$p.passphrase}
  $name='CHE-VENI-DEV-'+(Get-Date -Format 'yyyyMMdd-HHmmss')+'-'+([Guid]::NewGuid().ToString('N').Substring(0,6))
@@ -110,7 +110,7 @@ function Invoke-Capture {
  if((Test-Path -LiteralPath $keyPath) -or (Test-Path -LiteralPath $output)){Stop-Safe 'ARCHIVO_YA_EXISTE'}
  [IO.File]::WriteAllBytes($keyPath,[Convert]::FromBase64String($key.wrapped))
  $opened=Invoke-PrivateNode 'key-open' @{keyFile=$keyPath;passphrase=$p.passphrase};if($opened.key -ne $key.key){Stop-Safe 'CUSTODIA_NO_VERIFICADA'}
- $payload=@{key=$key.key;output=$output;source=@{project='tyvwgsdzqipusodxtydv';host=$p.host;port=5432;database='postgres';user=$p.user;password=$p.password;storageKey=$p.storageKey;managementToken=$p.managementToken;ca=[IO.File]::ReadAllText($p.ca)};journal=[Convert]::ToBase64String([IO.File]::ReadAllBytes($p.journal));external=(Get-Content -Raw -LiteralPath $p.external|ConvertFrom-Json);receipts=$receipts}
+ $payload=@{key=$key.key;output=$output;source=@{project='tyvwgsdzqipusodxtydv';host=$p.host;port=5432;database='postgres';user=$p.user;password=$p.password;storageKey=$p.storageKey;managementToken=$p.managementToken;ca=[IO.File]::ReadAllText($p.ca)};journal=[Convert]::ToBase64String([IO.File]::ReadAllBytes($p.journal));external=(Get-Content -Raw -Encoding UTF8 -LiteralPath $p.external|ConvertFrom-Json);receipts=$receipts}
  try{$result=Invoke-PrivateNode 'capture' $payload;Show-Result $result}finally{$payload=$null;$p=$null;$key=$null;$opened=$null}
 }
 function Invoke-Verify {

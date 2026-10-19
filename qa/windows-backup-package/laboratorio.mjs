@@ -49,7 +49,7 @@ try{
  const vaultRoot=docker(['exec',container,script]).toString().trim();assert.match(vaultRoot,/^[a-fA-F0-9]{64}$/);
  docker(['stop',...others]);pass('fixtures Auth, FK, RLS, rol y Vault; todos los escritores locales detenidos');
  const journal=Buffer.from(JSON.stringify({fictional:true,currentReference:randomBytes(12).toString('hex')}));
- const payload=await snapshot({db,runPg:(command,args)=>docker(['exec',container,command,'--username=supabase_admin','--dbname=postgres',...args]),storage:async()=>Buffer.from('[]'),root:vaultRoot,external:{status:'captured_owner_reviewed',fictional:true},journal,receipts:{fictional:true},fictional:true});
+ const payload=await snapshot({db,runPg:(command,args)=>docker(['exec',container,command,'--username=supabase_admin',...(command==='pg_dumpall'?[]:['--dbname=postgres']),...args]),storage:async()=>Buffer.from('[]'),root:vaultRoot,external:{status:'captured_owner_reviewed',fictional:true},journal,receipts:{fictional:true},fictional:true});
  const key=randomBytes(32),phrase=randomBytes(24).toString('base64url'),wrapped=wrapKey(key,phrase),reopened=unwrapKey(wrapped,phrase);assert.deepEqual(reopened,key);const encrypted=encryptPayload(payload,key);decryptPayload(encrypted,key);
  pass('capturador NUEVO, archivo CVA2 y custodia CVK2 con recuperacion de clave');
  const damaged=Buffer.from(encrypted);damaged[22]^=1;assert.throws(()=>decryptPayload(damaged,key));assert.throws(()=>unwrapKey(wrapped,randomBytes(24).toString('base64url')));assert.throws(()=>journalGuard(payload,Buffer.from('fictional changed')));pass('rechazo de archivo alterado, frase incorrecta y revocaciones posteriores');
@@ -58,7 +58,7 @@ try{
  await db.end();db=undefined;isolateBootstrap({container,network,runId:id});
  const result=await restoreIsolated({encrypted,key,currentJournal:journal,container,network,runId:id});assert.equal(result.operationalApproval,false);assert.equal(result.integralRecoveryVerified,false);pass('restaurador NUEVO verifica datos/Auth/Vault, FK, RLS, funciones y ACL en destino descartable');
  console.log('PACKAGE_LAB_RESULT '+JSON.stringify({checks:count,success:true,realDevContacted:false,realDataUsed:false,fullDevRecoveryVerified:false,paidServices:0}));
-}catch(e){console.error('PACKAGE_LAB_FAILED '+JSON.stringify({stage:count,code:/^[A-Z][A-Z0-9_]+$/.test(e.message)?e.message:'FALLO_FICTICIO_SIN_DATOS',operation:e.operation,exit:e.exitStatus,sqlLine:e.sqlLine,reasons:e.reasons}));process.exitCode=1;}
+}catch(e){console.error('PACKAGE_LAB_FAILED '+JSON.stringify({stage:count,code:/^[A-Z][A-Z0-9_]+$/.test(e.message)?e.message:'FALLO_FICTICIO_SIN_DATOS',operation:e.operation,pgCommand:e.pgCommand,exit:e.exitStatus,sqlLine:e.sqlLine,reasons:e.reasons}));process.exitCode=1;}
 finally{
  try{await stop();if(ownedNetwork)docker(['network','rm',network]);rmSync(root,{recursive:true,force:true});console.log('PACKAGE_LAB_CLEANUP_OK');}catch{console.log('PACKAGE_LAB_CLEANUP_REQUIRES_REVIEW');process.exitCode=1;}
 }

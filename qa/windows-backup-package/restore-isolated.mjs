@@ -6,9 +6,9 @@ const lit=s=>"'"+s.replaceAll("'","''")+"'";
 function psql(container,sql){return localCommand('docker',['exec','-i',container,'psql','--username=supabase_admin','--dbname=postgres','-X','-q','-A','-t','--set=ON_ERROR_STOP=1','--file=-'],{input:Buffer.from(sql)}).toString('utf8').trim();}
 export function sqlClient(container){return {query:async(sql,values=[])=>{if(values.length){if(values.length!==1||!Array.isArray(values[0]))fail('CONSULTA_LOCAL_INVALIDA');sql=sql.replace('$1','ARRAY['+values[0].map(lit).join(',')+']::text[]');}const text=psql(container,'select coalesce(jsonb_agg(to_jsonb(t)),\'[]\' ) from ('+sql.replace(/;\s*$/,'')+') t;');return {rows:JSON.parse(text)};}};}
 function normalizeDDL(b){return b.toString().split('\n').filter(s=>!s.startsWith('--')&&!s.startsWith('\\restrict ')&&!s.startsWith('\\unrestrict ')).join('\n').trim();}
-function customRoles(source,target){
+export function customRoles(source,target){
  const names=new Set(target.roles.map(r=>r.rolname)),missing=source.roles.filter(r=>!names.has(r.rolname));
- for(const r of missing)if(r.rolcanlogin||r.rolsuper||r.rolcreatedb||r.rolcreaterole||r.rolreplication||r.rolbypassrls||r.rolname.startsWith('pg_')||r.rolname.startsWith('supabase_'))fail('ROL_REQUIERE_RECONCILIACION_PRIVADA');
+ for(const r of missing)if(r.rolconnlimit!==-1||r.rolvaliduntil!==null||(r.rolconfig?.length??0)>0||r.rolcanlogin||r.rolsuper||r.rolcreatedb||r.rolcreaterole||r.rolreplication||r.rolbypassrls||r.rolname.startsWith('pg_')||r.rolname.startsWith('supabase_'))fail('ROL_REQUIERE_RECONCILIACION_PRIVADA');
  let sql='set local role postgres;\n';
  for(const r of missing)sql+='create role '+q(r.rolname)+' nologin '+(r.rolinherit?'inherit':'noinherit')+' nosuperuser nocreatedb nocreaterole noreplication nobypassrls;\n';sql+='reset role;\n';
  const changed=new Set(missing.map(r=>r.rolname));

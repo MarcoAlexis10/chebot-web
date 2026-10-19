@@ -23,11 +23,11 @@ jobs:
           node-version: 24.21.0
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: python build-package.py
-      - name: Native PowerShell from extracted ZIP
+      - name: Changed manifest reader and preflight from ZIP
         run: |
           $destination=Join-Path $env:RUNNER_TEMP 'windows-package-extracted'
           Expand-Archive -LiteralPath ..\CHE-VENI-A1-WINDOWS.zip -DestinationPath $destination
-          & (Join-Path $destination 'INICIAR.ps1') -SelfTest
+          & (Join-Path $destination 'INICIAR.ps1') -Modo Preflight
   isolated-recovery:
     if: github.event.repository.private == false
     runs-on: ubuntu-latest
