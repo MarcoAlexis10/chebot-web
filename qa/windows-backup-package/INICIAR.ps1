@@ -52,10 +52,10 @@ function Invoke-PrivateNode([string]$Command,$Payload){
  $psi.FileName=$node;$psi.Arguments='"'+(Join-Path $Script:HomeDir 'cli.mjs')+'" '+$Command
  $psi.UseShellExecute=$false;$psi.CreateNoWindow=$true;$psi.RedirectStandardInput=$true;$psi.RedirectStandardOutput=$true;$psi.RedirectStandardError=$true
  foreach($unsafe in @('NODE_OPTIONS','NODE_TLS_REJECT_UNAUTHORIZED','NODE_EXTRA_CA_CERTS')){[void]$psi.EnvironmentVariables.Remove($unsafe)}
- $psi.StandardOutputEncoding=New-Object System.Text.UTF8Encoding($false);$psi.StandardErrorEncoding=New-Object System.Text.UTF8Encoding($false);$psi.StandardInputEncoding=New-Object System.Text.UTF8Encoding($false)
+ $psi.StandardOutputEncoding=New-Object System.Text.UTF8Encoding($false);$psi.StandardErrorEncoding=New-Object System.Text.UTF8Encoding($false)
  $process=New-Object System.Diagnostics.Process;$process.StartInfo=$psi;[void]$process.Start()
  $out=$process.StandardOutput.ReadToEndAsync();$err=$process.StandardError.ReadToEndAsync()
- $json=$Payload|ConvertTo-Json -Depth 50 -Compress;$process.StandardInput.WriteLine($json);$process.StandardInput.Close();$json=$null
+ $json=$Payload|ConvertTo-Json -Depth 50 -Compress;$bytes=[System.Text.Encoding]::UTF8.GetBytes($json);$process.StandardInput.BaseStream.Write($bytes,0,$bytes.Length);$process.StandardInput.Close();$json=$null;$bytes=$null
  $process.WaitForExit();$raw=$out.Result
  try{$result=$raw|ConvertFrom-Json}catch{Stop-Safe 'HERRAMIENTA_PRIVADA_FALLO'}
  if($process.ExitCode -ne 0 -or -not $result.ok){if($result.code -match '^[A-Z][A-Z0-9_]+$'){Stop-Safe $result.code};Stop-Safe 'HERRAMIENTA_PRIVADA_FALLO'}
@@ -68,7 +68,7 @@ function Require-Docker {
 }
 function Ask-Fields([string]$Title,$Fields){
  Add-Type -AssemblyName System.Windows.Forms
- $f=New-Object System.Windows.Forms.Form;$f.Text=$Title;$f.Width=820;$f.Height=[Math]::Min(940,155+55*$Fields.Count);$f.StartPosition='CenterScreen';$f.AutoScroll=$true
+ $f=New-Object System.Windows.Forms.Form;$f.Text=$Title;$f.Width=[Math]::Min(820,[System.Windows.Forms.Screen]::PrimaryScreen.WorkingArea.Width-40);$f.Height=[Math]::Min([System.Windows.Forms.Screen]::PrimaryScreen.WorkingArea.Height-80,155+55*$Fields.Count);$f.StartPosition='CenterScreen';$f.AutoScroll=$true
  $boxes=@{};$y=12
  foreach($item in $Fields){$label=New-Object System.Windows.Forms.Label;$label.Text=$item.Label;$label.Left=12;$label.Top=$y;$label.Width=760;$f.Controls.Add($label)
   $box=New-Object System.Windows.Forms.TextBox;$box.Left=12;$box.Top=$y+22;$box.Width=690;if($item.Default){$box.Text=$item.Default};if($item.Kind -eq 'secret'){$box.UseSystemPasswordChar=$true};$f.Controls.Add($box);$boxes[$item.Name]=$box
@@ -146,7 +146,7 @@ if($SelfTest){
  Write-Output 'WINDOWS_HELPERS_PASS'
  $phrase=[Guid]::NewGuid().ToString('N')+[Guid]::NewGuid().ToString('N');$created=Invoke-PrivateNode 'key-create' @{passphrase=$phrase}
  $temp=Join-Path ([IO.Path]::GetTempPath()) ([Guid]::NewGuid().ToString('N')+'.cclave')
- try{[IO.File]::WriteAllBytes($temp,[Convert]::FromBase64String($created.wrapped));$opened=Invoke-PrivateNode 'key-open' @{keyFile=$temp;passphrase=$phrase};if($opened.key -ne $created.key){Stop-Safe 'TEST_PIPE_PRIVADO'};Write-Output 'WINDOWS_PRIVATE_PIPE_PASS'}finally{Remove-Item -LiteralPath $temp -Force;$created=$null;$opened=$null;$phrase=$null}
+ try{[IO.File]::WriteAllBytes($temp,[Convert]::FromBase64String($created.wrapped));$opened=Invoke-PrivateNode 'key-open' @{keyFile=$temp;passphrase=$phrase};if($opened.key -ne $created.key){Stop-Safe 'TEST_PIPE_PRIVADO'};Write-Output 'WINDOWS_PRIVATE_PIPE_PASS';$cli=Ensure-Cli;$version=& $cli --version 2>$null;if($LASTEXITCODE -ne 0 -or "$version".Trim() -ne '2.121.0'){Stop-Safe 'CLI_WINDOWS_NO_VERIFICADA'};Write-Output 'WINDOWS_CLI_PASS'}finally{Remove-Item -LiteralPath $temp -Force;$created=$null;$opened=$null;$phrase=$null}
  exit 0
 }
 try{

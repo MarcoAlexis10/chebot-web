@@ -57,7 +57,7 @@ try{
  await db.end();db=undefined;
  const result=await restoreIsolated({encrypted,key,currentJournal:journal,container,network,runId:id});assert.equal(result.operationalApproval,false);assert.equal(result.integralRecoveryVerified,false);pass('restaurador NUEVO verifica datos/Auth/Vault, FK, RLS, funciones y ACL en destino descartable');
  console.log('PACKAGE_LAB_RESULT '+JSON.stringify({checks:count,success:true,realDevContacted:false,realDataUsed:false,fullDevRecoveryVerified:false,paidServices:0}));
-}catch(e){console.error('PACKAGE_LAB_FAILED '+JSON.stringify({stage:count,code:/^[A-Z][A-Z0-9_]+$/.test(e.message)?e.message:'FALLO_FICTICIO_SIN_DATOS',operation:e.operation,exit:e.exitStatus,sqlLine:e.sqlLine}));process.exitCode=1;}
+}catch(e){console.error('PACKAGE_LAB_FAILED '+JSON.stringify({stage:count,code:/^[A-Z][A-Z0-9_]+$/.test(e.message)?e.message:'FALLO_FICTICIO_SIN_DATOS',operation:e.operation,exit:e.exitStatus,sqlLine:e.sqlLine,reasons:e.reasons}));process.exitCode=1;}
 finally{
  try{await stop();if(ownedNetwork)docker(['network','rm',network]);rmSync(root,{recursive:true,force:true});console.log('PACKAGE_LAB_CLEANUP_OK');}catch{console.log('PACKAGE_LAB_CLEANUP_REQUIRES_REVIEW');process.exitCode=1;}
 }

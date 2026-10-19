@@ -32,7 +32,7 @@ El dump completo es archivo de preservacion, no un comando de restauracion ciego
 
 ## Coherencia entre base, objetos y proveedores
 
-MVCC no congela Storage, escritores externos ni roles. Los recibos W01-W10 deben identificar, con evidencia privada, cierre coordinado de: W01 web, W02 backend, W03 tareas/cron/colas, W04 Auth/sesiones, W05 Storage/subidas, W06 webhooks/proveedores, W07 operadores/SQL, W08 Edge Functions, W09 migraciones/roles/DDL y W10 revocaciones/configuracion externa. Este paquete NO efectua esos cierres. El control de roles vuelve a leer en una transaccion nueva; los recibos y revision independiente siguen siendo necesarios. No producir constancias ficticias para desbloquear el capturador.
+MVCC no congela Storage, escritores externos ni roles. Los recibos W01-W10 deben identificar, con evidencia privada, cierre coordinado de: W01 ingreso externo/webhooks y colas, W02 mutaciones manager/WhatsApp (incluidos clientes antiguos), W03 Auth/login/refresh/logout, W04 verificador y registro independiente, W05 notificaciones/cron/dispatchers, W06 consumidores Free DEV, W07 catalogo/admin/media/Storage DEV, W08 tareas de base/cron/queues/triggers, W09 SQL/roles/DDL/migraciones y W10 otros hosts/CI/Edge Functions. Esta numeracion conserva la del runbook A2 previo; incluir configuracion externa y todos los escritores adicionales dentro de sus responsables. Este paquete NO efectua esos cierres. El control de roles vuelve a leer en una transaccion nueva; los recibos y revision independiente siguen siendo necesarios. No producir constancias ficticias para desbloquear el capturador.
 
 ## Cifrado y manejo de secretos
 

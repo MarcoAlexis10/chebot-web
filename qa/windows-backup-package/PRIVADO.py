@@ -4,7 +4,9 @@ import base64,getpass,json,os,pathlib,secrets,subprocess,sys
 HERE=pathlib.Path(__file__).resolve().parent
 PG_IMAGE='postgres:17.11-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826'
 def invoke(mode,payload):
-    r=subprocess.run(['node',str(HERE/'cli.mjs'),mode],input=json.dumps(payload).encode(),stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    env=os.environ.copy()
+    for name in ['NODE_OPTIONS','NODE_TLS_REJECT_UNAUTHORIZED','NODE_EXTRA_CA_CERTS']:env.pop(name,None)
+    r=subprocess.run(['node',str(HERE/'cli.mjs'),mode],input=json.dumps(payload).encode(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=env)
     try: value=json.loads(r.stdout)
     except Exception: raise RuntimeError('HERRAMIENTA_PRIVADA_FALLO') from None
     if r.returncode or not value.get('ok'): raise RuntimeError(value.get('code','HERRAMIENTA_PRIVADA_FALLO'))
@@ -13,7 +15,7 @@ def datafile(prompt):return pathlib.Path(input(prompt).strip()).expanduser().res
 def main():
     if os.getenv('CI') or os.getenv('GITHUB_ACTIONS'):raise RuntimeError('CAPTURA_REAL_BLOQUEADA_EN_CI')
     print('Entorno privado: no se crea un servicio ni un proyecto. Node 24, Docker LOCAL Linux y Python 3 deben estar disponibles.')
-    mode=input('Modo: verificar o respaldar (por defecto salir): ').strip()
+    mode=sys.argv[1] if len(sys.argv)>1 else input('Modo: verificar o respaldar (por defecto salir): ').strip()
     if mode=='verificar':
         backup=datafile('Archivo cifrado .cva: ');kf=datafile('Clave cifrada .cclave: ');phrase=getpass.getpass('Frase privada: ')
         key=invoke('key-open',{'keyFile':str(kf),'passphrase':phrase})['key'];print(json.dumps(invoke('verify',{'backup':str(backup),'key':key})));return
@@ -28,7 +30,7 @@ def main():
     if version!='24':raise RuntimeError('NODE_24_REQUERIDO')
     subprocess.run(['docker','pull',PG_IMAGE],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=True)
     backup_dir=datafile('Carpeta PRIVADA de respaldos fuera del repositorio: ');key_dir=datafile('Carpeta SEPARADA de claves cifradas: ')
-    if backup_dir==key_dir or backup_dir in key_dir.parents or key_dir in backup_dir.parents or HERE in backup_dir.parents or HERE in key_dir.parents:raise RuntimeError('CUSTODIA_NO_SEPARADA')
+    if backup_dir==key_dir or backup_dir in key_dir.parents or key_dir in backup_dir.parents or backup_dir==HERE or key_dir==HERE or HERE in backup_dir.parents or HERE in key_dir.parents or backup_dir in HERE.parents or key_dir in HERE.parents:raise RuntimeError('CUSTODIA_NO_SEPARADA')
     backup_dir.mkdir(parents=True,exist_ok=True,mode=0o700);key_dir.mkdir(parents=True,exist_ok=True,mode=0o700)
     phrase=getpass.getpass('Frase de custodia, minimo 20 caracteres: ')
     if phrase!=getpass.getpass('Repetir frase: '):raise RuntimeError('FRASES_NO_COINCIDEN')
