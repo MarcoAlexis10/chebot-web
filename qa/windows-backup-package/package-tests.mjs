@@ -28,3 +28,12 @@ test('catalogo compara contenido igual entre filas pg y JSONB sin depender del o
  assert.equal(stableJSON(pgRows),stableJSON(jsonRows));
  assert.notEqual(stableJSON(pgRows),stableJSON([{...pgRows[0],ordinal_position:2}]));
 });
+
+test('Storage rechaza rutas ambiguas antes de solicitar bytes o endpoints ajenos',async()=>{
+ for(const bad of ['../outside','folder/../../functions','%2e%2e','folder\\outside']){
+  let binary=false;
+  await assert.rejects(storageExport(async(path,body,bytes)=>{if(bytes){binary=true;throw Error('unexpected');}return path==='bucket'?[{id:'fixture'}]:[{id:'fictional',name:bad,metadata:{}}];}),/STORAGE_RUTA_NO_SEGURA/);
+  assert.equal(binary,false);
+ }
+ await assert.rejects(storageExport(async()=>[{id:'..'}]),/STORAGE_RUTA_NO_SEGURA/);
+});

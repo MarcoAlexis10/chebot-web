@@ -41,12 +41,13 @@ export async function restoreIsolated({encrypted,key,currentJournal,container,ne
  const client=sqlClient(container);
  if((await client.query('select count(*)::int n from auth.users')).rows[0].n!==0)fail('DESTINO_NO_VACIO');
  if(await managedLayout(client)!==catalog.managedLayout)fail('DDL_ADMINISTRADO_INCOMPATIBLE');
- const dump=localCommand('docker',['exec',container,'pg_dump','--username=supabase_admin','--dbname=postgres','--schema=auth','--schema=storage','--schema-only']);
+ const dump=localCommand('docker',['exec',container,'pg_dump','--username=supabase_admin','--dbname=postgres','--schema=auth','--schema=storage','--schema-only','--format=custom']);
  const sourceDdl=localCommand('docker',['run','--rm','-i','--pull=never','--network','none',PG_IMAGE,'pg_restore','--file=-'],{input:unpack(p,'managed-ddl')});
  // Cloud projects may legitimately customize managed triggers or policies.
  // Require an independently reviewed reconciliation receipt rather than
  // silently dropping those changes or replaying all managed DDL as admin.
- if(sha(normalizeDDL(sourceDdl))!==sha(normalizeDDL(dump)))fail('CUSTOMIZACIONES_ADMINISTRADAS_REQUIEREN_REVISION');
+ const targetDdl=localCommand('docker',['run','--rm','-i','--pull=never','--network','none',PG_IMAGE,'pg_restore','--file=-'],{input:dump});
+ if(sha(normalizeDDL(sourceDdl))!==sha(normalizeDDL(targetDdl)))fail('CUSTOMIZACIONES_ADMINISTRADAS_REQUIEREN_REVISION');
  const target=(await client.query("select jsonb_build_object('roles',(select jsonb_agg(jsonb_build_object('rolname',rolname)) from pg_roles)) roles")).rows[0].roles;
  const sourceRoles=JSON.parse(unpack(p,'roles')),roles=customRoles(sourceRoles,target);
  const toc=localCommand('docker',['run','--rm','-i','--pull=never','--network','none',PG_IMAGE,'pg_restore','--list'],{input:unpack(p,'application')}).toString();

@@ -4,9 +4,9 @@ import {mkdtempSync,readFileSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
-import {snapshot} from './backup.mjs';
+import {snapshot,managedLayout} from './backup.mjs';
 import {encryptPayload,decryptPayload,wrapKey,unwrapKey,journalGuard,sha} from './core.mjs';
-import {restoreIsolated,isolateBootstrap} from './restore-isolated.mjs';
+import {restoreIsolated,isolateBootstrap,sqlClient} from './restore-isolated.mjs';
 import {localCommand,PG_IMAGE,assertLocalDocker} from './pg-tools.mjs';
 
 // New package integration: no cloud endpoint, credentials or backup input.
@@ -36,7 +36,7 @@ try{
  run(cli,['init','--workdir',work,'--yes','--agent','no']);const cfg=join(work,'supabase','config.toml');writeFileSync(cfg,readFileSync(cfg,'utf8').replace(/^project_id\s*=.*$/m,'project_id = "'+project+'"'));ownedInitialized=true;
  docker(['network','create','--label','cheveni.a1.discardable='+id,'-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1',network]);
  ownedNetwork=true;
- const status=await start();pass('bootstrap propio vacio con puertos loopback');
+ const status=await start();assert.equal(await managedLayout(db),await managedLayout(sqlClient(container)),'METADATA_TRANSPORT_MISMATCH');pass('bootstrap propio vacio con puertos loopback');
  const password=randomBytes(24).toString('base64url'),email='package-'+id+'@example.invalid';
  const created=await fetch(status.API_URL+'/auth/v1/admin/users',{method:'POST',headers:{apikey:status.SERVICE_ROLE_KEY,Authorization:'Bearer '+status.SERVICE_ROLE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password,email_confirm:true}),redirect:'error'});assert.ok(created.ok);const user=(await created.json()).id;
  await db.query('create role cheveni_fixture_reader nologin noinherit nosuperuser nocreatedb nocreaterole noreplication nobypassrls');
