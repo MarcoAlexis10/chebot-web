@@ -84,8 +84,10 @@ try{
  // processes before functional probes, rather than retrying user creation.
  docker(['restart',...services]);
  let authReady=false;
- for(let i=0;i<80;i++){try{if((await api('/auth/v1/health',{method:'GET'})).ok){authReady=true;break;}}catch{}await delay();}
- assert.equal(authReady,true,'Auth must recover its database connection after local PostgreSQL restart');
+ for(let i=0;i<80;i++){try{
+  if((await api('/auth/v1/health',{method:'GET'})).ok&&(await api('/storage/v1/bucket',{method:'GET'})).ok){authReady=true;break;}
+ }catch{}await delay();}
+ assert.equal(authReady,true,'Auth and Storage must recover database connections before any fixture writes');
  pass('fresh source stack; exact loopback endpoints; separate random Vault root');
  const created=await api('/auth/v1/admin/users',{body:{email,password,email_confirm:true}});
  if(!created.ok){
