@@ -20,3 +20,11 @@ test('roles con limites, vencimientos o configuracion no se recrean como si fuer
  assert.equal(customRoles({roles:[role],memberships:[]},{roles:[]}).missing.length,1);
  for(const change of [{rolconnlimit:2},{rolvaliduntil:'infinity'},{rolconfig:['search_path=public']}])assert.throws(()=>customRoles({roles:[{...role,...change}],memberships:[]},{roles:[]}),/ROL_REQUIERE_RECONCILIACION_PRIVADA/);
 });
+
+test('catalogo compara contenido igual entre filas pg y JSONB sin depender del orden de claves',async()=>{
+ const {stableJSON}=await import('./core.mjs');
+ const pgRows=[{table_schema:'auth',table_name:'fictional',ordinal_position:1,nested:{owner:'postgres',rls:true}}];
+ const jsonRows=[{nested:{rls:true,owner:'postgres'},ordinal_position:1,table_name:'fictional',table_schema:'auth'}];
+ assert.equal(stableJSON(pgRows),stableJSON(jsonRows));
+ assert.notEqual(stableJSON(pgRows),stableJSON([{...pgRows[0],ordinal_position:2}]));
+});

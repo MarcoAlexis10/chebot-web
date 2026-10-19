@@ -1,1 +1,9 @@
-{"name":"portable-fictional-recovery-lab","private":true,"type":"module","dependencies":{"pg":"8.23.1"}}
+{
+  "name": "cheveni-a1-windows-toolkit",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "pg": "8.23.1"
+  },
+  "description": "Private encrypted manual backup and disposable recovery toolkit"
+}

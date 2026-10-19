@@ -1,5 +1,5 @@
 import {localCommand,PG_IMAGE,assertLocalDocker} from './pg-tools.mjs';
-import {decryptPayload,unpack,journalGuard,validateDiscardable,sha,fail} from './core.mjs';
+import {decryptPayload,unpack,stableJSON,journalGuard,validateDiscardable,sha,fail} from './core.mjs';
 import {dataDigest,managedLayout,relationSql,functionSql,roleQuery} from './backup.mjs';
 const q=n=>'"'+n.replaceAll('"','""')+'"';
 const lit=s=>"'"+s.replaceAll("'","''")+"'";
@@ -67,8 +67,8 @@ export async function restoreIsolated({encrypted,key,currentJournal,container,ne
  let ready=false;for(let i=0;i<60;i++){try{await client.query('select 1 n');ready=true;break;}catch{}await new Promise(r=>setTimeout(r,300));}if(!ready)fail('DESTINO_LOCAL_NO_RESPONDE');
  if(await dataDigest(client,[...catalog.appSchemas,'auth','vault','storage'])!==catalog.dataDigest)fail('DATOS_RESTAURADOS_NO_COINCIDEN');
  const recoveredRoles=(await client.query(roleQuery)).rows[0].roles,customNames=new Set(roles.missing.map(r=>r.rolname));
- if(JSON.stringify(recoveredRoles.roles.filter(r=>customNames.has(r.rolname)))!==JSON.stringify(sourceRoles.roles.filter(r=>customNames.has(r.rolname)))||JSON.stringify((recoveredRoles.memberships??[]).filter(m=>customNames.has(m.role)||customNames.has(m.member)))!==JSON.stringify((sourceRoles.memberships??[]).filter(m=>customNames.has(m.role)||customNames.has(m.member))))fail('ROLES_O_GRANTORS_NO_COINCIDEN');
- if(JSON.stringify((await client.query(relationSql,[catalog.appSchemas])).rows)!==JSON.stringify(catalog.applicationRelations)||JSON.stringify((await client.query(functionSql,[catalog.appSchemas])).rows)!==JSON.stringify(catalog.applicationFunctions))fail('ACL_O_OBJETOS_REQUIEREN_RECONCILIACION');
+ if(stableJSON(recoveredRoles.roles.filter(r=>customNames.has(r.rolname)))!==stableJSON(sourceRoles.roles.filter(r=>customNames.has(r.rolname)))||stableJSON((recoveredRoles.memberships??[]).filter(m=>customNames.has(m.role)||customNames.has(m.member)))!==stableJSON((sourceRoles.memberships??[]).filter(m=>customNames.has(m.role)||customNames.has(m.member))))fail('ROLES_O_GRANTORS_NO_COINCIDEN');
+ if(stableJSON((await client.query(relationSql,[catalog.appSchemas])).rows)!==stableJSON(catalog.applicationRelations)||stableJSON((await client.query(functionSql,[catalog.appSchemas])).rows)!==stableJSON(catalog.applicationFunctions))fail('ACL_O_OBJETOS_REQUIEREN_RECONCILIACION');
  const decrypted=(await client.query('select coalesce(bool_and(decrypted_secret is not null),true) ok from vault.decrypted_secrets')).rows[0].ok;if(!decrypted)fail('VAULT_NO_RECUPERADO');
  return {status:'datos_aplicacion_auth_vault_verificados_en_destino_descartable',fictional:p.fictional===true,operationalApproval:false,integralRecoveryVerified:false,externalConfigurationRestored:false,remaining:'roles/default ACL administrados, configuración/proveedores y revisión independiente actuales'};
 }

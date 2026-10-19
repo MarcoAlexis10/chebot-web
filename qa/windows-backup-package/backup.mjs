@@ -1,5 +1,5 @@
 import {Client} from 'pg';
-import {part,PROJECT,validateSource,validateReceipts,encryptPayload,decryptPayload,sha,fail,summary} from './core.mjs';
+import {part,PROJECT,stableJSON,validateSource,validateReceipts,encryptPayload,decryptPayload,sha,fail,summary} from './core.mjs';
 import {remotePgTools,assertLocalDocker} from './pg-tools.mjs';
 const managed=new Set(['auth','storage','vault','extensions','cron','net','graphql','graphql_public','realtime','supabase_migrations','supabase_functions','_analytics','_realtime','pgsodium','pgsodium_masks']);
 const qi=n=>'"'+n.replaceAll('"','""')+'"';
@@ -10,7 +10,7 @@ export async function dataDigest(db,schemas){
  for(const t of names){const d=(await db.query('select md5(coalesce(jsonb_agg(to_jsonb(x) order by to_jsonb(x)::text)::text,\'[]\')) hash from '+qi(t.schemaname)+'.'+qi(t.tablename)+' x')).rows[0].hash;out.push([t.schemaname,t.tablename,d]);}
  return sha(JSON.stringify(out));
 }
-export async function managedLayout(db){return sha(JSON.stringify((await db.query("select table_schema,table_name,column_name,ordinal_position,udt_schema,udt_name,is_nullable,column_default from information_schema.columns where table_schema in ('auth','storage','vault') order by 1,2,4")).rows));}
+export async function managedLayout(db){return sha(stableJSON((await db.query("select table_schema,table_name,column_name,ordinal_position,udt_schema,udt_name,is_nullable,column_default from information_schema.columns where table_schema in ('auth','storage','vault') order by 1,2,4")).rows));}
 export const roleQuery="select jsonb_build_object('roles',(select jsonb_agg(to_jsonb(r) order by rolname) from (select rolname,rolsuper,rolinherit,rolcreaterole,rolcreatedb,rolcanlogin,rolreplication,rolbypassrls,rolconnlimit,rolvaliduntil,rolconfig from pg_roles) r),'memberships',(select jsonb_agg(jsonb_build_object('role',r.rolname,'member',u.rolname,'grantor',g.rolname,'admin',m.admin_option,'inherit',m.inherit_option,'set',m.set_option) order by r.rolname,u.rolname,g.rolname) from pg_auth_members m join pg_roles r on r.oid=m.roleid join pg_roles u on u.oid=m.member join pg_roles g on g.oid=m.grantor)) roles";
 export async function storageExport(request){
  const buckets=await request('bucket');if(!Array.isArray(buckets))fail('STORAGE_INVALIDO');const all=[];let total=0,objects=0;

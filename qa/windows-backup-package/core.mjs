@@ -1,5 +1,6 @@
 import {createCipheriv,createDecipheriv,createHash,randomBytes,timingSafeEqual,scryptSync} from 'node:crypto';
 export const PROJECT='tyvwgsdzqipusodxtydv';
+export const stableJSON=value=>JSON.stringify(value,(_key,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const REQUIRED=['database-full','application','auth-data','storage-data','vault-data','managed-ddl','roles','roles-ddl','catalog','storage-bytes','external-config','vault-root','revocations'];
 function derive(pass,salt){if(typeof pass!=='string'||pass.length<20)fail('FRASE_DE_CLAVE_MINIMO_20_CARACTERES');return scryptSync(pass,salt,32,{N:131072,r:8,p:1,maxmem:192*1024*1024});}
