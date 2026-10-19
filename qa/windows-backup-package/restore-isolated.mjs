@@ -3,7 +3,7 @@ import {decryptPayload,unpack,stableJSON,journalGuard,validateDiscardable,sha,fa
 import {dataDigest,managedLayout,relationSql,functionSql,roleQuery} from './backup.mjs';
 const q=n=>'"'+n.replaceAll('"','""')+'"';
 const lit=s=>"'"+s.replaceAll("'","''")+"'";
-function psql(container,sql){return localCommand('docker',['exec','-i',container,'psql','--username=supabase_admin','--dbname=postgres','-X','-q','-A','-t','--set=ON_ERROR_STOP=1','--file=-'],{input:Buffer.from(sql)}).toString('utf8').trim();}
+function psql(container,sql){return localCommand('docker',['exec','-i',container,'psql','--username=supabase_admin','--dbname=postgres','-X','-q','-A','-t','--set=ON_ERROR_STOP=1','--file=-'],{input:Buffer.from('set search_path=pg_catalog;\n'+sql)}).toString('utf8').trim();}
 export function sqlClient(container){return {query:async(sql,values=[])=>{if(values.length){if(values.length!==1||!Array.isArray(values[0]))fail('CONSULTA_LOCAL_INVALIDA');sql=sql.replace('$1','ARRAY['+values[0].map(lit).join(',')+']::text[]');}const text=psql(container,'select coalesce(jsonb_agg(to_jsonb(t)),\'[]\' ) from ('+sql.replace(/;\s*$/,'')+') t;');return {rows:JSON.parse(text)};}};}
 function normalizeDDL(b){return b.toString().split('\n').filter(s=>!s.startsWith('--')&&!s.startsWith('\\restrict ')&&!s.startsWith('\\unrestrict ')).join('\n').trim();}
 export function customRoles(source,target){

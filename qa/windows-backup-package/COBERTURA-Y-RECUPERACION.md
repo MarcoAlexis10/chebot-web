@@ -55,7 +55,7 @@ GO para distribuir y ensayar este paquete con datos ficticios, sujeto a la evide
 Bloqueos reales que requieren al propietario (lista unica):
 1. Equipo privado con Docker Linux disponible, o entorno remoto privado cuya gratuidad/ausencia de cobro haya verificado en su cuenta.
 2. Accesos existentes y CA, raiz Vault legible, inventario/secretos externos bajo custodia, registro actual independiente, ventana coherente W01-W10 y ubicaciones separadas de respaldo/clave/frase.
-3. Ejecutar captura y ensayo PRIVADOS reales; resolver con evidencia cualquier incompatibilidad administrada, roles, Storage, limite o proveedor detectado. Sin ese ensayo A1 sigue abierto; no pagar un plan vuelve automatica la recuperacion de los componentes externos.
+3. Ejecutar captura y ensayo PRIVADOS reales; resolver con evidencia cualquier incompatibilidad administrada, roles, Storage, limite o proveedor detectado. Sin ese ensayo A1 sigue abierto; un cambio de plan, por si solo, no demuestra recuperacion de los componentes externos.
 
 Fuentes oficiales consultadas 2026-10-19:
 - https://supabase.com/docs/guides/platform/migrating-within-supabase/backup-restore

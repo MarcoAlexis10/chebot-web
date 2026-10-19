@@ -10,7 +10,8 @@ export async function dataDigest(db,schemas){
  for(const t of names){const d=(await db.query('select md5(coalesce(jsonb_agg(to_jsonb(x) order by to_jsonb(x)::text)::text,\'[]\')) hash from '+qi(t.schemaname)+'.'+qi(t.tablename)+' x')).rows[0].hash;out.push([t.schemaname,t.tablename,d]);}
  return sha(JSON.stringify(out));
 }
-export async function managedLayout(db){return sha(stableJSON((await db.query("select n.nspname::text table_schema,c.relname::text table_name,a.attname::text column_name,a.attnum::integer ordinal_position,tn.nspname::text udt_schema,t.typname::text udt_name,case when a.attnotnull then 'NO' else 'YES' end is_nullable,pg_get_expr(d.adbin,d.adrelid) column_default from pg_attribute a join pg_class c on c.oid=a.attrelid join pg_namespace n on n.oid=c.relnamespace join pg_type t on t.oid=a.atttypid join pg_namespace tn on tn.oid=t.typnamespace left join pg_attrdef d on d.adrelid=c.oid and d.adnum=a.attnum where n.nspname in ('auth','storage','vault') and c.relkind in ('r','p','v','m','f') and a.attnum>0 and not a.attisdropped order by 1,2,4")).rows));}
+export const managedColumnSql="select n.nspname::text table_schema,c.relname::text table_name,a.attname::text column_name,a.attnum::integer ordinal_position,tn.nspname::text udt_schema,t.typname::text udt_name,case when a.attnotnull then 'NO' else 'YES' end is_nullable,pg_get_expr(d.adbin,d.adrelid) column_default from pg_attribute a join pg_class c on c.oid=a.attrelid join pg_namespace n on n.oid=c.relnamespace join pg_type t on t.oid=a.atttypid join pg_namespace tn on tn.oid=t.typnamespace left join pg_attrdef d on d.adrelid=c.oid and d.adnum=a.attnum where n.nspname in ('auth','storage','vault') and c.relkind in ('r','p','v','m','f') and a.attnum>0 and not a.attisdropped order by 1,2,4";
+export async function managedLayout(db){return sha(stableJSON((await db.query(managedColumnSql)).rows));}
 export const roleQuery="select jsonb_build_object('roles',(select jsonb_agg(to_jsonb(r) order by rolname) from (select rolname,rolsuper,rolinherit,rolcreaterole,rolcreatedb,rolcanlogin,rolreplication,rolbypassrls,rolconnlimit,rolvaliduntil,rolconfig from pg_roles) r),'memberships',(select jsonb_agg(jsonb_build_object('role',r.rolname,'member',u.rolname,'grantor',g.rolname,'admin',m.admin_option,'inherit',m.inherit_option,'set',m.set_option) order by r.rolname,u.rolname,g.rolname) from pg_auth_members m join pg_roles r on r.oid=m.roleid join pg_roles u on u.oid=m.member join pg_roles g on g.oid=m.grantor)) roles";
 export async function storageExport(request){
  const buckets=await request('bucket');if(!Array.isArray(buckets))fail('STORAGE_INVALIDO');const all=[];let total=0,objects=0;
@@ -25,7 +26,7 @@ export async function storageExport(request){
 }
 export async function snapshot({db,runPg,storage,root,external,journal,receipts,fictional=false}){
  const parts=[];let size=0;const add=(name,b)=>{size+=b.length;if(b.length>128*1024*1024||size>400*1024*1024)fail('RESPALDO_REQUIERE_STREAMING');parts.push(part(name,b));};
- await db.query('begin isolation level repeatable read read only');
+ await db.query('begin isolation level repeatable read read only');await db.query('set local search_path=pg_catalog');
  try{
  const id=(await db.query('select pg_export_snapshot() id')).rows[0].id;if(!/^[0-9A-F-]+$/i.test(id))fail('SNAPSHOT_INVALIDO');
  const schemas=(await db.query("select nspname from pg_namespace where nspname not like 'pg_%' and nspname<>'information_schema' order by nspname")).rows.map(x=>x.nspname);
