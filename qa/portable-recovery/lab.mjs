@@ -45,7 +45,13 @@ async function start(){
  for(const id of ids){assert.match(id,/^[a-f0-9]{12,64}$/);const info=JSON.parse(docker(['inspect',id]))[0];
   for(const m of info.Mounts??[])if(m.Type==='volume')volumeNames.push(m.Name);
   if(/supabase\/postgres:17\./.test(info.Config.Image)){pg=id;assert.deepEqual(info.NetworkSettings.Ports['5432/tcp'],[{HostIp:'127.0.0.1',HostPort:'54322'}]);}
-  else {services.push(id);if(/storage-api:/.test(info.Config.Image))storage={id,image:info.Config.Image};}
+  else {services.push(id);if(/storage-api:/.test(info.Config.Image)){
+   const configured=(info.Config.Env??[]).find(x=>x.startsWith('FILE_STORAGE_BACKEND_PATH='))?.split('=').slice(1).join('=');
+   const candidates=(info.Mounts??[]).filter(m=>['/mnt','/var/lib/storage'].includes(m.Destination));
+   const path=configured??(candidates.length===1?candidates[0].Destination:null);
+   assert.ok(['/mnt','/var/lib/storage'].includes(path),'reviewed local storage mount required');
+   storage={id,image:info.Config.Image,path};
+  }}
  }
  assert.ok(pg);assert.ok(storage);await connect();
  assert.equal((await db.query('select count(*)::int n from auth.users')).rows[0].n,0,'fresh fixture stack only');
@@ -112,7 +118,7 @@ try{
  const snapshot=(await db.query('select pg_export_snapshot() id')).rows[0].id;assert.match(snapshot,/^[0-9A-F-]+$/i);
  const dump=args=>docker(['exec',pg,'pg_dump','--username=supabase_admin','--dbname=postgres','--format=custom','--snapshot='+snapshot,...args]);
  sourceDigest=await dataDigest(['portable_app','auth','vault','storage']);
- const buffers={application:dump(['--schema=portable_app']),auth:dump(['--schema=auth','--data-only']),vault:dump(['--table=vault.secrets','--data-only']),storage:dump(['--schema=storage','--data-only']),'managed-ddl':dump(['--schema=auth','--schema=storage','--schema=vault','--schema-only']),roles:Buffer.from(roleSql),configuration:Buffer.from(JSON.stringify({siteUrl:'https://fictional.example.invalid',smtpConfigured:false,allowSends:false})), 'storage-files':docker(['cp',storage.id+':/var/lib/storage/.','-'])};
+ const buffers={application:dump(['--schema=portable_app']),auth:dump(['--schema=auth','--data-only']),vault:dump(['--table=vault.secrets','--data-only']),storage:dump(['--schema=storage','--data-only']),'managed-ddl':dump(['--schema=auth','--schema=storage','--schema=vault','--schema-only']),roles:Buffer.from(roleSql),configuration:Buffer.from(JSON.stringify({siteUrl:'https://fictional.example.invalid',smtpConfigured:false,allowSends:false})), 'storage-files':docker(['cp',storage.id+':'+storage.path+'/.','-'])};
  await db.query('rollback');
  const journal=sha256('fixture-revoked-at-checkpoint'),parts=partsFrom(buffers);verifyParts(parts);
  const envelope=seal(Buffer.from(JSON.stringify({version:1,root,sourceLayout,sourceDigest,journal,parts})),key);
@@ -147,7 +153,7 @@ try{
  pass('separately captured fictional root restores Vault decryption in new cluster');
  // No cloud or S3 storage is involved. The file backend volume is restored
  // separately from PostgreSQL; the metadata alone cannot restore file bytes.
- docker(['run','--rm','-i','--network','none','--volumes-from',storage.id,'--user','root','--entrypoint','tar',storage.image,'-xf','-','-C','/var/lib/storage'],bytes['storage-files']);
+ docker(['run','--rm','-i','--network','none','--volumes-from',storage.id,'--user','root','--entrypoint','tar',storage.image,'-xf','-','-C',storage.path],bytes['storage-files']);
  assert.equal(await dataDigest(['portable_app','auth','vault','storage']),restored.sourceDigest);
  assert.deepEqual((await db.query(roleInventory)).rows,sourceRoles);
  assert.deepEqual((await db.query(membershipInventory)).rows,sourceMemberships);
