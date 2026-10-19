@@ -1,0 +1,48 @@
+name: Portable recovery - fictional public QA only
+"on":
+  push:
+    branches: [qa/portable-recovery-fictional-20261019]
+    paths: [qa/portable-recovery/**, .github/workflows/portable-recovery-public-qa.yml]
+permissions:
+  contents: read
+concurrency:
+  group: portable-recovery-fictional
+  cancel-in-progress: true
+jobs:
+  recovery:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && github.ref == 'refs/heads/qa/portable-recovery-fictional-20261019'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_TELEMETRY_DISABLED: '1'
+      DO_NOT_TRACK: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm ci --prefix qa/portable-recovery --ignore-scripts --no-audit --no-fund
+      - run: node --test qa/portable-recovery/portable.test.mjs
+      - name: Install pinned CLI
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location https://github.com/supabase/cli/releases/download/v2.121.0/supabase_2.121.0_linux_amd64.tar.gz -o "$RUNNER_TEMP/portable-cli.tgz"
+          echo "4b481189efbdc57cf2d37bdee5f1a0d29574314398564b32a6dfb76c0fcf275f  $RUNNER_TEMP/portable-cli.tgz" | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/portable-cli"
+          tar -xzf "$RUNNER_TEMP/portable-cli.tgz" -C "$RUNNER_TEMP/portable-cli" supabase
+          echo "$RUNNER_TEMP/portable-cli" >> "$GITHUB_PATH"
+      - name: Two fresh local stacks - no cloud account or real data
+        run: node qa/portable-recovery/lab.mjs
+        env:
+          PORTABLE_RECOVERY_MODE: fictional-local-only
+      - name: Destroy remaining local lab resources
+        if: always()
+        run: |
+          if command -v supabase >/dev/null && test -d "$RUNNER_TEMP/portable-stack"; then
+            supabase stop --workdir "$RUNNER_TEMP/portable-stack" --no-backup --agent no >/dev/null 2>&1 || true
+          fi
+          docker network rm portable-recovery-only >/dev/null 2>&1 || true
+          rm -rf "$RUNNER_TEMP/portable-stack" "$RUNNER_TEMP/portable-recovery-custody"
+          echo 'LOCAL_LAB_CLEANUP_FINISHED'
