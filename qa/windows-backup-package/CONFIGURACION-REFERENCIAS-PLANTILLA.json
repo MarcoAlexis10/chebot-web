@@ -1,0 +1,7 @@
+{
+  "status": "incomplete_not_captured",
+  "supabase": {"authSettingsReceipt":null,"jwtAndApiKeyCustodyReceipt":null,"storageSettingsReceipt":null,"extensionsAndMigrationsReceipt":null,"realtimeReceipt":null,"edgeFunctionsAndDependenciesReceipt":null,"edgeSecretCustodyReceipt":null,"cronQueuesWebhooksReceipt":null},
+  "hosting": {"providerSettingsReceipt":null,"pinnedSourcesReceipt":null,"aliasesAndProtectionReceipt":null,"environmentScopesAndSecretCustodyReceipt":null,"phoneHashAndChannelOriginalKeyCustodyReceipt":null},
+  "external": {"smtpReceipt":null,"dnsTlsReceipt":null,"metaReceipt":null,"otherConsumersReceipt":null},
+  "instruccion": "Solo referencias a custodia y configuraciones revisadas. Los valores reales adicionales se conservan en el archivo PRIVADO que el propietario selecciona; solo se incorporan al respaldo cifrado. Los secretos no exportables y proveedores requieren recuperacion adicional. Dejar status incompleto hasta revision real."
+}

@@ -1,0 +1,68 @@
+name: Windows backup package QA
+on:
+  push:
+    branches: [qa/windows-backup-package-20261019]
+    paths: ['qa/windows-backup-package/**', '.github/workflows/windows-backup-package-qa.yml']
+permissions:
+  contents: read
+jobs:
+  windows:
+    if: github.event.repository.private == false
+    runs-on: windows-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: qa/windows-backup-package
+        shell: powershell
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: python build-package.py --manifest-only
+      - run: .\INICIAR.ps1 -SelfTest
+  isolated-recovery:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    defaults:
+      run:
+        working-directory: qa/windows-backup-package
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.21.0
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: New package controls
+        run: node --test package-tests.mjs
+      - name: Verified CLI and pinned client image
+        run: |
+          curl --fail --silent --show-error --location https://github.com/supabase/cli/releases/download/v2.121.0/supabase_2.121.0_linux_amd64.tar.gz -o /tmp/a1-cli.tar.gz
+          echo '4b481189efbdc57cf2d37bdee5f1a0d29574314398564b32a6dfb76c0fcf275f  /tmp/a1-cli.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/a1-cli.tar.gz -C /tmp supabase
+          docker pull postgres:17.11-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826 > /dev/null
+      - name: New package recovery integration with fictional data
+        env:
+          CHEVENI_LAB_CLI: /tmp/supabase
+        run: node laboratorio.mjs
+      - name: Cleanup owned resources only
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import subprocess,json,re
+          def call(*a): return subprocess.check_output(['docker',*a],text=True).strip()
+          for net in call('network','ls','--filter','label=cheveni.a1.discardable','--format','{{.Name}}').splitlines():
+              if not re.fullmatch(r'cheveni-a1-[a-f0-9]{12}',net): raise RuntimeError('unexpected owned network')
+              info=json.loads(call('network','inspect',net))[0]
+              if info.get('Labels',{}).get('cheveni.a1.discardable')!=net[-12:]: raise RuntimeError('ownership mismatch')
+              for cid in call('ps','-a','--filter','network='+net,'--format','{{.ID}}').splitlines():
+                  c=json.loads(call('inspect',cid))[0]
+                  if not c['Name'].endswith('_cheveni_a1_'+net[-12:]): raise RuntimeError('container ownership mismatch')
+                  vols=[m['Name'] for m in c.get('Mounts',[]) if m['Type']=='volume']
+                  call('rm','-f',cid)
+                  for v in vols: call('volume','rm',v)
+              call('network','rm',net)
+          print('PACKAGE_WORKFLOW_CLEANUP_OK')
+          PY

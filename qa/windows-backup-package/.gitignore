@@ -1,0 +1,11 @@
+*.cva
+*.cclave
+*.sql
+*.dump
+*.env
+*.pem
+*.key
+*.log
+tools/
+privado/
+node_modules/

@@ -1,0 +1,75 @@
+CHE VENI CONCIERGE - PAQUETE A1 PARA WINDOWS - v2
+
+TU UNICA ACCION INICIAL EN LA ASUS
+Con el ZIP extraido, hace doble clic en 00-INICIAR.cmd.
+Se abre un diagnostico. No conecta a DEV, no pide secretos y no inicia un
+respaldo real. No necesitas tener la notebook encendida para descargarlo luego.
+
+REQUISITOS QUE REVISA
+Windows de 64 bits, PowerShell incluido con Windows y Docker Desktop en modo
+Linux con motor LOCAL. Si Docker/WSL no esta disponible, el asistente lo indica;
+no instala ni activa componentes de Windows sin tu intervencion. Docker Desktop
+es gratuito para uso personal y pequenas empresas bajo sus condiciones.
+Las operaciones posteriores necesitan Internet para descargar Node portable,
+Supabase CLI y clientes PostgreSQL oficiales, con versiones y hashes fijados.
+No requiere instalar Node ni PostgreSQL en el sistema. No contrata servicios.
+
+MENU
+1. Requisitos: solo diagnostico; ninguna conexion a Supabase.
+2. Laboratorio: crea datos ficticios y recursos Docker propios, respalda y
+   recupera en un destino nuevo; destruye origen, destino y volumenes propios.
+3. Respaldar: SOLO cuando prepares la ventana real y selecciones esa opcion.
+   Pide los accesos existentes en campos ocultos, solo en memoria local.
+   Exige escribir RESPALDAR DEV y recibos reales de cierre W01-W10.
+4. Verificar: comprueba descifrado, inventario, longitudes y hashes sin DEV.
+5. Restaurar: SOLO en una red local interna y destino descartable nuevo;
+   exige RESTAURAR SOLO LOCAL, verifica revocaciones y limpia el destino.
+
+EL ZIP NO CONTIENE SECRETOS NI RESPALDOS REALES
+Los accesos que introduzcas en el futuro no se incluyen en argumentos de
+comandos, archivos de configuracion, registros ni informes. Se transmiten
+entre procesos por entrada estandar privada y se conservan en memoria durante
+la operacion. No activar transcripciones, depuracion ni grabacion de consola.
+No usar un equipo compartido o administrado por terceros para datos reales.
+
+CIFRADO Y CUSTODIA
+El respaldo .cva usa AES-256-GCM con clave aleatoria de 32 bytes.
+La clave se guarda como .cclave, tambien cifrada: scrypt (N=131072,r=8,p=1)
+y AES-256-GCM. La frase privada requiere al menos 20 caracteres y NO se guarda.
+Elegir carpetas independientes, fuera del ZIP/repositorio; idealmente guardar
+.cclave en un USB y la frase en custodia separada fuera de la ASUS. Una copia
+en otra carpeta del mismo disco no protege de perder el equipo entero.
+El asistente verifica que puede abrir la clave cifrada antes de capturar.
+Perder archivo de clave o frase impide recuperar el respaldo. No enviar ninguno
+al chat. La frase, las credenciales y los valores reales nunca se imprimen.
+
+ANTES DEL RESPALDO REAL (NO SE HIZO EN ESTA ENTREGA)
+Ver COBERTURA-Y-RECUPERACION.md. Deben estar cerrados TODOS los escritores,
+incluidos Auth, Storage, webhooks antiguos, cron y otros consumidores DEV.
+El operador privado debe completar RECIBOS-PLANTILLA.json tras comprobarlos,
+sin inventar recibos ni confundir el laboratorio con el proyecto real.
+Se necesitan el registro independiente actual de revocaciones y el archivo
+privado de configuracion/custodia externa. Las plantillas estan bloqueadas.
+Las contrasenas o tokens se escriben en el formulario, nunca en las plantillas.
+No restablecer contrasenas ni rotar claves para usar este paquete.
+
+LIMITES HONESTOS
+Preparar el ZIP no cierra A1. Verificar integridad no prueba restauracion.
+El restaurador local bloquea diferencias del DDL administrado, default ACL no
+reconciliadas, permisos divergentes, roles especiales o Storage no vacio.
+Esos casos requieren el paso privado adicional indicado en la cobertura;
+el archivo completo queda cifrado para recuperarlos, no se omiten en silencio.
+No existe un modo de restauracion, migracion o despliegue contra DEV/PROD.
+
+ALTERNATIVA SIN ASUS
+Ver ENTORNO-PRIVADO.md. Un equipo privado existente con Linux y Docker puede
+usar PRIVADO.py. Codespaces solo es una alternativa CONDICIONAL: cuenta personal
+privada, cuota comprobada, ningun medio de pago y cero puertos publicados.
+No se creo ningun Codespace ni se comprobo la cuota/facturacion de tu cuenta.
+No usar GitHub Actions para datos reales, ni siquiera en un repositorio privado.
+
+SI SE DETIENE
+El asistente devuelve un codigo sin datos privados. No ignores el fallo, no
+copies claves o archivos al chat y no elimines tablas/columnas para hacerlo
+pasar. Compartir solo el codigo de error y el modo elegido.
+La instalacion real en DEV y SMTP siguen separados y sin autorizacion operativa.
