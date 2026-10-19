@@ -48,7 +48,8 @@ async function destroy(){await db?.end().catch(()=>{});db=undefined;cmd('supabas
 async function setRoot(root){
  assert.match(root,/^[a-f0-9]{64}$/);
  docker(['exec','-i','--user','postgres',pg,'sh','-c',"umask 077; cat > /tmp/portable-vault.key; printf '#!/bin/sh\\ncat /tmp/portable-vault.key\\n' > /tmp/portable-vault-getkey; chmod 700 /tmp/portable-vault-getkey"],Buffer.from(root));
- await db.query("alter system set vault.getkey_script='/tmp/portable-vault-getkey'");
+ // Local container administrator only; never a proposed hosted privilege.
+ docker(['exec','-i',pg,'psql','--username=supabase_admin','--dbname=postgres','--set=ON_ERROR_STOP=1','--file=-'],Buffer.from("alter system set vault.getkey_script='/tmp/portable-vault-getkey';"));
  await db.end();db=undefined;docker(['restart',pg]);await connect();
 }
 async function layout(){return sha256(JSON.stringify((await db.query("select table_schema,table_name,column_name,ordinal_position,udt_schema,udt_name,is_nullable,column_default from information_schema.columns where table_schema in ('auth','storage','vault') order by 1,2,4")).rows));}
