@@ -1,5 +1,5 @@
 import {localCommand,PG_IMAGE,assertLocalDocker} from './pg-tools.mjs';
-import {decryptPayload,unpack,stableJSON,journalGuard,validateDiscardable,sha,fail} from './core.mjs';
+import {decryptPayload,unpack,stableJSON,journalGuard,validateDiscardable,validateLoopbackPorts,sha,fail} from './core.mjs';
 import {dataDigest,managedLayout,relationSql,functionSql,roleQuery} from './backup.mjs';
 const q=n=>'"'+n.replaceAll('"','""')+'"';
 const lit=s=>"'"+s.replaceAll("'","''")+"'";
@@ -38,7 +38,7 @@ export function isolateBootstrap({container,network,runId}){
  const ids=localCommand('docker',['ps','-a','--filter','network='+network,'--format','{{.ID}}']).toString().trim().split('\n').filter(Boolean);
  const members=ids.map(id=>JSON.parse(localCommand('docker',['inspect',id]))[0]);
  if(!members.some(c=>c.Name==='/'+container)||members.some(c=>!c.Name.endsWith('_cheveni_a1_'+runId)||(c.Name!=='/'+container&&c.State.Running)))fail('BOOTSTRAP_LOCAL_NO_CERRADO');
- for(const c of members){for(const bs of Object.values(c.NetworkSettings.Ports??{}))for(const b of bs??[])if(b.HostIp!=='127.0.0.1')fail('PUERTO_NO_PRIVADO');}
+ for(const c of members)validateLoopbackPorts(c,net);
  for(const c of members)localCommand('docker',['network','disconnect','--force',network,c.Id]);
  localCommand('docker',['network','rm',network]);
  localCommand('docker',['network','create','--internal','--label','cheveni.a1.discardable='+runId,'-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1',network]);

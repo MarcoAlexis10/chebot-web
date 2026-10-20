@@ -1,6 +1,6 @@
 from pathlib import Path
 import zipfile,hashlib,json,re,tempfile,subprocess
-p=Path(__file__).resolve().parent/'CHE-VENI-A1-WINDOWS.zip'
+p=Path(__file__).resolve().parent/'CHE-VENI-A1-WINDOWS-20261020.zip'
 with zipfile.ZipFile(p) as z:
  names=z.namelist();m=json.loads(z.read('MANIFEST.json'))
  assert '00-INICIAR.cmd' in names and all('/' not in n or n.startswith('node_modules/') for n in names)

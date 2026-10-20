@@ -44,6 +44,13 @@ export function validateDiscardable(info,network,runId){
  if(!/^[a-f0-9]{12}$/.test(runId))fail('DESTINO_LOCAL_INVALIDO');
  const expected='cheveni_a1_'+runId;
  if(info.Name!=='/supabase_db_'+expected||network.Name!=='cheveni-a1-'+runId||network.Internal!==true||network.Labels?.['cheveni.a1.discardable']!==runId||!info.NetworkSettings?.Networks?.[network.Name]||Object.keys(info.NetworkSettings.Networks).length!==1)fail('DESTINO_LOCAL_INVALIDO');
- const ports=info.NetworkSettings.Ports??{};
- for(const bindings of [...Object.values(ports),...Object.values(info.HostConfig?.PortBindings??{})])for(const b of bindings??[])if(b.HostIp!=='127.0.0.1'&&!(b.HostIp===''&&network.Options?.['com.docker.network.bridge.host_binding_ipv4']==='127.0.0.1'))fail('PUERTO_NO_PRIVADO');
+ validateLoopbackPorts(info,network);
+}
+
+// Inspect active bindings strictly; an omitted declared address is safe only
+// when our network explicitly supplies the IPv4 loopback default.
+export function validateLoopbackPorts(info,network){
+ const loopback=ip=>ip==='127.0.0.1'||ip==='::1';
+ for(const bindings of Object.values(info.NetworkSettings?.Ports??{}))for(const b of bindings??[])if(!loopback(b.HostIp))fail('PUERTO_NO_PRIVADO');
+ for(const bindings of Object.values(info.HostConfig?.PortBindings??{}))for(const b of bindings??[])if(!loopback(b.HostIp)&&!(b.HostIp===''&&network.Options?.['com.docker.network.bridge.host_binding_ipv4']==='127.0.0.1'))fail('PUERTO_NO_PRIVADO');
 }

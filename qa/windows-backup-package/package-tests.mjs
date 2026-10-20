@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {randomBytes} from 'node:crypto';
-import {PROJECT,REQUIRED,part,encryptPayload,decryptPayload,wrapKey,unwrapKey,validateSource,validateReceipts,validateDiscardable,journalGuard} from './core.mjs';
+import {PROJECT,REQUIRED,part,encryptPayload,decryptPayload,wrapKey,unwrapKey,validateSource,validateReceipts,validateDiscardable,validateLoopbackPorts,journalGuard} from './core.mjs';
 import {storageExport,captureReal} from './backup.mjs';
 const valid=()=>({format:2,project:PROJECT,parts:REQUIRED.map(n=>part(n,randomBytes(31))),fictional:true});
 test('CVA2 conserva bytes y rechaza manipulacion, clave equivocada y truncado',()=>{const p=valid(),key=randomBytes(32),b=encryptPayload(p,key);assert.deepEqual(decryptPayload(b,key),p);const bad=Buffer.from(b);bad[18]^=1;for(const e of [bad,b.subarray(0,30)])assert.throws(()=>decryptPayload(e,key));assert.throws(()=>decryptPayload(b,randomBytes(32)));});
@@ -10,7 +10,7 @@ test('componentes incompletos, duplicados o alterados no pueden sellarse',()=>{c
 test('origen solo DEV exacto, TLS CA y pooler de sesion',()=>{const s={project:PROJECT,database:'postgres',port:5432,host:'db.'+PROJECT+'.supabase.co',user:'postgres',ca:'-----BEGIN CERTIFICATE-----',password:randomBytes(12).toString('hex'),storageKey:randomBytes(12).toString('hex'),managementToken:randomBytes(12).toString('hex')};validateSource(s);for(const change of [{host:s.host+'.invalid'},{host:'production.supabase.co'},{port:6543},{ca:''},{project:'other'}])assert.throws(()=>validateSource({...s,...change}));});
 test('captura real en CI falla antes de obtener root o abrir DB',async()=>{const old=process.env.CI;process.env.CI='true';try{await assert.rejects(captureReal({}),/CAPTURA_REAL_BLOQUEADA_EN_CI/);}finally{if(old===undefined)delete process.env.CI;else process.env.CI=old;}});
 test('recibos de los diez escritores son obligatorios',()=>{const r={confirmation:'RESPALDAR DEV',project:PROJECT,ownerReviewed:true,windowReference:'fictional-reference',independentJournalReference:'fictional-custodian',fencedWriters:Array.from({length:10},(_,i)=>'W'+String(i+1).padStart(2,'0'))};validateReceipts(r);assert.throws(()=>validateReceipts({...r,fencedWriters:r.fencedWriters.slice(1)}));});
-test('no se acepta destino Docker remoto, con red abierta o puerto publico',()=>{const id=randomBytes(6).toString('hex'),name='cheveni-a1-'+id;const net={Name:name,Internal:true,Labels:{'cheveni.a1.discardable':id}},info={Name:'/supabase_db_cheveni_a1_'+id,NetworkSettings:{Networks:{[name]:{}},Ports:{'5432/tcp':[{HostIp:'127.0.0.1'}]}}};validateDiscardable(info,net,id);const inherited={...info,HostConfig:{PortBindings:{p:[{HostIp:''}]}}};assert.throws(()=>validateDiscardable(inherited,net,id));validateDiscardable(inherited,{...net,Options:{'com.docker.network.bridge.host_binding_ipv4':'127.0.0.1'}},id);assert.throws(()=>validateDiscardable({...info,NetworkSettings:{...info.NetworkSettings,Networks:{[name]:{},bridge:{}}}},net,id));assert.throws(()=>validateDiscardable(info,{...net,Internal:false},id));assert.throws(()=>validateDiscardable({...info,Name:'/production'},net,id));assert.throws(()=>validateDiscardable({...info,NetworkSettings:{...info.NetworkSettings,Ports:{p:[{HostIp:'0.0.0.0'}]}}},net,id));});
+test('no se acepta destino Docker remoto, con red abierta o puerto publico',()=>{const id=randomBytes(6).toString('hex'),name='cheveni-a1-'+id;const net={Name:name,Internal:true,Labels:{'cheveni.a1.discardable':id}},info={Name:'/supabase_db_cheveni_a1_'+id,NetworkSettings:{Networks:{[name]:{}},Ports:{'5432/tcp':[{HostIp:'127.0.0.1'}]}}};validateDiscardable(info,net,id);const dualLoopback={...info,NetworkSettings:{...info.NetworkSettings,Ports:{p:[{HostIp:'127.0.0.1'},{HostIp:'::1'}]}}};validateDiscardable(dualLoopback,net,id);for(const invalid of ['0.0.0.0','::'])assert.throws(()=>validateDiscardable({...info,NetworkSettings:{...info.NetworkSettings,Ports:{p:[{HostIp:invalid}]}}},net,id),/PUERTO_NO_PRIVADO/);const inherited={...info,HostConfig:{PortBindings:{p:[{HostIp:''}]}}};assert.throws(()=>validateDiscardable(inherited,net,id));validateDiscardable(inherited,{...net,Options:{'com.docker.network.bridge.host_binding_ipv4':'127.0.0.1'}},id);assert.throws(()=>validateDiscardable({...info,NetworkSettings:{...info.NetworkSettings,Networks:{[name]:{},bridge:{}}}},net,id));assert.throws(()=>validateDiscardable(info,{...net,Internal:false},id));assert.throws(()=>validateDiscardable({...info,Name:'/production'},net,id));assert.throws(()=>validateDiscardable({...info,NetworkSettings:{...info.NetworkSettings,Ports:{p:[{HostIp:'0.0.0.0'}]}}},net,id));});
 test('Storage pagina mas de cien objetos, recorre carpetas y conserva binario',async()=>{const raw=randomBytes(17),names=Array.from({length:103},(_,i)=>({name:'file-'+i,id:'fictional-'+i,metadata:{}}));const seen=[];const bytes=await storageExport(async(path,body,binary)=>{seen.push({path,body,binary});if(path==='bucket')return[{id:'fictional',type:'STANDARD'}];if(binary)return raw;if(body.prefix==='')return body.offset===0?[{name:'folder',id:null,metadata:null},...names.slice(0,99)]:names.slice(99);return body.offset===0?[{name:'inside',id:'fictional-inside',metadata:{}}]:[];});const x=JSON.parse(bytes);assert.equal(x[0].files.length,104);assert.ok(x[0].files.some(f=>f.name==='folder/inside'));assert.deepEqual(Buffer.from(x[0].files[0].base64,'base64'),raw);assert.ok(seen.some(s=>s.body?.offset===100));});
 test('revocacion diferente bloquea reapertura',()=>{const p=valid(),j=Buffer.from('fictional-journal');p.parts=p.parts.map(x=>x.name==='revocations'?part(x.name,j):x);journalGuard(p,j);assert.throws(()=>journalGuard(p,Buffer.from('changed')));});
 
@@ -43,4 +43,20 @@ test('cierre ACL no acepta otorgantes ajenos al propietario ni privilegios inesp
  const r={nspname:'public',relname:'fictional',relkind:'r',owner:'postgres',acl:[{grantor:'other',grantee:'anon',privilege_type:'SELECT',is_grantable:false}]};
  assert.throws(()=>objectAclClosure({applicationRelations:[r]},['postgres','anon']),/OTORGANTES_ACL/);
  r.acl[0].grantor='postgres';r.acl[0].privilege_type='UNEXPECTED';assert.throws(()=>objectAclClosure({applicationRelations:[r]},['postgres','anon']),/ACL_REQUIERE_REVISION/);
+});
+
+test('puertos IPv4/IPv6: ambas fuentes aceptan solo loopback y rechazan cualquier binding mezclado inseguro',()=>{
+ const safe={NetworkSettings:{Ports:{p:[{HostIp:'127.0.0.1'},{HostIp:'::1'}]}},HostConfig:{PortBindings:{p:[{HostIp:'127.0.0.1'},{HostIp:'::1'}]}}};
+ validateLoopbackPorts(safe,{});
+ for(const ip of ['0.0.0.0','::','192.168.1.9','10.0.0.2','2001:db8::1','::ffff:127.0.0.1','localhost','127.0.0.1.invalid',undefined]){
+  for(const section of ['NetworkSettings','HostConfig']){const x=structuredClone(safe),field=section==='NetworkSettings'?'Ports':'PortBindings';x[section][field].p.push({HostIp:ip});assert.throws(()=>validateLoopbackPorts(x,{}),/PUERTO_NO_PRIVADO/);}
+ }
+});
+
+test('binding declarado heredado exige default explicito y no oculta binding activo vacio ni publico',()=>{
+ const info={NetworkSettings:{Ports:{p:[{HostIp:'127.0.0.1'},{HostIp:'::1'}]}},HostConfig:{PortBindings:{p:[{HostIp:''}]}}};
+ const net={Options:{'com.docker.network.bridge.host_binding_ipv4':'127.0.0.1'}};
+ validateLoopbackPorts(info,net);
+ for(const defaultIp of [undefined,'0.0.0.0','::','localhost'])assert.throws(()=>validateLoopbackPorts(info,{Options:{'com.docker.network.bridge.host_binding_ipv4':defaultIp}}),/PUERTO_NO_PRIVADO/);
+ for(const ip of ['', '0.0.0.0','::']){const x=structuredClone(info);x.NetworkSettings.Ports.p.push({HostIp:ip});assert.throws(()=>validateLoopbackPorts(x,net),/PUERTO_NO_PRIVADO/);}
 });

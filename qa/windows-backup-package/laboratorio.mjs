@@ -5,7 +5,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
 import {snapshot,managedLayout,managedColumnSql} from './backup.mjs';
-import {encryptPayload,decryptPayload,wrapKey,unwrapKey,journalGuard,sha} from './core.mjs';
+import {encryptPayload,decryptPayload,wrapKey,unwrapKey,journalGuard,validateDiscardable,sha} from './core.mjs';
 import {restoreIsolated,isolateBootstrap,sqlClient} from './restore-isolated.mjs';
 import {localCommand,PG_IMAGE,assertLocalDocker} from './pg-tools.mjs';
 
@@ -31,8 +31,32 @@ async function start(){
  volumes=[...new Set([info,...others.map(c=>JSON.parse(docker(['inspect',c]))[0])].flatMap(i=>(i.Mounts??[]).filter(m=>m.Type==='volume').map(m=>m.Name)))];
  assert.equal((await db.query('select count(*)::int n from auth.users')).rows[0].n,0);return status;
 }
+// Exercise both production guards with real Docker inspect output, including
+// IPv6 localhost. No database, credentials, volume or outside port is created.
+function proveDualLoopback(){
+ const probeId=randomBytes(6).toString('hex'),probeNet='cheveni-a1-'+probeId,probeDb='supabase_db_cheveni_a1_'+probeId;
+ let netCreated=false,dbCreated=false;
+ try{
+  docker(['network','create','--label','cheveni.a1.discardable='+probeId,'-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1',probeNet]);netCreated=true;
+  docker(['create','--name',probeDb,'--network',probeNet,'--publish','127.0.0.1::5432','--publish','[::1]::5432','--pull=never',PG_IMAGE,'sleep','300']);dbCreated=true;
+  docker(['start',probeDb]);
+  const before=JSON.parse(docker(['inspect',probeDb]))[0];
+  const addresses=Object.values(before.NetworkSettings.Ports??{}).flatMap(b=>b??[]).map(b=>b.HostIp);
+  assert.ok(addresses.includes('127.0.0.1')&&addresses.includes('::1'));
+  isolateBootstrap({container:probeDb,network:probeNet,runId:probeId});
+  const after=JSON.parse(docker(['inspect',probeDb]))[0],net=JSON.parse(docker(['network','inspect',probeNet]))[0];
+  validateDiscardable(after,net,probeId);
+  for(const section of ['NetworkSettings','HostConfig']){const field=section==='NetworkSettings'?'Ports':'PortBindings';for(const ip of ['0.0.0.0','::']){const bad=structuredClone(after);bad[section]??={};bad[section][field]??={};bad[section][field]['unsafe/tcp']=[{HostIp:ip}];assert.throws(()=>validateDiscardable(bad,net,probeId),/PUERTO_NO_PRIVADO/);}}
+  console.log('PACKAGE_LAB_DUAL_LOOPBACK_PASS actual IPv4/IPv6 bootstrap and internal target; wildcard rejection');
+ }finally{
+  if(dbCreated)docker(['rm','--force',probeDb]);
+  if(netCreated)docker(['network','rm',probeNet]);
+  console.log('PACKAGE_LAB_DUAL_LOOPBACK_CLEANUP_OK');
+ }
+}
 async function stop(){await db?.end().catch(()=>{});db=undefined;if(ownedInitialized)run(cli,['stop','--workdir',work,'--no-backup','--agent','no']);}
 try{
+ proveDualLoopback();
  run(cli,['init','--workdir',work,'--yes','--agent','no']);const cfg=join(work,'supabase','config.toml');writeFileSync(cfg,readFileSync(cfg,'utf8').replace(/^project_id\s*=.*$/m,'project_id = "'+project+'"'));ownedInitialized=true;
  docker(['network','create','--label','cheveni.a1.discardable='+id,'-o','com.docker.network.bridge.host_binding_ipv4=127.0.0.1',network]);
  ownedNetwork=true;

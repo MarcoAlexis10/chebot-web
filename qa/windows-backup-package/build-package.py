@@ -23,7 +23,7 @@ def files():
 inventory=[{'path':name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p,name in files()]
 (root/'MANIFEST.json').write_text(json.dumps({'format':1,'files':inventory},indent=2)+'\n',encoding='utf8')
 if '--manifest-only' not in sys.argv:
-    dest=root.parent/'CHE-VENI-A1-WINDOWS.zip'
+    dest=root.parent/'CHE-VENI-A1-WINDOWS-20261020.zip'
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
         for p,name in files():z.write(p,name)
         z.write(root/'MANIFEST.json','MANIFEST.json')

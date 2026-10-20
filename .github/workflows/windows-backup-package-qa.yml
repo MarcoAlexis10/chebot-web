@@ -1,7 +1,7 @@
 name: Windows backup package QA
 on:
   push:
-    branches: [qa/windows-backup-package-20261019]
+    branches: [qa/cheveni-a1-ipv6-loopback-fix-20261020]
     paths: ['qa/windows-backup-package/**', '.github/workflows/windows-backup-package-qa.yml']
 permissions:
   contents: read
@@ -26,7 +26,7 @@ jobs:
       - name: Changed manifest reader and preflight from ZIP
         run: |
           $destination=Join-Path $env:RUNNER_TEMP 'windows-package-extracted'
-          Expand-Archive -LiteralPath ..\CHE-VENI-A1-WINDOWS.zip -DestinationPath $destination
+          Expand-Archive -LiteralPath ..\CHE-VENI-A1-WINDOWS-20261020.zip -DestinationPath $destination
           & (Join-Path $destination 'INICIAR.ps1') -Modo Preflight
   isolated-recovery:
     if: github.event.repository.private == false
@@ -47,6 +47,8 @@ jobs:
         with:
           node-version: 24.21.0
       - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Unit tests including IPv6 guard regression
+        run: node --test package-tests.mjs
       - name: Verified CLI and pinned client image
         run: |
           curl --fail --silent --show-error --location https://github.com/supabase/cli/releases/download/v2.121.0/supabase_2.121.0_linux_amd64.tar.gz -o /tmp/a1-cli.tar.gz
