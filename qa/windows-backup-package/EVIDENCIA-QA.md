@@ -1,37 +1,41 @@
-# Evidencia del paquete Windows A1 - 2026-10-19
+# Evidencia del paquete Windows A1 - 2026-10-20
 
-Este archivo describe pruebas ficticias. No contiene datos ni configuracion real de DEV. Decisiones: GO para preparacion/ensayo ficticio; NO-GO para recuperacion integral del DEV actual. No se capturo DEV ni se modifico DEV/PROD. No se enviaron correos/mensajes ni se contrataron servicios.
+GO para el paquete corregido y el ensayo ficticio. NO-GO para declarar recuperacion integral real de DEV. No se contacto DEV/PROD, no se usaron datos reales y no se desplego ni envio correo/mensaje. El ensayo uso runners estandar del repositorio publico, sin servicios pagos, secretos, caches ni artefactos con datos.
 
-## Evidencia conservada
+## Revision y correccion
 
-- Bases: backend `dd9de42b332e3258eb6029c94e7ecb05a489b9cc`; laboratorio web `6698a88065bd09bcf4bb3807b6601a97fc8b9c5f`.
-- Las suites generales anteriores NO se repitieron. El ensayo anterior aprobado (12 fases + 5 controles, run 39189212437) permanece como antecedente, no como prueba del paquete nuevo ni del DEV real.
-- Controles nuevos de paquete: 9/9 base (cifrado/clave/inventario/destino/CI/recibos/Storage/revocaciones), mas 4/4 casos agregados focalizados: atributos de roles no predeterminados, equivalencia de catalogo entre transportes rechazo de rutas ambiguas de Storage y rechazo de otorgantes/privilegios ACL no admitidos. Los casos de red/puertos y paginacion Storage se revalidaron al cambiar sus controles. No se suman reejecuciones como casos nuevos.
-- Windows nativo PowerShell 5.1 desde ZIP extraido: helpers/manifest, creacion de clave, recuperacion por tuberia UTF-8 con caracter no ASCII y CLI 2.121.0 verificada. Job SUCCESS: https://github.com/MarcoAlexis10/chebot-web/actions/runs/39208116958/job/117915288736 . El workflow completo de ese commit fallo por el ensayo Linux en desarrollo; no confundir ambos alcances.
-- Ultimo preflight Windows del lector/paquete modificado: SUCCESS, https://github.com/MarcoAlexis10/chebot-web/actions/runs/39209567391/job/117919716673 . Verifica ZIP y diagnostico; no certifica Docker ni hardware de la ASUS, actualmente apagada.
-- Python privado: tuberia UTF-8, recuperacion de clave cifrada e integridad del manifest comprobados localmente con material efimero ficticio. No se aprovisiono Codespace ni se certifico facturacion/cuota de la cuenta.
-- Empaquetado: allowlist explicita de archivos operativos, dependencias JavaScript runtime y licencias. Se verifica inventario completo, SHA256/longitudes, estructura plana, ausencia de archivos de respaldo/clave/dump/PEM/log y patrones de credenciales. El CLI extraido abre un archivo cifrado ficticio por entrada privada. El SHA256 final del ZIP se entrega fuera del ZIP para evitar referencia circular.
+Se revisaron ambos commits backend de la rama `qa/cheveni-a1-ipv6-loopback-fix-20261020`:
+- `9a2f72fbe6787a891c27c58c15b2cadd6cb8c666`: admite exactamente ::1 en validateDiscardable, conservando rechazo de comodines.
+- `6ba053682ec4d8a9c88c739861a7cf118b3bc448`: agrega cobertura IPv6 al caso unitario existente.
 
-## Ensayo nuevo de captura y recuperacion
+Faltaba corregir el control previo al aislamiento en isolateBootstrap. Ahora ambos puntos usan validateLoopbackPorts. Los bindings activos admiten exclusivamente 127.0.0.1 y ::1. Los declarados vacios exigen el default explicito 127.0.0.1 de la red propia. Un binding activo vacio, comodin IPv4/IPv6, direccion de LAN, hostname o direccion ambigua se rechaza, incluso mezclado con bindings seguros. Se revisan NetworkSettings.Ports y HostConfig.PortBindings.
 
-SUCCESS: https://github.com/MarcoAlexis10/chebot-web/actions/runs/39210500913/job/117922570551 . Commit ejecutado: `9040118398ecd40316f33d1b8d7f98df4ac0d081`. Ambos jobs del workflow finalizaron SUCCESS; preflight Windows final: job `117922570304` del mismo run.
+Se conservan los controles de motor Docker local, propiedad/nombres aleatorios, escritores detenidos, red interna unica antes de cargar datos, integridad/cifrado, journal actual, compatibilidad del catalogo y rechazo de restauraciones inseguras. No se desactivo ningun control de seguridad.
 
-Las seis fases comprobaron bootstrap propio vacio con puertos loopback; fixtures Auth/FK/RLS/rol/Vault y cierre de escritores; captura NUEVA y formatos CVA2/CVK2; rechazo de manipulacion/frase equivocada/journal posterior; destruccion del origen y volumenes y recreacion vacia; restauracion NUEVA con datos, descifrado Vault, roles, funciones y ACL exactas de objetos. El destino de restauracion se aislo en una sola red interna antes de recibir datos.
+## Pruebas ejecutadas
 
-Resultado sanitizado: `checks=6`, `success=true`, `realDevContacted=false`, `realDataUsed=false`, `fullDevRecoveryVerified=false`, `paidServices=0`. Limpieza del propio laboratorio y limpieza final del workflow SUCCESS; se comprobo ausencia de sus contenedores/volumenes. Los archivos y valores ficticios de claves no se adjuntan.
+Workflow completo SUCCESS: https://github.com/MarcoAlexis10/chebot-web/actions/runs/39444813781
 
-Las comprobaciones de RLS de este paquete cubren flags y DDL restaurado del fixture; las pruebas funcionales amplias de la aplicacion conservan sus ejecuciones aprobadas previas. No se certifican politicas reales ni acceso de personas. Despues de este commit solo se actualizo documentacion/evidencia; no se repitio la integracion aprobada.
+Commit de codigo ejecutado: `7deccef577953c1031e092095a02d4983b9a28af`, laboratorio web, misma rama QA. Codigo operativo del ZIP final identico; despues solo se actualizaron instrucciones y evidencia. El empaquetado final se reaudito sin repetir las suites aprobadas.
 
-## Correcciones probadas durante preparacion
+- Unitarias: 15/15 local y 15/15 en QA Linux, cero fallos/omitidas. Son las 13 existentes y 2 regresiones nuevas; no se suman reejecuciones como casos adicionales. Cubren direcciones inseguras en ambas fuentes, bindings mixtos, herencia explicita y bindings activos vacios.
+- Windows nativo: extraccion del ZIP, verificacion del manifest y diagnostico PowerShell SUCCESS. Job https://github.com/MarcoAlexis10/chebot-web/actions/runs/39444813781/job/118703790474 . Este runner tiene Docker Linux no disponible; el job prueba diagnostico/paquete, no una restauracion Docker en Windows ni el hardware ASUS.
+- Docker real IPv4/IPv6: contenedor efimero sin base inicializada, secretos ni volumen, publicado explicitamente en 127.0.0.1 y ::1; ambas direcciones se comprobaron en inspect. isolateBootstrap paso y validateDiscardable aprobo la red interna resultante. Rechazo de 0.0.0.0/:: comprobado sobre copias del inspect real en ambas fuentes. `PACKAGE_LAB_DUAL_LOOPBACK_PASS` y `PACKAGE_LAB_DUAL_LOOPBACK_CLEANUP_OK`.
+- Recuperacion integral ficticia 6/6: job https://github.com/MarcoAlexis10/chebot-web/actions/runs/39444813781/job/118703789985 . Bootstrap vacio; fixtures Auth/FK/RLS/rol/Vault; captura y cifrado CVA2/CVK2; rechazo de manipulacion/frase incorrecta/journal posterior; destruccion comprobada de origen y volumenes, recreacion vacia; restauracion y comparacion de datos/Auth/Vault, FK, RLS, funciones y ACL.
+- Limpieza: `PACKAGE_LAB_CLEANUP_OK` y `PACKAGE_WORKFLOW_CLEANUP_OK`. Solo recursos propios; no prune global.
 
-Se corrigieron compatibilidad .NET/PowerShell y marca UTF-8, argumentos propios de pg_dumpall, inicializacion de bootstrap antes del aislamiento, vinculacion loopback heredada de Docker, comparacion estable del catalogo con tipos explicitos, sin filtrado por privilegios y con el mismo search_path de deparse, cierre de ACL por objeto dentro de la transaccion, y comprobacion de eliminacion de contenedores/volumenes propios. Los errores de desarrollo quedan en la historia de la rama QA; no se ignoraron errores para obtener un resultado exitoso.
+Resultado sanitizado: `checks=6`, `success=true`, `realDevContacted=false`, `realDataUsed=false`, `fullDevRecoveryVerified=false`, `paidServices=0`.
 
-Las comparaciones conservan valores, columnas, propietarios, RLS, funciones y ACL. Los archivos de DDL administrado se renderizan con el mismo cliente fijado para comparar definiciones, sin ejecutar DDL administrado arbitrario. Se bloquean configuraciones reales incompatibles; no se suprimen controles de recuperacion para obtener GO.
+## Paquete final
 
-## Limites que permanecen
+Nombre: CHE-VENI-A1-WINDOWS-20261020.zip. Raiz plana salvo dependencias runtime necesarias. MANIFEST.json actualizado con longitud y SHA-256 de cada archivo distribuido. Se verifican todos los archivos, estructura, ausencia de respaldos/claves/dumps/PEM/logs y patrones de credenciales. El CLI extraido abre material cifrado ficticio por entrada privada. El hash SHA-256 del ZIP final se entrega fuera del ZIP para evitar referencia circular.
 
-El ensayo de paquete usa Storage vacio. Exportacion con paginacion/binarios y rutas inseguras se prueba con mocks; el ensayo Storage no vacio anterior no se repite y no se presenta como restauracion del DEV. El restaurador nuevo bloquea buckets reales hasta reconciliacion privada. Auth funcional completo, claves gestionadas, rol/configuracion global y proveedores reales no se certifican con este paquete. La cobertura y lista unica de intervenciones estan en COBERTURA-Y-RECUPERACION.md.
+Las dependencias y herramientas fijadas anteriormente se conservaron. build-package.py y windows-package-audit.py estan en QA; no hay instaladores adicionales ni credenciales dentro del ZIP. Instrucciones de reemplazo en LEEME-PRIMERO.txt: extraer en carpeta nueva y conservar la custodia fuera del paquete, sin reinstalar los requisitos ya aprobados en ASUS.
 
-Copia de preparacion backend: `ops/recovery/windows-package`, rama `qa/windows-backup-package-20261019`, sobre la base dd9de42b; no modifica el codigo de la aplicacion ni sus fuentes aprobadas.
+## Antecedentes conservados y limites
 
-Codigo reproducible del laboratorio: rama `qa/windows-backup-package-20261019`, directorio `qa/windows-backup-package` del laboratorio web; `build-package.py` y `qa/windows-package-audit.py` permanecen en QA como herramientas de construccion/verificacion. Las dependencias estan fijadas por package-lock y el ZIP contiene runtime JavaScript. Los binarios oficiales y la imagen PostgreSQL se validan contra los hashes fijados, sin accesos a servicios pagos.
+No se repitieron las suites generales de la aplicacion. Las pruebas nativas previas del canal privado Windows y AES/CVK2 permanecen aprobadas: https://github.com/MarcoAlexis10/chebot-web/actions/runs/39208116958/job/117915288736 . El ensayo previo 39210500913 es antecedente, no la evidencia nueva de IPv6. Los resultados aportados desde ASUS son evidencia del operador; este cierre no opera esa notebook a distancia.
+
+Storage del ensayo nuevo esta vacio. Paginacion/binarios/rutas de Storage se prueban con mocks; esto no demuestra restauracion de buckets reales. El restaurador sigue bloqueando Storage no vacio y diferencias administradas que requieren reconciliacion privada. Auth funcional real, claves/servicios gestionados, ACL globales/administradas y configuracion/proveedores externos no se declaran recuperados. La matriz y unica lista de intervenciones permanecen en COBERTURA-Y-RECUPERACION.md.
+
+A1 real solo podra cerrarse despues de una captura privada real y su recuperacion comprobada, con todos los componentes reconciliados. A2/A3 conservan su preparacion anterior sin instalar, desplegar ni enviar SMTP.

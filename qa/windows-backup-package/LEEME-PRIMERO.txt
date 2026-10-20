@@ -1,13 +1,24 @@
-CHE VENI CONCIERGE - PAQUETE A1 PARA WINDOWS - v2
+CHE VENI CONCIERGE - PAQUETE A1 PARA WINDOWS - v2.1 (IPv6 loopback, 2026-10-20)
 
-TU UNICA ACCION INICIAL EN LA ASUS
+REEMPLAZAR EL PAQUETE ANTERIOR
+Descarga CHE-VENI-A1-WINDOWS-20261020.zip y usa Extraer todo en una carpeta NUEVA.
+No mezcles archivos con la carpeta anterior. Conserva fuera de ambas carpetas
+cualquier .cva/.cclave y la frase privada; no copies secretos al paquete.
+No hace falta reinstalar Windows, WSL, Docker, PostgreSQL ni Supabase CLI.
+El MANIFEST.json nuevo cubre cada archivo distribuido. El SHA-256 del ZIP se
+entrega por separado. Ejemplo PowerShell desde la carpeta de Descargas:
+Get-FileHash .\CHE-VENI-A1-WINDOWS-20261020.zip -Algorithm SHA256
+
+TU ACCION AL ABRIR LA CARPETA NUEVA
 Con el ZIP extraido, hace doble clic en 00-INICIAR.cmd.
 Se abre un diagnostico. No conecta a DEV, no pide secretos y no inicia un
-respaldo real. No necesitas tener la notebook encendida para descargarlo luego.
+respaldo real. Para repetir el ensayo afectado por IPv6, despues elegi 2. Laboratorio.
+No elijas 3. Respaldar en este cierre; A1 real sigue pendiente.
 
 REQUISITOS QUE REVISA
 Windows de 64 bits, PowerShell incluido con Windows y Docker Desktop en modo
-Linux con motor LOCAL. Si Docker/WSL no esta disponible, el asistente lo indica;
+Linux con motor LOCAL. Los puertos aceptan solo 127.0.0.1 y ::1;
+0.0.0.0, :: y direcciones de LAN siguen bloqueados. Si Docker/WSL no esta disponible, el asistente lo indica;
 no instala ni activa componentes de Windows sin tu intervencion. Docker Desktop
 es gratuito para uso personal y pequenas empresas bajo sus condiciones.
 Las operaciones posteriores necesitan Internet para descargar Node portable,
