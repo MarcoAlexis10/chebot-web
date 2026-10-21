@@ -5,7 +5,12 @@ import path from 'node:path';
 import {tmpdir} from 'node:os';
 export function safeEnv(){const e={};for(const k of ['PATH','Path','PATHEXT','HOME','USERPROFILE','LOCALAPPDATA','APPDATA','TEMP','TMP','SystemRoot','SYSTEMROOT','WINDIR','ComSpec'])if(process.env[k])e[k]=process.env[k];
  // Keep module discovery local to Windows 5.1 system modules, never a custom path.
- if(process.platform==='win32')e.PSModulePath=path.join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','Modules');
+ if(process.platform==='win32'){
+  e.PSModulePath=path.join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','Modules');
+  // Documented Windows 5.1 performance-cache opt-out, child process only.
+  // Does not change signature, execution policy, AMSI or antivirus controls.
+  e.PSModuleAnalysisCachePath='NUL';
+ }
  return e;
 }
 // Only non-secret path/ACL metadata. Never use this bridge for phrases or credentials.

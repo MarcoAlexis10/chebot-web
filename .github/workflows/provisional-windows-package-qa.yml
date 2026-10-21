@@ -28,10 +28,7 @@ jobs:
           const {safeEnv}=await import(pathToFileURL(process.env.CHEVENI_QA_SOURCE));
           function probe(label,script,env){const start=Date.now();try{const result=execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env,timeout:5000,encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true});console.log(JSON.stringify({label,ms:Date.now()-start,result:result.trim()}));}catch(e){console.log(JSON.stringify({label,ms:Date.now()-start,code:e.code,status:e.status,stderr:String(e.stderr??'').slice(0,1000),stdout:String(e.stdout??'').slice(0,1000)}));}}
           const builtin="$ErrorActionPreference='Stop';Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected";
-          const base=safeEnv(),present=new Set(Object.keys(base).map(k=>k.toUpperCase()));
-          let keys=Object.keys(process.env).filter(k=>!present.has(k.toUpperCase())&&!/TOKEN|SECRET|KEY|PASSWORD|CREDENTIAL|COOKIE|AUTH|CERT|EXECUTIONPOLICY/i.test(k)).sort();
-          function works(selected){const env={...base};for(const k of selected)env[k]=process.env[k];try{execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',builtin],{env,timeout:5000,stdio:['ignore','pipe','pipe'],windowsHide:true});console.log(JSON.stringify({metadataKeys:selected,ok:true}));return true;}catch{console.log(JSON.stringify({metadataKeys:selected,ok:false}));return false;}}
-          if(works(keys)){while(keys.length>1){const middle=Math.ceil(keys.length/2),a=keys.slice(0,middle),b=keys.slice(middle);if(works(a))keys=a;else if(works(b))keys=b;else break;}console.log(JSON.stringify({minimalMetadataCandidates:keys}));}else{console.log('FILTERED_METADATA_NOT_SUFFICIENT_NO_POLICY_CHANGE');}
+          probe('safe_environment_builtin',builtin,safeEnv());
           '@ | Set-Content -LiteralPath $probe -Encoding ASCII
           node $probe
       - name: Build flat ZIP and exercise extracted package under PowerShell 5.1
@@ -43,7 +40,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'BUILD_FAILED' }
           $zip = Join-Path $pwd 'qa/CHE-VENI-PROVISIONAL-WINDOWS-20261021.zip'
           Get-FileHash -Algorithm SHA256 -LiteralPath $zip
-          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne '6fceb1b0f0c912b82d790f42ee2476cc6561104e5fec4b5bb3537f7fb8c9462c') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
+          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne 'f4b8b53ea39e51f8e9992a442e7054d82f54af28e1e099dafd41bb297681a1ff') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
           $dest = Join-Path $env:TEMP 'Che Veni paquete con espacios'
           Expand-Archive -LiteralPath $zip -DestinationPath $dest
           "CHEVENI_EXTRACTED=$dest" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append

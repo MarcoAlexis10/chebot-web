@@ -7,7 +7,7 @@ import {readFile,writeFile,mkdtemp,rm,cp,readdir,mkdir} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {createRun,assertRun,checkPrivate,cleanPending,removeFictionalRun} from './private-host.mjs';
+import {createRun,assertRun,checkPrivate,cleanPending,removeFictionalRun,safeEnv} from './private-host.mjs';
 import {sealPackageFixture,compareEncryptedCopies} from './package-io.mjs';
 import {verifyFictionalEnvelope} from './provisional-crypto.mjs';
 import {validateEndpoint,command} from './docker-fictional.mjs';
@@ -16,7 +16,12 @@ import {verifyPackage} from './iniciar.mjs';
 const home=path.dirname(fileURLToPath(import.meta.url)),phrase='FICTITIOUS-ONLY-package-regression-2026';
 const withRun=async fn=>{const r=await createRun();try{await fn(r);}finally{await removeFictionalRun(r.root);}};
 const seal=(r,name,more={})=>sealPackageFixture({roots:r,basename:name,source:Readable.from(['FICTITIOUS-PACKAGE-CONTENT']),passphrase:phrase,...more});
-function cli(mode,env={},input){return execFileSync(process.execPath,[path.join(home,'iniciar.mjs'),mode],{env:{...process.env,...env},input,encoding:'utf8',stdio:['pipe','pipe','pipe']});}
+function cli(mode,env={},input){return execFileSync(process.execPath,[path.join(home,'iniciar.mjs'),mode],{env:{...process.env,...env},input,encoding:'utf8',timeout:60000,stdio:['pipe','pipe','pipe']});}
+test('Child environment never inherits credentials or untrusted Windows module cache paths',()=>{
+ const names=['PGPASSWORD','PSModuleAnalysisCachePath','PSModulePath'],saved=names.map(k=>process.env[k]);
+ try{process.env.PGPASSWORD='FICTITIOUS-ENV-CANARY';process.env.PSModuleAnalysisCachePath='\\\\fictional.invalid\\cache';process.env.PSModulePath='\\\\fictional.invalid\\modules';const e=safeEnv();assert.equal(e.PGPASSWORD,undefined);if(process.platform==='win32'){assert.equal(e.PSModuleAnalysisCachePath,'NUL');assert.equal(e.PSModulePath,path.join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','Modules'));}assert.equal(process.env.PSModuleAnalysisCachePath,'\\\\fictional.invalid\\cache');}
+ finally{names.forEach((k,i)=>{if(saved[i]===undefined)delete process.env[k];else process.env[k]=saved[i];});}
+});
 test('Manifest flat, complete, and changed or unexpected files rejected',async()=>{
  assert.equal((await verifyPackage()).manifestVerified,true);const dir=await mkdtemp(path.join(tmpdir(),'provisional package spaces-'));
  try{await cp(home,dir,{recursive:true});await writeFile(path.join(dir,'LEEME-PRIMERO.txt'),'changed');await assert.rejects(()=>verifyPackage(dir),/CHANGED/);await cp(home,dir,{recursive:true});await writeFile(path.join(dir,'unexpected.txt'),'fictional');await assert.rejects(()=>verifyPackage(dir),/UNEXPECTED/);}finally{await rm(dir,{recursive:true,force:true});}
@@ -65,7 +70,7 @@ test('Ownership mismatch and unknown pending file refuse deletion',async()=>with
 test('Dead-process staging cleanup is owned and never touches completed files',async()=>withRun(async r=>{
  const b=await seal(r,'completed'),before=await readFile(b.dataFile);
  const script=`const fs=require('node:fs'),path=require('node:path');let b='';process.stdin.on('data',c=>b+=c);process.stdin.on('end',()=>{const r=JSON.parse(b),op='b'.repeat(24),d=path.join(r.root,'.provisional-pending-'+op);fs.mkdirSync(d);fs.writeFileSync(path.join(d,'pending-owner.json'),JSON.stringify({run:r.id,operation:op,pid:process.pid}));fs.writeFileSync(path.join(d,'dump.cva'),'FICTITIOUS-PARTIAL');});`;
- execFileSync(process.execPath,['-e',script],{input:JSON.stringify(r),stdio:['pipe','pipe','pipe']});assert.equal((await cleanPending(r.root)).cleaned,1);assert.deepEqual(await readFile(b.dataFile),before);
+ execFileSync(process.execPath,['-e',script],{input:JSON.stringify(r),timeout:10000,stdio:['pipe','pipe','pipe']});assert.equal((await cleanPending(r.root)).cleaned,1);assert.deepEqual(await readFile(b.dataFile),before);
 }));
 test('CLI help plan diagnostics and real-capture gate do not expose canary or enable remote writes',()=>{
  const canary='FICTITIOUS-CANARY-PRIVATE-NOT-REAL',env={PGPASSWORD:canary,DOCKER_HOST:'tcp://example.invalid:2375'};
