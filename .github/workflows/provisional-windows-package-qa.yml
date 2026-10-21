@@ -26,7 +26,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'BUILD_FAILED' }
           $zip = Join-Path $pwd 'qa/CHE-VENI-PROVISIONAL-WINDOWS-20261021.zip'
           Get-FileHash -Algorithm SHA256 -LiteralPath $zip
-          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne '8e900a27e956902289af671da24c681ff024998537a0fbebdbc9e2f66d660bb4') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
+          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne '184cf1f607419840d50296af19df76ad7904043c82b238d6e670aed334272621') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
           $dest = Join-Path $env:TEMP 'Che Veni paquete con espacios'
           Expand-Archive -LiteralPath $zip -DestinationPath $dest
           "CHEVENI_EXTRACTED=$dest" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append

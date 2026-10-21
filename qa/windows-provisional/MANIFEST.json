@@ -49,8 +49,8 @@
     },
     {
       "path": "build.py",
-      "bytes": 2477,
-      "sha256": "bbd0f5c69221c6d4722a44c2224dde855b0e56b9791a575c81b1e2c97a5378f4"
+      "bytes": 2519,
+      "sha256": "a7fffb4df98c252a3be220cae9ab299e5f14f8f7cf756dcc37522ec110b90536"
     },
     {
       "path": "docker-fictional.mjs",

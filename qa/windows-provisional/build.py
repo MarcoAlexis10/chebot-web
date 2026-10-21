@@ -21,14 +21,14 @@ def build():
         content=p.read_bytes().replace(b'\r\n',b'\n')
         if name.endswith('.cmd'): content=content.replace(b'\n',b'\r\n')
         p.write_bytes(content)
-    paths=sorted(p for p in ROOT.iterdir() if p.is_file() and p.name!='MANIFEST.json')
+    paths=sorted((p for p in ROOT.iterdir() if p.is_file() and p.name!='MANIFEST.json'),key=lambda p:p.name)
     if any(p.suffix in ('.cva','.cclave','.zip') or p.name.startswith('.') for p in paths): raise RuntimeError('NO_BACKUPS_OR_ARCHIVES_IN_PACKAGE')
     files=[{'path':p.name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths]
     (ROOT/'MANIFEST.json').write_text(json.dumps({'package':NAME,'realCaptureAuthorized':False,'files':files},indent=2)+'\n',encoding='utf8',newline='\n')
     target=ROOT.parent/(NAME+'.zip')
     # STORE avoids platform/zlib-dependent compressed bytes; this package is tiny.
     with zipfile.ZipFile(target,'w',compression=zipfile.ZIP_STORED) as z:
-        for p in sorted(ROOT.iterdir()):
+        for p in sorted(ROOT.iterdir(),key=lambda p:p.name):
             if p.is_file():
                 i=zipfile.ZipInfo(p.name,(2026,10,21,0,0,0));i.compress_type=zipfile.ZIP_STORED;i.create_system=3;i.external_attr=0o100644<<16
                 z.writestr(i,p.read_bytes(),compress_type=zipfile.ZIP_STORED)
