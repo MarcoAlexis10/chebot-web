@@ -1,0 +1,52 @@
+name: Provisional PostgreSQL 17 fictional recovery QA
+on:
+  push:
+    branches: [qa/cheveni-a1-provisional-pg17-lab-20261021]
+    paths: ['qa/provisional-pg17/**', '.github/workflows/provisional-pg17-qa.yml']
+permissions:
+  contents: read
+concurrency:
+  group: provisional-pg17-fictional-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  pg17-fictional:
+    if: github.event.repository.private == false && github.ref == 'refs/heads/qa/cheveni-a1-provisional-pg17-lab-20261021'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      CHEVENI_PROVISIONAL_LAB: fictional-only
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.21.0
+      - name: Pull pinned PostgreSQL 17.11 image
+        run: docker pull postgres:17.11-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826 > /dev/null
+      - name: New PostgreSQL integration only, no old suites
+        run: node qa/provisional-pg17/provisional-pg17-lab.mjs
+      - name: Verify and clean this run's resources only
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import subprocess,json,re,os
+          run=os.environ['GITHUB_RUN_ID']
+          def call(*a): return subprocess.check_output(['docker',*a],text=True).strip()
+          label='cheveni.provisional.run='+run
+          for kind,listargs in [('container',['ps','-a']),('volume',['volume','ls']),('network',['network','ls'])]:
+              fmt='{{.ID}}' if kind=='container' else '{{.Name}}'
+              names=call(*listargs,'--filter','label='+label,'--format',fmt).splitlines()
+              for name in names:
+                  args=['inspect',name] if kind=='container' else [kind,'inspect',name]
+                  info=json.loads(call(*args))[0]
+                  labels=info['Config']['Labels'] if kind=='container' else info['Labels']
+                  ident=labels.get('cheveni.provisional.lab','')
+                  if not re.fullmatch('[a-f0-9]{12}',ident) or labels.get('cheveni.provisional.run')!=run: raise RuntimeError('ownership mismatch')
+                  actual=info['Name'].lstrip('/')
+                  expected=['cheveni_prov_source_'+ident,'cheveni_prov_target_'+ident] if kind=='container' else ['cheveni-prov-source-'+ident,'cheveni-prov-target-'+ident] if kind=='volume' else ['cheveni-prov-'+ident]
+                  if actual not in expected: raise RuntimeError('unexpected owned resource')
+                  call(*(['rm','-f',name] if kind=='container' else [kind,'rm',name]))
+              if call(*listargs,'--filter','label='+label,'--format',fmt): raise RuntimeError('owned resources remain')
+          print('PROVISIONAL_WORKFLOW_CLEANUP_OK')
+          PY
