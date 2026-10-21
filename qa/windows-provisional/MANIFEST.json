@@ -1,0 +1,106 @@
+{
+  "package": "CHE-VENI-PROVISIONAL-WINDOWS-20261021",
+  "realCaptureAuthorized": false,
+  "files": [
+    {
+      "path": "00-INICIAR.cmd",
+      "bytes": 1372,
+      "sha256": "1541afd95ec4bfc567af54bc89b2bed7f8aec2052f4d9fe9c9d2c0c0be5ef3a4"
+    },
+    {
+      "path": "01-LABORATORIO-FICTICIO.cmd",
+      "bytes": 1375,
+      "sha256": "e7fab093c3c2537f965b947504ef81a0e0afb127312cc16a3d97a6e8a50a193a"
+    },
+    {
+      "path": "02-PREPARAR-CAPTURA.cmd",
+      "bytes": 1371,
+      "sha256": "67b7a7b9a3c6b79c3b56f88ae7234a0c868a185e6686af210ba57889b5b02446"
+    },
+    {
+      "path": "03-CAPTURA-REAL-PENDIENTE-AUTORIZACION.cmd",
+      "bytes": 1390,
+      "sha256": "8963d620b687a8c847ec54cb5b7f55eae361e52214e1bbcd519d7040b24ea544"
+    },
+    {
+      "path": "04-VERIFICAR-ARCHIVOS.cmd",
+      "bytes": 1373,
+      "sha256": "638406e49d3b3491d25b3c4443a9d4c3fec90aeb50db5a92a0ca9f571fc83e15"
+    },
+    {
+      "path": "05-RESTAURAR-SOLO-DESTINO-DESCARTABLE.cmd",
+      "bytes": 1389,
+      "sha256": "d312436ffea505af164b6c0c5eee2bd70f7e685535ccc2f09307bc32fecb3f6e"
+    },
+    {
+      "path": "06-LIMPIAR-PENDIENTES.cmd",
+      "bytes": 1373,
+      "sha256": "a83d745c6c044380ac8b1c01452cee23c38718ab80ead693762514376b8a6350"
+    },
+    {
+      "path": "LEEME-PRIMERO.txt",
+      "bytes": 2661,
+      "sha256": "e57999b685234b3ea7a69296ff3e2430abf4d4328f2cfe4bdc679d6bfd447f09"
+    },
+    {
+      "path": "LIMITES-Y-EVIDENCIA.md",
+      "bytes": 3069,
+      "sha256": "0b413176855fd9dab2842c421c8a3e4ca5e6ef435c096cd1004cd0312c494d24"
+    },
+    {
+      "path": "build.py",
+      "bytes": 1382,
+      "sha256": "86ef16e4d824dad17b9c79229809a78442d7ddefa3239a66e53e2da724c5b915"
+    },
+    {
+      "path": "docker-fictional.mjs",
+      "bytes": 7153,
+      "sha256": "b1c397d8b972967a4d022d868a4805052b72c5fd6264d26c8ee9970870cb4840"
+    },
+    {
+      "path": "future-dev-plan.mjs",
+      "bytes": 1400,
+      "sha256": "b9136e0a052969b41e8d8cab800120c2081a2af841de000a4479255e460e82ee"
+    },
+    {
+      "path": "iniciar.mjs",
+      "bytes": 3698,
+      "sha256": "f2e4727e62fb5962853517f3339d826cd27c86d71135839053bcdd4bd49d1a0e"
+    },
+    {
+      "path": "package-io.mjs",
+      "bytes": 2357,
+      "sha256": "84524e134451389079be4f8f0ac9f256ceedf4876b0b21ae6f6f671294744c09"
+    },
+    {
+      "path": "package-lab.mjs",
+      "bytes": 2689,
+      "sha256": "7b7e5469c7171fb71a3c7d951ce1f98d2ad420f9502046aece5806a1f29d1b5a"
+    },
+    {
+      "path": "package-pg17-smoke.mjs",
+      "bytes": 258,
+      "sha256": "c93b43bb8996f7c07308eda7f9e1f2719233911a55f3dbe5f4e8c1c577d15470"
+    },
+    {
+      "path": "package-safety.test.mjs",
+      "bytes": 9167,
+      "sha256": "4d2aafbbd29eb6aa284b5af88b163769829c7fc0d290eeec6517bfa0b20d3604"
+    },
+    {
+      "path": "private-host.mjs",
+      "bytes": 6049,
+      "sha256": "98c9899c60d69963f19dc54fc06b2ced11b122b1b2b24543102b0ede7672bc83"
+    },
+    {
+      "path": "private-input.mjs",
+      "bytes": 1944,
+      "sha256": "5f2ae86d8e53ad6b4b471288a3922781eaf317f3e820d8f595719f069b5d865b"
+    },
+    {
+      "path": "provisional-crypto.mjs",
+      "bytes": 10053,
+      "sha256": "2a09de10ebfee582ca5ddb31c00a44efd31d80e76cd430fafd62febd30d56085"
+    }
+  ]
+}

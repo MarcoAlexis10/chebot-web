@@ -1,0 +1,81 @@
+name: Provisional Windows package QA only
+on:
+  push:
+    branches: [qa/cheveni-provisional-windows-package-20261021]
+    paths: ['qa/windows-provisional/**', '.github/workflows/provisional-windows-package-qa.yml']
+permissions:
+  contents: read
+jobs:
+  windows:
+    if: github.repository == 'MarcoAlexis10/chebot-web'
+    runs-on: windows-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Build flat ZIP and exercise extracted package under PowerShell 5.1
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($PSVersionTable.PSVersion.Major -ne 5 -or $PSVersionTable.PSVersion.Minor -ne 1) { throw 'POWERSHELL_51_REQUIRED' }
+          python qa/windows-provisional/build.py
+          if ($LASTEXITCODE -ne 0) { throw 'BUILD_FAILED' }
+          $zip = Join-Path $pwd 'qa/CHE-VENI-PROVISIONAL-WINDOWS-20261021.zip'
+          Get-FileHash -Algorithm SHA256 -LiteralPath $zip
+          $dest = Join-Path $env:TEMP 'Che Veni paquete con espacios'
+          Expand-Archive -LiteralPath $zip -DestinationPath $dest
+          "CHEVENI_EXTRACTED=$dest" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          node --test "$dest/package-safety.test.mjs"
+          if ($LASTEXITCODE -ne 0) { throw 'NEW_WINDOWS_TESTS_FAILED' }
+          $env:CHEVENI_PACKAGE_NO_PAUSE = '1'
+          $env:NODE_OPTIONS = '--deliberately-invalid-option-package-canary'
+          & "$dest/00-INICIAR.cmd"
+          if ($LASTEXITCODE -ne 0) { throw 'CMD_DIAG_FAILED' }
+          & "$dest/02-PREPARAR-CAPTURA.cmd"
+          if ($LASTEXITCODE -ne 0) { throw 'CMD_PLAN_FAILED' }
+          & "$dest/03-CAPTURA-REAL-PENDIENTE-AUTORIZACION.cmd"
+          if ($LASTEXITCODE -ne 1) { throw 'REAL_GATE_NOT_BLOCKED' }
+          Remove-Item Env:NODE_OPTIONS
+          'WINDOWS_PS51_NTFS_CMD_PASS'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.21.0'
+      - name: Focused existing ASUS Node version compatibility
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $env:CHEVENI_PACKAGE_NO_PAUSE = '1'
+          & "$env:CHEVENI_EXTRACTED/00-INICIAR.cmd"
+          if ($LASTEXITCODE -ne 0) { throw 'NODE_2421_CMD_FAILED' }
+          node --test --test-name-pattern='NTFS|CLI help' "$env:CHEVENI_EXTRACTED/package-safety.test.mjs"
+          if ($LASTEXITCODE -ne 0) { throw 'NODE_2421_FOCUSED_FAILED' }
+          'NODE_2421_FOCUSED_PASS'
+  linux-pg17:
+    if: github.repository == 'MarcoAlexis10/chebot-web'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Build exact package and load pinned fictional-only image explicitly
+        run: |
+          python3 qa/windows-provisional/build.py
+          docker pull postgres:17.11-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: New package transport smoke only, not previous 16-case lab
+        run: node qa/windows-provisional/package-pg17-smoke.mjs
+      - name: Confirm no owned Docker resources remain
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {execFileSync} from 'node:child_process';
+          for (const type of ['container','volume','network']) {
+            const out=execFileSync('docker',[type,'ls','--filter','label=cheveni.windows.provisional','--format','{{.Name}}'],{encoding:'utf8'}).trim();
+            if(out)throw Error('PACKAGE_OWNED_RESOURCE_REMAINS');
+          }
+          console.log('PACKAGE_DOCKER_CLEANUP_VERIFIED');
+          JS
