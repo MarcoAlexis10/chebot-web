@@ -4,8 +4,14 @@ import {randomBytes} from 'node:crypto';
 import path from 'node:path';
 import {tmpdir} from 'node:os';
 export function safeEnv(){const e={};for(const k of ['PATH','Path','HOME','USERPROFILE','LOCALAPPDATA','APPDATA','TEMP','TMP','SystemRoot','SYSTEMROOT','WINDIR','ComSpec'])if(process.env[k])e[k]=process.env[k];return e;}
-export function powershell(script,input={}){try{return execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{input:JSON.stringify(input)+'\n',env:safeEnv(),encoding:'utf8',timeout:15000,maxBuffer:1024*1024,windowsHide:true,stdio:['pipe','pipe','pipe']}).trim();}catch{throw Error('WINDOWS_PRIVATE_CHECK_FAILED');}}
-const aclScript=`$ErrorActionPreference='Stop';$p=[Console]::In.ReadLine()|ConvertFrom-Json;
+// Only non-secret path/ACL metadata. Never use this bridge for phrases or credentials.
+function powershellMetadata(script,input){
+ if(!input||Object.keys(input).some(k=>!['path','apply'].includes(k))||typeof input.path!=='string'||!path.isAbsolute(input.path)||(input.apply!==undefined&&typeof input.apply!=='boolean'))throw Error('NON_SECRET_HOST_METADATA_REQUIRED');
+ const encoded=Buffer.from(JSON.stringify(input),'utf8').toString('base64');
+ const prelude="$ErrorActionPreference='Stop';$p=([Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('"+encoded+"')))|ConvertFrom-Json;";
+ try{return execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',prelude+script],{env:safeEnv(),encoding:'utf8',timeout:15000,maxBuffer:1024*1024,windowsHide:true,stdio:['ignore','pipe','pipe']}).trim();}catch{throw Error('WINDOWS_PRIVATE_CHECK_FAILED');}
+}
+const aclScript=`
  $sid=[Security.Principal.WindowsIdentity]::GetCurrent().User;
  if($p.apply){$a=New-Object Security.AccessControl.DirectorySecurity;$a.SetOwner($sid);$a.SetAccessRuleProtection($true,$false);
  foreach($s in @($sid.Value,'S-1-5-18','S-1-5-32-544')){$r=New-Object Security.AccessControl.FileSystemAccessRule((New-Object Security.Principal.SecurityIdentifier($s)),'FullControl','ContainerInherit,ObjectInherit','None','Allow');$a.AddAccessRule($r)};Set-Acl -LiteralPath $p.path -AclObject $a}
@@ -13,7 +19,7 @@ const aclScript=`$ErrorActionPreference='Stop';$p=[Console]::In.ReadLine()|Conve
  foreach($r in $rules){if($r.AccessControlType -eq 'Allow' -and $r.IdentityReference.Value -notin @($sid.Value,'S-1-5-18','S-1-5-32-544')){$ok=$false}};
  if(-not $ok){throw 'NTFS_PRIVATE_ACL_REQUIRED'};@{private=$true;sid=$sid.Value;powershell=$PSVersionTable.PSVersion.ToString()}|ConvertTo-Json -Compress;`;
 export async function checkPrivate(directory,apply=false){
- if(process.platform==='win32')return JSON.parse(powershell(aclScript,{path:directory,apply}));
+ if(process.platform==='win32')return JSON.parse(powershellMetadata(aclScript,{path:directory,apply}));
  const s=await lstat(directory);if(!s.isDirectory()||s.isSymbolicLink()||(s.mode&0o077)!==0)throw Error('PRIVATE_DIRECTORY_REQUIRED');return {private:true,sid:String(process.getuid()),powershell:null};
 }
 export async function createRun(base=tmpdir()){
@@ -49,7 +55,7 @@ export async function removeFictionalRun(root){await assertRun(root);await rm(ro
 export function verifyNode(){
  if(!/^24\.(19|21)\.0$/.test(process.versions.node))throw Error('NODE_24_19_OR_24_21_REQUIRED');
  if(process.platform==='win32'){
-  const ok=powershell(`$p=[Console]::In.ReadLine()|ConvertFrom-Json;$s=Get-AuthenticodeSignature -LiteralPath $p.path;if($s.Status -ne 'Valid' -or $s.SignerCertificate.Subject -notmatch 'OpenJS|Node.js'){throw 'NODE_SIGNATURE_INVALID'};'VALID'`,{path:process.execPath});
+  const ok=powershellMetadata(`$s=Get-AuthenticodeSignature -LiteralPath $p.path;if($s.Status -ne 'Valid' -or $s.SignerCertificate.Subject -notmatch 'OpenJS|Node.js'){throw 'NODE_SIGNATURE_INVALID'};'VALID'`,{path:process.execPath});
   if(ok!=='VALID')throw Error('NODE_SIGNATURE_INVALID');
  }return {nodeVersion:process.versions.node,nodeSignature:process.platform==='win32'?'VALID':'not-a-Windows-host'};
 }

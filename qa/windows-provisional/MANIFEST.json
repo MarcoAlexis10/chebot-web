@@ -49,8 +49,8 @@
     },
     {
       "path": "build.py",
-      "bytes": 1382,
-      "sha256": "86ef16e4d824dad17b9c79229809a78442d7ddefa3239a66e53e2da724c5b915"
+      "bytes": 2477,
+      "sha256": "bbd0f5c69221c6d4722a44c2224dde855b0e56b9791a575c81b1e2c97a5378f4"
     },
     {
       "path": "docker-fictional.mjs",
@@ -89,8 +89,8 @@
     },
     {
       "path": "private-host.mjs",
-      "bytes": 6052,
-      "sha256": "6482107000c936e9405749d4b66627941dd3769bfe50a1bdbad5f6ff4052c233"
+      "bytes": 6477,
+      "sha256": "2e24a4f19988239d908c41069c49708d00fc1f82685f4c3ab52cf1e173318de5"
     },
     {
       "path": "private-input.mjs",
