@@ -4,8 +4,8 @@ import {randomBytes} from 'node:crypto';
 import path from 'node:path';
 import {tmpdir} from 'node:os';
 export function safeEnv(){const e={};for(const k of ['PATH','Path','HOME','USERPROFILE','LOCALAPPDATA','APPDATA','TEMP','TMP','SystemRoot','SYSTEMROOT','WINDIR','ComSpec'])if(process.env[k])e[k]=process.env[k];return e;}
-export function powershell(script,input={}){try{return execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{input:JSON.stringify(input),env:safeEnv(),encoding:'utf8',timeout:15000,maxBuffer:1024*1024,windowsHide:true,stdio:['pipe','pipe','pipe']}).trim();}catch{throw Error('WINDOWS_PRIVATE_CHECK_FAILED');}}
-const aclScript=`$ErrorActionPreference='Stop';$p=[Console]::In.ReadToEnd()|ConvertFrom-Json;
+export function powershell(script,input={}){try{return execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{input:JSON.stringify(input)+'\n',env:safeEnv(),encoding:'utf8',timeout:15000,maxBuffer:1024*1024,windowsHide:true,stdio:['pipe','pipe','pipe']}).trim();}catch{throw Error('WINDOWS_PRIVATE_CHECK_FAILED');}}
+const aclScript=`$ErrorActionPreference='Stop';$p=[Console]::In.ReadLine()|ConvertFrom-Json;
  $sid=[Security.Principal.WindowsIdentity]::GetCurrent().User;
  if($p.apply){$a=New-Object Security.AccessControl.DirectorySecurity;$a.SetOwner($sid);$a.SetAccessRuleProtection($true,$false);
  foreach($s in @($sid.Value,'S-1-5-18','S-1-5-32-544')){$r=New-Object Security.AccessControl.FileSystemAccessRule((New-Object Security.Principal.SecurityIdentifier($s)),'FullControl','ContainerInherit,ObjectInherit','None','Allow');$a.AddAccessRule($r)};Set-Acl -LiteralPath $p.path -AclObject $a}
@@ -49,7 +49,7 @@ export async function removeFictionalRun(root){await assertRun(root);await rm(ro
 export function verifyNode(){
  if(!/^24\.(19|21)\.0$/.test(process.versions.node))throw Error('NODE_24_19_OR_24_21_REQUIRED');
  if(process.platform==='win32'){
-  const ok=powershell(`$p=[Console]::In.ReadToEnd()|ConvertFrom-Json;$s=Get-AuthenticodeSignature -LiteralPath $p.path;if($s.Status -ne 'Valid' -or $s.SignerCertificate.Subject -notmatch 'OpenJS|Node.js'){throw 'NODE_SIGNATURE_INVALID'};'VALID'`,{path:process.execPath});
+  const ok=powershell(`$p=[Console]::In.ReadLine()|ConvertFrom-Json;$s=Get-AuthenticodeSignature -LiteralPath $p.path;if($s.Status -ne 'Valid' -or $s.SignerCertificate.Subject -notmatch 'OpenJS|Node.js'){throw 'NODE_SIGNATURE_INVALID'};'VALID'`,{path:process.execPath});
   if(ok!=='VALID')throw Error('NODE_SIGNATURE_INVALID');
  }return {nodeVersion:process.versions.node,nodeSignature:process.platform==='win32'?'VALID':'not-a-Windows-host'};
 }

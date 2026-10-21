@@ -43,15 +43,16 @@ export async function captureFixture({id,roots,basename,passphrase,onChunk}){
  const n=assertResource(id);const endpoint=JSON.parse(command(['context','inspect']))[0].Endpoints.docker.Host;validateEndpoint(endpoint);let exited=false;
  async function* producer(){const app='winprov-'+randomBytes(8).toString('hex');const p=spawn('docker',['--host',endpoint,'exec','-e','PGAPPNAME='+app,'-e','PGOPTIONS=-c default_transaction_read_only=on -c statement_timeout=30000',n.container,'pg_dump','--username=postgres','--dbname=fixture_source','--format=custom','--lock-wait-timeout=2s'],{env:safeEnv(),stdio:['ignore','pipe','pipe'],windowsHide:true});p.stderr.resume();
  const closed=new Promise(resolve=>{p.on('error',()=>resolve(-1));p.on('close',code=>{exited=true;resolve(code);});});let first=true;
+ const deadline=setTimeout(()=>p.stdout.destroy(Error('PG_DUMP_TIMEOUT')),35000);deadline.unref();
  let bytes=0;try{for await(const chunk of p.stdout){bytes+=chunk.length;if(bytes>64*1024*1024)throw Error('QA_ARCHIVE_TOO_LARGE');if(first){first=false;await onChunk?.();}yield chunk;}if(await closed!==0)throw Error('PG_DUMP_FAILED');}
- finally{if(!exited){try{sql(id,'postgres',"select pg_terminate_backend(pid) from pg_stat_activity where application_name='"+app+"';");}finally{p.kill('SIGTERM');await closed;}}}
+ finally{clearTimeout(deadline);if(!exited){try{sql(id,'postgres',"select pg_terminate_backend(pid) from pg_stat_activity where application_name='"+app+"';");}finally{p.kill('SIGTERM');await closed;}}}
  }
  return sealPackageFixture({roots,basename,passphrase,source:Readable.from(producer())});
 }
 export async function restoreFixture({id,dataFile,keyFile,passphrase}){
  const archive=await openVerifiedFictionalEnvelope({dataFile,keyFile,passphrase});
  try{if(archive.subarray(0,5).toString()!=='PGDMP')throw Error('PG_CUSTOM_ARCHIVE_REQUIRED');const n=assertResource(id);
- if(sql(id,'fixture_target',"select count(*) from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='fixture';")!=='0')throw Error('EMPTY_DISCARDABLE_TARGET_REQUIRED');
+ if(sql(id,'fixture_target',"select count(*) from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname !~ '^pg_' and n.nspname <> 'information_schema' and c.relkind in ('r','p','v','m','S','f');")!=='0')throw Error('EMPTY_DISCARDABLE_TARGET_REQUIRED');
  command(['exec','-i',n.container,'pg_restore','--file=/dev/null'],archive);command(['exec','-i',n.container,'pg_restore','--username=postgres','--dbname=fixture_target','--single-transaction','--exit-on-error'],archive);
  return {fictionalRestore:true,integralRecoveryVerified:false,realCaptureExecuted:false};
  }finally{archive.fill(0);}

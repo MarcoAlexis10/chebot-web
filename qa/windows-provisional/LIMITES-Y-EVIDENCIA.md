@@ -20,6 +20,8 @@ El laboratorio nuevo verifica transporte/archivos de este paquete con tablas
 ficticias. No instala GoTrue/Vault/S3 ni prueba recuperar un Supabase real.
 La apertura autenticada de archives se limita a 64 MiB de plaintext en memoria;
 pg_dump falla al exceder ese limite y siempre debe terminar con exit 0.
+El transporte nuevo impone 35 segundos totales, statement_timeout de 30 segundos
+y espera maxima de bloqueo DDL de 2 segundos; no reintenta la captura.
 No repetir ni ampliar la captura para saltar un limite.
 
 En Windows se comprueban ACL NTFS reales: propietario actual y unicamente acceso

@@ -74,7 +74,8 @@ jobs:
           node --input-type=module <<'JS'
           import {execFileSync} from 'node:child_process';
           for (const type of ['container','volume','network']) {
-            const out=execFileSync('docker',[type,'ls','--filter','label=cheveni.windows.provisional','--format','{{.Name}}'],{encoding:'utf8'}).trim();
+            const list=type==='container'?['container','ls','-a']: [type,'ls'];
+            const out=execFileSync('docker',[...list,'--filter','label=cheveni.windows.provisional','--format',type==='container'?'{{.Names}}':'{{.Name}}'],{encoding:'utf8'}).trim();
             if(out)throw Error('PACKAGE_OWNED_RESOURCE_REMAINS');
           }
           console.log('PACKAGE_DOCKER_CLEANUP_VERIFIED');

@@ -44,8 +44,8 @@
     },
     {
       "path": "LIMITES-Y-EVIDENCIA.md",
-      "bytes": 3069,
-      "sha256": "0b413176855fd9dab2842c421c8a3e4ca5e6ef435c096cd1004cd0312c494d24"
+      "bytes": 3221,
+      "sha256": "0965f7a858b8772c05ce33cd428cfabfbc0d391e24d217abb3e61136921122cb"
     },
     {
       "path": "build.py",
@@ -54,8 +54,8 @@
     },
     {
       "path": "docker-fictional.mjs",
-      "bytes": 7153,
-      "sha256": "b1c397d8b972967a4d022d868a4805052b72c5fd6264d26c8ee9970870cb4840"
+      "bytes": 7356,
+      "sha256": "4243b7fd2b7615131b6ef8da49e8fd21dd5e02aae5e1f8757d00396f1c884aba"
     },
     {
       "path": "future-dev-plan.mjs",
@@ -74,8 +74,8 @@
     },
     {
       "path": "package-lab.mjs",
-      "bytes": 2689,
-      "sha256": "7b7e5469c7171fb71a3c7d951ce1f98d2ad420f9502046aece5806a1f29d1b5a"
+      "bytes": 3296,
+      "sha256": "8334623ae06d7343d1784f27841fc7baed84c6f537162a367a65c7e91a72308b"
     },
     {
       "path": "package-pg17-smoke.mjs",
@@ -89,8 +89,8 @@
     },
     {
       "path": "private-host.mjs",
-      "bytes": 6049,
-      "sha256": "98c9899c60d69963f19dc54fc06b2ced11b122b1b2b24543102b0ede7672bc83"
+      "bytes": 6052,
+      "sha256": "6482107000c936e9405749d4b66627941dd3769bfe50a1bdbad5f6ff4052c233"
     },
     {
       "path": "private-input.mjs",
