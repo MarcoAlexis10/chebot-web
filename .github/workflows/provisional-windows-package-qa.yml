@@ -32,10 +32,6 @@ jobs:
           const builtin="$ErrorActionPreference='Stop';Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected";
           probe('full_environment_builtin',builtin,process.env);
           probe('safe_environment_builtin',builtin,safeEnv());
-          const native=safeEnv();for(const k of ['SystemDrive','ProgramFiles','ProgramFiles(x86)','ProgramW6432','ProgramData','CommonProgramFiles','CommonProgramFiles(x86)','HOMEDRIVE','HOMEPATH','USERNAME','USERDOMAIN','COMPUTERNAME','OS','PROCESSOR_ARCHITECTURE','NUMBER_OF_PROCESSORS','PUBLIC'])if(process.env[k])native[k]=process.env[k];
-          probe('native_environment_builtin',builtin,native);
-          probe('original_module_path_builtin',builtin,{...safeEnv(),PSModulePath:process.env.PSModulePath});
-          probe('explicit_module_builtin',"Import-Module ($PSHOME+'\\Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1');Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected",safeEnv());
           '@ | Set-Content -LiteralPath $probe -Encoding ASCII
           node $probe
       - name: Build flat ZIP and exercise extracted package under PowerShell 5.1
@@ -47,7 +43,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'BUILD_FAILED' }
           $zip = Join-Path $pwd 'qa/CHE-VENI-PROVISIONAL-WINDOWS-20261021.zip'
           Get-FileHash -Algorithm SHA256 -LiteralPath $zip
-          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne '70b45de933fb5e4e0ceebe29f745f669919ce913c3657aa764d200e5bf5364c7') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
+          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne '6fceb1b0f0c912b82d790f42ee2476cc6561104e5fec4b5bb3537f7fb8c9462c') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
           $dest = Join-Path $env:TEMP 'Che Veni paquete con espacios'
           Expand-Archive -LiteralPath $zip -DestinationPath $dest
           "CHEVENI_EXTRACTED=$dest" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append

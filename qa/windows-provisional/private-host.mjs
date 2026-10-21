@@ -3,9 +3,8 @@ import {mkdir,writeFile,readFile,lstat,realpath,readdir,rm} from 'node:fs/promis
 import {randomBytes} from 'node:crypto';
 import path from 'node:path';
 import {tmpdir} from 'node:os';
-export function safeEnv(){const e={};for(const k of ['PATH','Path','HOME','USERPROFILE','LOCALAPPDATA','APPDATA','TEMP','TMP','SystemRoot','SYSTEMROOT','WINDIR','ComSpec'])if(process.env[k])e[k]=process.env[k];
- // Keep module discovery local to the Windows 5.1 system modules. An omitted
- // PSModulePath can stall cmdlet autoloading in a sanitized child environment.
+export function safeEnv(){const e={};for(const k of ['PATH','Path','PATHEXT','HOME','USERPROFILE','LOCALAPPDATA','APPDATA','TEMP','TMP','SystemRoot','SYSTEMROOT','WINDIR','ComSpec'])if(process.env[k])e[k]=process.env[k];
+ // Keep module discovery local to Windows 5.1 system modules, never a custom path.
  if(process.platform==='win32')e.PSModulePath=path.join(process.env.SystemRoot,'System32','WindowsPowerShell','v1.0','Modules');
  return e;
 }
