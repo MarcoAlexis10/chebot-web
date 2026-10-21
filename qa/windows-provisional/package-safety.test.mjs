@@ -3,7 +3,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {Readable} from 'node:stream';
 import {execFileSync} from 'node:child_process';
-import {readFile,writeFile,mkdtemp,rm,cp,readdir,mkdir} from 'node:fs/promises';
+import {readFile,writeFile,mkdtemp,rm,cp,readdir,mkdir,realpath} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -40,6 +40,7 @@ test('Windows npipe contract and Linux socket reject TCP SSH remote and cross-pl
  const old=process.env.DOCKER_HOST;try{process.env.DOCKER_HOST='tcp://example.invalid:2375';assert.throws(()=>command(['info']),/OVERRIDE/);}finally{if(old===undefined)delete process.env.DOCKER_HOST;else process.env.DOCKER_HOST=old;}
 });
 test('NTFS or POSIX private ACL checked for owner and separate data key folders',async()=>withRun(async r=>{
+ assert.equal(await realpath(r.root),r.root);
  assert.equal((await checkPrivate(r.root)).private,true);assert.equal((await checkPrivate(r.data)).private,true);assert.equal((await checkPrivate(r.keys)).private,true);assert.notEqual(r.data,r.keys);assert.equal((await assertRun(r.root)).id,r.id);
 }));
 test('Package publication and independent encrypted copy hashes, no overwrite of either file',async()=>withRun(async r=>{

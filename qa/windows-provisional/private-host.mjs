@@ -33,8 +33,8 @@ export async function checkPrivate(directory,apply=false){
  const s=await lstat(directory);if(!s.isDirectory()||s.isSymbolicLink()||(s.mode&0o077)!==0)throw Error('PRIVATE_DIRECTORY_REQUIRED');return {private:true,sid:String(process.getuid()),powershell:null};
 }
 export async function createRun(base=tmpdir()){
- const id=randomBytes(12).toString('hex'),root=path.resolve(base,'cheveni-provisional-'+id);await mkdir(root,{mode:0o700});
- try{const acl=await checkPrivate(root,true);const roots={id,root,data:path.join(root,'data'),keys:path.join(root,'keys'),owner:acl.sid};
+ const id=randomBytes(12).toString('hex'),requested=path.resolve(base,'cheveni-provisional-'+id);await mkdir(requested,{mode:0o700});let root=requested;
+ try{root=await realpath(requested);const acl=await checkPrivate(root,true);const roots={id,root,data:path.join(root,'data'),keys:path.join(root,'keys'),owner:acl.sid};
  await writeFile(path.join(root,'ownership.json'),JSON.stringify({kind:'CHEVENI_PROVISIONAL_FICTIONAL_RUN',...roots,pid:process.pid}),{flag:'wx',mode:0o600});
  await mkdir(roots.data,{mode:0o700});await mkdir(roots.keys,{mode:0o700});
  await checkPrivate(roots.data,process.platform==='win32');await checkPrivate(roots.keys,process.platform==='win32');return roots;
