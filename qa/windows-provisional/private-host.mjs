@@ -3,6 +3,7 @@ import {mkdir,writeFile,readFile,lstat,realpath,readdir,rm} from 'node:fs/promis
 import {randomBytes} from 'node:crypto';
 import path from 'node:path';
 import {tmpdir} from 'node:os';
+export const powershellModules="$ErrorActionPreference='Stop';Import-Module ($PSHOME+'\\Modules\\Microsoft.PowerShell.Utility\\Microsoft.PowerShell.Utility.psd1');Import-Module ($PSHOME+'\\Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1');$PSModuleAutoLoadingPreference='None';";
 export function safeEnv(){const e={};for(const k of ['PATH','Path','PATHEXT','HOME','USERPROFILE','LOCALAPPDATA','APPDATA','TEMP','TMP','SystemRoot','SYSTEMROOT','WINDIR','ComSpec'])if(process.env[k])e[k]=process.env[k];
  // Keep module discovery local to Windows 5.1 system modules, never a custom path.
  if(process.platform==='win32'){
@@ -17,7 +18,7 @@ export function safeEnv(){const e={};for(const k of ['PATH','Path','PATHEXT','HO
 function powershellMetadata(script,input){
  if(!input||Object.keys(input).some(k=>!['path','apply'].includes(k))||typeof input.path!=='string'||!path.isAbsolute(input.path)||(input.apply!==undefined&&typeof input.apply!=='boolean'))throw Error('NON_SECRET_HOST_METADATA_REQUIRED');
  const encoded=Buffer.from(JSON.stringify(input),'utf8').toString('base64');
- const prelude="$ErrorActionPreference='Stop';$p=([Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('"+encoded+"')))|ConvertFrom-Json;";
+ const prelude=powershellModules+"$p=([Text.Encoding]::UTF8.GetString([Convert]::FromBase64String('"+encoded+"')))|ConvertFrom-Json;";
  try{return execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',prelude+script],{env:safeEnv(),encoding:'utf8',timeout:15000,maxBuffer:1024*1024,windowsHide:true,stdio:['ignore','pipe','pipe']}).trim();}catch{throw Error('WINDOWS_PRIVATE_CHECK_FAILED');}
 }
 const aclScript=`

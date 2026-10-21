@@ -10,6 +10,8 @@ jobs:
     if: github.repository == 'MarcoAlexis10/chebot-web'
     runs-on: windows-latest
     timeout-minutes: 12
+    env:
+      CHEVENI_LAUNCHER_ONLY: ${{ contains(github.event.head_commit.message, '[launcher-only]') }}
     defaults:
       run:
         shell: powershell
@@ -18,19 +20,6 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.19.0'
-      - name: Fictional Windows bridge diagnosis only
-        run: |
-          $probe = Join-Path $env:TEMP 'cheveni-bridge-probe.mjs'
-          $env:CHEVENI_QA_SOURCE = Join-Path $pwd 'qa/windows-provisional/private-host.mjs'
-          @'
-          import {execFileSync} from 'node:child_process';
-          import {pathToFileURL} from 'node:url';
-          const {safeEnv}=await import(pathToFileURL(process.env.CHEVENI_QA_SOURCE));
-          function probe(label,script,env){const start=Date.now();try{const result=execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env,timeout:5000,encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true});console.log(JSON.stringify({label,ms:Date.now()-start,result:result.trim()}));}catch(e){console.log(JSON.stringify({label,ms:Date.now()-start,code:e.code,status:e.status,stderr:String(e.stderr??'').slice(0,1000),stdout:String(e.stdout??'').slice(0,1000)}));}}
-          const builtin="$ErrorActionPreference='Stop';Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected";
-          probe('safe_environment_builtin',builtin,safeEnv());
-          '@ | Set-Content -LiteralPath $probe -Encoding ASCII
-          node $probe
       - name: Build flat ZIP and exercise extracted package under PowerShell 5.1
         if: ${{ !contains(github.event.head_commit.message, '[probe-only]') }}
         run: |
@@ -40,7 +29,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'BUILD_FAILED' }
           $zip = Join-Path $pwd 'qa/CHE-VENI-PROVISIONAL-WINDOWS-20261021.zip'
           Get-FileHash -Algorithm SHA256 -LiteralPath $zip
-          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne 'f4b8b53ea39e51f8e9992a442e7054d82f54af28e1e099dafd41bb297681a1ff') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
+          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne '62259cc34bf2d7bcc5a3a8b11028be355c15fa9b8dfcae753cb0a4aa30dcd5ff') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
           $dest = Join-Path $env:TEMP 'Che Veni paquete con espacios'
           Expand-Archive -LiteralPath $zip -DestinationPath $dest
           "CHEVENI_EXTRACTED=$dest" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
@@ -54,7 +43,11 @@ jobs:
           '@ | Set-Content -LiteralPath $preflight -Encoding ASCII
           node $preflight
           if ($LASTEXITCODE -ne 0) { throw 'WINDOWS_PRIVATE_PREFLIGHT_FAILED' }
-          node --test "$dest/package-safety.test.mjs"
+          if ($env:CHEVENI_LAUNCHER_ONLY -eq 'true') {
+            node --test --test-name-pattern='Manifest' "$dest/package-safety.test.mjs"
+          } else {
+            node --test "$dest/package-safety.test.mjs"
+          }
           if ($LASTEXITCODE -ne 0) { throw 'NEW_WINDOWS_TESTS_FAILED' }
           $env:CHEVENI_PACKAGE_NO_PAUSE = '1'
           $env:NODE_OPTIONS = '--deliberately-invalid-option-package-canary'

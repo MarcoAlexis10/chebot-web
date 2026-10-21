@@ -1,9 +1,9 @@
 import {execFileSync} from 'node:child_process';
-import {safeEnv} from './private-host.mjs';
+import {safeEnv,powershellModules} from './private-host.mjs';
 export async function privateInput(kind){
  if(process.env.CHEVENI_PACKAGE_TEST_INPUT==='fictional-only'){let b='';for await(const c of process.stdin){b+=c;if(b.length>16384)throw Error('INPUT_TOO_LARGE');}return JSON.parse(b);}
  if(process.platform!=='win32')throw Error('WINDOWS_PRIVATE_FORM_REQUIRED');
- const script=`$ErrorActionPreference='Stop';[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false);Add-Type -AssemblyName System.Windows.Forms;
+ const script=powershellModules+`[Console]::OutputEncoding=[Text.UTF8Encoding]::new($false);Add-Type -AssemblyName System.Windows.Forms;
  $kind='${kind==='pending'?'pending':'verify'}';
  if($kind -eq 'pending'){$d=New-Object Windows.Forms.FolderBrowserDialog;$d.Description='Carpeta de laboratorio ficticio propia, no el paquete';if($d.ShowDialog() -ne 'OK'){'null';exit};@{root=$d.SelectedPath}|ConvertTo-Json -Compress;exit};
  $d=New-Object Windows.Forms.OpenFileDialog;$d.Title='Elegir archivo provisional .cva (solo ficticio)';$d.Filter='Respaldo cifrado|*.cva';if($d.ShowDialog() -ne 'OK'){'null';exit};$data=$d.FileName;

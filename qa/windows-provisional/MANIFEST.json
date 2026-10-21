@@ -4,38 +4,38 @@
   "files": [
     {
       "path": "00-INICIAR.cmd",
-      "bytes": 1372,
-      "sha256": "1541afd95ec4bfc567af54bc89b2bed7f8aec2052f4d9fe9c9d2c0c0be5ef3a4"
+      "bytes": 1748,
+      "sha256": "d0ac30f52a491d89b89f435fa79172bf18694009a656cfe9fee0e22548c59d9a"
     },
     {
       "path": "01-LABORATORIO-FICTICIO.cmd",
-      "bytes": 1375,
-      "sha256": "e7fab093c3c2537f965b947504ef81a0e0afb127312cc16a3d97a6e8a50a193a"
+      "bytes": 1751,
+      "sha256": "aab658ab2f695315c1101742dd0674918b95e01cd72e67e653ba1af2e5062dae"
     },
     {
       "path": "02-PREPARAR-CAPTURA.cmd",
-      "bytes": 1371,
-      "sha256": "67b7a7b9a3c6b79c3b56f88ae7234a0c868a185e6686af210ba57889b5b02446"
+      "bytes": 1747,
+      "sha256": "f13965ca914dc8f9d4ecc5ff5b92530b6af2713f1473140da6d7581d2763304a"
     },
     {
       "path": "03-CAPTURA-REAL-PENDIENTE-AUTORIZACION.cmd",
-      "bytes": 1390,
-      "sha256": "8963d620b687a8c847ec54cb5b7f55eae361e52214e1bbcd519d7040b24ea544"
+      "bytes": 1766,
+      "sha256": "2cb9b63b8b206b66b6aaa30f549622a6a45ca561ecf62acc554486bd87dd6c51"
     },
     {
       "path": "04-VERIFICAR-ARCHIVOS.cmd",
-      "bytes": 1373,
-      "sha256": "638406e49d3b3491d25b3c4443a9d4c3fec90aeb50db5a92a0ca9f571fc83e15"
+      "bytes": 1749,
+      "sha256": "a296386d24e51d8d45013a69bbb1c23553e67f82d78df83cf28d2673ff1bf5cc"
     },
     {
       "path": "05-RESTAURAR-SOLO-DESTINO-DESCARTABLE.cmd",
-      "bytes": 1389,
-      "sha256": "d312436ffea505af164b6c0c5eee2bd70f7e685535ccc2f09307bc32fecb3f6e"
+      "bytes": 1765,
+      "sha256": "adfddee58127dc6660f3df945cdafbee4d4f34155fe9a28db370f2475d37ce95"
     },
     {
       "path": "06-LIMPIAR-PENDIENTES.cmd",
-      "bytes": 1373,
-      "sha256": "a83d745c6c044380ac8b1c01452cee23c38718ab80ead693762514376b8a6350"
+      "bytes": 1749,
+      "sha256": "5ab271c2fb28fd113eb94f542da64d1fd0d1d2f7efd4a03fbcfd8751aa54c2b4"
     },
     {
       "path": "LEEME-PRIMERO.txt",
@@ -89,13 +89,13 @@
     },
     {
       "path": "private-host.mjs",
-      "bytes": 6900,
-      "sha256": "e39641d5e4643c6a190164f5511369e1e4cb38e213bc0ca310ac06e5e31dea9a"
+      "bytes": 7195,
+      "sha256": "466dedd0c2a7d307e1a901c0a07c1e741f99d13ddf6ca2832a963f68b988ca20"
     },
     {
       "path": "private-input.mjs",
-      "bytes": 2003,
-      "sha256": "4bb67558b8a053e1e26bc4dc0baf1e68dafc377127b868717b7b5e6520dd14e2"
+      "bytes": 2009,
+      "sha256": "2ff0a23807118cf989ac769e2dcb62fb9e4b75791125648142ce7b1f673d9232"
     },
     {
       "path": "provisional-crypto.mjs",
