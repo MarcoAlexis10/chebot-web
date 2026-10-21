@@ -29,10 +29,17 @@ jobs:
           function probe(label,script,env){const start=Date.now();try{const result=execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env,timeout:5000,encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true});console.log(JSON.stringify({label,ms:Date.now()-start,result:result.trim()}));}catch(e){console.log(JSON.stringify({label,ms:Date.now()-start,code:e.code,status:e.status,stderr:String(e.stderr??'').slice(0,1000),stdout:String(e.stdout??'').slice(0,1000)}));}}
           probe('full_environment_literal',"'STATIC_FICTIONAL_OK'",process.env);
           probe('safe_environment_literal',"'STATIC_FICTIONAL_OK'",safeEnv());
-          probe('safe_environment_builtin',"$ErrorActionPreference='Stop';[Security.Principal.WindowsIdentity]::GetCurrent().User.Value;Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected",safeEnv());
+          const builtin="$ErrorActionPreference='Stop';Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected";
+          probe('full_environment_builtin',builtin,process.env);
+          probe('safe_environment_builtin',builtin,safeEnv());
+          const native=safeEnv();for(const k of ['SystemDrive','ProgramFiles','ProgramFiles(x86)','ProgramW6432','ProgramData','CommonProgramFiles','CommonProgramFiles(x86)','HOMEDRIVE','HOMEPATH','USERNAME','USERDOMAIN','COMPUTERNAME','OS','PROCESSOR_ARCHITECTURE','NUMBER_OF_PROCESSORS','PUBLIC'])if(process.env[k])native[k]=process.env[k];
+          probe('native_environment_builtin',builtin,native);
+          probe('original_module_path_builtin',builtin,{...safeEnv(),PSModulePath:process.env.PSModulePath});
+          probe('explicit_module_builtin',"Import-Module ($PSHOME+'\\Modules\\Microsoft.PowerShell.Security\\Microsoft.PowerShell.Security.psd1');Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected",safeEnv());
           '@ | Set-Content -LiteralPath $probe -Encoding ASCII
           node $probe
       - name: Build flat ZIP and exercise extracted package under PowerShell 5.1
+        if: ${{ !contains(github.event.head_commit.message, '[probe-only]') }}
         run: |
           $ErrorActionPreference = 'Stop'
           if ($PSVersionTable.PSVersion.Major -ne 5 -or $PSVersionTable.PSVersion.Minor -ne 1) { throw 'POWERSHELL_51_REQUIRED' }
@@ -70,6 +77,7 @@ jobs:
         with:
           node-version: '24.21.0'
       - name: Focused existing ASUS Node version compatibility
+        if: ${{ !contains(github.event.head_commit.message, '[probe-only]') }}
         run: |
           $ErrorActionPreference = 'Stop'
           $env:CHEVENI_PACKAGE_NO_PAUSE = '1'
