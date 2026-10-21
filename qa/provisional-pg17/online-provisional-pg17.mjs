@@ -12,7 +12,7 @@ const cleanEnv=()=>({PATH:process.env.PATH,HOME:process.env.HOME,LANG:'C.UTF-8'}
 export function docker(args,input){
   try{return execFileSync('docker',args,{input,env:cleanEnv(),timeout:30000,maxBuffer:80*1024*1024,stdio:['pipe','pipe','pipe']});}
   catch(e){
-    const stderr=String(e.stderr??'');const x=Error('FICTIONAL_DOCKER_COMMAND_FAILED');x.exitStatus=e.status;
+    const stderr=String(e.stderr??'');const x=Error('FICTIONAL_DOCKER_COMMAND_FAILED');x.exitStatus=e.status;x.systemCode=e.code;
     x.reason=Object.entries({SCHEMA_EXISTS:/schema .* already exists/i,ROLE_MISSING:/role .* does not exist/i,CONSTRAINT:/violates|foreign key|check constraint/i,PERMISSION:/permission denied|must be owner/i,ARCHIVE:/archive|input file.*not/i,TRANSACTION:/transaction.*read.only/i}).filter(([,re])=>re.test(stderr)).map(([name])=>name);
     // Only a fixed classification is exposed; no SQL, payload, or credentials.
     throw x;
@@ -106,7 +106,8 @@ export async function restoreFictionalPostgres({container,id,dataFile,keyFile,pa
   try{
     if(archive.subarray(0,5).toString()!=='PGDMP')throw Error('NOT_PG_CUSTOM_ARCHIVE');
     if(sql(container,id,'a1_target',"select count(*) from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname not like 'pg_%' and n.nspname<>'information_schema' and c.relkind in ('r','p','v','m','f','S');")!=='0')throw Error('FICTIONAL_TARGET_NOT_EMPTY');
-    docker(['exec','-i',container,'pg_restore','--list'],archive);
+    // --list may stop after the TOC and close stdin early. Parse the complete archive instead.
+    docker(['exec','-i',container,'pg_restore','--file=/dev/null'],archive);
     // Archive authenticated in memory before any SQL. A restore error rolls back DDL and data.
     docker(['exec','-i',container,'pg_restore','--username=postgres','--dbname=a1_target','--single-transaction','--exit-on-error'],archive);
     return {fictionalPostgresRestoreVerified:true,integralRecoveryVerified:false,realCaptureExecuted:false,authFunctionalRestoreVerified:false};
