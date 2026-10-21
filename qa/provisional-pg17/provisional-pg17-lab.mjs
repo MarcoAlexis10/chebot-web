@@ -177,7 +177,7 @@ if(process.argv[2]==='--crash-capture'){
  await captureFictionalPostgres({...input,onFirstChunk:()=>process.kill(process.pid,'SIGKILL')});
 }else{
  let error;
- try{await main();}catch(e){error=e;console.error(JSON.stringify({result:'PROVISIONAL_PG17_FICTIONAL_LAB_FAIL',passedStages:stages.length,code:e.code??e.message,stack:e.stack,integralRecoveryVerified:false}));}
+ try{await main();}catch(e){error=e;console.error(JSON.stringify({result:'PROVISIONAL_PG17_FICTIONAL_LAB_FAIL',passedStages:stages.length,code:e.code??e.message,reason:e.reason,exitStatus:e.exitStatus,stack:e.stack,integralRecoveryVerified:false}));}
  finally{
   for(const s of [...extraSessions,...snapshots])await s.release().catch(()=>{});
   try{cleanupResources();console.log('PROVISIONAL_LAB_CLEANUP_OK');}catch(e){error??=e;console.error('PROVISIONAL_LAB_CLEANUP_FAILED');}

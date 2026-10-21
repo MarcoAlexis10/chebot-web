@@ -11,7 +11,12 @@ export const LABEL='cheveni.provisional.lab';
 const cleanEnv=()=>({PATH:process.env.PATH,HOME:process.env.HOME,LANG:'C.UTF-8'});
 export function docker(args,input){
   try{return execFileSync('docker',args,{input,env:cleanEnv(),timeout:30000,maxBuffer:80*1024*1024,stdio:['pipe','pipe','pipe']});}
-  catch(e){const x=Error('FICTIONAL_DOCKER_COMMAND_FAILED');x.exitStatus=e.status;throw x;}
+  catch(e){
+    const stderr=String(e.stderr??'');const x=Error('FICTIONAL_DOCKER_COMMAND_FAILED');x.exitStatus=e.status;
+    x.reason=Object.entries({SCHEMA_EXISTS:/schema .* already exists/i,ROLE_MISSING:/role .* does not exist/i,CONSTRAINT:/violates|foreign key|check constraint/i,PERMISSION:/permission denied|must be owner/i,ARCHIVE:/archive|input file.*not/i,TRANSACTION:/transaction.*read.only/i}).filter(([,re])=>re.test(stderr)).map(([name])=>name);
+    // Only a fixed classification is exposed; no SQL, payload, or credentials.
+    throw x;
+  }
 }
 export function assertFixture(container,id){
   if(process.env.CHEVENI_PROVISIONAL_LAB!=='fictional-only'||!/^[a-f0-9]{12}$/.test(id)||
