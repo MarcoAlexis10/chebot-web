@@ -11,7 +11,7 @@ export async function sealPackageFixture({roots,basename,source,passphrase,befor
  const op=randomBytes(12).toString('hex'),staging=path.join(r.root,'.provisional-pending-'+op);await mkdir(staging,{mode:0o700});
  await writeFile(path.join(staging,'pending-owner.json'),JSON.stringify({run:r.id,operation:op,pid:process.pid}),{flag:'wx',mode:0o600});
  let result,ownKey=false,ownData=false;
- async function removeLink(file,origin){try{const [a,b]=await Promise.all([lstat(file),lstat(origin)]);if(a.dev===b.dev&&a.ino===b.ino)await rm(file);}catch(e){if(e.code!=='ENOENT')throw e;}}
+ async function removeLink(file,origin){try{const [a,b]=await Promise.all([lstat(file,{bigint:true}),lstat(origin,{bigint:true})]);if(a.dev===b.dev&&a.ino===b.ino)await rm(file);}catch(e){if(e.code!=='ENOENT')throw e;}}
  try{
   result=await sealFictionalStream({source,privateDirectory:staging,basename:'dump',passphrase});
   await verifyFictionalEnvelope({...result,passphrase});await beforePublish?.();

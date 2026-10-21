@@ -69,8 +69,8 @@
     },
     {
       "path": "package-io.mjs",
-      "bytes": 2357,
-      "sha256": "84524e134451389079be4f8f0ac9f256ceedf4876b0b21ae6f6f671294744c09"
+      "bytes": 2385,
+      "sha256": "3ff0b2df7e4540eab176eb49d1463e12e8349ff9bcae2c9bf43f5f272d7fc28a"
     },
     {
       "path": "package-lab.mjs",
@@ -89,8 +89,8 @@
     },
     {
       "path": "private-host.mjs",
-      "bytes": 6477,
-      "sha256": "2e24a4f19988239d908c41069c49708d00fc1f82685f4c3ab52cf1e173318de5"
+      "bytes": 6767,
+      "sha256": "bc185b4e42f4efe84de8352b04c5877349824ce7fd16ac0b11809a7cc3943617"
     },
     {
       "path": "private-input.mjs",
