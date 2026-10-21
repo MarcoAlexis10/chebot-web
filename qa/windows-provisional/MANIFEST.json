@@ -64,8 +64,8 @@
     },
     {
       "path": "iniciar.mjs",
-      "bytes": 3698,
-      "sha256": "f2e4727e62fb5962853517f3339d826cd27c86d71135839053bcdd4bd49d1a0e"
+      "bytes": 3739,
+      "sha256": "83ac082857fb2d11c7681b031bb973c267237468072fa6ccc36b782f0067b85b"
     },
     {
       "path": "package-io.mjs",

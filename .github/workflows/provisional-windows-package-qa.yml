@@ -29,7 +29,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'BUILD_FAILED' }
           $zip = Join-Path $pwd 'qa/CHE-VENI-PROVISIONAL-WINDOWS-20261021.zip'
           Get-FileHash -Algorithm SHA256 -LiteralPath $zip
-          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne 'a5410b96664fd0a41bb875913fcca5291b57f31132bb35492f7bf896d0a0c95e') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
+          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $zip).Hash.ToLowerInvariant() -ne 'c916ad043762cf9ec0012b125b9ea6d41d5a639d1c821752f97f7fe1330660de') { throw 'CROSS_PLATFORM_ZIP_HASH_MISMATCH' }
           $dest = Join-Path $env:TEMP 'Che Veni paquete con espacios'
           Expand-Archive -LiteralPath $zip -DestinationPath $dest
           "CHEVENI_EXTRACTED=$dest" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
@@ -44,7 +44,7 @@ jobs:
           node $preflight
           if ($LASTEXITCODE -ne 0) { throw 'WINDOWS_PRIVATE_PREFLIGHT_FAILED' }
           if ($env:CHEVENI_LAUNCHER_ONLY -eq 'true') {
-            node --test --test-name-pattern='Manifest' "$dest/package-safety.test.mjs"
+            node --test --test-name-pattern='Manifest|CLI help|CLI private' "$dest/package-safety.test.mjs"
           } else {
             node --test "$dest/package-safety.test.mjs"
           }
@@ -57,6 +57,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'CMD_PLAN_FAILED' }
           & "$dest/03-CAPTURA-REAL-PENDIENTE-AUTORIZACION.cmd"
           if ($LASTEXITCODE -ne 1) { throw 'REAL_GATE_NOT_BLOCKED' }
+          $global:LASTEXITCODE = 0
           Remove-Item Env:NODE_OPTIONS
           'WINDOWS_PS51_NTFS_CMD_PASS'
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020

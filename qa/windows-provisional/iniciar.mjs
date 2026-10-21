@@ -1,4 +1,4 @@
-import {readFile,readdir,lstat} from 'node:fs/promises';
+import {readFile,readdir,lstat,realpath} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -28,6 +28,6 @@ async function main(){
   return {ok:true,...await (await import('./package-lab.mjs')).packageRestore(input)};
  }finally{if(input.passphrase)input.passphrase='';}
 }
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+if(process.argv[1]&&await realpath(path.resolve(process.argv[1]))===await realpath(fileURLToPath(import.meta.url))){
  try{console.log(JSON.stringify(await main()));}catch(e){console.log(JSON.stringify({ok:false,code:/^[A-Z0-9_]+$/.test(e.message)?e.message:'PROVISIONAL_OPERATION_FAILED',remoteConnectionEnabled:false,realCaptureApproved:false,integralRecoveryVerified:false}));process.exitCode=1;}
 }
