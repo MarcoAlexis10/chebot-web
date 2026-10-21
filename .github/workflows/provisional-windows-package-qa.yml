@@ -18,6 +18,20 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.19.0'
+      - name: Fictional Windows bridge diagnosis only
+        run: |
+          $probe = Join-Path $env:TEMP 'cheveni-bridge-probe.mjs'
+          $env:CHEVENI_QA_SOURCE = Join-Path $pwd 'qa/windows-provisional/private-host.mjs'
+          @'
+          import {execFileSync} from 'node:child_process';
+          import {pathToFileURL} from 'node:url';
+          const {safeEnv}=await import(pathToFileURL(process.env.CHEVENI_QA_SOURCE));
+          function probe(label,script,env){const start=Date.now();try{const result=execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env,timeout:5000,encoding:'utf8',stdio:['ignore','pipe','pipe'],windowsHide:true});console.log(JSON.stringify({label,ms:Date.now()-start,result:result.trim()}));}catch(e){console.log(JSON.stringify({label,ms:Date.now()-start,code:e.code,status:e.status,stderr:String(e.stderr??'').slice(0,1000),stdout:String(e.stdout??'').slice(0,1000)}));}}
+          probe('full_environment_literal',"'STATIC_FICTIONAL_OK'",process.env);
+          probe('safe_environment_literal',"'STATIC_FICTIONAL_OK'",safeEnv());
+          probe('safe_environment_builtin',"$ErrorActionPreference='Stop';[Security.Principal.WindowsIdentity]::GetCurrent().User.Value;Get-Acl -LiteralPath $env:TEMP | Select-Object -ExpandProperty AreAccessRulesProtected",safeEnv());
+          '@ | Set-Content -LiteralPath $probe -Encoding ASCII
+          node $probe
       - name: Build flat ZIP and exercise extracted package under PowerShell 5.1
         run: |
           $ErrorActionPreference = 'Stop'
