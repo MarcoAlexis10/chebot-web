@@ -28,13 +28,13 @@ def build(directory,archive):
   if src.endswith('.cmd'):data=data.replace('\n','\r\n')
   (directory/name).write_bytes(data.encode('utf-8'))
  files=[]
- for p in sorted(directory.iterdir()):
+ for p in sorted(directory.iterdir(),key=lambda x:x.name):
   b=p.read_bytes();files.append({'name':p.name,'bytes':len(b),'sha256':sha256(b).hexdigest()})
  manifest={'package':'CHEVENI_NEW_ADAPTER_FICTIONAL_ONLY_20261022','date':'2026-10-22',
   'remoteConnectionEnabled':False,'realCaptureApproved':False,'files':files}
- (directory/'MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
+ (directory/'MANIFEST.json').write_bytes((json.dumps(manifest,indent=2)+'\n').encode('utf-8'))
  with archive.open('xb') as stream,ZipFile(stream,'w',compression=ZIP_STORED) as z:
-  for p in sorted(directory.iterdir()):
+  for p in sorted(directory.iterdir(),key=lambda x:x.name):
    info=ZipInfo(p.name,(2026,10,22,0,0,0));info.create_system=3;info.external_attr=0o100644<<16
    z.writestr(info,p.read_bytes())
  with ZipFile(archive) as z:

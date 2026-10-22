@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   pg17-tls-rebuild:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[windows-only]') && !contains(github.event.head_commit.message, '[delta-only]') && !contains(github.event.head_commit.message, '[fault-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[windows-only]') && !contains(github.event.head_commit.message, '[delta-only]') && !contains(github.event.head_commit.message, '[fault-only]') && !contains(github.event.head_commit.message, '[package-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -27,7 +27,7 @@ jobs:
           assertNoResources();console.log('INDEPENDENT_NEW_ADAPTER_CLEANUP_OK');
           JS
   windows-ntfs-new-adapter:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[linux-only]') && !contains(github.event.head_commit.message, '[delta-only]') && !contains(github.event.head_commit.message, '[fault-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[linux-only]') && !contains(github.event.head_commit.message, '[delta-only]') && !contains(github.event.head_commit.message, '[fault-only]') && !contains(github.event.head_commit.message, '[package-only]')
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -103,7 +103,7 @@ jobs:
           assertNoResources();console.log('INDEPENDENT_REBUILD_FAULT_CLEANUP_OK');
           JS
   windows-flat-package-new:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && contains(github.event.head_commit.message, '[fault-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && (contains(github.event.head_commit.message, '[fault-only]') || contains(github.event.head_commit.message, '[package-only]'))
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -126,7 +126,9 @@ jobs:
           $r=$output|ConvertFrom-Json
           if($r.result -ne 'NEW_WINDOWS_PACKAGE_DIAGNOSTIC_PASS' -or $r.manifestFiles -ne 17 -or $r.remoteConnectionEnabled -or $r.dockerContacted){throw 'NEW_PACKAGE_DIAGNOSTIC_INVALID'}
           Write-Output 'NEW_FLAT_WINDOWS_MANIFEST_17_OF_17_SIGNED_NODE_LAUNCHER_PASS'
-          Get-FileHash -LiteralPath $zip -Algorithm SHA256 | Select-Object -ExpandProperty Hash
+          $hash=(Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          if($hash -ne '9be8602558fde09ff0644a0b67ccd9040153dae54bf69325ee2eb20c8c48bfc9'){throw 'WINDOWS_LINUX_NEW_ZIP_MISMATCH'}
+          Write-Output $hash
       - name: Remove only new package fixture
         if: always()
         shell: powershell
