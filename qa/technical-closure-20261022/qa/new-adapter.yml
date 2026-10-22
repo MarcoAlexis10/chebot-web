@@ -1,0 +1,44 @@
+name: New provisional adapter and closed reconstruction only
+on:
+  push:
+    branches: [qa/cheveni-technical-adapter-lab-20261022]
+    paths: ['qa/technical-closure-20261022/**', '.github/workflows/technical-adapter-new-20261022.yml']
+permissions:
+  contents: read
+jobs:
+  pg17-tls-rebuild:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[windows-only]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only immutable image download
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: New real TLS capture and closed reconstruction only
+        run: node qa/technical-closure-20261022/qa/adapter-pg17-new.mjs
+      - name: Independent cleanup verification
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';
+          assertNoResources();console.log('INDEPENDENT_NEW_ADAPTER_CLEANUP_OK');
+          JS
+  windows-ntfs-new-adapter:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[linux-only]')
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: New process and actual NTFS isolation checks only
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          node --test qa/technical-closure-20261022/adapter-focused.test.mjs
+          if($LASTEXITCODE -ne 0){throw 'NEW_WINDOWS_ADAPTER_FAILED'}
+          Write-Output 'ACTUAL_WINDOWS_NTFS_AND_PROCESS_CHECKS_PASS__NO_DOCKER_DESKTOP_TLS_CLAIM'

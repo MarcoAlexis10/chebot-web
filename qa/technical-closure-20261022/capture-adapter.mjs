@@ -1,0 +1,32 @@
+import {randomBytes,createHash} from 'node:crypto';
+import {mkdir,writeFile,readFile,lstat,link,rm} from 'node:fs/promises';
+import path from 'node:path';
+import {assertRun,checkPrivate,cleanPending} from './approved/private-host.mjs';
+import {sealFictionalStream,verifyFictionalEnvelope} from './envelope-v2.mjs';
+import {captureStream} from './process-source.mjs';
+import {isFictionalSource} from './source-capability.mjs';
+export const remoteConnectionEnabled=false;
+export function captureDev(){throw Error('REAL_CAPTURE_REQUIRES_SEPARATE_AUTHORIZED_RELEASE');}
+const sha=b=>createHash('sha256').update(b).digest('hex');
+export async function captureFictional({roots,source,basename,passphrase,limits,beforePublish}){
+ if(!isFictionalSource(source))throw Error('OWNED_FICTIONAL_SOURCE_REQUIRED');
+ const r=await assertRun(roots.root);
+ if(typeof basename!=='string'||!/^[a-z0-9-]{1,40}$/.test(basename))throw Error('SAFE_BASENAME_REQUIRED');
+ const dataFile=path.join(r.data,basename+'.cva'),keyFile=path.join(r.keys,basename+'.cclave');
+ for(const f of [dataFile,keyFile]){try{await lstat(f);throw Error('EXISTING_BACKUP_PRESERVED');}catch(e){if(e.code!=='ENOENT')throw e;}}
+ const operation=randomBytes(12).toString('hex'),stage=path.join(r.root,'.provisional-pending-'+operation);
+ await mkdir(stage,{mode:0o700});await checkPrivate(stage,process.platform==='win32');
+ await writeFile(path.join(stage,'pending-owner.json'),JSON.stringify({run:r.id,operation,pid:process.pid}),{flag:'wx',mode:0o600});
+ let result,ownData=false,ownKey=false;
+ const unlinkOwn=async(file,origin)=>{try{const [a,b]=await Promise.all([lstat(file,{bigint:true}),lstat(origin,{bigint:true})]);if(a.ino===b.ino&&a.dev===b.dev)await rm(file);}catch(e){if(e.code!=='ENOENT')throw e;}};
+ try{
+  result=await sealFictionalStream({source:captureStream(source,limits),privateDirectory:stage,basename:'dump',passphrase});
+  await verifyFictionalEnvelope({...result,passphrase});
+  await beforePublish?.();
+  await link(result.keyFile,keyFile);ownKey=true;await link(result.dataFile,dataFile);ownData=true;
+  return {dataFile,keyFile,dataSha256:sha(await readFile(dataFile)),keySha256:sha(await readFile(keyFile)),
+   format:'CVP2/CVK4',mode:'ONLINE_PROVISIONAL',source:'FICTIONAL_PG17_ADAPTER_V2',
+   dumpExitZero:true,readOnlyProbeVerified:true,realCaptureExecuted:false,integralRecoveryVerified:false,canOpenGuestAccess:false};
+ }catch(e){if(ownData)await unlinkOwn(dataFile,result.dataFile);if(ownKey)await unlinkOwn(keyFile,result.keyFile);throw e;}
+ finally{await cleanPending(r.root,{operation,allowCurrent:true});}
+}
