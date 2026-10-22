@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   linux-runtime:
-    if: github.repository == 'MarcoAlexis10/chebot-web'
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[windows-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
@@ -63,7 +63,8 @@ jobs:
           $fixture=Join-Path $env:RUNNER_TEMP 'CheVeniDockerCacheFixture'
           New-Item -ItemType Directory -Path $fixture | Out-Null
           $csc=Join-Path $env:SystemRoot 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
-          & $csc /nologo /target:exe "/out:$fixture/docker.exe" qa/docker-ref-20261022/qa/DockerCacheFixture.cs
+          $source=(Resolve-Path -LiteralPath 'qa/docker-ref-20261022/qa/DockerCacheFixture.cs').Path
+          & $csc /nologo /target:exe "/out:$fixture\docker.exe" "$source"
           if($LASTEXITCODE -ne 0){throw 'FICTIONAL_FIXTURE_BUILD_FAILED'}
           $env:PATH="$fixture;$env:PATH"
           $env:CHEVENI_PACKAGE_NO_PAUSE='1'
@@ -88,3 +89,11 @@ jobs:
           Write-Output 'WINDOWS_CANONICAL_CACHE_FIXTURE_DIAGNOSTIC_PASS'
           Write-Output 'WINDOWS_FIXTURE_AND_PACKAGE_CLEANUP_OK'
           Write-Output 'THIS_IS_A_FICTIONAL_CACHE_NOT_DOCKER_DESKTOP_ENGINE_PROOF'
+      - name: Cleanup fictional Windows fixture on any result
+        if: always()
+        run: |
+          foreach($name in @('CheVeniDockerCacheFixture','Che Veni canonical reference package')){
+            $target=Join-Path $env:RUNNER_TEMP $name
+            if(Test-Path -LiteralPath $target){Remove-Item -LiteralPath $target -Recurse -Force}
+          }
+          Write-Output 'WINDOWS_CI_FICTIONAL_DIRECTORIES_REMOVED'
