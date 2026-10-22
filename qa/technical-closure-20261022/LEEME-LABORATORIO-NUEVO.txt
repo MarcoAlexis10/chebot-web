@@ -1,0 +1,40 @@
+CHE VENI - SOLO LABORATORIO FICTICIO DEL ADAPTADOR NUEVO
+
+Este paquete NO hace respaldos reales y NO se conecta a Supabase, Vercel,
+Cloudflare, Meta, SMTP o Google Drive. No pide claves ni frases personales.
+No reemplaza los ZIP integral/provisional aprobados; conservarlos.
+
+Cuando se necesite la verificacion local, con Docker Desktop ya iniciado:
+extraer este ZIP en una carpeta nueva y ejecutar
+00-LABORATORIO-NUEVO-FICTICIO.cmd.
+
+No repetir las 15 unitarias ni las 6 etapas del laboratorio integral anterior.
+Este ensayo nuevo tiene SOLO 4 etapas:
+1. Node existente y firmado, NTFS privado, Docker local con Linux e imagen cacheada.
+2. Conexion TLS de PostgreSQL ficticio; rechazo de CA y hostname incorrectos.
+3. Un pg_dump cifrado V2 y reconstruccion de datos ficticios sin Auth ni accesos.
+4. Limpieza de recursos Docker y carpetas privadas propios.
+
+El resultado esperado es NEW_DESKTOP_FICTIONAL_ADAPTER_PASS, stages: 4,
+remoteConnectionEnabled: false, realCaptureExecuted: false y limpieza true.
+Si falla, conservar el codigo de error. No quitar controles, cambiar Docker
+a remoto, descargar otra imagen o elegir un respaldo personal para probar.
+
+Se utiliza la imagen canonica de PostgreSQL 17.11 ya preparada:
+postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+El paquete no descarga ni instala herramientas. Falla si falta un requisito.
+Los certificados de laboratorio se crean dentro del contenedor descartable;
+no se modifica el almacen de certificados de Windows ni se instala OpenSSL.
+
+El sobre CVP2/CVK4 es nuevo y solo ficticio. No usar los verificadores anteriores
+para abrirlo ni interpretar una incompatibilidad de formato como corrupcion.
+El ensayo elimina sus propios archivos ficticios al finalizar; no toca backups
+ni contenedores de otros laboratorios, DEV o PROD.
+
+La limpieza se comprueba al terminar normalmente o por error controlado. Una
+caida de Docker, apagado forzado o cierre abrupto puede impedir completarla;
+en ese caso no se informa exito y se requiere revisar los recursos propios.
+
+Solo comunica el JSON final o el codigo de error; no enviar contrasenas,
+tokens, frases, respaldos ni archivos privados. Las 4 etapas no acreditan
+una captura real ni recuperacion integral de Supabase.

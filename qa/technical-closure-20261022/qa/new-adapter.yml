@@ -89,6 +89,12 @@ jobs:
         run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
       - name: Only new reconstruction failure and affected TLS capture
         run: node qa/technical-closure-20261022/qa/rebuild-failure-new.mjs
+      - name: Cross-platform Desktop bridge after new in-container certificate setup
+        run: |
+          node --input-type=module <<'JS'
+          import {desktopFocusedLab} from './qa/technical-closure-20261022/desktop-lab.mjs';
+          console.log(JSON.stringify(await desktopFocusedLab()));
+          JS
       - name: Independent cleanup
         if: always()
         run: |
@@ -96,3 +102,37 @@ jobs:
           import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';
           assertNoResources();console.log('INDEPENDENT_REBUILD_FAULT_CLEANUP_OK');
           JS
+  windows-flat-package-new:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && contains(github.event.head_commit.message, '[fault-only]')
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Build new flat package and run signed-node launcher without Docker operations
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $p=Join-Path $env:RUNNER_TEMP 'Che Veni NEW adapter only'
+          $zip=Join-Path $env:RUNNER_TEMP 'CheVeni-NewAdapter-Only.zip'
+          python qa/technical-closure-20261022/build-desktop-package.py "$p" "$zip"
+          if($LASTEXITCODE -ne 0){throw 'NEW_PACKAGE_BUILD_FAILED'}
+          $env:CHEVENI_NEW_ADAPTER_DIAGNOSTIC='1'
+          $env:CHEVENI_PACKAGE_NO_PAUSE='1'
+          $output=(& "$p/00-LABORATORIO-NUEVO-FICTICIO.cmd" | Out-String)
+          if($LASTEXITCODE -ne 0){throw 'NEW_WINDOWS_LAUNCHER_FAILED'}
+          $r=$output|ConvertFrom-Json
+          if($r.result -ne 'NEW_WINDOWS_PACKAGE_DIAGNOSTIC_PASS' -or $r.manifestFiles -ne 17 -or $r.remoteConnectionEnabled -or $r.dockerContacted){throw 'NEW_PACKAGE_DIAGNOSTIC_INVALID'}
+          Write-Output 'NEW_FLAT_WINDOWS_MANIFEST_17_OF_17_SIGNED_NODE_LAUNCHER_PASS'
+          Get-FileHash -LiteralPath $zip -Algorithm SHA256 | Select-Object -ExpandProperty Hash
+      - name: Remove only new package fixture
+        if: always()
+        shell: powershell
+        run: |
+          foreach($name in @('Che Veni NEW adapter only','CheVeni-NewAdapter-Only.zip')){
+            $p=Join-Path $env:RUNNER_TEMP $name
+            if(Test-Path -LiteralPath $p){Remove-Item -LiteralPath $p -Recurse -Force}
+          }
+          Write-Output 'NEW_WINDOWS_PACKAGE_TEST_CLEANUP_OK'

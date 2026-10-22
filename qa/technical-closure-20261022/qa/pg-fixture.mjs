@@ -1,15 +1,14 @@
 // Disposable PostgreSQL 17.11 only. No DEV/PROD transport exists in this module.
 import {execFileSync,spawn} from 'node:child_process';
 import {randomBytes} from 'node:crypto';
-import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
-import {tmpdir} from 'node:os';import path from 'node:path';
 import {safeEnv} from '../approved/private-host.mjs';
+import {validateEndpoint} from '../approved/docker-fictional.mjs';
 export const IMAGE='postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826';
 export const LABEL='cheveni.technical.closure';
 const instances=new Map();
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 function raw(args,input,timeout=30000){try{return execFileSync('docker',args,{input,env:safeEnv(),timeout,maxBuffer:80*1024*1024,stdio:['pipe','pipe','pipe']});}catch{throw Error('FIXTURE_DOCKER_FAILED_'+String(args[0]).toUpperCase().replace(/[^A-Z]/g,''));}}
-function endpoint(){if(process.env.DOCKER_HOST||process.env.DOCKER_CONTEXT)throw Error('DOCKER_OVERRIDE_REFUSED');const e=JSON.parse(raw(['context','inspect']))[0]?.Endpoints?.docker?.Host;if(e!=='unix:///var/run/docker.sock')throw Error('LOCAL_LINUX_DOCKER_ONLY');return e;}
+function endpoint(){if(process.env.DOCKER_HOST||process.env.DOCKER_CONTEXT)throw Error('DOCKER_OVERRIDE_REFUSED');const e=JSON.parse(raw(['context','inspect']))[0]?.Endpoints?.docker?.Host;validateEndpoint(e);return e;}
 export function cmd(args,input,timeout){return raw(['--host',endpoint(),...args],input,timeout);}
 function inspect(kind,name){return JSON.parse(cmd([kind,'inspect',name]))[0];}
 function names(id){if(!/^[a-f0-9]{24}$/.test(id))throw Error('FICTIONAL_ID_REQUIRED');return {container:'cv-tech-'+id,volume:'cv-tech-'+id,network:'cv-tech-'+id};}
@@ -24,6 +23,7 @@ export async function startFixture(kind='source'){
  if(!['source','closed-target'].includes(kind))throw Error('FIXTURE_KIND_INVALID');
  const id=randomBytes(12).toString('hex'),n=names(id);instances.set(id,{kind});const label=['--label',LABEL+'='+id];
  try{
+  if(cmd(['info','--format','{{.OSType}}']).toString().trim()!=='linux')throw Error('LOCAL_LINUX_DOCKER_ENGINE_REQUIRED');
   cmd(['image','inspect',IMAGE]);
   if(kind==='source')cmd(['network','create','--internal',...label,n.network]);
   cmd(['volume','create',...label,n.volume]);
@@ -35,27 +35,29 @@ export async function startFixture(kind='source'){
   return id;
  }catch(e){cleanup(id);throw e;}
 }
-function openssl(args){try{execFileSync('openssl',args,{stdio:['ignore','ignore','pipe'],timeout:15000});}catch{throw Error('FICTIONAL_CERTIFICATE_SETUP_FAILED');}}
 async function configureTls(id){
- const n=assertFixture(id),dir=mkdtempSync(path.join(tmpdir(),'cv-tech-cert-'));
- try{
-  const f=x=>path.join(dir,x);
-  openssl(['req','-x509','-newkey','rsa:2048','-nodes','-days','1','-subj','/CN=CheVeniFictionalCA','-keyout',f('ca.key'),'-out',f('ca.crt')]);
-  openssl(['req','-newkey','rsa:2048','-nodes','-subj','/CN=fixture-source','-keyout',f('server.key'),'-out',f('server.csr')]);
-  writeFileSync(f('san.conf'),'subjectAltName=DNS:fixture-source\n');
-  openssl(['x509','-req','-in',f('server.csr'),'-CA',f('ca.crt'),'-CAkey',f('ca.key'),'-CAcreateserial','-days','1','-extfile',f('san.conf'),'-out',f('server.crt')]);
-  openssl(['req','-x509','-newkey','rsa:2048','-nodes','-days','1','-subj','/CN=WrongFictionalCA','-keyout',f('wrong.key'),'-out',f('wrong.crt')]);
-  for(const [from,to] of [['server.key','/tmp/cv-server.key'],['server.crt','/tmp/cv-server.crt'],['ca.crt','/tmp/cv-ca.crt'],['wrong.crt','/tmp/cv-wrong-ca.crt']])cmd(['cp',f(from),n.container+':'+to]);
-  cmd(['exec',n.container,'chown','postgres:postgres','/tmp/cv-server.key']);cmd(['exec',n.container,'chmod','600','/tmp/cv-server.key']);
-  sql(id,'postgres',"alter system set ssl='on';alter system set ssl_cert_file='/tmp/cv-server.crt';alter system set ssl_key_file='/tmp/cv-server.key';");
-  cmd(['exec','-i',n.container,'sh','-c','cat > /var/lib/postgresql/data/pg_hba.conf'],Buffer.from('local all all trust\nhostssl all fixture_reader all scram-sha-256\nhostnossl all all all reject\n'));
-  sql(id,'postgres','select pg_reload_conf();');
-  instances.get(id).password='FICTIONAL-'+randomBytes(20).toString('hex');
-  const pw=instances.get(id).password;
-  sql(id,'postgres',"create role fixture_reader login password '"+pw+"';create database fixture_source;");
-  sql(id,'fixture_source',"create schema fixture;create table fixture.source_identity(marker text primary key);insert into fixture.source_identity values('"+id+"');grant usage on schema fixture to fixture_reader;grant select on all tables in schema fixture to fixture_reader;alter default privileges in schema fixture grant select on tables to fixture_reader;");
-  await pause(300);
- }finally{rmSync(dir,{recursive:true,force:true});}
+ const n=assertFixture(id);
+ // OpenSSL runs inside the already pinned Linux image. Windows requires no
+ // additional installation, host certificate store or plaintext host key file.
+ const script=`set -e
+umask 077
+openssl req -x509 -newkey rsa:2048 -nodes -days 1 -subj /CN=CheVeniFictionalCA -keyout /tmp/cv-ca.key -out /tmp/cv-ca.crt >/dev/null 2>&1
+openssl req -newkey rsa:2048 -nodes -subj /CN=fixture-source -keyout /tmp/cv-server.key -out /tmp/cv-server.csr >/dev/null 2>&1
+printf '%s\\n' 'subjectAltName=DNS:fixture-source' > /tmp/cv-san.conf
+openssl x509 -req -in /tmp/cv-server.csr -CA /tmp/cv-ca.crt -CAkey /tmp/cv-ca.key -CAcreateserial -days 1 -extfile /tmp/cv-san.conf -out /tmp/cv-server.crt >/dev/null 2>&1
+openssl req -x509 -newkey rsa:2048 -nodes -days 1 -subj /CN=WrongFictionalCA -keyout /tmp/cv-wrong.key -out /tmp/cv-wrong-ca.crt >/dev/null 2>&1
+chown postgres:postgres /tmp/cv-server.key /tmp/cv-server.crt
+chmod 600 /tmp/cv-server.key
+`;
+ cmd(['exec','-i',n.container,'sh'],Buffer.from(script));
+ sql(id,'postgres',"alter system set ssl='on';alter system set ssl_cert_file='/tmp/cv-server.crt';alter system set ssl_key_file='/tmp/cv-server.key';");
+ cmd(['exec','-i',n.container,'sh','-c','cat > /var/lib/postgresql/data/pg_hba.conf'],Buffer.from('local all all trust\nhostssl all fixture_reader all scram-sha-256\nhostnossl all all all reject\n'));
+ sql(id,'postgres','select pg_reload_conf();');
+ instances.get(id).password='FICTIONAL-'+randomBytes(20).toString('hex');
+ const pw=instances.get(id).password;
+ sql(id,'postgres',"create role fixture_reader login password '"+pw+"';create database fixture_source;");
+ sql(id,'fixture_source',"create schema fixture;create table fixture.source_identity(marker text primary key);insert into fixture.source_identity values('"+id+"');grant usage on schema fixture to fixture_reader;grant select on all tables in schema fixture to fixture_reader;alter default privileges in schema fixture grant select on tables to fixture_reader;");
+ await pause(300);
 }
 export async function makePgSource(id,{wrongHost=false,wrongCA=false}={}){
  if(instances.get(id)?.kind!=='source')throw Error('OWNED_SOURCE_REQUIRED');const n=assertFixture(id);
