@@ -1,0 +1,52 @@
+CHE VENI - WINDOWS - RESGUARDO ONLINE PROVISIONAL - 22/10/2026
+
+UNA ACCION CUANDO USES LA ASUS
+Extrae este ZIP en una carpeta NUEVA y hace doble clic en 00-INICIAR.cmd.
+Solo verifica archivos y diagnostica herramientas locales. No captura DEV.
+No reemplaza ni modifica CHE-VENI-A1-WINDOWS-20261020.zip.
+
+ANTES DE ABRIR
+Compara el SHA-256 externo del ZIP con Get-FileHash desde PowerShell 5.1:
+Get-FileHash .\CHE-VENI-PROVISIONAL-WINDOWS-20261022.zip -Algorithm SHA256
+No mezcles carpetas ni guardes copias o claves dentro del paquete.
+
+REQUISITOS YA EXISTENTES
+Windows 11 x64, PowerShell 5.1 y Node oficial firmado 24.19.0 o 24.21.0.
+El lanzador busca Node en PATH o en la cache local del paquete integral previo.
+No descarga ni instala herramientas. Si Windows bloquea un archivo, detente:
+no desactives Smart App Control/Defender ni cambies ExecutionPolicy.
+Para laboratorio/restauracion: Docker Desktop LOCAL, motor Linux y la imagen
+PostgreSQL 17.11 fijada ya disponible. Se acepta npipe local; TCP/SSH, contextos
+remotos y overrides DOCKER_HOST/DOCKER_CONTEXT quedan bloqueados.
+No necesita pg_dump nativo ni Supabase CLI para estos comandos.
+
+COMANDOS SEPARADOS
+00-INICIAR.cmd: DIAGNOSTICO-LOCAL. Sin credenciales, conexiones DEV o descargas.
+01-LABORATORIO-FICTICIO.cmd: prueba nueva del paquete con fixtures; crea y limpia
+solo recursos propios. No repite las 16 etapas ni suites anteriores.
+02-PREPARAR-CAPTURA.cmd: plan y omisiones; no conecta ni pide accesos.
+03-CAPTURA-REAL-PENDIENTE-AUTORIZACION.cmd: SIEMPRE BLOQUEADO en esta entrega.
+04-VERIFICAR-ARCHIVOS.cmd: formulario local oculto; solo acepta CVO1 ficticio.
+05-RESTAURAR-SOLO-DESTINO-DESCARTABLE.cmd: destino ficticio nuevo, interno y vacio;
+autentica antes de SQL; no borra los archivos seleccionados.
+06-LIMPIAR-PENDIENTES.cmd: seleccion de carpeta ficticia propia; comprueba marcador
+y propietario antes de retirar pendientes. No elimina copias completas o ajenas.
+
+ALCANCE Y CUSTODIA FUTURA
+CVO1/CVK3 es PROVISIONAL, separado de CVA2/CVK2 integral. No es recuperacion de
+Supabase administrado. Captura real NO autorizada ni habilitada. No pide tokens,
+contrasenas DB, claves de proyecto ni accesos a cuentas.
+Los dos archivos (.cva y .cclave) van en carpetas privadas separadas fuera del
+paquete; futuras copias de AMBOS en Drive restringido. Frase fuerte solo en papel.
+No usar pendrive ni comprar servicios. Comparar SHA-256 de ambos archivos tras
+descargar las copias de Drive; la herramienta no afirma haber verificado Drive.
+
+No pegar frases, claves, archivos o registros privados en el chat. Compartir solo
+el codigo y los indicadores del diagnostico. Ver LIMITES-Y-EVIDENCIA.md.
+
+CORRECCION DOCKER 22/10/2026
+Usa exclusivamente la referencia canonica ya confirmada en tu ASUS:
+postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+El digest no cambio. No requiere volver a descargar la imagen.
+Extrae esta version en una carpeta nueva; conserva los ZIP anteriores.
+La primera accion sigue siendo abrir 00-INICIAR.cmd (solo diagnostico).

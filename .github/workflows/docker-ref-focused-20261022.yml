@@ -1,0 +1,90 @@
+name: Provisional canonical Docker reference focused QA
+on:
+  push:
+    branches: [qa/cheveni-provisional-docker-ref-fix-20261022]
+    paths: ['qa/docker-ref-20261022/**', '.github/workflows/docker-ref-focused-20261022.yml']
+permissions:
+  contents: read
+jobs:
+  linux-runtime:
+    if: github.repository == 'MarcoAlexis10/chebot-web'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Explicit CI-only canonical image pull
+        run: |
+          node --input-type=module <<'JS'
+          import {IMAGE} from './qa/docker-ref-20261022/package/docker-fictional.mjs';
+          import {execFileSync} from 'node:child_process';
+          execFileSync('docker',['pull',IMAGE],{stdio:'inherit',timeout:180000});
+          JS
+      - name: Focused diagnostic capture restore and failure cleanup only
+        run: node qa/docker-ref-20261022/qa/focused-runtime.mjs qa/docker-ref-20261022/package
+      - name: Independent cleanup check of fictional resources
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {execFileSync} from 'node:child_process';
+          for(const kind of ['container','volume','network']){
+            const list=kind==='container'?['container','ls','-a']:[kind,'ls'];
+            const out=execFileSync('docker',[...list,'--filter','label=cheveni.windows.provisional','--format',kind==='container'?'{{.Names}}':'{{.Name}}'],{encoding:'utf8'}).trim();
+            if(out)throw Error('OWNED_FICTIONAL_RESOURCE_REMAINS');
+          }
+          console.log('FOCUSED_DOCKER_CLEANUP_OK');
+          JS
+  windows-cache-contract:
+    if: github.repository == 'MarcoAlexis10/chebot-web'
+    runs-on: windows-latest
+    timeout-minutes: 8
+    defaults:
+      run:
+        shell: powershell
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.21.0'
+      - name: Build reproducible ZIP and validate extracted launcher against fictional cache
+        run: |
+          $ErrorActionPreference='Stop'
+          if($PSVersionTable.PSVersion.Major -ne 5 -or $PSVersionTable.PSVersion.Minor -ne 1){throw 'PS51_REQUIRED'}
+          python qa/docker-ref-20261022/package/build.py
+          if($LASTEXITCODE -ne 0){throw 'BUILD_FAILED'}
+          $zip=Join-Path $pwd 'qa/docker-ref-20261022/CHE-VENI-PROVISIONAL-WINDOWS-20261022.zip'
+          $hash=(Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant()
+          if($hash -ne '561de9c25dd2299c82edade5916f843b383abca777d04a230e1a0cfd74494206'){throw 'ZIP_SHA_MISMATCH'}
+          Write-Output "FOCUSED_ZIP_SHA256=$hash"
+          $pkg=Join-Path $env:RUNNER_TEMP 'Che Veni canonical reference package'
+          Expand-Archive -LiteralPath $zip -DestinationPath $pkg
+          $fixture=Join-Path $env:RUNNER_TEMP 'CheVeniDockerCacheFixture'
+          New-Item -ItemType Directory -Path $fixture | Out-Null
+          $csc=Join-Path $env:SystemRoot 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+          & $csc /nologo /target:exe "/out:$fixture/docker.exe" qa/docker-ref-20261022/qa/DockerCacheFixture.cs
+          if($LASTEXITCODE -ne 0){throw 'FICTIONAL_FIXTURE_BUILD_FAILED'}
+          $env:PATH="$fixture;$env:PATH"
+          $env:CHEVENI_PACKAGE_NO_PAUSE='1'
+          $output=(& "$pkg/00-INICIAR.cmd" | Out-String)
+          if($LASTEXITCODE -ne 0){throw 'DIAGNOSTIC_LAUNCHER_FAILED'}
+          $result=$output | ConvertFrom-Json
+          if(!$result.manifestVerified -or $result.manifestFiles -ne 21 -or !$result.docker.pinnedImagePresent -or !$result.docker.localDocker -or $result.realCaptureApproved -or $result.remoteConnectionEnabled){throw 'CANONICAL_CACHE_DIAGNOSTIC_FAILED'}
+          $canonical='postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826'
+          $calls=Get-Content -LiteralPath "$fixture/calls.txt"
+          $lookups=@($calls | Where-Object {$_ -match 'image inspect'})
+          if($lookups.Count -ne 1 -or !$lookups[0].EndsWith($canonical)){throw 'CANONICAL_LOOKUP_NOT_USED'}
+          & "$fixture/docker.exe" image inspect 'postgres:17.11-bookworm@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826'
+          if($LASTEXITCODE -ne 23){throw 'FICTIONAL_CACHE_NOT_STRICT'}
+          $global:LASTEXITCODE=0
+          $before=(Get-Content -LiteralPath "$fixture/calls.txt").Count
+          $denial=(& "$pkg/03-CAPTURA-REAL-PENDIENTE-AUTORIZACION.cmd" | Out-String)
+          if($LASTEXITCODE -ne 1 -or $denial -notmatch 'REAL_CAPTURE_NOT_AUTHORIZED_IN_THIS_PACKAGE'){throw 'REAL_CAPTURE_GATE_FAILED'}
+          $global:LASTEXITCODE=0
+          if((Get-Content -LiteralPath "$fixture/calls.txt").Count -ne $before){throw 'REAL_GATE_CONTACTED_DOCKER'}
+          Remove-Item -LiteralPath $fixture -Recurse -Force
+          Remove-Item -LiteralPath $pkg -Recurse -Force
+          Write-Output 'WINDOWS_CANONICAL_CACHE_FIXTURE_DIAGNOSTIC_PASS'
+          Write-Output 'WINDOWS_FIXTURE_AND_PACKAGE_CLEANUP_OK'
+          Write-Output 'THIS_IS_A_FICTIONAL_CACHE_NOT_DOCKER_DESKTOP_ENGINE_PROOF'
