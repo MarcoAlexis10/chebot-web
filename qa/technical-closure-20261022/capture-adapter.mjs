@@ -15,8 +15,9 @@ export async function captureFictional({roots,source,basename,passphrase,limits,
  const dataFile=path.join(r.data,basename+'.cva'),keyFile=path.join(r.keys,basename+'.cclave');
  for(const f of [dataFile,keyFile]){try{await lstat(f);throw Error('EXISTING_BACKUP_PRESERVED');}catch(e){if(e.code!=='ENOENT')throw e;}}
  const operation=randomBytes(12).toString('hex'),stage=path.join(r.root,'.provisional-pending-'+operation);
- await mkdir(stage,{mode:0o700});await checkPrivate(stage,process.platform==='win32');
- await writeFile(path.join(stage,'pending-owner.json'),JSON.stringify({run:r.id,operation,pid:process.pid}),{flag:'wx',mode:0o600});
+ await mkdir(stage,{mode:0o700});
+ try{await checkPrivate(stage,process.platform==='win32');await writeFile(path.join(stage,'pending-owner.json'),JSON.stringify({run:r.id,operation,pid:process.pid}),{flag:'wx',mode:0o600});}
+ catch(e){await rm(stage,{recursive:true,force:true});throw e;}
  let result,ownData=false,ownKey=false;
  const unlinkOwn=async(file,origin)=>{try{const [a,b]=await Promise.all([lstat(file,{bigint:true}),lstat(origin,{bigint:true})]);if(a.ino===b.ino&&a.dev===b.dev)await rm(file);}catch(e){if(e.code!=='ENOENT')throw e;}};
  try{

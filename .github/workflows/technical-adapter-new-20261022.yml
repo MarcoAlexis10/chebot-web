@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   pg17-tls-rebuild:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[windows-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[windows-only]') && !contains(github.event.head_commit.message, '[delta-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -27,7 +27,7 @@ jobs:
           assertNoResources();console.log('INDEPENDENT_NEW_ADAPTER_CLEANUP_OK');
           JS
   windows-ntfs-new-adapter:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[linux-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[linux-only]') && !contains(github.event.head_commit.message, '[delta-only]')
     runs-on: windows-latest
     timeout-minutes: 8
     steps:
@@ -42,3 +42,37 @@ jobs:
           node --test qa/technical-closure-20261022/adapter-focused.test.mjs
           if($LASTEXITCODE -ne 0){throw 'NEW_WINDOWS_ADAPTER_FAILED'}
           Write-Output 'ACTUAL_WINDOWS_NTFS_AND_PROCESS_CHECKS_PASS__NO_DOCKER_DESKTOP_TLS_CLAIM'
+  a2-reconstruction-delta:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && contains(github.event.head_commit.message, '[delta-only]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only immutable PG image
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: New installation and reconstruction differences only
+        run: node qa/technical-closure-20261022/qa/a2-reconstruction-delta.mjs
+      - name: Independent cleanup
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';
+          assertNoResources();console.log('INDEPENDENT_A2_DELTA_CLEANUP_OK');
+          JS
+  windows-new-lifecycle-fix:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && contains(github.event.head_commit.message, '[delta-only]')
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Only new closed-stdout cancellation regression and affected normal publication
+        shell: powershell
+        run: |
+          node --test qa/technical-closure-20261022/process-lifecycle-focused.test.mjs
+          if($LASTEXITCODE -ne 0){throw 'NEW_LIFECYCLE_FIX_FAILED'}

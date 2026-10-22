@@ -1,0 +1,38 @@
+[
+  {
+    "path": "test/fixtures/concierge-runtime-dev-schema.sql",
+    "sha": "acbd63785006dc14f1393171644f80c18d1bc790"
+  },
+  {
+    "path": "test/fixtures/concierge-runtime-dev-functions.sql",
+    "sha": "2b47dfde22807a2c4aa068a601ae1ab8a0d3588a"
+  },
+  {
+    "path": "test/fixtures/concierge-runtime-dev-indexes-triggers.sql",
+    "sha": "a49227b0d0265663b00d4f05953b3f54b076fc2a"
+  },
+  {
+    "path": "test/fixtures/concierge-invite-postgres-seed.sql",
+    "sha": "b1fc02bc785efd538aa2c48434d6b7f2a4145f91"
+  },
+  {
+    "path": "ops/drafts/BA-BETA-ATOMIC-ACL-BUNDLE-PRELEGAL-DO-NOT-APPLY.sql",
+    "sha": "6e0ae8c85fd4439510f3ec220249777b9c5e8417"
+  },
+  {
+    "path": "qa/installation/audit.mjs",
+    "sha": "bd6aad378266ab2fbbd6575c74f37017f8133d7d"
+  },
+  {
+    "path": "qa/installation/contract.json",
+    "sha": "f5b2a9bb40b3cd22edb1f799bea78383847ffdbb"
+  },
+  {
+    "path": "qa/installation/consumer-acl.mjs",
+    "sha": "9f09a2db786cc8f974de3176a021cfe173b54864"
+  },
+  {
+    "path": "qa/installation/consumer-contract.json",
+    "sha": "0aa8d690d2593aa7ec5f3aef777cb617a76e0442"
+  }
+]

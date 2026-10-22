@@ -1,0 +1,1536 @@
+{
+  "format": 1,
+  "bundleSha256": "f12b5b10f3120eeda3bbbc6d48604a894b63169c6ed66743f2895d499a516846",
+  "functions": [
+    {
+      "signature": "concierge_private.accept_guest_initiated_invitation_v1_impl(text, text)",
+      "fingerprint": "a390b4a04fde82652603c6b630094652707cf7ae06bf1d260785e040b23eaadc",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.authorize_invite_processing_v1_impl(uuid, uuid)",
+      "fingerprint": "41aa1d2964587c0070372f08ace67f00f020c4f20e89a73b8214b7f21a74c41f",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.begin_verified_beta_v1_impl(uuid, uuid)",
+      "fingerprint": "0d294d133b4bd3d92ed2b507be27f9858ebdbeb076aa913b699e5d6ed6dcb367",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.check_intake_v1(uuid, uuid, uuid, text, timestamp with time zone)",
+      "fingerprint": "503df3ac1d0c8063dfbdaac191b4030dea3b40cc26528398c005e71cd425212e",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.check_invite_authority_v1(uuid, uuid)",
+      "fingerprint": "dc698cdf47a8386b78023dc887e47019c94c3561f7f04e0edfb5c053e60e33b4",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.check_runtime_v1(uuid, text, text)",
+      "fingerprint": "d86ecb03951ba3bcff8bf3188fbc4bf1bf872d4084272f5a691a8d7ea59bc35c",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_activate_guest_phone_replacement_impl_v1(text)",
+      "fingerprint": "047f392287967f63ab2e1b8ba858cea391bc0374ccc606602c0ea89d5e7decc1",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_approve_guest_phone_replacement_impl_v1(uuid, uuid)",
+      "fingerprint": "32502ce117da9d09318c4516bf3c1d0a5bc20a303db8979c9dccbd9d48484788",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_authorize_secret_access_impl_v1(uuid, uuid, uuid)",
+      "fingerprint": "79967d13d4a924f261e2422bf79fb8b78393a2018d8913b23618f922f3d9253e",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_claim_due_notifications_impl_v1(integer, timestamp with time zone)",
+      "fingerprint": "359971bde13616c54ef6d2299684f8d582b791cea0a109ddd6f569b3970ad805",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_guest_apply_incident_protocol_impl_v1(uuid, uuid, uuid, uuid, uuid)",
+      "fingerprint": "11edeac82db9adddcd311418292bbb7bb10d1b8dbc21f19cfe979327d7b19ff6",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_guest_confirm_incident_resolved_impl_v1(uuid, uuid, uuid, text)",
+      "fingerprint": "edaf793dc7d86122b45e1dfff4cd0c182cc2e3881fed3353abd6110d87708f23",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_guest_report_incident_unresolved_impl_v1(uuid, uuid, uuid, text)",
+      "fingerprint": "a6c55f14a32da4e67b1bf509398b09772e40ac6e3a818cd7ca6e7b2393284bba",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_manager_decide_request_impl_v1(uuid, uuid, text, text, timestamp with time zone, timestamp with time zone, text)",
+      "fingerprint": "eac1d9b2116c574d4faf29e5aed5a0a541fce317dafe650fccf4cabe42fbee65",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_manager_learning_message_impl_v1(uuid, uuid, text)",
+      "fingerprint": "0f8c91bbae742141a4d938bd2b65cc658cc566bcbe844eabad6b0e2dedd747db",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_manager_learning_offer_impl_v1(uuid)",
+      "fingerprint": "0f3f4f1309300b0020f83559ae440ba9097e00671ff4d6f641c6ecea9e1fcf69",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_open_incident_impl_v1(uuid, uuid, text, text, text)",
+      "fingerprint": "66887e6cedb2a1111809aceb0b9a9a9e7a6732225dd6b0465bf4a13061604003",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_open_request_impl_v1(uuid, uuid, text, text, timestamp with time zone)",
+      "fingerprint": "f71a841fab0a06ff33be814400851c6c8454d25225c8ed4bce39ad1a2dc34b2b",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_request_guest_phone_replacement_impl_v1(uuid, uuid, text)",
+      "fingerprint": "50bae85613b2fb27749de748389e999d98fa21fb0cae9cb58483d04328e4c9d8",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_start_or_refresh_session_impl_v1(text, text, uuid, uuid, uuid, text, text, timestamp with time zone)",
+      "fingerprint": "2a321c7034cc91cb49c0a011168ba8a4e2712ddd5cb6d9dac290395d0008f5b8",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.concierge_sync_notification_outbox_impl_v1(timestamp with time zone)",
+      "fingerprint": "36c359776d8b7796b6e619aab1c703072b391a368fd5791a850f7e6f3cd34486",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.create_guarded_pending_stay_v1_impl(uuid, uuid, uuid, uuid, timestamp with time zone, text, text, timestamp with time zone, timestamp with time zone, text)",
+      "fingerprint": "1bc0daae96ed25282dd89021c5dad95db30d637a98da75913b59401d02c11074",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.execute_guarded_pending_stay_v1_impl(uuid, uuid, uuid)",
+      "fingerprint": "d4b3b7b40f8f1ff9ffeb34cd85cc42013228dadab2e21492e5adc3a75b689ac2",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.expire_manager_pending_v1_impl(uuid, uuid)",
+      "fingerprint": "d944cf81dd671377c7e9188d2be6773f4e4858b050cd61c3804682aee198b618",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.finish_authorized_invite_v1_impl(uuid, uuid, uuid, text, text)",
+      "fingerprint": "7118e12ebadc3c6bdeba061fc3bbfbdbd4928d63127afe14ce1187c3494ac70c",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.finish_invite_transport_v1(uuid, uuid, uuid, text, text)",
+      "fingerprint": "75ca36e0c80acc07745c6cb0bc96c8075618b6e13855a90a714db2a31b4a92d6",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.guest_intake_readiness_v1_impl(uuid, uuid, uuid)",
+      "fingerprint": "e41a854698bba928429d5d0a87857b587e99aa865695a841941dfb64cfe58d98",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.guest_notification_authority_v1_impl(uuid, uuid, uuid)",
+      "fingerprint": "a057e86af93512c5fc6f2b5ccc257fe37b40432862032e5e35a20290736bfe11",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_begin_beta_on_first_verified_stay_v1(uuid, uuid)",
+      "fingerprint": "bd348ac9ac53b05196f04751105af7f5c36b9d4eefb4c6c15edcb4681bed1422",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_activate_guest_phone_replacement_v1(text)",
+      "fingerprint": "62212e177bfde32c21636033cc65d61a2607a3a2149213d8f41672a61a562c80",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_approve_guest_phone_replacement_v1(uuid, uuid)",
+      "fingerprint": "6bd5f30f4d37234cf43f71704cd8dec8f5bc05210c6fae2df520a674acff93fe",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_authorize_secret_access_v1(uuid, uuid, uuid)",
+      "fingerprint": "2cad1471062a2b0c9d1d7e8e6b79537444e0006c7213a3a90d64ad9ddc091729",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_claim_due_notifications_v1(integer, timestamp with time zone)",
+      "fingerprint": "cd5de07a48c0efd9e7ec3c9394ab417794fbed5575fd3ed847b115da8372be20",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_guest_apply_incident_protocol_v1(uuid, uuid, uuid, uuid, uuid)",
+      "fingerprint": "7f7b303c7f38ddac1c9f93d4f5a57c854e03a1a57b43023e17c1653fb526693b",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_guest_confirm_incident_resolved_v1(uuid, uuid, uuid, text)",
+      "fingerprint": "3678f172a68c1965b01d7e2b35f5994b637b13153fc168a22f51e63127c1d3d9",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_guest_report_incident_unresolved_v1(uuid, uuid, uuid, text)",
+      "fingerprint": "8173e3785430902e47b8986935656c6f28f2927e46049cdc03dc69ccfff15bdc",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_manager_decide_request_v1(uuid, uuid, text, text, timestamp with time zone, timestamp with time zone, text)",
+      "fingerprint": "40b280c78b7b3b6d60b3a0090b5f014f7a89dae08ce6a2a7f47cc1633dfa9363",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_manager_learning_message_v1(uuid, uuid, text)",
+      "fingerprint": "b7f08ea31e98eab77978b350d53cad85f0cd30e1c299450e0c83052d30668bcf",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_manager_learning_offer_v1(uuid)",
+      "fingerprint": "b610ea8daf85cb2f386a01c5a04b68dbdda07f88b44ad395325c5402064ed353",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_open_incident_v1(uuid, uuid, text, text, text)",
+      "fingerprint": "2c69176442d5a4ca8d7cc80f41ce1e573b6bf11c8eedc62d947cd66c9768d92d",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_open_request_v1(uuid, uuid, text, text, timestamp with time zone)",
+      "fingerprint": "5865c623647ec5c10c73a215bd784094468c9a5e00c7c94495e1b785e60d1b52",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_request_guest_phone_replacement_v1(uuid, uuid, text)",
+      "fingerprint": "c673752a70a79e04b37b48334206552f0baa2c226f700a43a357a5cd1e328ec9",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_start_or_refresh_session_v1(text, text, uuid, uuid, uuid, text, text, timestamp with time zone)",
+      "fingerprint": "07784aad51b482104aa0cf2eee832fdbebd633acf51ceeb09fe8d0f76bef4d73",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.legacy_concierge_sync_notification_outbox_v1(timestamp with time zone)",
+      "fingerprint": "73e145aa82df82ef64f84895f8d439740a188caaf8540a911c5e8821e78bdaff",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.notification_authority_v1_impl(uuid)",
+      "fingerprint": "0c0a1f75428c033034819782c611afb5f55180e2dfa55ffc7f08287465e840e7",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.phone_change_readiness_v1_impl(uuid, uuid)",
+      "fingerprint": "4e9e601402f4f47aec1fee7aa63f3a9e261b0b7127712ebed7ec9f3a671b7abc",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.reconcile_verified_evidence_v1_impl(jsonb)",
+      "fingerprint": "2058257b11c229c3eca258a814d16f513b19b7639c7c453817188feca8d8cd5a",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": true
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.register_verified_evidence_v1_impl(jsonb)",
+      "fingerprint": "04be66a4bb85fcfbe1a81b6009175f2d385907e78e11e7923e0c7ecb023d0ea0",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": true
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.reject_manager_pending_v1_impl(uuid, uuid, uuid)",
+      "fingerprint": "17642b1aeb119ed77a1c393e5d106d1699c3fc9b2c18eec31b05d33c48c05bd7",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.remember_guarded_guest_channel_v1_impl(uuid, uuid, text, text, text)",
+      "fingerprint": "59962a3e5c14190b858914d98971b69a5f4fefecc69f04135252e0e3372f6799",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.reserve_authorized_invite_v1_impl(uuid, uuid, uuid)",
+      "fingerprint": "a57d7474ea1d7d37f8850c76115c4b93f2b0ff5e2dd69034e832f9b08b925388",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.reserve_invite_transport_v1(uuid, uuid, uuid)",
+      "fingerprint": "a27877c94667105c065c20d70d63db91eb214ad62519eddb1fbfebf773a3a109",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.runtime_evidence_valid_v1(uuid)",
+      "fingerprint": "c320628331c170807a3d888700423e5d7b1f60e39d7928b2904bf03d62bcdff9",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "concierge_private.save_guarded_guide_context_v1_impl(uuid, text, jsonb)",
+      "fingerprint": "2210215189349606988badb5601916170b787f61c4b08db03a44754bceaef660",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_accept_guest_initiated_invitation_v1(text, text)",
+      "fingerprint": "d59485fad400fd658c59ec21b57aa7903c7dd4ecbffdd54027f9c15e14eb2ca0",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_activate_guest_phone_replacement(text)",
+      "fingerprint": "526af7c6043a997fdf57f706d8143a1b94e309c726377405f44871662a74d23c",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_activate_knowledge_version(uuid, uuid, uuid)",
+      "fingerprint": "a6e6f5724089d39e5f8f20a0310150055939d542cd38483f6f31ca662322af80",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_approve_guest_phone_replacement(uuid, uuid)",
+      "fingerprint": "97a84f3abc561f20aacf0cf1ec5967f2be32b9d4e9c4bffc57e3da2f086b0e70",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_authorize_invite_processing_v1(uuid, uuid)",
+      "fingerprint": "88d7f86d08ec995c965d25bc58b164c07d420e216b9505a5f7812129c1a850bf",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_authorize_manager_member_action(uuid, uuid, text)",
+      "fingerprint": "abe5cd845b0868d0688b94b141aafae068a651e1f900d6da62a569e2fd303f94",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_authorize_manager_web_action(uuid, uuid, text)",
+      "fingerprint": "952e084f82486eab65f588b4b64ef0058357f6019631fff00b88e49a0a67511b",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_authorize_operational_secret_access(uuid, uuid, uuid)",
+      "fingerprint": "7b0a849573ae84cd6912a97bea8152a63c4af3554f70cd1e357f3749651d7a49"
+    },
+    {
+      "signature": "public.concierge_authorize_secret_access(uuid, uuid, uuid)",
+      "fingerprint": "664ea91a81492b86d2e923805720ed881fb38dceef696a5bd8fe7c4294e98c22",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_begin_beta_on_first_verified_stay(uuid, uuid)",
+      "fingerprint": "fc56309de796c0be76ead29e5c49fffe406fbc8b9c0fd11ccb574765e26d0bf2",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_block_analytics_event_mutation()",
+      "fingerprint": "e9ed77219ccebdcb6f7451793911977f8ca51068faec28e6b21052f162ffd202"
+    },
+    {
+      "signature": "public.concierge_claim_due_notifications(integer, timestamp with time zone)",
+      "fingerprint": "8488118390e4ef263c92db89f1ca88d83d5ae6966ab9946f61b4eb5debcb24ab",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_close_session(text, timestamp with time zone)",
+      "fingerprint": "531c68fdc5a229b0fd88c1d99f761073b3fdb107cdfa52ee5b0eb0a6edebf010"
+    },
+    {
+      "signature": "public.concierge_complete_notification(uuid, boolean, text, timestamp with time zone)",
+      "fingerprint": "086307eeb3df4140c57bd79105ffd180ea7f2949859cccc92b86bd21bc580c49",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_confirm_pending_action(uuid, text, uuid)",
+      "fingerprint": "1a2bf97d0f25b9720d658cc92ad64fd5f711136a9f37d5a469b0650832ca8e41"
+    },
+    {
+      "signature": "public.concierge_consume_manager_phone_enrollment(text, text, timestamp with time zone)",
+      "fingerprint": "e70bfbe343566dcb67dc3c048eff02d2d0022eaab73d68aa3ced6ebaa5101af1",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_create_guarded_pending_stay_v1(uuid, uuid, uuid, uuid, timestamp with time zone, text, text, timestamp with time zone, timestamp with time zone, text)",
+      "fingerprint": "353fb228e3321b9b3cad2e3fe4f2804242988feaf910c8a2e3f16b1c66f85f62",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_create_operational_task(uuid, uuid, text, text, timestamp with time zone, timestamp with time zone, uuid)",
+      "fingerprint": "9e27aa1c05d09fc928f68b38c53fef9af7d8bed3acb0def6e34b29a5f98a6ccc"
+    },
+    {
+      "signature": "public.concierge_execute_guarded_pending_stay_v1(uuid, uuid, uuid)",
+      "fingerprint": "97262421a3902840ee576e1f128bddb9819466b38d394f1bf7c3e8c7d2e68cb7",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_expire_manager_pending_v1(uuid, uuid)",
+      "fingerprint": "3b9b771f781ec2028f7ce1a61a8b2cda640a2f844df7b5da1a1a4a031137b24c",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_finish_invite_dispatch_v1(uuid, uuid, uuid, text, text)",
+      "fingerprint": "2aa6abf296d93734722621aa50748ac3d7c078aedad57080c4bdfcc19ff2428f",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_grant_operational_access(uuid, uuid, timestamp with time zone, timestamp with time zone, uuid, text)",
+      "fingerprint": "bd0a1a3f8420a9eb39b944fcbc7605059191706858f40b31fa57c70a78ccfe06"
+    },
+    {
+      "signature": "public.concierge_guard_system_intervention_mutation()",
+      "fingerprint": "64dc997df17d85a40e625f088124cf87e99975586b8654164ebb6e0f0466591f"
+    },
+    {
+      "signature": "public.concierge_guest_apply_incident_protocol(uuid, uuid, uuid, uuid, uuid)",
+      "fingerprint": "979fdf421ee13be522d92a290e524bbe2abcc756baf07ef52ab717d1b0259cdf",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_guest_confirm_incident_resolved(uuid, uuid, uuid, text)",
+      "fingerprint": "88bb4ba755b568c761e56511e4b4ecec9a412c9359864b9ceb57b6a94670a1bd",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_guest_intake_readiness_v1(uuid, uuid, uuid)",
+      "fingerprint": "129be1ce3b08670a64065c9937b39c939f5d63d6cbb009f1c56ba90a8056491a",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_guest_notification_authority_v1(uuid, uuid, uuid)",
+      "fingerprint": "02f8e9ebf91bb392965fac8126f9adbb32596bdfae48d29e70169da1d08babc1",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_guest_report_incident_unresolved(uuid, uuid, uuid, text)",
+      "fingerprint": "8bafc07ab3d59f9493ecc8b137a1967571dab1bf265c4ee9c8eeae7b1e2b1f34",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_list_manager_web_properties(uuid)",
+      "fingerprint": "2e2324109d1609496172da57c657824da485215b1a26d28ec5db573e8e05a570",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_manager_create_stay(uuid, uuid, text, text, timestamp with time zone, timestamp with time zone, timestamp with time zone, timestamp with time zone, text)",
+      "fingerprint": "1c017a31b165d3375e3a58ee52b785aba49fca1b1167a2cf56585fa54b5ca984",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_manager_decide_request(uuid, uuid, text, text, timestamp with time zone, timestamp with time zone, text)",
+      "fingerprint": "a4c8716e3f349bf2ea3b973be7107478841eee185827bd02af7b8a094031e317",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_manager_learning_message(uuid, uuid, text)",
+      "fingerprint": "7e5b78338f57014ec0ded13d12679c9493bf92749c26f55d671b7a24e631dd2e",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_manager_learning_offer(uuid)",
+      "fingerprint": "7e79efe1070e91aae1c789802365e1de815e4125e7ac3673794d2ac64a7c555d",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_manager_learning_text_allowed(text)",
+      "fingerprint": "9d687cabe733aa294009fa301861019e09cec212685c8f95c26d2e7a3ee017ce"
+    },
+    {
+      "signature": "public.concierge_manager_set_incident_state(uuid, uuid, text, text)",
+      "fingerprint": "caf98382f6d750c9a533717965429294ee7fd709db32301ee8a31df7c5ab420f",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_mark_request_communicated(uuid)",
+      "fingerprint": "15217d83c5ef1119820ffbe97cfc1f006057cd3b94823022bd7fd90c684656a1"
+    },
+    {
+      "signature": "public.concierge_notification_authority_v1(uuid)",
+      "fingerprint": "7fef466c81ccff596eeaa01eaa1c5b3b70d024d366f6aa984fa92424aa47d566",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_notification_delivery_advances(text, text)",
+      "fingerprint": "ae979f20b4ddd83cf6cb1cfc9f81652a7c88db9d1e3bb460aa41fa317bae4e50"
+    },
+    {
+      "signature": "public.concierge_open_incident(uuid, uuid, text, text, text)",
+      "fingerprint": "81cb33b6df4570017c2ad6a435661888f65275998304780f531527460deb038e",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_open_request(uuid, uuid, text, text, timestamp with time zone)",
+      "fingerprint": "2c7e3a2866bd9fc22279a3770d0928a089f94bf8b97db71eccc0a57e9149a810",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_open_system_intervention(uuid, uuid, text, integer, timestamp with time zone)",
+      "fingerprint": "d97a07890f59b24c9830f1e2facfc8d4a9156d3bbea39abc356104594a17f5c8"
+    },
+    {
+      "signature": "public.concierge_phone_change_readiness_v1(uuid, uuid)",
+      "fingerprint": "e80fc95cd184fc32bd4c799aff780db68d7afa3da9c3887fd7022e3b233bb493",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_propose_incident_learning(uuid, uuid, text, text, text, text)",
+      "fingerprint": "05497ceff4fdf5390a1dc1c67f56aecf5f753b565b71079da6c33e6925e65c64",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_reconcile_verified_evidence_v1(jsonb)",
+      "fingerprint": "1cc0ac0b1d3045c4dab16f6ba107680398bb43547a0afe6a08fda040eb450940",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": true
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_record_event(uuid, uuid, uuid, text, text, text, timestamp with time zone)",
+      "fingerprint": "64ef029641db7041764c285331a988d5f64da36c1e5bd4ef16642c7331971533"
+    },
+    {
+      "signature": "public.concierge_record_manager_signup_screening(uuid, uuid, text)",
+      "fingerprint": "aa30039221979252873743048d79bb7cefebc59aa9bfea2842ae68ddb2f10f5e",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_record_notification_meta_acceptance(uuid, text, text, timestamp with time zone)",
+      "fingerprint": "0542b1485e789e06aa96f8eb9295d13392b0288a35c057ebb920bea1d530d1dd",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_record_notification_meta_delivery(text, text, timestamp with time zone)",
+      "fingerprint": "6bed80e57bdbc2861cfdb6a730df6c22a9ec8ab4d2dd4e3deac69ae990c06c36",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_register_verified_evidence_v1(jsonb)",
+      "fingerprint": "d43b501ab09a989992f8ea7f48c9352b439ad6f0460bfbf297a6dac9a548f6cd",
+      "execute": {
+        "anon": false,
+        "service_role": false,
+        "authenticated": false,
+        "cheveni_evidence_verifier": true
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_reject_knowledge_version(uuid, uuid, uuid)",
+      "fingerprint": "8e3bf4ef30fd04f7124d130d227ea89e3e4533542c345ef371db7abc9f03b940",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_reject_manager_pending_v1(uuid, uuid, uuid)",
+      "fingerprint": "94ed620c468870ad29b7e2fc5ea15d975b2d61752ef83254c99fa0760f797d4e",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_remember_guarded_guest_channel_v1(uuid, uuid, text, text, text)",
+      "fingerprint": "85894d92bea907d7b382c01c321702a339014a13595c40b518b5ab25c23e0451",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_request_guest_phone_replacement(uuid, uuid, text)",
+      "fingerprint": "1945efa1c6dc756446a9bd447badee0d476da31553493265eb15192daae70613",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_reserve_invite_dispatch_v1(uuid, uuid, uuid)",
+      "fingerprint": "da9da0f0f5be08820ff467b07db17db12ee99814d01ce443dcd4c7f0d692ac77",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_resolve_actor_context(text, text, uuid, uuid, uuid, timestamp with time zone)",
+      "fingerprint": "c662e8f41abd0eb7b8a2922e63174d1d8ca0e05487116a7db8cf08e09d9d6199"
+    },
+    {
+      "signature": "public.concierge_resolve_entry_link(text, timestamp with time zone)",
+      "fingerprint": "85ae65a953e8563352d66de804cbe1e2708cc395faf4cc79d9f845c70602378a"
+    },
+    {
+      "signature": "public.concierge_resolve_escalation_policy(uuid, uuid, text)",
+      "fingerprint": "5c2755b576d9620c5d2e7c6bc02fa1b361acc913999024b8ff5d58500fc3f66e"
+    },
+    {
+      "signature": "public.concierge_resolve_knowledge(uuid, uuid, text)",
+      "fingerprint": "1534066240063e0f334f0070bc7e1ca234f98e70b0f831b817f223018a123b2a",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_resolve_manager_signup_followup(uuid, uuid, text)",
+      "fingerprint": "273a4fa1bac2e8b4c8ccf43e78bb67edc3a4a4d1881777cfa25de213011fa406",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_resolve_manager_web_context(uuid)",
+      "fingerprint": "dae1f0208e9630967fd7e9a043c0e6dd7a0fd6c9a2618bbb2598ae28ea503e63",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_resolve_request_policy(uuid, uuid, text)",
+      "fingerprint": "e29744dc36fc762e377bcdd50f9d88faf4fe2910b67d40089ba3bbdbc80a9281"
+    },
+    {
+      "signature": "public.concierge_resolve_system_intervention(uuid, timestamp with time zone)",
+      "fingerprint": "388443a1770f3920cc9fae33ff2accb3fabaf31939174091fa4d39fa32e59604"
+    },
+    {
+      "signature": "public.concierge_reveal_operational_secret(uuid, uuid, uuid)",
+      "fingerprint": "9093a4e54c8ae1f85a24be49d6446f12c026b257084ea24dcc7c1c6896c0c317"
+    },
+    {
+      "signature": "public.concierge_reveal_secret(uuid, uuid, uuid)",
+      "fingerprint": "f9a4b9664e119b32eab4d661f29c2a935b08509a4b39207f9b07b945c6b82fae",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_revoke_access_secret(uuid, uuid, uuid)",
+      "fingerprint": "49d277239f7ec3d248c0724f0e1bef2278206c11ecb0d915c4f7ed73da011203"
+    },
+    {
+      "signature": "public.concierge_rotate_access_secret(uuid, uuid, uuid, text, text)",
+      "fingerprint": "d832a220302462c4802034779bff2b4cc2f9551aa70eebf1993aac017d3bba81"
+    },
+    {
+      "signature": "public.concierge_save_guarded_guide_context_v1(uuid, text, jsonb)",
+      "fingerprint": "8930d0bd1a24e5bc2335f7a2d6b5bca58e2dd67bc57dc7bf34b03078f0e1eb45",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_select_unique_pending_guest_invitation(text, timestamp with time zone)",
+      "fingerprint": "f663ae0e9cde3472c67d98dec581e99fe0d8696547997d56ac12feca50749e42"
+    },
+    {
+      "signature": "public.concierge_set_operational_task_status(uuid, uuid, text)",
+      "fingerprint": "e5224a494b4f55810158fd738fadb0175a2833cf222b5f0989b27f18127845b2"
+    },
+    {
+      "signature": "public.concierge_start_or_refresh_session(text, text, uuid, uuid, uuid, text, text, timestamp with time zone)",
+      "fingerprint": "5c17d5ce479566de839b73204b2dd0d4bbaa0febe6fc720e1945e1ef2b57a28f",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_submit_manager_signup_request(text, text, text, text, boolean, boolean)",
+      "fingerprint": "ae91dac67837550b68e095db27381875d891b74990a4d935f1f29b7a1800413b",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_sync_notification_outbox(timestamp with time zone)",
+      "fingerprint": "12c17d030aadf0f4eaada948ea695bd6268b605b95e551f9bf83dc5081f08a5d",
+      "execute": {
+        "anon": false,
+        "service_role": true,
+        "authenticated": false,
+        "cheveni_evidence_verifier": false
+      },
+      "public_execute": false
+    },
+    {
+      "signature": "public.concierge_validate_access_authorization()",
+      "fingerprint": "b0ab5f3f882c859ef90e331428fbb96e1f081fcc6611de301af9022592b7f073"
+    },
+    {
+      "signature": "public.concierge_validate_analytics_event_scope()",
+      "fingerprint": "053880942887ad5d3ad2cf1ff94da5f7d940e76d6cf4c5a68b82ec7beab823f6"
+    },
+    {
+      "signature": "public.concierge_validate_incident_scope()",
+      "fingerprint": "896e92e36fdb67f455867d7a77b23711be87415c32d382ef3887709754e00a0a"
+    },
+    {
+      "signature": "public.concierge_validate_request_scope()",
+      "fingerprint": "c9571becc60028ee1a4a36ba084e3f9302f171c546847c9cb07be5992810d7a1"
+    }
+  ],
+  "policies": [
+    {
+      "signature": "concierge_private.intake_authorizations_v1.cheveni_intake_evidence_lock",
+      "fingerprint": "7d610eee0d99aafdfde6674446013534561cbf47f3c0ae0d99534983d8f19394"
+    },
+    {
+      "signature": "concierge_private.intake_authorizations_v1.cheveni_intake_evidence_read",
+      "fingerprint": "0e0cbe72cd721dc543709fa8b3fee8c6c494656210b99a10f838895c7582c62a"
+    },
+    {
+      "signature": "concierge_private.intake_authorizations_v1.evidence_authorization_insert",
+      "fingerprint": "a28e1e616e0de9fe483202f5c5c59c1cee073a5591a6028190533ec830121244"
+    },
+    {
+      "signature": "concierge_private.intake_authorizations_v1.evidence_authorization_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.intake_authorizations_v1.evidence_authorization_revoke",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "concierge_private.intake_policies_v1.cheveni_intake_policy_lock",
+      "fingerprint": "7d610eee0d99aafdfde6674446013534561cbf47f3c0ae0d99534983d8f19394"
+    },
+    {
+      "signature": "concierge_private.intake_policies_v1.cheveni_intake_policy_read",
+      "fingerprint": "0e0cbe72cd721dc543709fa8b3fee8c6c494656210b99a10f838895c7582c62a"
+    },
+    {
+      "signature": "concierge_private.intake_policies_v1.evidence_policy_lock",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "concierge_private.intake_policies_v1.evidence_policy_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.invite_authorizations_v1.evidence_authorization_insert",
+      "fingerprint": "a28e1e616e0de9fe483202f5c5c59c1cee073a5591a6028190533ec830121244"
+    },
+    {
+      "signature": "concierge_private.invite_authorizations_v1.evidence_authorization_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.invite_authorizations_v1.evidence_authorization_revoke",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "concierge_private.invite_authorizations_v1.invite_evidence_lock",
+      "fingerprint": "b2b80b552324bf1e2e136da977f96f16973e5e0b5d3a7701151ed524fb829057"
+    },
+    {
+      "signature": "concierge_private.invite_authorizations_v1.invite_evidence_read",
+      "fingerprint": "e523ecfa57a23086b18bf7143a5c8fe0789698b15f74061a542dc3dd465e96fe"
+    },
+    {
+      "signature": "concierge_private.invite_policies_v1.evidence_policy_lock",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "concierge_private.invite_policies_v1.evidence_policy_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.invite_policies_v1.invite_policy_lock",
+      "fingerprint": "b2b80b552324bf1e2e136da977f96f16973e5e0b5d3a7701151ed524fb829057"
+    },
+    {
+      "signature": "concierge_private.invite_policies_v1.invite_policy_read",
+      "fingerprint": "e523ecfa57a23086b18bf7143a5c8fe0789698b15f74061a542dc3dd465e96fe"
+    },
+    {
+      "signature": "concierge_private.runtime_authorizations_v1.evidence_authorization_insert",
+      "fingerprint": "a28e1e616e0de9fe483202f5c5c59c1cee073a5591a6028190533ec830121244"
+    },
+    {
+      "signature": "concierge_private.runtime_authorizations_v1.evidence_authorization_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.runtime_authorizations_v1.evidence_authorization_revoke",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "concierge_private.runtime_authorizations_v1.runtime_evidence_lock",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    },
+    {
+      "signature": "concierge_private.runtime_authorizations_v1.runtime_evidence_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "concierge_private.runtime_policies_v1.evidence_policy_lock",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "concierge_private.runtime_policies_v1.evidence_policy_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.runtime_policies_v1.runtime_policy_lock",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    },
+    {
+      "signature": "concierge_private.runtime_policies_v1.runtime_policy_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "concierge_private.verified_evidence_events_v1.evidence_event_append",
+      "fingerprint": "a28e1e616e0de9fe483202f5c5c59c1cee073a5591a6028190533ec830121244"
+    },
+    {
+      "signature": "concierge_private.verified_evidence_events_v1.evidence_event_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.verified_evidence_heads_v1.evidence_head_insert",
+      "fingerprint": "a28e1e616e0de9fe483202f5c5c59c1cee073a5591a6028190533ec830121244"
+    },
+    {
+      "signature": "concierge_private.verified_evidence_heads_v1.evidence_head_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "concierge_private.verified_evidence_heads_v1.evidence_head_update",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "public.concierge_guest_channels.runtime_channel_insert",
+      "fingerprint": "7eb76766e19a9f223e09f2555eb0facc2dc507b84a9a5cad877521948d460b61"
+    },
+    {
+      "signature": "public.concierge_guest_channels.runtime_channel_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_guest_channels.runtime_channel_update",
+      "fingerprint": "7187f9780128486ae1652bbf6ae605e2e4003581eaa8c3429ffbb7ede40148c3"
+    },
+    {
+      "signature": "public.concierge_guest_identities.evidence_scope_lock",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "public.concierge_guest_identities.evidence_scope_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "public.concierge_guest_identities.invite_executor_lock",
+      "fingerprint": "b2b80b552324bf1e2e136da977f96f16973e5e0b5d3a7701151ed524fb829057"
+    },
+    {
+      "signature": "public.concierge_guest_identities.invite_executor_read",
+      "fingerprint": "e523ecfa57a23086b18bf7143a5c8fe0789698b15f74061a542dc3dd465e96fe"
+    },
+    {
+      "signature": "public.concierge_guest_identities.runtime_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_guest_identities.runtime_update",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    },
+    {
+      "signature": "public.concierge_guest_invites.evidence_scope_lock",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "public.concierge_guest_invites.evidence_scope_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "public.concierge_guest_invites.invite_executor_lock",
+      "fingerprint": "b2b80b552324bf1e2e136da977f96f16973e5e0b5d3a7701151ed524fb829057"
+    },
+    {
+      "signature": "public.concierge_guest_invites.invite_executor_read",
+      "fingerprint": "e523ecfa57a23086b18bf7143a5c8fe0789698b15f74061a542dc3dd465e96fe"
+    },
+    {
+      "signature": "public.concierge_guest_invites.runtime_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_guest_invites.runtime_update",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    },
+    {
+      "signature": "public.concierge_guest_phone_changes.runtime_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_guest_phone_changes.runtime_update",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    },
+    {
+      "signature": "public.concierge_pending_actions.cheveni_intake_pending_insert",
+      "fingerprint": "dac40fed816fd7a681c4742f1629ce60a62a447760ecc5ab23baadede2694645"
+    },
+    {
+      "signature": "public.concierge_pending_actions.cheveni_intake_pending_read",
+      "fingerprint": "0e0cbe72cd721dc543709fa8b3fee8c6c494656210b99a10f838895c7582c62a"
+    },
+    {
+      "signature": "public.concierge_pending_actions.cheveni_intake_pending_update",
+      "fingerprint": "61515a9c46f76e32e30cd0a26f5cb95630f74f0d7ee2c09382d7227a62ee6668"
+    },
+    {
+      "signature": "public.concierge_pending_actions.runtime_learning_insert",
+      "fingerprint": "7e14b13448b83815c5629213c307fa8269773b8b6eb5ff268e903c6fdc8bff60"
+    },
+    {
+      "signature": "public.concierge_pending_actions.runtime_learning_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_pending_actions.runtime_learning_update",
+      "fingerprint": "c1361576905facbf5d6de49b52e27d237b5aa0a89857afbe024991aed448426e"
+    },
+    {
+      "signature": "public.concierge_sessions.runtime_insert",
+      "fingerprint": "e85797000e009c14219027550452eaf9707feda20d7392d407f839ac1dcb3d99"
+    },
+    {
+      "signature": "public.concierge_sessions.runtime_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_sessions.runtime_update",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    },
+    {
+      "signature": "public.concierge_stay_members.evidence_scope_lock",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "public.concierge_stay_members.evidence_scope_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "public.concierge_stay_members.invite_executor_lock",
+      "fingerprint": "b2b80b552324bf1e2e136da977f96f16973e5e0b5d3a7701151ed524fb829057"
+    },
+    {
+      "signature": "public.concierge_stay_members.invite_executor_read",
+      "fingerprint": "e523ecfa57a23086b18bf7143a5c8fe0789698b15f74061a542dc3dd465e96fe"
+    },
+    {
+      "signature": "public.concierge_stay_members.runtime_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_stay_members.runtime_update",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    },
+    {
+      "signature": "public.concierge_stays.evidence_scope_lock",
+      "fingerprint": "23eeb2cc72f65f424e3983ab0881f7e887f69e5af85f6c2260fdf50f8d794121"
+    },
+    {
+      "signature": "public.concierge_stays.evidence_scope_read",
+      "fingerprint": "3dfcb4d8d422bfedfd53b0daa2e2e4c56a8d49d2b694ff749eae117fff1d19bb"
+    },
+    {
+      "signature": "public.concierge_stays.invite_executor_lock",
+      "fingerprint": "b2b80b552324bf1e2e136da977f96f16973e5e0b5d3a7701151ed524fb829057"
+    },
+    {
+      "signature": "public.concierge_stays.invite_executor_read",
+      "fingerprint": "e523ecfa57a23086b18bf7143a5c8fe0789698b15f74061a542dc3dd465e96fe"
+    },
+    {
+      "signature": "public.concierge_stays.runtime_read",
+      "fingerprint": "0bb858b9a25e82d3f2ab54aac4aa8834fe66288ce8da44f64d869d2f7878ce33"
+    },
+    {
+      "signature": "public.concierge_stays.runtime_update",
+      "fingerprint": "3ac3162156a9100fee3d936f6ae11586b1353b3bf098a1ec1e72c431c684b2d8"
+    }
+  ]
+}

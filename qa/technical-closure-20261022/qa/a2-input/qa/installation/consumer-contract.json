@@ -1,0 +1,216 @@
+{
+  "format": 1,
+  "serviceRpcs": [
+    "concierge_accept_guest_initiated_invitation_v1",
+    "concierge_activate_guest_phone_replacement",
+    "concierge_activate_knowledge_version",
+    "concierge_approve_guest_phone_replacement",
+    "concierge_authorize_invite_processing_v1",
+    "concierge_authorize_manager_member_action",
+    "concierge_authorize_manager_web_action",
+    "concierge_begin_beta_on_first_verified_stay",
+    "concierge_claim_due_notifications",
+    "concierge_complete_notification",
+    "concierge_consume_manager_phone_enrollment",
+    "concierge_create_guarded_pending_stay_v1",
+    "concierge_execute_guarded_pending_stay_v1",
+    "concierge_expire_manager_pending_v1",
+    "concierge_finish_invite_dispatch_v1",
+    "concierge_guest_apply_incident_protocol",
+    "concierge_guest_confirm_incident_resolved",
+    "concierge_guest_intake_readiness_v1",
+    "concierge_guest_notification_authority_v1",
+    "concierge_guest_report_incident_unresolved",
+    "concierge_list_manager_web_properties",
+    "concierge_manager_decide_request",
+    "concierge_manager_learning_message",
+    "concierge_manager_learning_offer",
+    "concierge_manager_set_incident_state",
+    "concierge_notification_authority_v1",
+    "concierge_open_incident",
+    "concierge_open_request",
+    "concierge_phone_change_readiness_v1",
+    "concierge_propose_incident_learning",
+    "concierge_record_manager_signup_screening",
+    "concierge_record_notification_meta_acceptance",
+    "concierge_record_notification_meta_delivery",
+    "concierge_reject_knowledge_version",
+    "concierge_reject_manager_pending_v1",
+    "concierge_remember_guarded_guest_channel_v1",
+    "concierge_request_guest_phone_replacement",
+    "concierge_reserve_invite_dispatch_v1",
+    "concierge_resolve_knowledge",
+    "concierge_resolve_manager_signup_followup",
+    "concierge_resolve_manager_web_context",
+    "concierge_reveal_secret",
+    "concierge_save_guarded_guide_context_v1",
+    "concierge_start_or_refresh_session",
+    "concierge_submit_manager_signup_request",
+    "concierge_sync_notification_outbox"
+  ],
+  "verifierRpcs": [
+    "concierge_reconcile_verified_evidence_v1",
+    "concierge_register_verified_evidence_v1"
+  ],
+  "blockedOptionalRpc": "concierge_claim_guest_invite_dispatch_prelegal",
+  "blockedOptionalFlag": "CONCIERGE_INVITE_CLAIM_RPC_REQUIRED",
+  "sources": {
+    "concierge_accept_guest_initiated_invitation_v1": [
+      "index.js"
+    ],
+    "concierge_activate_guest_phone_replacement": [
+      "index.js"
+    ],
+    "concierge_activate_knowledge_version": [
+      "concierge-manager-knowledge.js"
+    ],
+    "concierge_approve_guest_phone_replacement": [
+      "concierge-manager-guest-phone-change.js"
+    ],
+    "concierge_authorize_invite_processing_v1": [
+      "index.js"
+    ],
+    "concierge_authorize_manager_member_action": [
+      "index.js"
+    ],
+    "concierge_authorize_manager_web_action": [
+      "concierge-manager-guest-phone-change.js"
+    ],
+    "concierge_begin_beta_on_first_verified_stay": [
+      "index.js"
+    ],
+    "concierge_claim_due_notifications": [
+      "index.js"
+    ],
+    "concierge_claim_guest_invite_dispatch_prelegal": [
+      "index.js"
+    ],
+    "concierge_complete_notification": [
+      "index.js"
+    ],
+    "concierge_consume_manager_phone_enrollment": [
+      "index.js"
+    ],
+    "concierge_create_guarded_pending_stay_v1": [
+      "concierge-guarded-intake.js"
+    ],
+    "concierge_execute_guarded_pending_stay_v1": [
+      "concierge-guarded-intake.js"
+    ],
+    "concierge_expire_manager_pending_v1": [
+      "index.js"
+    ],
+    "concierge_finish_invite_dispatch_v1": [
+      "concierge-invite-durable-dispatch.js"
+    ],
+    "concierge_guest_apply_incident_protocol": [
+      "index.js"
+    ],
+    "concierge_guest_confirm_incident_resolved": [
+      "index.js"
+    ],
+    "concierge_guest_intake_readiness_v1": [
+      "concierge-guarded-intake.js"
+    ],
+    "concierge_guest_notification_authority_v1": [
+      "concierge-notification-authority.js"
+    ],
+    "concierge_guest_report_incident_unresolved": [
+      "index.js"
+    ],
+    "concierge_list_manager_web_properties": [
+      "concierge-manager-properties.js",
+      "concierge-manager-stays.js"
+    ],
+    "concierge_manager_decide_request": [
+      "concierge-manager-requests.js"
+    ],
+    "concierge_manager_learning_message": [
+      "index.js"
+    ],
+    "concierge_manager_learning_offer": [
+      "index.js"
+    ],
+    "concierge_manager_set_incident_state": [
+      "concierge-manager-incidents.js"
+    ],
+    "concierge_notification_authority_v1": [
+      "index.js"
+    ],
+    "concierge_open_incident": [
+      "index.js"
+    ],
+    "concierge_open_request": [
+      "index.js"
+    ],
+    "concierge_phone_change_readiness_v1": [
+      "concierge-manager-guest-phone-change.js"
+    ],
+    "concierge_propose_incident_learning": [
+      "concierge-manager-incidents.js"
+    ],
+    "concierge_reconcile_verified_evidence_v1": [
+      "concierge-evidence-verifier.js"
+    ],
+    "concierge_record_manager_signup_screening": [
+      "concierge-manager-signup-admin.js"
+    ],
+    "concierge_record_notification_meta_acceptance": [
+      "index.js"
+    ],
+    "concierge_record_notification_meta_delivery": [
+      "index.js"
+    ],
+    "concierge_register_verified_evidence_v1": [
+      "concierge-evidence-verifier.js"
+    ],
+    "concierge_reject_knowledge_version": [
+      "concierge-manager-knowledge.js"
+    ],
+    "concierge_reject_manager_pending_v1": [
+      "index.js"
+    ],
+    "concierge_remember_guarded_guest_channel_v1": [
+      "index.js"
+    ],
+    "concierge_request_guest_phone_replacement": [
+      "concierge-manager-guest-phone-change.js"
+    ],
+    "concierge_reserve_invite_dispatch_v1": [
+      "concierge-invite-durable-dispatch.js"
+    ],
+    "concierge_resolve_knowledge": [
+      "index.js"
+    ],
+    "concierge_resolve_manager_signup_followup": [
+      "concierge-manager-signup-admin.js"
+    ],
+    "concierge_resolve_manager_web_context": [
+      "concierge-manager-guest-phone-change.js",
+      "concierge-manager-incidents.js",
+      "concierge-manager-knowledge.js",
+      "concierge-manager-properties.js",
+      "concierge-manager-requests.js",
+      "concierge-manager-session.js",
+      "concierge-manager-signup-admin.js",
+      "concierge-manager-stays.js",
+      "index.js"
+    ],
+    "concierge_reveal_secret": [
+      "index.js"
+    ],
+    "concierge_save_guarded_guide_context_v1": [
+      "index.js"
+    ],
+    "concierge_start_or_refresh_session": [
+      "index.js"
+    ],
+    "concierge_submit_manager_signup_request": [
+      "concierge-manager-signup.js"
+    ],
+    "concierge_sync_notification_outbox": [
+      "index.js"
+    ]
+  },
+  "scope": "Reviewed Concierge RPC names only; this is not proof of deployment, external configuration or authorization."
+}

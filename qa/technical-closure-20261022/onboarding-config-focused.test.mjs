@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {reviewOnboardingConfiguration as review} from './onboarding-config.mjs';
+const c=()=>({webOrigin:'https://manager.example.invalid',apiOrigin:'https://api.example.invalid',supabaseOrigin:'https://tyvwgsdzqipusodxtydv.supabase.co',redirect:'https://manager.example.invalid/manager/reset-password/',providerReference:'existing-provider:fictional-only',smtpHost:'smtp.example.invalid',smtpPort:587,tlsMode:'REQUIRED_STARTTLS',sender:'fictional@example.invalid',hourlyLimit:10});
+test('offline SMTP/Auth shape cannot authorize delivery, legal processing or installation',()=>{const r=review(c());assert.equal(r.sendAuthorized,false);assert.equal(r.deliveryVerified,false);assert.equal(r.legalApproved,false);assert.equal(r.configurationInstalled,false);});
+test('redirect tricks, TLS downgrade, PROD, credentials and provider creation fields rejected without echo',()=>{
+ for(const change of [{redirect:'https://attacker.invalid/manager/reset-password/'},{redirect:c().redirect+'?next=https://attacker.invalid'},{webOrigin:'https://a:FICTIONAL_PASSWORD@manager.example.invalid'},{smtpPort:25},{tlsMode:'OPPORTUNISTIC_STARTTLS'},{supabaseOrigin:'https://ykfpzqpiaxevpkhpaxpg.supabase.co'},{password:'FICTIONAL_PASSWORD'},{providerReference:'new-paid-service'},{sendAuthorized:true}])assert.throws(()=>review({...c(),...change}),e=>e.message==='ONBOARDING_CONFIGURATION_REJECTED');
+});
