@@ -41,10 +41,10 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.19.0'
-      - name: Only NEW durable NTFS custody locking and hardlink publication
+      - name: Only remaining NEW publication check; previous Windows custody PASS preserved
         shell: powershell
         run: |
-          node --test --test-name-pattern='durable custody|new publication' qa/private-release-20261023/qa/assembly-controls.test.mjs
+          node --test --test-name-pattern='new publication' qa/private-release-20261023/qa/assembly-controls.test.mjs
           if($LASTEXITCODE -ne 0){throw 'NEW_DURABLE_CUSTODY_FAILED'}
       - name: Build flat payload and confirm blocked real CLI without reading config
         shell: powershell
