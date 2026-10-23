@@ -1,7 +1,8 @@
 // Durable custody is deliberately a DIFFERENT kind from disposable QA runs.
 import {mkdir,writeFile,readFile,lstat,realpath,open,link,rm,readdir} from 'node:fs/promises';
 import {randomBytes,createHash} from 'node:crypto';import path from 'node:path';
-import {checkPrivate} from '../technical-closure-20261022/approved/private-host.mjs';
+import {execFileSync} from 'node:child_process';
+import {safeEnv,powershellModules,checkPrivate} from '../technical-closure-20261022/approved/private-host.mjs';
 const owned=new WeakMap();
 const eq=(a,b)=>process.platform==='win32'?a.toLowerCase()===b.toLowerCase():a===b;
 export async function privateRegular(file){
@@ -10,7 +11,16 @@ export async function privateRegular(file){
  await checkPrivate(path.dirname(file));return s;
 }
 export async function createCustody(base){
- if(typeof base!=='string'||!path.isAbsolute(base)||!eq(await realpath(base),path.resolve(base)))throw Error('LOCAL_ABSOLUTE_CUSTODY_BASE_REQUIRED');
+ if(typeof base!=='string'||!path.isAbsolute(base))throw Error('LOCAL_ABSOLUTE_CUSTODY_BASE_REQUIRED');
+ if(process.platform==='win32'){
+  // Windows TEMP may use a legitimate 8.3 spelling. Reject reparse ancestors,
+  // then use the physical long path, never weaken checks by accepting junctions.
+  let current=path.resolve(base);if(!/^[a-z]:\\/i.test(current))throw Error('LOCAL_NTFS_FIXED_DISK_REQUIRED');
+  for(;;){if((await lstat(current)).isSymbolicLink())throw Error('CUSTODY_REPARSE_ANCESTOR_REJECTED');const parent=path.dirname(current);if(parent===current)break;current=parent;}
+  base=await realpath(base);const drive=base[0].toUpperCase();
+  const script=powershellModules+"Import-Module ($PSHOME+'\\Modules\\CimCmdlets\\CimCmdlets.psd1');$v=Get-CimInstance -ClassName Win32_LogicalDisk -Filter \"DeviceID='"+drive+":'\";if($v.DriveType -ne 3 -or $v.FileSystem -ne 'NTFS'){throw 'LOCAL_NTFS_FIXED_DISK_REQUIRED'}";
+  try{execFileSync('powershell.exe',['-NoLogo','-NoProfile','-NonInteractive','-Command',script],{env:safeEnv(),timeout:10000,stdio:['ignore','pipe','pipe'],windowsHide:true});}catch{throw Error('LOCAL_NTFS_FIXED_DISK_REQUIRED');}
+ }else if(!eq(await realpath(base),path.resolve(base)))throw Error('LOCAL_ABSOLUTE_CUSTODY_BASE_REQUIRED');
  const id=randomBytes(12).toString('hex'),root=path.join(base,'cheveni-custody-'+id);await mkdir(root,{mode:0o700});
  try{
   const owner=(await checkPrivate(root,true)).sid;

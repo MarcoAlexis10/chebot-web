@@ -7,6 +7,7 @@ permissions:
   contents: read
 jobs:
   assembled-pg17:
+    if: ${{ !contains(github.event.head_commit.message, '[windows-only]') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
