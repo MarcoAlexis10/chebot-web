@@ -1,0 +1,57 @@
+name: Private release assembly NEW integration only
+on:
+  push:
+    branches: [qa/cheveni-private-release-assembly-20261023]
+    paths: ['qa/private-release-20261023/**', '.github/workflows/private-release-assembly-20261023.yml']
+permissions:
+  contents: read
+jobs:
+  assembled-pg17:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Assemble prepared locked payload only
+        run: |
+          python qa/private-release-20261023/build-release.py "$RUNNER_TEMP/private-prepared"
+          node "$RUNNER_TEMP/private-prepared/entry.mjs"
+      - name: CI-only immutable image
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: NEW assembled custody capture copy restore and failure integration
+        run: node qa/private-release-20261023/qa/assembled-e2e.mjs "$RUNNER_TEMP/private-prepared"
+      - name: Independent cleanup of built payload's owned resources
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {pathToFileURL} from 'node:url';
+          const base=process.env.RUNNER_TEMP+'/private-prepared/';
+          const {assertNoResources}=await import(pathToFileURL(base+'pg-fixture.mjs'));
+          const {assertNoPrivateClients}=await import(pathToFileURL(base+'source.mjs'));
+          assertNoResources();assertNoPrivateClients();console.log('ASSEMBLED_PAYLOAD_INDEPENDENT_CLEANUP_OK');
+          JS
+  windows-custody-and-assembly:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Only NEW durable NTFS custody locking and hardlink publication
+        shell: powershell
+        run: |
+          node --test --test-name-pattern='durable custody|new publication' qa/private-release-20261023/qa/assembly-controls.test.mjs
+          if($LASTEXITCODE -ne 0){throw 'NEW_DURABLE_CUSTODY_FAILED'}
+      - name: Build flat payload and confirm blocked real CLI without reading config
+        shell: powershell
+        run: |
+          $ErrorActionPreference='Stop'
+          $p=Join-Path $env:RUNNER_TEMP 'Che Veni Private Prepared'
+          python qa/private-release-20261023/build-release.py "$p"
+          if($LASTEXITCODE -ne 0){throw 'RELEASE_ASSEMBLY_FAILED'}
+          $r=(node "$p/entry.mjs")|ConvertFrom-Json
+          if($LASTEXITCODE -ne 0 -or $r.result -ne 'PRIVATE_RELEASE_PREPARED_LOCKED' -or $r.remoteConnectionEnabled){throw 'PRIVATE_RELEASE_MUST_BE_LOCKED'}
+          Write-Output ('WINDOWS_PREPARED_MANIFEST_SHA256='+$r.manifestSha256)
