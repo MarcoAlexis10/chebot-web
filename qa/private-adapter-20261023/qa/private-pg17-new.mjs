@@ -5,7 +5,8 @@ import {readFileSync} from 'node:fs';
 import {spawn} from 'node:child_process';import {createHash} from 'node:crypto';import path from 'node:path';
 import {startFixture,assertFixture,sql,cmd,cleanup,assertNoResources} from '../../technical-closure-20261022/qa/pg-fixture.mjs';
 import {createRun,removeFictionalRun,safeEnv} from '../../technical-closure-20261022/approved/private-host.mjs';
-import {openVerifiedFictionalEnvelope} from '../../technical-closure-20261022/envelope-v2.mjs';
+import {verifyFictionalEnvelope as verifyV2} from '../../technical-closure-20261022/envelope-v2.mjs';
+import {openVerifiedPrivateEnvelope} from '../envelope-v3.mjs';
 import {ownedPrivateQASource,assertNoPrivateClients} from '../private-source.mjs';
 import {capturePrivateQA} from '../capture-private-qa.mjs';
 import {rebuildBusinessQuarantine,TABLES} from '../closed-business.mjs';
@@ -45,7 +46,8 @@ try{
  const saved=await capturePrivateQA({roots,source:src,basename:'private-client',passphrase:phrase});
  assert.equal(await writerDone,0);assert.ok(inspected>=3);assert.equal(saved.dumpExitZero,true);assertNoPrivateClients();
  pass('new_stdin_PGPASSFILE_client_real_TLS_channel_binding_readonly_dump_with_no_secret_in_inspect');
- const archive=await openVerifiedFictionalEnvelope({...saved,passphrase:phrase});
+ await assert.rejects(verifyV2({...saved,passphrase:phrase}),/KEY_ENVELOPE_INVALID|NOT_PROVISIONAL_FORMAT/);pass('private_V3_envelope_is_not_accepted_by_the_previously_approved_V2_format');
+ const archive=await openVerifiedPrivateEnvelope({...saved,passphrase:phrase});
  try{const toc=cmd(['exec','-i',n.container,'pg_restore','--list'],archive).toString();for(const name of ['TABLE DATA auth sessions','TABLE DATA storage objects','TABLE DATA vault secrets',...TABLES.map(t=>'TABLE DATA public '+t)])assert.ok(toc.includes(name));}finally{archive.fill(0);}
  pass('unfiltered_single_dump_contains_visible_business_Auth_and_managed_metadata_without_claiming_service_restore');
  const old=await readFile(saved.dataFile),key=await readFile(saved.keyFile),t=await target();

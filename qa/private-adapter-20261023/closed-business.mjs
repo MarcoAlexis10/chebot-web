@@ -2,7 +2,7 @@
 import {readFileSync} from 'node:fs';
 import {lstat,realpath} from 'node:fs/promises';import path from 'node:path';
 import {checkPrivate} from '../technical-closure-20261022/approved/private-host.mjs';
-import {openVerifiedFictionalEnvelope} from '../technical-closure-20261022/envelope-v2.mjs';
+import {openVerifiedPrivateEnvelope} from './envelope-v3.mjs';
 import {assertFixture,sql,cmd} from '../technical-closure-20261022/qa/pg-fixture.mjs';
 import {reconcileRecoveryFrontier} from './recovery-frontier.mjs';
 export const TABLES=Object.freeze(['concierge_accounts','concierge_account_members','concierge_buildings','concierge_properties','concierge_knowledge_items','concierge_knowledge_versions']);
@@ -19,7 +19,7 @@ export async function rebuildBusinessQuarantine({targetId,dataFile,keyFile,passp
   if(!st.isFile()||st.isSymbolicLink()||!eq(await realpath(file),path.resolve(file)))throw Error('PRIVATE_ARCHIVE_REQUIRED');await checkPrivate(dir);}
  const n=closed(targetId);
  if(sql(targetId,'postgres',"select count(*) from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname !~ '^pg_' and n.nspname<>'information_schema' and c.relkind in ('r','p','v','m','S','f');")!=='0')throw Error('EMPTY_QUARANTINE_REQUIRED');
- const archive=await openVerifiedFictionalEnvelope({dataFile,keyFile,passphrase});let created=false;
+ const archive=await openVerifiedPrivateEnvelope({dataFile,keyFile,passphrase});let created=false;
  try{
   if(archive.subarray(0,5).toString()!=='PGDMP')throw Error('PG_CUSTOM_ARCHIVE_REQUIRED');
   reconcileRecoveryFrontier(frontier);

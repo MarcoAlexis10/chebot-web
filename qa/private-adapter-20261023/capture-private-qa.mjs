@@ -3,7 +3,7 @@ import {randomBytes,createHash} from 'node:crypto';
 import {mkdir,writeFile,readFile,lstat,link,rm} from 'node:fs/promises';
 import path from 'node:path';
 import {assertRun,checkPrivate,cleanPending} from '../technical-closure-20261022/approved/private-host.mjs';
-import {sealFictionalStream,verifyFictionalEnvelope} from '../technical-closure-20261022/envelope-v2.mjs';
+import {sealPrivateStream,verifyPrivateEnvelope} from './envelope-v3.mjs';
 import {captureStream} from '../technical-closure-20261022/process-source.mjs';
 import {isPrivateQASource} from './private-source.mjs';
 export const remoteConnectionEnabled=false;
@@ -22,12 +22,12 @@ async function captureOwned({roots,source,basename,passphrase,limits,beforePubli
  let result,ownData=false,ownKey=false;
  const unlinkOwn=async(file,origin)=>{try{const [a,b]=await Promise.all([lstat(file,{bigint:true}),lstat(origin,{bigint:true})]);if(a.ino===b.ino&&a.dev===b.dev)await rm(file);}catch(e){if(e.code!=='ENOENT')throw e;}};
  try{
-  result=await sealFictionalStream({source:captureStream(source,limits),privateDirectory:stage,basename:'dump',passphrase});
-  await verifyFictionalEnvelope({...result,passphrase});
+  result=await sealPrivateStream({source:captureStream(source,limits),privateDirectory:stage,basename:'dump',passphrase});
+  await verifyPrivateEnvelope({...result,passphrase});
   await beforePublish?.();
   await link(result.keyFile,keyFile);ownKey=true;await link(result.dataFile,dataFile);ownData=true;
   return {dataFile,keyFile,dataSha256:sha(await readFile(dataFile)),keySha256:sha(await readFile(keyFile)),
-   format:'CVP2/CVK4',mode:'ONLINE_PROVISIONAL',source:'FICTIONAL_PG17_ADAPTER_V2',
+   format:'CVP3/CVK5',mode:'ONLINE_PROVISIONAL',source:'PRIVATE_PROVISIONAL_ADAPTER_V3',
    dumpExitZero:true,readOnlyProbeVerified:true,realCaptureExecuted:false,integralRecoveryVerified:false,canOpenGuestAccess:false};
  }catch(e){if(ownData)await unlinkOwn(dataFile,result.dataFile);if(ownKey)await unlinkOwn(keyFile,result.keyFile);throw e;}
  finally{await cleanPending(r.root,{operation,allowCurrent:true});}

@@ -64,11 +64,12 @@ export async function ownedPrivateQASource(sourceId,{wrongHost=false,wrongCA=fal
   const id=randomBytes(12).toString('hex'),name='cv-private-'+id;
   // No volume declaration inherited from the postgres image: explicitly use
   // entrypoint sh, and mount its image-declared PGDATA as ephemeral tmpfs too.
+  const invocation=(args.length===1&&['--help','--version'].includes(args[0]))?[program,...args]:[program,'--host='+host,'--port=5432','--username='+user,'--dbname=fixture_source','--no-password',...args];
   const create=['create','-i','--name',name,'--label',LABEL+'='+id,'--pull=never','--network',network,
    '--read-only','--cap-drop=ALL','--security-opt=no-new-privileges',
    '--tmpfs','/run/cheveni:rw,noexec,nosuid,nodev,size=1048576,mode=0700',
    '--mount','type=tmpfs,destination=/var/lib/postgresql/data,tmpfs-size=1048576',
-   '--entrypoint','/bin/sh',IMAGE,'-c',SCRIPT,'--',program,'--host='+host,'--port=5432','--username='+user,'--dbname=fixture_source','--no-password',...args];
+   '--entrypoint','/bin/sh',IMAGE,'-c',SCRIPT,'--',...invocation];
   cmd(create,undefined,5000);clients.set(name,id);
   try{
    const c=JSON.parse(cmd(['inspect',name],undefined,5000))[0];assertClientShape(c,{id,network});
