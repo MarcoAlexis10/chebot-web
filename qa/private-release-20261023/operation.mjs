@@ -6,6 +6,7 @@ import {reconcileRecoveryFrontier} from '../private-adapter-20261023/recovery-fr
 import {isReleaseSource} from './source.mjs';import {captureStream} from './pump.mjs';
 import {assertCustody,lockCustody,publishPair,pairDigest,writeReceipt,assertNoTemporaryRuns,privateRegular,requireVacantCapture} from './custody.mjs';
 import {readFile} from 'node:fs/promises';
+import {requireRealAuthorization} from './policy.mjs';
 const safeFailure=e=>/^(CAPTURE_|PG_DUMP_|SOURCE_|CURRENT_|TENANT_|REQUIRED_|PRIVATE_|EXISTING_|EMPTY_|SAFE_|OWNED_)[A-Z0-9_]+$/.test(e?.message)?e.message:'PRIVATE_OPERATION_FAILED__DETAILS_REDACTED';
 export async function captureToCustody(options){
  const source=options?.source;
@@ -31,7 +32,10 @@ export async function verifyCustodialCopy({custody,original,downloaded,passphras
  await verifyPrivateEnvelope({...downloaded,passphrase});return {pairHashMatch:true,envelopeAuthenticated:true,
   drivePrivacyVerified:false,driveUploadOrDownloadObserved:false,operationalApproval:false};
 }
-export async function restoreCustodialCopy({custody,pair,receipt,passphrase,frontier,inspectOwnedTarget}){
+export async function restoreCustodialCopy(options){
+ const receipt=options?.receipt;
+ if(receipt?.executionClass!=='QA_FICTIONAL')requireRealAuthorization();
+ const {custody,pair,passphrase,frontier,inspectOwnedTarget}=options;
  await assertCustody(custody);const digests=await pairDigest(pair);
  if(receipt.kind!=='CHEVENI_PRIVATE_CAPTURE_RECEIPT_V1'||digests.dataSha256!==receipt.dataSha256||digests.keySha256!==receipt.keySha256)throw Error('CAPTURE_RECEIPT_PAIR_MISMATCH');
  await verifyPrivateEnvelope({...pair,passphrase});
