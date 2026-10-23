@@ -47,7 +47,7 @@ export async function ownedPrivateQASource(sourceId,{wrongHost=false,wrongCA=fal
  const password='FICTIONAL-PGPASS-'+randomBytes(24).toString('hex')+':\\end';
  // Generated fictional credential only. It never appears in public output.
  const q=s=>"'"+s.replaceAll("'","''")+"'";
- sql(sourceId,'fixture_source',"set standard_conforming_strings=on;do $$ begin if not exists(select from pg_roles where rolname='private_reader') then create role private_reader login;end if;end $$;alter role private_reader password "+q(password)+";grant usage on schema fixture,public to private_reader;grant select on all tables in schema fixture,public to private_reader;grant select on all sequences in schema fixture,public to private_reader;");
+ sql(sourceId,'fixture_source',"set standard_conforming_strings=on;do $$ begin if not exists(select from pg_roles where rolname='private_reader') then create role private_reader login bypassrls;end if;end $$;alter role private_reader password "+q(password)+";grant usage on schema fixture,public to private_reader;grant select on all tables in schema fixture,public to private_reader;grant select on all sequences in schema fixture,public to private_reader;");
  // Capture all visible schemas. A missing grant aborts, rather than adding excludes.
  const host=wrongHost?'wrong-source':'fixture-source',user='private_reader';
  let secret=Buffer.from(pgpassLine({host,port:5432,database:'fixture_source',user,password})+ca.toString('base64')+'\n');

@@ -16,11 +16,12 @@ let sourceId,roots,writer,writerDone;const targets=[];
 const schema=readFileSync(new URL('../../technical-closure-20261022/qa/a2-input/test/fixtures/concierge-runtime-dev-schema.sql',import.meta.url),'utf8');
 const seed=`
 insert into concierge_accounts(id,display_name,status,beta_started_at,beta_ends_at) values('${A}','snapshot-0','active','2026-10-01T00:00:00Z','2026-10-31T00:00:00Z');
-insert into concierge_account_members(id,account_id,display_name,phone_hash,role,status) values('${M}','${A}','FICTIONAL MANAGER','FICTIONAL_HASH','owner','active');
+insert into concierge_account_members(id,account_id,display_name,phone_hash,role,status) values('${M}','${A}','FICTIONAL MANAGER',repeat('a',64),'owner','active');
 insert into concierge_buildings(id,account_id,display_name,address,city) values('${B}','${A}','FICTIONAL BUILDING','FICTIONAL ADDRESS','Buenos Aires');
-insert into concierge_properties(id,account_id,building_id,internal_name,address,city,status) values('${P}','${A}','${B}','snapshot-0','FICTIONAL PROPERTY ADDRESS','Buenos Aires','active');
-insert into concierge_knowledge_items(id,account_id,scope_type,property_id,category,knowledge_key,status,current_version_id) values('${K}','${A}','property','${P}','general','fictional-guide','active','${V}');
-insert into concierge_knowledge_versions(id,account_id,knowledge_item_id,version_number,content,source_type,status,created_by_member_id,approved_by_member_id) values('${V}','${A}','${K}',1,'FICTIONAL KNOWLEDGE','manager','approved','${M}','${M}');
+insert into concierge_properties(id,account_id,building_id,internal_name,address,city,status,activated_at) values('${P}','${A}','${B}','snapshot-0','FICTIONAL PROPERTY ADDRESS','Buenos Aires','active',now());
+insert into concierge_knowledge_items(id,account_id,scope_type,property_id,category,knowledge_key,status,current_version_id) values('${K}','${A}','property','${P}','other','fictional-guide','review',null);
+insert into concierge_knowledge_versions(id,account_id,knowledge_item_id,version_number,content,source_type,status,created_by_member_id,approved_by_member_id,approved_at) values('${V}','${A}','${K}',1,'FICTIONAL KNOWLEDGE','manager_entered','approved','${M}','${M}',now());
+update concierge_knowledge_items set status='active',current_version_id='${V}';
 create table auth.sessions(token text);insert into auth.sessions values('FICTIONAL STALE AUTH');
 create schema storage;create table storage.objects(name text);insert into storage.objects values('FICTIONAL_METADATA_ONLY');
 create schema vault;create table vault.secrets(ciphertext text);insert into vault.secrets values('FICTIONAL_NOT_REAL_VAULT');
@@ -75,7 +76,7 @@ try{
  await assert.rejects(capturePrivateQA({roots,source:denied,basename:'permission-denied',passphrase:phrase}),/PG_DUMP_FAILED/);sql(sourceId,'fixture_source','drop table fixture.new_denied_table;');assertNoPrivateClients();
  pass('new_client_permission_failure_aborts_without_schema_excludes_or_credential_residue');
  // Poisoned cross-tenant data remains isolated and is rejected after import.
- sql(sourceId,'fixture_source',"update concierge_properties set account_id='99999999-9999-4999-8999-999999999999';");
+ sql(sourceId,'fixture_source',"alter table concierge_knowledge_versions drop constraint concierge_knowledge_versions_creator_same_account_fk;update concierge_knowledge_versions set created_by_member_id='99999999-9999-4999-8999-999999999999';");
  const poison=await capturePrivateQA({roots,source:await source(),basename:'cross-tenant',passphrase:phrase}),badTarget=await target();
  await assert.rejects(rebuildBusinessQuarantine({targetId:badTarget,...poison,passphrase:phrase,frontier:frontierFixture()}),/TENANT_OR_REFERENCE/);
  assert.equal(sql(badTarget,'postgres',"select count(*) from pg_tables where schemaname='public';"),'0');pass('cross_tenant_restored_reference_denied_and_only_new_target_tables_removed');
