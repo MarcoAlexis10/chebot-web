@@ -31,8 +31,10 @@ TTY local y declaración del propietario; disco fijo NTFS y ACL privada; Docker 
 npipe local, Linux, imagen canónica ya presente (sin pull):
 postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
 TLS verify-full, channel binding requerido, origen limitado al DEV exacto, db postgres,
-rol esperado postgres, servidor 17.11, transacciones read only, sin cambios de roles.
-Versiones distintas se DETIENEN: no se cambia servidor ni se relaja validación.
+rol esperado postgres, origen PG 17.0 a 17.11, transacciones read only, sin cambios de roles.
+Versiones fuera de ese rango se DETIENEN. Cliente/destino fijo 17.11. No se cambia
+servidor. Se admite un minor anterior dentro de PG17 conforme a la compatibilidad
+de pg_dump; no se afirma haber observado la versión actual de DEV.
 Un pg_dump custom sin exclusiones añadidas; 64 MiB máximo, 35 s cooperativos,
 lock timeout 2 s, statement timeout 30 s. Sin reintentos. Permisos insuficientes,
 TLS/identidad/diagnósticos o límites fallidos DETIENEN. No se otorgan permisos.

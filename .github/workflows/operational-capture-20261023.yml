@@ -20,6 +20,11 @@ jobs:
         run: |
           node --test --test-name-pattern='single durable|failed or interrupted|CA path' qa/operational-capture-20261023/qa/new-controls.test.mjs
           if($LASTEXITCODE -ne 0){throw 'NEW_OPERATIONAL_CONTROLS_FAILED'}
+      - name: Only NEW source-version compatibility contract
+        shell: powershell
+        run: |
+          node --test qa/operational-capture-20261023/qa/version-contract.test.mjs
+          if($LASTEXITCODE -ne 0){throw 'NEW_VERSION_CONTRACT_FAILED'}
       - name: NEW deterministic operational ZIP, preservation, manifest and blocked noninteractive entry
         shell: powershell
         run: |

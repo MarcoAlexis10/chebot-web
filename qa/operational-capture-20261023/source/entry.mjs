@@ -35,7 +35,7 @@ export async function main(args=process.argv.slice(2)){
   const ca=await installTrustedCa({file:caPath,home,ownerAttested:true});
   const host=await ask('Host exacto de Connect DEV: conexión directa o Session pooler 5432, sin URL ni contraseña: ');
   const sourcePlan=makeSourcePlan(host,ca.caSha256);
-  console.log('Un pg_dump, sin reintentos, máximo 64 MiB y 35 s. Cliente 17.11; servidor distinto: detener.');
+  console.log('Un pg_dump, sin reintentos, máximo 64 MiB y 35 s. Cliente 17.11; origen solo PG 17.0 a 17.11; otras versiones: detener.');
   console.log('Anotá en papel una frase única de al menos 20 caracteres. No la guardes en Drive ni en archivos.');
   if(await ask('Para consumir esta autorización una sola vez, escribí CAPTURAR-DEV-UNA-VEZ: ')!=='CAPTURAR-DEV-UNA-VEZ')throw Error('ASUS_CAPTURE_CONFIRMATION_REQUIRED');
   const result=await captureOnceLocally({home,machineBinding:context.machineBinding,sourcePlan,...ca});

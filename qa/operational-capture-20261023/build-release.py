@@ -6,7 +6,7 @@ src=HERE/'source'
 out=Path(sys.argv[1]).resolve()
 if out.exists(): raise SystemExit('EXISTING_OUTPUT_PRESERVED')
 files=[]
-for p in sorted(src.iterdir()):
+for p in sorted(src.iterdir(),key=lambda p:p.name):
  if not p.is_file() or p.is_symlink() or p.name=='MANIFEST.json': raise SystemExit('SOURCE_SET_REJECTED')
  files.append((p.name,p.read_bytes().replace(b'\r\n',b'\n')))
 m={'kind':'CHEVENI_ASUS_ONE_CAPTURE_V1','project':'tyvwgsdzqipusodxtydv','devEnabled':True,'maximumCaptures':1,

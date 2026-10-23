@@ -8,6 +8,7 @@ import {randomBytes, X509Certificate} from 'node:crypto';
 import {safeEnv} from './private-host.mjs';
 import {assertFixture,sql,cmd,IMAGE} from './pg-fixture.mjs';
 import {consumeAttempt} from './one-shot.mjs';
+import {supportsServer17} from './source-version.mjs';
 export const remoteConnectionEnabled=POLICY.devEnabled;
 export async function createDevSource(options){
  requireRealAuthorization(); // Before private source options.
@@ -121,7 +122,7 @@ function buildBoundClient({id:sourceId,network,host,user,database,password,ca,ma
    let p;try{p=JSON.parse((await collect('psql',['-X','-qAt','--set','ON_ERROR_STOP=1','--command',query])).toString());}catch{throw Error('PRIVATE_TLS_OR_SOURCE_PROBE_FAILED');}
    const expectedRole=executionClass==='QA_FICTIONAL'?user:'postgres';if(p.user!==expectedRole)throw Error('PRIVATE_SOURCE_ROLE_MISMATCH');return p;
   },
-  acceptProbe:p=>p.database===database&&p.readOnly===true&&p.tls===true&&/^17\.11(?:\D|$)/.test(p.version)&&(marker?p.marker===marker:p.marker===null),
+  acceptProbe:p=>p.database===database&&p.readOnly===true&&p.tls===true&&supportsServer17(p.version)&&(marker?p.marker===marker:p.marker===null),
   dump:()=>start('pg_dump',['--format=custom','--lock-wait-timeout=2s']).child,
   cancel:async()=>{for(const [name,id]of clients)remove(name,id);},
   dispose:async()=>{try{for(const [name,id]of clients)remove(name,id);}finally{secret?.fill(0);secret=null;}}
