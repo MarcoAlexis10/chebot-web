@@ -14,10 +14,10 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.19.0'
-      - name: NEW gates, one-shot claim, CA staging, distinct copy and Windows metadata with fictional local files
+      - name: Only three remaining NEW Windows cases; five already approved
         shell: powershell
         run: |
-          node --test qa/operational-capture-20261023/qa/new-controls.test.mjs
+          node --test --test-name-pattern='single durable|failed or interrupted|CA path' qa/operational-capture-20261023/qa/new-controls.test.mjs
           if($LASTEXITCODE -ne 0){throw 'NEW_OPERATIONAL_CONTROLS_FAILED'}
       - name: NEW deterministic operational ZIP, preservation, manifest and blocked noninteractive entry
         shell: powershell

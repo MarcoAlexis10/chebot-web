@@ -1,12 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {mkdtemp,rm,readFile,writeFile,mkdir,copyFile,link} from 'node:fs/promises';import {tmpdir} from 'node:os';import path from 'node:path';
+import {mkdtemp,rm,readFile,writeFile,mkdir,copyFile,link,realpath} from 'node:fs/promises';import {tmpdir} from 'node:os';import path from 'node:path';
 import {AUTHORIZATION,DEV,validateExecutionContext,requireRealAuthorization,armLocalSession} from '../source/policy.mjs';
 import {claimAttempt,consumeAttempt,checkUnused,readClaim} from '../source/one-shot.mjs';
 import {createCustody,assertCustody} from '../source/custody.mjs';import {checkPrivate} from '../source/private-host.mjs';
 import {createDevSource} from '../source/source.mjs';import {captureOnceLocally,makeSourcePlan,installTrustedCa} from '../source/local-capture.mjs';
 import {requireDistinctDownloadedPair} from '../source/distinct-copy.mjs';
 const good={platform:'win32',inputTTY:true,outputTTY:true,ci:false,remoteSession:false,manufacturer:'ASUSTeK COMPUTER INC.',machineBinding:'a'.repeat(64),authorization:AUTHORIZATION,project:DEV};
-async function fixture(fn){const root=await mkdtemp(path.join(tmpdir(),'cv-one-shot-test-'));try{await checkPrivate(root,true);return await fn(root);}finally{await rm(root,{recursive:true,force:true});}}
+async function fixture(fn){const root=await mkdtemp(path.join(tmpdir(),'cv-one-shot-test-'));try{await checkPrivate(root,true);return await fn(await realpath(root));}finally{await rm(root,{recursive:true,force:true});}}
 // These are exclusively new operational gates. No PostgreSQL, Docker or network.
 test('new gate accepts exact ASUS context and rejects CI, remote, other OS/device/project/permission',()=>{
  assert.equal(validateExecutionContext(good),true);
