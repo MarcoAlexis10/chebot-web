@@ -1,7 +1,7 @@
 // Durable custody is deliberately a DIFFERENT kind from disposable QA runs.
 import {mkdir,writeFile,readFile,lstat,realpath,open,link,rm,readdir} from 'node:fs/promises';
 import {randomBytes,createHash} from 'node:crypto';import path from 'node:path';
-import {execFileSync} from 'node:child_process';
+import {execFileSync} from 'node:child_process';import {createReadStream} from 'node:fs';
 import {safeEnv,powershellModules,checkPrivate} from '../technical-closure-20261022/approved/private-host.mjs';
 const owned=new WeakMap();
 const eq=(a,b)=>process.platform==='win32'?a.toLowerCase()===b.toLowerCase():a===b;
@@ -50,7 +50,12 @@ export async function publishPair(token,pair,name){
  catch(e){if(keyLinked){const [a,b]=await Promise.all([lstat(keyFile,{bigint:true}),lstat(pair.keyFile,{bigint:true})]);if(a.ino===b.ino&&a.dev===b.dev)await rm(keyFile);}throw Error(e.code==='EEXIST'?'EXISTING_CAPTURE_PRESERVED':'CAPTURE_PUBLICATION_FAILED');}
  return {dataFile,keyFile};
 }
-export async function pairDigest(pair){for(const f of [pair.dataFile,pair.keyFile])await privateRegular(f);const sha=b=>createHash('sha256').update(b).digest('hex');return {dataSha256:sha(await readFile(pair.dataFile)),keySha256:sha(await readFile(pair.keyFile))};}
+export async function pairDigest(pair){
+ const d=await privateRegular(pair.dataFile),k=await privateRegular(pair.keyFile);
+ if(d.size<1||d.size>64*1024*1024+8192||k.size!==80)throw Error('PRIVATE_CIPHER_PAIR_SIZE_INVALID');
+ async function digest(file,max){const h=createHash('sha256');let n=0;for await(const b of createReadStream(file)){n+=b.length;if(n>max)throw Error('PRIVATE_CIPHER_PAIR_SIZE_INVALID');h.update(b);}return h.digest('hex');}
+ return {dataSha256:await digest(pair.dataFile,64*1024*1024+8192),keySha256:await digest(pair.keyFile,80)};
+}
 export async function writeReceipt(token,name,receipt){
  const m=await assertCustody(token);if(!/^[a-z0-9-]{1,40}$/.test(name))throw Error('SAFE_CAPTURE_NAME_REQUIRED');
  const file=path.join(m.receipts,name+'.json');await writeFile(file,JSON.stringify(receipt,null,2)+'\n',{flag:'wx',mode:0o600});return file;

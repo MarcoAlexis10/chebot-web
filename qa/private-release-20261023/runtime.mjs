@@ -8,7 +8,7 @@ import {verifyNode} from '../technical-closure-20261022/approved/private-host.mj
 import {createCustody,openCustody,privateRegular} from './custody.mjs';
 import {captureToCustody,restoreCustodialCopy,verifyCustodialCopy,readPrivateReceipt} from './operation.mjs';
 import {freshChallenge} from '../technical-closure-20261022/journal.mjs';
-async function json(file,max=65536){await privateRegular(file);const s=await readFile(file);if(s.length>max)throw Error('PRIVATE_CONFIG_TOO_LARGE');return JSON.parse(s);}
+async function json(file,max=65536){const stat=await privateRegular(file);if(stat.size>max)throw Error('PRIVATE_CONFIG_TOO_LARGE');const s=await readFile(file);if(s.length>max)throw Error('PRIVATE_CONFIG_TOO_LARGE');return JSON.parse(s);}
 function keys(v,list){if(!v||Object.getPrototypeOf(v)!==Object.prototype||Object.keys(v).sort().join('|')!==list.sort().join('|'))throw Error('PRIVATE_CONFIG_FIELDS_REJECTED');}
 export async function loadIndependentWitness({witnessFile,trustFile,challenge,captureFinishedAt,custodyRoot}){
  if(typeof custodyRoot!=='string'||!path.isAbsolute(custodyRoot))throw Error('INDEPENDENT_TRUST_LOCATION_REQUIRED');

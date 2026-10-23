@@ -5,7 +5,7 @@ import {startFixture,cleanup} from '../technical-closure-20261022/qa/pg-fixture.
 import {reconcileRecoveryFrontier} from '../private-adapter-20261023/recovery-frontier.mjs';
 import {isReleaseSource} from './source.mjs';import {captureStream} from './pump.mjs';
 import {assertCustody,lockCustody,publishPair,pairDigest,writeReceipt,assertNoTemporaryRuns,privateRegular,requireVacantCapture} from './custody.mjs';
-import {readFile} from 'node:fs/promises';
+import {open} from 'node:fs/promises';
 import {requireRealAuthorization} from './policy.mjs';
 const safeFailure=e=>/^(CAPTURE_|PG_DUMP_|SOURCE_|CURRENT_|TENANT_|REQUIRED_|PRIVATE_|EXISTING_|EMPTY_|SAFE_|OWNED_)[A-Z0-9_]+$/.test(e?.message)?e.message:'PRIVATE_OPERATION_FAILED__DETAILS_REDACTED';
 export async function captureToCustody(options){
@@ -50,5 +50,9 @@ export async function restoreCustodialCopy(options){
  }catch(e){throw Error(safeFailure(e));}
  finally{if(id)cleanup(id);}
 }
-export async function readPrivateReceipt(file){await privateRegular(file);const b=await readFile(file);if(b.length>16384)throw Error('PRIVATE_RECEIPT_TOO_LARGE');return JSON.parse(b);}
+export async function readPrivateReceipt(file){
+ const s=await privateRegular(file);if(s.size>16384)throw Error('PRIVATE_RECEIPT_TOO_LARGE');
+ const f=await open(file,'r'),b=Buffer.alloc(16385);let total=0;
+ try{while(total<b.length){const {bytesRead}=await f.read(b,total,b.length-total,total);if(!bytesRead)break;total+=bytesRead;}if(total>16384)throw Error('PRIVATE_RECEIPT_TOO_LARGE');return JSON.parse(b.subarray(0,total));}finally{await f.close();}
+}
 export {assertNoTemporaryRuns};
