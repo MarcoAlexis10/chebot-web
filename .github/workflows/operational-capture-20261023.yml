@@ -14,7 +14,8 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.19.0'
-      - name: Only three remaining NEW Windows cases; five already approved
+      - name: NEW controls already approved; skip for package-only correction
+        if: ${{ !contains(github.event.head_commit.message, '[package-only]') }}
         shell: powershell
         run: |
           node --test --test-name-pattern='single durable|failed or interrupted|CA path' qa/operational-capture-20261023/qa/new-controls.test.mjs

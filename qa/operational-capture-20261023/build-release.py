@@ -8,7 +8,7 @@ if out.exists(): raise SystemExit('EXISTING_OUTPUT_PRESERVED')
 files=[]
 for p in sorted(src.iterdir()):
  if not p.is_file() or p.is_symlink() or p.name=='MANIFEST.json': raise SystemExit('SOURCE_SET_REJECTED')
- files.append((p.name,p.read_bytes()))
+ files.append((p.name,p.read_bytes().replace(b'\r\n',b'\n')))
 m={'kind':'CHEVENI_ASUS_ONE_CAPTURE_V1','project':'tyvwgsdzqipusodxtydv','devEnabled':True,'maximumCaptures':1,
  'authorization':'CHEVENI-DEV-ONE-CAPTURE-20261023','files':[{'name':n,'sha256':hashlib.sha256(b).hexdigest()} for n,b in files]}
 raw=(json.dumps(m,ensure_ascii=False,indent=2)+'\n').encode()

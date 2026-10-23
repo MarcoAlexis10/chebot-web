@@ -2,7 +2,7 @@ from pathlib import Path
 import tempfile,subprocess,sys,hashlib,json,zipfile
 root=Path(__file__).resolve().parents[1]
 with tempfile.TemporaryDirectory(prefix='cv-new-operational-package-') as d:
- d=Path(d);a=d/'one.zip';b=d/'two.zip'
+ d=Path(d).resolve();a=d/'one.zip';b=d/'two.zip'
  for p in [a,b]:
   r=subprocess.run([sys.executable,str(root/'build-release.py'),str(p)],capture_output=True,text=True,check=True)
  assert a.read_bytes()==b.read_bytes()
