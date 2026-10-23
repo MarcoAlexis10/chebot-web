@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   assembled-pg17:
-    if: ${{ !contains(github.event.head_commit.message, '[windows-only]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[windows-only]') && !contains(github.event.head_commit.message, '[checkpoint-only]') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -57,3 +57,28 @@ jobs:
           $r=(node "$p/entry.mjs")|ConvertFrom-Json
           if($LASTEXITCODE -ne 0 -or $r.result -ne 'PRIVATE_RELEASE_PREPARED_LOCKED' -or $r.remoteConnectionEnabled){throw 'PRIVATE_RELEASE_MUST_BE_LOCKED'}
           Write-Output ('WINDOWS_PREPARED_MANIFEST_SHA256='+$r.manifestSha256)
+  new-private-checkpoints:
+    if: ${{ contains(github.event.head_commit.message, '[checkpoint-only]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Build affected locked payload and cache CI-only image
+        run: |
+          python qa/private-release-20261023/build-release.py "$RUNNER_TEMP/private-prepared"
+          docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: Only NEW private copy and restore checkpoints
+        run: node qa/private-release-20261023/qa/checkpoint-receipts.mjs "$RUNNER_TEMP/private-prepared"
+      - name: Independent checkpoint cleanup
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {pathToFileURL} from 'node:url';
+          const base=process.env.RUNNER_TEMP+'/private-prepared/';
+          const {assertNoResources}=await import(pathToFileURL(base+'pg-fixture.mjs'));
+          const {assertNoPrivateClients}=await import(pathToFileURL(base+'source.mjs'));
+          assertNoResources();assertNoPrivateClients();console.log('PRIVATE_CHECKPOINTS_INDEPENDENT_CLEANUP_OK');
+          JS

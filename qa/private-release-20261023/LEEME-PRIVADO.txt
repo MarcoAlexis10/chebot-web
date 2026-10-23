@@ -24,6 +24,10 @@ Orden FUTURO, solo con autorizacion especifica y el release revisado:
 3. Desafio nuevo, journal actual completo y clave/piso fuera de la custodia del
    backup. La firma no prueba completitud ni procedencia de la clave elegida.
    Si falta esa evidencia, no se simula y la recuperacion queda bloqueada.
+Se guardan comprobantes privados separados de copia y restauracion, solo tras
+verificar; el de restauracion incluye conteos del destino despues de limpieza,
+no una comparacion atomica con el origen ni recuperacion integral.
+
 4. Restauracion privada en destino propio, sin red, puertos, cron o servicios.
    Solo seis tablas en cuarentena: no restaura huespedes, Auth, sesiones,
    permisos, secretos, colas, archivos Storage ni toda la aplicacion.

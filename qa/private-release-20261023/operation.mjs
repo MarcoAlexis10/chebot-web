@@ -1,7 +1,8 @@
 import {createRun,removeFictionalRun} from '../technical-closure-20261022/approved/private-host.mjs';
 import {sealPrivateStream,verifyPrivateEnvelope} from '../private-adapter-20261023/envelope-v3.mjs';
 import {rebuildBusinessQuarantine} from '../private-adapter-20261023/closed-business.mjs';
-import {startFixture,cleanup} from '../technical-closure-20261022/qa/pg-fixture.mjs';
+import {randomBytes} from 'node:crypto';
+import {startFixture,cleanup,sql} from '../technical-closure-20261022/qa/pg-fixture.mjs';
 import {reconcileRecoveryFrontier} from '../private-adapter-20261023/recovery-frontier.mjs';
 import {isReleaseSource} from './source.mjs';import {captureStream} from './pump.mjs';
 import {assertCustody,lockCustody,publishPair,pairDigest,writeReceipt,assertNoTemporaryRuns,privateRegular,requireVacantCapture} from './custody.mjs';
@@ -29,8 +30,9 @@ export async function verifyCustodialCopy({custody,original,downloaded,passphras
  await assertCustody(custody);for(const f of [original.dataFile,original.keyFile,downloaded.dataFile,downloaded.keyFile])await privateRegular(f);
  const [a,b]=await Promise.all([pairDigest(original),pairDigest(downloaded)]);
  if(a.dataSha256!==b.dataSha256||a.keySha256!==b.keySha256)throw Error('PRIVATE_COPY_HASH_MISMATCH');
- await verifyPrivateEnvelope({...downloaded,passphrase});return {pairHashMatch:true,envelopeAuthenticated:true,
+ await verifyPrivateEnvelope({...downloaded,passphrase});const result={pairHashMatch:true,envelopeAuthenticated:true,
   drivePrivacyVerified:false,driveUploadOrDownloadObserved:false,operationalApproval:false};
+ await writeReceipt(custody,'copy-check-'+randomBytes(12).toString('hex'),{kind:'CHEVENI_PRIVATE_COPY_CHECK_V1',completedAt:new Date().toISOString(),...a,...result});return {...result,privateVerificationReceiptCreated:true};
 }
 export async function restoreCustodialCopy(options){
  const receipt=options?.receipt;
@@ -41,14 +43,18 @@ export async function restoreCustodialCopy(options){
  await verifyPrivateEnvelope({...pair,passphrase});
  if(frontier.captureFinishedAt!==receipt.captureFinishedAt)throw Error('JOURNAL_CAPTURE_BOUNDARY_MISMATCH');
  reconcileRecoveryFrontier(frontier); // Before even creating a target.
- let id;
+ let id,result,targetCounts;
  try{
   id=await startFixture('closed-target');
   const r=await rebuildBusinessQuarantine({targetId:id,...pair,passphrase,frontier});
   await inspectOwnedTarget?.(id);
-  return {...r,privateRestoreScope:'SIX_TABLE_CLOSED_QUARANTINE_ONLY',realDataRestored:receipt.executionClass==='OWNER_PRIVATE_DEV',targetCleanedOnReturn:true};
+  targetCounts=JSON.parse(sql(id,'postgres',"select json_build_object('accounts',(select count(*) from concierge_accounts),'members',(select count(*) from concierge_account_members),'buildings',(select count(*) from concierge_buildings),'properties',(select count(*) from concierge_properties),'knowledgeItems',(select count(*) from concierge_knowledge_items),'knowledgeVersions',(select count(*) from concierge_knowledge_versions));"));
+  result={...r,privateRestoreScope:'SIX_TABLE_CLOSED_QUARANTINE_ONLY',realDataRestored:receipt.executionClass==='OWNER_PRIVATE_DEV',targetCleanedOnReturn:true};
  }catch(e){throw Error(safeFailure(e));}
  finally{if(id)cleanup(id);}
+ // Written only AFTER SQL verification and successful owned-target cleanup.
+ await writeReceipt(custody,'restore-check-'+randomBytes(12).toString('hex'),{kind:'CHEVENI_PRIVATE_RESTORE_CHECK_V1',completedAt:new Date().toISOString(),...digests,...result,targetCounts,countsAreTargetOnly:true,sourceSnapshotCountsCompared:false});
+ return {...result,privateVerificationReceiptCreated:true};
 }
 export async function readPrivateReceipt(file){
  const s=await privateRegular(file);if(s.size>16384)throw Error('PRIVATE_RECEIPT_TOO_LARGE');
