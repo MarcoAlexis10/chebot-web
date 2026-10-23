@@ -5,7 +5,7 @@ HERE=Path(__file__).resolve().parent
 ROOT=HERE.parent
 out=Path(sys.argv[1]).resolve()
 if out.exists(): raise SystemExit('EXISTING_OUTPUT_PRESERVED')
-seeds=['entry.mjs','runtime.mjs']
+seeds=['entry.mjs','runtime.mjs','LEEME-PRIVADO.txt']
 queue=[HERE/n for n in seeds]
 seen={}
 while queue:

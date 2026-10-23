@@ -1,0 +1,48 @@
+CHE VENI — RELEASE PRIVADO PREPARADO, BLOQUEADO — 23/10/2026
+
+No es un ZIP de diagnostico ni requiere ejecutar otra prueba en ASUS.
+Este build NO conecta Supabase DEV, NO pide credenciales y NO captura datos.
+La autorizacion futura requiere un release revisado y habilitado por el ejecutor;
+no editar policy.mjs ni cambiar variables de entorno para eludir el bloqueo.
+
+Contiene el flujo local completo:
+- perfil DEV exacto + CA privada (sin credenciales en archivos de configuracion);
+- entrada local oculta y frase confirmada; frase en papel;
+- pg_dump de lectura, cifrado provisional V3 y publicacion sin sobrescribir;
+- datos y clave cifrados en carpetas privadas distintas, con comprobante;
+- verificacion de ambas copias cifradas y autenticacion completa;
+- desafio para un custodio independiente y recuperacion de seis tablas cerradas;
+- eliminacion de temporales y destino descartable, conservando la custodia.
+
+Orden FUTURO, solo con autorizacion especifica y el release revisado:
+1. Captura local: la CA debe proceder de una fuente confiable. La forma/hash de
+   un plan no prueba identidad. Credencial existente solo en consola oculta.
+2. Copia manual de AMBOS cifrados a Drive privado y descarga a carpeta privada.
+   El programa compara SHA y GCM; no acredita los permisos de Drive ni haber
+   observado una transferencia de nube. No subir temporales, JSON privado,
+   contraseña o frase. Custodiar el acceso y recuperacion de la cuenta Drive.
+3. Desafio nuevo, journal actual completo y clave/piso fuera de la custodia del
+   backup. La firma no prueba completitud ni procedencia de la clave elegida.
+   Si falta esa evidencia, no se simula y la recuperacion queda bloqueada.
+4. Restauracion privada en destino propio, sin red, puertos, cron o servicios.
+   Solo seis tablas en cuarentena: no restaura huespedes, Auth, sesiones,
+   permisos, secretos, colas, archivos Storage ni toda la aplicacion.
+
+Comandos del release FUTURO (todos rechazados por este build actual):
+node entry.mjs capture CONFIG_LOCAL_PRIVADO.json
+node entry.mjs verify-copy CONFIG_COPIA_LOCAL_PRIVADO.json
+node entry.mjs challenge
+node entry.mjs restore CONFIG_RESTAURACION_LOCAL_PRIVADO.json
+Los esquemas exactos de configuracion estan en runtime.mjs y README.md del
+repositorio. Nunca llevan contraseña, frase, tokens o claves privadas.
+
+Una captura exitosa no acredita restauracion. Una restauracion parcial no
+acredita A1 integral, rollback A2 ni beta. Ante un fallo posterior a publicacion,
+el par cifrado se conserva para revision. No reintentar la captura automaticamente.
+El timeout del pump es cooperativo; un host/daemon averiado puede impedir limpieza
+inmediata. La eliminacion es logica, no una garantia de borrado fisico seguro.
+
+La autenticidad del codigo depende del commit fijo y del SHA del manifiesto
+publicado fuera de la carpeta. El manifiesto detecta cambios respecto de ese
+origen confiable; no es una firma autonoma frente a quien pueda cambiar todo.
+No contiene secretos, datos reales ni un permiso para activar usuarios o servicios.

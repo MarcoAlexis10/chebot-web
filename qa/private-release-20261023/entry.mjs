@@ -3,9 +3,10 @@ import {verifyPreparedBundle} from './integrity.mjs';import {POLICY,requireRealA
 export async function main(args=process.argv.slice(2)){
  const verified=await verifyPreparedBundle(path.dirname(fileURLToPath(import.meta.url)));
  if(args.length===0)return {result:'PRIVATE_RELEASE_PREPARED_LOCKED',...verified,remoteConnectionEnabled:false,realCaptureExecuted:false,integralRecoveryVerified:false};
- if(!['capture','restore','verify-copy'].includes(args[0])||args.length!==2)throw Error('PRIVATE_RELEASE_COMMAND_REJECTED');
+ if(!((args[0]==='challenge'&&args.length===1)||(['capture','restore','verify-copy'].includes(args[0])&&args.length===2)))throw Error('PRIVATE_RELEASE_COMMAND_REJECTED');
  requireRealAuthorization(); // Before config file, credential or Docker access.
  const r=await import('./runtime.mjs');
+ if(args[0]==='challenge')return {result:'PRIVATE_RECOVERY_CHALLENGE',challenge:r.prepareRecoveryChallenge()};
  const result=args[0]==='capture'?await r.executeRealCapture(args[1]):args[0]==='restore'?await r.executeRealRestore(args[1]):await r.executeRealCopyVerification(args[1]);
  // Never print raw results, paths, rows, provider text or credentials.
  return {result:'AUTHORIZED_PRIVATE_OPERATION_COMPLETED',integralRecoveryVerified:false,operationalApproval:false};
