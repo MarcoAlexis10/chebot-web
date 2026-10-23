@@ -1,0 +1,30 @@
+name: Private provisional client and closed business recovery NEW only
+on:
+  push:
+    branches: [qa/cheveni-private-client-lab-20261023]
+    paths: ['qa/private-adapter-20261023/**', '.github/workflows/private-client-new-20261023.yml']
+permissions:
+  contents: read
+jobs:
+  new-private-pg17:
+    if: github.repository == 'MarcoAlexis10/chebot-web'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only cached immutable image preparation
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: Only new real libpq PGPASSFILE transport and business quarantine
+        run: node qa/private-adapter-20261023/qa/private-pg17-new.mjs
+      - name: Independent cleanup verification
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';
+          import {assertNoPrivateClients} from './qa/private-adapter-20261023/private-source.mjs';
+          assertNoPrivateClients();assertNoResources();
+          console.log('INDEPENDENT_PRIVATE_ADAPTER_NEW_CLEANUP_OK');
+          JS
