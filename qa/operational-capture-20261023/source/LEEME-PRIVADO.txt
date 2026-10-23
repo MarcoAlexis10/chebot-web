@@ -1,0 +1,109 @@
+CHE VENI — CAPTURA OPERATIVA PRIVADA DEV — 2026-10-23
+AUTORIZACION: UNA captura online, exclusivamente desde la ASUS del propietario.
+Base: código QA a0ca274; informe b7406cc. No reemplaza paquetes integrales.
+
+PRIMER PASO (sin conexión): verificar SHA-256 del ZIP contra el mensaje de entrega.
+Extraer a una carpeta nueva local. No mezclar con ZIP anteriores ni guardar secretos
+allí. Abrir INICIAR.cmd con usuario normal, presencialmente en ASUS; Docker Desktop
+Linux debe estar iniciado. No usar WSL, CI, consola remota o grabación/transcripción.
+No modificar políticas de ejecución, antivirus ni credenciales.
+
+El asistente verifica manifiesto y SHA de cada archivo. Opción 1 captura una vez.
+Antes de conectar necesita una CA pública obtenida de la configuración SSL del
+proyecto DEV tyvwgsdzqipusodxtydv mediante el panel HTTPS confiable del propietario.
+No se incluye CA: si falta su procedencia verificable, cerrar. El hash y validez X509
+no demuestran por sí solos confianza. El propietario debe confirmar esa procedencia.
+Usar el HOST exacto de Connect de ESE proyecto, nunca pegar DSN/URL:
+- directo: db.tyvwgsdzqipusodxtydv.supabase.co; usuario postgres;
+- Session pooler: host aws-...pooler.supabase.com de ese panel; usuario
+  postgres.tyvwgsdzqipusodxtydv. Puerto 5432; transaction pooler 6543 rechazado.
+El usuario se deriva localmente del host. No adivinar región/host.
+Si no se dispone de CA adecuada para la ruta elegida, NO desactivar verify-full.
+
+La credencial existente se escribe SOLO en el campo local oculto. La frase nueva
+(minimo 20 caracteres) se introduce oculta dos veces y se conserva SOLO en papel,
+separado de ASUS y Drive. Sin chat, portapapeles, Git, capturas o archivos de texto.
+El programa no recupera una frase perdida. La clave de datos aleatoria se envuelve
+con scrypt + AES-256-GCM. Formato CVP3/CVK5, separado del integral y provisional viejo.
+
+Controles antes/durante la operación: Windows ASUS + Node firmado 24.19.0/24.21.0,
+TTY local y declaración del propietario; disco fijo NTFS y ACL privada; Docker por
+npipe local, Linux, imagen canónica ya presente (sin pull):
+postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+TLS verify-full, channel binding requerido, origen limitado al DEV exacto, db postgres,
+rol esperado postgres, servidor 17.11, transacciones read only, sin cambios de roles.
+Versiones distintas se DETIENEN: no se cambia servidor ni se relaja validación.
+Un pg_dump custom sin exclusiones añadidas; 64 MiB máximo, 35 s cooperativos,
+lock timeout 2 s, statement timeout 30 s. Sin reintentos. Permisos insuficientes,
+TLS/identidad/diagnósticos o límites fallidos DETIENEN. No se otorgan permisos.
+La sesión postgres posee privilegios de escritura: se restringen los comandos del
+adaptador, no se afirma haber convertido la credencial del servidor en read only.
+
+CUSTODIA Y FALLAS
+Custodia fuera del paquete y de carpetas sincronizadas automáticamente:
+%LOCALAPPDATA%\CheVeni-Captura-20261023\cheveni-custody-<id>
+- data\dev-provisional-20261023.cva: archivo cifrado;
+- keys\dev-provisional-20261023.cclave: clave ENVUELTA (no frase);
+- receipts: comprobantes privados, conservar localmente.
+Antes de cualquier intento remoto se registra y fsync el archivo persistente
+ONE-CAPTURE-20261023.json en el directorio padre, vinculado a equipo/usuario.
+No borrarlo, renombrarlo ni cambiar de usuario para repetir. Un fallo consume el
+intento por prudencia incluso si no terminó pg_dump. Otro intento exige revisión
+y autorización nueva. Este control local no resiste a un administrador que lo borre.
+Opción 4 muestra la ruta; no infiere éxito por existir un registro.
+No se sobrescriben respaldos; temporales y clientes propios se limpian. Ante corte
+eléctrico/muerte forzada pueden quedar restos propios: detener, no borrar copias
+ni ejecutar docker system prune. Conservar el código de error, nunca subir recibos.
+No hay promesa de borrado físico de RAM, pagefile, hibernación o SSD.
+
+SEGUNDA COPIA (después de captura auténtica)
+Desde la ASUS, subir manualmente SOLO .cva y .cclave a dos carpetas privadas de
+Google Drive. Acceso general Restringido, sin enlaces públicos ni colaboradores
+no autorizados. Mantener copias ASUS. La frase sigue únicamente en papel.
+Descargar AMBOS a una carpeta local privada dentro de la custodia (crear desde
+esa carpeta para heredar ACL). Verificar que no son los archivos originales.
+No subir toda la custodia ni recibos. La herramienta no inicia sesión ni contacta
+Google Drive, ni puede demostrar por sí sola la privacidad de la nube.
+Opción 2 verifica hashes de ambos archivos + autenticación GCM; no conecta a DEV.
+Guardar en la custodia un JSON privado SIN secretos con exactamente:
+{"custodyRoot":"RUTA_ABSOLUTA_CUSTODIA","captureName":"dev-provisional-20261023","downloadedDataFile":"RUTA_ABSOLUTA_DESCARGA.cva","downloadedKeyFile":"RUTA_ABSOLUTA_DESCARGA.cclave"}
+Usar barras / o duplicar cada barra inversa en JSON Windows. El asistente solicita
+su ruta y después la frase oculta. Hash coincidente no acredita origen Drive: el
+propietario debe observar carga/descarga y privacidad. Se escribe recibo separado.
+
+RESTAURACION LIMITADA (opción 3, no conecta a DEV)
+La autorización abarca destino local descartable network=none, sin huéspedes,
+servicios, Auth, usuarios invitados ni salida externa. Se conserva el requisito de
+revocaciones independiente: baseline real completo, clave pública + mínimo head
+FUERA de la custodia, testigo firmado actual para desafío nuevo; no inventar eventos.
+Si no existen, la restauración se DETIENE ANTES de crear un destino. Captura y copia
+cifradas permanecen. Desafío de un solo uso procedimental, testigo vigente <=5 min.
+Esquema privado:
+{"custodyRoot":"RUTA_ABSOLUTA_CUSTODIA","captureName":"dev-provisional-20261023","witnessFile":"RUTA_PRIVADA_FUERA_CUSTODIA","trustFile":"RUTA_PRIVADA_FUERA_CUSTODIA","challenge":"DESAFIO_RECIEN_MOSTRADO"}
+trustFile: publicKeyPem y minimumHead. witnessFile: journal, head, signature.
+Estructuras y comprobaciones: runtime.mjs, journal.mjs, recovery-frontier.mjs.
+Sin un custodio y datos reales independientes esos archivos no son preparables.
+El destino usa DDL de modelo confiable, solo datos de SEIS tablas de negocio,
+RLS forzado, permisos cerrados, estados en cuarentena, borrado del destino al final.
+No restaura DDL arbitrario del dump, funciones, triggers, sesiones, invitados ni envíos.
+Recibo de restauración solo tras verificar y limpiar destino. Conteos son del destino;
+no se comparan con conteos del snapshot fuente. Esto NO prueba recuperación total.
+
+ALCANCE / RIESGOS QUE SIGUEN ABIERTOS
+- Un snapshot MVCC lógico del pg_dump, sin detener escritores. Secuencias y sistemas
+  externos no conforman una ventana integral W01-W10 ni snapshot coordinado.
+- Dump custom de una base, no pg_dumpall: roles globales/contraseñas y configuración
+  administrada no se recuperan. Cualquier acceso denegado aborta, sin excluir para pasar.
+- Auth puede aportar filas si son legibles; Auth funcional, sesiones, JWT, proveedores,
+  claves administradas y revocaciones actuales NO quedan recuperados ni comprobados.
+- Vault: ciphertext legible no equivale a raíz/clave recuperable; no se exportan secretos
+  descifrados. SQL/funciones en archive no se ejecutan durante la restauración limitada.
+- Storage: metadatos posibles, bytes de objetos no incluidos. Tampoco Edge Functions,
+  Vercel, Workers, WhatsApp, SMTP, dominios, webhooks o configuración externa.
+- Inventario/TOC completo y cobertura real aún no verificados; ni éxito criptográfico
+  ni recibo de captura cierran A1 integral, A2, A3 o el lanzamiento de beta.
+- Dump es archivo de datos no confiable para restauración arbitraria; jamás ejecutar
+  en DEV/PROD ni abrir servicios. Sin garantías sobre datos que no se restauraron.
+
+No se ejecutó ninguna conexión real al ensamblar ni probar este release.
+La siguiente operación real corresponde exclusivamente al propietario en ASUS.

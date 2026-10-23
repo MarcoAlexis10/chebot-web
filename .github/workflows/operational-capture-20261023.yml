@@ -1,0 +1,28 @@
+name: ASUS one-capture release NEW offline controls only
+on:
+  push:
+    branches: [qa/cheveni-asus-one-capture-20261023]
+    paths: ['qa/operational-capture-20261023/**', '.github/workflows/operational-capture-20261023.yml']
+permissions:
+  contents: read
+jobs:
+  windows-new-controls:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: NEW gates, one-shot claim, CA staging, distinct copy and Windows metadata with fictional local files
+        shell: powershell
+        run: |
+          node --test qa/operational-capture-20261023/qa/new-controls.test.mjs
+          if($LASTEXITCODE -ne 0){throw 'NEW_OPERATIONAL_CONTROLS_FAILED'}
+      - name: NEW deterministic operational ZIP, preservation, manifest and blocked noninteractive entry
+        shell: powershell
+        run: |
+          python qa/operational-capture-20261023/qa/package-check.py
+          if($LASTEXITCODE -ne 0){throw 'NEW_OPERATIONAL_PACKAGE_FAILED'}
+# No Docker invocation, Supabase connection, secrets, environment pulls, deploys or artifact uploads.
+# Package/source real entry fails on CI; no approved PG/crypto/ASUS suite is invoked.
