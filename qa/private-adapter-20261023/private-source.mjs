@@ -48,6 +48,10 @@ export async function ownedPrivateQASource(sourceId,{wrongHost=false,wrongCA=fal
  // Generated fictional credential only. It never appears in public output.
  const q=s=>"'"+s.replaceAll("'","''")+"'";
  sql(sourceId,'fixture_source',"set standard_conforming_strings=on;do $$ begin if not exists(select from pg_roles where rolname='private_reader') then create role private_reader login bypassrls;end if;end $$;alter role private_reader password "+q(password)+";grant usage on schema fixture,public to private_reader;grant select on all tables in schema fixture,public to private_reader;grant select on all sequences in schema fixture,public to private_reader;");
+ // The existing fixture HBA only admits fixture_reader. Add this exact QA
+ // role/database with SCRAM; never weaken authentication or touch a live source.
+ cmd(['exec','-i',owned.container,'sh','-c','cat >> /var/lib/postgresql/data/pg_hba.conf'],Buffer.from('hostssl fixture_source private_reader all scram-sha-256\n'));
+ sql(sourceId,'postgres','select pg_reload_conf();');
  // Capture all visible schemas. A missing grant aborts, rather than adding excludes.
  const host=wrongHost?'wrong-source':'fixture-source',user='private_reader';
  let secret=Buffer.from(pgpassLine({host,port:5432,database:'fixture_source',user,password})+ca.toString('base64')+'\n');
