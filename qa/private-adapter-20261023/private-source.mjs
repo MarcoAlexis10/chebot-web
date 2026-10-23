@@ -22,7 +22,7 @@ IFS= read -r ca64
 printf '%s\\n' "$passline" > /run/cheveni/pgpass
 printf '%s' "$ca64" | base64 -d > /run/cheveni/root.crt
 unset passline ca64
-exec env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=/run/cheveni LANG=C.UTF-8 \
+exec env -i PATH=/usr/lib/postgresql/17/bin:/usr/local/bin:/usr/bin:/bin HOME=/run/cheveni LANG=C.UTF-8 \
 PGPASSFILE=/run/cheveni/pgpass PGSSLROOTCERT=/run/cheveni/root.crt \
 PGSSLMODE=verify-full PGGSSENCMODE=disable PGCHANNELBINDING=require \
 PGCONNECT_TIMEOUT=3 PGOPTIONS='-c default_transaction_read_only=on -c statement_timeout=30000 -c lock_timeout=2000' "$@"
@@ -86,7 +86,7 @@ export async function ownedPrivateQASource(sourceId,{wrongHost=false,wrongCA=fal
   try{
    const closed=new Promise(resolve=>{child.once('error',()=>resolve(-1));child.once('close',resolve);});
    for await(const b of child.stdout){bytes+=b.length;if(bytes>32768){failed=true;break;}chunks.push(b);}
-   if(failed||await closed!==0||diagnostic)throw Error('PRIVATE_LIBPQ_PREFLIGHT_FAILED');
+   const exit=failed?-1:await closed;if(failed||exit!==0||diagnostic)throw Error('PRIVATE_LIBPQ_PREFLIGHT_FAILED__EXIT_'+(Number.isInteger(exit)?exit:'UNKNOWN')+'__DIAGNOSTIC_'+diagnostic);
    return Buffer.concat(chunks);
   }finally{clearTimeout(timer);remove(name,id);child.kill();}
  }
