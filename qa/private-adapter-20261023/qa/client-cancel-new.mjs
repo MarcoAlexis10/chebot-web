@@ -10,14 +10,16 @@ try{
  // Preexisting fictional ciphertext markers are not presented as valid backups.
  const oldData=path.join(roots.data,'preexisting.cva'),oldKey=path.join(roots.keys,'preexisting.cclave');
  await writeFile(oldData,'FICTIONAL_PREEXISTING_CIPHERTEXT_MARKER',{flag:'wx',mode:0o600});await writeFile(oldKey,'FICTIONAL_PREEXISTING_KEY_MARKER',{flag:'wx',mode:0o600});
+ const controller=new AbortController();let dumpStarted=false;
+ const source=await ownedPrivateQASource(id,{beforeStart:({inspection:c})=>{if(c.Config.Cmd.includes('pg_dump')&&!c.Config.Cmd.includes('--help')){dumpStarted=true;abortTimer=setTimeout(()=>controller.abort(),150);}}});
  const n=assertFixture(id);locker=spawn('docker',['exec','-i',n.container,'psql','-X','-qAt','--username=postgres','--dbname=fixture_source','--set','ON_ERROR_STOP=1'],{env:safeEnv(),stdio:['pipe','pipe','pipe']});locker.stderr.resume();
  const locked=new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('OWNED_LOCK_NOT_READY')),5000);locker.stdout.on('data',b=>{if(b.toString().includes('NEW_PRIVATE_LOCK_HELD')){clearTimeout(timer);resolve();}});});
  lockerDone=new Promise(resolve=>{locker.once('close',resolve);locker.once('error',()=>resolve(-1));});
  locker.stdin.end("begin;lock table fixture.locked_data in access exclusive mode;select 'NEW_PRIVATE_LOCK_HELD';select pg_sleep(12);rollback;");await locked;
- const controller=new AbortController();let dumpStarted=false;
- const source=await ownedPrivateQASource(id,{beforeStart:({inspection:c})=>{if(c.Config.Cmd.includes('pg_dump')&&!c.Config.Cmd.includes('--help')){dumpStarted=true;abortTimer=setTimeout(()=>controller.abort(),150);}}});
  await assert.rejects(capturePrivateQA({roots,source,basename:'cancelled-client',passphrase:'FICTIONAL_CLIENT_CANCEL_PAPER_PHRASE',limits:{signal:controller.signal}}),/CAPTURE_CANCELLED/);clearTimeout(abortTimer);assert.equal(dumpStarted,true);assertNoPrivateClients();
  assert.equal(sql(id,'postgres',"select count(*) from pg_stat_activity where usename='private_reader';"),'0');pass('cancelling_an_active_dump_destroys_owned_client_tmpfs_and_disconnects_its_readonly_session');
+ // Release the fixture-only lock before the next source factory's GRANT.
+ await lockerDone;
  const failed=await ownedPrivateQASource(id,{beforeStart:()=>{throw Error('FICTIONAL_START_REJECTION');}});
  await assert.rejects(capturePrivateQA({roots,source:failed,basename:'start-rejected',passphrase:'FICTIONAL_CLIENT_CANCEL_PAPER_PHRASE'}),/PRIVATE_CLIENT_START_FAILED/);assertNoPrivateClients();pass('failure_after_create_before_secret_stdin_removes_owned_client_and_publishes_nothing');
  assert.equal(await readFile(oldData,'utf8'),'FICTIONAL_PREEXISTING_CIPHERTEXT_MARKER');assert.equal(await readFile(oldKey,'utf8'),'FICTIONAL_PREEXISTING_KEY_MARKER');
