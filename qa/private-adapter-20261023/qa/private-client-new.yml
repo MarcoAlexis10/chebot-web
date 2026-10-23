@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   new-private-pg17:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[a2-abort-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && !contains(github.event.head_commit.message, '[a2-abort-only]') && !contains(github.event.head_commit.message, '[client-fault-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
@@ -47,4 +47,25 @@ jobs:
           node --input-type=module <<'JS'
           import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';
           assertNoResources();console.log('INDEPENDENT_A2_PRECOMMIT_ABORT_CLEANUP_OK');
+          JS
+  new-client-cancel-faults:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && contains(github.event.head_commit.message, '[client-fault-only]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only immutable image
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: Only NEW active-client cancellation and pre-stdin failure
+        run: node qa/private-adapter-20261023/qa/client-cancel-new.mjs
+      - name: Independent new client-fault cleanup
+        if: always()
+        run: |
+          node --input-type=module <<'JS'
+          import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';
+          import {assertNoPrivateClients} from './qa/private-adapter-20261023/private-source.mjs';
+          assertNoResources();assertNoPrivateClients();console.log('INDEPENDENT_NEW_CLIENT_FAULT_CLEANUP_OK');
           JS

@@ -10,7 +10,7 @@ const capabilities=new WeakSet(),LABEL='cheveni.private.client.qa';
 export const isPrivateQASource=s=>capabilities.has(s);
 export function pgpassLine({host,port,database,user,password}){
  const fields=[host,String(port),database,user,password];
- if(fields.some(s=>typeof s!=='string'||s.length===0||s.length>1024||/[\r\n\0*]/.test(s)))throw Error('PRIVATE_PGPASS_INPUT_REJECTED');
+ if(fields.some(s=>typeof s!=='string'||s.length===0||s.length>1024||/[\r\n\0]/.test(s))||fields.slice(0,4).some(s=>s.includes('*')))throw Error('PRIVATE_PGPASS_INPUT_REJECTED');
  return fields.map(s=>s.replaceAll('\\','\\\\').replaceAll(':','\\:')).join(':')+'\n';
 }
 // Credentials arrive on stdin AFTER inspect, never Docker Config.Env/argv/logs.

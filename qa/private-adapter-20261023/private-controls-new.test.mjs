@@ -15,7 +15,8 @@ test('unowned QA source and caller-supplied transports cannot access private roo
 test('pgpass exact fields escape colon and backslash; line, NUL and wildcard injection denied',()=>{
  const p={host:'fictional.invalid',port:5432,database:'fixture_source',user:'private_reader',password:'FICTIONAL:a\\b'};
  assert.equal(pgpassLine(p),'fictional.invalid:5432:fixture_source:private_reader:FICTIONAL\\:a\\\\b\n');
- for(const password of ['bad\nsecond','bad\rrow','bad\0value','*',''])assert.throws(()=>pgpassLine({...p,password}),/REJECTED/);
+ assert.equal(pgpassLine({...p,password:'*'}),'fictional.invalid:5432:fixture_source:private_reader:*\n');assert.throws(()=>pgpassLine({...p,host:'*'}),/REJECTED/);
+ for(const password of ['bad\nsecond','bad\rrow','bad\0value',''])assert.throws(()=>pgpassLine({...p,password}),/REJECTED/);
 });
 test('inspection policy rejects writable root, published port, host bind, wrong network, wrong image and volume',()=>{
  const base={Config:{Image:'postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826',Labels:{'cheveni.private.client.qa':'qa-id'}},HostConfig:{ReadonlyRootfs:true,Privileged:false,CapDrop:['ALL'],SecurityOpt:['no-new-privileges'],Binds:[],PortBindings:{},Tmpfs:{'/run/cheveni':'size=1048576'}},NetworkSettings:{Networks:{'internal-qa':{}}},Mounts:[{Type:'tmpfs'}]};
