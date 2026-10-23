@@ -17,7 +17,10 @@ try{
  lockerDone=new Promise(resolve=>{locker.once('close',resolve);locker.once('error',()=>resolve(-1));});
  locker.stdin.end("begin;lock table fixture.locked_data in access exclusive mode;select 'NEW_PRIVATE_LOCK_HELD';select pg_sleep(12);rollback;");await locked;
  await assert.rejects(capturePrivateQA({roots,source,basename:'cancelled-client',passphrase:'FICTIONAL_CLIENT_CANCEL_PAPER_PHRASE',limits:{signal:controller.signal}}),/CAPTURE_CANCELLED/);clearTimeout(abortTimer);assert.equal(dumpStarted,true);assertNoPrivateClients();
- assert.equal(sql(id,'postgres',"select count(*) from pg_stat_activity where usename='private_reader';"),'0');pass('cancelling_an_active_dump_destroys_owned_client_tmpfs_and_disconnects_its_readonly_session');
+ // A server waiting for a lock may retain the disconnected socket until
+ // lock_timeout. Observe completion; never terminate a source backend to pass.
+ let sessions='unknown';for(let attempt=0;attempt<16;attempt++){sessions=sql(id,'postgres',"select count(*) from pg_stat_activity where usename='private_reader';");if(sessions==='0')break;await new Promise(r=>setTimeout(r,250));}
+ assert.equal(sessions,'0');pass('active_dump_client_tmpfs_removed_and_readonly_session_exits_after_lock_timeout_without_admin_termination');
  // Release the fixture-only lock before the next source factory's GRANT.
  await lockerDone;
  const failed=await ownedPrivateQASource(id,{beforeStart:()=>{throw Error('FICTIONAL_START_REJECTION');}});
