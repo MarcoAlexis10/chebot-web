@@ -16,6 +16,11 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.19.0'
+      - name: Pinned console driver only in discarded QA
+        shell: powershell
+        run: |
+          python -m pip install --only-binary=:all: --no-deps --disable-pip-version-check pywinpty==3.1.0
+          if($LASTEXITCODE -ne 0){throw 'PINNED_QA_CONSOLE_DRIVER_FAILED'}
       - name: Reproduce old failure then focused transition guards in native Windows ConPTY Node
         shell: powershell
         run: |
