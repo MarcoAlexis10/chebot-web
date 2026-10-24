@@ -35,7 +35,7 @@ cleanenv={key:os.environ[key] for key in ['PATH','Path','SystemRoot','SYSTEMROOT
 cleanenv['CI']='true';cleanenv['GITHUB_ACTIONS']='true'
 def strip_vt(raw):
  s=raw.decode('utf-8','replace')
- s=re.sub(r'\x1b\][^\x07]*(?:\x07|\x1b\\)','',s)
+ s=re.sub(r'\x1b\][^\x07]*?(?:\x07|\x1b\\)','',s)
  return re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]','',s)
 def result_from(text):
  m=re.search(r'CV_TTY_RESULT:(\{[^\r\n]*\})',text)
@@ -83,6 +83,8 @@ def run_console(mode):
    if code.value!=259:
     reader.join(.5)
     with mutex: text=strip_vt(b''.join(chunks))
+    if 'CV_TTY_RESULT:' not in text:
+     print(json.dumps({'fixtureDiagnostic':True,'mode':mode,'processExit':code.value,'outputBytes':sum(map(len,chunks)),'menuMarkers':text.count('CV_MENU_'),'resultMarker':('CV_TTY_RESULT' in text),'syntaxError':('SyntaxError' in text),'moduleNotFound':('MODULE_NOT_FOUND' in text or 'ERR_MODULE_NOT_FOUND' in text),'powershellParserError':('ParserError' in text),'commandNotFound':('CommandNotFoundException' in text),'referenceError':('ReferenceError' in text)}))
     r=result_from(text)
     assert code.value==0,'CONSOLE_PROCESS_EXIT_FAILED'
     assert 'FICTIONAL_PASSWORD_TTY_20261024' not in text and 'FICTIONAL_RECOVERY_PHRASE_ONLY_20261024' not in text,'SYNTHETIC_HIDDEN_INPUT_WAS_ECHOED'
