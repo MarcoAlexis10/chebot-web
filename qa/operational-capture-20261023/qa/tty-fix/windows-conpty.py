@@ -1,4 +1,4 @@
-"""Windows ConPTY -> PowerShell -> Node; synthetic keyboard input only.
+"""PowerShell workflow -> Python ConPTY -> Windows Node; synthetic input only.
 Never print/store the raw console transcript or typed fixture strings.
 No source, Docker, Supabase, credential, network or capture operation.
 """
@@ -30,7 +30,6 @@ exitcode=proto('GetExitCodeProcess',[HANDLE,C.POINTER(W.DWORD)],W.BOOL)
 terminate=proto('TerminateProcess',[HANDLE,W.UINT],W.BOOL)
 worker=Path(__file__).with_name('console-worker.mjs').resolve();node=shutil.which('node')
 assert node,'NODE_REQUIRED'
-powershell=str(Path(os.environ['SystemRoot'])/'System32/WindowsPowerShell/v1.0/powershell.exe')
 cleanenv={key:os.environ[key] for key in ['PATH','Path','SystemRoot','SYSTEMROOT','WINDIR','USERPROFILE','LOCALAPPDATA','TEMP','TMP','ComSpec'] if key in os.environ}
 cleanenv['CI']='true';cleanenv['GITHUB_ACTIONS']='true'
 def strip_vt(raw):
@@ -54,12 +53,10 @@ def run_console(mode):
   assert initattrs(attrs,1,0,C.byref(size)),'CONPTY_ATTRIBUTE_INIT_FAILED'
   assert setattrlist(attrs,0,0x00020016,pc,C.sizeof(HANDLE),None,None),'CONPTY_ATTRIBUTE_FAILED'
   si=STARTUPINFOEXW();si.StartupInfo.cb=C.sizeof(si);si.lpAttributeList=C.cast(attrs,LPVOID)
-  quote=lambda s:"'"+str(s).replace("'","''")+"'"
-  script='& '+quote(node)+' '+quote(worker)+' '+quote(mode)
-  argv=[powershell,'-NoLogo','-NoProfile','-NonInteractive','-Command',script]
+  argv=[node,str(worker),mode]
   cmd=C.create_unicode_buffer(subprocess.list2cmdline(argv))
   block=C.create_unicode_buffer('\0'.join(key+'='+value for key,value in sorted(cleanenv.items(),key=lambda x:x[0].upper()))+'\0\0')
-  assert createprocess(powershell,cmd,None,None,False,0x00080000|0x00000400,block,str(worker.parent),C.cast(C.byref(si),C.POINTER(STARTUPINFOW)),C.byref(pi)),'CONPTY_PROCESS_FAILED'
+  assert createprocess(node,cmd,None,None,False,0x00080000|0x00000400,block,str(worker.parent),C.cast(C.byref(si),C.POINTER(STARTUPINFOW)),C.byref(pi)),'CONPTY_PROCESS_FAILED'
   def consume():
    b=C.create_string_buffer(4096);n=W.DWORD()
    while read(orr,b,len(b),C.byref(n),None) and n.value:
@@ -88,7 +85,7 @@ def run_console(mode):
     r=result_from(text)
     assert code.value==0,'CONSOLE_PROCESS_EXIT_FAILED'
     assert 'FICTIONAL_PASSWORD_TTY_20261024' not in text and 'FICTIONAL_RECOVERY_PHRASE_ONLY_20261024' not in text,'SYNTHETIC_HIDDEN_INPUT_WAS_ECHOED'
-    r['secretEchoDetected']=False;r['windowsPowerShellConPTY']=True;success=True;return r
+    r['secretEchoDetected']=False;r['windowsConPTY']=True;success=True;return r
    time.sleep(.02)
   raise AssertionError('CONPTY_CASE_TIMEOUT')
  finally:
@@ -119,4 +116,4 @@ for mode in ['legacy','fixed','foreign','cancel','timeout']:
 r=subprocess.run([node,str(worker),'non-tty'],capture_output=True,text=True,env=cleanenv,timeout=10,check=True)
 v=result_from(r.stdout);assert v['code']=='EXCLUSIVE_LOCAL_TTY_REQUIRED' and not v['before']['inputTTY'] and not v['sourceConnected'],'NON_TTY_GUARD_WEAKENED'
 print(json.dumps({'case':'non-tty','status':'PASS',**v}))
-print(json.dumps({'focusedCases':6,'status':'PASS','realWindowsTTY':True,'transport':'ConPTY -> Windows PowerShell 5.1 -> Node 24.19.0','syntheticOnly':True,'sourceConnected':False,'captureAttemptClaimed':False}))
+print(json.dumps({'focusedCases':6,'status':'PASS','realWindowsTTY':True,'transport':'PowerShell workflow -> Python ConPTY -> Windows Node 24.19.0','syntheticOnly':True,'sourceConnected':False,'captureAttemptClaimed':False}))

@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24.19.0'
-      - name: Reproduce old failure then focused transition guards in ConPTY PowerShell Node
+      - name: Reproduce old failure then focused transition guards in native Windows ConPTY Node
         shell: powershell
         run: |
           python qa/operational-capture-20261023/qa/tty-fix/windows-conpty.py
