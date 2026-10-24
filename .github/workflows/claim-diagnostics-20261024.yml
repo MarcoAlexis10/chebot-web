@@ -1,0 +1,26 @@
+name: Claim incident NEW offline diagnostics only
+on:
+  push:
+    branches: [qa/cheveni-claim-diagnostics-20261024]
+    paths: ['qa/claim-diagnostics-20261024/**', '.github/workflows/claim-diagnostics-20261024.yml']
+permissions:
+  contents: read
+jobs:
+  windows-new-offline-diagnostics:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Only new failure attribution, privacy, masked errors and fictitious local metadata
+        shell: powershell
+        run: |
+          node --experimental-vm-modules --test qa/claim-diagnostics-20261024/qa/diagnostic.test.mjs qa/claim-diagnostics-20261024/qa/metadata.test.mjs
+          if($LASTEXITCODE -ne 0){throw 'NEW_OFFLINE_DIAGNOSTICS_FAILED'}
+# No Docker, Postgres, network test, credentials, real capture, ZIP build, installation,
+# deployments, approval renewal or historical suites. All imports in approved-body
+# VM are explicitly substituted; no ambient imports are permitted.
