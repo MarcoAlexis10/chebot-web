@@ -1,6 +1,7 @@
 // NEW composition tests only. Approved qa_legal SQL is a dependency, NOT its suite.
 import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
 import {startFixture,sql,cleanup,assertNoResources} from '../../technical-closure-20261022/qa/pg-fixture.mjs';
+import {bootstrapOwned} from './owned-bootstrap.mjs';
 import {openOwnedSession} from '../../independent-controls-20261024/qa/owned-session.mjs';
 const uid=n=>n.toString(16).padStart(8,'0')+'-0000-4000-8000-000000000000';
 const A=uid(1),B=uid(2),G=uid(3),H=uid(4),S=uid(5),T=uid(6),P=uid(7),Q=uid(8),ST=uid(9),OT=uid(10),R=uid(11),V=uid(12);
@@ -30,7 +31,7 @@ function seed({supervise=true}={}){
 async function blocked(waiter,holder){for(let k=0;k<120;k++){if(raw(`select ${holder}=any(pg_blocking_pids(${waiter}));`)==='t')return;await new Promise(r=>setTimeout(r,20));}throw Error('QA_BLOCK_NOT_OBSERVED');}
 async function race(firstSql,secondSql){await one.exec('begin;');try{await one.exec(firstSql+';');const pending=two.query(secondSql);pending.catch(()=>{});await blocked(two.pid,one.pid);await one.exec('commit;');return (await pending).rows[0].result;}catch(e){await one.exec('rollback;');throw e;}}
 try{
- id=await startFixture('closed-target');raw("begin;set local cheveni.qa_mode='FICTIONAL_ONLY';\n"+readFileSync(new URL('../../legal-acceptance-20261024/LEGAL-ACCEPTANCE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8')+'\n'+readFileSync(new URL('../LIFECYCLE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8')+'\ncommit;');
+ id=await startFixture('closed-target');bootstrapOwned(id,"begin;set local cheveni.qa_mode='FICTIONAL_ONLY';\n"+readFileSync(new URL('../../legal-acceptance-20261024/LEGAL-ACCEPTANCE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8')+'\n'+readFileSync(new URL('../LIFECYCLE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8')+'\ncommit;');
  one=await openOwnedSession(id);two=await openOwnedSession(id);await one.exec('set role qa_lifecycle_bridge;');await two.exec('set role qa_lifecycle_bridge;');
  await check('acceptance_is_not_supervised_enrollment_activation_or_trial_start',async()=>{
  seed({supervise:false});assert.equal(n('qa_legal.acceptances'),2);assert.equal(work().ok,false);assert.equal(clock().ok,false);assert.equal(guest().ok,false);assert.equal(n('qa_lifecycle.enrollments'),0);
