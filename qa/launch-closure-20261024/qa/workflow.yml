@@ -21,7 +21,7 @@ jobs:
         run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
       - name: Only NEW lifecycle composition PostgreSQL cases
         env:
-          CHEVENI_QA_FROM: '21'
+          CHEVENI_QA_FROM: '31'
         run: node qa/launch-closure-20261024/qa/lifecycle-postgres.mjs
       - name: Independent cleanup check
         if: always()

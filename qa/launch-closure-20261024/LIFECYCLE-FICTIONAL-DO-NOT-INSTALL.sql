@@ -119,7 +119,8 @@ begin
  end if;
  insert into qa_lifecycle.events values(p_event,p_kind,e.scope,e.actor,p_stay,t);
  insert into qa_lifecycle.outbox(event_id) values(p_event);
- update qa_legal.gate set clock_floor=t where singleton=1;
+ -- Nested revoke advances this floor; an earlier operation timestamp cannot lower it.
+ update qa_legal.gate set clock_floor=greatest(clock_floor,t) where singleton=1;
  return jsonb_build_object('ok',true,'code','QA_EXIT_RECORDED','idempotent',false,'externalPropagationVerified',false,'erasureComplete',false,'operationalApproval',false);
 end$$;
 revoke all on all tables in schema qa_lifecycle from public,qa_lifecycle_bridge;

@@ -6,7 +6,7 @@ const uid=n=>n.toString(16).padStart(8,'0')+'-0000-4000-8000-000000000000';
 const A=uid(1),B=uid(2),G=uid(3),H=uid(4),S=uid(5),T=uid(6),P=uid(7),Q=uid(8),ST=uid(9),OT=uid(10),R=uid(11),V=uid(12);
 const digest=n=>createHash('sha256').update('FICTIONAL-LIFECYCLE-'+n).digest('hex');
 let id,one,two;const checks=[];const pass=name=>{checks.push(name);console.log('PASS '+name);};
-const from=Number(process.env.CHEVENI_QA_FROM??1);if(!Number.isSafeInteger(from)||from<1||from>30)throw Error('QA_CASE_SELECTOR_DENIED');let ordinal=0;const skipped=[];async function check(name,fn){ordinal++;if(ordinal<from){skipped.push(name);return;}await fn();pass(name);}
+const from=Number(process.env.CHEVENI_QA_FROM??1);if(!Number.isSafeInteger(from)||from<1||from>31)throw Error('QA_CASE_SELECTOR_DENIED');let ordinal=0;const skipped=[];async function check(name,fn){ordinal++;if(ordinal<from){skipped.push(name);return;}await fn();pass(name);}
 const raw=q=>sql(id,'postgres',q);const result=q=>JSON.parse(raw(q));
 const n=(table,where='true')=>Number(raw(`select count(*) from ${table} where ${where};`));
 const call=(f,args)=>`select qa_lifecycle.${f}(${args}) as result`;
@@ -151,6 +151,15 @@ try{
 
  assert.equal(raw("select count(*) from information_schema.columns where table_schema='qa_lifecycle' and column_name~'(phone|email|name|password|token|message|ip_address)';"),'0');
  });
+ await check('nested_revocation_and_exit_never_lower_clock_floor_below_committed_evidence',async()=>{
+  for(const kind of ['WITHDRAW','ERASURE_HOLD','END_STAY']){
+   seed();const r=exit(uid(65),kind,1,kind==='END_STAY'?ST:null);assert.equal(r.ok,true);
+   assert.equal(raw("select clock_floor >= (select max(at) from (select at from qa_legal.audit union all select at from qa_lifecycle.events) evidence) from qa_legal.gate where singleton=1;"),'t');
+   assert.equal(n('qa_lifecycle.outbox'),1);assert.equal(guest().ok,false);
+   assert.equal(r.externalPropagationVerified,false);assert.equal(r.operationalApproval,false);
+  }
+ });
+
 }finally{await one?.close();await two?.close();if(id)cleanup(id);}
 assertNoResources();pass('new_lifecycle_lab_removes_all_owned_resources');
 console.log(JSON.stringify({result:'NEW_LIFECYCLE_COMPOSITION_FICTIONAL_PASS',passed:checks.length,checks,realOperationalControlsClosed:0,productionIntegrationVerified:false,independentJournalWritten:false,erasureExecuted:false,beta:'NO_GO',historicalSuitesRepeated:false,fromCase:from,skippedNewCases:skipped}));
