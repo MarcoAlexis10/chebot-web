@@ -1,0 +1,30 @@
+name: TTY menu transition Windows real console SYNTHETIC ONLY
+on:
+  push:
+    branches: [qa/cheveni-tty-input-fix-20261023]
+    paths: ['qa/operational-capture-20261023/**', '.github/workflows/tty-input-fix-20261023.yml']
+permissions:
+  contents: read
+jobs:
+  windows-conpty-regression:
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: Reproduce old failure then focused transition guards in ConPTY PowerShell Node
+        shell: powershell
+        run: |
+          python qa/operational-capture-20261023/qa/tty-fix/windows-conpty.py
+          if($LASTEXITCODE -ne 0){throw 'WINDOWS_CONSOLE_TTY_REGRESSION_FAILED'}
+      - name: Only changed TTY package scope and regenerated manifest
+        shell: powershell
+        run: |
+          python qa/operational-capture-20261023/qa/tty-fix/package-check.py
+          if($LASTEXITCODE -ne 0){throw 'TTY_PACKAGE_SCOPE_FAILED'}
+# No PostgreSQL/Docker/crypto/capture/coverage suites, no real data or secret inputs,
+# no Supabase connection, deployments or credential activation. Raw transcript is never logged.

@@ -1,0 +1,125 @@
+{
+  "kind": "CHEVENI_ASUS_ONE_CAPTURE_V1",
+  "project": "tyvwgsdzqipusodxtydv",
+  "devEnabled": true,
+  "maximumCaptures": 1,
+  "authorization": "CHEVENI-DEV-ONE-CAPTURE-20261023",
+  "files": [
+    {
+      "name": "INICIAR.cmd",
+      "sha256": "04e829f7684be6b0ee28cb2679dd970eb1bbdf0c418e5b220f597d0d67fdd43d"
+    },
+    {
+      "name": "LEEME-PRIVADO.txt",
+      "sha256": "508398a892426723bd5778fb15c6ba7ae6bd857ef04520790539ec6d58246db0"
+    },
+    {
+      "name": "asus-host.mjs",
+      "sha256": "0593731f64bc13468553619a49dd77c4592cd469a003437d492d451d2370c3ac"
+    },
+    {
+      "name": "closed-business.mjs",
+      "sha256": "58ecb2bfd90dfe7892340bdc5ae32daf3e0c5c46908391def0d7f13312b86acf"
+    },
+    {
+      "name": "concierge-runtime-dev-schema.sql",
+      "sha256": "220ca0bebd3fa3131dfdf8b8003ed88e1d048d23b035c81af4102b14d758916f"
+    },
+    {
+      "name": "custody.mjs",
+      "sha256": "7dae30ae7aa8abdc247239cd08b622d730d9642e29a89eb3c37b20be83813906"
+    },
+    {
+      "name": "distinct-copy.mjs",
+      "sha256": "c0a143d5723d99e7a81228e234efca9ec5935aa581f60a9c4d4bb1e29d4c1176"
+    },
+    {
+      "name": "docker-fictional.mjs",
+      "sha256": "28bb396a063bf7f99e76fcd989b5bc3dce43196ee8bbf4f2bf2ef25b01f7a720"
+    },
+    {
+      "name": "entry.mjs",
+      "sha256": "bc2f0ab18715d67afdf600f23bf5b6147ca4b4ef131b2bbbdee26bb1a6b1ccf5"
+    },
+    {
+      "name": "envelope-v3.mjs",
+      "sha256": "3874f1dab09155b3c3a9c4a77a8be4b9a0a789b52d158a12d56b36db2637286c"
+    },
+    {
+      "name": "integrity.mjs",
+      "sha256": "a7de7b5e271e00469a1e25486838354638034fe848bffcc7377f0ea890901c0a"
+    },
+    {
+      "name": "journal.mjs",
+      "sha256": "e7a067ba3dd09f80ae61d31e10f6e7c5320bc2683b0622da0bfa53de355a70f1"
+    },
+    {
+      "name": "local-capture.mjs",
+      "sha256": "fcba8d4972029338b64718dff7b1789395851f3e82c61a2f3a00f98a781005e0"
+    },
+    {
+      "name": "one-shot.mjs",
+      "sha256": "9ce603720606e153429b9411a865d2d41e07829916907df0d1f0282cba24a98f"
+    },
+    {
+      "name": "operation.mjs",
+      "sha256": "090d95501c5d43fdca2d30231e76a2dee6483f94f1dd9dbea32982e67e7358b9"
+    },
+    {
+      "name": "package-io.mjs",
+      "sha256": "3ff0b2df7e4540eab176eb49d1463e12e8349ff9bcae2c9bf43f5f272d7fc28a"
+    },
+    {
+      "name": "pg-fixture.mjs",
+      "sha256": "69031dddc76c35ed5ae12834cc8a8ebce812af65015fcce081602192026677ef"
+    },
+    {
+      "name": "policy.mjs",
+      "sha256": "c7fd164552a2d0f591b149fb08e7eb6fbacffadea89638fad898c3d23c73344e"
+    },
+    {
+      "name": "prepare-provisional.mjs",
+      "sha256": "744a7170ca7f5b651dd9b0a68d7312ea65883ad74d8962d0f7561d27023c0540"
+    },
+    {
+      "name": "prepare-windows-source.mjs",
+      "sha256": "6c46383c04cce4b9181905dd4ff2910e8384855f2aa9e3e81e2e17b433c457af"
+    },
+    {
+      "name": "private-host.mjs",
+      "sha256": "dd74e4015fec53b2c70a1314c2ce9f3405f2393b1a8636713d435029e00d1a5c"
+    },
+    {
+      "name": "private-input.mjs",
+      "sha256": "c290832c819c233248d6b0c3ce478164bbd40d284abf5a2c4da2776589bf7002"
+    },
+    {
+      "name": "private-release-plan.mjs",
+      "sha256": "a9e02a61e6e106f248c14b45ab607b11961745cf20f36c6282da517958667abd"
+    },
+    {
+      "name": "provisional-crypto.mjs",
+      "sha256": "2a09de10ebfee582ca5ddb31c00a44efd31d80e76cd430fafd62febd30d56085"
+    },
+    {
+      "name": "pump.mjs",
+      "sha256": "475edbd4a2ef3aac4b355b4723cc6d3d13570d0ad6e4f4d6c96aa2bd25ca81a6"
+    },
+    {
+      "name": "recovery-frontier.mjs",
+      "sha256": "388eedaa159593fe64d76dbbda846abcc712d5a95657477525d357b886cc2ba7"
+    },
+    {
+      "name": "runtime.mjs",
+      "sha256": "9e0cb8585ef7b9f4355ae2983cf36d474285c678373b0d3e1764b33e46464f90"
+    },
+    {
+      "name": "source-version.mjs",
+      "sha256": "6aed3b24e4c1ebf676cc55ab464d054a3a03c5eee0d51a1b10476068a6cf0211"
+    },
+    {
+      "name": "source.mjs",
+      "sha256": "d2fa6da43d511a4b5f3a2e7c391ea2ae1e423219508b62363f86e4edfaa85802"
+    }
+  ]
+}

@@ -1,16 +1,12 @@
 // No unattended capture command, environment switch or public connection path.
 import path from 'node:path';import {fileURLToPath} from 'node:url';
-import {readFile} from 'node:fs/promises';import {createInterface} from 'node:readline/promises';
+import {readFile} from 'node:fs/promises';import {askMetadata as ask} from './menu-input.mjs';
 import {verifyPreparedBundle} from './integrity.mjs';
 import {readLocalHostContext,privateHome} from './asus-host.mjs';
 import {armLocalSession,DEV} from './policy.mjs';
 import {makeSourcePlan,installTrustedCa,captureOnceLocally} from './local-capture.mjs';
 import {checkUnused,readClaim} from './one-shot.mjs';import {privateRegular} from './custody.mjs';
 import {requireDistinctDownloadedPair} from './distinct-copy.mjs';
-async function ask(text){
- const r=createInterface({input:process.stdin,output:process.stdout,terminal:true,historySize:0});
- try{return (await r.question(text)).trim();}finally{r.close();}
-}
 export async function main(args=process.argv.slice(2)){
  const directory=path.dirname(fileURLToPath(import.meta.url));
  const verified=await verifyPreparedBundle(directory);
