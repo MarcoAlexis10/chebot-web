@@ -1,0 +1,56 @@
+name: Independent launch controls NEW QA ONLY
+on:
+  push:
+    branches: [qa/cheveni-independent-controls-20261024]
+    paths: ['qa/independent-controls-20261024/**', '.github/workflows/independent-controls-20261024.yml']
+permissions:
+  contents: read
+jobs:
+  new-append-and-session-contracts:
+    if: ${{ !contains(github.event.head_commit.message, '[pg-only]') && !contains(github.event.head_commit.message, '[a2-only]') && !contains(github.event.head_commit.message, '[admission-only]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - run: node --test qa/independent-controls-20261024/qa/journal-append.test.mjs qa/independent-controls-20261024/qa/session-contract.test.mjs
+  new-a2-same-session:
+    if: ${{ !contains(github.event.head_commit.message, '[admission-only]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only pinned image for process-owned closed target
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - run: node qa/independent-controls-20261024/qa/a2-same-session.mjs
+      - name: Independent resource check
+        if: always()
+        run: node --input-type=module -e "import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs'; assertNoResources(); console.log('NEW_A2_RESOURCES_EMPTY');"
+  new-manager-revocation-model:
+    if: ${{ !contains(github.event.head_commit.message, '[a2-only]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only pinned image for fictional admission model
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - run: node qa/independent-controls-20261024/qa/admission-atomic.mjs
+      - name: Independent resource check
+        if: always()
+        run: node --input-type=module -e "import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs'; assertNoResources(); console.log('NEW_ADMISSION_RESOURCES_EMPTY');"
+# No source capture, remote database, live services, deployments, sends, ZIPs,
+# authorization renewal or historical suites. Only new code and fictional data.
