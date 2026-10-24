@@ -59,8 +59,10 @@ def tty_checks(r):
   v=r[key];assert v['inputTTY'] and v['outputTTY'] and v['setRawMode']=='function','REAL_TTY_CHECK_NOT_PRESERVED'
  assert not r['sourceConnected'],'SOURCE_CONNECTION_FORBIDDEN'
 
+requested=sys.argv[1:] or ['legacy','fixed','foreign','cancel','timeout','non-tty']
+assert all(x in ['legacy','fixed','foreign','cancel','timeout','non-tty'] for x in requested),'QA_CASE_REQUIRED'
 results=[]
-for mode in ['legacy','fixed','foreign','cancel','timeout']:
+for mode in [m for m in requested if m!='non-tty']:
  r=run_console(mode);tty_checks(r)
  if mode=='legacy':
   assert r['afterMenus']['data']==1 and r['afterMenus']['dataNames']==['onData'] and r['afterMenus']['keypress']==0 and r['code']=='EXCLUSIVE_LOCAL_TTY_REQUIRED' and not r['credentialsMatched'],'LEGACY_INCIDENT_NOT_REPRODUCED'
@@ -71,7 +73,8 @@ for mode in ['legacy','fixed','foreign','cancel','timeout']:
   if mode=='cancel': assert r['code']=='PRIVATE_INPUT_INTERRUPTED','CANCEL_GUARD_FAILED'
   if mode=='timeout': assert r['code']=='PRIVATE_INPUT_TIMEOUT','TIMEOUT_GUARD_FAILED'
  results.append(r);print(json.dumps({'case':mode,'status':'PASS',**r}))
-r=subprocess.run([node,str(worker),'non-tty'],capture_output=True,text=True,env=cleanenv,timeout=10,check=True)
-v=result_from(r.stdout);assert v['code']=='EXCLUSIVE_LOCAL_TTY_REQUIRED' and not v['before']['inputTTY'] and not v['sourceConnected'],'NON_TTY_GUARD_WEAKENED'
-print(json.dumps({'case':'non-tty','status':'PASS',**v}))
-print(json.dumps({'focusedCases':6,'status':'PASS','realWindowsTTY':True,'transport':'PowerShell workflow -> pinned pywinpty ConPTY -> native Windows Node 24.19.0','syntheticOnly':True,'sourceConnected':False,'captureAttemptClaimed':False}))
+if 'non-tty' in requested:
+ r=subprocess.run([node,str(worker),'non-tty'],stdin=subprocess.DEVNULL,capture_output=True,text=True,env=cleanenv,timeout=10,check=True)
+ v=result_from(r.stdout);assert v['code']=='EXCLUSIVE_LOCAL_TTY_REQUIRED' and not v['before']['inputTTY'] and not v['before']['outputTTY'] and not v['sourceConnected'],'NON_TTY_GUARD_WEAKENED'
+ results.append(v);print(json.dumps({'case':'non-tty','status':'PASS',**v}))
+print(json.dumps({'focusedCasesExecuted':len(results),'status':'PASS','requestedCases':requested,'syntheticOnly':True,'sourceConnected':False,'captureAttemptClaimed':False}))

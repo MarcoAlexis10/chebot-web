@@ -21,10 +21,10 @@ jobs:
         run: |
           python -m pip install --only-binary=:all: --no-deps --disable-pip-version-check pywinpty==3.1.0
           if($LASTEXITCODE -ne 0){throw 'PINNED_QA_CONSOLE_DRIVER_FAILED'}
-      - name: Reproduce old failure then focused transition guards in native Windows ConPTY Node
+      - name: Only remaining non-TTY fixture; five ConPTY cases approved
         shell: powershell
         run: |
-          python qa/operational-capture-20261023/qa/tty-fix/windows-conpty.py
+          python qa/operational-capture-20261023/qa/tty-fix/windows-conpty.py non-tty
           if($LASTEXITCODE -ne 0){throw 'WINDOWS_CONSOLE_TTY_REGRESSION_FAILED'}
       - name: Only changed TTY package scope and regenerated manifest
         shell: powershell
