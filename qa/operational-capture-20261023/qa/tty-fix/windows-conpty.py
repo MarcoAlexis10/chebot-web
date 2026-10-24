@@ -4,7 +4,7 @@ No source, Docker, Supabase, credential, network or capture operation.
 """
 import ctypes as C
 from ctypes import wintypes as W
-import json,os,re,shutil,subprocess,sys,threading,time
+import json,os,re,shutil,subprocess,sys,threading,time,tempfile
 from pathlib import Path
 if sys.platform!='win32': raise SystemExit('WINDOWS_CONPTY_REQUIRED')
 k=C.WinDLL('kernel32',use_last_error=True)
@@ -30,6 +30,11 @@ exitcode=proto('GetExitCodeProcess',[HANDLE,C.POINTER(W.DWORD)],W.BOOL)
 terminate=proto('TerminateProcess',[HANDLE,W.UINT],W.BOOL)
 worker=Path(__file__).with_name('console-worker.mjs').resolve();node=shutil.which('node')
 assert node,'NODE_REQUIRED'
+bootstrap_temp=tempfile.TemporaryDirectory(prefix='cv-tty-native-console-')
+bootstrap=str(Path(bootstrap_temp.name).resolve()/'ConsoleBootstrap.exe')
+csc=Path(os.environ['SystemRoot'])/'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
+compiled=subprocess.run([str(csc),'/nologo','/target:exe','/out:'+bootstrap,str(worker.with_name('ConsoleBootstrap.cs'))],capture_output=True,text=True)
+assert compiled.returncode==0,'QA_CONSOLE_BOOTSTRAP_COMPILE_FAILED'
 cleanenv={key:os.environ[key] for key in ['PATH','Path','SystemRoot','SYSTEMROOT','WINDIR','USERPROFILE','LOCALAPPDATA','TEMP','TMP','ComSpec'] if key in os.environ}
 cleanenv['CI']='true';cleanenv['GITHUB_ACTIONS']='true'
 def strip_vt(raw):
@@ -53,10 +58,10 @@ def run_console(mode):
   assert initattrs(attrs,1,0,C.byref(size)),'CONPTY_ATTRIBUTE_INIT_FAILED'
   assert setattrlist(attrs,0,0x00020016,pc,C.sizeof(HANDLE),None,None),'CONPTY_ATTRIBUTE_FAILED'
   si=STARTUPINFOEXW();si.StartupInfo.cb=C.sizeof(si);si.lpAttributeList=C.cast(attrs,LPVOID)
-  argv=[node,str(worker),mode]
+  argv=[bootstrap,node,str(worker),mode]
   cmd=C.create_unicode_buffer(subprocess.list2cmdline(argv))
   block=C.create_unicode_buffer('\0'.join(key+'='+value for key,value in sorted(cleanenv.items(),key=lambda x:x[0].upper()))+'\0\0')
-  assert createprocess(node,cmd,None,None,False,0x00080000|0x00000400,block,str(worker.parent),C.cast(C.byref(si),C.POINTER(STARTUPINFOW)),C.byref(pi)),'CONPTY_PROCESS_FAILED'
+  assert createprocess(bootstrap,cmd,None,None,False,0x00080000|0x00000400,block,str(worker.parent),C.cast(C.byref(si),C.POINTER(STARTUPINFOW)),C.byref(pi)),'CONPTY_PROCESS_FAILED'
   def consume():
    b=C.create_string_buffer(4096);n=W.DWORD()
    while read(orr,b,len(b),C.byref(n),None) and n.value:
@@ -78,7 +83,8 @@ def run_console(mode):
    if mode=='cancel' and 'cancel' not in sent and 'Credencial existente de la base' in text: send('\x03');sent.add('cancel')
    code=W.DWORD();assert exitcode(pi.hProcess,C.byref(code)),'CONPTY_EXIT_CHECK_FAILED'
    if code.value!=259:
-    reader.join(.5)
+    closepty(pc);pc=HANDLE()
+    reader.join(2)
     with mutex: text=strip_vt(b''.join(chunks))
     if 'CV_TTY_RESULT:' not in text:
      print(json.dumps({'fixtureDiagnostic':True,'mode':mode,'processExit':code.value,'outputBytes':sum(map(len,chunks)),'menuMarkers':text.count('CV_MENU_'),'resultMarker':('CV_TTY_RESULT' in text),'syntaxError':('SyntaxError' in text),'moduleNotFound':('MODULE_NOT_FOUND' in text or 'ERR_MODULE_NOT_FOUND' in text),'powershellParserError':('ParserError' in text),'commandNotFound':('CommandNotFoundException' in text),'referenceError':('ReferenceError' in text)}))
@@ -116,4 +122,4 @@ for mode in ['legacy','fixed','foreign','cancel','timeout']:
 r=subprocess.run([node,str(worker),'non-tty'],capture_output=True,text=True,env=cleanenv,timeout=10,check=True)
 v=result_from(r.stdout);assert v['code']=='EXCLUSIVE_LOCAL_TTY_REQUIRED' and not v['before']['inputTTY'] and not v['sourceConnected'],'NON_TTY_GUARD_WEAKENED'
 print(json.dumps({'case':'non-tty','status':'PASS',**v}))
-print(json.dumps({'focusedCases':6,'status':'PASS','realWindowsTTY':True,'transport':'PowerShell workflow -> Python ConPTY -> Windows Node 24.19.0','syntheticOnly':True,'sourceConnected':False,'captureAttemptClaimed':False}))
+print(json.dumps({'focusedCases':6,'status':'PASS','realWindowsTTY':True,'transport':'PowerShell workflow -> ConPTY -> native console handles -> Windows Node 24.19.0','syntheticOnly':True,'sourceConnected':False,'captureAttemptClaimed':False}))
