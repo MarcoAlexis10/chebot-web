@@ -1,0 +1,28 @@
+name: New launch lifecycle composition fictional only
+on:
+  push:
+    branches: [qa/cheveni-launch-lifecycle-20261024]
+    paths: ['qa/launch-closure-20261024/**', '.github/workflows/launch-lifecycle-20261024.yml']
+permissions:
+  contents: read
+jobs:
+  new-lifecycle-only:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only immutable fictional image
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: Only NEW lifecycle composition PostgreSQL cases
+        run: node qa/launch-closure-20261024/qa/lifecycle-postgres.mjs
+      - name: Independent cleanup check
+        if: always()
+        run: node --input-type=module -e "import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs'; assertNoResources(); console.log('NEW_LIFECYCLE_RESOURCES_EMPTY');"
+# No old test imports/runs, npm, secrets, Supabase, remote DSN, deploy or capture.
+# Local provider-boundary 10 new tests are recorded separately, not repeated here.
