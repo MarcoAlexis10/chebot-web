@@ -28,7 +28,7 @@ function seed({supervise=true}={}){
  insert into qa_lifecycle.stays values('${ST}','${S}','${P}','${G}','VERIFIED_FIXTURE',now()-interval '1 minute',now()+interval '1 hour',null,null),('${OT}','${T}','${Q}','${H}','VERIFIED_FIXTURE',now()-interval '1 minute',now()+interval '1 hour',null,null);`);
 }
 async function blocked(waiter,holder){for(let k=0;k<120;k++){if(raw(`select ${holder}=any(pg_blocking_pids(${waiter}));`)==='t')return;await new Promise(r=>setTimeout(r,20));}throw Error('QA_BLOCK_NOT_OBSERVED');}
-async function race(firstSql,secondSql){await one.exec('begin;');try{await one.exec(firstSql);const pending=two.query(secondSql);await blocked(two.pid,one.pid);await one.exec('commit;');return (await pending).rows[0].result;}catch(e){await one.exec('rollback;');throw e;}}
+async function race(firstSql,secondSql){await one.exec('begin;');try{await one.exec(firstSql+';');const pending=two.query(secondSql);pending.catch(()=>{});await blocked(two.pid,one.pid);await one.exec('commit;');return (await pending).rows[0].result;}catch(e){await one.exec('rollback;');throw e;}}
 try{
  id=await startFixture('closed-target');raw("begin;set local cheveni.qa_mode='FICTIONAL_ONLY';\n"+readFileSync(new URL('../../legal-acceptance-20261024/LEGAL-ACCEPTANCE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8')+'\n'+readFileSync(new URL('../LIFECYCLE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8')+'\ncommit;');
  one=await openOwnedSession(id);two=await openOwnedSession(id);await one.exec('set role qa_lifecycle_bridge;');await two.exec('set role qa_lifecycle_bridge;');
