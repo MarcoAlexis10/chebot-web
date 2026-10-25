@@ -46,9 +46,9 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
  <div class="field"><label for="email">Correo de invitación</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
  <div class="field"><label for="businessName">Nombre comercial o del alojamiento</label><input id="businessName" name="businessName" type="text" maxlength="120" minlength="2" required></div>
  <div class="notice"><strong>Condiciones de esta Beta:</strong>
- <ul><li>30 días gratuitos desde la primera estadía real habilitada; posible extensión de hasta 30 días por decisión de Che Vení.</li>
+ <ul><li>30 días gratuitos desde la primera estadía real verificada; posible extensión de hasta 30 días por decisión de Che Vení.</li>
  <li>No hay facturación ni conversión a pago automáticas.</li>
- <li>El primer piloto empieza con una propiedad; únicamente huéspedes principales verificados.</li>
+ <li>El primer piloto empieza con un manager y una propiedad en CABA; únicamente huéspedes principales verificados.</li>
  <li>No hay reemplazo automático de números ni acceso independiente para acompañantes.</li>
  <li>Las incidencias excepcionales requieren intervención humana; no se promete respuesta humana inmediata 24/7.</li>
  </ul></div>

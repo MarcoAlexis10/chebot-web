@@ -37,6 +37,7 @@ function harness({token = null, fetcher} = {}) {
   const lists = new Map(['#propiedades .list', '#estadias .list', '#manager-knowledge-list',
     '#manager-requests-list', '#manager-incidents-list'].map(s => [s, {cleared: 0, replaceChildren() {this.cleared++;}, appendChild() {}}]));
   vm.runInNewContext(browser, {
+    window: {addEventListener() {}},
     AbortController, console: {log() {throw Error('NO_LOGGING');}},
     document: {getElementById: node, body: {classList: {
       add: x => classes.add(x), remove: x => classes.delete(x), contains: x => classes.has(x)}},

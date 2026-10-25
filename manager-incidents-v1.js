@@ -257,6 +257,8 @@ const browserJs = `
     });
   }
 
+  // Invalidate before the browser can suspend observer delivery into BFCache.
+  window.addEventListener('pagehide', () => { ++loadSequence; lastLoadedToken = null; });
   window.addEventListener('pageshow', maybeLoadIncidents);
   maybeLoadIncidents();
 })();

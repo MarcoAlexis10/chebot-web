@@ -64,6 +64,7 @@ const browserJs = `
   const TOKEN_KEY = 'chebot_manager_preview_access_token';
   let authGeneration = 0;
   let signingOut = false;
+  let storageHealthy = true;
 
   const authScreen = document.getElementById('manager-auth');
   const form = document.getElementById('manager-login-form');
@@ -123,8 +124,19 @@ const browserJs = `
     }
   }
 
+  function readToken() {
+    try { return sessionStorage.getItem(TOKEN_KEY) || ''; }
+    catch (_) { storageHealthy = false; return ''; }
+  }
+
   function clearToken() {
-    sessionStorage.removeItem(TOKEN_KEY);
+    try { sessionStorage.removeItem(TOKEN_KEY); return true; }
+    catch (_) { storageHealthy = false; return false; }
+  }
+
+  function storeToken(token) {
+    try { sessionStorage.setItem(TOKEN_KEY, token); }
+    catch (_) { storageHealthy = false; throw new Error('BROWSER_STORAGE_UNAVAILABLE'); }
   }
 
   async function revokeSession(accessToken) {
@@ -165,12 +177,14 @@ const browserJs = `
 
   function showLogin(message) {
     authGeneration += 1;
-    clearToken();
     document.body.classList.add('manager-auth-pending');
     clearPanelData();
+    clearToken();
     authScreen.hidden = false;
     toggleRecovery(false);
-    setStatus(message || '', message ? 'error' : '');
+    const notice = storageHealthy ? message : 'No pudimos asegurar el almacenamiento de esta pestaña. Cerrala y abrí una nueva para ingresar.';
+    setStatus(notice || '', notice ? 'error' : '');
+    submit.disabled = !storageHealthy;
     password.value = '';
     concealManagerPassword();
     setTimeout(() => email.focus(), 0);
@@ -310,6 +324,7 @@ const browserJs = `
   }
 
   async function loadManagerProperties(accessToken) {
+    const generation = authGeneration;
     const response = await fetch(BACKEND_PROPERTIES_URL, {
       method: 'GET',
       mode: 'cors',
@@ -330,7 +345,7 @@ const browserJs = `
       throw e;
     }
 
-    if (sessionStorage.getItem(TOKEN_KEY) === accessToken && !document.body.classList.contains('manager-auth-pending')) renderProperties(body.properties);
+    if (generation === authGeneration && readToken() === accessToken && !document.body.classList.contains('manager-auth-pending')) renderProperties(body.properties);
     return body.properties;
   }
 
@@ -446,6 +461,7 @@ const browserJs = `
   }
 
   async function loadManagerStays(accessToken) {
+    const generation = authGeneration;
     const response = await fetch(BACKEND_STAYS_URL, {
       method: 'GET',
       mode: 'cors',
@@ -466,7 +482,7 @@ const browserJs = `
       throw e;
     }
 
-    if (sessionStorage.getItem(TOKEN_KEY) === accessToken && !document.body.classList.contains('manager-auth-pending')) renderStays(body.stays);
+    if (generation === authGeneration && readToken() === accessToken && !document.body.classList.contains('manager-auth-pending')) renderStays(body.stays);
     return body.stays;
   }
 
@@ -567,7 +583,7 @@ const browserJs = `
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (signingOut || submit.disabled) return;
+    if (signingOut || submit.disabled || !storageHealthy) return;
     const generation = ++authGeneration;
     submit.disabled = true;
     setStatus('Verificando acceso…');
@@ -578,12 +594,12 @@ const browserJs = `
       if (generation !== authGeneration) { await revokeSession(accessToken); return; }
       const managerSession = await verifyManagerSession(accessToken);
       if (generation !== authGeneration) { await revokeSession(accessToken); return; }
-      sessionStorage.setItem(TOKEN_KEY, accessToken);
+      storeToken(accessToken);
       password.value = '';
       setStatus('', '');
       showPanel(managerSession);
-      loadManagerProperties(accessToken).catch(renderPropertiesError);
-      loadManagerStays(accessToken).catch(renderStaysError);
+      loadManagerProperties(accessToken).catch(() => { if (generation === authGeneration) renderPropertiesError(); });
+      loadManagerStays(accessToken).catch(() => { if (generation === authGeneration) renderStaysError(); });
     } catch (error) {
       await revokeSession(accessToken);
       if (generation !== authGeneration) return;
@@ -599,13 +615,13 @@ const browserJs = `
         setStatus('No se pudo validar el acceso. Revisaremos la conexión antes de continuar.', 'error');
       }
     } finally {
-      if (generation === authGeneration && !signingOut) submit.disabled = false;
+      if (generation === authGeneration && !signingOut) submit.disabled = !storageHealthy;
     }
   });
 
   logout.addEventListener('click', async () => {
     if (signingOut) return;
-    const accessToken = sessionStorage.getItem(TOKEN_KEY);
+    const accessToken = readToken();
     signingOut = true;
     // Hide and clear the panel before any network operation. In-flight
     // admission/restore responses cannot reopen it after this generation.
@@ -617,32 +633,43 @@ const browserJs = `
       }
     } finally {
       signingOut = false;
-      submit.disabled = false;
+      submit.disabled = !storageHealthy;
     }
   });
 
-  (async () => {
-    const existingToken = sessionStorage.getItem(TOKEN_KEY);
+  async function restoreSession() {
+    const existingToken = readToken();
     if (!existingToken) {
       showLogin('');
       return;
     }
 
     setStatus('Restaurando sesión…');
-    const generation = authGeneration;
+    const generation = ++authGeneration;
 
     try {
       const managerSession = await verifyManagerSession(existingToken);
-      if (generation !== authGeneration || sessionStorage.getItem(TOKEN_KEY) !== existingToken) return;
+      if (generation !== authGeneration || readToken() !== existingToken) return;
       setStatus('', '');
       showPanel(managerSession);
-      loadManagerProperties(existingToken).catch(renderPropertiesError);
-      loadManagerStays(existingToken).catch(renderStaysError);
+      loadManagerProperties(existingToken).catch(() => { if (generation === authGeneration) renderPropertiesError(); });
+      loadManagerStays(existingToken).catch(() => { if (generation === authGeneration) renderStaysError(); });
     } catch (_) {
       if (generation !== authGeneration) return;
       showLogin('Tu sesión venció. Iniciá sesión nuevamente.');
     }
-  })();
+  }
+  window.addEventListener('pagehide', () => {
+    authGeneration += 1;
+    document.body.classList.add('manager-auth-pending');
+    clearPanelData();
+    authScreen.hidden = false;
+    password.value = ''; concealManagerPassword();
+  });
+  window.addEventListener('pageshow', event => {
+    if (event.persisted && !signingOut) restoreSession();
+  });
+  restoreSession();
 })();
 `;
 
