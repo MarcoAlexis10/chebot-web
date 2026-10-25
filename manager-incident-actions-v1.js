@@ -38,7 +38,7 @@ replaceRequired(
 
     if (needsLearningCheck) {
       try {
-        const knowledgeResponse = await fetch(BACKEND_KNOWLEDGE_URL, {
+        const knowledgeResponse = await fetchManager(BACKEND_KNOWLEDGE_URL, {
           method: 'GET',
           mode: 'cors',
           cache: 'no-store',
@@ -279,11 +279,11 @@ replaceRequired(
             buttons.forEach((itemButton) => { itemButton.disabled = true; });
 
             try {
-              const accessToken = sessionStorage.getItem(TOKEN_KEY);
+              const accessToken = readSectionToken();
               if (!accessToken) throw new Error('AUTH_REQUIRED');
 
               requestStarted = true;
-              const response = await fetch(BACKEND_INCIDENT_STATE_URL, {
+              const response = await fetchManager(BACKEND_INCIDENT_STATE_URL, {
                 method: 'POST',
                 mode: 'cors',
                 cache: 'no-store',
@@ -366,7 +366,7 @@ replaceRequired(
           buttons.forEach((itemButton) => { itemButton.disabled = true; });
 
           try {
-            const accessToken = sessionStorage.getItem(TOKEN_KEY);
+            const accessToken = readSectionToken();
             if (!accessToken) throw new Error('AUTH_REQUIRED');
 
             const payload = {
@@ -380,7 +380,7 @@ replaceRequired(
             }
 
             requestStarted = true;
-            const response = await fetch(BACKEND_INCIDENT_STATE_URL, {
+            const response = await fetchManager(BACKEND_INCIDENT_STATE_URL, {
               method: 'POST',
               mode: 'cors',
               cache: 'no-store',
@@ -427,7 +427,7 @@ replaceRequired(
             }
 
             const refreshed = await loadManagerIncidents(accessToken);
-            if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+            if (readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
             renderIncidents(refreshed);
           } catch (error) {
             if (requestStarted && (!responseReceived || mutationConfirmed || reconciliationRequired)) { freezeForReview(); return; }

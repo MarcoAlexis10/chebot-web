@@ -65,6 +65,9 @@ const browserJs = `
   let authGeneration = 0;
   let signingOut = false;
   let storageHealthy = true;
+  let recoveryGeneration = 0;
+  let recoveryController = null;
+  let recoveryPending = false;
 
   const authScreen = document.getElementById('manager-auth');
   const form = document.getElementById('manager-login-form');
@@ -106,7 +109,16 @@ const browserJs = `
     passwordVisibility.setAttribute('aria-label', visible ? 'Ocultar contraseña' : 'Mostrar contraseña');
   });
 
+  function cancelRecovery() {
+    recoveryGeneration += 1;
+    if (recoveryController) recoveryController.abort();
+    recoveryController = null;
+    recoveryPending = false;
+    recoverySubmit.disabled = false;
+  }
+
   function toggleRecovery(open) {
+    cancelRecovery();
     recoveryForm.hidden = !open;
     forgot.setAttribute('aria-expanded', open ? 'true' : 'false');
     forgot.hidden = open;
@@ -126,7 +138,7 @@ const browserJs = `
 
   function readToken() {
     try { return sessionStorage.getItem(TOKEN_KEY) || ''; }
-    catch (_) { storageHealthy = false; return ''; }
+    catch (_) { storageHealthy = false; showLogin(''); return ''; }
   }
 
   function clearToken() {
@@ -147,6 +159,7 @@ const browserJs = `
       const response = await fetch(SUPABASE_URL + '/auth/v1/logout?scope=local', {
         method: 'POST',
         cache: 'no-store',
+        redirect: 'error',
         referrerPolicy: 'no-referrer',
         signal: controller.signal,
         headers: {
@@ -329,6 +342,7 @@ const browserJs = `
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
+        redirect: 'error',
       headers: {
         Authorization: 'Bearer ' + accessToken,
         Accept: 'application/json'
@@ -337,6 +351,9 @@ const browserJs = `
 
     let body = null;
     try { body = await response.json(); } catch (_) {}
+
+    if (generation !== authGeneration || readToken() !== accessToken) return [];
+    if (response.status === 401) showLogin('La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
 
     if (!response.ok || !body || body.ok !== true || !Array.isArray(body.properties)) {
       const error = body && body.error ? String(body.error) : 'MANAGER_PROPERTIES_LOAD_FAILED';
@@ -466,6 +483,7 @@ const browserJs = `
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
+        redirect: 'error',
       headers: {
         Authorization: 'Bearer ' + accessToken,
         Accept: 'application/json'
@@ -474,6 +492,9 @@ const browserJs = `
 
     let body = null;
     try { body = await response.json(); } catch (_) {}
+
+    if (generation !== authGeneration || readToken() !== accessToken) return [];
+    if (response.status === 401) showLogin('La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
 
     if (!response.ok || !body || body.ok !== true || !Array.isArray(body.stays)) {
       const error = body && body.error ? String(body.error) : 'MANAGER_STAYS_LOAD_FAILED';
@@ -491,6 +512,7 @@ const browserJs = `
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
+        redirect: 'error',
       headers: {
         Authorization: 'Bearer ' + accessToken,
         Accept: 'application/json'
@@ -516,6 +538,7 @@ const browserJs = `
       {
         method: 'POST',
         cache: 'no-store',
+        redirect: 'error',
         headers: {
           apikey: SUPABASE_PUBLISHABLE_KEY,
           'Content-Type': 'application/json',
@@ -544,20 +567,28 @@ const browserJs = `
   recoveryCancel.addEventListener('click', () => toggleRecovery(false));
   recoveryForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (recoveryPending || recoverySubmit.disabled) return;
+    const recoveryAttempt = recoveryGeneration;
     const requestedEmail = recoveryEmail.value.trim();
     if (!recoveryEmail.checkValidity()) {
       recoveryMessage('Ingresá un correo válido.', 'error');
       return;
     }
     const redirect = ${JSON.stringify(config.recoveryUrl)};
+    recoveryPending = true;
     recoverySubmit.disabled = true;
+    const controller = new AbortController();
+    recoveryController = controller;
+    const timer = setTimeout(() => controller.abort(), 8000);
     recoveryMessage('Solicitando enlace de recuperación…');
     try {
       const response = await fetch(
         SUPABASE_URL + '/auth/v1/recover?redirect_to=' + encodeURIComponent(redirect),
         {
+          signal: controller.signal,
           method: 'POST',
           cache: 'no-store',
+        redirect: 'error',
           referrerPolicy: 'no-referrer',
           headers: {
             apikey: SUPABASE_PUBLISHABLE_KEY,
@@ -567,6 +598,7 @@ const browserJs = `
           body: JSON.stringify({ email: requestedEmail })
         }
       );
+      if (recoveryAttempt !== recoveryGeneration) return;
       if (response.status === 429) {
         recoveryMessage('Por seguridad se alcanzó el límite temporal de correos. Esperá antes de volver a solicitarlo.', 'error');
       } else if (!response.ok) {
@@ -575,9 +607,11 @@ const browserJs = `
         recoveryMessage('Si el correo corresponde a un manager registrado, recibirás un enlace. Abrilo directamente en Chrome. Revisá también Spam.', 'ok');
       }
     } catch (_) {
-      recoveryMessage('No pudimos contactar Supabase DEV. Verificá la conexión e intentá más tarde.', 'error');
+      if (recoveryAttempt !== recoveryGeneration) return;
+      recoveryMessage('No pudimos confirmar la solicitud. Evitá repetirla enseguida; revisá el correo antes de intentarlo más tarde.', 'error');
     } finally {
-      recoverySubmit.disabled = false;
+      clearTimeout(timer);
+      if (recoveryAttempt === recoveryGeneration) { recoveryPending = false; recoveryController = null; recoverySubmit.disabled = false; }
     }
   });
 
@@ -659,7 +693,11 @@ const browserJs = `
       showLogin('Tu sesión venció. Iniciá sesión nuevamente.');
     }
   }
+  window.addEventListener('cheveni-manager-session-denied', () => {
+    showLogin('La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
+  });
   window.addEventListener('pagehide', () => {
+    cancelRecovery(); recoveryEmail.value = ''; recoveryMessage('');
     authGeneration += 1;
     document.body.classList.add('manager-auth-pending');
     clearPanelData();

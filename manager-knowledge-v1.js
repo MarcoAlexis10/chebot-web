@@ -95,7 +95,7 @@ const browserJs = `
   let knowledgeMutationPending = false;
   const knowledgeUncertain = new Set();
   async function decideKnowledge(item, action, button) {
-    const accessToken = sessionStorage.getItem(TOKEN_KEY);
+    const accessToken = readSectionToken();
     if (!accessToken || !item || !item.id || !item.version || !item.version.id) return;
 
     const mutationKey = item.id + ':' + item.version.id;
@@ -120,7 +120,7 @@ const browserJs = `
 
     try {
       dispatched = true;
-      const response = await fetch(BACKEND_KNOWLEDGE_URL, {
+      const response = await fetchManager(BACKEND_KNOWLEDGE_URL, {
         signal: controller.signal,
         method: 'POST',
         mode: 'cors',
@@ -152,7 +152,7 @@ const browserJs = `
       }
 
       confirmed = true; knowledgeUncertain.add(mutationKey);
-      if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      if (readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       lastLoadedToken = null;
       await maybeLoadKnowledge();
     } catch (_) {
@@ -318,8 +318,24 @@ const browserJs = `
     list.appendChild(errorCard);
   }
 
+  function readSectionToken() {
+    try { return sessionStorage.getItem(TOKEN_KEY); }
+    catch (_) { if (!document.body.classList.contains('manager-auth-pending')) window.dispatchEvent(new Event('cheveni-manager-session-denied')); return null; }
+  }
+
+  async function fetchManager(url, options) {
+    const sequence = loadSequence;
+    const accessToken = options.headers && String(options.headers.Authorization || '').replace(/^Bearer /, '');
+    const response = await fetch(url, {...options, redirect: 'error'});
+    if (response.status === 401 && sequence === loadSequence && readSectionToken() === accessToken
+        && !document.body.classList.contains('manager-auth-pending')) {
+      window.dispatchEvent(new Event('cheveni-manager-session-denied'));
+    }
+    return response;
+  }
+
   async function loadManagerKnowledge(accessToken) {
-    const response = await fetch(BACKEND_KNOWLEDGE_URL, {
+    const response = await fetchManager(BACKEND_KNOWLEDGE_URL, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
@@ -347,7 +363,7 @@ const browserJs = `
 
   async function maybeLoadKnowledge() {
     const panelVisible = !document.body.classList.contains('manager-auth-pending');
-    const accessToken = sessionStorage.getItem(TOKEN_KEY);
+    const accessToken = readSectionToken();
 
     if (!panelVisible || !accessToken) {
       lastLoadedToken = null;
@@ -362,10 +378,10 @@ const browserJs = `
 
     try {
       const items = await loadManagerKnowledge(accessToken);
-      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderKnowledge(items);
     } catch (_) {
-      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderKnowledgeError();
     }
   }

@@ -174,8 +174,24 @@ const browserJs = `
     }
   }
 
+  function readSectionToken() {
+    try { return sessionStorage.getItem(TOKEN_KEY); }
+    catch (_) { if (!document.body.classList.contains('manager-auth-pending')) window.dispatchEvent(new Event('cheveni-manager-session-denied')); return null; }
+  }
+
+  async function fetchManager(url, options) {
+    const sequence = loadSequence;
+    const accessToken = options.headers && String(options.headers.Authorization || '').replace(/^Bearer /, '');
+    const response = await fetch(url, {...options, redirect: 'error'});
+    if (response.status === 401 && sequence === loadSequence && readSectionToken() === accessToken
+        && !document.body.classList.contains('manager-auth-pending')) {
+      window.dispatchEvent(new Event('cheveni-manager-session-denied'));
+    }
+    return response;
+  }
+
   async function loadManagerRequests(accessToken) {
-    const response = await fetch(BACKEND_REQUESTS_URL, {
+    const response = await fetchManager(BACKEND_REQUESTS_URL, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
@@ -203,7 +219,7 @@ const browserJs = `
 
   async function maybeLoadRequests() {
     const panelVisible = !document.body.classList.contains('manager-auth-pending');
-    const accessToken = sessionStorage.getItem(TOKEN_KEY);
+    const accessToken = readSectionToken();
 
     if (!panelVisible || !accessToken) {
       lastLoadedToken = null;
@@ -218,10 +234,10 @@ const browserJs = `
 
     try {
       const items = await loadManagerRequests(accessToken);
-      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderRequests(items);
     } catch (_) {
-      if (sequence !== loadSequence || sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderRequestsError();
     }
   }

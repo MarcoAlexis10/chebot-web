@@ -86,7 +86,7 @@ replaceRequired(
           reject.disabled = true;
 
           try {
-            const accessToken = sessionStorage.getItem(TOKEN_KEY);
+            const accessToken = readSectionToken();
             if (!accessToken) {
               throw new Error('AUTH_REQUIRED');
             }
@@ -105,7 +105,7 @@ replaceRequired(
             }
 
             requestStarted = true;
-            const response = await fetch(BACKEND_REQUEST_DECISION_URL, {
+            const response = await fetchManager(BACKEND_REQUEST_DECISION_URL, {
               method: 'POST',
               mode: 'cors',
               cache: 'no-store',
@@ -134,7 +134,7 @@ replaceRequired(
             }
             decisionConfirmed = true;
             const refreshed = await loadManagerRequests(accessToken);
-            if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+            if (readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
             renderRequests(refreshed);
           } catch (error) {
             if (requestStarted && (!responseReceived || reconciliationRequired || decisionConfirmed)) {
