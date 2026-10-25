@@ -2,7 +2,8 @@
 import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
 import {startFixture,sql,cleanup,assertNoResources} from '../../technical-closure-20261022/qa/pg-fixture.mjs';
 import {openOwnedSession} from '../../independent-controls-20261024/qa/owned-session.mjs';
-import {bootstrapOwned} from '../../launch-closure-20261024/qa/owned-bootstrap.mjs';
+import {bootstrapOwned} from './owned-bootstrap.mjs';
+import {readPinnedModel} from './pinned-models.mjs';
 import {awaitFinalPostmaster} from './owned-final-postmaster.mjs';
 const uid=n=>n.toString(16).padStart(8,'0')+'-0000-4000-8000-000000000000',A=uid(1),G=uid(2),S=uid(3),P=uid(4),ST=uid(5),R=uid(6);
 const hash=s=>createHash('sha256').update(s).digest('hex'),M=hash('FICTIONAL_D01_MANAGER'),H=hash('FICTIONAL_D01_GUEST');
@@ -21,7 +22,7 @@ function seed(){raw(`truncate qa_d01.checkouts,qa_lifecycle.outbox,qa_lifecycle.
 async function blocked(){for(let k=0;k<80;k++){if(raw(`select ${holder.pid}=any(pg_blocking_pids(${waiter.pid}));`)==='t')return;await new Promise(r=>setTimeout(r,20));}throw Error('D01_LOCK_NOT_OBSERVED');}
 try{
  id=await startFixture('closed-target');await awaitFinalPostmaster(id);
- const kernel=readFileSync(new URL('../../legal-acceptance-20261024/LEGAL-ACCEPTANCE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8'),lifecycle=readFileSync(new URL('../../launch-closure-20261024/LIFECYCLE-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8');
+ const kernel=readPinnedModel('legal'),lifecycle=readPinnedModel('lifecycle');
  assert.equal(hash(lifecycle),'b550733a66ddecbf9f0e6c5f569b0621bfa7dbb806aa5b84b3e84725fd9f970b');
  bootstrapOwned(id,"begin;set local cheveni.qa_mode='FICTIONAL_ONLY';\n"+kernel+'\n'+lifecycle+'\n'+readFileSync(new URL('../D01-CHECKOUT-FICTIONAL-DO-NOT-INSTALL.sql',import.meta.url),'utf8')+'\ncommit;');
  seed();const dates=raw('select beta_start::text||beta_end::text from qa_lifecycle.enrollments;');assert.equal(j(`select qa_lifecycle.new_work_allowed('${M}');`).ok,false);assert.equal(guest().privateAccess,true);assert.equal(raw('select beta_start::text||beta_end::text from qa_lifecycle.enrollments;'),dates);pass('confirmed_D01_keeps_verified_stay_after_beta_expiry_without_new_work_clock_extension_or_billing');

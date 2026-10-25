@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   d01-new-checkout-only:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[a2-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[a2-only]') && !contains(github.event.head_commit.message, '[role-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
@@ -25,7 +25,7 @@ jobs:
         if: always()
         run: node --input-type=module -e "import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';assertNoResources();console.log('D01_NEW_CLEANUP_OK');"
   a2-new-postcommit-only:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[d01-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[d01-only]') && !contains(github.event.head_commit.message, '[role-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -43,3 +43,22 @@ jobs:
         if: always()
         run: node --input-type=module -e "import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';assertNoResources();console.log('A2_POSTCOMMIT_NEW_CLEANUP_OK');"
 # No old test imports, real credentials, remote databases, npm, services or deploys.
+
+  new-role-boundaries-only:
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && contains(github.event.head_commit.message, '[role-only]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.19.0'
+      - name: CI-only pinned fictional image
+        run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+      - name: Only new role capability negative regressions
+        run: node qa/d01-recovery-20261024/qa/role-boundary-new.mjs
+      - name: Independent cleanup
+        if: always()
+        run: node --input-type=module -e "import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';assertNoResources();console.log('A2_NEW_ROLE_CLEANUP_OK');"

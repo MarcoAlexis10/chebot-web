@@ -7,18 +7,18 @@ import {sealFictionalStream,openVerifiedFictionalEnvelope} from '../technical-cl
 import {awaitFinalPostmaster} from './qa/owned-final-postmaster.mjs';
 const checkpoints=new WeakMap(),targets=new WeakMap(),sha=b=>createHash('sha256').update(b).digest('hex');
 const ROLES_SQL='create role anon nologin;create role authenticated nologin;create role service_role nologin bypassrls;';
-const rolesQuery="select coalesce(jsonb_agg(to_jsonb(t) order by rolname),'[]'::jsonb) from(select rolname,rolsuper,rolinherit,rolcreaterole,rolcreatedb,rolcanlogin,rolreplication,rolbypassrls,rolconnlimit,rolvaliduntil,rolconfig from pg_roles where rolname not like 'pg_%' and rolname<>'postgres')t;";
+const rolesQuery="select coalesce(jsonb_agg(to_jsonb(t) order by rolname),'[]'::jsonb) from(select rolname,rolsuper,rolinherit,rolcreaterole,rolcreatedb,rolcanlogin,rolreplication,rolbypassrls,rolconnlimit,rolvaliduntil,rolconfig from pg_roles where left(rolname,3)<>'pg_' and rolname<>'postgres')t;";
 function closed(id){const n=assertFixture(id);if(JSON.parse(cmd(['inspect',n.container]))[0].HostConfig.NetworkMode!=='none')throw Error('OWNED_CLOSED_FIXTURE_REQUIRED');return n;}
-function empty(id){return sql(id,'postgres',"select not exists(select from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname !~ '^pg_' and n.nspname<>'information_schema' and c.relkind in('r','p','v','m','S','f')) and not exists(select from pg_roles where rolname not like 'pg_%' and rolname<>'postgres') and not exists(select from pg_namespace where nspname not like 'pg_%' and nspname not in('public','information_schema'));")==='t';}
+function empty(id){return sql(id,'postgres',"select not exists(select from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname !~ '^pg_' and n.nspname<>'information_schema' and c.relkind in('r','p','v','m','S','f')) and not exists(select from pg_roles where left(rolname,3)<>'pg_' and rolname<>'postgres') and not exists(select from pg_namespace where left(nspname,3)<>'pg_' and nspname not in('public','information_schema'));")==='t';}
 export function fixtureFingerprint(id){
  const n=closed(id);
  const schema=cmd(['exec',n.container,'pg_dump','--username=postgres','--dbname=postgres','--schema-only']).toString();
  // PostgreSQL adds randomized psql restriction keys. No schema/ACL statement is removed.
  const normalized=schema.split('\n').filter(x=>!/^\\(?:un)?restrict [A-Za-z0-9]+$/.test(x)).join('\n');
  const roles=sql(id,'postgres',rolesQuery);
- const memberships=sql(id,'postgres',"select coalesce(jsonb_agg(to_jsonb(t) order by role_name,member_name,grantor_name),'[]'::jsonb) from(select r.rolname role_name,m.rolname member_name,g.rolname grantor_name,a.admin_option,a.inherit_option,a.set_option from pg_auth_members a join pg_roles r on r.oid=a.roleid join pg_roles m on m.oid=a.member join pg_roles g on g.oid=a.grantor where r.rolname not like 'pg_%')t;");
+ const memberships=sql(id,'postgres',"select coalesce(jsonb_agg(to_jsonb(t) order by role_name,member_name,grantor_name),'[]'::jsonb) from(select r.rolname role_name,m.rolname member_name,g.rolname grantor_name,a.admin_option,a.inherit_option,a.set_option from pg_auth_members a join pg_roles r on r.oid=a.roleid join pg_roles m on m.oid=a.member join pg_roles g on g.oid=a.grantor where left(r.rolname,3)<>'pg_' or (left(m.rolname,3)<>'pg_' and m.rolname<>'postgres'))t;");
  const business=sql(id,'postgres',"select jsonb_build_object('accounts',(select jsonb_agg(to_jsonb(a) order by id) from public.concierge_accounts a),'business',(select jsonb_agg(to_jsonb(b) order by id) from qa_checkpoint.business b));");
- const sequences=sql(id,'postgres',"select coalesce(jsonb_agg(to_jsonb(s) order by schemaname,sequencename),'[]'::jsonb) from pg_sequences s where schemaname not like 'pg_%' and schemaname<>'information_schema';");
+ const sequences=sql(id,'postgres',"select coalesce(jsonb_agg(to_jsonb(s) order by schemaname,sequencename),'[]'::jsonb) from pg_sequences s where left(schemaname,3)<>'pg_' and schemaname<>'information_schema';");
  return Object.freeze({schemaSha256:sha(normalized),rolesSha256:sha(roles),membershipsSha256:sha(memberships),businessSha256:sha(business),sequencesSha256:sha(sequences)});
 }
 async function validFiles(p){
@@ -30,7 +30,8 @@ function remember(p){const token=Object.freeze({kind:'A2_FICTIONAL_PRECOMMIT_CHE
 export async function prepareCheckpoint({sourceId,roots}){
  const n=closed(sourceId);await assertRun(roots.root);
  if(sql(sourceId,'postgres',"select to_regnamespace('concierge_private') is null and not exists(select from pg_roles where rolname like 'cheveni_%') and to_regclass('qa_checkpoint.business') is not null;")!=='t')throw Error('TRUSTED_PRE_A2_FIXTURE_BASELINE_REQUIRED');
- if(sql(sourceId,'postgres',"select count(*) from pg_roles where rolname not like 'pg_%' and rolname<>'postgres';")!=='3'||sql(sourceId,'postgres',"select bool_and(not rolcanlogin and not rolsuper and not rolcreatedb and not rolcreaterole and not rolreplication and rolbypassrls=(rolname='service_role') and rolconfig is null) from pg_roles where rolname in('anon','authenticated','service_role');")!=='t')throw Error('FIXED_FICTIONAL_ROLES_REQUIRED');
+ if(sql(sourceId,'postgres',"select array_agg(rolname order by rolname)=array['anon','authenticated','service_role']::name[] from pg_roles where left(rolname,3)<>'pg_' and rolname<>'postgres';")!=='t'||sql(sourceId,'postgres',"select bool_and(not rolcanlogin and not rolsuper and not rolcreatedb and not rolcreaterole and not rolreplication and rolbypassrls=(rolname='service_role') and rolconfig is null) from pg_roles where rolname in('anon','authenticated','service_role');")!=='t')throw Error('FIXED_FICTIONAL_ROLES_REQUIRED');
+ if(sql(sourceId,'postgres',"select not exists(select from pg_auth_members a join pg_roles r on r.oid=a.roleid join pg_roles m on m.oid=a.member where left(r.rolname,3)<>'pg_' or (left(m.rolname,3)<>'pg_' and m.rolname<>'postgres'));")!=='t')throw Error('UNEXPECTED_ROLE_MEMBERSHIP_DENIED');
  const fingerprint=fixtureFingerprint(sourceId),passphrase='FICTIONAL_ONLY_'+randomBytes(32).toString('hex');
  let archive=cmd(['exec',n.container,'pg_dump','--username=postgres','--dbname=postgres','--format=custom']);
  if(archive.length>32*1024*1024||archive.subarray(0,5).toString()!=='PGDMP')throw Error('BOUNDED_FIXTURE_ARCHIVE_REQUIRED');
