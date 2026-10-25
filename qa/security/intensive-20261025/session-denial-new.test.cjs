@@ -40,3 +40,11 @@ test('section storage denial emits once while visible and does not cause a hidde
   assert.equal(fn(),null);assert.equal(fn(),null);assert.equal(events,1);
  }
 });
+test('each generated private module and the actual auth gate cooperate to conceal a revoked session',async()=>{
+ for(const [file,route] of [['manager-knowledge-v1.js','knowledge'],['manager-requests-v1.js','requests'],['manager-incidents-v1.js','incidents']]){
+  const h=harness(url=>Promise.resolve(url.endsWith('/'+route)?json({error:'AUTH_SESSION_REVOKED'},401):json({ok:true,session:{role:'manager'},properties:[],stays:[]})));
+  await settle();assert.ok(!h.classes.has('manager-auth-pending'));h.loadPrivate(file);await settle();
+  assert.ok(h.classes.has('manager-auth-pending'),route);assert.equal(h.storage.has(TOKEN),false);
+  assert.ok([...h.lists.values()].every(x=>x.cleared>0));
+ }
+});

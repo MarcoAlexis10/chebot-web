@@ -17,9 +17,10 @@ function harness(fetcher){
  function node(id){if(!nodes.has(id))nodes.set(id,{value:'',hidden:false,disabled:false,textContent:'',listeners:{},addEventListener(k,f){this.listeners[k]=f;},setAttribute(){},focus(){},checkValidity(){return true;}});return nodes.get(id);}
  const lists=new Map(['#propiedades .list','#estadias .list','#manager-knowledge-list','#manager-requests-list','#manager-incidents-list'].map(k=>[k,{cleared:0,replaceChildren(){this.cleared++;},appendChild(){}}]));
  const window={addEventListener:(k,f)=>{if(!events.has(k))events.set(k,[]);events.get(k).push(f);},dispatchEvent:event=>{for(const f of events.get(event.type)||[])f(event);return true;}};
- vm.runInNewContext(browserSource('manager-auth-v1.js'),{AbortController,Event,URL,Date,console:{log(){assert.fail('NO_LOGGING');}},document:{getElementById:node,body:{classList:{add:k=>classes.add(k),remove:k=>classes.delete(k),contains:k=>classes.has(k)}},querySelector:k=>lists.get(k)||null,querySelectorAll:()=>[],createElement:()=>({append(){},appendChild(){},classList:{add(){}}})},
+ const context={AbortController,Event,URL,Date,console:{log(){assert.fail('NO_LOGGING');}},document:{getElementById:node,body:{classList:{add:k=>classes.add(k),remove:k=>classes.delete(k),contains:k=>classes.has(k)}},querySelector:k=>lists.get(k)||null,querySelectorAll:()=>[],createElement:()=>({append(){},appendChild(){},classList:{add(){}}})},
  sessionStorage:{getItem:k=>{if(state.getFails)throw Error('FICTIONAL_STORAGE_FAILURE');return storage.get(k)||null;},setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},window,
- setTimeout:()=>1,clearTimeout(){},fetch:(url,options)=>{assert.ok(url.startsWith('https://fictional-'));calls.push({url,options});return fetcher?fetcher(url,options):Promise.resolve(json({ok:true,session:{role:'manager'},properties:[],stays:[]}));}});
- return {state,classes,storage,calls,node,lists,window,emit:(type,data={})=>{for(const f of events.get(type)||[])f(data);}};
+ MutationObserver:class{observe(){}},setTimeout:()=>1,clearTimeout(){},fetch:(url,options)=>{assert.ok(url.startsWith('https://fictional-'));calls.push({url,options});return fetcher?fetcher(url,options):Promise.resolve(json({ok:true,session:{role:'manager'},properties:[],stays:[]}));}};
+ vm.createContext(context);vm.runInContext(browserSource('manager-auth-v1.js'),context);
+ return {state,classes,storage,calls,node,lists,window,loadPrivate:file=>vm.runInContext(browserSource(file),context),emit:(type,data={})=>{for(const f of events.get(type)||[])f(data);}};
 }
 module.exports={browserSource,harness,json,settle,TOKEN};
