@@ -20,6 +20,8 @@ jobs:
       - name: CI-only pinned fictional image
         run: docker pull postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
       - name: Only new D02-A retention cases
+        env:
+          RET_QA_FROM: '29'
         run: node qa/retention-20261024/qa/retention-postgres-new.mjs
       - name: Independent cleanup check
         if: always()

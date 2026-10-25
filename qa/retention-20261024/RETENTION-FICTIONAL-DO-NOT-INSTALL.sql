@@ -109,7 +109,7 @@ begin
    end if;
   end if;
  end loop;
- for ev in select e.*,c.closed_at from qa_ret.case_evidence e join qa_ret.cases c on c.id=e.case_id where c.scope=i.scope and e.state<>'PURGED' and e.expires_at<=t for update of e loop
+ for ev in select e.*,c.closed_at from qa_ret.case_evidence e join qa_ret.cases c on c.id=e.case_id where c.scope=i.scope and e.state<>'PURGED' and(e.expires_at<=t or c.closed_at is not null) for update of e loop
   if ev.closed_at is null then update qa_ret.case_evidence set state='REVIEW' where id=ev.id;nr:=nr+1;
   else update qa_ret.case_evidence set excerpt=null,state='PURGED' where id=ev.id;insert into qa_ret.tombstones select ev.id,c.scope,c.subject,'CASE',t,review_due from qa_ret.cases c where c.id=ev.case_id;insert into qa_ret.provider_tasks values(ev.id,'PROVENANCE_REVIEW','PENDING_EXTERNAL_VERIFICATION');np:=np+1;end if;
  end loop;
