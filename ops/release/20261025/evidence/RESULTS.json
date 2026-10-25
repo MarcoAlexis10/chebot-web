@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "baseCommit": "e60afcdff8bde3219fd3f93265ab9e3a8318bcc5",
+  "decision": "NO-GO",
+  "runtime": "Node 24.22.1",
+  "command": "node --test --test-reporter=tap test/manager-logout-qa.test.cjs",
+  "passed": 13,
+  "failed": 0,
+  "scope": "Actual generated manager auth script evaluated in VM; mocked DOM, timers, storage and provider; no real Auth calls, emails or builds",
+  "includes": "12 added security cases and 1 affected successful-admission regression",
+  "historicalSuitesRepeated": false,
+  "deploymentEnabled": false,
+  "limitations": [
+    "Remote session revocation is only requested, not operationally verified",
+    "Supabase JWT remains valid until expiry; no claim of immediate backend invalidation",
+    "No production build, deploy or release approval",
+    "All authentication endpoints in the test are example.invalid"
+  ],
+  "reviewFix": "Generation check in login finally prevents old request unlocking newer login",
+  "files": {
+    "manager-auth-v1.js": "bc09a1fb258c8f458d8138c6d9272319a45f1b62c8f857691bc7107a4acc02ec",
+    "test/manager-logout-qa.test.cjs": "879bcd1e8a23495adde5da0110d9ec9248710f355d7d95803d66d000ec5897dd",
+    "ops/release/20261025/evidence/manager-logout-node24.tap": "98f8a6c8a435d55993202636f640a504b9c5a0049ed062c6b16e70b55b4472c6"
+  },
+  "primaryReferences": [
+    "https://supabase.com/docs/guides/auth/signout",
+    "https://github.com/supabase/auth/blob/master/openapi.yaml"
+  ],
+  "openApiBlob": "1f04ee575def400836f8c72d81ad3ae4468a8c03"
+}

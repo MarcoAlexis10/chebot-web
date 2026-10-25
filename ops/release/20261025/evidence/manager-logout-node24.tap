@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: logout clears local credentials and all panel lists before remote ACK; local scope only
+ok 1 - logout clears local credentials and all panel lists before remote ACK; local scope only
+  ---
+  duration_ms: 3.452214
+  type: 'test'
+  ...
+# Subtest: missing bearer performs no remote logout and clears stale status
+ok 2 - missing bearer performs no remote logout and clears stale status
+  ---
+  duration_ms: 0.64896
+  type: 'test'
+  ...
+# Subtest: remote rejection leaves panel closed and reports unconfirmed remote logout
+ok 3 - remote rejection leaves panel closed and reports unconfirmed remote logout
+  ---
+  duration_ms: 1.029125
+  type: 'test'
+  ...
+# Subtest: network error cannot retain credentials or expose a raw provider error
+ok 4 - network error cannot retain credentials or expose a raw provider error
+  ---
+  duration_ms: 0.805116
+  type: 'test'
+  ...
+# Subtest: stalled logout aborts after bounded timeout; no retry and form unlocks
+ok 5 - stalled logout aborts after bounded timeout; no retry and form unlocks
+  ---
+  duration_ms: 1.141824
+  type: 'test'
+  ...
+# Subtest: late successful restore cannot resurrect panel after logout
+ok 6 - late successful restore cannot resurrect panel after logout
+  ---
+  duration_ms: 0.866979
+  type: 'test'
+  ...
+# Subtest: late restore failure cannot overwrite logout result
+ok 7 - late restore failure cannot overwrite logout result
+  ---
+  duration_ms: 0.685194
+  type: 'test'
+  ...
+# Subtest: duplicate logout and login while logout is pending send no extra requests
+ok 8 - duplicate logout and login while logout is pending send no extra requests
+  ---
+  duration_ms: 0.895823
+  type: 'test'
+  ...
+# Subtest: late login admission cannot persist bearer or reopen panel after logout
+ok 9 - late login admission cannot persist bearer or reopen panel after logout
+  ---
+  duration_ms: 1.038328
+  type: 'test'
+  ...
+# Subtest: rejected manager admission requests revocation of the newly minted Auth session
+ok 10 - rejected manager admission requests revocation of the newly minted Auth session
+  ---
+  duration_ms: 0.831826
+  type: 'test'
+  ...
+# Subtest: late sign-in token after cancellation is revoked without attempting manager admission
+ok 11 - late sign-in token after cancellation is revoked without attempting manager admission
+  ---
+  duration_ms: 0.619215
+  type: 'test'
+  ...
+# Subtest: affected regression: successful admission persists bearer and loads authorized panel
+ok 12 - affected regression: successful admission persists bearer and loads authorized panel
+  ---
+  duration_ms: 0.857875
+  type: 'test'
+  ...
+# Subtest: an older login completion cannot unlock a newer pending login
+ok 13 - an older login completion cannot unlock a newer pending login
+  ---
+  duration_ms: 4.086252
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 80.79105

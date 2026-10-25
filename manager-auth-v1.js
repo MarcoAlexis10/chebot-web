@@ -62,6 +62,8 @@ const browserJs = `
   const BACKEND_PROPERTIES_URL = ${JSON.stringify(backendPropertiesUrl)};
   const BACKEND_STAYS_URL = ${JSON.stringify(backendStaysUrl)};
   const TOKEN_KEY = 'chebot_manager_preview_access_token';
+  let authGeneration = 0;
+  let signingOut = false;
 
   const authScreen = document.getElementById('manager-auth');
   const form = document.getElementById('manager-login-form');
@@ -125,6 +127,29 @@ const browserJs = `
     sessionStorage.removeItem(TOKEN_KEY);
   }
 
+  async function revokeSession(accessToken) {
+    if (!accessToken) return true;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 8000);
+    try {
+      const response = await fetch(SUPABASE_URL + '/auth/v1/logout?scope=local', {
+        method: 'POST',
+        cache: 'no-store',
+        referrerPolicy: 'no-referrer',
+        signal: controller.signal,
+        headers: {
+          apikey: SUPABASE_PUBLISHABLE_KEY,
+          Authorization: 'Bearer ' + accessToken
+        }
+      });
+      return response.ok;
+    } catch (_) {
+      return false;
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
   function clearPanelData() {
     for (const selector of ['#propiedades .list', '#estadias .list', '#manager-knowledge-list', '#manager-requests-list', '#manager-incidents-list']) {
       const list = document.querySelector(selector);
@@ -139,12 +164,13 @@ const browserJs = `
   }
 
   function showLogin(message) {
+    authGeneration += 1;
     clearToken();
     document.body.classList.add('manager-auth-pending');
     clearPanelData();
     authScreen.hidden = false;
     toggleRecovery(false);
-    if (message) setStatus(message, 'error');
+    setStatus(message || '', message ? 'error' : '');
     password.value = '';
     concealManagerPassword();
     setTimeout(() => email.focus(), 0);
@@ -541,12 +567,17 @@ const browserJs = `
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (signingOut || submit.disabled) return;
+    const generation = ++authGeneration;
     submit.disabled = true;
     setStatus('Verificando acceso…');
+    let accessToken = '';
 
     try {
-      const accessToken = await signIn(email.value.trim(), password.value);
+      accessToken = await signIn(email.value.trim(), password.value);
+      if (generation !== authGeneration) { await revokeSession(accessToken); return; }
       const managerSession = await verifyManagerSession(accessToken);
+      if (generation !== authGeneration) { await revokeSession(accessToken); return; }
       sessionStorage.setItem(TOKEN_KEY, accessToken);
       password.value = '';
       setStatus('', '');
@@ -554,6 +585,8 @@ const browserJs = `
       loadManagerProperties(accessToken).catch(renderPropertiesError);
       loadManagerStays(accessToken).catch(renderStaysError);
     } catch (error) {
+      await revokeSession(accessToken);
+      if (generation !== authGeneration) return;
       clearToken();
 
       if (error && error.code === 'LOGIN_INVALID') {
@@ -566,12 +599,26 @@ const browserJs = `
         setStatus('No se pudo validar el acceso. Revisaremos la conexión antes de continuar.', 'error');
       }
     } finally {
-      submit.disabled = false;
+      if (generation === authGeneration && !signingOut) submit.disabled = false;
     }
   });
 
-  logout.addEventListener('click', () => {
+  logout.addEventListener('click', async () => {
+    if (signingOut) return;
+    const accessToken = sessionStorage.getItem(TOKEN_KEY);
+    signingOut = true;
+    // Hide and clear the panel before any network operation. In-flight
+    // admission/restore responses cannot reopen it after this generation.
     showLogin('');
+    submit.disabled = true;
+    try {
+      if (!await revokeSession(accessToken)) {
+        setStatus('Saliste de este navegador. No pudimos confirmar el cierre de la sesión en el servicio.', 'error');
+      }
+    } finally {
+      signingOut = false;
+      submit.disabled = false;
+    }
   });
 
   (async () => {
@@ -582,14 +629,17 @@ const browserJs = `
     }
 
     setStatus('Restaurando sesión…');
+    const generation = authGeneration;
 
     try {
       const managerSession = await verifyManagerSession(existingToken);
+      if (generation !== authGeneration || sessionStorage.getItem(TOKEN_KEY) !== existingToken) return;
       setStatus('', '');
       showPanel(managerSession);
       loadManagerProperties(existingToken).catch(renderPropertiesError);
       loadManagerStays(existingToken).catch(renderStaysError);
     } catch (_) {
+      if (generation !== authGeneration) return;
       showLogin('Tu sesión venció. Iniciá sesión nuevamente.');
     }
   })();
@@ -680,3 +730,4 @@ html = html.replace(
 
 fs.writeFileSync(indexFile, html);
 console.log('Manager Web auth gate installed.');
+
