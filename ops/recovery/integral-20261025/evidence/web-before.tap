@@ -1,0 +1,123 @@
+TAP version 13
+# Subtest: storage removal failure cannot leave private panel visible after logout
+not ok 1 - storage removal failure cannot leave private panel visible after logout
+  ---
+  duration_ms: 3.962449
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:20:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Got unwanted rejection.
+    Actual message: "PRIVATE_STORAGE_FAILURE"
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual:
+  error: 'PRIVATE_STORAGE_FAILURE'
+  stack: |-
+    Object.removeItem (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:16:192)
+    clearToken (evalmachine.<anonymous>:73:20)
+    showLogin (evalmachine.<anonymous>:114:5)
+    Object.click (evalmachine.<anonymous>:558:5)
+    Object.logout (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:18:93)
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:22:31)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  operator: 'doesNotReject'
+  stack: |-
+    async TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:22:2)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: storage read failure cannot prevent local logout concealment
+not ok 2 - storage read failure cannot prevent local logout concealment
+  ---
+  duration_ms: 0.950185
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:25:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Got unwanted rejection.
+    Actual message: "PRIVATE_STORAGE_FAILURE"
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual:
+  error: 'PRIVATE_STORAGE_FAILURE'
+  stack: |-
+    Object.getItem (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:16:55)
+    Object.click (evalmachine.<anonymous>:554:40)
+    Object.logout (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:18:93)
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:26:86)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  operator: 'doesNotReject'
+  stack: |-
+    async TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:26:57)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: pagehide removes all private lists before browser back-cache persistence
+not ok 3 - pagehide removes all private lists before browser back-cache persistence
+  ---
+  duration_ms: 1.00766
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:29:1'
+  failureType: 'testCodeFailure'
+  error: 'missing pagehide lifecycle handler'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    Object.emit (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:18:127)
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:30:60)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: back-cache restoration remains hidden until a fresh server session check finishes
+not ok 4 - back-cache restoration remains hidden until a fresh server session check finishes
+  ---
+  duration_ms: 1.594738
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:33:1'
+  failureType: 'testCodeFailure'
+  error: 'missing pagehide lifecycle handler'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    Object.emit (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:18:127)
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:35:19)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: data response from a prior page generation cannot replace a newly verified panel
+not ok 5 - data response from a prior page generation cannot replace a newly verified panel
+  ---
+  duration_ms: 0.992798
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:38:1'
+  failureType: 'testCodeFailure'
+  error: 'missing pagehide lifecycle handler'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    Object.emit (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:18:127)
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/integral-qa/web/qa/security/integral-20261025/browser-lifecycle-new.test.cjs:40:19)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 0
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 68.429915

@@ -1,0 +1,56 @@
+[
+  {
+    "path": "manager-auth-v1.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "manager-incidents-v1.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "manager-knowledge-v1.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "manager-requests-v1.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "manager-signup-v1.js",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "qa/release/verify-held-manager-candidate.cjs",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "qa/security/integral-20261025/browser-lifecycle-new.test.cjs",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "qa/security/integral-20261025/private-sections-lifecycle-new.test.cjs",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "path": "test/manager-logout-qa.test.cjs",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

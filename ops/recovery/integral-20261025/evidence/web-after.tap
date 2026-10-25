@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: storage removal failure cannot leave private panel visible after logout
+ok 1 - storage removal failure cannot leave private panel visible after logout
+  ---
+  duration_ms: 10.917981
+  type: 'test'
+  ...
+# Subtest: storage read failure cannot prevent local logout concealment
+ok 2 - storage read failure cannot prevent local logout concealment
+  ---
+  duration_ms: 3.187892
+  type: 'test'
+  ...
+# Subtest: pagehide removes all private lists before browser back-cache persistence
+ok 3 - pagehide removes all private lists before browser back-cache persistence
+  ---
+  duration_ms: 1.331982
+  type: 'test'
+  ...
+# Subtest: back-cache restoration remains hidden until a fresh server session check finishes
+ok 4 - back-cache restoration remains hidden until a fresh server session check finishes
+  ---
+  duration_ms: 3.007064
+  type: 'test'
+  ...
+# Subtest: data response from a prior page generation cannot replace a newly verified panel
+ok 5 - data response from a prior page generation cannot replace a newly verified panel
+  ---
+  duration_ms: 2.016744
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 85.904445

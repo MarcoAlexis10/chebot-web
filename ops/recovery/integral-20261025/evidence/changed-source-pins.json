@@ -1,0 +1,47 @@
+[
+  {
+    "path": "manager-auth-v1.js",
+    "gitBlobSha": "e366f700e543f7ca354f2a5e578712c7b9158e11",
+    "sha256": "af083e560d58bf52af66e853f1920892f677fd4a8aab3f798c0b4950e954b800"
+  },
+  {
+    "path": "manager-knowledge-v1.js",
+    "gitBlobSha": "90bdc8818e562240f9d6a040e2c8ae6275af22ac",
+    "sha256": "00f253c69c1414a38dddc3b771074a75f63631fed53588b9992a7d56e34e37b1"
+  },
+  {
+    "path": "manager-requests-v1.js",
+    "gitBlobSha": "adcab3fdb9fbde1129303e761fd4a9dd29232f31",
+    "sha256": "518389b579febc6098f1b00266ec4802d9365501486afa4b9f2a35c077d349b9"
+  },
+  {
+    "path": "manager-incidents-v1.js",
+    "gitBlobSha": "10d5df76cbd8179336676f5d055f025e1fc5ef3c",
+    "sha256": "d4720b39c381476af3689652ebf148961a93cc47a60ec63086eb3155f74c4875"
+  },
+  {
+    "path": "manager-signup-v1.js",
+    "gitBlobSha": "3d88fe7b649ca848c5b3698a599fd85491d141bc",
+    "sha256": "c89e45406803cb154239c5f56c3af26bbb6225f31a0236332856f3bf4cd1b5e4"
+  },
+  {
+    "path": "test/manager-logout-qa.test.cjs",
+    "gitBlobSha": "f9eaee2038a1d5a3d7ce720d7dba225db41068d8",
+    "sha256": "d9e7cb7d65a3c7a5bd127e63b9488bec39e9029cc8b5426ce44222ca813d3ec3"
+  },
+  {
+    "path": "qa/security/integral-20261025/browser-lifecycle-new.test.cjs",
+    "gitBlobSha": "f767f6e20646c6b32a166d66ae8124dfa8586576",
+    "sha256": "f1d84f105af92cde8c174e60449f74acf4cd6cb20a2f814641faf55b54dd10cf"
+  },
+  {
+    "path": "qa/security/integral-20261025/private-sections-lifecycle-new.test.cjs",
+    "gitBlobSha": "2adc92d68e451011adf1ce718e86f1f2fad17276",
+    "sha256": "d3d9dcbee0ca5cc4869974e96ff66b3f90b4c6f8952c279b4a7623c9c49f033e"
+  },
+  {
+    "path": "qa/release/verify-held-manager-candidate.cjs",
+    "gitBlobSha": "d1a59fb7cfcb992bb5d333a72884684057571469",
+    "sha256": "6de3d9b03488570e5b7ad7ed5af70bc215fedbdf701ce106e913498c8304ac1c"
+  }
+]

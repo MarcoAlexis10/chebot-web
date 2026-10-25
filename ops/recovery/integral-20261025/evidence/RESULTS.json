@@ -1,0 +1,183 @@
+{
+  "format": 1,
+  "createdAtUtc": "2026-10-25T21:16:46.978731+00:00",
+  "repository": "MarcoAlexis10/chebot-web",
+  "branch": "qa/cheveni-release-20261025",
+  "baseCommit": "aa3a82a023a8ccb695b7f373327deac6668ce1d1",
+  "testedCodeCommit": "4dcae5cd02eb06f821e439bfff5957e7a605f976",
+  "pairedBackendCodeCommit": "b7da91a7abeee55f9e9befbc578792f3323d386f",
+  "decision": "NO-GO",
+  "operationalApproval": false,
+  "results": {
+    "uniqueTestsExecuted": 11,
+    "passed": 11,
+    "failed": 0,
+    "newTests": 8,
+    "selectedExistingRegressions": 3,
+    "syntaxModules": 9,
+    "syntaxFailures": 0
+  },
+  "runs": [
+    {
+      "log": "web-after.tap",
+      "executed": 5,
+      "passed": 5,
+      "failed": 0,
+      "reason": "new complete generated auth/lifecycle code in a fictitious DOM",
+      "exitCode": 0
+    },
+    {
+      "log": "sections-after.tap",
+      "executed": 3,
+      "passed": 3,
+      "failed": 0,
+      "reason": "new private-section back-cache races",
+      "exitCode": 0
+    },
+    {
+      "log": "web-affected-logout-three.tap",
+      "executed": 3,
+      "passed": 3,
+      "failed": 0,
+      "reason": "only selected existing logout behaviors affected by lifecycle integration",
+      "exitCode": 0
+    }
+  ],
+  "baseline": {
+    "web-before.tap": {
+      "passed": 0,
+      "failed": 5,
+      "source": "aa3a82a023a8ccb695b7f373327deac6668ce1d1"
+    },
+    "sections-before.tap": {
+      "passed": 0,
+      "failed": 3,
+      "source": "aa3a82a023a8ccb695b7f373327deac6668ce1d1"
+    },
+    "meaning": "New negative tests reproduced missing lifecycle/storage controls. These are initial counterexamples, not current unresolved failures."
+  },
+  "implemented": [
+    "Conceal and clear manager data even if sessionStorage read/removal fails; keep login blocked if local storage cannot be secured.",
+    "Clear private lists on pagehide and require fresh server session verification on back-cache restoration.",
+    "Invalidate pending property/stay, knowledge, request and incident responses across page generations.",
+    "Correct pilot summary to one manager/one property in CABA and 30 days from first real verified stay; preserve no automatic billing and closed signup."
+  ],
+  "localGeneration": {
+    "generatorsExecuted": 11,
+    "files": 12,
+    "scriptsCompiled": 8,
+    "cleanupVerified": true,
+    "browserScriptsExecuted": false,
+    "fullPublicSiteBuild": false,
+    "realServiceCalls": 0,
+    "log": "manager-generation.json"
+  },
+  "scopeLimits": "VM tests exercise generated code in a fictional DOM. Local generation and syntax do not prove a real browser, Supabase Auth, SMTP, Vercel deployment or legal compliance. The prior intermediate generation is preserved separately and is not the final candidate.",
+  "unchanged": [
+    "Vercel/DNS/service configuration",
+    "Deployment-disabled Vercel source setting",
+    "Legal publication gate and missing approval manifest",
+    "All unrelated site/Free content"
+  ],
+  "notExecuted": [
+    "Historical full suites",
+    "Live browser/provider integration",
+    "Actual login/password reset/email delivery",
+    "Deployments or real signup"
+  ],
+  "changedSourcePins": [
+    {
+      "path": "manager-auth-v1.js",
+      "gitBlobSha": "e366f700e543f7ca354f2a5e578712c7b9158e11",
+      "sha256": "af083e560d58bf52af66e853f1920892f677fd4a8aab3f798c0b4950e954b800"
+    },
+    {
+      "path": "manager-knowledge-v1.js",
+      "gitBlobSha": "90bdc8818e562240f9d6a040e2c8ae6275af22ac",
+      "sha256": "00f253c69c1414a38dddc3b771074a75f63631fed53588b9992a7d56e34e37b1"
+    },
+    {
+      "path": "manager-requests-v1.js",
+      "gitBlobSha": "adcab3fdb9fbde1129303e761fd4a9dd29232f31",
+      "sha256": "518389b579febc6098f1b00266ec4802d9365501486afa4b9f2a35c077d349b9"
+    },
+    {
+      "path": "manager-incidents-v1.js",
+      "gitBlobSha": "10d5df76cbd8179336676f5d055f025e1fc5ef3c",
+      "sha256": "d4720b39c381476af3689652ebf148961a93cc47a60ec63086eb3155f74c4875"
+    },
+    {
+      "path": "manager-signup-v1.js",
+      "gitBlobSha": "3d88fe7b649ca848c5b3698a599fd85491d141bc",
+      "sha256": "c89e45406803cb154239c5f56c3af26bbb6225f31a0236332856f3bf4cd1b5e4"
+    },
+    {
+      "path": "test/manager-logout-qa.test.cjs",
+      "gitBlobSha": "f9eaee2038a1d5a3d7ce720d7dba225db41068d8",
+      "sha256": "d9e7cb7d65a3c7a5bd127e63b9488bec39e9029cc8b5426ce44222ca813d3ec3"
+    },
+    {
+      "path": "qa/security/integral-20261025/browser-lifecycle-new.test.cjs",
+      "gitBlobSha": "f767f6e20646c6b32a166d66ae8124dfa8586576",
+      "sha256": "f1d84f105af92cde8c174e60449f74acf4cd6cb20a2f814641faf55b54dd10cf"
+    },
+    {
+      "path": "qa/security/integral-20261025/private-sections-lifecycle-new.test.cjs",
+      "gitBlobSha": "2adc92d68e451011adf1ce718e86f1f2fad17276",
+      "sha256": "d3d9dcbee0ca5cc4869974e96ff66b3f90b4c6f8952c279b4a7623c9c49f033e"
+    },
+    {
+      "path": "qa/release/verify-held-manager-candidate.cjs",
+      "gitBlobSha": "d1a59fb7cfcb992bb5d333a72884684057571469",
+      "sha256": "6de3d9b03488570e5b7ad7ed5af70bc215fedbdf701ce106e913498c8304ac1c"
+    }
+  ],
+  "evidencePins": [
+    {
+      "path": "ops/recovery/integral-20261025/evidence/changed-source-pins.json",
+      "sha256": "57d0223c5d13c7c01b254abbb7df222702eadb45e99a0ab8409a0be9aee9083d"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/manager-generation-before-sections.json",
+      "sha256": "1b3c3fbcd05aa37beb841409ab0ca749fc75abbc0a3960b57d8bc4b492c8daf1"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/manager-generation.json",
+      "sha256": "7c10113f8408dde6156697856eacd1f7b172c19efa6fc032310c1f646322d8fc"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/sections-after.tap",
+      "sha256": "3baac209c6b66626ffd15818548dd7dc6e53496e093700da7c6e282e2e0d1743"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/sections-before.tap",
+      "sha256": "41e39da3b0771c9600a96eeea55cf088671f087cd7ece6f5c4860fe59cbe89d1"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/syntax.json",
+      "sha256": "b0965f5adf6ac2bd28338eb8cb2e2ff8b5940f2895f27f48a55dee1136a11224"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/web-affected-logout-three.tap",
+      "sha256": "0e67624d32eae9acaed812ed12ceb064d4218907d7a8acb3c019c97f53863600"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/web-after.tap",
+      "sha256": "90c74ae6e1f9839a25eb6615ca9d689ea57000cdae47b3267c370b30e1c68d38"
+    },
+    {
+      "path": "ops/recovery/integral-20261025/evidence/web-before.tap",
+      "sha256": "88c6d4d3c1d4c15ecfb090c5079ea8574b23bbfe010999c392eea0c31ee26be6"
+    }
+  ],
+  "safety": {
+    "serviceConnections": 0,
+    "realPersonalDataUsed": false,
+    "secretsRead": false,
+    "realMessagesSent": 0,
+    "deployments": 0,
+    "actionsDispatched": 0,
+    "spendingChanges": 0,
+    "realManagersAdmitted": 0
+  }
+}
