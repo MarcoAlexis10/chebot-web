@@ -7,7 +7,7 @@ export async function auditRetentionBeforeRelease(client){
    (select count(*)::int from qa_ret.material m join qa_ret.subjects s on(s.scope=m.scope and s.subject=m.subject) where m.payload is not null and m.category in('CHAT','SUMMARY') and(clock_timestamp()>=s.checkout_at or s.revoked_at is not null or s.erase_requested)) as expired_general_content,
    (select count(*)::int from qa_ret.material m join qa_ret.tombstones t on t.record_id=m.id where m.payload is not null) as resurrected_material,
    (select count(*)::int from qa_ret.material where policy is null or expires_at is null or state='REVIEW') as review_required,
-   (select count(*)::int from qa_ret.case_evidence where state='REVIEW' or(excerpt is not null and expires_at<=clock_timestamp())) as case_review_required,
+   (select count(*)::int from qa_ret.case_evidence e join qa_ret.cases c on c.id=e.case_id where e.state='REVIEW' or(e.excerpt is not null and(e.expires_at<=clock_timestamp() or c.closed_at is not null))) as case_review_required,
    (select count(*)::int from qa_ret.tombstones where review_at<=clock_timestamp())+(select count(*)::int from qa_ret.suppression where review_at<=clock_timestamp()) as overdue_marker_review,
    (select count(*)::int from qa_ret.provider_tasks) as external_outcomes_pending`);
   const r=rows[0],fields=['clock_regressed','expired_general_content','resurrected_material','review_required','case_review_required','overdue_marker_review','external_outcomes_pending'];
