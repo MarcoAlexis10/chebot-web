@@ -1,0 +1,153 @@
+TAP version 13
+# Subtest: a current 401 from private properties conceals every section and clears the browser credential
+not ok 1 - a current 401 from private properties conceals every section and clears the browser credential
+  ---
+  duration_ms: 7.995498
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(h.classes.has('manager-auth-pending'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:5:24)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: a 401 from an earlier page generation cannot log out a freshly reverified session
+ok 2 - a 401 from an earlier page generation cannot log out a freshly reverified session
+  ---
+  duration_ms: 5.303148
+  type: 'test'
+  ...
+# Subtest: Knowledge signals current authentication loss without disclosing a token
+not ok 3 - Knowledge signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 1.609278
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:12:187'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'cheveni-manager-session-denied'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cheveni-manager-session-denied'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:16:53)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: Requests signals current authentication loss without disclosing a token
+not ok 4 - Requests signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 1.006207
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:12:187'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'cheveni-manager-session-denied'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cheveni-manager-session-denied'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:16:53)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: Incidents signals current authentication loss without disclosing a token
+not ok 5 - Incidents signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 0.985908
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:12:187'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'cheveni-manager-session-denied'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'cheveni-manager-session-denied'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:16:53)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: duplicate recovery submit events issue only one pending request
+not ok 6 - duplicate recovery submit events issue only one pending request
+  ---
+  duration_ms: 1.824777
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:18:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:22:78)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: cancelled recovery response cannot replace the message of a new recovery form
+not ok 7 - cancelled recovery response cannot replace the message of a new recovery form
+  ---
+  duration_ms: 2.655826
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:25:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'Si el correo corresponde a un manager registrado, recibirás un enlace. Abrilo directamente en Chrome. Revisá también Spam.'
+    - ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'Si el correo corresponde a un manager registrado, recibirás un enlace. Abrilo directamente en Chrome. Revisá también Spam.'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/intensive-qa/web/qa/security/intensive-20261025/session-denial-new.test.cjs:29:41)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 1
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 99.882831

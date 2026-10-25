@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "repository": "MarcoAlexis10/chebot-web",
+  "branch": "qa/cheveni-release-20261025",
+  "baseCommit": "0e7483324890b1f885f6ccf021b1d780722da5b1",
+  "testedCodeCommit": "f02ac4db30c949ad4cb0821b6b563738d52464a7",
+  "functionalCodeCommit": "50ae89d847fd2ac65fbd76da94fedca44469b951",
+  "pairedBackendCode": "cbd990a439908c1f82489215aa93695c2caa0682",
+  "newTestsPassed": 10,
+  "affectedPriorRegressionsPassed": 8,
+  "totalTestsPassed": 18,
+  "failedAtFinalCode": 0,
+  "initialCounterexamples": {
+    "passed": 1,
+    "failed": 6
+  },
+  "managerGenerators": 11,
+  "generatedFiles": 12,
+  "compiledScripts": 8,
+  "ownedGenerationCleanupVerified": true,
+  "realBrowserOrProviderValidation": false,
+  "realMessagesOrSignup": 0,
+  "deployed": false,
+  "operationalApproval": false,
+  "decision": "NO-GO",
+  "mainEvidence": "MarcoAlexis10/chebot-backend ops/recovery/intensive-20261025/evidence/RESULTS.json"
+}
