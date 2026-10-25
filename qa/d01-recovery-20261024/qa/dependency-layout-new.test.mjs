@@ -7,7 +7,7 @@ test('new adapter resolves the same pinned SQL and bootstrap imports in private 
   const paths=layout==='private'?['ops/legal/acceptance-transaction-20261024/LEGAL-ACCEPTANCE-FICTIONAL-DO-NOT-INSTALL.sql','ops/release/launch-closure-20261024/LIFECYCLE-FICTIONAL-DO-NOT-INSTALL.sql']:['qa/legal-acceptance-20261024/LEGAL-ACCEPTANCE-FICTIONAL-DO-NOT-INSTALL.sql','qa/launch-closure-20261024/LIFECYCLE-FICTIONAL-DO-NOT-INSTALL.sql'];
   for(const [i,name] of ['legal','lifecycle'].entries()){const f=path.join(base,paths[i]);mkdirSync(path.dirname(f),{recursive:true});writeFileSync(f,readPinnedModel(name));}
   const tech=path.join(base,layout==='private'?'ops/recovery/technical-closure-20261022':'qa/technical-closure-20261022');
-  for(const f of ['qa/pg-fixture.mjs','approved/private-host.mjs','approved/docker-fictional.mjs','approved/provisional-crypto.mjs']){const to=path.join(tech,f);mkdirSync(path.dirname(to),{recursive:true});copyFileSync(new URL('../../technical-closure-20261022/'+f,import.meta.url),to);}
+  for(const f of ['qa/pg-fixture.mjs','approved/private-host.mjs','approved/docker-fictional.mjs','approved/provisional-crypto.mjs','approved/package-io.mjs']){const to=path.join(tech,f);mkdirSync(path.dirname(to),{recursive:true});copyFileSync(new URL('../../technical-closure-20261022/'+f,import.meta.url),to);}
   const mod=await import(pathToFileURL(path.join(qa,'pinned-models.mjs')));assert.equal(mod.readPinnedModel('legal'),readPinnedModel('legal'));assert.equal(mod.readPinnedModel('lifecycle'),readPinnedModel('lifecycle'));
   assert.equal(typeof(await import(pathToFileURL(path.join(qa,'owned-bootstrap.mjs')))).bootstrapOwned,'function');
  }}finally{rmSync(root,{recursive:true,force:true});}

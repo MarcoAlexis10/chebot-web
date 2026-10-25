@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   d01-new-checkout-only:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[a2-only]') && !contains(github.event.head_commit.message, '[role-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[evidence-only]') && !contains(github.event.head_commit.message, '[a2-only]') && !contains(github.event.head_commit.message, '[role-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
@@ -25,7 +25,7 @@ jobs:
         if: always()
         run: node --input-type=module -e "import {assertNoResources} from './qa/technical-closure-20261022/qa/pg-fixture.mjs';assertNoResources();console.log('D01_NEW_CLEANUP_OK');"
   a2-new-postcommit-only:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[d01-only]') && !contains(github.event.head_commit.message, '[role-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[evidence-only]') && !contains(github.event.head_commit.message, '[d01-only]') && !contains(github.event.head_commit.message, '[role-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -45,7 +45,7 @@ jobs:
 # No old test imports, real credentials, remote databases, npm, services or deploys.
 
   new-role-boundaries-only:
-    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && contains(github.event.head_commit.message, '[role-only]')
+    if: github.repository == 'MarcoAlexis10/chebot-web' && github.event.repository.private == false && !contains(github.event.head_commit.message, '[evidence-only]') && contains(github.event.head_commit.message, '[role-only]')
     runs-on: ubuntu-24.04
     timeout-minutes: 6
     steps:
