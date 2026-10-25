@@ -20,7 +20,7 @@ vm.runInNewContext(source, {
 const browser = html.match(/<script>([\s\S]*?)<\/script>/)[1];
 const TOKEN = 'chebot_manager_preview_access_token';
 const PW = 'FICTIONAL-PASSWORD-24';
-const ok = {ok: true, status: 200};
+const ok = {ok: true, status: 200, json: async () => ({id:'11111111-1111-4111-8111-111111111111',is_anonymous:false})};
 const settle = async () => {for (let n = 0; n < 20; n++) await Promise.resolve();};
 function deferred() {let resolve, reject; const promise = new Promise((a,b) => {resolve=a;reject=b;});return {promise,resolve,reject};}
 function harness({fetcher, hash = '#access_token=FICTIONAL_RECOVERY', search = '', storageFails = false} = {}) {

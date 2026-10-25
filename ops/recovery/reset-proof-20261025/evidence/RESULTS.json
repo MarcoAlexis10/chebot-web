@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "baseCommit": "9333c6df706e7260b2c3bac7d265a83c9bd6a3ee",
+  "passed": 4,
+  "failed": 0,
+  "scope": "Only new Auth-body proof and async-body/pagehide cases. Prior VM harness reused without registering its 16 historical tests.",
+  "log": "reset-proof-new.tap",
+  "actualGeneratedScriptExecuted": true,
+  "realAuthOrEmail": false,
+  "historicalSuitesRepeated": false,
+  "decision": "NO-GO",
+  "files": {
+    "manager-password-recovery-v1.js": "8821164440a4c627b56a4fdfcdbb8ee84c3b4e3730a5801920a059d2cdf60d53",
+    "test/manager-password-recovery-qa.test.cjs": "3a71c6ce2d44b1077ae1e23084f6d2c5fce216b4463113a0498b84b071ccf500",
+    "ops/recovery/reset-proof-20261025/reset-proof-new.test.cjs": "76b5480933ba848ad79ad49e58fa77c5b4616548feafe4cf4aacd7cda1d8ba50",
+    "ops/recovery/reset-proof-20261025/evidence/reset-proof-new.tap": "f0205da41ea24221508bfbffc0faa357afa6e4fa06f9fd6a6a3d09048ff2f840"
+  }
+}

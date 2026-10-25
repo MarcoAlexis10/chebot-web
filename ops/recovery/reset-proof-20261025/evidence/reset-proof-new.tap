@@ -1,0 +1,12 @@
+✔ HTTP200 without valid Auth identity never permits password PUT (10.609055ms)
+✔ HTML or invalid JSON success cannot validate recovery session (0.992903ms)
+✔ pagehide during Auth body parsing prevents late credential form admission (1.485434ms)
+✔ verified fictional Auth body permits exactly one password update and local logout (1.090787ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 86.557345
