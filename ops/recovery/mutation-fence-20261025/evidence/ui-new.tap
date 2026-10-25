@@ -1,0 +1,22 @@
+✔ knowledge successful decision cannot resend stale version after refresh (5.475282ms)
+✔ knowledge approve and reject cannot race from separate buttons (1.171181ms)
+✔ knowledge network loss freezes version without automatic or manual replay (1.492456ms)
+✔ knowledge HTTP5xx or unbound HTTP200 remains uncertain (4.566739ms)
+✔ knowledge known safety rejection does not falsely claim a commit (1.066175ms)
+✔ knowledge late success after logout cannot refresh private data (0.969122ms)
+✔ knowledge timeout aborts exactly one request and keeps result uncertain (1.038165ms)
+✔ operator known success can continue without claiming session revocation (0.776467ms)
+✔ operator duplicate in-flight write is blocked before dispatch (0.978857ms)
+✔ operator network or HTTP5xx result cannot be resubmitted (0.941291ms)
+✔ operator malformed or semantically wrong success is not a confirmed action (0.849145ms)
+✔ operator changed browser session cannot dispatch a mutation (0.401573ms)
+✔ operator late result after session change cannot become confirmed (0.409815ms)
+✔ operator timeout aborts once and preserves review requirement (0.429655ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 102.980353

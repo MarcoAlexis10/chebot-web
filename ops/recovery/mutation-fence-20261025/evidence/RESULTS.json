@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "parentCommit": "71574ebfebb4d45ec9442d5405934d7e014d5623",
+  "passed": 15,
+  "failed": 0,
+  "logs": [
+    "ui-new.tap",
+    "page-new.tap"
+  ],
+  "runtime": "Node24.22.1",
+  "scope": "New action ambiguity, duplicate and late-session cases only; actual generated operator script included. Fictional fetch/storage/timers. No build or provider calls.",
+  "historicalSuitesRepeated": false,
+  "realManagersRegistered": false,
+  "operationalApproval": false,
+  "decision": "NO-GO",
+  "files": {
+    "manager-knowledge-v1.js": "d95f590dae1b7f9b09194f703a3bb044f34b6c5554a10c0f2d1491400e6fd155",
+    "manager-signup-admin-v1.js": "e395ed11ee566acf0c4deb1166d51448356afe395870ff15b68ff975969188b8",
+    "ops/recovery/mutation-fence-20261025/ui-new.test.cjs": "084aaf0e0931be27bca5a0513344b4aedf849952191fa59c330ec4cd08fc9443",
+    "ops/recovery/mutation-fence-20261025/page-new.test.cjs": "a9d76a230e5242d4c1b45a5c0e9182064e24a46af77bf364a08f6c0f3ba837a1",
+    "ops/recovery/mutation-fence-20261025/evidence/ui-new.tap": "788f5b0f23b2d9757da1867b3c9a2d0e31a3ab33a34d1200cf470d713ad843ff",
+    "ops/recovery/mutation-fence-20261025/evidence/page-new.tap": "b20e8ff2a988b04512ecae819e43a66a14e03f03e4cc3349167ba43f8d30df8c"
+  }
+}

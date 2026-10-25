@@ -83,17 +83,37 @@ function makeText(tag,value,cls){
  var item=document.createElement(tag);item.textContent=String(value||'');
  if(cls)item.className=cls;return item;
 }
+var mutationPending=false,mutationUncertain=false;
+function freezeMutation(){
+ mutationUncertain=true;issueButton.disabled=true;
+ message(access,'Resultado sin confirmar. No repitas la acción: verificá el estado antes de continuar.',true);
+ document.querySelectorAll('button').forEach(function(b){b.disabled=true});
+}
 async function api(method,body){
+ var mutating=method!=='GET';
+ if(mutating&&(mutationPending||mutationUncertain))throw new Error('MUTATION_REVIEW_REQUIRED');
+ if(mutating&&sessionStorage.getItem(TOKEN_KEY)!==token)throw new Error('SESSION_CHANGED');
+ if(mutating)mutationPending=true;
+ var controller=new AbortController(),timer=setTimeout(function(){controller.abort()},8000);
+
  var options={method:method,mode:'cors',credentials:'omit',cache:'no-store',
-   headers:{Authorization:'Bearer '+token}};
+   headers:{Authorization:'Bearer '+token},signal:controller.signal};
  if(body){options.headers['Content-Type']='application/json';options.body=JSON.stringify(body)}
- var resp=await fetch(API,options);
- var data={};
- try{data=await resp.json()}catch(_){}
- return {code:resp.status,data:data};
+ try{
+  var resp=await fetch(API,options),data=null;
+  try{data=await resp.json()}catch(_){}
+  var expected=body&&({issue:'INVITATION_PREPARED_NOT_SENT',revoke:'INVITATION_REVOKED',screen:'SCREENING_RECORDED_NO_PROVISIONING',resolve_followup:'FOLLOWUP_RESOLVED_NO_PROVISIONING'})[body.action];
+  if(mutating&&(!data||typeof data!=='object'||Array.isArray(data)||resp.status>=500||data.reconciliation_required===true||(resp.ok&&(data.ok!==true||!expected||data.code!==expected))||sessionStorage.getItem(TOKEN_KEY)!==token)){
+   freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED');
+  }
+  return {code:resp.status,data:data||{}};
+ }catch(error){if(mutating)freezeMutation();throw error}
+ finally{clearTimeout(timer);if(mutating)mutationPending=false}
+
 }
 function dateText(value){if(!value)return '—';var d=new Date(value);return isNaN(d.valueOf())?'—':d.toLocaleString('es-AR')}
 async function update(){
+ if(mutationUncertain){freezeMutation();return}
  if(!token){message(access,'Ingresá primero al Panel de Manager y después volvé a esta página.',true);return}
  try{
    var result=await api('GET');
@@ -144,7 +164,7 @@ async function update(){
                  if(rv.code!==200)window.alert('No se pudo cerrar el seguimiento. Verificá si ya fue resuelto.');
                  await update();
                }catch(_){message(access,'No se pudo confirmar el seguimiento de esta solicitud.',true)}
-               finally{buttons.forEach(function(button){button.disabled=false})}
+               finally{buttons.forEach(function(button){button.disabled=mutationUncertain})}
              }.bind(null,row.id,finalChoice[0],finalActions));
              finalActions.appendChild(finalize);
            }
@@ -170,7 +190,7 @@ async function update(){
                if(rv.code!==200){window.alert('No se guardó la evaluación. Revisá si ya había sido evaluada.')}
                await update();
              }catch(_){message(access,'No se pudo confirmar la evaluación de esta solicitud.',true)}
-             finally{buttons.forEach(function(b){b.disabled=false})}
+             finally{buttons.forEach(function(b){b.disabled=mutationUncertain})}
            }.bind(null,row.id,choice[0],actions));
            actions.appendChild(evaluate);
          }
@@ -188,7 +208,7 @@ async function update(){
            if(rv.code!==200){window.alert('No se pudo revocar. Volvé a consultar el estado.')}
            await update();
          }catch(_){message(access,'No fue posible confirmar la revocación.',true)}
-         finally{el.disabled=false}
+         finally{el.disabled=mutationUncertain}
        }.bind(null,row.id,revoke));
        card.appendChild(revoke);
      }
@@ -198,7 +218,7 @@ async function update(){
 }
 issueForm.addEventListener('submit',async function(e){
  e.preventDefault();
- if(!issueForm.reportValidity())return;
+ if(issueButton.disabled||mutationPending||mutationUncertain||!issueForm.reportValidity())return;
  issueButton.disabled=true;result.hidden=true;preparedLink.textContent='';
  message(issueStatus,'Preparando invitación privada…',false);
  try{
@@ -216,7 +236,7 @@ issueForm.addEventListener('submit',async function(e){
      :'Altas cerradas: se requiere autorización explícita.',true);
    else message(issueStatus,'No se pudo preparar la invitación.',true);
  }catch(_){message(issueStatus,'No se pudo contactar al Backend Preview.',true)}
- finally{issueButton.disabled=false}
+ finally{issueButton.disabled=mutationUncertain}
 });
 document.getElementById('copy-link').addEventListener('click',async function(){
  var link=preparedLink.textContent;

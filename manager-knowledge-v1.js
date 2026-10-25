@@ -92,10 +92,14 @@ const browserJs = `
     container.appendChild(tag);
   }
 
+  let knowledgeMutationPending = false;
+  const knowledgeUncertain = new Set();
   async function decideKnowledge(item, action, button) {
     const accessToken = sessionStorage.getItem(TOKEN_KEY);
     if (!accessToken || !item || !item.id || !item.version || !item.version.id) return;
 
+    const mutationKey = item.id + ':' + item.version.id;
+    if (button.disabled || knowledgeMutationPending || knowledgeUncertain.has(mutationKey) || document.body.classList.contains('manager-auth-pending')) return;
     const approve = action === 'approve';
     const promptText = approve
       ? '¿Aprobar esta propuesta? Una vez aprobada, Che Vení podrá usarla como conocimiento activo según su alcance y riesgo.'
@@ -103,12 +107,21 @@ const browserJs = `
 
     if (!window.confirm(promptText)) return;
 
+    knowledgeMutationPending = true;
+    const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 8000);
+    let dispatched = false, confirmed = false;
+    function freezeForReview() {
+      knowledgeUncertain.add(mutationKey);
+      window.alert('No pudimos confirmar el resultado de la decisión. No la repitas: verificá el estado antes de continuar.');
+    }
     const previousText = button.textContent;
     button.disabled = true;
     button.textContent = approve ? 'Aprobando…' : 'Rechazando…';
 
     try {
+      dispatched = true;
       const response = await fetch(BACKEND_KNOWLEDGE_URL, {
+        signal: controller.signal,
         method: 'POST',
         mode: 'cors',
         cache: 'no-store',
@@ -127,7 +140,8 @@ const browserJs = `
       let body = null;
       try { body = await response.json(); } catch (_) {}
 
-      if (!response.ok || !body || body.ok !== true) {
+      if (!body || response.status >= 500 || body.reconciliation_required === true || (response.ok && (body.ok !== true || body.action !== action || body.decision == null))) { freezeForReview(); return; }
+      if (!response.ok || body.ok !== true) {
         const code = body && body.error ? String(body.error) : 'KNOWLEDGE_DECISION_FAILED';
         if (code === 'SAFETY_REVIEW_REQUIRES_SECOND_APPROVER') {
           window.alert('Esta propuesta requiere una segunda aprobación por seguridad. No fue activada.');
@@ -137,13 +151,15 @@ const browserJs = `
         return;
       }
 
+      confirmed = true; knowledgeUncertain.add(mutationKey);
       if (sessionStorage.getItem(TOKEN_KEY) !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       lastLoadedToken = null;
       await maybeLoadKnowledge();
     } catch (_) {
-      window.alert('No se pudo conectar con Che Vení Concierge. Reintentá en unos segundos.');
+      if (dispatched) freezeForReview();
     } finally {
-      button.disabled = false;
+      clearTimeout(timer); knowledgeMutationPending = false;
+      button.disabled = confirmed || knowledgeUncertain.has(mutationKey);
       button.textContent = previousText;
     }
   }
@@ -151,6 +167,7 @@ const browserJs = `
   function addDecisionButton(container, label, item, action, danger = false) {
     const button = document.createElement('button');
     button.type = 'button';
+    button.disabled = knowledgeUncertain.has(item.id + ':' + item.version.id);
     button.textContent = label;
     button.style.padding = '8px 11px';
     button.style.borderRadius = '10px';
