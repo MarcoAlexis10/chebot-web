@@ -1,0 +1,32 @@
+{
+  "baseCommit": "bc63772eb19592d3ab291f7614d2dc3f9e3aaa89",
+  "baseBuilderBlob": "935bc4592da37ed0d2bed94db7add4129fb3d0f9",
+  "node": "v24.22.1",
+  "exitCode": 0,
+  "recordedAt": "2026-10-25T09:03:16.942722+00:00",
+  "scope": "NEW offline recovery regressions only; actual generated script in VM; fictional fetch/config/storage; no build or Auth calls",
+  "historicalSuitesRepeated": false,
+  "realServices": false,
+  "jwtImmediatelyRevoked": false,
+  "operationalApproval": false,
+  "files": {
+    "manager-password-recovery-v1.js": "9323033eac5351cd0a456e5143980c190f0ceb564eb9ac16de7e820b54b53460",
+    "test/manager-password-recovery-qa.test.cjs": "833e43f0c76480cdbaf6d10a77de8c6a8c5c0d89b2e9508d668f88208c71e669",
+    "ops/recovery/password-reset-20261025/evidence/manager-password-recovery-new.tap": "953418299253761bf24bd9e091b508120689bdada08ab82c07c11de266461c70"
+  },
+  "tests": 16,
+  "passed": 16,
+  "failed": 0,
+  "documentation": [
+    "https://supabase.com/docs/guides/auth/signout",
+    "https://supabase.com/docs/reference/javascript/auth-updateuser"
+  ],
+  "limits": [
+    "No Auth/SMTP/provider validation",
+    "Issued JWT may remain valid until exp after logout",
+    "Local browser manager token cleared; other tabs/devices not operationally verified",
+    "HTTP transport/5xx outcome remains unconfirmed; no automatic PUT retry"
+  ],
+  "fictionalGeneratedHtmlSha256": "5923e8076d0884460bdfdb5a89462ede004c538f03f9c36f4a1776e2e1d86750",
+  "executedBrowserScriptSha256": "5b640562ee7862470c2b3ce8183676d8ba8c75bf5525273c81e29eae4c4c3d34"
+}
