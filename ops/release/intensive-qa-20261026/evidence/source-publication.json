@@ -1,0 +1,127 @@
+{
+  "repository": "MarcoAlexis10/chebot-web",
+  "commit": "9cbc285beb8d4aef746e7124da28a949fdb97975",
+  "changed_files": [
+    {
+      "path": "manager-knowledge-v1.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea6d3969bfe81592d31689dd522f4e6efad03b84",
+      "size": 20264,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/ea6d3969bfe81592d31689dd522f4e6efad03b84",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "manager-signup-admin-v1.js",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9727652e0d2a468d842fdd33739d77ed0b4fa328",
+      "size": 20361,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/9727652e0d2a468d842fdd33739d77ed0b4fa328",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "ops/release/intensive-qa-20261026/evidence/admin-intent-after.tap",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1f4ede040da867f6e41b16c9561e7606a53b81e9",
+      "size": 2208,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/1f4ede040da867f6e41b16c9561e7606a53b81e9",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "ops/release/intensive-qa-20261026/evidence/admin-intent-before.tap",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5f7f41468e167db779059af2f11f8b3ef21ec9d",
+      "size": 7969,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/c5f7f41468e167db779059af2f11f8b3ef21ec9d",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "ops/release/intensive-qa-20261026/evidence/admin-intent-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3230515894180aded2656ab9244db64d4ba9e53",
+      "size": 485,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/e3230515894180aded2656ab9244db64d4ba9e53",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "ops/release/intensive-qa-20261026/evidence/knowledge-intent-after.tap",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b06bb1f87113b663599978894490694608fd8cbd",
+      "size": 1041,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/b06bb1f87113b663599978894490694608fd8cbd",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "ops/release/intensive-qa-20261026/evidence/knowledge-intent-before.tap",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52964b0039647b5e60017f56ebd6a9756265ce1f",
+      "size": 7723,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/52964b0039647b5e60017f56ebd6a9756265ce1f",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "ops/release/intensive-qa-20261026/evidence/knowledge-intent-results.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dadc2878221eac2f54af3d93ddd3ee7bf6db463e",
+      "size": 733,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/dadc2878221eac2f54af3d93ddd3ee7bf6db463e",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "qa/security/admin-intent-intensive-new.test.cjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0cf2013422e43132eeaa82e74a9d09ce6bb09bd2",
+      "size": 5900,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/0cf2013422e43132eeaa82e74a9d09ce6bb09bd2",
+      "local_git_blob_matches_published": true
+    },
+    {
+      "path": "qa/security/knowledge-intent-intensive-new.test.cjs",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e99b5ebbf0ee847a3d7c13fb39d10aae5758b197",
+      "size": 6128,
+      "url": "https://api.github.com/repos/MarcoAlexis10/chebot-web/git/blobs/e99b5ebbf0ee847a3d7c13fb39d10aae5758b197",
+      "local_git_blob_matches_published": true
+    }
+  ],
+  "removed_files": [],
+  "controls_unchanged": [
+    {
+      "path": ".github/CONCIERGE-BETA-PREVIEW-RELEASE-CHECK-2026-10-10.md",
+      "blob": "24c3da769ba9724389185208020b875b9b925c6a"
+    },
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "blob": "9540d3c50339b976e6fff19acd8283037aa000e1"
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "blob": "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+    },
+    {
+      "path": "vercel.json",
+      "blob": "620ee85530ae3a417ee925e0f81e347a1dbec399"
+    }
+  ],
+  "latest_action_read_only": [
+    {
+      "id": 40148316684,
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "c59c3696c2b932e58a186bffc633ae77e2eb6a06",
+      "created_at": "2026-10-25T00:51:23Z",
+      "html_url": "https://github.com/MarcoAlexis10/chebot-web/actions/runs/40148316684"
+    }
+  ],
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}

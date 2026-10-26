@@ -1,0 +1,9 @@
+da18cf60342329516d20ab2be43f1962ef8658327de7a443c8a3d9b3647a1241  ops/release/intensive-qa-20261026/CONTINUIDAD.md
+31bc10fc87c8746d3f16653274cb098b10cc4dcb02133591e29e24267fa6fce8  ops/release/intensive-qa-20261026/RESULTS.json
+f8ded89588e88eeb9a4c206cd154dbe16e6a53667bbc40554d1d7e1706bc266e  ops/release/intensive-qa-20261026/evidence/admin-intent-after.tap
+827acba7b93be7949665a48927ddf02d10fa89b45b9d58dc2f6bc6dc85dea51a  ops/release/intensive-qa-20261026/evidence/admin-intent-before.tap
+f8c4beb0e7b45f513b57da823dbd86b0ba47e7647473dc1894a48059a48153b2  ops/release/intensive-qa-20261026/evidence/admin-intent-results.json
+4a16775102296fac5d241ed0208b5b50081b84b96203120715d6cdad0b9ff9e8  ops/release/intensive-qa-20261026/evidence/knowledge-intent-after.tap
+546ef468a296168fc2a761717a780854e9bd3e6d3da714dd9a2720cb58872297  ops/release/intensive-qa-20261026/evidence/knowledge-intent-before.tap
+2a52c12ddfc722e4852b2e60f972fc677d9d93cc736bf19a0407db514b2453d1  ops/release/intensive-qa-20261026/evidence/knowledge-intent-results.json
+617b4d8e6c005ed1dcec10b13211e05f7b8db61169d620c4ca5593ceb860a25e  ops/release/intensive-qa-20261026/evidence/source-publication.json

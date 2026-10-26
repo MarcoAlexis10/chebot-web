@@ -1,0 +1,16 @@
+{
+  "new_unique_web_cases": 21,
+  "passed": 21,
+  "failed": 0,
+  "functional_head": "9cbc285beb8d4aef746e7124da28a949fdb97975",
+  "new_tests": [
+    "qa/security/admin-intent-intensive-new.test.cjs",
+    "qa/security/knowledge-intent-intensive-new.test.cjs"
+  ],
+  "integration_cases_in_backend_not_double_counted": 5,
+  "historical_suites_repeated": false,
+  "native_cases_executed": 0,
+  "real_messages": 0,
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}
