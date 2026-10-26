@@ -1,0 +1,125 @@
+{
+  "repository": "MarcoAlexis10/chebot-web",
+  "commit": "6fb4cbf7e597bcd6d34c19b3549428a9cbfb8592",
+  "startCommit": "4773a9620b4968984b5f37f61bb929645f6dfb31",
+  "changed": [
+    {
+      "path": "manager-request-actions-v1.js",
+      "sha": "bc83c0c007c3a21e96be0bd2635f9371c6a9d0e5",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "manager-requests-v1.js",
+      "sha": "a49df41c7350f67357ccface7750ceab29247b20",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "manager-signup-v1.js",
+      "sha": "b95b344f8f02950ca74a4b92d82bc12953880a0f",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/integral-qa-20261026/evidence/request-session-after.log",
+      "sha": "f172c1270ad89a1ad0b47f2ec941fd57b6b91f45",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/integral-qa-20261026/evidence/request-session-before.log",
+      "sha": "51927849cc9ccaf04f55f9a5bd51825ed2a5efba",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/integral-qa-20261026/evidence/request-session-results.json",
+      "sha": "9227884e22e608ae9042693ef6ddc79a10876390",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/integral-qa-20261026/evidence/signup-intent-after.log",
+      "sha": "c7df57c948e5373a67588b11064c92c8649c50a6",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/integral-qa-20261026/evidence/signup-intent-before.log",
+      "sha": "d5d273f672de613f2c0710114bfd22561d32e34f",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/integral-qa-20261026/evidence/signup-intent-results.json",
+      "sha": "ec6427e8f3931226feab5e8021d7eeee61da6dc0",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "qa/security/request-session-integral-new.test.cjs",
+      "sha": "b5881b996e84e1798cd677e34a0d5c796d1d1892",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "qa/security/signup-intent-integral-new.test.cjs",
+      "sha": "3a8bc547aa68377a774739d6aa8d26edca82003b",
+      "localBytesMatchGitHub": true
+    }
+  ],
+  "unchangedControls": [
+    {
+      "path": ".github/CONCIERGE-BETA-PREVIEW-RELEASE-CHECK-2026-10-10.md",
+      "sha": "24c3da769ba9724389185208020b875b9b925c6a"
+    },
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "sha": "9540d3c50339b976e6fff19acd8283037aa000e1"
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "sha": "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/CONTINUIDAD.md",
+      "sha": "df33256e0be7d9a2614524c454ad15b0f946052d"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/RESULTS.json",
+      "sha": "d35747eb64c08f2cb5ce2e9acc9b26dc05657d26"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/SHA256SUMS",
+      "sha": "dc248f260090d22d6363633140c30afd7fe33d52"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/actions-readonly.json",
+      "sha": "99774d9c556dc9217442e56c435c8f2dd38b2d6f"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-after.tap",
+      "sha": "6ad6a4f9951db34b6fb5588ad1c382b360951113"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-before.tap",
+      "sha": "a458c9d33ff384c9aea850a495d73812c0b86e0d"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-results.json",
+      "sha": "899d6d757657b121a78b37a1a6cc3a86f7c244f2"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/source-publication.json",
+      "sha": "8d384d764f9a016141553e0b8218574f6ad0f106"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/unchanged-controls.json",
+      "sha": "893aa88dee9d508343e5f7ceed8a379ccd92f782"
+    },
+    {
+      "path": "vercel.json",
+      "sha": "620ee85530ae3a417ee925e0f81e347a1dbec399"
+    }
+  ],
+  "removedFiles": [],
+  "latestActionReadOnly": {
+    "id": 40148316684,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "c59c3696c2b932e58a186bffc633ae77e2eb6a06",
+    "url": "https://github.com/MarcoAlexis10/chebot-web/actions/runs/40148316684"
+  },
+  "decision": "NO-GO"
+}

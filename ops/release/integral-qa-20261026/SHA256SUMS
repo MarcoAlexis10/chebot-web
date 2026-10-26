@@ -1,0 +1,9 @@
+c0df635d5e59694f65e1582c9c50a46e525e3ac4b68c9fcaed7e1bfbd88407ec  ops/release/integral-qa-20261026/CONTINUIDAD.md
+006dcdaf50566783e19466178239eee00ec25c5c09314b6c66b4a408c7428632  ops/release/integral-qa-20261026/RESULTS.json
+ada458f9e329df2ad96bd08b79b1175db554e10ffcfe51d6da14271f00862892  ops/release/integral-qa-20261026/evidence/request-session-after.log
+d9508e9d3e44f53d856fc26ca30892f7e60010f78a4f6111b6afa907cc08eb5c  ops/release/integral-qa-20261026/evidence/request-session-before.log
+f5277a78877984b4a504285a3e9980675e2349b49083419948df0cc05d3c3ed0  ops/release/integral-qa-20261026/evidence/request-session-results.json
+4d47e9efecb87c6317b4d7e2259663441bb952d52fc485489b12fbfe39ab4641  ops/release/integral-qa-20261026/evidence/signup-intent-after.log
+06a1456be106409995033d402c41dc1f04ec6ef2e05fa7e98ac4b302c5aa9488  ops/release/integral-qa-20261026/evidence/signup-intent-before.log
+5c06fc8e74a9c076ade4484d84e8c44151ea33760d46420eebc14bb6987db12c  ops/release/integral-qa-20261026/evidence/signup-intent-results.json
+ace24d22efae7e32e1f513cb09d1544d19244d1c1fc55fc8603cbed6bbf882e7  ops/release/integral-qa-20261026/evidence/source-publication.json

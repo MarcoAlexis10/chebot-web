@@ -1,0 +1,14 @@
+{
+  "startHead": "4773a9620b4968984b5f37f61bb929645f6dfb31",
+  "functionalHead": "6fb4cbf7e597bcd6d34c19b3549428a9cbfb8592",
+  "newUniqueCases": 21,
+  "passed": 21,
+  "failed": 0,
+  "previous56Repeated": false,
+  "historicalSuitesRepeated": false,
+  "nativeCasesExecuted": 0,
+  "realAuthQueries": 0,
+  "realMessages": 0,
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}
