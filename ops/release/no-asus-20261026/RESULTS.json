@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-26",
+  "repository": "MarcoAlexis10/chebot-web",
+  "branch": "qa/cheveni-release-20261025",
+  "startCommit": "ceca956c7e12304337ad986b0b801415e8deb33b",
+  "functionalCommit": "b2579d37ddd709fb6d320744bd03a2de4c542ff8",
+  "newUniqueTests": 16,
+  "passed": 16,
+  "failed": 0,
+  "historicalSuitesRepeated": false,
+  "nativeLabRetried": false,
+  "asusRequested": false,
+  "serviceTestsExecuted": false,
+  "realMessages": 0,
+  "realUsersAdded": 0,
+  "incrementalCostsIncurred": 0,
+  "commercialHoldReleased": false,
+  "decision": "NO-GO",
+  "note": "13 main cases and 3 selected additional cases; no combined final full-suite rerun"
+}

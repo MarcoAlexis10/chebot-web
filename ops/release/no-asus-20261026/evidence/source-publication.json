@@ -1,0 +1,50 @@
+{
+  "repository": "MarcoAlexis10/chebot-web",
+  "verifiedCommit": "b2579d37ddd709fb6d320744bd03a2de4c542ff8",
+  "files": [
+    {
+      "path": "manager-incident-actions-v1.js",
+      "gitBlobSha": "e9d1c540e01cac1daa651896e2656be6a3103ad6",
+      "sha256": "d9cd8a2d1003f875a46b3554f874715d2ebcc964fa175238818b94760424a599",
+      "remoteBlobSha": "e9d1c540e01cac1daa651896e2656be6a3103ad6",
+      "matches": true
+    },
+    {
+      "path": "qa/security/incident-intent-noasus-delta.test.cjs",
+      "gitBlobSha": "f537d3e41c82973d39d3cd51f983ae6573680cfc",
+      "sha256": "e8d8d4f843bd56a4e5d738edf60ded65d9d2b32b6797bee6a6fe0d8b5d76815b",
+      "remoteBlobSha": "f537d3e41c82973d39d3cd51f983ae6573680cfc",
+      "matches": true
+    },
+    {
+      "path": "ops/release/no-asus-20261026/evidence/incident-intent-additional.tap",
+      "gitBlobSha": "5bb126ead2878af26a1e2f2d910cb4e4cec10b7f",
+      "sha256": "6226ed6c0d35c566f22a9f7a3b9dd7c6512380e9dfa8f1092ff12d1d861e8ce9",
+      "remoteBlobSha": "5bb126ead2878af26a1e2f2d910cb4e4cec10b7f",
+      "matches": true
+    },
+    {
+      "path": "ops/release/no-asus-20261026/evidence/incident-intent-after.tap",
+      "gitBlobSha": "707022039161b5efbe600b734dda8b08f4c85362",
+      "sha256": "2a752eea1ed22b2e4c42a28bca6ceee5aaeae43486672e075fb3cefdb80737b3",
+      "remoteBlobSha": "707022039161b5efbe600b734dda8b08f4c85362",
+      "matches": true
+    },
+    {
+      "path": "ops/release/no-asus-20261026/evidence/incident-intent-before.tap",
+      "gitBlobSha": "ac0b5833c1b538609ff27341f4ee09f5a06822ae",
+      "sha256": "bcbbb6f579dced2e33bb62712c99fdb8e5738b6dd2a00826fd4e88a2709687ab",
+      "remoteBlobSha": "ac0b5833c1b538609ff27341f4ee09f5a06822ae",
+      "matches": true
+    },
+    {
+      "path": "ops/release/no-asus-20261026/evidence/incident-intent-results.json",
+      "gitBlobSha": "e1da9f72563daf8b1e53a47841f646a1104f7a82",
+      "sha256": "c5293f09c63a252ff659bdb0258a39e9dd7902ae8b4a7bbb3f0b4935e2d2a875",
+      "remoteBlobSha": "e1da9f72563daf8b1e53a47841f646a1104f7a82",
+      "matches": true
+    }
+  ],
+  "allMatch": true,
+  "scope": "Git blob comparison of local source/test/evidence/draft bytes with immutable published QA commit; not an operational service test"
+}

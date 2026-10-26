@@ -1,0 +1,19 @@
+{
+  "baseCommit": "ceca956c7e12304337ad986b0b801415e8deb33b",
+  "verifiedCommit": "b2579d37ddd709fb6d320744bd03a2de4c542ff8",
+  "files": [
+    {
+      "path": "vercel.json",
+      "baseBlobSha": "620ee85530ae3a417ee925e0f81e347a1dbec399",
+      "publishedBlobSha": "620ee85530ae3a417ee925e0f81e347a1dbec399",
+      "unchanged": true
+    },
+    {
+      "path": "manager-legal-publication-gate-v1.cjs",
+      "baseBlobSha": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1",
+      "publishedBlobSha": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1",
+      "unchanged": true
+    }
+  ],
+  "allUnchanged": true
+}
