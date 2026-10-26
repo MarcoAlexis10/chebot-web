@@ -1,0 +1,19 @@
+{
+  "newUniqueCases": 8,
+  "before": {
+    "passed": 1,
+    "failed": 7
+  },
+  "after": {
+    "passed": 8,
+    "failed": 0
+  },
+  "scope": "Actual generated invite script in VM with fictional DOM/storage/transport/manual deadline",
+  "fixtureMaintenanceOnly": [
+    "qa/security/invite-session-asusprep-delta.test.cjs",
+    "qa/security/invite-predispatch-new.test.cjs",
+    "test/manager-uncertain-actions.test.cjs"
+  ],
+  "fixtureMaintenanceNote": "Only fake browser globals and success/error DTO fields updated for additive stay_id/bool/deadline contract. Existing assertions unchanged; historical tests NOT executed or counted.",
+  "decision": "NO-GO"
+}

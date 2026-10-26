@@ -1,0 +1,16 @@
+✔ a successful invite receipt for another stay cannot certify this row (4.651585ms)
+✔ an old backend receipt without stay binding remains under review (1.800995ms)
+✔ invite body deadline bounds a response that ignores abort (2.649301ms)
+✔ silent removal failure after known denial cannot display a retryable invitation (3.102287ms)
+✔ failed local intent cleanup after success stays visible as review (2.245687ms)
+✔ already-sent flag must be boolean before choosing the success message (1.862962ms)
+✔ contradictory HTTP denial with ok true never releases the intent (2.026381ms)
+✔ the exact stay-bound receipt and a known denial keep their distinct safe outcomes (3.859846ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.590821

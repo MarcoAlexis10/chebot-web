@@ -11,7 +11,7 @@ function storage(seed){const data=seed||new Map([['chebot_manager_preview_access
 function script(name){return fs.readFileSync(path.join(__dirname,'..','dist','manager',name),'utf8');}
 function invite(fetch,store=storage()){
  const row=new Element('article');Object.assign(row.dataset,{stayId:STAY,stayStatus:'active',stayCheckout:'2099-01-01T00:00:00Z'});const list=new Element('div');list.append(row);
- const context={sessionStorage:store,fetch,Date,MutationObserver:class{observe(){}},document:{createElement:t=>new Element(t),querySelector:()=>list,querySelectorAll:()=>[row]}};
+ const context={sessionStorage:store,fetch,Date,AbortController,setTimeout:()=>1,clearTimeout(){},MutationObserver:class{observe(){}},document:{createElement:t=>new Element(t),querySelector:()=>list,querySelectorAll:()=>[row]}};
  vm.runInNewContext(script('manager-invite.js'),context);return {row,button:controls(row)[0],store};
 }
 async function requests(post,{store=storage(),refreshFails=false}={}){
@@ -30,10 +30,10 @@ for(const [label,body,status] of [['uncertain reservation',{ok:false,reconciliat
  let calls=0;const a=invite(async()=>{calls++;return new Response(JSON.stringify(body),{status});});await a.button.listeners.click();assert.equal(a.button.disabled,true);await a.button.listeners.click();assert.equal(calls,1);
 });
 test('provider acceptance is labeled as a recorded send, never delivery',async()=>{
- const a=invite(async()=>new Response(JSON.stringify({ok:true,invite:{id:INVITE,status:'sent'}})));await a.button.listeners.click();assert.equal(a.button.textContent,'Envío registrado');assert.doesNotMatch(a.button.textContent,/entregad/i);
+ const a=invite(async()=>new Response(JSON.stringify({ok:true,invite:{id:INVITE,stay_id:STAY,already_sent:false,status:'sent'}})));await a.button.listeners.click();assert.equal(a.button.textContent,'Envío registrado');assert.doesNotMatch(a.button.textContent,/entregad/i);
 });
 test('double click while invite request is pending performs only one POST',async()=>{
- let finish,calls=0;const a=invite(()=>{calls++;return new Promise(r=>finish=r);});const first=a.button.listeners.click();await a.button.listeners.click();assert.equal(calls,1);finish(new Response(JSON.stringify({ok:true,invite:{id:INVITE,status:'sent'}})));await first;
+ let finish,calls=0;const a=invite(()=>{calls++;return new Promise(r=>finish=r);});const first=a.button.listeners.click();await a.button.listeners.click();assert.equal(calls,1);finish(new Response(JSON.stringify({ok:true,invite:{id:INVITE,stay_id:STAY,already_sent:false,status:'sent'}})));await first;
 });
 for(const [label,post] of [['network loss',async()=>{throw Error('lost reply');}],['uncertain server result',async()=>new Response(JSON.stringify({ok:false,reconciliation_required:true}),{status:502})],['malformed success',async()=>new Response(JSON.stringify({ok:true}))]])test('request decision '+label+' freezes both conflicting actions',async()=>{
  const a=await requests(post);await a.buttons[0].listeners.click();assert.equal(a.posts(),1);assert.ok(a.buttons.every(b=>b.disabled));await a.buttons[1].listeners.click();assert.equal(a.posts(),1);assert.match(a.alerts.at(-1),/No la repitas/);

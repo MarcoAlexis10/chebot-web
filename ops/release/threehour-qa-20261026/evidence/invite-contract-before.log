@@ -1,0 +1,148 @@
+✖ a successful invite receipt for another stay cannot certify this row (6.743338ms)
+✖ an old backend receipt without stay binding remains under review (2.457597ms)
+✖ invite body deadline bounds a response that ignores abort (2.55428ms)
+✖ silent removal failure after known denial cannot display a retryable invitation (6.327739ms)
+✖ failed local intent cleanup after success stays visible as review (2.214091ms)
+✖ already-sent flag must be boolean before choosing the success message (2.454459ms)
+✖ contradictory HTTP denial with ok true never releases the intent (1.793232ms)
+✔ the exact stay-bound receipt and a known denial keep their distinct safe outcomes (3.524072ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 1
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140.813503
+
+✖ failing tests:
+
+test at web/qa/security/invite-contract-threehour-new.test.cjs:9:1
+✖ a successful invite receipt for another stay cannot certify this row (6.743338ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:8:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:9:198)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/invite-contract-threehour-new.test.cjs:10:1
+✖ an old backend receipt without stay binding remains under review (2.457597ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:8:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:10:187)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/invite-contract-threehour-new.test.cjs:11:1
+✖ invite body deadline bounds a response that ignores abort (2.55428ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Enviando…'
+  - 'Resultado en revisión'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:8:100)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:11:265)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Enviando…',
+    expected: 'Resultado en revisión',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/invite-contract-threehour-new.test.cjs:12:1
+✖ silent removal failure after known denial cannot display a retryable invitation (6.327739ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:8:63)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:12:215)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/invite-contract-threehour-new.test.cjs:13:1
+✖ failed local intent cleanup after success stays visible as review (2.214091ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Envío registrado'
+  - 'Resultado en revisión'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:8:100)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:13:141)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Envío registrado',
+    expected: 'Resultado en revisión',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/invite-contract-threehour-new.test.cjs:14:1
+✖ already-sent flag must be boolean before choosing the success message (2.454459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:8:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:14:210)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/invite-contract-threehour-new.test.cjs:15:1
+✖ contradictory HTTP denial with ok true never releases the intent (1.793232ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:8:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/invite-contract-threehour-new.test.cjs:15:183)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

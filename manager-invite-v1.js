@@ -60,6 +60,7 @@ const browserJs = `
   if (typeof window !== 'undefined') window.addEventListener('pagehide', () => { pageActive = false; generation += 1; });
   const readToken = () => { try { return sessionStorage.getItem(TOKEN_KEY) || ''; } catch (_) { return ''; } };
   const needsReview = (stayId) => { try { return sessionStorage.getItem(REVIEW_KEY + ':' + stayId) === '1'; } catch (_) { return true; } };
+  const clearIntent = stayId => { try { sessionStorage.removeItem(REVIEW_KEY + ':' + stayId); return sessionStorage.getItem(REVIEW_KEY + ':' + stayId) === null; } catch (_) { return false; } };
   function showReview(stayId, button, action) {
     try { sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1'); } catch (_) {}
     button.disabled = true;
@@ -136,8 +137,12 @@ const browserJs = `
 
     let response;
     let body = null;
+    const controller = new AbortController();
+    let timer;
+    const deadline = new Promise((_, reject) => { timer = setTimeout(() => { controller.abort(); reject(new Error('INVITE_DEADLINE')); }, 8000); });
     try {
-      response = await fetch(BACKEND_INVITE_URL, {
+      const work = fetch(BACKEND_INVITE_URL, {
+        signal: controller.signal,
         method: 'POST',
         mode: 'cors',
         cache: 'no-store',
@@ -147,12 +152,12 @@ const browserJs = `
           Accept: 'application/json'
         },
         body: JSON.stringify({ stay_id: stayId })
-      });
-      try { body = await response.json(); } catch (_) {}
+      }).then(async response => ({response, body:await response.json()}));
+      ({response,body} = await Promise.race([work,deadline]));
     } catch (_) {
       showReview(stayId, button, action);
       return;
-    }
+    } finally { clearTimeout(timer); }
 
     if (!current()) { showReview(stayId, button, action); return; }
 
@@ -162,9 +167,8 @@ const browserJs = `
       return;
     }
     if (!response.ok || !body || body.ok !== true) {
-      if (!knownPreDispatchDenial(response.status, body.error)) { showReview(stayId, button, action); return; }
-      try { sessionStorage.removeItem(REVIEW_KEY + ':' + stayId); }
-      catch (_) { showReview(stayId, button, action); return; }
+      if (body.ok !== false || !knownPreDispatchDenial(response.status, body.error)) { showReview(stayId, button, action); return; }
+      if (!clearIntent(stayId)) { showReview(stayId, button, action); return; }
       button.disabled = false;
       button.textContent = 'Enviar invitación';
       const message = document.createElement('span');
@@ -174,13 +178,13 @@ const browserJs = `
       return;
     }
 
-    if (!body.invite || !['sent','activated'].includes(body.invite.status) ||
+    if (!body.invite || body.invite.stay_id !== stayId || typeof body.invite.already_sent !== 'boolean' || !['sent','activated'].includes(body.invite.status) ||
         !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(body.invite.id || ''))) {
       showReview(stayId, button, action);
       return;
     }
     button.disabled = true;
-    try { sessionStorage.removeItem(REVIEW_KEY + ':' + stayId); } catch (_) {}
+    if (!clearIntent(stayId)) { showReview(stayId, button, action); return; }
     button.classList.add('is-sent');
     button.textContent = body.invite && body.invite.already_sent
       ? 'Invitación ya procesada'
