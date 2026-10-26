@@ -67,6 +67,9 @@ replaceRequired(
         reject.style.color = '#8a3325';
 
         const reviewKey = 'chebot_manager_request_review_v1:' + item.id;
+        const renderedToken = readSectionToken(), renderedSequence = loadSequence;
+        const currentView = () => renderedToken && readSectionToken() === renderedToken && renderedSequence === loadSequence &&
+          !document.body.classList.contains('manager-auth-pending');
         const reviewBlocked = () => { try { return sessionStorage.getItem(reviewKey) === '1'; } catch (_) { return true; } };
         if (reviewBlocked()) {
           approve.disabled = true; reject.disabled = true;
@@ -75,7 +78,7 @@ replaceRequired(
           decision.appendChild(review);
         }
         const runDecision = async (decisionValue) => {
-          if (approve.disabled || reject.disabled || reviewBlocked()) return;
+          if (approve.disabled || reject.disabled || reviewBlocked() || !currentView()) return;
           let requestStarted = false;
           let responseReceived = false;
           let decisionConfirmed = false;
@@ -83,13 +86,14 @@ replaceRequired(
           let intentRecorded = false;
           const verb = decisionValue === 'approved' ? 'aprobar' : 'rechazar';
           if (!window.confirm('¿Confirmás ' + verb + ' esta solicitud?')) return;
+          if (!currentView()) return;
 
           approve.disabled = true;
           reject.disabled = true;
 
           try {
             const accessToken = readSectionToken();
-            if (!accessToken || document.body.classList.contains('manager-auth-pending')) {
+            if (!accessToken || accessToken !== renderedToken || !currentView()) {
               throw new Error('AUTH_REQUIRED');
             }
             const actionSequence = loadSequence;
@@ -137,20 +141,27 @@ replaceRequired(
             }
             if (!response.ok || !body || body.ok !== true || body.reconciliation_required === true) {
               const preDispatchCodes = ['AUTH_HEADER_REQUIRED','AUTH_TOKEN_INVALID','MANAGER_ACCESS_DENIED','MANAGER_PERMISSION_DENIED','CORS_ORIGIN_NOT_ALLOWED','REQUEST_ID_INVALID','INVALID_REQUEST_DECISION','INVALID_APPROVED_VALUE','INVALID_REQUEST_DECISION_SUMMARY','INVALID_APPROVED_AT_TIME','INVALID_APPROVED_UNTIL','RESOURCE_OUT_OF_SCOPE'];
-              const knownDenial = [400,401,403,404,405].includes(response.status) && body && body.ok === false && preDispatchCodes.includes(body.error);
+              const knownDenial = body && body.ok === false && body.reconciliation_required !== true &&
+                (([400,401,403,404,405].includes(response.status) && preDispatchCodes.includes(body.error)) ||
+                 response.status === 503 && body.error === 'MANAGER_OPERATIONS_NOT_RELEASED');
               reconciliationRequired = !knownDenial || body.reconciliation_required === true;
               const code = body && body.error ? String(body.error) : 'REQUEST_DECISION_FAILED';
               throw new Error(code);
             }
 
-            if (!body.decision || body.decision.request_id !== item.id ||
-                body.decision.resulting_status !== decisionValue) {
+            const receipt = body.decision;
+            if (!receipt || Array.isArray(receipt) || Object.keys(receipt).sort().join('|') !== 'effective_time|request_id|resulting_status|stay_updated' ||
+                receipt.request_id !== item.id || receipt.resulting_status !== decisionValue || typeof receipt.stay_updated !== 'boolean' ||
+                receipt.effective_time !== null && (typeof receipt.effective_time !== 'string' || !Number.isFinite(Date.parse(receipt.effective_time)))) {
               reconciliationRequired = true;
               throw new Error('REQUEST_DECISION_RESPONSE_INVALID');
             }
             decisionConfirmed = true;
             const refreshed = await loadManagerRequests(accessToken);
-            if (readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+            if (actionSequence !== loadSequence || !currentView()) return;
+            const matching = Array.isArray(refreshed) ? refreshed.filter(row => row.id === item.id) : [];
+            if (matching.length !== 1 || matching[0].property_id !== item.property_id || matching[0].stay_id !== item.stay_id ||
+                matching[0].status !== decisionValue) throw new Error('REQUEST_REFRESH_UNCONFIRMED');
             renderRequests(refreshed);
           } catch (error) {
             if (error && error.message === 'REQUEST_INTENT_UNAVAILABLE') {
@@ -180,6 +191,7 @@ replaceRequired(
             reject.disabled = false;
             const explanations = {
               AUTH_REQUIRED: 'La sesión venció. Volvé a iniciar sesión.',
+              MANAGER_OPERATIONS_NOT_RELEASED: 'La operación sigue pausada. No se ejecutó ninguna decisión. Consultá a Che Vení antes de continuar.',
               MANAGER_PERMISSION_DENIED: 'No tenés permiso para decidir esta solicitud. Consultá al manager principal.',
               GUEST_RUNTIME_AUTHORITY_REQUIRED: 'La solicitud está pausada hasta validar la autorización del huésped.',
               INVALID_EARLY_CHECKIN_TIME: 'La hora indicada no adelanta el ingreso. Revisá el horario.',

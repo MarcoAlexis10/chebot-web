@@ -1,0 +1,19 @@
+{
+  "new_unique_cases": 9,
+  "before": {
+    "passed": 1,
+    "failed": 8
+  },
+  "after": {
+    "passed": 9,
+    "failed": 0
+  },
+  "scope": "Actual generated requests base and action scripts in VM with fictional DOM/storage/transport and stale lifecycle events.",
+  "limits": [
+    "Not native/managed permission validation",
+    "Local review marker does not supply server or cross-device idempotency",
+    "No actual manager, guest, or notifications"
+  ],
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}

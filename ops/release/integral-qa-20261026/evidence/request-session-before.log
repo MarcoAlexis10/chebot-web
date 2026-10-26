@@ -1,0 +1,155 @@
+✖ a rendered request cannot dispatch using a replacement manager session (21.704587ms)
+✖ a request button detached by pagehide cannot dispatch on the old render generation (3.95226ms)
+✖ session replacement while the confirmation dialog is open is checked before dispatch (3.316093ms)
+✖ a late fresh list after committed decision cannot repaint a page hidden in the meantime (3.399136ms)
+✖ malformed decision fields cannot trigger a refresh or certify success (4.361289ms)
+✖ a fresh list with another property or contradictory status is not the decision confirmation (3.1539ms)
+✔ exact typed receipt and matching fresh scope preserve approve and reject flows (5.854023ms)
+✖ auth denial clears rendered private request details before another action (3.457608ms)
+✖ the exact immutable request hold leaves no false pending-decision marker (2.841353ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 1
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 162.629263
+
+✖ failing tests:
+
+test at web/qa/security/request-session-integral-new.test.cjs:10:1
+✖ a rendered request cannot dispatch using a replacement manager session (21.704587ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:10:228)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-session-integral-new.test.cjs:11:1
+✖ a request button detached by pagehide cannot dispatch on the old render generation (3.95226ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:11:214)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-session-integral-new.test.cjs:12:1
+✖ session replacement while the confirmation dialog is open is checked before dispatch (3.316093ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:12:251)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-session-integral-new.test.cjs:13:1
+✖ a late fresh list after committed decision cannot repaint a page hidden in the meantime (3.399136ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:13:440)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-session-integral-new.test.cjs:14:1
+✖ malformed decision fields cannot trigger a refresh or certify success (4.361289ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:14:359)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-session-integral-new.test.cjs:15:1
+✖ a fresh list with another property or contradictory status is not the decision confirmation (3.1539ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:15:476)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-session-integral-new.test.cjs:17:1
+✖ auth denial clears rendered private request details before another action (3.457608ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:17:207)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-session-integral-new.test.cjs:18:1
+✖ the exact immutable request hold leaves no false pending-decision marker (2.841353ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-session-integral-new.test.cjs:18:278)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -224,6 +224,7 @@ const browserJs = `
     if (!panelVisible || !accessToken) {
       lastLoadedToken = null;
       ++loadSequence;
+      list.replaceChildren();
       return;
     }
 
@@ -259,7 +260,7 @@ const browserJs = `
   }
 
   // Invalidate before the browser can suspend observer delivery into BFCache.
-  window.addEventListener('pagehide', () => { ++loadSequence; lastLoadedToken = null; });
+  window.addEventListener('pagehide', () => { ++loadSequence; lastLoadedToken = null; list.replaceChildren(); });
   window.addEventListener('pageshow', maybeLoadRequests);
   maybeLoadRequests();
 })();
