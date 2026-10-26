@@ -1,0 +1,5 @@
+3b8e5768a955154dc793e38da0a4bdaa7f71887169462e214b227deeb0d98a21  manager-invite-v1.js
+e69bc970c854fe8857e43b72275ca404babdba61414a39a71ea256d82a499710  ops/release/asus-wsl-prep-20261026/evidence/invite-session-after.tap
+82cf68b3957556d2d0df72b871e1d164e91f678966d1b2d88f82a4cf57214e05  ops/release/asus-wsl-prep-20261026/evidence/invite-session-before.tap
+5e0793f5455b9df4dfa367e1f35ce2db58f9e9ce2824befdc2773a56ac5bff04  ops/release/asus-wsl-prep-20261026/evidence/invite-session-results.json
+6c9667392c035ff06cd0a81912ca17065679243cd4686122517d182baf00b8cb  qa/security/invite-session-asusprep-delta.test.cjs

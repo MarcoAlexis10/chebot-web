@@ -1,0 +1,37 @@
+{
+  "baseCommit": "ad27d89084a844c0e5257c12ae3bce56b9d604c0",
+  "verifiedCommit": "b7b90369ba54b59ca9642d06975f492efec4a38a",
+  "files": [
+    {
+      "path": ".github/CONCIERGE-BETA-PREVIEW-RELEASE-CHECK-2026-10-10.md",
+      "baseBlob": "24c3da769ba9724389185208020b875b9b925c6a",
+      "publishedBlob": "24c3da769ba9724389185208020b875b9b925c6a",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "baseBlob": "9540d3c50339b976e6fff19acd8283037aa000e1",
+      "publishedBlob": "9540d3c50339b976e6fff19acd8283037aa000e1",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "baseBlob": "6488eabdb021f61aba39ee9e45e596cdbc3ee487",
+      "publishedBlob": "6488eabdb021f61aba39ee9e45e596cdbc3ee487",
+      "unchanged": true
+    },
+    {
+      "path": "manager-legal-publication-gate-v1.cjs",
+      "baseBlob": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1",
+      "publishedBlob": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1",
+      "unchanged": true
+    },
+    {
+      "path": "vercel.json",
+      "baseBlob": "620ee85530ae3a417ee925e0f81e347a1dbec399",
+      "publishedBlob": "620ee85530ae3a417ee925e0f81e347a1dbec399",
+      "unchanged": true
+    }
+  ],
+  "allUnchanged": true
+}

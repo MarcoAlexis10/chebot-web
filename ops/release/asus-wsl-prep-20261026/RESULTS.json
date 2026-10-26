@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-26",
+  "branch": "qa/cheveni-release-20261025",
+  "startCommit": "ad27d89084a844c0e5257c12ae3bce56b9d604c0",
+  "functionalCommit": "b7b90369ba54b59ca9642d06975f492efec4a38a",
+  "newUniqueTests": 9,
+  "passed": 9,
+  "failed": 0,
+  "historicalSuitesRepeated": false,
+  "prior33Repeated": false,
+  "asusValidated": false,
+  "nativeCasesExecuted": 0,
+  "realMessages": 0,
+  "commercialHoldReleased": false,
+  "decision": "NO-GO"
+}

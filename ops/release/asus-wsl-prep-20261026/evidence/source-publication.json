@@ -1,0 +1,44 @@
+{
+  "repository": "MarcoAlexis10/chebot-web",
+  "baseCommit": "ad27d89084a844c0e5257c12ae3bce56b9d604c0",
+  "verifiedCommit": "b7b90369ba54b59ca9642d06975f492efec4a38a",
+  "allMatch": true,
+  "files": [
+    {
+      "path": "manager-invite-v1.js",
+      "blob": "4cd03c5bddfe4b861588ff91590bd287035495f8",
+      "sha256": "3b8e5768a955154dc793e38da0a4bdaa7f71887169462e214b227deeb0d98a21",
+      "publishedBlob": "4cd03c5bddfe4b861588ff91590bd287035495f8",
+      "matches": true
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-after.tap",
+      "blob": "6ad6a4f9951db34b6fb5588ad1c382b360951113",
+      "sha256": "e69bc970c854fe8857e43b72275ca404babdba61414a39a71ea256d82a499710",
+      "publishedBlob": "6ad6a4f9951db34b6fb5588ad1c382b360951113",
+      "matches": true
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-before.tap",
+      "blob": "a458c9d33ff384c9aea850a495d73812c0b86e0d",
+      "sha256": "82cf68b3957556d2d0df72b871e1d164e91f678966d1b2d88f82a4cf57214e05",
+      "publishedBlob": "a458c9d33ff384c9aea850a495d73812c0b86e0d",
+      "matches": true
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-results.json",
+      "blob": "899d6d757657b121a78b37a1a6cc3a86f7c244f2",
+      "sha256": "5e0793f5455b9df4dfa367e1f35ce2db58f9e9ce2824befdc2773a56ac5bff04",
+      "publishedBlob": "899d6d757657b121a78b37a1a6cc3a86f7c244f2",
+      "matches": true
+    },
+    {
+      "path": "qa/security/invite-session-asusprep-delta.test.cjs",
+      "blob": "d75d855ffbdd66b0326cda54dd2b53b820658f5d",
+      "sha256": "6c9667392c035ff06cd0a81912ca17065679243cd4686122517d182baf00b8cb",
+      "publishedBlob": "d75d855ffbdd66b0326cda54dd2b53b820658f5d",
+      "matches": true
+    }
+  ],
+  "scope": "Local-to-immutable-GitHub-blob comparison; no runtime or service test"
+}
