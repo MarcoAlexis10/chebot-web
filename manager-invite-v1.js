@@ -55,7 +55,11 @@ const browserJs = `
   const BACKEND_INVITE_URL = ${JSON.stringify(config.apiUrl('invites/send'))};
   const invitables = new Set(['scheduled', 'active']);
   const REVIEW_KEY = 'chebot_manager_invite_review_v1';
-  const needsReview = (stayId) => sessionStorage.getItem(REVIEW_KEY + ':' + stayId) === '1';
+  let pageActive = true;
+  let generation = 0;
+  if (typeof window !== 'undefined') window.addEventListener('pagehide', () => { pageActive = false; generation += 1; });
+  const readToken = () => { try { return sessionStorage.getItem(TOKEN_KEY) || ''; } catch (_) { return ''; } };
+  const needsReview = (stayId) => { try { return sessionStorage.getItem(REVIEW_KEY + ':' + stayId) === '1'; } catch (_) { return true; } };
   function showReview(stayId, button, action) {
     try { sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1'); } catch (_) {}
     button.disabled = true;
@@ -88,17 +92,35 @@ const browserJs = `
     return messages[String(code || '')] || 'No pude confirmar el envío. Revisá su estado con soporte antes de intentar otra acción.';
   }
 
-  async function sendInvite(stayId, button, action) {
+  function knownPreDispatchDenial(status, code) {
+    const codes = {
+      400: ['INVALID_JSON','INVALID_BODY','INVITE_OR_STAY_ID_REQUIRED','INVITE_ID_INVALID'],
+      401: ['AUTH_HEADER_REQUIRED','AUTH_TOKEN_INVALID'],
+      403: ['CORS_ORIGIN_NOT_ALLOWED','MANAGER_ACCESS_DENIED','INVITE_SEND_OWNER_ONLY_BETA','INVITE_OUT_OF_SCOPE'],
+      404: ['STAY_NOT_FOUND','INVITE_NOT_FOUND'],
+      409: ['PRIMARY_GUEST_NOT_FOUND','INVITE_NOT_SENDABLE','INVITE_EXPIRY_UNVERIFIED','INVITE_EXPIRED','GUEST_NOT_NOTIFIABLE','GUEST_NAME_REQUIRED','STAY_NOT_INVITABLE','WHATSAPP_CHANNEL_NOT_READY','INVITE_TEMPLATE_DATA_INCOMPLETE'],
+      503: ['INVITE_PRIVACY_AUTHORITY_REQUIRED','INVITE_PRIVACY_AUTHORITY_UNAVAILABLE','GUEST_INVITE_PRIVACY_HOLD']
+    };
+    return Boolean(codes[status] && codes[status].includes(code));
+  }
+
+  async function sendInvite(stayId, button, action, binding) {
     if (button.disabled || needsReview(stayId)) return;
-    const accessToken = sessionStorage.getItem(TOKEN_KEY);
-    if (!accessToken) {
+    const current = () => pageActive && generation === binding.generation && readToken() === binding.token && Boolean(binding.token)
+      && binding.row.isConnected !== false && binding.row.dataset.stayId === stayId
+      && binding.row.dataset.stayStatus === binding.status && binding.row.dataset.stayCheckout === binding.checkout
+      && invitables.has(binding.status) && Date.parse(binding.checkout) > Date.now()
+      && !document.body?.classList?.contains('manager-auth-pending');
+    if (!current()) {
+      button.disabled = true;
       action.replaceChildren();
       const message = document.createElement('span');
       message.className = 'manager-invite-error';
-      message.textContent = 'La sesión venció. Volvé a iniciar sesión.';
+      message.textContent = 'La sesión o la estadía cambió. Recargá y verificá el acceso antes de continuar.';
       action.appendChild(message);
       return;
     }
+    const accessToken = binding.token;
 
     button.disabled = true;
     button.textContent = 'Enviando…';
@@ -106,7 +128,10 @@ const browserJs = `
     // Persist BEFORE POST: reload/navigation may destroy this JavaScript context
     // after the server accepted the request but before its receipt arrives.
     // This tab-local marker supplements, never replaces, the SQL reservation.
-    try { sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1'); }
+    try {
+      sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1');
+      if (sessionStorage.getItem(REVIEW_KEY + ':' + stayId) !== '1') throw new Error('INVITE_INTENT_NOT_PERSISTED');
+    }
     catch (_) { showReview(stayId, button, action); return; }
 
     let response;
@@ -129,12 +154,15 @@ const browserJs = `
       return;
     }
 
+    if (!current()) { showReview(stayId, button, action); return; }
+
     if (!body || body.reconciliation_required === true || body.accepted_by_provider === true ||
         response.status >= 500 && !['INVITE_PRIVACY_AUTHORITY_REQUIRED','INVITE_PRIVACY_AUTHORITY_UNAVAILABLE','GUEST_INVITE_PRIVACY_HOLD'].includes(body.error)) {
       showReview(stayId, button, action);
       return;
     }
     if (!response.ok || !body || body.ok !== true) {
+      if (!knownPreDispatchDenial(response.status, body.error)) { showReview(stayId, button, action); return; }
       try { sessionStorage.removeItem(REVIEW_KEY + ':' + stayId); }
       catch (_) { showReview(stayId, button, action); return; }
       button.disabled = false;
@@ -142,12 +170,12 @@ const browserJs = `
       const message = document.createElement('span');
       message.className = 'manager-invite-error';
       message.textContent = errorCopy(body && body.error);
-      action.replaceChildren(message);
+      action.replaceChildren(button, message);
       return;
     }
 
     if (!body.invite || !['sent','activated'].includes(body.invite.status) ||
-        !/^[0-9a-f]{8}-[0-9a-f-]{27,28}$/i.test(String(body.invite.id || ''))) {
+        !/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(body.invite.id || ''))) {
       showReview(stayId, button, action);
       return;
     }
@@ -179,7 +207,8 @@ const browserJs = `
       button.className = 'manager-invite-button';
       button.textContent = 'Enviar invitación';
       button.setAttribute('aria-label', 'Enviar invitación de Che Vení Concierge');
-      button.addEventListener('click', () => sendInvite(stayId, button, action));
+      const binding = {row, token: readToken(), generation, status: stayStatus, checkout: String(row.dataset.stayCheckout || '')};
+      button.addEventListener('click', () => sendInvite(stayId, button, action, binding));
       if (needsReview(stayId)) { showReview(stayId, button, action); row.appendChild(action); return; }
 
       action.appendChild(button);

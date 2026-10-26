@@ -1,0 +1,16 @@
+{
+  "newUniqueTests": 9,
+  "before": {
+    "passed": 1,
+    "failed": 8
+  },
+  "after": {
+    "passed": 9,
+    "failed": 0
+  },
+  "scope": "Actual invitation generator in VM; fictional session/storage/time/transport. No provider sends.",
+  "historicalSuitesRepeated": false,
+  "realMessages": 0,
+  "admissionReleased": false,
+  "decision": "NO-GO"
+}

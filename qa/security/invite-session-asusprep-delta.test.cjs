@@ -1,0 +1,23 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const TOKEN='chebot_manager_preview_access_token',STAY='00000001-0000-4000-8000-000000000000',INVITE='00000002-0000-4000-8000-000000000000',KEY='chebot_manager_invite_review_v1:'+STAY;
+function generated(){let js;vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../../manager-invite-v1.js'),'utf8'),{__dirname:'/fictional',console:{log(){}},require:n=>n==='path'?path:n==='./manager-build-config.cjs'?{managerBuildConfig:()=>({apiUrl:()=> 'https://fixture.example.invalid/invite'})}:{existsSync:()=>true,readFileSync:p=>p.endsWith('manager-auth.js')?"stays.forEach((stay) => {\n      const row = document.createElement('article');\n      row.className = 'row';":'<head></head><body></body>',writeFileSync:(p,text)=>{if(p.endsWith('manager-invite.js'))js=text;}}});return js;}
+const js=generated(),reply=(body,status=200)=>({status,ok:status>=200&&status<300,json:async()=>body});
+function harness({silentDrop=false,readFails=false,deferred=false}={}){
+ const storage=new Map([[TOKEN,'FICTIONAL_SESSION_A']]),events=new Map();let button,resolve,calls=0,now=Date.parse('2026-10-26T14:00:00Z');
+ const element=()=>({disabled:false,isConnected:true,dataset:{},children:[],classList:{add(){}},setAttribute(){},appendChild(x){this.children.push(x);},replaceChildren(...xs){this.children=xs;},addEventListener(_n,fn){this.click=fn;}});
+ const row=Object.assign(element(),{dataset:{stayId:STAY,stayStatus:'active',stayCheckout:'2026-10-26T15:00:00Z'}});
+ class Clock extends Date{static now(){return now;}}
+ const context={Date:Clock,window:{addEventListener:(k,f)=>events.set(k,f)},MutationObserver:class{observe(){}},document:{body:{classList:{contains:()=>false}},querySelector:()=>element(),querySelectorAll:()=>[row],createElement:name=>{const x=element();if(name==='button')button=x;return x;}},
+ sessionStorage:{getItem:k=>{if(readFails&&k.startsWith('chebot_manager_invite_review'))throw Error('FICTIONAL_STORAGE');return storage.get(k)||null;},setItem:(k,v)=>{if(!silentDrop)storage.set(k,v);},removeItem:k=>storage.delete(k)},fetch:()=>{calls++;return deferred?new Promise(r=>resolve=r):Promise.resolve(reply({ok:true,invite:{id:INVITE,status:"sent",already_sent:false}}));}};
+ vm.runInNewContext(js,context);
+ return {button,row,storage,calls:()=>calls,respond:(body,status)=>resolve(reply(body,status)),emit:k=>events.get(k)?.(),advance:()=>{now=Date.parse('2026-10-26T15:00:01Z');}};
+}
+test('silent invite marker loss prevents POST',async()=>{const h=harness({silentDrop:true});await h.button.click();assert.equal(h.calls(),0);assert.equal(h.button.disabled,true);});
+test('a stale invite row cannot use a replacement manager session',async()=>{const h=harness();h.storage.set(TOKEN,'FICTIONAL_SESSION_B');await h.button.click();assert.equal(h.calls(),0);});
+test('late invite acknowledgement after pagehide retains reconciliation intent',async()=>{const h=harness({deferred:true}),pending=h.button.click();h.emit('pagehide');h.respond({ok:true,invite:{id:INVITE,status:'sent',already_sent:false}});await pending;assert.equal(h.storage.get(KEY),'1');assert.notEqual(h.button.textContent,'Envío registrado');});
+test('an unclassified invite 4xx cannot release the replay marker',async()=>{const h=harness({deferred:true}),pending=h.button.click();h.respond({ok:false,error:'FICTIONAL_UNKNOWN'},403);await pending;assert.equal(h.storage.get(KEY),'1');assert.equal(h.button.disabled,true);});
+test('checkout crossed after render blocks invite dispatch',async()=>{const h=harness();h.advance();await h.button.click();assert.equal(h.calls(),0);});
+test('unavailable invite marker reads fail closed during rendering',async()=>{const h=harness({readFails:true});await h.button.click();assert.equal(h.calls(),0);assert.equal(h.button.disabled,true);});
+test('a recycled invite row cannot dispatch the previously captured stay',async()=>{const h=harness();h.row.dataset.stayId='00000003-0000-4000-8000-000000000000';await h.button.click();assert.equal(h.calls(),0);});
+test('malformed invite UUID acknowledgement remains uncertain',async()=>{const h=harness({deferred:true}),pending=h.button.click();h.respond({ok:true,invite:{id:'00000001-'+'0'.repeat(27),status:'sent'}});await pending;assert.equal(h.storage.get(KEY),'1');});
+test('valid same-session invite receipt still records the send',async()=>{const h=harness({deferred:true}),pending=h.button.click();h.respond({ok:true,invite:{id:INVITE,status:'sent',already_sent:false}});await pending;assert.equal(h.calls(),1);assert.equal(h.storage.has(KEY),false);assert.equal(h.button.textContent,'Envío registrado');assert.equal(h.button.disabled,true);});

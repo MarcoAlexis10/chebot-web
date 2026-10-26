@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: silent invite marker loss prevents POST
+ok 1 - silent invite marker loss prevents POST
+  ---
+  duration_ms: 3.327414
+  type: 'test'
+  ...
+# Subtest: a stale invite row cannot use a replacement manager session
+ok 2 - a stale invite row cannot use a replacement manager session
+  ---
+  duration_ms: 0.985378
+  type: 'test'
+  ...
+# Subtest: late invite acknowledgement after pagehide retains reconciliation intent
+ok 3 - late invite acknowledgement after pagehide retains reconciliation intent
+  ---
+  duration_ms: 0.867079
+  type: 'test'
+  ...
+# Subtest: an unclassified invite 4xx cannot release the replay marker
+ok 4 - an unclassified invite 4xx cannot release the replay marker
+  ---
+  duration_ms: 0.685986
+  type: 'test'
+  ...
+# Subtest: checkout crossed after render blocks invite dispatch
+ok 5 - checkout crossed after render blocks invite dispatch
+  ---
+  duration_ms: 0.9339
+  type: 'test'
+  ...
+# Subtest: unavailable invite marker reads fail closed during rendering
+ok 6 - unavailable invite marker reads fail closed during rendering
+  ---
+  duration_ms: 0.793989
+  type: 'test'
+  ...
+# Subtest: a recycled invite row cannot dispatch the previously captured stay
+ok 7 - a recycled invite row cannot dispatch the previously captured stay
+  ---
+  duration_ms: 0.720357
+  type: 'test'
+  ...
+# Subtest: malformed invite UUID acknowledgement remains uncertain
+ok 8 - malformed invite UUID acknowledgement remains uncertain
+  ---
+  duration_ms: 0.968232
+  type: 'test'
+  ...
+# Subtest: valid same-session invite receipt still records the send
+ok 9 - valid same-session invite receipt still records the send
+  ---
+  duration_ms: 2.284339
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 114.888482
