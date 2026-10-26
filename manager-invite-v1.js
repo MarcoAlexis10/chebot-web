@@ -57,7 +57,7 @@ const browserJs = `
   const REVIEW_KEY = 'chebot_manager_invite_review_v1';
   const needsReview = (stayId) => sessionStorage.getItem(REVIEW_KEY + ':' + stayId) === '1';
   function showReview(stayId, button, action) {
-    sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1');
+    try { sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1'); } catch (_) {}
     button.disabled = true;
     button.textContent = 'Resultado en revisión';
     const message = document.createElement('span');
@@ -103,6 +103,12 @@ const browserJs = `
     button.disabled = true;
     button.textContent = 'Enviando…';
 
+    // Persist BEFORE POST: reload/navigation may destroy this JavaScript context
+    // after the server accepted the request but before its receipt arrives.
+    // This tab-local marker supplements, never replaces, the SQL reservation.
+    try { sessionStorage.setItem(REVIEW_KEY + ':' + stayId, '1'); }
+    catch (_) { showReview(stayId, button, action); return; }
+
     let response;
     let body = null;
     try {
@@ -129,6 +135,8 @@ const browserJs = `
       return;
     }
     if (!response.ok || !body || body.ok !== true) {
+      try { sessionStorage.removeItem(REVIEW_KEY + ':' + stayId); }
+      catch (_) { showReview(stayId, button, action); return; }
       button.disabled = false;
       button.textContent = 'Enviar invitación';
       const message = document.createElement('span');
@@ -144,6 +152,7 @@ const browserJs = `
       return;
     }
     button.disabled = true;
+    try { sessionStorage.removeItem(REVIEW_KEY + ':' + stayId); } catch (_) {}
     button.classList.add('is-sent');
     button.textContent = body.invite && body.invite.already_sent
       ? 'Invitación ya procesada'

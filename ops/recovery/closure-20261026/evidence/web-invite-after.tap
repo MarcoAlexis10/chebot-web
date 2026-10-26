@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: invitation outcome is durably marked uncertain before dispatch can survive a reload
+ok 1 - invitation outcome is durably marked uncertain before dispatch can survive a reload
+  ---
+  duration_ms: 3.20662
+  type: 'test'
+  ...
+# Subtest: an unavailable local uncertainty marker blocks invitation dispatch
+ok 2 - an unavailable local uncertainty marker blocks invitation dispatch
+  ---
+  duration_ms: 1.27125
+  type: 'test'
+  ...
+# Subtest: invitation marker disposition follows known pre-send hold
+ok 3 - invitation marker disposition follows known pre-send hold
+  ---
+  duration_ms: 1.548919
+  type: 'test'
+  ...
+# Subtest: invitation marker disposition follows validated sent receipt
+ok 4 - invitation marker disposition follows validated sent receipt
+  ---
+  duration_ms: 1.172514
+  type: 'test'
+  ...
+# Subtest: invitation marker disposition follows unknown acceptance
+ok 5 - invitation marker disposition follows unknown acceptance
+  ---
+  duration_ms: 1.025797
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 90.241869
