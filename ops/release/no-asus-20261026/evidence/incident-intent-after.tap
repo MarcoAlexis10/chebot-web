@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: pending incident state intent survives reload and blocks another action
+ok 1 - pending incident state intent survives reload and blocks another action
+  ---
+  duration_ms: 22.662049
+  type: 'test'
+  ...
+# Subtest: pending learning proposal intent survives reload without another POST
+ok 2 - pending learning proposal intent survives reload without another POST
+  ---
+  duration_ms: 2.521128
+  type: 'test'
+  ...
+# Subtest: storage failure prevents an incident POST instead of losing its replay guard
+ok 3 - storage failure prevents an incident POST instead of losing its replay guard
+  ---
+  duration_ms: 1.253122
+  type: 'test'
+  ...
+# Subtest: known state receipt plus matching fresh read permits the next distinct action
+ok 4 - known state receipt plus matching fresh read permits the next distinct action
+  ---
+  duration_ms: 1.481147
+  type: 'test'
+  ...
+# Subtest: a stale read after committed state does not unlock an old action
+ok 5 - a stale read after committed state does not unlock an old action
+  ---
+  duration_ms: 1.076506
+  type: 'test'
+  ...
+# Subtest: pagehide during state POST withholds late refresh and preserves review intent
+ok 6 - pagehide during state POST withholds late refresh and preserves review intent
+  ---
+  duration_ms: 1.323139
+  type: 'test'
+  ...
+# Subtest: a stale incident button cannot dispatch with a replacement session token
+ok 7 - a stale incident button cannot dispatch with a replacement session token
+  ---
+  duration_ms: 4.073303
+  type: 'test'
+  ...
+# Subtest: unknown learning outcome after state commit remains blocked
+ok 8 - unknown learning outcome after state commit remains blocked
+  ---
+  duration_ms: 2.078179
+  type: 'test'
+  ...
+# Subtest: another property with the same knowledge key is not this incident learning receipt
+ok 9 - another property with the same knowledge key is not this incident learning receipt
+  ---
+  duration_ms: 1.223748
+  type: 'test'
+  ...
+# Subtest: a draft for another incident cannot suppress this incident learning action
+ok 10 - a draft for another incident cannot suppress this incident learning action
+  ---
+  duration_ms: 1.076816
+  type: 'test'
+  ...
+# Subtest: a typed proposal plus exact fresh property/incident draft clears the local intent
+ok 11 - a typed proposal plus exact fresh property/incident draft clears the local intent
+  ---
+  duration_ms: 1.705676
+  type: 'test'
+  ...
+# Subtest: a positive proposal alone cannot clear intent without an exact fresh draft
+ok 12 - a positive proposal alone cannot clear intent without an exact fresh draft
+  ---
+  duration_ms: 1.309949
+  type: 'test'
+  ...
+# Subtest: ambiguous duplicate knowledge receipts cannot claim a unique proposal
+ok 13 - ambiguous duplicate knowledge receipts cannot claim a unique proposal
+  ---
+  duration_ms: 1.055875
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 179.404921

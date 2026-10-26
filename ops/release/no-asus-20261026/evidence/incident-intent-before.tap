@@ -1,0 +1,268 @@
+TAP version 13
+# Subtest: pending incident state intent survives reload and blocks another action
+not ok 1 - pending incident state intent survives reload and blocks another action
+  ---
+  duration_ms: 24.491432
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:19:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:20:109)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: pending learning proposal intent survives reload without another POST
+not ok 2 - pending learning proposal intent survives reload without another POST
+  ---
+  duration_ms: 2.841642
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:23:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:24:141)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: storage failure prevents an incident POST instead of losing its replay guard
+not ok 3 - storage failure prevents an incident POST instead of losing its replay guard
+  ---
+  duration_ms: 1.795632
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:27:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:28:88)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: known state receipt plus matching fresh read permits the next distinct action
+ok 4 - known state receipt plus matching fresh read permits the next distinct action
+  ---
+  duration_ms: 1.23829
+  type: 'test'
+  ...
+# Subtest: a stale read after committed state does not unlock an old action
+not ok 5 - a stale read after committed state does not unlock an old action
+  ---
+  duration_ms: 1.496851
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:33:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:34:70)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: pagehide during state POST withholds late refresh and preserves review intent
+not ok 6 - pagehide during state POST withholds late refresh and preserves review intent
+  ---
+  duration_ms: 1.799878
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:36:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:37:255)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a stale incident button cannot dispatch with a replacement session token
+not ok 7 - a stale incident button cannot dispatch with a replacement session token
+  ---
+  duration_ms: 1.144599
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:39:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:40:117)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: unknown learning outcome after state commit remains blocked
+not ok 8 - unknown learning outcome after state commit remains blocked
+  ---
+  duration_ms: 2.326454
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:42:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:43:274)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: another property with the same knowledge key is not this incident learning receipt
+not ok 9 - another property with the same knowledge key is not this incident learning receipt
+  ---
+  duration_ms: 1.567367
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:45:1'
+  failureType: 'testCodeFailure'
+  error: 'another property must not suppress this action'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:46:94)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a draft for another incident cannot suppress this incident learning action
+not ok 10 - a draft for another incident cannot suppress this incident learning action
+  ---
+  duration_ms: 4.799659
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:48:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(h.button('Generar propuesta'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:49:175)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a typed proposal plus exact fresh property/incident draft clears the local intent
+not ok 11 - a typed proposal plus exact fresh property/incident draft clears the local intent
+  ---
+  duration_ms: 1.23834
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:51:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:53:78)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a positive proposal alone cannot clear intent without an exact fresh draft
+not ok 12 - a positive proposal alone cannot clear intent without an exact fresh draft
+  ---
+  duration_ms: 0.998588
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:55:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:56:154)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: ambiguous duplicate knowledge receipts cannot claim a unique proposal
+not ok 13 - ambiguous duplicate knowledge receipts cannot claim a unique proposal
+  ---
+  duration_ms: 1.098669
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:58:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(h.button('Generar propuesta'))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-intent-noasus-delta.test.cjs:59:96)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 1
+# fail 12
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 156.546373

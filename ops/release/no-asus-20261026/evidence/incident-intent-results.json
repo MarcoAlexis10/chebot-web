@@ -1,0 +1,27 @@
+{
+  "baseCommit": "ceca956c7e12304337ad986b0b801415e8deb33b",
+  "newUniqueTests": 16,
+  "initialBefore": {
+    "tests": 13,
+    "passed": 1,
+    "failed": 12
+  },
+  "afterMainPassed": 13,
+  "additionalPassed": 3,
+  "finalFailures": 0,
+  "commands": [
+    "node --test --test-reporter=tap qa/security/incident-intent-noasus-delta.test.cjs",
+    "node --test --test-reporter=tap --test-name-pattern=known pre-dispatch incident|unclassified incident|late learning receipt qa/security/incident-intent-noasus-delta.test.cjs"
+  ],
+  "scope": "generated incident module and actions, fictional DOM/storage/transport; marker persisted before both state and learning POST; exact property/incident draft match",
+  "limitations": [
+    "same-tab local storage only",
+    "no durable server or cross-device lock",
+    "unknown outcomes still need operational reconciliation"
+  ],
+  "historicalSuitesRepeated": false,
+  "serviceConnections": 0,
+  "realMessages": 0,
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}

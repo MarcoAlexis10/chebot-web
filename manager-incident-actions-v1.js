@@ -57,35 +57,24 @@ replaceRequired(
           knowledgeBody.ok === true &&
           Array.isArray(knowledgeBody.knowledge)
         ) {
-          const knowledgeByKey = new Map();
-          knowledgeBody.knowledge.forEach((knowledgeItem) => {
-            if (knowledgeItem && knowledgeItem.knowledge_key) {
-              knowledgeByKey.set(String(knowledgeItem.knowledge_key), knowledgeItem);
-            }
-          });
-
           incidents.forEach((incident) => {
             if (!incident || incident.status !== 'learning_pending' || !incident.applied_knowledge) return;
-
-            const applied = incident.applied_knowledge;
-            const key = applied.knowledge_key ? String(applied.knowledge_key) : '';
-            if (!key) return;
-
-            const knowledgeItem = knowledgeByKey.get(key);
-            if (!knowledgeItem) return;
-
-            const appliedVersion = Number(applied.version_number || 0);
-            const visibleVersion = Number(
-              knowledgeItem.version && knowledgeItem.version.version_number
-                ? knowledgeItem.version.version_number
-                : 0
+            const key = incident.applied_knowledge.knowledge_key;
+            // A key/version count from another property or another incident is
+            // not evidence that this incident already has a learning draft.
+            const matches = knowledgeBody.knowledge.filter((item) =>
+              item && item.category === 'incident_protocol' && item.knowledge_key === key &&
+              item.scope_type === 'property' && item.scope && item.scope.type === 'property' &&
+              item.scope.property_id === incident.property_id && item.version &&
+              item.version.status === 'draft' && item.version.source_type === 'learned_from_incident' &&
+              typeof item.version.change_summary === 'string' &&
+              item.version.change_summary.startsWith('incident:' + incident.id + ' |')
             );
-            const currentVersion = Number(knowledgeItem.current_version_number || 0);
-            const versionCount = Number(knowledgeItem.version_count || 0);
-            const newestKnownVersion = Math.max(visibleVersion, currentVersion, versionCount);
-
-            incident.learning_proposal_already_created =
-              appliedVersion > 0 && newestKnownVersion > appliedVersion;
+            incident.learning_proposal_already_created = matches.length === 1;
+            if (matches.length === 1) {
+              incident.learning_visible_item_id = matches[0].id;
+              incident.learning_visible_version_id = matches[0].version.id;
+            }
           });
         }
       } catch (_) {
@@ -240,16 +229,46 @@ replaceRequired(
 
       const availableActions = actionMap[item.status] || [];
       const reviewKey = 'chebot_manager_incident_review_v1:' + item.id;
+      const renderedToken = readSectionToken(), renderedSequence = loadSequence;
       let mutationInFlight = false;
       const reviewNotice = document.createElement('span');
       reviewNotice.className = 'muted';
-      const freezeForReview = () => {
-        sessionStorage.setItem(reviewKey, '1');
-        controls.querySelectorAll('button').forEach((control) => { control.disabled = true; });
-        reviewNotice.textContent = 'Resultado en revisión. No repitas la acción; verificá el registro con soporte.';
-        action.appendChild(reviewNotice);
+      const reviewBlocked = () => { try { return sessionStorage.getItem(reviewKey) === '1'; } catch (_) { return true; } };
+      const currentAttempt = token => token && token === renderedToken && readSectionToken() === token &&
+        renderedSequence === loadSequence && !document.body.classList.contains('manager-auth-pending');
+      const recordIntent = () => {
+        try { sessionStorage.setItem(reviewKey, '1'); if (sessionStorage.getItem(reviewKey) !== '1') throw new Error('NOT_RECORDED'); }
+        catch (_) { throw new Error('INCIDENT_INTENT_UNAVAILABLE'); }
       };
-      if (sessionStorage.getItem(reviewKey) === '1') freezeForReview();
+      const clearIntent = () => {
+        sessionStorage.removeItem(reviewKey);
+        if (sessionStorage.getItem(reviewKey) !== null) throw new Error('INTENT_NOT_CLEARED');
+      };
+      const freeze = message => {
+        mutationInFlight = true;
+        controls.querySelectorAll('button').forEach(control => { control.disabled = true; });
+        reviewNotice.textContent = message; action.appendChild(reviewNotice);
+      };
+      const freezeForReview = () => {
+        try { sessionStorage.setItem(reviewKey, '1'); } catch (_) {}
+        freeze('Resultado en revisión. No repitas la acción; verificá el registro con soporte.');
+      };
+      const freezeBeforeDispatch = () => freeze('No pude preparar la acción de forma segura. No se envió. Cerrá y volvé a abrir esta página antes de continuar.');
+      const knownPreDispatchDenial = (response, body) => {
+        const code = body && (body.error || (body.learning && body.learning.reason));
+        return [400,401,403,404,409].includes(response.status) && body && body.ok === false &&
+          body.reconciliation_required !== true && (!body.learning || body.learning.reconciliation_required !== true) &&
+          ['AUTH_HEADER_REQUIRED','AUTH_TOKEN_INVALID','MANAGER_ACCESS_DENIED','MANAGER_PERMISSION_DENIED','CORS_ORIGIN_NOT_ALLOWED','INCIDENT_ID_INVALID','INVALID_INCIDENT_STATUS','INVALID_INCIDENT_EVENT_SUMMARY','MANAGER_MESSAGE_REQUIRED','MANAGER_MESSAGE_TOO_LONG','RESOURCE_OUT_OF_SCOPE','INCIDENT_NOT_READY_FOR_LEARNING','NO_EXISTING_PROTOCOL_TO_VERSION','NO_MANAGER_RESOLUTION_TO_LEARN'].includes(code);
+      };
+      const receiptId = value => typeof value === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(value);
+      const validLearningReceipt = receipt => receipt && receipt.ok === true && receipt.status === 'draft_created' &&
+        receiptId(receipt.knowledge_item_id) && receiptId(receipt.version_id) &&
+        Number.isSafeInteger(receipt.version_number) && receipt.version_number > 0 && receipt.version_status === 'draft';
+      const confirmedLearning = (rows, receipt) => validLearningReceipt(receipt) && rows.some(row =>
+        row.id === item.id && row.property_id === item.property_id && row.status === 'learning_pending' &&
+        row.learning_proposal_already_created === true && row.learning_visible_item_id === receipt.knowledge_item_id &&
+        row.learning_visible_version_id === receipt.version_id);
+      if (reviewBlocked()) freezeForReview();
 
       const makeButton = (label, nextStatus, eventSummary, danger = false) => {
         const button = document.createElement('button');
@@ -262,11 +281,11 @@ replaceRequired(
         button.style.cursor = 'pointer';
         button.style.background = danger ? '#fff' : '#0f766e';
         button.style.color = danger ? '#8a3325' : '#fff';
-        button.disabled = sessionStorage.getItem(reviewKey) === '1';
+        button.disabled = reviewBlocked();
 
         button.addEventListener('click', async () => {
-          if (button.disabled || mutationInFlight || sessionStorage.getItem(reviewKey) === '1') return;
-          let requestStarted = false, responseReceived = false, mutationConfirmed = false, reconciliationRequired = false;
+          if (button.disabled || mutationInFlight || reviewBlocked()) return;
+          let requestStarted = false, responseReceived = false, mutationConfirmed = false, reconciliationRequired = false, intentRecorded = false;
           let managerMessage = '';
 
           if (nextStatus === '__propose_learning__') {
@@ -280,8 +299,9 @@ replaceRequired(
 
             try {
               const accessToken = readSectionToken();
-              if (!accessToken) throw new Error('AUTH_REQUIRED');
+              if (!currentAttempt(accessToken)) throw new Error('AUTH_REQUIRED');
 
+              recordIntent(); intentRecorded = true;
               requestStarted = true;
               const response = await fetchManager(BACKEND_INCIDENT_STATE_URL, {
                 method: 'POST',
@@ -301,9 +321,10 @@ replaceRequired(
               responseReceived = true;
               let body = null;
               try { body = await response.json(); } catch (_) {}
+              if (!currentAttempt(accessToken)) { reconciliationRequired = true; throw new Error('AUTH_REQUIRED'); }
 
-              if (!response.ok || !body || body.ok !== true || body.reconciliation_required === true || !body.learning || body.learning.ok !== true) {
-                reconciliationRequired = !body || response.ok || body.reconciliation_required === true || response.status >= 500;
+              if (!response.ok || !body || body.ok !== true || body.reconciliation_required === true || !validLearningReceipt(body.learning)) {
+                reconciliationRequired = !knownPreDispatchDenial(response, body);
                 const code =
                   body && body.learning && body.learning.reason
                     ? String(body.learning.reason)
@@ -314,10 +335,15 @@ replaceRequired(
               }
 
               mutationConfirmed = true;
-              window.location.reload();
+              const refreshed = await loadManagerIncidents(accessToken);
+              if (!currentAttempt(accessToken) || !confirmedLearning(refreshed, body.learning)) { freezeForReview(); return; }
+              clearIntent();
+              renderIncidents(refreshed);
               return;
             } catch (error) {
+              if (error && error.message === 'INCIDENT_INTENT_UNAVAILABLE') { freezeBeforeDispatch(); return; }
               if (requestStarted && (!responseReceived || mutationConfirmed || reconciliationRequired)) { freezeForReview(); return; }
+              if (intentRecorded) { try { clearIntent(); } catch (_) { freezeForReview(); return; } }
               mutationInFlight = false;
               buttons.forEach((itemButton) => { itemButton.disabled = false; });
               const code = error && error.message ? String(error.message) : 'Reintentá.';
@@ -367,7 +393,7 @@ replaceRequired(
 
           try {
             const accessToken = readSectionToken();
-            if (!accessToken) throw new Error('AUTH_REQUIRED');
+            if (!currentAttempt(accessToken)) throw new Error('AUTH_REQUIRED');
 
             const payload = {
               incident_id: item.id,
@@ -379,7 +405,8 @@ replaceRequired(
               payload.manager_message = managerMessage;
             }
 
-            requestStarted = true;
+            recordIntent(); intentRecorded = true;
+              requestStarted = true;
             const response = await fetchManager(BACKEND_INCIDENT_STATE_URL, {
               method: 'POST',
               mode: 'cors',
@@ -395,9 +422,10 @@ replaceRequired(
             responseReceived = true;
             let body = null;
             try { body = await response.json(); } catch (_) {}
+              if (!currentAttempt(accessToken)) { reconciliationRequired = true; throw new Error('AUTH_REQUIRED'); }
 
             if (!response.ok || !body || body.ok !== true || body.reconciliation_required === true) {
-              reconciliationRequired = !body || response.ok || body.reconciliation_required === true || response.status >= 500;
+              reconciliationRequired = !knownPreDispatchDenial(response, body);
               const code = body && body.error ? String(body.error) : 'INCIDENT_STATE_CHANGE_FAILED';
               throw new Error(code);
             }
@@ -415,22 +443,19 @@ replaceRequired(
               return;
             }
 
-            if (nextStatus === 'learning_pending') {
-              if (body.learning && body.learning.ok === false) {
-                window.alert(
-                  'La incidencia pasó a Aprendizaje pendiente, pero Che Vení no pudo crear la propuesta automáticamente. ' +
-                  String(body.learning.reason || 'LEARNING_PROPOSAL_FAILED')
-                );
-              }
-              window.location.reload();
-              return;
-            }
-
+            if (nextStatus === 'learning_pending' &&
+                (!body.learning || body.learning.reconciliation_required === true)) { freezeForReview(); return; }
             const refreshed = await loadManagerIncidents(accessToken);
-            if (readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+            if (!currentAttempt(accessToken)) { freezeForReview(); return; }
+            const fresh = refreshed.find(row => row.id === item.id && row.property_id === item.property_id && row.status === nextStatus);
+            if (!fresh || (nextStatus === 'learning_pending' && body.learning.ok === true &&
+                !confirmedLearning(refreshed, body.learning))) { freezeForReview(); return; }
+            clearIntent();
             renderIncidents(refreshed);
           } catch (error) {
-            if (requestStarted && (!responseReceived || mutationConfirmed || reconciliationRequired)) { freezeForReview(); return; }
+            if (error && error.message === 'INCIDENT_INTENT_UNAVAILABLE') { freezeBeforeDispatch(); return; }
+              if (requestStarted && (!responseReceived || mutationConfirmed || reconciliationRequired)) { freezeForReview(); return; }
+              if (intentRecorded) { try { clearIntent(); } catch (_) { freezeForReview(); return; } }
             mutationInFlight = false;
             buttons.forEach((itemButton) => { itemButton.disabled = false; });
             const code = error && error.message ? String(error.message) : 'Reintentá.';
