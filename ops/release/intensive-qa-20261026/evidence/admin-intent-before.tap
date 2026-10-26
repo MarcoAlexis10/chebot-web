@@ -1,0 +1,216 @@
+TAP version 13
+# Subtest: admin issue intent survives reload while acknowledgement is pending
+not ok 1 - admin issue intent survives reload while acknowledgement is pending
+  ---
+  duration_ms: 5.204973
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:14:182)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: admin issue never dispatches if the stored marker cannot be read back
+not ok 2 - admin issue never dispatches if the stored marker cannot be read back
+  ---
+  duration_ms: 2.009806
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:15:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:15:162)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: an uncertain admin issue remains blocked after a new page instance
+not ok 3 - an uncertain admin issue remains blocked after a new page instance
+  ---
+  duration_ms: 2.855904
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:16:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:16:263)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: unclassified admin 4xx retains the durable review marker
+not ok 4 - unclassified admin 4xx retains the durable review marker
+  ---
+  duration_ms: 1.008103
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:17:200)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: admin capability for another origin is never displayed or copied
+not ok 5 - admin capability for another origin is never displayed or copied
+  ---
+  duration_ms: 1.203989
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:18:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'https://other.example.invalid/manager/activar/#invite=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+    - ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'https://other.example.invalid/manager/activar/#invite=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:18:254)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: expired administrative capability never clears intent or appears successful
+not ok 6 - expired administrative capability never clears intent or appears successful
+  ---
+  duration_ms: 1.436159
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:19:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'https://manager.example.invalid/manager/activar/#invite=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+    - ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'https://manager.example.invalid/manager/activar/#invite=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:19:223)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: copy action rechecks the manager session before exposing a prepared capability
+not ok 7 - copy action rechecks the manager session before exposing a prepared capability
+  ---
+  duration_ms: 1.163358
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:20:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:20:258)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a GET started before a pending admin mutation cannot reopen its private view
+not ok 8 - a GET started before a pending admin mutation cannot reopen its private view
+  ---
+  duration_ms: 1.094183
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:21:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:21:351)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a known pre-dispatch admin gate denial clears only its own local intent
+not ok 9 - a known pre-dispatch admin gate denial clears only its own local intent
+  ---
+  duration_ms: 1.001203
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:22:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/admin-intent-intensive-new.test.cjs:22:282)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a valid bound capability preserves the existing single-display flow
+ok 10 - a valid bound capability preserves the existing single-display flow
+  ---
+  duration_ms: 1.071619
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 1
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 127.12873

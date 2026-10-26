@@ -68,7 +68,10 @@ a{color:#0f766e}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center
 (function(){
 'use strict';
 var TOKEN_KEY='chebot_manager_preview_access_token';
-var token=sessionStorage.getItem(TOKEN_KEY)||'';
+var token='';try{token=sessionStorage.getItem(TOKEN_KEY)||''}catch(_){}
+var REVIEW_KEY='cheveni_manager_signup_admin_review_v1';
+var EXPECTED_WEB_ORIGIN=${JSON.stringify(config.webOrigin)};
+function reviewRequired(){try{return sessionStorage.getItem(REVIEW_KEY)==='1'}catch(_){return true}}
 var API='${config.apiOrigin}/api/concierge/manager/signup-admin';
 var access=document.getElementById('access-status'),issueStatus=document.getElementById('issue-status');
 var issueForm=document.getElementById('issue-form'),issueButton=document.getElementById('issue-button');
@@ -90,19 +93,38 @@ function makeText(tag,value,cls){
  var item=document.createElement(tag);item.textContent=String(value||'');
  if(cls)item.className=cls;return item;
 }
-var mutationPending=false,mutationUncertain=false;
+var mutationPending=false,mutationUncertain=reviewRequired();
 function freezeMutation(){
  mutationUncertain=true;readGeneration++;issueButton.disabled=true;
  clearPrivateView();
  message(access,'Resultado sin confirmar. No repitas la acción: verificá el estado antes de continuar.',true);
  document.querySelectorAll('button').forEach(function(b){b.disabled=true});
 }
+function validCapability(data){
+ try{
+  if(typeof data.invitation_id!=='string'||!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(data.invitation_id)
+    ||typeof data.expires_at!=='string'||!Number.isFinite(Date.parse(data.expires_at))||Date.parse(data.expires_at)<=Date.now()||typeof data.url!=='string')return false;
+  var u=new URL(data.url);
+  return u.origin===EXPECTED_WEB_ORIGIN&&u.pathname==='/manager/activar/'&&!u.search&&!u.username&&!u.password&&/^#invite=[A-Za-z0-9_-]{43}$/.test(u.hash);
+ }catch(_){return false}
+}
+function knownDenial(status,code){
+ var codes={400:['INVALID_REQUEST','INVALID_ACTION'],401:['LOGIN_REQUIRED'],403:['OWNER_ACCESS_REQUIRED','ORIGIN_NOT_ALLOWED','MANAGER_WRITE_DENIED'],
+  409:['ALREADY_HAS_PENDING_INVITATION','APPLICATION_ALREADY_SCREENED','APPLICATION_NOT_REVIEWABLE','FOLLOWUP_ALREADY_RESOLVED','FOLLOWUP_NOT_REVIEWABLE','INVITATION_NOT_REVOCABLE'],
+  503:['INVITATION_ADMIN_CLOSED','INVITATION_ADMIN_NOT_CONFIGURED','INVITATION_LEGAL_APPROVAL_REQUIRED','MANAGER_BETA_VERIFIED_LEGAL_ADMISSION_NOT_CONNECTED']};
+ return Boolean(codes[status]&&codes[status].includes(code));
+}
 async function api(method,body){
  var mutating=method!=='GET';
  if(!currentPageSession()){clearPrivateView();throw new Error('SESSION_CHANGED')}
- if(mutating&&(mutationPending||mutationUncertain))throw new Error('MUTATION_REVIEW_REQUIRED');
+ if(mutating&&(mutationPending||mutationUncertain||reviewRequired())){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
  if(mutating&&sessionStorage.getItem(TOKEN_KEY)!==token)throw new Error('SESSION_CHANGED');
- if(mutating)mutationPending=true;
+ if(mutating){
+  mutationPending=true;readGeneration++;
+  try{sessionStorage.setItem(REVIEW_KEY,'1');if(sessionStorage.getItem(REVIEW_KEY)!=='1')throw new Error('INTENT_NOT_PERSISTED')}
+  catch(_){freezeMutation();mutationPending=false;throw new Error('MUTATION_REVIEW_REQUIRED')}
+  clearPrivateView();
+ }
  var controller=new AbortController(),timer=setTimeout(function(){controller.abort()},8000);
 
  var options={method:method,mode:'cors',credentials:'omit',cache:'no-store',
@@ -113,8 +135,13 @@ async function api(method,body){
   try{data=await resp.json()}catch(_){}
   if(!currentPageSession())throw new Error('SESSION_CHANGED');
   var expected=body&&({issue:'INVITATION_PREPARED_NOT_SENT',revoke:'INVITATION_REVOKED',screen:'SCREENING_RECORDED_NO_PROVISIONING',resolve_followup:'FOLLOWUP_RESOLVED_NO_PROVISIONING'})[body.action];
-  if(mutating&&(!data||typeof data!=='object'||Array.isArray(data)||resp.status>=500||data.reconciliation_required===true||(resp.ok&&(data.ok!==true||!expected||data.code!==expected))||sessionStorage.getItem(TOKEN_KEY)!==token)){
-   freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED');
+  if(mutating){
+   var valid=data&&typeof data==='object'&&!Array.isArray(data)&&data.reconciliation_required!==true;
+   var success=valid&&resp.ok&&data.ok===true&&expected&&data.code===expected&&(body.action!=='issue'||validCapability(data));
+   var denied=valid&&!resp.ok&&data.ok!==true&&knownDenial(resp.status,data.code);
+   if(!success&&!denied){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
+   try{sessionStorage.removeItem(REVIEW_KEY);if(sessionStorage.getItem(REVIEW_KEY)!==null)throw new Error('INTENT_NOT_CLEARED')}
+   catch(_){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
   }
   return {code:resp.status,data:data||{}};
  }catch(error){if(mutating)freezeMutation();throw error}
@@ -125,6 +152,7 @@ function dateText(value){if(!value)return '—';var d=new Date(value);return isN
 async function update(){
  var attempt=++readGeneration;
  if(pageDisposed)return;
+ if(mutationPending){clearPrivateView();return}
  if(mutationUncertain){freezeMutation();return}
  editor.hidden=true;review.hidden=true;refresh.hidden=true;
  if(!token){clearPrivateView();message(access,'Ingresá primero al Panel de Manager y después volvé a esta página.',true);return}
@@ -253,6 +281,7 @@ issueForm.addEventListener('submit',async function(e){
  finally{issueButton.disabled=mutationUncertain}
 });
 document.getElementById('copy-link').addEventListener('click',async function(){
+ if(!currentPageSession()||mutationPending||mutationUncertain){clearPrivateView();return}
  var link=preparedLink.textContent;
  if(!link)return;
  try{await navigator.clipboard.writeText(link);message(issueStatus,'Enlace copiado. No enviado.',false)}

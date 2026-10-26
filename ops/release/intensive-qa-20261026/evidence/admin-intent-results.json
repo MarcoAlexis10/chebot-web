@@ -1,0 +1,20 @@
+{
+  "newUniqueTests": 10,
+  "before": {
+    "passed": 1,
+    "failed": 9
+  },
+  "after": {
+    "passed": 10,
+    "failed": 0
+  },
+  "scope": "Actual generated admin script in VM with fictional DOM, clipboard, storage and transport",
+  "limits": [
+    "sessionStorage is not durable server or cross-device idempotency",
+    "no operational Auth or provisioning proved"
+  ],
+  "historicalSuitesRepeated": false,
+  "realMessages": 0,
+  "admissionReleased": false,
+  "decision": "NO-GO"
+}
