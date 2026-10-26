@@ -46,7 +46,7 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
  <div class="field"><label for="email">Correo de invitación</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required></div>
  <div class="field"><label for="businessName">Nombre comercial o del alojamiento</label><input id="businessName" name="businessName" type="text" maxlength="120" minlength="2" required></div>
  <div class="notice"><strong>Condiciones de esta Beta:</strong>
- <ul><li>30 días gratuitos desde la primera estadía real verificada; posible extensión de hasta 30 días por decisión de Che Vení.</li>
+ <ul><li>30 días gratuitos desde la primera estadía real verificada. Al vencer, no se admiten nuevas estadías; las ya verificadas continúan hasta el checkout, salvo baja o revocación anterior justificada.</li>
  <li>No hay facturación ni conversión a pago automáticas.</li>
  <li>El primer piloto empieza con un manager y una propiedad en CABA; únicamente huéspedes principales verificados.</li>
  <li>No hay reemplazo automático de números ni acceso independiente para acompañantes.</li>
@@ -57,6 +57,7 @@ a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}
  <button id="submit" type="submit">Enviar solicitud de activación</button>
  <div id="form-status" class="status" aria-live="polite" role="status"></div>
 </form>
+<div id="outcome-notice" class="notice" hidden role="status" aria-live="polite"></div>
 <div id="completed" class="notice" hidden role="status">Tu solicitud quedó registrada para revisión. Che Vení te contactará por el canal acordado cuando exista una decisión. Tu cuenta todavía no está activa.</div>
 <p><a href="/manager/">Ya tengo una cuenta: iniciar sesión</a></p>
 </main>
@@ -69,20 +70,32 @@ window.history.replaceState(null, '', window.location.pathname);
 var form = document.getElementById('invite-form');
 var noInvite = document.getElementById('no-invite');
 var busy = false, terminal = false, generation = 0, controller = null;
+var REVIEW_KEY = 'cheveni_manager_signup_review_v1';
+function clearIntent() {
+ try {
+   if (sessionStorage.getItem(REVIEW_KEY) !== 'pending') return false;
+   sessionStorage.removeItem(REVIEW_KEY);
+   return sessionStorage.getItem(REVIEW_KEY) === null;
+ } catch (_) { return false; }
+}
 function clearPrivateFields() {
  ['managerName','email','businessName'].forEach(function(id){ document.getElementById(id).value = ''; });
  ['terms','privacy'].forEach(function(id){ document.getElementById(id).checked = false; });
 }
-function closeForm() {
+function closeForm(message) {
  terminal = true; token = ''; form.hidden = true; clearPrivateFields();
  document.getElementById('submit').disabled = true;
+ if (message) {
+   document.getElementById('outcome-notice').textContent = message;
+   document.getElementById('outcome-notice').hidden = false;
+ }
 }
 window.addEventListener('pagehide', function(){
  generation += 1; closeForm(); if (controller) controller.abort();
 });
 window.addEventListener('pageshow', function(event){
  if (!event.persisted) return;
- generation += 1; closeForm();
+ generation += 1; closeForm('Esta página se cerró. Si habías enviado la solicitud, confirmá su estado con Che Vení antes de repetirla.');
  document.getElementById('completed').hidden = true;
  document.getElementById('form-status').textContent = 'Esta página se cerró. Si habías enviado la solicitud, confirmá su estado con Che Vení antes de repetirla.';
 });
@@ -94,6 +107,18 @@ if (!CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED) {
  document.getElementById('legal-pending').hidden = false;
  token = '';
  return;
+}
+// Local tab continuity only, never server or cross-device idempotency. Store no
+// capability or identity. An unknown result must not reopen through the link.
+try {
+ var reviewState = sessionStorage.getItem(REVIEW_KEY);
+ if (reviewState !== null) {
+   closeForm(reviewState === 'submitted' ? '' : 'Hay una solicitud pendiente de conciliación. No repitas la solicitud hasta revisar su estado con Che Vení.');
+   if (reviewState === 'submitted') document.getElementById('completed').hidden = false;
+   return;
+ }
+} catch (_) {
+ closeForm('No pudimos comprobar si hay una solicitud pendiente. No ingreses datos ni repitas la solicitud hasta revisar su estado con Che Vení.'); return;
 }
 form.hidden = false;
 var status = document.getElementById('form-status');
@@ -107,13 +132,20 @@ form.addEventListener('submit', async function(event){
    status.textContent = 'Tenés que aceptar ambas condiciones para continuar.';
    status.className = 'status error'; return;
  }
+ try {
+   sessionStorage.setItem(REVIEW_KEY, 'pending');
+   if (sessionStorage.getItem(REVIEW_KEY) !== 'pending') throw new Error('INTENT_NOT_SAVED');
+ } catch (_) {
+   closeForm('No pudimos guardar la operación pendiente. No se envió la solicitud. Revisá su estado con Che Vení antes de continuar.'); return;
+ }
  busy = true; send.disabled = true;
  var attempt = generation;
  controller = new AbortController();
- var timeout = setTimeout(function(){ controller.abort(); }, 8000);
+ var timeout;
+ var deadline = new Promise(function(_, reject){ timeout = setTimeout(function(){ controller.abort(); reject(new Error('REQUEST_DEADLINE')); }, 8000); });
  status.textContent = 'Registrando tu solicitud…';
  try {
-   var resp = await fetch('${config.apiOrigin}/api/concierge/manager/signup-request', {
+   var responsePromise = fetch('${config.apiOrigin}/api/concierge/manager/signup-request', {
      method:'POST', mode:'cors', credentials:'omit', cache:'no-store', redirect:'error', referrerPolicy:'no-referrer', signal:controller.signal,
      headers: {'Content-Type':'application/json'},
      body:JSON.stringify({
@@ -122,29 +154,34 @@ form.addEventListener('submit', async function(event){
        businessName:document.getElementById('businessName').value,
        acceptBeta:true,acceptPrivacy:true
      })
-   });
-   var data = await resp.json();
+   }).then(async function(resp){ return {resp:resp,data:await resp.json()}; });
+   var result = await Promise.race([responsePromise, deadline]);
+   var resp = result.resp, data = result.data;
    if (attempt !== generation || terminal) return;
+   if (data && data.reconciliation_required === true) throw new Error('RECONCILIATION_REQUIRED');
    if (resp.status === 202 && data && data.ok === true && data.code === 'PENDING_OWNER_APPROVAL') {
+     try { sessionStorage.setItem(REVIEW_KEY, 'submitted'); } catch (_) {}
      closeForm();
      document.getElementById('completed').hidden = false;
      return;
    }
    if (resp.status === 400 && data && data.ok === false && data.code === 'INVALID_REQUEST') {
+     if (!clearIntent()) throw new Error('INTENT_NOT_CLEARED');
      status.textContent = 'Revisá los datos y las condiciones antes de volver a enviar la solicitud.';
    } else if (resp.status === 503 && data && data.ok === false &&
        ['MANAGER_BETA_SIGNUP_CLOSED','MANAGER_BETA_VERIFIED_LEGAL_ADMISSION_NOT_CONNECTED','MANAGER_BETA_SIGNUP_UNCONFIGURED'].includes(data.code)) {
-     closeForm(); status.textContent = 'La inscripción todavía no está habilitada. Consultá a Che Vení antes de continuar.';
+     if (!clearIntent()) throw new Error('INTENT_NOT_CLEARED');
+     closeForm('La inscripción todavía no está habilitada. Consultá a Che Vení antes de continuar.');
    } else if (resp.status === 400 && data && data.ok === false && data.code === 'INVITATION_INVALID_OR_EXPIRED') {
-     closeForm(); status.textContent = 'La invitación venció o ya se utilizó. Confirmá su estado con Che Vení.';
+     if (!clearIntent()) throw new Error('INTENT_NOT_CLEARED');
+     closeForm('La invitación venció o ya se utilizó. Confirmá su estado con Che Vení.');
    } else {
-     closeForm(); status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';
+     closeForm('No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.');
    }
    status.className = 'status error';
  } catch (_) {
    if (attempt !== generation || terminal) return;
-   closeForm();
-   status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';
+   closeForm('No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.');
    status.className = 'status error';
  } finally { clearTimeout(timeout); controller = null; if (attempt === generation && !terminal) { busy = false; send.disabled = false; } }
 });

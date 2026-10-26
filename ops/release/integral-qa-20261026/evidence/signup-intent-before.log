@@ -1,0 +1,368 @@
+✖ signup intent is stored before dispatch and blocks reopening the original capability (5.34931ms)
+✖ a confirmed signup remains visibly recorded when the original invitation is opened again (2.048736ms)
+✖ silent storage failure prevents signup dispatch (1.948762ms)
+✖ lost signup acknowledgement cannot be retried by reopening an invitation (4.654239ms)
+✖ explicit uncertainty overrides an otherwise retryable signup input response (1.910957ms)
+✖ signup deadline covers a body adapter that ignores abort and conceals private drafts (2.235148ms)
+✖ uncertain signup feedback remains visible outside the concealed form (2.224723ms)
+✔ reviewed pre-update rejection clears only the local signup intent (1.588736ms)
+✖ the known closed admission gate does not leave false signup uncertainty (1.918027ms)
+✖ the signup summary preserves confirmed D01 without an optional extension (5.170499ms)
+✖ signup review storage contains no capability email or personal fields (3.061294ms)
+✖ unreadable review storage keeps signup closed before any data entry (1.616778ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 1
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.241261
+
+✖ failing tests:
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:10:1
+✖ signup intent is stored before dispatch and blocks reopening the original capability (5.34931ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'pending'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:10:184)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'pending',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:11:1
+✖ a confirmed signup remains visibly recorded when the original invitation is opened again (2.048736ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'submitted'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:11:149)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'submitted',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:12:1
+✖ silent storage failure prevents signup dispatch (1.948762ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:12:125)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:13:1
+✖ lost signup acknowledgement cannot be retried by reopening an invitation (4.654239ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:13:249)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:14:1
+✖ explicit uncertainty overrides an otherwise retryable signup input response (1.910957ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:14:225)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:15:1
+✖ signup deadline covers a body adapter that ignores abort and conceals private drafts (2.235148ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:15:296)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:16:1
+✖ uncertain signup feedback remains visible outside the concealed form (2.224723ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:16:229)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:18:1
+✖ the known closed admission gate does not leave false signup uncertainty (1.918027ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:18:315)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:19:1
+✖ the signup summary preserves confirmed D01 without an optional extension (5.170499ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /posible extensión|extensión de hasta 30 días/. Input:
+  
+  '<!doctype html>\n' +
+    '<html lang="es"><head><meta charset="utf-8">\n' +
+    '<meta name="viewport" content="width=device-width,initial-scale=1">\n' +
+    '<meta name="referrer" content="no-referrer">\n' +
+    '<meta name="robots" content="noindex,nofollow,noarchive">\n' +
+    '<meta http-equiv="Cache-Control" content="no-store">\n' +
+    `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://api.example.invalid; form-action 'none'">\n` +
+    '<title>Activar invitación · Che Vení Concierge Beta</title>\n' +
+    '<style>\n' +
+    ':root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#16302d;background:#f7f4ec}\n' +
+    '*{box-sizing:border-box}body{margin:0;padding:22px;min-height:100vh;display:grid;place-items:center}\n' +
+    'main{background:#fff;border:1px solid #e5ddd0;border-radius:18px;box-shadow:0 12px 32px #16302d12;max-width:560px;width:100%;padding:clamp(22px,5vw,40px)}\n' +
+    'small{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0f766e}\n' +
+    'h1{line-height:1.15;margin:12px 0;font-size:clamp(1.55rem,5vw,2rem)}\n' +
+    'p{line-height:1.55;color:#52645f}\n' +
+    '.field{margin:16px 0}label{display:block;font-weight:750;margin-bottom:7px}\n' +
+    'input[type=text],input[type=email]{border:1px solid #aab9b4;background:#fff;border-radius:10px;font:inherit;padding:13px;width:100%;color:#16302d}\n' +
+    'input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #0f766e;outline-offset:2px}\n' +
+    '.check{display:flex;align-items:flex-start;gap:10px;margin:18px 0}.check input{margin-top:5px;min-width:18px;min-height:18px}\n' +
+    '.check label{font-size:.92rem;font-weight:500;margin:0}\n' +
+    'button{width:100%;border:0;border-radius:12px;background:#0f766e;color:white;font:inherit;font-weight:800;padding:15px;cursor:pointer}\n' +
+    'button:disabled{opacity:.55;cursor:wait}\n' +
+    'a{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}\n' +
+    '.notice{background:#edf6f4;border-radius:10px;padding:12px 15px;color:#16302d}\n' +
+    '.status{margin-top:16px;font-weight:750;min-height:26px}.status.error{color:#9c2e28}\n' +
+    '[hidden]{display:none!important}\n' +
+    '</style></head><body><main>\n' +
+    '<small>Che Vení Concierge · Beta privada</small>\n' +
+    '<h1>Bienvenido a Che Vení Concierge</h1>\n' +
+    '<p>Esta página es exclusivamente para managers invitados. La solicitud queda pendiente de aprobación: no habilita propiedades, huéspedes ni mensajes automáticos.</p>\n' +
+    '<div id="no-invite" class="notice" role="status" hidden>Para continuar necesitás un enlace personal de invitación vigente. No hay registro público.</div>\n' +
+    '<div id="legal-pending" class="notice" role="status" hidden>El registro privado de Concierge todavía está cerrado: falta revisar y publicar las condiciones y el aviso específico de privacidad. No ingreses datos personales por ahora. Tu enlace no activa ninguna cuenta.</div>\n' +
+    '<form id="invite-form" hidden novalidate autocomplete="on">\n' +
+    ' <div class="field"><label for="managerName">Nombre y apellido</label><input id="managerName" name="managerName" type="text" maxlength="100" minlength="2" autocomplete="name" required></div>\n' +
+    ' <div class="field"><label for="email">Correo de invitación</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required></div>\n' +
+    ' <div class="field"><label for="businessName">Nombre comercial o del alojamiento</label><input id="businessName" name="businessName" type="text" maxlength="120" minlength="2" required></div>\n' +
+    ' <div class="notice"><strong>Condiciones de esta Beta:</strong>\n' +
+    ' <ul><li>30 días gratuitos desde la primera estadía real verificada; posible extensión de hasta 30 días por decisión de Che Vení.</li>\n' +
+    ' <li>No hay facturación ni conversión a pago automáticas.</li>\n' +
+    ' <li>El primer piloto empieza con un manager y una propiedad en CABA; únicamente huéspedes principales verificados.</li>\n' +
+    ' <li>No hay reemplazo automático de números ni acceso independiente para acompañantes.</li>\n' +
+    ' <li>Las incidencias excepcionales requieren intervención humana; no se promete respuesta humana inmediata 24/7.</li>\n' +
+    ' </ul></div>\n' +
+    ' <div class="check"><input id="terms" type="checkbox" required><label for="terms">Leí y acepto las <a href="/manager/condiciones-concierge/" target="_blank" rel="noreferrer noopener">condiciones completas de la Beta privada de Concierge</a>, además del resumen indicado arriba.</label></div>\n' +
+    ' <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Che Vení procese estos datos para evaluar mi incorporación, conforme al <a href="/manager/privacidad-concierge/" target="_blank" rel="noreferrer noopener">aviso de privacidad específico de Concierge</a>.</label></div>\n' +
+    ' <button id="submit" type="submit">Enviar solicitud de activación</button>\n' +
+    ' <div id="form-status" class="status" aria-live="polite" role="status"></div>\n' +
+    '</form>\n' +
+    '<div id="completed" class="notice" hidden role="status">Tu solicitud quedó registrada para revisión. Che Vení te contactará por el canal acordado cuando exista una decisión. Tu cuenta todavía no está activa.</div>\n' +
+    '<p><a href="/manager/">Ya tengo una cuenta: iniciar sesión</a></p>\n' +
+    '</main>\n' +
+    '<script>\n' +
+    '(function(){\n' +
+    "'use strict';\n" +
+    'var params = new URLSearchParams(window.location.hash.slice(1));\n' +
+    "var token = params.get('invite') || '';\n" +
+    "window.history.replaceState(null, '', window.location.pathname);\n" +
+    "var form = document.getElementById('invite-form');\n" +
+    "var noInvite = document.getElementById('no-invite');\n" +
+    'var busy = false, terminal = false, generation = 0, controller = null;\n' +
+    'function clearPrivateFields() {\n' +
+    " ['managerName','email','businessName'].forEach(function(id){ document.getElementById(id).value = ''; });\n" +
+    " ['terms','privacy'].forEach(function(id){ document.getElementById(id).checked = false; });\n" +
+    '}\n' +
+    'function closeForm() {\n' +
+    " terminal = true; token = ''; form.hidden = true; clearPrivateFields();\n" +
+    " document.getElementById('submit').disabled = true;\n" +
+    '}\n' +
+    "window.addEventListener('pagehide', function(){\n" +
+    ' generation += 1; closeForm(); if (controller) controller.abort();\n' +
+    '});\n' +
+    "window.addEventListener('pageshow', function(event){\n" +
+    ' if (!event.persisted) return;\n' +
+    ' generation += 1; closeForm();\n' +
+    " document.getElementById('completed').hidden = true;\n" +
+    " document.getElementById('form-status').textContent = 'Esta página se cerró. Si habías enviado la solicitud, confirmá su estado con Che Vení antes de repetirla.';\n" +
+    '});\n' +
+    'if (!/^[A-Za-z0-9_-]{43}$/.test(token)) { noInvite.hidden = false; return; }\n' +
+    '// Separate owner/legal publication approval is required before showing or\n' +
+    '// accepting ANY personal data. No policy is approved/published as of this build.\n' +
+    'var CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED = true;\n' +
+    'if (!CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED) {\n' +
+    " document.getElementById('legal-pending').hidden = false;\n" +
+    " token = '';\n" +
+    ' return;\n' +
+    '}\n' +
+    'form.hidden = false;\n' +
+    "var status = document.getElementById('form-status');\n" +
+    "var send = document.getElementById('submit');\n" +
+    "form.addEventListener('submit', async function(event){\n" +
+    ' event.preventDefault();\n' +
+    ' if (busy || terminal || form.hidden || send.disabled || !token) return;\n' +
+    " status.className = 'status';\n" +
+    ' if (!form.reportValidity()) return;\n' +
+    " if (!document.getElementById('terms').checked || !document.getElementById('privacy').checked) {\n" +
+    "   status.textContent = 'Tenés que aceptar ambas condiciones para continuar.';\n" +
+    "   status.className = 'status error'; return;\n" +
+    ' }\n' +
+    ' busy = true; send.disabled = true;\n' +
+    ' var attempt = generation;\n' +
+    ' controller = new AbortController();\n' +
+    ' var timeout = setTimeout(function(){ controller.abort(); }, 8000);\n' +
+    " status.textContent = 'Registrando tu solicitud…';\n" +
+    ' try {\n' +
+    "   var resp = await fetch('https://api.example.invalid/api/concierge/manager/signup-request', {\n" +
+    "     method:'POST', mode:'cors', credentials:'omit', cache:'no-store', redirect:'error', referrerPolicy:'no-referrer', signal:controller.signal,\n" +
+    "     headers: {'Content-Type':'application/json'},\n" +
+    '     body:JSON.stringify({\n' +
+    "       invite:token,managerName:document.getElementById('managerName').value,\n" +
+    "       email:document.getElementById('email').value,\n" +
+    "       businessName:document.getElementById('businessName').value,\n" +
+    '       acceptBeta:true,acceptPrivacy:true\n' +
+    '     })\n' +
+    '   });\n' +
+    '   var data = await resp.json();\n' +
+    '   if (attempt !== generation || terminal) return;\n' +
+    "   if (resp.status === 202 && data && data.ok === true && data.code === 'PENDING_OWNER_APPROVAL') {\n" +
+    '     closeForm();\n' +
+    "     document.getElementById('completed').hidden = false;\n" +
+    '     return;\n' +
+    '   }\n' +
+    "   if (resp.status === 400 && data && data.ok === false && data.code === 'INVALID_REQUEST') {\n" +
+    "     status.textContent = 'Revisá los datos y las condiciones antes de volver a enviar la solicitud.';\n" +
+    '   } else if (resp.status === 503 && data && data.ok === false &&\n' +
+    "       ['MANAGER_BETA_SIGNUP_CLOSED','MANAGER_BETA_VERIFIED_LEGAL_ADMISSION_NOT_CONNECTED','MANAGER_BETA_SIGNUP_UNCONFIGURED'].includes(data.code)) {\n" +
+    "     closeForm(); status.textContent = 'La inscripción todavía no está habilitada. Consultá a Che Vení antes de continuar.';\n" +
+    "   } else if (resp.status === 400 && data && data.ok === false && data.code === 'INVITATION_INVALID_OR_EXPIRED') {\n" +
+    "     closeForm(); status.textContent = 'La invitación venció o ya se utilizó. Confirmá su estado con Che Vení.';\n" +
+    '   } else {\n' +
+    "     closeForm(); status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';\n" +
+    '   }\n' +
+    "   status.className = 'status error';\n" +
+    ' } catch (_) {\n' +
+    '   if (attempt !== generation || terminal) return;\n' +
+    '   closeForm();\n' +
+    "   status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';\n" +
+    "   status.className = 'status error';\n" +
+    ' } finally { clearTimeout(timeout); controller = null; if (attempt === generation && !terminal) { busy = false; send.disabled = false; } }\n' +
+    '});\n' +
+    '})();\n' +
+    '</script></body></html>'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:19:111)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `<!doctype html>\n<html lang="es"><head><meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<meta name="referrer" content="no-referrer">\n<meta name="robots" content="noindex,nofollow,noarchive">\n<meta http-equiv="Cache-Control" content="no-store">\n<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; img-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src https://api.example.invalid; form-action 'none'">\n<title>Activar invitación · Che Vení Concierge Beta</title>\n<style>\n:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#16302d;background:#f7f4ec}\n*{box-sizing:border-box}body{margin:0;padding:22px;min-height:100vh;display:grid;place-items:center}\nmain{background:#fff;border:1px solid #e5ddd0;border-radius:18px;box-shadow:0 12px 32px #16302d12;max-width:560px;width:100%;padding:clamp(22px,5vw,40px)}\nsmall{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0f766e}\nh1{line-height:1.15;margin:12px 0;font-size:clamp(1.55rem,5vw,2rem)}\np{line-height:1.55;color:#52645f}\n.field{margin:16px 0}label{display:block;font-weight:750;margin-bottom:7px}\ninput[type=text],input[type=email]{border:1px solid #aab9b4;background:#fff;border-radius:10px;font:inherit;padding:13px;width:100%;color:#16302d}\ninput:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #0f766e;outline-offset:2px}\n.check{display:flex;align-items:flex-start;gap:10px;margin:18px 0}.check input{margin-top:5px;min-width:18px;min-height:18px}\n.check label{font-size:.92rem;font-weight:500;margin:0}\nbutton{width:100%;border:0;border-radius:12px;background:#0f766e;color:white;font:inherit;font-weight:800;padding:15px;cursor:pointer}\nbutton:disabled{opacity:.55;cursor:wait}\na{color:#0f766e}ul{padding-left:21px;line-height:1.65;color:#52645f}\n.notice{background:#edf6f4;border-radius:10px;padding:12px 15px;color:#16302d}\n.status{margin-top:16px;font-weight:750;min-height:26px}.status.error{color:#9c2e28}\n[hidden]{display:none!important}\n</style></head><body><main>\n<small>Che Vení Concierge · Beta privada</small>\n<h1>Bienvenido a Che Vení Concierge</h1>\n<p>Esta página es exclusivamente para managers invitados. La solicitud queda pendiente de aprobación: no habilita propiedades, huéspedes ni mensajes automáticos.</p>\n<div id="no-invite" class="notice" role="status" hidden>Para continuar necesitás un enlace personal de invitación vigente. No hay registro público.</div>\n<div id="legal-pending" class="notice" role="status" hidden>El registro privado de Concierge todavía está cerrado: falta revisar y publicar las condiciones y el aviso específico de privacidad. No ingreses datos personales por ahora. Tu enlace no activa ninguna cuenta.</div>\n<form id="invite-form" hidden novalidate autocomplete="on">\n <div class="field"><label for="managerName">Nombre y apellido</label><input id="managerName" name="managerName" type="text" maxlength="100" minlength="2" autocomplete="name" required></div>\n <div class="field"><label for="email">Correo de invitación</label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" required></div>\n <div class="field"><label for="businessName">Nombre comercial o del alojamiento</label><input id="businessName" name="businessName" type="text" maxlength="120" minlength="2" required></div>\n <div class="notice"><strong>Condiciones de esta Beta:</strong>\n <ul><li>30 días gratuitos desde la primera estadía real verificada; posible extensión de hasta 30 días por decisión de Che Vení.</li>\n <li>No hay facturación ni conversión a pago automáticas.</li>\n <li>El primer piloto empieza con un manager y una propiedad en CABA; únicamente huéspedes principales verificados.</li>\n <li>No hay reemplazo automático de números ni acceso independiente para acompañantes.</li>\n <li>Las incidencias excepcionales requieren intervención humana; no se promete respuesta humana inmediata 24/7.</li>\n </ul></div>\n <div class="check"><input id="terms" type="checkbox" required><label for="terms">Leí y acepto las <a href="/manager/condiciones-concierge/" target="_blank" rel="noreferrer noopener">condiciones completas de la Beta privada de Concierge</a>, además del resumen indicado arriba.</label></div>\n <div class="check"><input id="privacy" type="checkbox" required><label for="privacy">Acepto que Che Vení procese estos datos para evaluar mi incorporación, conforme al <a href="/manager/privacidad-concierge/" target="_blank" rel="noreferrer noopener">aviso de privacidad específico de Concierge</a>.</label></div>\n <button id="submit" type="submit">Enviar solicitud de activación</button>\n <div id="form-status" class="status" aria-live="polite" role="status"></div>\n</form>\n<div id="completed" class="notice" hidden role="status">Tu solicitud quedó registrada para revisión. Che Vení te contactará por el canal acordado cuando exista una decisión. Tu cuenta todavía no está activa.</div>\n<p><a href="/manager/">Ya tengo una cuenta: iniciar sesión</a></p>\n</main>\n<script>\n(function(){\n'use strict';\nvar params = new URLSearchParams(window.location.hash.slice(1));\nvar token = params.get('invite') || '';\nwindow.history.replaceState(null, '', window.location.pathname);\nvar form = document.getElementById('invite-form');\nvar noInvite = document.getElementById('no-invite');\nvar busy = false, terminal = false, generation = 0, controller = null;\nfunction clearPrivateFields() {\n ['managerName','email','businessName'].forEach(function(id){ document.getElementById(id).value = ''; });\n ['terms','privacy'].forEach(function(id){ document.getElementById(id).checked = false; });\n}\nfunction closeForm() {\n terminal = true; token = ''; form.hidden = true; clearPrivateFields();\n document.getElementById('submit').disabled = true;\n}\nwindow.addEventListener('pagehide', function(){\n generation += 1; closeForm(); if (controller) controller.abort();\n});\nwindow.addEventListener('pageshow', function(event){\n if (!event.persisted) return;\n generation += 1; closeForm();\n document.getElementById('completed').hidden = true;\n document.getElementById('form-status').textContent = 'Esta página se cerró. Si habías enviado la solicitud, confirmá su estado con Che Vení antes de repetirla.';\n});\nif (!/^[A-Za-z0-9_-]{43}$/.test(token)) { noInvite.hidden = false; return; }\n// Separate owner/legal publication approval is required before showing or\n// accepting ANY personal data. No policy is approved/published as of this build.\nvar CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED = true;\nif (!CONCIERGE_SIGNUP_LEGAL_PUBLICATION_APPROVED) {\n document.getElementById('legal-pending').hidden = false;\n token = '';\n return;\n}\nform.hidden = false;\nvar status = document.getElementById('form-status');\nvar send = document.getElementById('submit');\nform.addEventListener('submit', async function(event){\n event.preventDefault();\n if (busy || terminal || form.hidden || send.disabled || !token) return;\n status.className = 'status';\n if (!form.reportValidity()) return;\n if (!document.getElementById('terms').checked || !document.getElementById('privacy').checked) {\n   status.textContent = 'Tenés que aceptar ambas condiciones para continuar.';\n   status.className = 'status error'; return;\n }\n busy = true; send.disabled = true;\n var attempt = generation;\n controller = new AbortController();\n var timeout = setTimeout(function(){ controller.abort(); }, 8000);\n status.textContent = 'Registrando tu solicitud…';\n try {\n   var resp = await fetch('https://api.example.invalid/api/concierge/manager/signup-request', {\n     method:'POST', mode:'cors', credentials:'omit', cache:'no-store', redirect:'error', referrerPolicy:'no-referrer', signal:controller.signal,\n     headers: {'Content-Type':'application/json'},\n     body:JSON.stringify({\n       invite:token,managerName:document.getElementById('managerName').value,\n       email:document.getElementById('email').value,\n       businessName:document.getElementById('businessName').value,\n       acceptBeta:true,acceptPrivacy:true\n     })\n   });\n   var data = await resp.json();\n   if (attempt !== generation || terminal) return;\n   if (resp.status === 202 && data && data.ok === true && data.code === 'PENDING_OWNER_APPROVAL') {\n     closeForm();\n     document.getElementById('completed').hidden = false;\n     return;\n   }\n   if (resp.status === 400 && data && data.ok === false && data.code === 'INVALID_REQUEST') {\n     status.textContent = 'Revisá los datos y las condiciones antes de volver a enviar la solicitud.';\n   } else if (resp.status === 503 && data && data.ok === false &&\n       ['MANAGER_BETA_SIGNUP_CLOSED','MANAGER_BETA_VERIFIED_LEGAL_ADMISSION_NOT_CONNECTED','MANAGER_BETA_SIGNUP_UNCONFIGURED'].includes(data.code)) {\n     closeForm(); status.textContent = 'La inscripción todavía no está habilitada. Consultá a Che Vení antes de continuar.';\n   } else if (resp.status === 400 && data && data.ok === false && data.code === 'INVITATION_INVALID_OR_EXPIRED') {\n     closeForm(); status.textContent = 'La invitación venció o ya se utilizó. Confirmá su estado con Che Vení.';\n   } else {\n     closeForm(); status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';\n   }\n   status.className = 'status error';\n } catch (_) {\n   if (attempt !== generation || terminal) return;\n   closeForm();\n   status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';\n   status.className = 'status error';\n } finally { clearTimeout(timeout); controller = null; if (attempt === generation && !terminal) { busy = false; send.disabled = false; } }\n});\n})();\n</script></body></html>`,
+    expected: /posible extensión|extensión de hasta 30 días/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:20:1
+✖ signup review storage contains no capability email or personal fields (3.061294ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   [
+  -     'cheveni_manager_signup_review_v1',
+  -     'submitted'
+  -   ]
+  - ]
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:20:130)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ [ 'cheveni_manager_signup_review_v1', 'submitted' ] ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/signup-intent-integral-new.test.cjs:21:1
+✖ unreadable review storage keeps signup closed before any data entry (1.616778ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/signup-intent-integral-new.test.cjs:21:127)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

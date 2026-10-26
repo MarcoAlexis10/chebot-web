@@ -1,0 +1,20 @@
+✔ signup intent is stored before dispatch and blocks reopening the original capability (9.536135ms)
+✔ a confirmed signup remains visibly recorded when the original invitation is opened again (6.177203ms)
+✔ silent storage failure prevents signup dispatch (4.588935ms)
+✔ lost signup acknowledgement cannot be retried by reopening an invitation (6.49167ms)
+✔ explicit uncertainty overrides an otherwise retryable signup input response (3.167876ms)
+✔ signup deadline covers a body adapter that ignores abort and conceals private drafts (4.424026ms)
+✔ uncertain signup feedback remains visible outside the concealed form (3.002744ms)
+✔ reviewed pre-update rejection clears only the local signup intent (3.342275ms)
+✔ the known closed admission gate does not leave false signup uncertainty (2.643961ms)
+✔ the signup summary preserves confirmed D01 without an optional extension (2.345146ms)
+✔ signup review storage contains no capability email or personal fields (3.319746ms)
+✔ unreadable review storage keeps signup closed before any data entry (2.224736ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 169.339516
