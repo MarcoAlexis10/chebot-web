@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: password update receipt with missing identity remains uncertain and cannot retry
+ok 1 - password update receipt with missing identity remains uncertain and cannot retry
+  ---
+  duration_ms: 3.351513
+  type: 'test'
+  ...
+# Subtest: password update receipt with different user remains uncertain and cannot retry
+ok 2 - password update receipt with different user remains uncertain and cannot retry
+  ---
+  duration_ms: 1.267845
+  type: 'test'
+  ...
+# Subtest: password update receipt with anonymous identity remains uncertain and cannot retry
+ok 3 - password update receipt with anonymous identity remains uncertain and cannot retry
+  ---
+  duration_ms: 5.804078
+  type: 'test'
+  ...
+# Subtest: unreadable HTTP200 update body never reports a confirmed password change
+ok 4 - unreadable HTTP200 update body never reports a confirmed password change
+  ---
+  duration_ms: 1.232432
+  type: 'test'
+  ...
+# Subtest: pagehide while parsing update receipt conceals drafts and ignores late success
+ok 5 - pagehide while parsing update receipt conceals drafts and ignores late success
+  ---
+  duration_ms: 2.147014
+  type: 'test'
+  ...
+# Subtest: a matching current Auth user receipt confirms the update and closes only its local session
+ok 6 - a matching current Auth user receipt confirms the update and closes only its local session
+  ---
+  duration_ms: 0.829733
+  type: 'test'
+  ...
+# Subtest: a stalled update identity body is bounded even when the adapter ignores abort
+ok 7 - a stalled update identity body is bounded even when the adapter ignores abort
+  ---
+  duration_ms: 1.577533
+  type: 'test'
+  ...
+# Subtest: a stalled initial identity body times out without ever enabling password submission
+ok 8 - a stalled initial identity body times out without ever enabling password submission
+  ---
+  duration_ms: 0.865829
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 125.37529

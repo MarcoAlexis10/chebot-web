@@ -1,0 +1,126 @@
+TAP version 13
+# Subtest: password update receipt with missing identity remains uncertain and cannot retry
+not ok 1 - password update receipt with missing identity remains uncertain and cannot retry
+  ---
+  duration_ms: 5.445995
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:8:200'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Contraseña actualizada/. Input:
+    
+    'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:11:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: password update receipt with different user remains uncertain and cannot retry
+not ok 2 - password update receipt with different user remains uncertain and cannot retry
+  ---
+  duration_ms: 3.976169
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:8:200'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Contraseña actualizada/. Input:
+    
+    'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:11:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: password update receipt with anonymous identity remains uncertain and cannot retry
+not ok 3 - password update receipt with anonymous identity remains uncertain and cannot retry
+  ---
+  duration_ms: 2.662056
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:8:200'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Contraseña actualizada/. Input:
+    
+    'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:11:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: unreadable HTTP200 update body never reports a confirmed password change
+not ok 4 - unreadable HTTP200 update body never reports a confirmed password change
+  ---
+  duration_ms: 1.273463
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:13:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Contraseña actualizada|FICTIONAL_BODY_ERROR/. Input:
+    
+    'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:15:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: pagehide while parsing update receipt conceals drafts and ignores late success
+not ok 5 - pagehide while parsing update receipt conceals drafts and ignores late success
+  ---
+  duration_ms: 13.182257
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Contraseña actualizada/. Input:
+    
+    'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-receipt-followup.test.cjs:20:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a matching current Auth user receipt confirms the update and closes only its local session
+ok 6 - a matching current Auth user receipt confirms the update and closes only its local session
+  ---
+  duration_ms: 2.24505
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 1
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 230.056056

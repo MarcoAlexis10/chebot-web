@@ -1,0 +1,17 @@
+{
+  "baseCommit": "6fe06c03f284d36bc5b8df9819e361fde8c5ad01",
+  "newTests": 8,
+  "directlyAffectedHistoricalRegressions": 4,
+  "passed": 12,
+  "failed": 0,
+  "initialBefore": {
+    "passed": 1,
+    "failed": 5
+  },
+  "regressionJustification": "Request deadline now covers response body; exactly the four password PUT rejection, confirmed receipt, PUT timeout and logout timeout cases selected by test-name-pattern",
+  "approvedSignupSevenRepeated": false,
+  "serviceConnections": 0,
+  "realEmailsSent": 0,
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}
