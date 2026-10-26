@@ -1,0 +1,9 @@
+{
+  "ops/release/operational-candidate-20261026/evidence/night-qa-20261026/signup-request-before.tap": "680e19027a9014393bea5752810a9ffabcc8942e7585840bd2a0a8c1c40bad0f",
+  "ops/release/operational-candidate-20261026/evidence/night-qa-20261026/signup-request-after.tap": "b951aa1a333502316f68c635895566e2f4652789b4439ae1d27e7399ef72e5bf",
+  "ops/release/operational-candidate-20261026/evidence/night-qa-20261026/signup-before-source.json": "54dde623f1f7fc8c73cae9934655cae118203a5433194ffefd52da36262cbd55",
+  "ops/release/operational-candidate-20261026/evidence/night-qa-20261026/web-generation.json": "f9b53de14860d77044810bc7ddd73f847a71fda2dbb1342ba6aeb32e0a2213b8",
+  "ops/release/operational-candidate-20261026/evidence/night-qa-20261026/web-results.json": "cf2f03c0f17742f508a73872b90f9ebc6d4f6f185f639a7dd2df05edc384d836",
+  "manager-signup-v1.js": "a86d376046f7f6f32835865841407089f9f6cd05ed8c1331cfdd2833cffb29d1",
+  "qa/security/signup-request-lifecycle-new.test.cjs": "182c36a4589093054430abb98e289bedff644f387ec840f325fe87f65800afb6"
+}

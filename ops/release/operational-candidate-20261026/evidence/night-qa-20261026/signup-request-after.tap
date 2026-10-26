@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: signup suppresses duplicate submits while the original request is pending
+ok 1 - signup suppresses duplicate submits while the original request is pending
+  ---
+  duration_ms: 3.538946
+  type: 'test'
+  ...
+# Subtest: signup transport uncertainty conceals private fields and prevents a second POST
+ok 2 - signup transport uncertainty conceals private fields and prevents a second POST
+  ---
+  duration_ms: 1.607294
+  type: 'test'
+  ...
+# Subtest: an inconsistent 202 receipt does not certify success or enable retry
+ok 3 - an inconsistent 202 receipt does not certify success or enable retry
+  ---
+  duration_ms: 1.273182
+  type: 'test'
+  ...
+# Subtest: pagehide clears drafts and discards a late successful response
+ok 4 - pagehide clears drafts and discards a late successful response
+  ---
+  duration_ms: 1.360754
+  type: 'test'
+  ...
+# Subtest: bfcache restoration cannot reopen a private draft or dispatch again
+ok 5 - bfcache restoration cannot reopen a private draft or dispatch again
+  ---
+  duration_ms: 1.246593
+  type: 'test'
+  ...
+# Subtest: only an explicit pre-dispatch validation denial permits correction
+ok 6 - only an explicit pre-dispatch validation denial permits correction
+  ---
+  duration_ms: 2.952315
+  type: 'test'
+  ...
+# Subtest: the held legal gate keeps the signup form closed and dispatches nothing
+ok 7 - the held legal gate keeps the signup form closed and dispatches nothing
+  ---
+  duration_ms: 1.512793
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 102.003022

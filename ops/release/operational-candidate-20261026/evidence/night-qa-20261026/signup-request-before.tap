@@ -1,0 +1,138 @@
+TAP version 13
+# Subtest: signup suppresses duplicate submits while the original request is pending
+not ok 1 - signup suppresses duplicate submits while the original request is pending
+  ---
+  duration_ms: 3.931364
+  type: 'test'
+  location: '/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:20:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:21:96)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: signup transport uncertainty conceals private fields and prevents a second POST
+not ok 2 - signup transport uncertainty conceals private fields and prevents a second POST
+  ---
+  duration_ms: 1.647475
+  type: 'test'
+  location: '/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:25:106)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: an inconsistent 202 receipt does not certify success or enable retry
+not ok 3 - an inconsistent 202 receipt does not certify success or enable retry
+  ---
+  duration_ms: 1.427735
+  type: 'test'
+  location: '/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:27:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:28:100)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: pagehide clears drafts and discards a late successful response
+not ok 4 - pagehide clears drafts and discards a late successful response
+  ---
+  duration_ms: 1.674625
+  type: 'test'
+  location: '/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:30:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'FICTIONAL' !== ''
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ''
+  actual: 'FICTIONAL'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:31:106)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: bfcache restoration cannot reopen a private draft or dispatch again
+not ok 5 - bfcache restoration cannot reopen a private draft or dispatch again
+  ---
+  duration_ms: 1.213863
+  type: 'test'
+  location: '/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:33:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/tmp/cheveni-signup-before-oy4jiq_j/qa/security/signup-request-lifecycle-new.test.cjs:34:118)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: only an explicit pre-dispatch validation denial permits correction
+ok 6 - only an explicit pre-dispatch validation denial permits correction
+  ---
+  duration_ms: 1.829448
+  type: 'test'
+  ...
+# Subtest: the held legal gate keeps the signup form closed and dispatches nothing
+ok 7 - the held legal gate keeps the signup form closed and dispatches nothing
+  ---
+  duration_ms: 1.053252
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 2
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 106.15537

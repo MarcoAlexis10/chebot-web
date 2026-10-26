@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "2d83ce0a5ed6324a3146d41c9455c77090c4aef7",
+  "newTestsPassed": 7,
+  "finalFailures": 0,
+  "preFixFailures": 5,
+  "legalPublicationApproved": false,
+  "realSignupEnabled": false,
+  "serviceConnections": 0,
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}

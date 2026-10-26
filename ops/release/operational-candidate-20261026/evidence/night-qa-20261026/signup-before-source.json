@@ -1,0 +1,6 @@
+{
+  "sourceCommit": "0ceec428fd89d57050440c4ed6c187a2f541b124",
+  "sourceSha256": "c89e45406803cb154239c5f56c3af26bbb6225f31a0236332856f3bf4cd1b5e4",
+  "newTestsOnUnmodifiedGeneratorExit": 1,
+  "fixtureOnly": true
+}
