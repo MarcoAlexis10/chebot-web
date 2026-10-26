@@ -1,0 +1,98 @@
+TAP version 13
+# Subtest: a denied refresh clears private operator data and any prepared invitation link
+not ok 1 - a denied refresh clears private operator data and any prepared invitation link
+  ---
+  duration_ms: 5.610112
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:18:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:21:27)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: a late GET from a replaced tab session cannot reopen the operator view
+not ok 2 - a late GET from a replaced tab session cannot reopen the operator view
+  ---
+  duration_ms: 1.674366
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:24:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:26:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: an older denied GET cannot overwrite a newer successful access check
+not ok 3 - an older denied GET cannot overwrite a newer successful access check
+  ---
+  duration_ms: 1.850501
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:28:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /Acceso administrativo verificado/. Input:
+    
+    'Esta sesión no tiene permiso de operador o venció. Ingresá de nuevo con la cuenta autorizada.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Esta sesión no tiene permiso de operador o venció. Ingresá de nuevo con la cuenta autorizada.'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:31:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: pagehide clears private data and prevents an in-flight GET from reopening the page
+not ok 4 - pagehide clears private data and prevents an in-flight GET from reopening the page
+  ---
+  duration_ms: 2.752216
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:33:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:35:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 0
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 100.310766

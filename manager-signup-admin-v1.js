@@ -75,6 +75,13 @@ var issueForm=document.getElementById('issue-form'),issueButton=document.getElem
 var result=document.getElementById('result'),preparedLink=document.getElementById('prepared-link');
 var editor=document.getElementById('editor'),review=document.getElementById('review');
 var refresh=document.getElementById('refresh');
+var readGeneration=0,pageDisposed=false;
+function clearPrivateView(){
+ editor.hidden=true;review.hidden=true;refresh.hidden=true;result.hidden=true;
+ preparedLink.textContent='';document.getElementById('applications').replaceChildren();
+ document.getElementById('invite-email').value='';document.getElementById('issue-confirm').checked=false;
+}
+function currentPageSession(){return !pageDisposed&&token&&sessionStorage.getItem(TOKEN_KEY)===token}
 function message(el,text,error){
  el.textContent=text;
  el.className=error?'notice error':'notice';
@@ -86,11 +93,13 @@ function makeText(tag,value,cls){
 var mutationPending=false,mutationUncertain=false;
 function freezeMutation(){
  mutationUncertain=true;issueButton.disabled=true;
+ clearPrivateView();
  message(access,'Resultado sin confirmar. No repitas la acción: verificá el estado antes de continuar.',true);
  document.querySelectorAll('button').forEach(function(b){b.disabled=true});
 }
 async function api(method,body){
  var mutating=method!=='GET';
+ if(!currentPageSession())throw new Error('SESSION_CHANGED');
  if(mutating&&(mutationPending||mutationUncertain))throw new Error('MUTATION_REVIEW_REQUIRED');
  if(mutating&&sessionStorage.getItem(TOKEN_KEY)!==token)throw new Error('SESSION_CHANGED');
  if(mutating)mutationPending=true;
@@ -102,6 +111,7 @@ async function api(method,body){
  try{
   var resp=await fetch(API,options),data=null;
   try{data=await resp.json()}catch(_){}
+  if(!currentPageSession())throw new Error('SESSION_CHANGED');
   var expected=body&&({issue:'INVITATION_PREPARED_NOT_SENT',revoke:'INVITATION_REVOKED',screen:'SCREENING_RECORDED_NO_PROVISIONING',resolve_followup:'FOLLOWUP_RESOLVED_NO_PROVISIONING'})[body.action];
   if(mutating&&(!data||typeof data!=='object'||Array.isArray(data)||resp.status>=500||data.reconciliation_required===true||(resp.ok&&(data.ok!==true||!expected||data.code!==expected))||sessionStorage.getItem(TOKEN_KEY)!==token)){
    freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED');
@@ -113,13 +123,17 @@ async function api(method,body){
 }
 function dateText(value){if(!value)return '—';var d=new Date(value);return isNaN(d.valueOf())?'—':d.toLocaleString('es-AR')}
 async function update(){
+ var attempt=++readGeneration;
+ if(pageDisposed)return;
  if(mutationUncertain){freezeMutation();return}
- if(!token){message(access,'Ingresá primero al Panel de Manager y después volvé a esta página.',true);return}
+ editor.hidden=true;review.hidden=true;refresh.hidden=true;
+ if(!token){clearPrivateView();message(access,'Ingresá primero al Panel de Manager y después volvé a esta página.',true);return}
  try{
    var result=await api('GET');
-   if(result.code===503){message(access,'Las invitaciones siguen cerradas por seguridad. Se requiere autorización técnica y operativa para habilitarlas.',true);return}
-   if(result.code===403||result.code===401){message(access,'Esta sesión no tiene permiso de operador o venció. Ingresá de nuevo con la cuenta autorizada.',true);return}
-   if(result.code!==200||!result.data.ok){message(access,'No se pudo validar el acceso a altas privadas.',true);return}
+   if(attempt!==readGeneration||pageDisposed)return;
+   if(result.code===503){clearPrivateView();message(access,'Las invitaciones siguen cerradas por seguridad. Se requiere autorización técnica y operativa para habilitarlas.',true);return}
+   if(result.code===403||result.code===401){clearPrivateView();message(access,'Esta sesión no tiene permiso de operador o venció. Ingresá de nuevo con la cuenta autorizada.',true);return}
+   if(result.code!==200||!result.data.ok){clearPrivateView();message(access,'No se pudo validar el acceso a altas privadas.',true);return}
    message(access,'Acceso administrativo verificado. Todavía no se activó ninguna cuenta comercial.',false);
    editor.hidden=false;review.hidden=false;refresh.hidden=false;
    var container=document.getElementById('applications');
@@ -214,7 +228,7 @@ async function update(){
      }
      container.appendChild(card);
    }
- }catch(_){message(access,'No se pudo conectar al servicio de altas privadas. Revisá la conexión.',true)}
+ }catch(_){if(attempt!==readGeneration||pageDisposed)return;clearPrivateView();message(access,'No se pudo verificar el acceso. Volvé a ingresar antes de consultar altas privadas.',true)}
 }
 issueForm.addEventListener('submit',async function(e){
  e.preventDefault();
@@ -245,6 +259,9 @@ document.getElementById('copy-link').addEventListener('click',async function(){
  catch(_){message(issueStatus,'Copiá manualmente el enlace desde esta pantalla privada.',true)}
 });
 refresh.addEventListener('click',update);
+window.addEventListener('pagehide',function(){pageDisposed=true;readGeneration++;clearPrivateView()});
+window.addEventListener('pageshow',function(event){if(event.persisted){pageDisposed=false;readGeneration++;clearPrivateView();update()}});
+window.addEventListener('storage',function(event){if(event.key===TOKEN_KEY&&event.newValue!==token){pageDisposed=true;readGeneration++;clearPrivateView();message(access,'La sesión cambió. Volvé al panel e ingresá nuevamente.',true)}});
 update();
 })();
 </script></body></html>`;
