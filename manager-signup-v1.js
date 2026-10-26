@@ -68,6 +68,24 @@ var token = params.get('invite') || '';
 window.history.replaceState(null, '', window.location.pathname);
 var form = document.getElementById('invite-form');
 var noInvite = document.getElementById('no-invite');
+var busy = false, terminal = false, generation = 0, controller = null;
+function clearPrivateFields() {
+ ['managerName','email','businessName'].forEach(function(id){ document.getElementById(id).value = ''; });
+ ['terms','privacy'].forEach(function(id){ document.getElementById(id).checked = false; });
+}
+function closeForm() {
+ terminal = true; token = ''; form.hidden = true; clearPrivateFields();
+ document.getElementById('submit').disabled = true;
+}
+window.addEventListener('pagehide', function(){
+ generation += 1; closeForm(); if (controller) controller.abort();
+});
+window.addEventListener('pageshow', function(event){
+ if (!event.persisted) return;
+ generation += 1; closeForm();
+ document.getElementById('completed').hidden = true;
+ document.getElementById('form-status').textContent = 'Esta página se cerró. Si habías enviado la solicitud, confirmá su estado con Che Vení antes de repetirla.';
+});
 if (!/^[A-Za-z0-9_-]{43}$/.test(token)) { noInvite.hidden = false; return; }
 // Separate owner/legal publication approval is required before showing or
 // accepting ANY personal data. No policy is approved/published as of this build.
@@ -82,17 +100,21 @@ var status = document.getElementById('form-status');
 var send = document.getElementById('submit');
 form.addEventListener('submit', async function(event){
  event.preventDefault();
+ if (busy || terminal || form.hidden || send.disabled || !token) return;
  status.className = 'status';
  if (!form.reportValidity()) return;
  if (!document.getElementById('terms').checked || !document.getElementById('privacy').checked) {
    status.textContent = 'Tenés que aceptar ambas condiciones para continuar.';
    status.className = 'status error'; return;
  }
- send.disabled = true;
+ busy = true; send.disabled = true;
+ var attempt = generation;
+ controller = new AbortController();
+ var timeout = setTimeout(function(){ controller.abort(); }, 8000);
  status.textContent = 'Registrando tu solicitud…';
  try {
    var resp = await fetch('${config.apiOrigin}/api/concierge/manager/signup-request', {
-     method:'POST', mode:'cors', credentials:'omit',
+     method:'POST', mode:'cors', credentials:'omit', cache:'no-store', redirect:'error', referrerPolicy:'no-referrer', signal:controller.signal,
      headers: {'Content-Type':'application/json'},
      body:JSON.stringify({
        invite:token,managerName:document.getElementById('managerName').value,
@@ -102,21 +124,29 @@ form.addEventListener('submit', async function(event){
      })
    });
    var data = await resp.json();
-   if (resp.status === 202 && data.code === 'PENDING_OWNER_APPROVAL') {
-     token = '';
-     form.reset();
-     form.hidden = true;
+   if (attempt !== generation || terminal) return;
+   if (resp.status === 202 && data && data.ok === true && data.code === 'PENDING_OWNER_APPROVAL') {
+     closeForm();
      document.getElementById('completed').hidden = false;
      return;
    }
-   if (resp.status === 503) status.textContent = 'La inscripción todavía no está habilitada. Consultá a Che Vení antes de continuar.';
-   else if (data.code === 'INVITATION_INVALID_OR_EXPIRED') status.textContent = 'La invitación venció o ya se utilizó. Solicitá un enlace nuevo.';
-   else status.textContent = 'No se pudo completar la solicitud. Revisá los datos o intentá más tarde.';
+   if (resp.status === 400 && data && data.ok === false && data.code === 'INVALID_REQUEST') {
+     status.textContent = 'Revisá los datos y las condiciones antes de volver a enviar la solicitud.';
+   } else if (resp.status === 503 && data && data.ok === false &&
+       ['MANAGER_BETA_SIGNUP_CLOSED','MANAGER_BETA_VERIFIED_LEGAL_ADMISSION_NOT_CONNECTED','MANAGER_BETA_SIGNUP_UNCONFIGURED'].includes(data.code)) {
+     closeForm(); status.textContent = 'La inscripción todavía no está habilitada. Consultá a Che Vení antes de continuar.';
+   } else if (resp.status === 400 && data && data.ok === false && data.code === 'INVITATION_INVALID_OR_EXPIRED') {
+     closeForm(); status.textContent = 'La invitación venció o ya se utilizó. Confirmá su estado con Che Vení.';
+   } else {
+     closeForm(); status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';
+   }
    status.className = 'status error';
  } catch (_) {
-   status.textContent = 'No se pudo conectar con Che Vení. Intentá más tarde.';
+   if (attempt !== generation || terminal) return;
+   closeForm();
+   status.textContent = 'No pudimos confirmar el resultado. No repitas la solicitud hasta revisar su estado con Che Vení.';
    status.className = 'status error';
- } finally { send.disabled = false; }
+ } finally { clearTimeout(timeout); controller = null; if (attempt === generation && !terminal) { busy = false; send.disabled = false; } }
 });
 })();
 </script></body></html>`;
