@@ -1,0 +1,110 @@
+{
+  "repository": "MarcoAlexis10/chebot-web",
+  "startCommit": "4f46ae2e15d79d196309aea0d745bdc469a63c66",
+  "functionalCommit": "1aaab878744bcc4e17c4a5dd0f6d3dca219a1b03",
+  "changed": [
+    {
+      "path": "manager-invite-v1.js",
+      "sha": "95f0555ff474109c41eac0bee54de2e2215ea30f",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/threehour-qa-20261026/evidence/invite-contract-after.log",
+      "sha": "c2d808e7443bfa59b0722ba3e4ddb2372de41861",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/threehour-qa-20261026/evidence/invite-contract-before.log",
+      "sha": "33a99ebace2ffdab1ebd69d822f9365b770a3f86",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "ops/release/threehour-qa-20261026/evidence/invite-contract-results.json",
+      "sha": "1a4bc9d21c348f7f9c31080bd25d78f411c2b58a",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "qa/security/invite-contract-threehour-new.test.cjs",
+      "sha": "44389d6da91126d8c8fca4ab820ef8edf198795c",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "qa/security/invite-predispatch-new.test.cjs",
+      "sha": "c928b9be6f81b692fd14662d6d123b0acc206dc5",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "qa/security/invite-session-asusprep-delta.test.cjs",
+      "sha": "ed3609d09e0c2c09b61ddd894156c318f3cdd022",
+      "localBytesMatchGitHub": true
+    },
+    {
+      "path": "test/manager-uncertain-actions.test.cjs",
+      "sha": "cd4773144722aa4ba0b12037fed4030a7d33013b",
+      "localBytesMatchGitHub": true
+    }
+  ],
+  "unchangedControls": [
+    {
+      "path": ".github/CONCIERGE-BETA-PREVIEW-RELEASE-CHECK-2026-10-10.md",
+      "sha": "24c3da769ba9724389185208020b875b9b925c6a"
+    },
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "sha": "9540d3c50339b976e6fff19acd8283037aa000e1"
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "sha": "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/CONTINUIDAD.md",
+      "sha": "df33256e0be7d9a2614524c454ad15b0f946052d"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/RESULTS.json",
+      "sha": "d35747eb64c08f2cb5ce2e9acc9b26dc05657d26"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/SHA256SUMS",
+      "sha": "dc248f260090d22d6363633140c30afd7fe33d52"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/actions-readonly.json",
+      "sha": "99774d9c556dc9217442e56c435c8f2dd38b2d6f"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-after.tap",
+      "sha": "6ad6a4f9951db34b6fb5588ad1c382b360951113"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-before.tap",
+      "sha": "a458c9d33ff384c9aea850a495d73812c0b86e0d"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/invite-session-results.json",
+      "sha": "899d6d757657b121a78b37a1a6cc3a86f7c244f2"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/source-publication.json",
+      "sha": "8d384d764f9a016141553e0b8218574f6ad0f106"
+    },
+    {
+      "path": "ops/release/asus-wsl-prep-20261026/evidence/unchanged-controls.json",
+      "sha": "893aa88dee9d508343e5f7ceed8a379ccd92f782"
+    },
+    {
+      "path": "vercel.json",
+      "sha": "620ee85530ae3a417ee925e0f81e347a1dbec399"
+    }
+  ],
+  "removedFiles": [],
+  "latestActionsReadOnly": {
+    "id": 40148316684,
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "c59c3696c2b932e58a186bffc633ae77e2eb6a06",
+    "url": "https://github.com/MarcoAlexis10/chebot-web/actions/runs/40148316684"
+  },
+  "decision": "NO-GO"
+}
