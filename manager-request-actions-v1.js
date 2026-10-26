@@ -67,18 +67,20 @@ replaceRequired(
         reject.style.color = '#8a3325';
 
         const reviewKey = 'chebot_manager_request_review_v1:' + item.id;
-        if (sessionStorage.getItem(reviewKey) === '1') {
+        const reviewBlocked = () => { try { return sessionStorage.getItem(reviewKey) === '1'; } catch (_) { return true; } };
+        if (reviewBlocked()) {
           approve.disabled = true; reject.disabled = true;
           const review = document.createElement('span');
           review.textContent = 'Resultado en revisión. No repitas la decisión; verificá el registro con soporte.';
           decision.appendChild(review);
         }
         const runDecision = async (decisionValue) => {
-          if (approve.disabled || reject.disabled || sessionStorage.getItem(reviewKey) === '1') return;
+          if (approve.disabled || reject.disabled || reviewBlocked()) return;
           let requestStarted = false;
           let responseReceived = false;
           let decisionConfirmed = false;
           let reconciliationRequired = false;
+          let intentRecorded = false;
           const verb = decisionValue === 'approved' ? 'aprobar' : 'rechazar';
           if (!window.confirm('¿Confirmás ' + verb + ' esta solicitud?')) return;
 
@@ -87,9 +89,10 @@ replaceRequired(
 
           try {
             const accessToken = readSectionToken();
-            if (!accessToken) {
+            if (!accessToken || document.body.classList.contains('manager-auth-pending')) {
               throw new Error('AUTH_REQUIRED');
             }
+            const actionSequence = loadSequence;
 
             const payload = {
               request_id: item.id,
@@ -104,6 +107,13 @@ replaceRequired(
               payload.approved_at_time = item.requested_at_time;
             }
 
+            // Persist BEFORE dispatch: navigation, reload or a new render must
+            // not lose an in-flight action whose acknowledgement is unknown.
+            try {
+              sessionStorage.setItem(reviewKey, '1');
+              if (sessionStorage.getItem(reviewKey) !== '1') throw new Error('NOT_RECORDED');
+              intentRecorded = true;
+            } catch (_) { throw new Error('REQUEST_INTENT_UNAVAILABLE'); }
             requestStarted = true;
             const response = await fetchManager(BACKEND_REQUEST_DECISION_URL, {
               method: 'POST',
@@ -121,14 +131,20 @@ replaceRequired(
             let body = null;
             try { body = await response.json(); } catch (_) {}
 
-            if (!response.ok || !body || body.ok !== true) {
-              reconciliationRequired = !body || body.reconciliation_required === true || body.error === 'REQUEST_NOT_PENDING' || response.status >= 500;
+            if (actionSequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) {
+              reconciliationRequired = true;
+              throw new Error('AUTH_REQUIRED');
+            }
+            if (!response.ok || !body || body.ok !== true || body.reconciliation_required === true) {
+              const preDispatchCodes = ['AUTH_HEADER_REQUIRED','AUTH_TOKEN_INVALID','MANAGER_ACCESS_DENIED','MANAGER_PERMISSION_DENIED','CORS_ORIGIN_NOT_ALLOWED','REQUEST_ID_INVALID','INVALID_REQUEST_DECISION','INVALID_APPROVED_VALUE','INVALID_REQUEST_DECISION_SUMMARY','INVALID_APPROVED_AT_TIME','INVALID_APPROVED_UNTIL','RESOURCE_OUT_OF_SCOPE'];
+              const knownDenial = [400,401,403,404,405].includes(response.status) && body && body.ok === false && preDispatchCodes.includes(body.error);
+              reconciliationRequired = !knownDenial || body.reconciliation_required === true;
               const code = body && body.error ? String(body.error) : 'REQUEST_DECISION_FAILED';
               throw new Error(code);
             }
 
             if (!body.decision || body.decision.request_id !== item.id ||
-                !['approved','rejected'].includes(body.decision.resulting_status)) {
+                body.decision.resulting_status !== decisionValue) {
               reconciliationRequired = true;
               throw new Error('REQUEST_DECISION_RESPONSE_INVALID');
             }
@@ -137,13 +153,28 @@ replaceRequired(
             if (readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
             renderRequests(refreshed);
           } catch (error) {
+            if (error && error.message === 'REQUEST_INTENT_UNAVAILABLE') {
+              approve.disabled = true; reject.disabled = true;
+              window.alert('No pude preparar la acción de forma segura. No se envió la decisión. Cerrá y volvé a abrir esta página antes de continuar.');
+              return;
+            }
             if (requestStarted && (!responseReceived || reconciliationRequired || decisionConfirmed)) {
-              sessionStorage.setItem(reviewKey, '1');
+              try { sessionStorage.setItem(reviewKey, '1'); } catch (_) {}
               approve.disabled = true; reject.disabled = true;
               window.alert(decisionConfirmed
                 ? 'La decisión se registró, pero falta actualizar la vista. Recargá para revisar el estado; no la repitas.'
                 : 'La decisión pudo haberse registrado. No la repitas hasta revisar el resultado con soporte.');
               return;
+            }
+            if (intentRecorded) {
+              try {
+                sessionStorage.removeItem(reviewKey);
+                if (sessionStorage.getItem(reviewKey) !== null) throw new Error('INTENT_NOT_CLEARED');
+              } catch (_) {
+                approve.disabled = true; reject.disabled = true;
+                window.alert('La acción sigue bloqueada hasta revisar su estado. No repitas la decisión.');
+                return;
+              }
             }
             approve.disabled = false;
             reject.disabled = false;

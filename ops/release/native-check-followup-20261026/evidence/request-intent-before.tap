@@ -1,0 +1,191 @@
+TAP version 13
+# Subtest: request intent is persisted before pending POST and survives a simulated page reload
+not ok 1 - request intent is persisted before pending POST and survives a simulated page reload
+  ---
+  duration_ms: 36.761568
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:26:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    undefined !== '1'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '1'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:27:109)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: pending response body cannot reopen the same decision after reload
+not ok 2 - pending response body cannot reopen the same decision after reload
+  ---
+  duration_ms: 11.272848
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:30:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:32:97)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: unrecorded review intent (throw) prevents the POST
+not ok 3 - unrecorded review intent (throw) prevents the POST
+  ---
+  duration_ms: 5.635761
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:34:38'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:35:135)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: unrecorded review intent (silent) prevents the POST
+not ok 4 - unrecorded review intent (silent) prevents the POST
+  ---
+  duration_ms: 2.097798
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:34:38'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:35:135)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: HTTP200 with reconciliation required freezes the decision without another read or POST
+not ok 5 - HTTP200 with reconciliation required freezes the decision without another read or POST
+  ---
+  duration_ms: 5.716677
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:37:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:39:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: opposite decision receipt is uncertain rather than a successful action
+not ok 6 - opposite decision receipt is uncertain rather than a successful action
+  ---
+  duration_ms: 4.628975
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:41:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:42:105)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: an explicit known pre-dispatch permission denial permits a deliberate corrected submit
+ok 7 - an explicit known pre-dispatch permission denial permits a deliberate corrected submit
+  ---
+  duration_ms: 3.487436
+  type: 'test'
+  ...
+# Subtest: an unclassified client error retains the intent and never authorizes replay
+not ok 8 - an unclassified client error retains the intent and never authorizes replay
+  ---
+  duration_ms: 2.486725
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:48:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:49:163)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: confirmed response followed by a stale pending list cannot enable the same action again
+not ok 9 - confirmed response followed by a stale pending list cannot enable the same action again
+  ---
+  duration_ms: 1.826758
+  type: 'test'
+  location: '/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:51:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-dispatch-intent-delta.test.cjs:52:92)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 1
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 270.421754

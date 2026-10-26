@@ -1,0 +1,18 @@
+{
+  "baseCommit": "806c9cba48fd6b0e099121ad63626f092d3c22d4",
+  "newTests": 11,
+  "initialBeforeCases": 9,
+  "initialBeforePassed": 1,
+  "initialBeforeFailed": 8,
+  "afterPassed": 11,
+  "afterFailed": 0,
+  "scope": "actual base requests generator plus request actions generator, VM DOM/storage/transport doubles",
+  "serverReconciliationNotPerformed": true,
+  "durabilityLimit": "sessionStorage protects same-tab reload/re-render only; no cross-device or durable server lock claim",
+  "newCasesAddedAfterInitialCounterexamples": 2,
+  "historical40Repeated": false,
+  "serviceConnections": 0,
+  "realMessagesSent": 0,
+  "operationalApproval": false,
+  "decision": "NO-GO"
+}
