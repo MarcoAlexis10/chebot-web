@@ -1,0 +1,191 @@
+✖ pending knowledge intent survives a page reload before acknowledgement (4.961563ms)
+✖ knowledge dispatch requires durable marker readback (2.521803ms)
+✖ uncertain knowledge result remains blocked in a new page instance (3.059968ms)
+✖ unclassified knowledge 4xx keeps the review marker (1.531536ms)
+✖ a contradictory decision receipt never authorizes a new attempt (1.514139ms)
+✖ a decision button from the replaced session cannot dispatch using the new token (2.369673ms)
+✖ session replacement inside confirmation is checked again before dispatch (1.257061ms)
+✖ pagehide invalidates detached decision buttons and clears private DOM (1.357062ms)
+✖ known SQL denial clears its marker while a valid receipt retains conservative version lock (2.8368ms)
+✖ auth denial removes private knowledge already rendered (1.720231ms)
+✔ the exact immutable release hold is a known pre-handler denial (1.28297ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 1
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 112.43388
+
+✖ failing tests:
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:13:1
+✖ pending knowledge intent survives a page reload before acknowledgement (4.961563ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:13:203)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:14:1
+✖ knowledge dispatch requires durable marker readback (2.521803ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:14:162)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:15:1
+✖ uncertain knowledge result remains blocked in a new page instance (3.059968ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:15:308)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:16:1
+✖ unclassified knowledge 4xx keeps the review marker (1.531536ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:16:209)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:17:1
+✖ a contradictory decision receipt never authorizes a new attempt (1.514139ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:17:333)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:18:1
+✖ a decision button from the replaced session cannot dispatch using the new token (2.369673ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:18:228)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:19:1
+✖ session replacement inside confirmation is checked again before dispatch (1.257061ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:19:239)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:20:1
+✖ pagehide invalidates detached decision buttons and clears private DOM (1.357062ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:20:192)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:21:1
+✖ known SQL denial clears its marker while a valid receipt retains conservative version lock (2.8368ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:21:463)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/knowledge-intent-intensive-new.test.cjs:22:1
+✖ auth denial removes private knowledge already rendered (1.720231ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-intent-intensive-new.test.cjs:22:171)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,19 @@
+✔ pending knowledge intent survives a page reload before acknowledgement (11.824147ms)
+✔ knowledge dispatch requires durable marker readback (1.435671ms)
+✔ uncertain knowledge result remains blocked in a new page instance (2.622836ms)
+✔ unclassified knowledge 4xx keeps the review marker (2.835548ms)
+✔ a contradictory decision receipt never authorizes a new attempt (1.973104ms)
+✔ a decision button from the replaced session cannot dispatch using the new token (1.267928ms)
+✔ session replacement inside confirmation is checked again before dispatch (1.303692ms)
+✔ pagehide invalidates detached decision buttons and clears private DOM (1.245684ms)
+✔ known SQL denial clears its marker while a valid receipt retains conservative version lock (2.293828ms)
+✔ auth denial removes private knowledge already rendered (4.786899ms)
+✔ the exact immutable release hold is a known pre-handler denial (2.264044ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 128.146237

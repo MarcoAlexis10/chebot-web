@@ -94,20 +94,58 @@ const browserJs = `
 
   let knowledgeMutationPending = false;
   const knowledgeUncertain = new Set();
-  async function decideKnowledge(item, action, button) {
+  const REVIEW_PREFIX = 'cheveni_knowledge_decision_review_v1:';
+  function needsReview(key) {
+    if (knowledgeUncertain.has(key)) return true;
+    try { return sessionStorage.getItem(REVIEW_PREFIX + key) !== null; } catch (_) { return true; }
+  }
+  function storeIntent(key) {
+    knowledgeUncertain.add(key);
+    try { sessionStorage.setItem(REVIEW_PREFIX + key, '1'); return sessionStorage.getItem(REVIEW_PREFIX + key) === '1'; }
+    catch (_) { return false; }
+  }
+  function clearIntent(key) {
+    try { sessionStorage.removeItem(REVIEW_PREFIX + key); if (sessionStorage.getItem(REVIEW_PREFIX + key) !== null) return false; }
+    catch (_) { return false; }
+    knowledgeUncertain.delete(key); return true;
+  }
+  function validDecision(body, item, action) {
+    const d = body && body.decision;
+    const keys = action === 'approve' ? ['knowledge_item_id','version_id','version_number','resulting_status']
+      : ['knowledge_item_id','version_id','version_number','resulting_item_status','resulting_version_status'];
+    return body && body.ok === true && body.action === action && d && !Array.isArray(d)
+      && Object.keys(d).sort().join('|') === keys.sort().join('|')
+      && d.knowledge_item_id === item.id && d.version_id === item.version.id
+      && Number.isSafeInteger(d.version_number) && d.version_number > 0 && d.version_number === item.version.version_number
+      && (action === 'approve' ? d.resulting_status === 'active'
+        : d.resulting_version_status === 'rejected' && ['active','paused','review','archived'].includes(d.resulting_item_status));
+  }
+  async function decideKnowledge(item, action, button, renderToken, renderSequence) {
     const accessToken = readSectionToken();
     if (!accessToken || !item || !item.id || !item.version || !item.version.id) return;
+    const currentView = () => readSectionToken() === renderToken && loadSequence === renderSequence
+      && !document.body.classList.contains('manager-auth-pending');
+    if (accessToken !== renderToken || !currentView()) return;
 
     const mutationKey = item.id + ':' + item.version.id;
-    if (button.disabled || knowledgeMutationPending || knowledgeUncertain.has(mutationKey) || document.body.classList.contains('manager-auth-pending')) return;
+    if (button.disabled || knowledgeMutationPending || needsReview(mutationKey)) return;
     const approve = action === 'approve';
     const promptText = approve
       ? '¿Aprobar esta propuesta? Una vez aprobada, Che Vení podrá usarla como conocimiento activo según su alcance y riesgo.'
       : '¿Rechazar esta propuesta? No se activará y quedará conservada en el historial.';
 
     if (!window.confirm(promptText)) return;
+    if (!currentView()) return;
+    if (!storeIntent(mutationKey)) {
+      button.disabled = true;
+      window.alert('No pudimos guardar la operación pendiente. No se envió la decisión.');
+      return;
+    }
+    if (!currentView()) { clearIntent(mutationKey); return; }
 
     knowledgeMutationPending = true;
+    const mutationSequence = ++loadSequence;
+    list.replaceChildren();
     const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 8000);
     let dispatched = false, confirmed = false;
     function freezeForReview() {
@@ -140,8 +178,17 @@ const browserJs = `
       let body = null;
       try { body = await response.json(); } catch (_) {}
 
-      if (!body || response.status >= 500 || body.reconciliation_required === true || (response.ok && (body.ok !== true || body.action !== action || body.decision == null))) { freezeForReview(); return; }
+      const knownDenials = {
+        MANAGER_WRITE_DENIED: 403, RESOURCE_OUT_OF_SCOPE: 403, MANAGER_PERMISSION_DENIED: 403,
+        MANAGER_OPERATIONS_NOT_RELEASED: 503,
+        KNOWLEDGE_VERSION_NOT_ACTIVATABLE: 409, KNOWLEDGE_VERSION_NOT_REJECTABLE: 409,
+        SAFETY_REVIEW_REQUIRES_SECOND_APPROVER: 409
+      };
+      const reviewedDenial = !response.ok && body && body.ok === false
+        && knownDenials[body.error] === response.status && body.reconciliation_required !== true;
+      if (!body || body.reconciliation_required === true || (!reviewedDenial && (!response.ok || !validDecision(body, item, action)))) { freezeForReview(); return; }
       if (!response.ok || body.ok !== true) {
+        if (!clearIntent(mutationKey)) { freezeForReview(); return; }
         const code = body && body.error ? String(body.error) : 'KNOWLEDGE_DECISION_FAILED';
         if (code === 'SAFETY_REVIEW_REQUIRES_SECOND_APPROVER') {
           window.alert('Esta propuesta requiere una segunda aprobación por seguridad. No fue activada.');
@@ -152,22 +199,26 @@ const browserJs = `
       }
 
       confirmed = true; knowledgeUncertain.add(mutationKey);
-      if (readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      if (loadSequence !== mutationSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       lastLoadedToken = null;
       await maybeLoadKnowledge();
     } catch (_) {
       if (dispatched) freezeForReview();
     } finally {
       clearTimeout(timer); knowledgeMutationPending = false;
-      button.disabled = confirmed || knowledgeUncertain.has(mutationKey);
+      button.disabled = confirmed || needsReview(mutationKey);
       button.textContent = previousText;
+      if (!needsReview(mutationKey) && loadSequence === mutationSequence && readSectionToken() === accessToken) {
+        lastLoadedToken = null; maybeLoadKnowledge();
+      }
     }
   }
 
   function addDecisionButton(container, label, item, action, danger = false) {
     const button = document.createElement('button');
     button.type = 'button';
-    button.disabled = knowledgeUncertain.has(item.id + ':' + item.version.id);
+    const renderToken = readSectionToken(), renderSequence = loadSequence;
+    button.disabled = needsReview(item.id + ':' + item.version.id);
     button.textContent = label;
     button.style.padding = '8px 11px';
     button.style.borderRadius = '10px';
@@ -176,7 +227,7 @@ const browserJs = `
     button.style.border = danger ? '1px solid #e7c8bd' : '1px solid #0f766e';
     button.style.background = danger ? '#fff' : '#0f766e';
     button.style.color = danger ? '#8b2f18' : '#fff';
-    button.addEventListener('click', () => decideKnowledge(item, action, button));
+    button.addEventListener('click', () => decideKnowledge(item, action, button, renderToken, renderSequence));
     container.appendChild(button);
   }
 
@@ -282,7 +333,9 @@ const browserJs = `
         reviewNote.className = 'muted';
         reviewNote.style.margin = '10px 0 0';
         reviewNote.style.fontSize = '.84rem';
-        reviewNote.textContent = 'Propuesta pendiente: revisala antes de convertirla en conocimiento activo.';
+        reviewNote.textContent = needsReview(item.id + ':' + item.version.id)
+          ? 'Decisión pendiente de conciliación. No la repitas ni borres el bloqueo local; requiere revisión antes de continuar.'
+          : 'Propuesta pendiente: revisala antes de convertirla en conocimiento activo.';
 
         const decisions = document.createElement('div');
         decisions.style.display = 'flex';
@@ -368,6 +421,7 @@ const browserJs = `
     if (!panelVisible || !accessToken) {
       lastLoadedToken = null;
       ++loadSequence;
+      list.replaceChildren();
       return;
     }
 
@@ -403,7 +457,7 @@ const browserJs = `
   }
 
   // Invalidate before the browser can suspend observer delivery into BFCache.
-  window.addEventListener('pagehide', () => { ++loadSequence; lastLoadedToken = null; });
+  window.addEventListener('pagehide', () => { ++loadSequence; lastLoadedToken = null; list.replaceChildren(); });
   window.addEventListener('pageshow', maybeLoadKnowledge);
   maybeLoadKnowledge();
 })();
