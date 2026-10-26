@@ -1,0 +1,54 @@
+TAP version 13
+# Subtest: pre-dispatch authority failure conceals private data: replacement
+not ok 1 - pre-dispatch authority failure conceals private data: replacement
+  ---
+  duration_ms: 6.487965
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:61:53'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:66:31)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: pre-dispatch authority failure conceals private data: storage-failure
+not ok 2 - pre-dispatch authority failure conceals private data: storage-failure
+  ---
+  duration_ms: 2.423881
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:61:53'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:66:31)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 124.441763

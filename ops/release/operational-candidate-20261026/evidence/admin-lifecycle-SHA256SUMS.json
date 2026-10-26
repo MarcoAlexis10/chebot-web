@@ -1,7 +1,9 @@
 {
-  "manager-signup-admin-v1.js": "d8084b5c1cddc2fea51f894b629dcdb0b96bb4f8d8c5e48a16ddc37977871ddc",
-  "qa/security/signup-admin-read-lifecycle-new.test.cjs": "1d9ed960911c46d23c00a571b0796e4a56cbdc57cdf4658fed1896db8b97855e",
+  "manager-signup-admin-v1.js": "4459e0b14d5d0c5ca3dbb4439a495585e50f9c42beb69f3d359cda439c0d16a6",
+  "qa/security/signup-admin-read-lifecycle-new.test.cjs": "dbdb1a5077fcfff85f69a4d750492699b96b9d5bf4a070c1e463d1a0e0ede6b2",
   "ops/release/operational-candidate-20261026/evidence/web-admin-before.tap": "58cfd739e6327c196ed726a3bd5d6228e1d1b685a4e3b06f73bf9cd3d141d83a",
-  "ops/release/operational-candidate-20261026/evidence/web-admin-after.tap": "be32d1321e963358fac313cc3507effd10ed085835f663f0c1fe5621e82001bb",
-  "ops/release/operational-candidate-20261026/evidence/web-admin-generation.json": "b1a257dbc63dcab060ef15631c2e5ed96d924b7487e2f7aa3c1a21d6ff2172f0"
+  "ops/release/operational-candidate-20261026/evidence/web-admin-after.tap": "31641771df95b68c3b73b51f7e4a96f8f83bca7cc88c8b487062dcb6482ca212",
+  "ops/release/operational-candidate-20261026/evidence/web-admin-generation.json": "d63bad8d68b015a3f83613c78ce52691ded61b5148c7ba59e3802629995b6950",
+  "ops/release/operational-candidate-20261026/evidence/web-admin-predispatch-before.tap": "6a1ea3a9f5649bcd6475164bc7886b4845218ca61a1a2c6eae95ac7706b68d18",
+  "ops/release/operational-candidate-20261026/evidence/web-admin-concurrent-before.tap": "f7f614b23a8ccafa46fa6bac9c63232ad04c3f4d431c92e9da0eda1926560e9d"
 }

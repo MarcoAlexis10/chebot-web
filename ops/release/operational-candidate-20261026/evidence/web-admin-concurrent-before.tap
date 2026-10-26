@@ -1,0 +1,32 @@
+TAP version 13
+# Subtest: an uncertain mutation invalidates a concurrent GET instead of reopening its private view
+not ok 1 - an uncertain mutation invalidates a concurrent GET instead of reopening its private view
+  ---
+  duration_ms: 5.788976
+  type: 'test'
+  location: '/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:68:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/bc768a12bda7/catalog-qa/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:75:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 104.942713

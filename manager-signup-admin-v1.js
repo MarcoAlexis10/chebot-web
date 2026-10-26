@@ -81,7 +81,7 @@ function clearPrivateView(){
  preparedLink.textContent='';document.getElementById('applications').replaceChildren();
  document.getElementById('invite-email').value='';document.getElementById('issue-confirm').checked=false;
 }
-function currentPageSession(){return !pageDisposed&&token&&sessionStorage.getItem(TOKEN_KEY)===token}
+function currentPageSession(){try{return !pageDisposed&&token&&sessionStorage.getItem(TOKEN_KEY)===token}catch(_){return false}}
 function message(el,text,error){
  el.textContent=text;
  el.className=error?'notice error':'notice';
@@ -92,14 +92,14 @@ function makeText(tag,value,cls){
 }
 var mutationPending=false,mutationUncertain=false;
 function freezeMutation(){
- mutationUncertain=true;issueButton.disabled=true;
+ mutationUncertain=true;readGeneration++;issueButton.disabled=true;
  clearPrivateView();
  message(access,'Resultado sin confirmar. No repitas la acción: verificá el estado antes de continuar.',true);
  document.querySelectorAll('button').forEach(function(b){b.disabled=true});
 }
 async function api(method,body){
  var mutating=method!=='GET';
- if(!currentPageSession())throw new Error('SESSION_CHANGED');
+ if(!currentPageSession()){clearPrivateView();throw new Error('SESSION_CHANGED')}
  if(mutating&&(mutationPending||mutationUncertain))throw new Error('MUTATION_REVIEW_REQUIRED');
  if(mutating&&sessionStorage.getItem(TOKEN_KEY)!==token)throw new Error('SESSION_CHANGED');
  if(mutating)mutationPending=true;

@@ -5,15 +5,15 @@ const response=(body=payload,status=200)=>({ok:status>=200&&status<300,status,js
 const settle=async()=>{for(let i=0;i<30;i++)await Promise.resolve();};
 function harness(fetcher){
  let html;vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../../manager-signup-admin-v1.js'),'utf8'),{__dirname:'/fictional',console:{log(){}},require:n=>n==='node:path'?path:n==='./manager-build-config.cjs'?{managerBuildConfig:()=>({apiOrigin:'https://fictional-api.example.invalid'})}:{mkdirSync(){},writeFileSync:(_p,text)=>html=text}});
- const nodes=new Map(),events=new Map(),storage=new Map([[TOKEN,'FICTIONAL_TOKEN']]);
+ const nodes=new Map(),events=new Map(),storage=new Map([[TOKEN,'FICTIONAL_TOKEN']]),state={storageFails:false};
  const element=()=>({hidden:false,disabled:false,value:'',textContent:'',children:[],listeners:{},addEventListener(k,f){this.listeners[k]=f;},appendChild(x){this.children.push(x);},replaceChildren(...xs){this.children=xs;},querySelectorAll(){return [];},reportValidity(){return true;},reset(){}});
  const node=id=>{if(!nodes.has(id)){const x=element();if(['editor','review','refresh','result'].includes(id))x.hidden=true;nodes.set(id,x);}return nodes.get(id);};
- const context={Date,AbortController,setTimeout:()=>1,clearTimeout(){},sessionStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},
+ const context={Date,AbortController,setTimeout:()=>1,clearTimeout(){},sessionStorage:{getItem:k=>{if(state.storageFails)throw Error('FICTIONAL_STORAGE_FAILURE');return storage.get(k)||null;},setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},
  document:{getElementById:node,createElement:()=>element(),querySelectorAll:()=>[node('issue-button'),node('refresh'),node('copy-link')]},
  window:{confirm:()=>false,alert(){},addEventListener:(k,f)=>{if(!events.has(k))events.set(k,[]);events.get(k).push(f);}},
  fetch:(url,options)=>{assert.equal(url,'https://fictional-api.example.invalid/api/concierge/manager/signup-admin');return fetcher(options);}};
  vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
- return {node,storage,refresh:()=>node('refresh').listeners.click(),emit:(k,data={})=>{for(const f of events.get(k)||[])f(data);}};
+ return {node,storage,state,refresh:()=>node('refresh').listeners.click(),emit:(k,data={})=>{for(const f of events.get(k)||[])f(data);}};
 }
 test('a denied refresh clears private operator data and any prepared invitation link',async()=>{
  let count=0;const h=harness(async()=>++count===1?response():response({ok:false},401));await settle();assert.equal(h.node('editor').hidden,false);
@@ -57,4 +57,20 @@ test('uncertain mutation conceals private data and blocks a second dispatch',asy
  let posts=0;const h=harness(async options=>{if(options.method==='GET')return response();posts++;throw Error('FICTIONAL_OUTCOME_UNKNOWN');});await settle();
  h.node('prepared-link').textContent='FICTIONAL_PREVIOUS_LINK';const submit=()=>h.node('issue-form').listeners.submit({preventDefault(){}});
  await submit();await submit();assert.equal(posts,1);assert.equal(h.node('issue-button').disabled,true);assert.equal(h.node('editor').hidden,true);assert.equal(h.node('prepared-link').textContent,'');
+});
+for(const mode of ['replacement','storage-failure'])test(`pre-dispatch authority failure conceals private data: ${mode}`,async()=>{
+ let posts=0;const h=harness(async options=>{if(options.method!=='GET')posts++;return response();});await settle();
+ h.node('prepared-link').textContent='FICTIONAL_PRIVATE_LINK';
+ if(mode==='replacement')h.storage.set(TOKEN,'FICTIONAL_REPLACED');else h.state.storageFails=true;
+ await h.node('issue-form').listeners.submit({preventDefault(){}});
+ assert.equal(posts,0);assert.equal(h.node('editor').hidden,true);assert.equal(h.node('prepared-link').textContent,'');
+});
+test('an uncertain mutation invalidates a concurrent GET instead of reopening its private view',async()=>{
+ let count=0,releaseRead,rejectWrite;const h=harness(options=>{
+  if(options.method==='POST')return new Promise((_r,reject)=>rejectWrite=reject);
+  return ++count===1?Promise.resolve(response()):new Promise(r=>releaseRead=r);
+ });await settle();
+ const write=h.node('issue-form').listeners.submit({preventDefault(){}}),read=h.refresh();
+ rejectWrite(Error('FICTIONAL_OUTCOME_UNKNOWN'));await write;releaseRead(response());await read;
+ assert.equal(h.node('editor').hidden,true);assert.equal(h.node('review').hidden,true);assert.equal(h.node('applications').children.length,0);
 });
