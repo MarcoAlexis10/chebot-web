@@ -1,0 +1,119 @@
+✖ manager login headers have a real deadline even when the transport ignores abort (7.591356ms)
+✖ late login JSON cannot validate or persist a session after its deadline (4.502796ms)
+✖ logout timeout completes local exit and reports the unconfirmed provider closure (2.326025ms)
+✖ password recovery timeout cannot remain indefinitely pending or claim mail delivery (3.171215ms)
+✖ restored session body deadline conceals the panel and clears its local credential (3.529613ms)
+✖ private property list body deadline renders unavailable and ignores its late JSON (6.764824ms)
+✔ normal login and logout settle without leaving a request deadline timer (2.221217ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 1
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 144.552848
+
+✖ failing tests:
+
+test at web/qa/security/auth-deadline-desktop-new.test.cjs:5:1
+✖ manager login headers have a real deadline even when the transport ignores abort (7.591356ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-deadline-desktop-new.test.cjs:5:289)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-deadline-desktop-new.test.cjs:6:1
+✖ late login JSON cannot validate or persist a session after its deadline (4.502796ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-deadline-desktop-new.test.cjs:6:370)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-deadline-desktop-new.test.cjs:7:1
+✖ logout timeout completes local exit and reports the unconfirmed provider closure (2.326025ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-deadline-desktop-new.test.cjs:7:345)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-deadline-desktop-new.test.cjs:8:1
+✖ password recovery timeout cannot remain indefinitely pending or claim mail delivery (3.171215ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-deadline-desktop-new.test.cjs:8:485)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-deadline-desktop-new.test.cjs:9:1
+✖ restored session body deadline conceals the panel and clears its local credential (3.529613ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-deadline-desktop-new.test.cjs:9:302)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-deadline-desktop-new.test.cjs:10:1
+✖ private property list body deadline renders unavailable and ignores its late JSON (6.764824ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(h.lists.get('#propiedades .list').cleared>prior)
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-deadline-desktop-new.test.cjs:10:359)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

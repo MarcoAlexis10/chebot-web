@@ -160,12 +160,41 @@ const browserJs = `
     catch (_) { storageHealthy = false; throw new Error('BROWSER_STORAGE_UNAVAILABLE'); }
   }
 
+  async function fetchAuth(url, options) {
+    const controller = new AbortController(), external = options.signal;
+    const generation = authGeneration;
+    const accessToken = String(options.headers && options.headers.Authorization || '').replace(/^Bearer /, '');
+    let cancel;
+    const aborted = new Promise((_, reject) => {
+      cancel = () => { controller.abort(); reject(new Error('AUTH_REQUEST_UNCONFIRMED')); };
+    });
+    if (external) external.addEventListener('abort', cancel, {once: true});
+    const timer = setTimeout(cancel, 8000);
+    try {
+      if (external && external.aborted) { cancel(); return await aborted; }
+      // One deadline through headers and JSON, even if an adapter ignores abort.
+      // This never retries login, recovery or logout after an unknown outcome.
+      return await Promise.race([aborted, (async () => {
+        const response = await fetch(url, {...options, signal: controller.signal});
+        if (response.status === 401 && [BACKEND_SESSION_URL, BACKEND_PROPERTIES_URL, BACKEND_STAYS_URL].includes(url) &&
+            generation === authGeneration && accessToken && readToken() === accessToken) {
+          showLogin('La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
+        }
+        let body = null;
+        try { body = await response.json(); } catch (_) {}
+        return {ok: response.ok, status: response.status, json: async () => body};
+      })()]);
+    } finally {
+      clearTimeout(timer);
+      if (external) external.removeEventListener('abort', cancel);
+    }
+  }
+
   async function revokeSession(accessToken) {
     if (!accessToken) return true;
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 8000);
     try {
-      const response = await fetch(SUPABASE_URL + '/auth/v1/logout?scope=local', {
+      const response = await fetchAuth(SUPABASE_URL + '/auth/v1/logout?scope=local', {
         method: 'POST',
         cache: 'no-store',
         redirect: 'error',
@@ -179,8 +208,6 @@ const browserJs = `
       return response.ok;
     } catch (_) {
       return false;
-    } finally {
-      clearTimeout(timer);
     }
   }
 
@@ -347,7 +374,7 @@ const browserJs = `
 
   async function loadManagerProperties(accessToken) {
     const generation = authGeneration;
-    const response = await fetch(BACKEND_PROPERTIES_URL, {
+    const response = await fetchAuth(BACKEND_PROPERTIES_URL, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
@@ -488,7 +515,7 @@ const browserJs = `
 
   async function loadManagerStays(accessToken) {
     const generation = authGeneration;
-    const response = await fetch(BACKEND_STAYS_URL, {
+    const response = await fetchAuth(BACKEND_STAYS_URL, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
@@ -517,7 +544,7 @@ const browserJs = `
   }
 
   async function verifyManagerSession(accessToken) {
-    const response = await fetch(BACKEND_SESSION_URL, {
+    const response = await fetchAuth(BACKEND_SESSION_URL, {
       method: 'GET',
       mode: 'cors',
       cache: 'no-store',
@@ -542,7 +569,7 @@ const browserJs = `
   }
 
   async function signIn(loginEmail, loginPassword) {
-    const response = await fetch(
+    const response = await fetchAuth(
       SUPABASE_URL + '/auth/v1/token?grant_type=password',
       {
         method: 'POST',
@@ -588,10 +615,9 @@ const browserJs = `
     recoverySubmit.disabled = true;
     const controller = new AbortController();
     recoveryController = controller;
-    const timer = setTimeout(() => controller.abort(), 8000);
     recoveryMessage('Solicitando enlace de recuperación…');
     try {
-      const response = await fetch(
+      const response = await fetchAuth(
         SUPABASE_URL + '/auth/v1/recover?redirect_to=' + encodeURIComponent(redirect),
         {
           signal: controller.signal,
@@ -619,7 +645,6 @@ const browserJs = `
       if (recoveryAttempt !== recoveryGeneration) return;
       recoveryMessage('No pudimos confirmar la solicitud. Evitá repetirla enseguida; revisá el correo antes de intentarlo más tarde.', 'error');
     } finally {
-      clearTimeout(timer);
       if (recoveryAttempt === recoveryGeneration) { recoveryPending = false; recoveryController = null; recoverySubmit.disabled = false; }
     }
   });

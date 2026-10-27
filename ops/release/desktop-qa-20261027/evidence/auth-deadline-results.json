@@ -1,0 +1,15 @@
+{
+  "newCases": 8,
+  "baselineInitialSeven": {
+    "passed": 1,
+    "failed": 6
+  },
+  "additional401HeaderBaseline": {
+    "passed": 0,
+    "failed": 1
+  },
+  "passed": 8,
+  "failed": 0,
+  "command": "node --test qa/security/auth-deadline-desktop-new.test.cjs",
+  "scope": "Actual generated Auth/login/restore/properties/stays/recovery/logout script, fictional transport/DOM/storage/timers. No real auth, session deletion, mail or delivery proof. Six newly affected storage cases rerun after transport changes, not counted again."
+}

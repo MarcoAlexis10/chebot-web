@@ -1,0 +1,16 @@
+✔ manager login headers have a real deadline even when the transport ignores abort (7.62696ms)
+✔ late login JSON cannot validate or persist a session after its deadline (3.439688ms)
+✔ logout timeout completes local exit and reports the unconfirmed provider closure (2.210241ms)
+✔ password recovery timeout cannot remain indefinitely pending or claim mail delivery (2.018182ms)
+✔ restored session body deadline conceals the panel and clears its local credential (2.827428ms)
+✔ private property list body deadline renders unavailable and ignores its late JSON (1.826274ms)
+✔ normal login and logout settle without leaving a request deadline timer (2.305424ms)
+✔ current private 401 headers conceal the panel before a stalled body reaches its deadline (1.741527ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 147.555078
