@@ -148,8 +148,12 @@ const browserJs = `
     list.replaceChildren();
     const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 8000);
     let dispatched = false, confirmed = false;
+    function mutationCurrent() {
+      return loadSequence === mutationSequence && readSectionToken() === accessToken && !document.body.classList.contains('manager-auth-pending');
+    }
     function freezeForReview() {
       knowledgeUncertain.add(mutationKey);
+      if (!mutationCurrent()) return;
       window.alert('No pudimos confirmar el resultado de la decisión. No la repitas: verificá el estado antes de continuar.');
     }
     const previousText = button.textContent;
@@ -178,6 +182,7 @@ const browserJs = `
       let body = null;
       try { body = await response.json(); } catch (_) {}
 
+      if (!mutationCurrent()) return;
       const knownDenials = {
         MANAGER_WRITE_DENIED: 403, RESOURCE_OUT_OF_SCOPE: 403, MANAGER_PERMISSION_DENIED: 403,
         MANAGER_OPERATIONS_NOT_RELEASED: 503,
@@ -353,7 +358,7 @@ const browserJs = `
     });
   }
 
-  function renderKnowledgeError() {
+  function renderKnowledgeError(code) {
     list.replaceChildren();
 
     const errorCard = document.createElement('article');
@@ -365,7 +370,9 @@ const browserJs = `
 
     const detail = document.createElement('p');
     detail.className = 'muted';
-    detail.textContent = 'La sesión sigue activa. Reintentá recargando la página.';
+    detail.textContent = ['KNOWLEDGE_SCOPE_REVOKED', 'KNOWLEDGE_SCOPE_CHANGED'].includes(code)
+      ? 'Tus permisos sobre este conocimiento cambiaron. Verificá el acceso antes de continuar.'
+      : 'No pudimos verificar el acceso al conocimiento. Revisá tu sesión y recargá la página.';
 
     errorCard.append(title, detail);
     list.appendChild(errorCard);
@@ -380,7 +387,7 @@ const browserJs = `
     const sequence = loadSequence;
     const accessToken = options.headers && String(options.headers.Authorization || '').replace(/^Bearer /, '');
     const response = await fetch(url, {...options, redirect: 'error'});
-    if (response.status === 401 && sequence === loadSequence && readSectionToken() === accessToken
+    if (response.status === 401 && !options.signal?.aborted && sequence === loadSequence && readSectionToken() === accessToken
         && !document.body.classList.contains('manager-auth-pending')) {
       window.dispatchEvent(new Event('cheveni-manager-session-denied'));
     }
@@ -388,27 +395,29 @@ const browserJs = `
   }
 
   async function loadManagerKnowledge(accessToken) {
-    const response = await fetchManager(BACKEND_KNOWLEDGE_URL, {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-store',
-      headers: {
-        Authorization: 'Bearer ' + accessToken,
-        Accept: 'application/json'
-      }
+    const controller = new AbortController();
+    let timer;
+    const deadline = new Promise((_, reject) => {
+      timer = setTimeout(() => { controller.abort(); reject(new Error('MANAGER_KNOWLEDGE_TIMEOUT')); }, 8000);
     });
-
-    let body = null;
-    try { body = await response.json(); } catch (_) {}
-
-    if (!response.ok || !body || body.ok !== true || !Array.isArray(body.knowledge)) {
-      const error = body && body.error ? String(body.error) : 'MANAGER_KNOWLEDGE_LOAD_FAILED';
-      const e = new Error(error);
-      e.code = error;
-      throw e;
-    }
-
-    return body.knowledge;
+    try {
+      // Bound both headers and JSON even if an adapter ignores cancellation.
+      const body = await Promise.race([deadline, (async () => {
+        const response = await fetchManager(BACKEND_KNOWLEDGE_URL, {
+          signal: controller.signal, method: 'GET', mode: 'cors', cache: 'no-store',
+          headers: {Authorization: 'Bearer ' + accessToken, Accept: 'application/json'}
+        });
+        let result = null;
+        try { result = await response.json(); } catch (_) {}
+        if (!response.ok || !result || result.ok !== true || !Array.isArray(result.knowledge)) {
+          const error = new Error(result && result.error ? String(result.error) : 'MANAGER_KNOWLEDGE_LOAD_FAILED');
+          error.code = result && result.error;
+          throw error;
+        }
+        return result;
+      })()]);
+      return body.knowledge;
+    } finally { clearTimeout(timer); }
   }
 
   let lastLoadedToken = null;
@@ -429,14 +438,16 @@ const browserJs = `
 
     const sequence = ++loadSequence;
     lastLoadedToken = accessToken;
+    // Remove the previous session's content before the replacement read yields.
+    list.replaceChildren();
 
     try {
       const items = await loadManagerKnowledge(accessToken);
       if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
       renderKnowledge(items);
-    } catch (_) {
+    } catch (error) {
       if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
-      renderKnowledgeError();
+      renderKnowledgeError(error && error.code);
     }
   }
 

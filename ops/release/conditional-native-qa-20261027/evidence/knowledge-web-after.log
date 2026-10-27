@@ -1,0 +1,13 @@
+✔ replacing a session clears its rendered private knowledge before the replacement read resolves (6.009635ms)
+✔ a hung knowledge header read ends safely without waiting for transport cancellation (3.384666ms)
+✔ a hung knowledge JSON body shares the deadline and its late private result is discarded (2.00665ms)
+✔ revoked knowledge permission is not presented as a confirmed active session (1.774039ms)
+✔ an old session decision response preserves its intent without alerting the replacement view (4.618004ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 113.105016

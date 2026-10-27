@@ -1,0 +1,96 @@
+✖ replacing a session clears its rendered private knowledge before the replacement read resolves (5.732448ms)
+✖ a hung knowledge header read ends safely without waiting for transport cancellation (3.375489ms)
+✖ a hung knowledge JSON body shares the deadline and its late private result is discarded (1.937863ms)
+✖ revoked knowledge permission is not presented as a confirmed active session (1.961709ms)
+✖ an old session decision response preserves its intent without alerting the replacement view (4.764942ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.893573
+
+✖ failing tests:
+
+test at qa/security/knowledge-read-finish-new.test.cjs:13:1
+✖ replacing a session clears its rendered private knowledge before the replacement read resolves (5.732448ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /FICTIONAL_PRIVATE_CONTENT/. Input:
+  
+  '  FICTIONAL_PRIVATE_RULE Propiedad · Sin categoría FICTIONAL_PRIVATE_CONTENT  En revisión Riesgo no informado v2 Fuente no informada · propuesta pendiente · 0 versiones Propuesta pendiente: revisala antes de convertirla en conocimiento activo.  Aprobar Rechazar'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-read-finish-new.test.cjs:13:377)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '  FICTIONAL_PRIVATE_RULE Propiedad · Sin categoría FICTIONAL_PRIVATE_CONTENT  En revisión Riesgo no informado v2 Fuente no informada · propuesta pendiente · 0 versiones Propuesta pendiente: revisala antes de convertirla en conocimiento activo.  Aprobar Rechazar',
+    expected: /FICTIONAL_PRIVATE_CONTENT/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at qa/security/knowledge-read-finish-new.test.cjs:14:1
+✖ a hung knowledge header read ends safely without waiting for transport cancellation (3.375489ms)
+  AssertionError [ERR_ASSERTION]: read must have a bounded deadline
+      at Object.expire (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-read-finish-new.test.cjs:11:240)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-read-finish-new.test.cjs:14:174)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at qa/security/knowledge-read-finish-new.test.cjs:15:1
+✖ a hung knowledge JSON body shares the deadline and its late private result is discarded (1.937863ms)
+  AssertionError [ERR_ASSERTION]: read must have a bounded deadline
+      at Object.expire (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-read-finish-new.test.cjs:11:240)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-read-finish-new.test.cjs:15:210)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at qa/security/knowledge-read-finish-new.test.cjs:16:1
+✖ revoked knowledge permission is not presented as a confirmed active session (1.961709ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /La sesión sigue activa/. Input:
+  
+  '  No pudimos cargar el conocimiento La sesión sigue activa. Reintentá recargando la página.'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-read-finish-new.test.cjs:16:197)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '  No pudimos cargar el conocimiento La sesión sigue activa. Reintentá recargando la página.',
+    expected: /La sesión sigue activa/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at qa/security/knowledge-read-finish-new.test.cjs:17:1
+✖ an old session decision response preserves its intent without alerting the replacement view (4.764942ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/knowledge-read-finish-new.test.cjs:17:603)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
