@@ -1,0 +1,15 @@
+✔ request mutation headers have a deadline even when the adapter ignores abort (20.448796ms)
+✔ request mutation body timeout preserves review and ignores a later success body (4.769547ms)
+✔ request initial list body timeout renders unavailable instead of indefinite loading (3.498542ms)
+✔ request exact known denial clears its timer and keeps a deliberate retry available (3.686155ms)
+✔ incident mutation headers have a deadline even when the adapter ignores abort (5.751047ms)
+✔ incident mutation body timeout preserves review and ignores a later success body (2.550804ms)
+✔ incident exact known denial clears its timer and keeps a deliberate retry available (2.467078ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 132.960943

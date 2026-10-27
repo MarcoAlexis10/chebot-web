@@ -15,7 +15,7 @@ function harness({storage=new Map([[TOKEN,'FICTIONAL_TOKEN']]),fetcher,storageFa
  const element=tag=>({tag,children:[],style:{},disabled:false,hidden:false,textContent:'',listeners:{},append(...xs){this.children.push(...xs);},appendChild(x){this.children.push(x);},replaceChildren(...xs){this.children=xs;},addEventListener(k,f){this.listeners[k]=f;},querySelector(){return null;},querySelectorAll(){return [];}});
  const node=id=>{if(!nodes.has(id))nodes.set(id,element(id));return nodes.get(id);};
  const pending={id:ID,status:'waiting_manager',request_type:'other',property:{internal_name:'FICTIONAL'},created_at:'2026-10-26T00:00:00Z'};
- vm.runInNewContext(browser,{URL,Date,Intl,Event,document:{getElementById:node,createElement:element,querySelector:()=>null,querySelectorAll:()=>[],body:{classList:{contains:()=>false}}},
+ vm.runInNewContext(browser,{URL,Date,Intl,Event,AbortController,setTimeout,clearTimeout,document:{getElementById:node,createElement:element,querySelector:()=>null,querySelectorAll:()=>[],body:{classList:{contains:()=>false}}},
   sessionStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>{if(storageFailure)throw Error('FICTIONAL_QUOTA');if(!silentStorageFailure)storage.set(k,v);},removeItem:k=>storage.delete(k)},
   MutationObserver:class{observe(){}},window:{confirm:()=>true,alert:x=>alerts.push(x),dispatchEvent(){},addEventListener:(k,f)=>events.set(k,f)},
   fetch:async(url,o)=>{assert.ok(url.startsWith('https://api.example.invalid/'));calls.push({url,method:o.method});return o.method==='GET'?reply({ok:true,requests:[pending]}):fetcher?fetcher(url,o):success(JSON.parse(o.body).decision);}});

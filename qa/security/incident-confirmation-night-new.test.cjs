@@ -1,7 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 // Reuse only the fictional DOM/transport factory. Never evaluate its historical test() calls.
 const fixturePath=path.resolve(__dirname,'incident-intent-noasus-delta.test.cjs'),source=fs.readFileSync(fixturePath,'utf8');
-const api=vm.runInNewContext('(function(){'+source.slice(0,source.indexOf('\ntest('))+';return {harness,incident,learning,draft,settle,reply,ID,PROP,KEY,TOKEN};})()', {require,URL,Event,__dirname:path.dirname(fixturePath)});
+const api=vm.runInNewContext('(function(){'+source.slice(0,source.indexOf('\ntest('))+';return {harness,incident,learning,draft,settle,reply,ID,PROP,KEY,TOKEN};})()', {require,URL,Event,AbortController,setTimeout,clearTimeout,__dirname:path.dirname(fixturePath)});
 const STAY='00000008-0000-4000-8000-000000000000',OTHER='00000009-0000-4000-8000-000000000000';
 const fresh=(state,change={})=>({...api.incident(state),stay_id:STAY,...change});
 const notification=change=>({sent:true,status:'sent',manager_response_recorded:true,guidance_recorded:true,communicated_at:'2026-10-27T00:00:00Z',version:'incident-mediation-v2',...change});

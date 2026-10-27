@@ -197,12 +197,25 @@ const browserJs = `
   async function fetchManager(url, options) {
     const sequence = loadSequence;
     const accessToken = options.headers && String(options.headers.Authorization || '').replace(/^Bearer /, '');
-    const response = await fetch(url, {...options, redirect: 'error'});
-    if (response.status === 401 && sequence === loadSequence && readSectionToken() === accessToken
-        && !document.body.classList.contains('manager-auth-pending')) {
-      window.dispatchEvent(new Event('cheveni-manager-session-denied'));
-    }
-    return response;
+    const controller = new AbortController();
+    let timer;
+    const deadline = new Promise((_, reject) => {
+      timer = setTimeout(() => { controller.abort(); reject(new Error('MANAGER_REQUEST_TIMEOUT')); }, 8000);
+    });
+    try {
+      // Bound headers AND body even if an adapter ignores abort. A mutation
+      // timeout is an unknown result; callers retain their persisted intent.
+      return await Promise.race([deadline, (async () => {
+        const response = await fetch(url, {...options, redirect: 'error', signal: controller.signal});
+        if (response.status === 401 && sequence === loadSequence && readSectionToken() === accessToken
+            && !document.body.classList.contains('manager-auth-pending')) {
+          window.dispatchEvent(new Event('cheveni-manager-session-denied'));
+        }
+        let body = null;
+        try { body = await response.json(); } catch (_) {}
+        return {ok: response.ok, status: response.status, json: async () => body};
+      })()]);
+    } finally { clearTimeout(timer); }
   }
 
   async function loadManagerIncidents(accessToken) {

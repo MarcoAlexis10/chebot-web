@@ -1,0 +1,16 @@
+✔ missing notification evidence cannot certify that a recorded waiting-guest state reached the guest (16.256409ms)
+✔ contradictory sent true plus reconciliation remains in review (2.159204ms)
+✔ an incomplete or string-valued delivery claim cannot unlock the incident (5.622904ms)
+✔ a fresh incident with the same ID but another stay cannot clear the action marker (1.358617ms)
+✔ duplicate fresh incident IDs do not establish a unique current result (2.091652ms)
+✔ known non-sent guidance remains explicit to the manager without claiming delivery (1.197455ms)
+✔ exact fictional acceptance plus one bound current row permits the next distinct action (1.099927ms)
+✔ duplicate learning rows cannot confirm one proposal and remove replay protection (1.343916ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 117.928558

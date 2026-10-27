@@ -11,7 +11,7 @@ test('a 401 from an earlier page generation cannot log out a freshly reverified 
 });
 for(const [file,suffix,key] of [['manager-knowledge-v1.js','Knowledge','KNOWLEDGE'],['manager-requests-v1.js','Requests','REQUESTS'],['manager-incidents-v1.js','Incidents','INCIDENTS']])test(suffix+' signals current authentication loss without disclosing a token',async()=>{
  const source=browserSource(file),start=source.indexOf('  function readSectionToken()'),end=source.indexOf('\n  let lastLoadedToken',start);let event;
- const context={fetch:async()=>json({error:'AUTH_SESSION_REVOKED'},401),sessionStorage:{getItem:()=> 'FICTIONAL_TOKEN'},document:{body:{classList:{contains:()=>false}}},window:{dispatchEvent:e=>{event=e;}},Event,TOKEN_KEY:TOKEN,['BACKEND_'+key+'_URL']:'https://fictional-api.example.invalid/'+key};
+ const context={AbortController,setTimeout,clearTimeout,fetch:async()=>json({error:'AUTH_SESSION_REVOKED'},401),sessionStorage:{getItem:()=> 'FICTIONAL_TOKEN'},document:{body:{classList:{contains:()=>false}}},window:{dispatchEvent:e=>{event=e;}},Event,TOKEN_KEY:TOKEN,['BACKEND_'+key+'_URL']:'https://fictional-api.example.invalid/'+key};
  const fn=vm.compileFunction('let loadSequence=1;'+source.slice(start,end)+';return loadManager'+suffix+';',Object.keys(context))(...Object.values(context));
  await assert.rejects(fn('FICTIONAL_TOKEN'));assert.equal(event?.type,'cheveni-manager-session-denied');assert.equal(event.detail,undefined);
 });

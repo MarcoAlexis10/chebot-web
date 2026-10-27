@@ -1,0 +1,102 @@
+✖ request mutation headers have a deadline even when the adapter ignores abort (25.540855ms)
+✖ request mutation body timeout preserves review and ignores a later success body (3.874144ms)
+✖ request initial list body timeout renders unavailable instead of indefinite loading (3.981425ms)
+✔ request exact known denial clears its timer and keeps a deliberate retry available (2.967191ms)
+✖ incident mutation headers have a deadline even when the adapter ignores abort (7.84316ms)
+✖ incident mutation body timeout preserves review and ignores a later success body (3.517368ms)
+✔ incident exact known denial clears its timer and keeps a deliberate retry available (3.826933ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 150.314008
+
+✖ failing tests:
+
+test at web/qa/security/manager-deadline-night-new.test.cjs:10:2
+✖ request mutation headers have a deadline even when the adapter ignores abort (25.540855ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(h.alerts.some(x=>/No la repitas|revisi[oó]n|No repitas/.test(x)))
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/manager-deadline-night-new.test.cjs:10:303)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at web/qa/security/manager-deadline-night-new.test.cjs:11:2
+✖ request mutation body timeout preserves review and ignores a later success body (3.874144ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(h.alerts.length>0)
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/manager-deadline-night-new.test.cjs:11:343)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at web/qa/security/manager-deadline-night-new.test.cjs:12:22
+✖ request initial list body timeout renders unavailable instead of indefinite loading (3.981425ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No pudimos cargar/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/manager-deadline-night-new.test.cjs:12:299)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /No pudimos cargar/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at web/qa/security/manager-deadline-night-new.test.cjs:10:2
+✖ incident mutation headers have a deadline even when the adapter ignores abort (7.84316ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(h.alerts.some(x=>/No la repitas|revisi[oó]n|No repitas/.test(x)))
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/manager-deadline-night-new.test.cjs:10:303)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at web/qa/security/manager-deadline-night-new.test.cjs:11:2
+✖ incident mutation body timeout preserves review and ignores a later success body (3.517368ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(h.alerts.length>0)
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/manager-deadline-night-new.test.cjs:11:343)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

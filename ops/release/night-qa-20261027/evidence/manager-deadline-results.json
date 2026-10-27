@@ -1,0 +1,25 @@
+{
+  "newCases": 7,
+  "before": {
+    "passed": 2,
+    "failed": 5
+  },
+  "after": {
+    "passed": 7,
+    "failed": 0
+  },
+  "command": "node --test qa/security/manager-deadline-night-new.test.cjs",
+  "affectedRegressions": {
+    "incident-confirmation-night-new": {
+      "passed": 8,
+      "failed": 0,
+      "countedAgain": false
+    },
+    "incident-guidance-night-new": {
+      "passed": 5,
+      "failed": 0,
+      "countedAgain": false
+    }
+  },
+  "scope": "Generated request and incident browser scripts with fictional DOM/storage/transport/timers. Deadline includes headers and JSON even when abort ignored. No real HTTP, SQL or Auth. Old harness globals only updated to provide browser timer/abort APIs; historical cases not executed."
+}

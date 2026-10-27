@@ -18,7 +18,7 @@ async function requests(post,{store=storage(),refreshFails=false}={}){
  const list=new Element('div'),alerts=[];let gets=0,posts=0;
  const item={id:REQ,status:'new',request_type:'early_checkin',property_internal_name:'Fictional apartment',requested_at_time:'2099-01-01T12:00:00Z'};
  const fetch=async(url,options={})=>{if(options.method==='POST'){posts++;return post(url,options);}gets++;if(refreshFails&&gets>1)throw Error('fictional refresh failure');return new Response(JSON.stringify({ok:true,requests:[item]}));};
- const context={sessionStorage:store,fetch,Date,Intl,MutationObserver:class{observe(){}},window:{addEventListener(){},confirm:()=>true,alert:m=>alerts.push(m)},document:{body:{classList:{contains:()=>false}},getElementById:id=>id==='manager-requests-list'?list:null,querySelector:()=>list,querySelectorAll:()=>[],createElement:t=>new Element(t)}};
+ const context={sessionStorage:store,fetch,Date,Intl,AbortController,setTimeout,clearTimeout,MutationObserver:class{observe(){}},window:{addEventListener(){},confirm:()=>true,alert:m=>alerts.push(m)},document:{body:{classList:{contains:()=>false}},getElementById:id=>id==='manager-requests-list'?list:null,querySelector:()=>list,querySelectorAll:()=>[],createElement:t=>new Element(t)}};
  vm.runInNewContext(script('manager-requests.js'),context);await later();return {list,buttons:controls(list),store,alerts,posts:()=>posts};
 }
 test('invite transport timeout freezes the action across a rendered page reload',async()=>{
