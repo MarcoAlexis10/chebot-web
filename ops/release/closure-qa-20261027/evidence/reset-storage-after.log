@@ -1,0 +1,14 @@
+✔ recovery refuses all provider calls when initial token removal silently fails (3.678471ms)
+✔ initial token readback failure also refuses recovery without exposing storage details (1.067203ms)
+✔ confirmed password update warns if a late local token survives silent removal (2.119704ms)
+✔ uncertain update includes local cleanup failure and remains terminal without replay (2.279546ms)
+✔ readback failure after a confirmed update cannot produce a clean-exit confirmation (1.274447ms)
+✔ verified removal preserves an ordinary recovery and unrelated browser storage (4.276846ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 111.113084

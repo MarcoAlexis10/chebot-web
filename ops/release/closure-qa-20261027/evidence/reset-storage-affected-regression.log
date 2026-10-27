@@ -1,0 +1,16 @@
+✔ password update receipt with missing identity remains uncertain and cannot retry (3.58653ms)
+✔ password update receipt with different user remains uncertain and cannot retry (1.143648ms)
+✔ password update receipt with anonymous identity remains uncertain and cannot retry (2.091801ms)
+✔ unreadable HTTP200 update body never reports a confirmed password change (1.308718ms)
+✔ pagehide while parsing update receipt conceals drafts and ignores late success (1.182336ms)
+✔ a matching current Auth user receipt confirms the update and closes only its local session (1.047553ms)
+✔ a stalled update identity body is bounded even when the adapter ignores abort (1.082947ms)
+✔ a stalled initial identity body times out without ever enabling password submission (0.873961ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.403647

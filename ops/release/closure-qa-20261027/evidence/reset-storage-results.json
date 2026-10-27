@@ -1,0 +1,12 @@
+{
+  "newCases": 6,
+  "beforePassed": 1,
+  "beforeFailed": 5,
+  "passed": 6,
+  "failed": 0,
+  "affectedRegressionsPassed": 8,
+  "regressionReason": "Reset now reads back local credential removal before admission and after update; receipt/terminal lifecycle behaviors directly affected. Prior factory gains getItem only; old test assertions unchanged.",
+  "command": "node --test web/qa/security/reset-storage-closure-new.test.cjs",
+  "scope": "actual generated reset JS, fictional DOM/storage/Auth/clock; no real email, password or session",
+  "decision": "NO-GO"
+}

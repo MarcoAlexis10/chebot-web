@@ -1,0 +1,101 @@
+✖ recovery refuses all provider calls when initial token removal silently fails (4.116069ms)
+✖ initial token readback failure also refuses recovery without exposing storage details (1.425504ms)
+✖ confirmed password update warns if a late local token survives silent removal (2.814843ms)
+✖ uncertain update includes local cleanup failure and remains terminal without replay (1.190479ms)
+✖ readback failure after a confirmed update cannot produce a clean-exit confirmation (1.183698ms)
+✔ verified removal preserves an ordinary recovery and unrelated browser storage (4.439608ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 1
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114.503291
+
+✖ failing tests:
+
+test at web/qa/security/reset-storage-closure-new.test.cjs:10:1
+✖ recovery refuses all provider calls when initial token removal silently fails (4.116069ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-storage-closure-new.test.cjs:11:61)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/reset-storage-closure-new.test.cjs:13:1
+✖ initial token readback failure also refuses recovery without exposing storage details (1.425504ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-storage-closure-new.test.cjs:14:58)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/reset-storage-closure-new.test.cjs:16:1
+✖ confirmed password update warns if a late local token survives silent removal (2.814843ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No pudimos limpiar.*pestaña/. Input:
+  
+  'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-storage-closure-new.test.cjs:18:189)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.',
+    expected: /No pudimos limpiar.*pestaña/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at web/qa/security/reset-storage-closure-new.test.cjs:20:1
+✖ uncertain update includes local cleanup failure and remains terminal without replay (1.190479ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No pudimos limpiar.*pestaña/. Input:
+  
+  'No pudimos confirmar si la contraseña cambió. No repitas este envío: verificá el acceso o solicitá un enlace nuevo.'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-storage-closure-new.test.cjs:22:142)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'No pudimos confirmar si la contraseña cambió. No repitas este envío: verificá el acceso o solicitá un enlace nuevo.',
+    expected: /No pudimos limpiar.*pestaña/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at web/qa/security/reset-storage-closure-new.test.cjs:24:1
+✖ readback failure after a confirmed update cannot produce a clean-exit confirmation (1.183698ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /No pudimos limpiar/. Input:
+  
+  'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/reset-storage-closure-new.test.cjs:26:77)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.',
+    expected: /No pudimos limpiar/,
+    operator: 'match',
+    diff: 'simple'
+  }

@@ -44,7 +44,7 @@ function harness({fetcher, hash = '#access_token=FICTIONAL_RECOVERY', search = '
     document: {getElementById: node, querySelectorAll: () => toggles},
     window: {location, history: {replaceState(_,__,p) {replaced=p;}},
       addEventListener(k,v) {events[k]=v;}},
-    sessionStorage: {removeItem(key) {if(storageFails)throw Error('PRIVATE_STORAGE_ERROR');storage.delete(key);}},
+    sessionStorage: {removeItem(key) {if(storageFails)throw Error('PRIVATE_STORAGE_ERROR');storage.delete(key);}, getItem(key) {return storage.get(key) ?? null;}},
     setTimeout(fn, ms) {const id=++timerId;timers.set(id,{fn,ms});return id;},
     clearTimeout(id) {timers.delete(id);},
     fetch(url, options) {
