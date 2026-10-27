@@ -1,0 +1,92 @@
+{
+  "repo": "web",
+  "branch": "qa/cheveni-release-20261025",
+  "initialHead": "0482065bc3c436ecd281deb29934cce1cb8c860e",
+  "functionalHead": "afb667bcb3d837770659b187d4de1c05af743218",
+  "changed": [
+    {
+      "path": "manager-auth-v1.js",
+      "sha": "b0c4e25b908fc7ab6119dd097ef618fda6cfc190",
+      "sha256": "1b95c34d8b582eeaa4cb3c77fb707fde0a441e356ad007f66500c0822a23c172"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-deadline-after.log",
+      "sha": "65fafdb90d8eaeb37ddd52d55743ff3d0579bcd0",
+      "sha256": "a373a98d11730be6c8f56c1fc50a59fea31fbbf31f2f254df92eb3a94bb53fa4"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-deadline-before.log",
+      "sha": "a290a43c60484864254739a992ceed2f56f5903e",
+      "sha256": "9b10b6a67d87a5f18600ccd9dbbeba2931e7aaafee8de159db0ddb54c8b5bdc2"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-deadline-results.json",
+      "sha": "74897d73e0f4ed70df952c70ec74235d9328cf51",
+      "sha256": "a17194b24e8dfd99242ecf7f53e22fe3ad256a5ce8d9422a8b125d2e90ea0ae2"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-denial-header-before.log",
+      "sha": "60d149de5d75282702a74ec7158aa30b8f0932ea",
+      "sha256": "bbaacebf4fb74ee950abd81828f05d81eb8e918e505a15e59f8f4cbc12129f2e"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-storage-after.log",
+      "sha": "13c0c7978d36528651c1be1b016b8e1230dcc9f9",
+      "sha256": "7a42cb1fd22a01274bddd546f3e650730afa1323be3862710aace08ef5ff97c2"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-storage-before.log",
+      "sha": "36aaa722bd5c15d4f5b577fcb2228ff4660dcc26",
+      "sha256": "abff5ba12ca423a621203045310cec4de0473c86b09a797f9d3ca3cbd81afbb1"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-storage-deadline-regression.log",
+      "sha": "7bd2080d2d4304e00bf550ea16f869a87aba5677",
+      "sha256": "2edb72ec09b0eca63d58104ddfca82a39a75456dfbe32a7aebb2a47becc1e7af"
+    },
+    {
+      "path": "ops/release/desktop-qa-20261027/evidence/auth-storage-results.json",
+      "sha": "0e18738c0404aa3db359c66f6a2eb6920863080d",
+      "sha256": "9d88fcb15cfac70d41d007b18e30ae815a74cc73c654aa27da31c6864953f397"
+    },
+    {
+      "path": "qa/security/auth-deadline-desktop-new.test.cjs",
+      "sha": "74ef0353008e2bfc99c17dc1cef58ce24c294f65",
+      "sha256": "d580b892c3528e7b3c933f57b24f5e805d12293df1c7616cfdb1b320abe9e6e6"
+    },
+    {
+      "path": "qa/security/auth-storage-desktop-new.test.cjs",
+      "sha": "815ee22d788966c9932018d3a135afcd0daa8e12",
+      "sha256": "8ea552bdeee157cba346e5744564eb16a4f66bf7dce323a60a5f716db8ab6f1b"
+    }
+  ],
+  "unchangedControls": [
+    {
+      "path": ".github/CONCIERGE-BETA-PREVIEW-RELEASE-CHECK-2026-10-10.md",
+      "sha": "24c3da769ba9724389185208020b875b9b925c6a"
+    },
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "sha": "9540d3c50339b976e6fff19acd8283037aa000e1"
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "sha": "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+    },
+    {
+      "path": "manager-legal-publication-gate-v1.cjs",
+      "sha": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1"
+    },
+    {
+      "path": "package.json",
+      "sha": "2fcc14494f8130625cc9acc514568d7d719e1282"
+    },
+    {
+      "path": "vercel.json",
+      "sha": "620ee85530ae3a417ee925e0f81e347a1dbec399"
+    }
+  ],
+  "allChangedFilesMatchGitHub": true,
+  "removedFiles": [],
+  "protectedChanges": []
+}

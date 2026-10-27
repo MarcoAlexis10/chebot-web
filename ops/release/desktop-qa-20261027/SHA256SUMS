@@ -1,0 +1,11 @@
+5a282eb1f5249dd268c2207ac88bae195ecc8a7225a14f9b0bae9d4881daa99b  ops/release/desktop-qa-20261027/CONTINUIDAD.md
+97f0dee4a1696c010a88485c5ec70aa19d090ed34510769eea51c9f2bdcb711e  ops/release/desktop-qa-20261027/RESULTS.json
+a373a98d11730be6c8f56c1fc50a59fea31fbbf31f2f254df92eb3a94bb53fa4  ops/release/desktop-qa-20261027/evidence/auth-deadline-after.log
+9b10b6a67d87a5f18600ccd9dbbeba2931e7aaafee8de159db0ddb54c8b5bdc2  ops/release/desktop-qa-20261027/evidence/auth-deadline-before.log
+a17194b24e8dfd99242ecf7f53e22fe3ad256a5ce8d9422a8b125d2e90ea0ae2  ops/release/desktop-qa-20261027/evidence/auth-deadline-results.json
+bbaacebf4fb74ee950abd81828f05d81eb8e918e505a15e59f8f4cbc12129f2e  ops/release/desktop-qa-20261027/evidence/auth-denial-header-before.log
+7a42cb1fd22a01274bddd546f3e650730afa1323be3862710aace08ef5ff97c2  ops/release/desktop-qa-20261027/evidence/auth-storage-after.log
+abff5ba12ca423a621203045310cec4de0473c86b09a797f9d3ca3cbd81afbb1  ops/release/desktop-qa-20261027/evidence/auth-storage-before.log
+2edb72ec09b0eca63d58104ddfca82a39a75456dfbe32a7aebb2a47becc1e7af  ops/release/desktop-qa-20261027/evidence/auth-storage-deadline-regression.log
+9d88fcb15cfac70d41d007b18e30ae815a74cc73c654aa27da31c6864953f397  ops/release/desktop-qa-20261027/evidence/auth-storage-results.json
+384bc18e2d7332fc4153c8148adddf75aaf851c23f825605a3d5acdbb4b82310  ops/release/desktop-qa-20261027/evidence/source-publication.json

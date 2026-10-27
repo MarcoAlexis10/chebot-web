@@ -1,0 +1,15 @@
+{
+  "scope": "desktop-qa-20261027",
+  "initialHead": "0482065bc3c436ecd281deb29934cce1cb8c860e",
+  "functionalHead": "afb667bcb3d837770659b187d4de1c05af743218",
+  "uniqueNewTests": 14,
+  "passed": 14,
+  "failedFinal": 0,
+  "affectedRegressionNotRecounted": 6,
+  "crossRepositoryTestsCountedHere": false,
+  "historicalSuitesExecuted": false,
+  "nativeCasesExecuted": 0,
+  "ASUSUsed": false,
+  "realMessages": 0,
+  "decision": "NO-GO"
+}
