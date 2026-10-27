@@ -1,0 +1,142 @@
+✖ missing notification evidence cannot certify that a recorded waiting-guest state reached the guest (23.037729ms)
+✖ contradictory sent true plus reconciliation remains in review (2.368822ms)
+✖ an incomplete or string-valued delivery claim cannot unlock the incident (2.595623ms)
+✖ a fresh incident with the same ID but another stay cannot clear the action marker (1.284581ms)
+✖ duplicate fresh incident IDs do not establish a unique current result (1.457001ms)
+✖ known non-sent guidance remains explicit to the manager without claiming delivery (9.605553ms)
+✔ exact fictional acceptance plus one bound current row permits the next distinct action (1.35009ms)
+✖ duplicate learning rows cannot confirm one proposal and remove replay protection (1.604402ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 1
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 126.263229
+
+✖ failing tests:
+
+test at web/qa/security/incident-confirmation-night-new.test.cjs:13:1
+✖ missing notification evidence cannot certify that a recorded waiting-guest state reached the guest (23.037729ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:12:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:13:117)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/incident-confirmation-night-new.test.cjs:14:1
+✖ contradictory sent true plus reconciliation remains in review (2.368822ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:12:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:14:80)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/incident-confirmation-night-new.test.cjs:15:1
+✖ an incomplete or string-valued delivery claim cannot unlock the incident (2.595623ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:12:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:15:304)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/incident-confirmation-night-new.test.cjs:16:1
+✖ a fresh incident with the same ID but another stay cannot clear the action marker (1.284581ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:12:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:16:100)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/incident-confirmation-night-new.test.cjs:17:1
+✖ duplicate fresh incident IDs do not establish a unique current result (1.457001ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at blocked (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:12:26)
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:17:88)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/incident-confirmation-night-new.test.cjs:18:1
+✖ known non-sent guidance remains explicit to the manager without claiming delivery (9.605553ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(h.alerts.some(x=>/no se envi[oó]|no fue enviad|no se entreg[oó]/i.test(x)))
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:18:256)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at web/qa/security/incident-confirmation-night-new.test.cjs:20:1
+✖ duplicate learning rows cannot confirm one proposal and remove replay protection (1.604402ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== '1'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/incident-confirmation-night-new.test.cjs:20:407)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: '1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

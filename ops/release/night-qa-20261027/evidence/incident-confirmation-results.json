@@ -1,0 +1,13 @@
+{
+  "newCases": 8,
+  "before": {
+    "passed": 1,
+    "failed": 7
+  },
+  "after": {
+    "passed": 8,
+    "failed": 0
+  },
+  "command": "node --test qa/security/incident-confirmation-night-new.test.cjs",
+  "scope": "Actual generated incidents and action scripts, fictional DOM/storage/transport. Only factory source before first test() is reused from an existing harness; its historical cases are not run. No real delivery or Auth verification."
+}

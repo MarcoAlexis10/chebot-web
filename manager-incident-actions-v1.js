@@ -264,10 +264,14 @@ replaceRequired(
       const validLearningReceipt = receipt => receipt && receipt.ok === true && receipt.status === 'draft_created' &&
         receiptId(receipt.knowledge_item_id) && receiptId(receipt.version_id) &&
         Number.isSafeInteger(receipt.version_number) && receipt.version_number > 0 && receipt.version_status === 'draft';
-      const confirmedLearning = (rows, receipt) => validLearningReceipt(receipt) && rows.some(row =>
-        row.id === item.id && row.property_id === item.property_id && row.status === 'learning_pending' &&
-        row.learning_proposal_already_created === true && row.learning_visible_item_id === receipt.knowledge_item_id &&
-        row.learning_visible_version_id === receipt.version_id);
+      const boundIncident = rows => Array.isArray(rows) ? rows.filter(row => row && row.id === item.id) : [];
+      const confirmedLearning = (rows, receipt) => {
+        const matches = boundIncident(rows), row = matches[0];
+        return validLearningReceipt(receipt) && matches.length === 1 && row.property_id === item.property_id &&
+          row.stay_id === item.stay_id && row.status === 'learning_pending' &&
+          row.learning_proposal_already_created === true && row.learning_visible_item_id === receipt.knowledge_item_id &&
+          row.learning_visible_version_id === receipt.version_id;
+      };
       if (reviewBlocked()) freezeForReview();
 
       const makeButton = (label, nextStatus, eventSummary, danger = false) => {
@@ -437,21 +441,33 @@ replaceRequired(
             // A recorded state change does not prove that an attempted WhatsApp
             // send was rejected. Preserve uncertain provider outcomes for review.
             const knownNotSent = ['crypto_not_configured','incident_lookup_failed','incident_not_waiting_guest','manager_response_event_failed','guest_not_notifiable','channel_unavailable','template_required','channel_decrypt_failed','notification_authority_required','WHATSAPP_CONFIGURATION_MISSING'];
-            if (body.notification && body.notification.sent !== true &&
-                (body.notification.reconciliation_required === true || !knownNotSent.includes(body.notification.status))) {
-              freezeForReview();
-              return;
+            const notification = body.notification;
+            if (nextStatus === 'waiting_guest') {
+              const validNotification = notification && !Array.isArray(notification) && typeof notification.sent === 'boolean' &&
+                notification.manager_response_recorded === true && notification.reconciliation_required !== true &&
+                (notification.sent === true
+                  ? notification.status === 'sent' && notification.guidance_recorded === true &&
+                    typeof notification.communicated_at === 'string' && Number.isFinite(Date.parse(notification.communicated_at))
+                  : knownNotSent.includes(notification.status));
+              if (!validNotification) { freezeForReview(); return; }
+            } else if (notification && (notification.reconciliation_required === true ||
+                notification.sent !== true && !knownNotSent.includes(notification.status))) {
+              freezeForReview(); return;
             }
 
             if (nextStatus === 'learning_pending' &&
                 (!body.learning || body.learning.reconciliation_required === true)) { freezeForReview(); return; }
             const refreshed = await loadManagerIncidents(accessToken);
             if (!currentAttempt(accessToken)) { freezeForReview(); return; }
-            const fresh = refreshed.find(row => row.id === item.id && row.property_id === item.property_id && row.status === nextStatus);
-            if (!fresh || (nextStatus === 'learning_pending' && body.learning.ok === true &&
+            const matches = boundIncident(refreshed), fresh = matches[0];
+            if (matches.length !== 1 || fresh.property_id !== item.property_id || fresh.stay_id !== item.stay_id ||
+                fresh.status !== nextStatus || (nextStatus === 'learning_pending' && body.learning.ok === true &&
                 !confirmedLearning(refreshed, body.learning))) { freezeForReview(); return; }
             clearIntent();
             renderIncidents(refreshed);
+            if (nextStatus === 'waiting_guest' && notification.sent === false) {
+              window.alert('La indicación quedó registrada, pero no se envió al huésped. Revisá el canal con soporte antes de otra comunicación; no repitas el envío.');
+            }
           } catch (error) {
             if (error && error.message === 'INCIDENT_INTENT_UNAVAILABLE') { freezeBeforeDispatch(); return; }
               if (requestStarted && (!responseReceived || mutationConfirmed || reconciliationRequired)) { freezeForReview(); return; }
