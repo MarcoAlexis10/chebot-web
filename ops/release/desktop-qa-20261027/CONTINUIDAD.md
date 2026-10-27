@@ -1,3 +1,120 @@
+# Che Vení — siete nativos aprobados y cierre de controles QA
+
+**2026-10-27T19:00:54.281517-03:00, Argentina. Beta comercial NO-GO. G01 cerrado para las fuentes SQL fijadas.** Esta es la continuidad vigente. Se recuperaron ambas ramas desde GitHub sin reiniciar ni repetir ensayos aprobados. La evidencia de Billing aportada por el propietario permitió consumir una vez la autorización condicional.
+
+| Repositorio / rama | Inicio real | Código/pruebas final |
+| --- | --- | --- |
+| Backend / `qa/cheveni-native-nine-preflight-20261025` | `95ffcc0a1b5b7896e7453c1f5d49081724bb6230` | `c85cf5d04c231a1a4d22095de20476acbe77227b` |
+| Web / `qa/cheveni-release-20261025` | `eb7ca2f806129c1d4919dd297523fc46bbaf3fbb` | `eb7ca2f806129c1d4919dd297523fc46bbaf3fbb` (código web conservado) |
+
+Los commits documentales posteriores contienen esta sección; sus cabeceras exactas se entregan externamente al terminar para evitar inventar autorreferencias SHA. Se verificó ref antes de editar/publicar y se usó actualización no forzada con parent esperado. No se descartó trabajo ajeno.
+
+## Resultado nativo real
+
+- **Workflow:** 398755400, `.github/workflows/cheveni-combined-installation-once.yml`.
+- **Run:** [40589102672](https://github.com/MarcoAlexis10/chebot-backend/actions/runs/40589102672), evento push QA, **run_attempt 1**, conclusión success.
+- **Job:** 122488345423, GitHub-hosted `ubuntu-latest`, runner `GitHub Actions 1000001065`.
+- **Commit ejecutado:** `7f09308e5159e1c51e79796b06228e42c6d1f394`; parent revisado `95ffcc0a1b5b7896e7453c1f5d49081724bb6230`.
+- **Inicio/fin:** 27/10/2026 18:43:12–18:43:49 Argentina (**37 segundos**). Timeout configurado ocho minutos. Sin rerun ni retries de casos.
+- **Motor comprobado por consulta del laboratorio:** PostgreSQL `170011` (17.11), base/usuario ficticios, sin relaciones/event triggers/esquemas de aplicación preexistentes.
+
+| Caso nuevo de instalación conjunta | Resultado real |
+| --- | --- |
+| atomic_four_component_install_and_rollback | PASS |
+| partial_failure_restores_catalog_roles_and_grants | PASS |
+| combined_exact_managed_auth_metadata | PASS |
+| combined_consumer_permissions | PASS |
+| least_privilege_executor_role_profiles | PASS |
+| full_schema_liveness_and_serial_session_revocation | PASS |
+| reinstall_rejected_without_partial_change | PASS |
+
+**7/7, cero fallos.** Son los siete pendientes; no se importaron ni repitieron los nueve históricos #40253292525. El caso de metadata Auth usa el catálogo ficticio en PostgreSQL nativo, no un GoTrue administrado; la revocación es serial y no declara nuevas carreras universales aprobadas.
+
+El canary pasó **antes de DDL/ensayos**, con versión exacta, cero casos ejecutados y separación efectiva de namespaces/red/procesos. Se verificaron Docker network none, sin puertos/mounts/socket del host, usuario postgres, rootfs readonly, cap-drop/no-new-privileges y límites CPU/memoria/PIDs. También pasó parada de proceso, fallo controlado y limpieza del canary preservando solo imagen propia. Después de los siete pasó limpieza final de todos los recursos con lease/labels propios y el fallback always. No limpieza global ni recursos compartidos. El perfil acreditado es este runner descartable, no Docker Desktop ASUS.
+
+[Bloque de evidencia nativa](../native-execution-20261027/evidence/native-execution.json), [logs depurados](../native-execution-20261027/evidence/sanitized-native.log), [eventos estructurados](../native-execution-20261027/evidence/sanitized-native-events.json), [metadata y steps](../native-execution-20261027/evidence/workflow-run.json). Se conserva SHA-256 del log decodificado original; se omiten tokens enmascarados del checkout y ruido de setup. Checkout privado con permiso contents:read y sin persistir credenciales; ningún secreto de aplicación o proveedor se pasó al contenedor.
+
+## Presupuesto, autorización consumida y retiro
+
+La evidencia del propietario del 27/10 informa 1004/2000 minutos, **996 disponibles**, Actions US$0, Stop usage activado, facturable US$0 y sin método de pago. Se revalidó fecha, producto, aritmética y margen sobre ocho minutos; el control US$0 corresponde a esa evidencia del propietario, **no a un refresh directo de Billing por API**, que la conexión no ofrece. No se cambió configuración de cuenta. No se afirma saldo ni factura posterior al job. [Registro exacto](../native-execution-20261027/evidence/billing-evidence.json).
+
+La activación contenía solamente workflow QA y marker ligados al parent/event/commit, run_attempt 1, sources/pins y runner alojado. Los workflows existentes fueron inspeccionados: ninguno se dispara por ese push en esta rama. El permiso fino de publicación dejó de ser supuesto: el workflow se publicó y corrió realmente desde QA sin main. No se instaló en main ni se activaron cron/despliegues.
+
+Tras éxito se retiraron workflow y marker en **`49d3ab4a0fec085c716d80499038d5d529c29144`**. El commit de activación preserva sus bytes como evidencia inmutable. Permiso **CONSUMIDO**, cero ejecuciones adicionales autorizadas; no repetir canary/siete/nueve por rutina. El template actual conserva approved:false y CONSUMED_DO_NOT_REUSE. Las 38 fuentes/ZIP ASUS y 23 fuentes de instalación permanecen intactas.
+
+## Correcciones funcionales publicadas
+
+| Repositorio | SHA exacto | Finalidad |
+| --- | --- | --- |
+| chebot-backend | `7f09308e5159e1c51e79796b06228e42c6d1f394` | Single combined-native activation |
+| chebot-backend | `49d3ab4a0fec085c716d80499038d5d529c29144` | Archive native seven PASS and retire activation |
+| chebot-backend | `b2dff5111b6aaf770ab14d6d52235b7380088abd` | fix(qa): bind incident learning to an unchanged tenant case and resolution source |
+| chebot-backend | `a9b4ad129b58c843ff11a990985e14487ca1c9f9` | fix(qa): revalidate final manager authority before returning a learned draft |
+| chebot-backend | `8d061ce73f10496a007d2b532e395ee2e31cc230` | test(qa): fix signed-authority fixture dependency and verify final learning responses |
+| chebot-backend | `c85cf5d04c231a1a4d22095de20476acbe77227b` | fix(qa): recheck final manager authority on phone-change proposal and approval receipts |
+
+**Fuentes del aprendizaje:** `concierge-manager-incidents.js` ya no acepta una primera fila cualquiera para construir el borrador. Vincula cuenta/incidencia, protocolo y categoría, evento manager_response y texto primitivo; rechaza duplicados y respuestas ajenas. Relee incidente con updated_at, versión del protocolo y última resolución antes de mutar. Si cambian o el servicio falla, exige conciliación sin crear ni activar conocimiento. Esta relectura es checkpoint de aplicación: falta comprobar el bloqueo/versionado de fuente dentro de una transacción administrada.
+
+**Respuesta de borrador:** el endpoint autónomo de aprendizaje revalida el binding real de sesión y cuenta/miembro/rol antes de devolver la propuesta ya registrada. Pérdida de autoridad tras commit no revela el recibo ni afirma rollback: 503 y conciliación, sin otra escritura.
+
+**Cambio de teléfono:** `concierge-manager-guest-phone-change.js` aplica el mismo checkpoint final a propuesta y aprobación exitosas. Mantiene recibos, normalización/HMAC y denegaciones conocidos; una autoridad cambiada/no verificable no devuelve change_id ni invita a repetir. Los holds sensibles y de admisión siguen cerrados.
+
+Archivos runtime modificados: únicamente esos dos módulos backend. También se agregaron tres archivos de pruebas focalizadas y se ajustaron puertos/metadatos de dos fixtures históricos, sin cambiar sus assertions. Web mantiene su implementación; solo se actualiza continuidad. Rutas y lista completa de archivos por commit constan en [RESULTS.json](../native-execution-20261027/RESULTS.json).
+
+## Pruebas: distinguir nativo de servicios ficticios
+
+| Clase | Nuevas | Aprobadas | Fallidas finales |
+| --- | --- | --- | --- |
+| PostgreSQL nativo 17.11: los siete pendientes | 7 | 7 | 0 |
+| JS de código: fuente/ámbito de aprendizaje | 8 | 8 | 0 |
+| JS de código: autoridad final del borrador | 3 | 3 | 0 |
+| JS de código: autoridad final de propuesta/aprobación telefónica | 3 | 3 | 0 |
+| Regresiones históricas directamente afectadas (no nuevas) | 0 | 8 | 0 |
+
+Son **siete nativos y 14 casos JS nuevos**, separados; canary/limpieza son controles previos/posteriores, no se suman como casos de negocio nuevos. Las ocho regresiones son siete del aprendizaje tras cambiar recibos/columnas y una de éxito telefónico con ambas acciones (test-name-pattern). No se corrieron suites completas, los 32/186 anteriores ni nuevas pruebas web históricas. No nuevas integraciones entre repositorios en esta sesión; se conserva la compatibilidad de fuentes y las anteriores.
+
+En los 14 JS son reales los módulos/handlers, validadores, bindings Auth, HMAC y Ed25519 donde se indican; GoTrue, SQL/PostgREST, receipts de negocio, proveedor de proof y red son ficticios. En las pruebas de autoridad final el negocio completado es un puerto ficticio; las ocho de fuente ejercitan el builder real. Estos archivos usan sufijo de esta ejecución pero **no son ensayos PostgreSQL nativos**. No se declaran comunicaciones ni integración operativa aprobadas.
+
+Incidente de validación reconocido: publiqué un fixture nuevo sin inyectar assert, causando ReferenceError en tres casos nuevos en el commit `a9b4ad129b58c843ff11a990985e14487ca1c9f9`. Lo corregí en `8d061ce73f10496a007d2b532e395ee2e31cc230`; tres casos pasan y el log inicial se conserva. Después de corregir el fixture se reprodujo el comportamiento viejo contra el commit anterior inmutable y se verificó la corrección. No afecta el run nativo ni agrega casos al conteo. Ningún fallo final pendiente.
+
+## Candidato y matriz: cierre real frente a pendientes
+
+El candidato existente fue actualizado con los IDs/resultados nativos y pins actuales: [candidate.json](../operational-candidate-20261026/candidate.json), [source-lock.json](../operational-candidate-20261026/source-lock.json), [procedimiento único](../operational-candidate-20261026/NEXT-VALIDATION.md). Auditor estático `source_coherent_held`, 62 fuentes backend/17 web comparadas con GitHub. No build histórico repetido. Los cuatro SQL y baseline siguen siendo componentes QA: un PASS nativo no autoriza instalarlos sobre Auth administrado. No migración operativa ni despliegue.
+
+| Frente | Estado verificable | Pendiente obligatorio |
+| --- | --- | --- |
+| Instalación nativa / G01 | **CERRADO**, siete reales, canary/ACL/roles/rollback/limpieza | Ninguna repetición; conservar pins. No extiende el PASS a otros motores/destinos |
+| Auth administrado / G02 | Catálogo nativo ficticio y código de respuesta reforzados | GoTrue soportado, hooks/roles y destino autorizado, login/refresh/revocación efectivos |
+| Autorización e idempotencia / G03–G04 | Ámbito/fuente y respuestas postcommit mejorados | Transacción por propiedad/fuente, carreras, journal durable y todos los escritores, conciliación y fence real de proveedor |
+| Recuperación A2 / G05 | Controles/sobres/testigos previos conservados, sin A1 ni restore repetido | Restore de PostgreSQL/roles/FKs, Auth/GoTrue, Vault, Storage API/objetos/políticas y claves/configuración/custodia. Rollback de instalación no es restore A2 |
+| Privacidad / G08 | D01/D02-A intactas; fuentes ajenas no se convierten en conocimiento | Texto/aceptación y periodos/fundamentos por categoría, derechos y supresión propia/proveedores/copias; revisión pertinente |
+| Comunicaciones / G07 | Recibos/estados inciertos conservados, cero mensajes | Correo/Meta, redirects/destinatarios/callbacks/entrega y conciliación con permiso específico |
+| Primer manager / G06/G09/G10 | Candidato para una propiedad, UI sin cambios incompatibles | Admisión/aceptación y propiedad conectadas, recorrido ficticio completo en destino autorizado, facultades/soporte y evento D01 real |
+| Lanzamiento / G11 | Procedimiento/reversión y matriz única actualizados | Resto de gates acreditados y autorización comercial final; holds cerrados |
+
+La [matriz única](../no-asus-20261026/MATRIZ-LANZAMIENTO.md) reemplaza los antiguos pendientes nativos por el resultado real, sin crear otra matriz. Se cerró G01 y los defectos de código descritos; G02–G11 siguen abiertos o parciales. El puerto de proof por defecto continúa sin proveedor real, origen Auth sigue fijado a DEV y admisión legal cerrada. No se habilitan cambiando env o un booleano.
+
+## Camino mínimo y próxima intervención indispensable
+
+1. **Ya hecho:** siete nativos una vez, retirar activación y guardar evidencia. No volver a pedir Billing ni otro permiso equivalente para ese intento consumido.
+2. **Siguiente bloqueo real:** disponer de un destino Supabase QA administrado independiente, expresamente autorizado y de coste cero, para comprobar Auth/journal/escritores/recuperación soportados. [Propuesta concreta](../operational-candidate-20261026/managed-next-authorization.json): un proyecto Free descartable `cheveni-beta-auth-qa-20261027`, región propuesta sa-east-1, organización elegida por el propietario, cotización/cupo cero antes de crear. No se consultó ni creó ningún recurso Supabase en esta ejecución.
+3. Un único recorrido ficticio conectado: invitación → verificación → pre-arrival → check-in → turismo/privado → incidencia/manager → checkout/revocación → Free; comunicaciones reales solo con autorización acotada posterior.
+4. Completar en paralelo aceptación/privacidad/facultades/soporte y revisión del release/reversión para permiso comercial final. No cron, Cloudflare ni expansión a varios managers/propiedades como nuevos requisitos.
+
+**Única decisión ahora:** autorizar ese alcance de proyecto QA Free aislado e indicar en qué organización Supabase. Si no hay cupo/cotización US$0, detener sin crear, pausar o borrar proyectos existentes. Alcance, riesgos y reversión están listos para revisar en el JSON. Los límites actuales prohíben crear/modificar servicios reales y por eso este paso no se ejecutó autónomamente. No hace falta ASUS. No se pide volver a ejecutar catálogo Auth de DEV ni recapturar A1.
+
+D01: un manager fundador, una propiedad CABA, 30 días desde primera estadía real verificada, sin cobro automático; estadías ya verificadas hasta checkout salvo baja/revocación justificada. D02-A: sin archivo general de conversaciones después del checkout; evidencia excepcional mínima separada por finalidad/obligación concreta, sin plazos legales inventados ni supresión real.
+
+## Publicación y punto de recuperación
+
+Se cotejaron archivos publicados y 79 fuentes con blobs GitHub; [verificación](../native-execution-20261027/evidence/source-publication.json), [SHA256SUMS](../native-execution-20261027/SHA256SUMS), [fuentes inmutables](../native-execution-20261027/evidence/immutable-sources.json). Main backend `bc82c2cd7c8470bfc2255dcad48fd40c7900435a` y web `eb0dbf6261bc612bf548ec35e8b814a39738824e` permanecen intactos. La activación de un uso ya no existe en la cabecera y ningún push posterior originó otro job nativo.
+
+No se tocaron DEV/PROD/chebot-production, Auth/Vault/Storage reales, cuentas, DNS, cron, despliegues, pagos, Windows ni ASUS. Ninguna consulta Auth real, captura A1, correo o WhatsApp real. Retomar desde refs finales GitHub, este informe, source-lock y run 40589102672; preservar lo posterior y no repetir los siete, los 14 nuevos o las ocho regresiones sin cambio directamente afectado. No continuidad en segundo plano ni horas ficticias de trabajo. **Beta NO-GO.**
+
+---
+
+# Histórico conservado: cierre condicionado anterior (32 casos)
+
 # Che Vení — cierre técnico QA con autorización nativa condicionada
 
 **2026-10-27T13:55:41.277867-03:00, Argentina. Beta comercial NO-GO.** Se conservó el proyecto y todo el historial publicado. La autorización de un único intento nativo está registrada; no se consumió porque cuota incluida y bloqueo de gasto adicional US$0 no pudieron acreditarse. No se pidieron permisos rutinarios ni se utilizó ASUS.

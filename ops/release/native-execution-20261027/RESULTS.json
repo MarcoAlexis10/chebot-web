@@ -1,0 +1,17 @@
+{
+  "decision": "NO-GO",
+  "initialHead": "eb7ca2f806129c1d4919dd297523fc46bbaf3fbb",
+  "functionalHead": "eb7ca2f806129c1d4919dd297523fc46bbaf3fbb",
+  "webRuntimeChanged": false,
+  "newWebCases": 0,
+  "newBackendJavaScriptCases": 14,
+  "newNativeCases": 7,
+  "nativeRunId": 40589102672,
+  "nativePassed": 7,
+  "nativeFailed": 0,
+  "canaryBeforeCases": true,
+  "cleanupVerified": true,
+  "backendFunctionalHead": "c85cf5d04c231a1a4d22095de20476acbe77227b",
+  "operationalApproval": false,
+  "backendMaster": "https://github.com/MarcoAlexis10/chebot-backend/blob/qa/cheveni-native-nine-preflight-20261025/ops/release/desktop-qa-20261027/CONTINUIDAD.md"
+}
