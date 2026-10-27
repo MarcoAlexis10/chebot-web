@@ -1,3 +1,95 @@
+# Che Vení — cupo administrado investigado y bloqueos de código corregidos
+
+**2026-10-27T19:24:32.427828-03:00, Argentina. Beta NO-GO. G01 conserva 7/7 nativo, no repetido.** Esta sección es el cierre vigente; el historial anterior se conserva debajo. Ramas existentes verificadas directamente en GitHub, sin reinicio ni descarte de avances.
+
+| Repositorio / rama QA | Inicio comprobado | Código/pruebas final |
+| --- | --- | --- |
+| Backend / qa/cheveni-native-nine-preflight-20261025 | `abf7815213ac45d9941585efc85b5867c81b70cb` | `45302573b148a4654035de45a59c1ebf3e9eb152` |
+| Web / qa/cheveni-release-20261025 | `42fe73e565b9da72d4f274266fd3d8917fb3e03e` | `42fe73e565b9da72d4f274266fd3d8917fb3e03e` (sin cambio de código web) |
+
+Las cabeceras iniciales coincidían con las informadas. Commits documentales posteriores contienen este informe; sus SHA finales se entregan externamente al cierre, sin autorreferencia ficticia. Se releyó QA antes de cambios/publicación y se usó actualización no forzada con parent esperado.
+
+## Organización, precio y capacidad: resultado real de solo lectura
+
+Se identificó **Chebot**, organización `litbipybnwftrvegqhrg`, plan Free. Sus dos proyectos visibles están ACTIVE_HEALTHY en sa-east-1: `chebot-production` (`ykfpzqpiaxevpkhpaxpg`) y `chebot-concierge-dev` (`tyvwgsdzqipusodxtydv`). Solo se consultaron metadatos de control: list_organizations, list_projects, get_organization y get_cost(project). No consultas SQL, Auth, logs de personas, secretos ni cambios de recursos. El inventario/precio se refrescó antes de guardar su snapshot, con hora real de lectura.
+
+**get_cost cotiza US$0 mensual**, pero eso no acredita elegibilidad ni un cupo. Supabase documenta dos proyectos gratuitos activos, límite compartido entre organizaciones de owners/admins, y proyectos pausados fuera del conteo. Con dos activos protegidos, **no hay un tercer cupo gratuito acreditado**. No se intentó crear para probarlo ni se pausó/borró/traspasó nada. Otra organización no se propone como evasión del límite global. [Evidencia fechada](../managed-closure-20261027/evidence/supabase-capacity.json), [fuente oficial](https://supabase.com/docs/guides/platform/billing-on-supabase), [FAQ](https://supabase.com/docs/guides/platform/billing-faq).
+
+La propuesta anterior de simplemente autorizar un proyecto Free queda superada por este hallazgo. [managed-next-authorization.json](../operational-candidate-20261026/managed-next-authorization.json) ya fija organización, inventario, precio, bloqueo y consulta de excepción gratuita. No se promete que Supabase conceda esa excepción; su texto técnico está preparado y **no enviado**. No se solicita pagar ni sacrificar DEV/PROD.
+
+`qa/release/managed-auth-plan.mjs` es preparación ejecutable **inerte**: diferencia cotización de disponibilidad, rechaza snapshot viejo/incompleto, gasto no cero, scope ausente y target DEV/PROD/existente. Nunca crea ni conecta. Incluso un plan ficticio preparado conserva creationAuthorized:false, executionAuthorized:false y providerEligibilityVerified:false. Enumera ocho comprobaciones reales pendientes: GoTrue login/refresh, session_id/JWT revocado, autoridad por propiedad, revocación contra escritura, invitaciones, aislamiento entre estadías/checkout, conciliación durable y cuarentena/restricciones de restore. No son pruebas operativas aprobadas.
+
+## Correcciones publicadas
+
+| Repositorio | SHA exacto | Finalidad |
+| --- | --- | --- |
+| chebot-backend | `49c6c500a73525e523c84c88398dde0b3af8750b` | fix(qa): protect owner invitation administration and final one-time credential responses |
+| chebot-backend | `43f8a68f04ef4295fd549da3687ab3198ec8e781` | test(qa): integrate protected owner invitation responses with generated manager web |
+| chebot-backend | `83a3e5ba68518aba2a6d508a233abadfc0566fbe` | feat(qa): prepare fail-closed managed Auth plans without treating price as free capacity |
+| chebot-backend | `c4f668cdd4831f0645de88494f861e35fbc96cb5` | fix(qa): recheck guest invitation expiry authority and recipient graph after reservation |
+| chebot-backend | `deff17a32522e1de81ff53ab57d803f4126930d0` | test(qa): verify affected guest invitation route and web contracts against current sender |
+| chebot-backend | `45302573b148a4654035de45a59c1ebf3e9eb152` | fix(qa): preserve owner admin nosniff protection on revalidated success responses |
+
+- **Owner e invitaciones de manager:** `concierge-manager-signup-admin.js` revalida contexto owner al devolver la lista y después de issue/screen/followup/revoke exitosos. Pérdida de rol/vínculo tras commit devuelve 503 y conciliación; no revela la URL/token ni permite presentar un nuevo intento como corrección segura. La preparación válida conserva HTTP201 y credencial visible una vez, sin enviar ni provisionar.
+- **Minimización del feed administrativo:** copia exclusivamente columnas seleccionadas, rechaza filas ambiguas/IDs inválidos/duplicados y screenings ajenos/duplicados/expandidos antes de devolver emails/nombres/estados. La PK invite_id del screening capturado confirma la cardinalidad esperada. No se declara que el feed esté desplegado o que la admisión legal se haya conectado.
+- **Respuesta común:** `concierge-manager-auth-session.js` permite únicamente HTTP200/201 para el éxito del checkpoint postcommit, manteniendo el 200 por defecto. Se preserva nosniff en todas las respuestas del admin; una regresión de ese header detectada al integrar el helper se corrigió en `45302573b148a4654035de45a59c1ebf3e9eb152`. No agrega un caso al conteo.
+- **Invitación del huésped tras reserva:** `index.js` rechaza cipher_version no soportada antes de reservar; vuelve a comprobar finalidad autorizada y a leer invitación/miembro/estadía/propiedad/identidad/canal después de esperar la reserva durable. Vencimiento de invitación, checkout, rechazo, revocación, cambio de número/canal o revisión del texto/estadía impiden usar el snapshot viejo. Se conserva/finaliza como unknown la reserva y no hay retry automático. Es checkpoint de aplicación: falta fence transaccional al despacho real del proveedor.
+
+Runtime modificado: esos tres módulos backend; no código web, SQL, workflows ni configuración de servicios. Nuevos tests/fixture y preparación inerte constan por ruta en [RESULTS.json](../managed-closure-20261027/RESULTS.json). Todos los cambios de código se verificaron y publicaron antes del cierre documental.
+
+## Pruebas y evidencia
+
+**20 nuevas únicas, 20 aprobadas, cero fallos finales; todas contabilizadas en backend.** Dos son integraciones nuevas entre repositorios. **Nueve regresiones históricas directamente afectadas aprobadas**, sin contarlas de nuevo.
+
+| Grupo nuevo | Casos | Alcance |
+| --- | --- | --- |
+| Owner/lista/credencial administrativa | 6 | Ruta, bindings Auth, criptografía del token y Ed25519 reales; servicios/negocio ficticios |
+| Owner backend → panel generado | 2 | POST handler real y JavaScript generado; GoTrue/SQL/GET list/DOM ficticios |
+| Preparación de capacidad administrada | 5 | Solo planificación inerte, ningún servicio ni proyecto creado |
+| Invitación tras reserva | 7 | Sender y consumidor del contrato de reserva reales; RPC/BD/proveedor ficticios |
+
+Las nueve regresiones fueron: un caso de statuses administrativos (las cuatro acciones), uno de éxito postcommit por defecto HTTP200, tres de hold/checkout/sender de invitación y cuatro de integración histórica invitación/panel. Se ejecutaron con test-name-pattern cuando correspondía. Los fixtures históricos solo recibieron el puerto nuevo/metadato cipher_version y se actualizó el pin del sender revisado; assertions conservadas. Se repasaron seis casos nuevos al extraer el fixture para integración y uno al restaurar nosniff; no suman casos nuevos ni regresiones históricas adicionales.
+
+Los logs de reproducción antes/después se conservan, incluidos los rechazos previos y el header detectado en esta integración. **No** se ejecutaron los siete nativos, nueve históricos, A1, consulta Auth consumida, laboratorios descartados, suites generales ni nuevos envíos. Ninguna de estas 20 pruebas usa PostgreSQL nativo o valida GoTrue real. Ningún fallo final pendiente. [Logs/metadata](../managed-closure-20261027/evidence/), [SHA256SUMS](../managed-closure-20261027/SHA256SUMS).
+
+## Candidato y bloqueos restantes
+
+Se actualizó el candidato único: [source-lock](../operational-candidate-20261026/source-lock.json), [candidate.json](../operational-candidate-20261026/candidate.json), [procedimiento](../operational-candidate-20261026/NEXT-VALIDATION.md). Auditor estático **source_coherent_held**, 62 fuentes backend y 17 web cotejadas con GitHub. No nuevo build, despliegue ni migración aplicada. Los cuatro SQL y las 38 fuentes/ZIP ASUS permanecen intactos; G01 conserva evidencia inmutable #40589102672 y no se reabre su autorización consumida.
+
+| Frente | Avance comprobado | Lo que sigue impidiendo GO |
+| --- | --- | --- |
+| G01 instalación | 7/7 histórico real conservado | No repetir; PASS acotado a sus fuentes, no GoTrue administrado |
+| G02 Auth / destino | Organización/plan/proyectos/precio reales identificados; guard de preparación | Cupo gratuito adicional confirmado y destino aislado autorizado; soporte de perfil/hook/roles y GoTrue real |
+| G03/G04 autorización e idempotencia | Owner/credencial y envío tras reserva reforzados, incertidumbre segura | Autorización SQL por propiedad, carreras, fence real del proveedor, journal/ACK durable y todos los escritores; sessionStorage no es lock de servidor |
+| G05 recuperación A2 | Sobres/testigos/cuarentena y fuentes existentes conservados | Restore PostgreSQL/roles/FKs, Auth/GoTrue, Vault, Storage/objetos/políticas/API y configuración/claves externas/custodia; rollback de instalación no es restore A2 |
+| G06/G09/G10 primer manager | Contratos de preparación/invitación y aceptación web comprobados en código | Provisionado/aceptación y propiedad realmente conectados, un recorrido ficticio completo autorizado, facultades/soporte y evento D01 real |
+| G07 comunicaciones | Sender no usa invitación/canal preparados ya obsoletos | Elegibilidad/destino/redirects, callbacks/entrega y conciliación controlados con permiso específico; cero mensajes reales |
+| G08 privacidad | Feed minimizado y menos exposición tras pérdida de autoridad | Textos/hechos/periodos/fundamentos por categoría y derechos/supresión verificables; sin borrado real ni nuevos plazos legales |
+| G11 lanzamiento | Candidato/pins/reversión y matriz existentes actualizados | Resto de requisitos acreditados y autorización comercial final; holds siguen cerrados |
+
+**Cerrados en QA:** los defectos descritos, no G02–G11 operativos. El hallazgo de capacidad esclarece un bloqueo, no lo elimina. [Matriz única](../no-asus-20261026/MATRIZ-LANZAMIENTO.md) actualizada, sin nueva matriz paralela. El origen sigue DEV y el proveedor de proof por defecto no está conectado; un env/checkbox o más mocks no habilita admisión.
+
+Se revisaron controles A2/retención y el procedimiento consolidado de derechos existente; no se identificó otro defecto nuevo demostrable que justificara rehacer componentes o repetir laboratorios aprobados. No se verificó normativa nueva ni se dio vigencia a borradores. D01/D02-A se conservan: un manager/una propiedad CABA, 30 días desde primera estadía real verificada, sin cobro automático; sin archivo general de chats postcheckout y con evidencia excepcional mínima separada y fundada. El checklist único de aceptación, soporte/incidentes, activación y reversión continúa en NEXT-VALIDATION y documentos consolidados, pendiente de evidencia operativa.
+
+## Camino mínimo y única decisión pendiente
+
+1. Conseguir confirmación de un cupo QA gratuito adicional soportado, conservando ambos proyectos protegidos y coste cero. Precio US$0 por sí solo no lo consigue.
+2. Con capacidad y autorización exactas: preparar destino independiente, verificar perfil real y migración soportada sin instalar el baseline Auth ficticio; validar Auth/sesiones/journal/escritores y recuperación/custodia.
+3. Ejecutar un solo circuito ficticio conectado (manager → propiedad → invitación/verificación → pre-arrival → check-in → información privada/turismo → incidencia → checkout/revocación → Free). Correo/WhatsApp solo con autorización operativa propia posterior.
+4. Completar aceptación/privacidad/facultades/soporte y revisar release/reversión para el permiso comercial final. No sumar Cloudflare, cron o plataforma de múltiples propiedades como requisitos.
+
+**Única decisión propuesta al propietario:** autorizar una consulta a Supabase sobre una excepción gratuita de cupo QA. Texto, límites y contexto exactos están en [managed-next-authorization.json](../operational-candidate-20261026/managed-next-authorization.json); **no se envió**. No garantizar respuesta/concesión, no pedir cambiar de plan ni liberar cupo pausando/borrando DEV/PROD. La instrucción vigente prohíbe mensajes reales y cambios de servicios, por lo que esa gestión externa requiere autorización propia. No hace falta ASUS ni elegir otra vez la organización. Si la excepción no existe, el entorno administrado sigue NO-GO bajo las restricciones actuales.
+
+## Publicación y recuperación
+
+Se comparan cambios publicados, 79 fuentes, manifests y refs; [source-publication.json](../managed-closure-20261027/evidence/source-publication.json), [control-refs](../managed-closure-20261027/evidence/control-refs.json). Main backend `bc82c2cd7c8470bfc2255dcad48fd40c7900435a` y web `eb0dbf6261bc612bf548ec35e8b814a39738824e` intactos. Cero workflows disparados por los commits funcionales. Ningún servicio creado, pausado, borrado o modificado; ninguna consulta a BD/Auth real ni secreto leído.
+
+Retomar desde cabeceras finales GitHub, este informe y source-lock, preservando lo posterior. No repetir estos 20 casos ni las nueve regresiones sin cambio afectado. No se promete trabajo en segundo plano ni horas no realizadas. **Beta NO-GO.**
+
+---
+
+# Histórico conservado: siete nativos y cierre anterior
+
 # Che Vení — siete nativos aprobados y cierre de controles QA
 
 **2026-10-27T19:00:54.281517-03:00, Argentina. Beta comercial NO-GO. G01 cerrado para las fuentes SQL fijadas.** Esta es la continuidad vigente. Se recuperaron ambas ramas desde GitHub sin reiniciar ni repetir ensayos aprobados. La evidencia de Billing aportada por el propietario permitió consumir una vez la autorización condicional.

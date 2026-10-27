@@ -1,0 +1,15 @@
+{
+  "decision": "NO-GO",
+  "initialHead": "42fe73e565b9da72d4f274266fd3d8917fb3e03e",
+  "functionalHead": "42fe73e565b9da72d4f274266fd3d8917fb3e03e",
+  "webRuntimeChanged": false,
+  "newWebCases": 0,
+  "newBackendCases": 20,
+  "newCrossRepositoryCodeIntegrationsCountedInBackend": 2,
+  "historicalAffectedRegressionsCountedInBackend": 9,
+  "nativeRunsRepeated": 0,
+  "managedFreeSlotsObserved": 0,
+  "managedProjectQuoteUsdMonthly": 0,
+  "operationalApproval": false,
+  "backendMaster": "https://github.com/MarcoAlexis10/chebot-backend/blob/qa/cheveni-native-nine-preflight-20261025/ops/release/desktop-qa-20261027/CONTINUIDAD.md"
+}
