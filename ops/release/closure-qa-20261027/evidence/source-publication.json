@@ -1,0 +1,73 @@
+{
+  "repo": "MarcoAlexis10/chebot-web",
+  "start": "83c0be589ebcdc75042fae0ef7949a1e671690a0",
+  "functionalHead": "6f4f43b36363baf0248f6bf4542d780ce941a9a3",
+  "main": "eb0dbf6261bc612bf548ec35e8b814a39738824e",
+  "verifiedChangedFiles": [
+    {
+      "path": "manager-password-recovery-v1.js",
+      "matchesGitHubBlob": true,
+      "sha256": "9687421a2b58b4af04fc679d61fcee3473dd62d051b31cb90fc350b835c5f7da",
+      "blob": "2af2c34c7aec3948b2eb254315e0672f7bd2c06f"
+    },
+    {
+      "path": "qa/security/reset-storage-closure-new.test.cjs",
+      "matchesGitHubBlob": true,
+      "sha256": "3c146426973d6054ee8f8b8e1dd0b9f385c35162aba3265531ddaa1e841ee37d",
+      "blob": "a44051b6f25cf9cb96b1ab62055a84680ce39535"
+    },
+    {
+      "path": "test/manager-password-recovery-qa.test.cjs",
+      "matchesGitHubBlob": true,
+      "sha256": "1956b341abffdc5218e2746f59ebaa4161fbc4f9211d250bf303dbd7a56ccb1e",
+      "blob": "e650b881c9687b333daa3530ebbf260cad2cba93"
+    },
+    {
+      "path": "ops/release/closure-qa-20261027/evidence/reset-storage-after.log",
+      "matchesGitHubBlob": true,
+      "sha256": "118a3760e0a42a023df44a627cae8802f89ebffacd8af1e3c458e1e7c962cb0a",
+      "blob": "886340a91e17682f10bb5e3967565aca3b90b7c3"
+    },
+    {
+      "path": "ops/release/closure-qa-20261027/evidence/reset-storage-before.log",
+      "matchesGitHubBlob": true,
+      "sha256": "53002356eeeeb1e5e06ad9935753d6ea972356e7c2833ef7fbece00abb3d254d",
+      "blob": "db80c54cd77e4fea6f0dbc20dea29a09a9315bcb"
+    },
+    {
+      "path": "ops/release/closure-qa-20261027/evidence/reset-storage-results.json",
+      "matchesGitHubBlob": true,
+      "sha256": "bd1063cf34a960a5b676bf2ae1cd6dcede3945f7df0a70a0a244a1b1dc43fe1b",
+      "blob": "ed03e4ca477d1410f1b80df7019de71d5d5969d2"
+    },
+    {
+      "path": "ops/release/closure-qa-20261027/evidence/reset-storage-affected-regression.log",
+      "matchesGitHubBlob": true,
+      "sha256": "e36fdec99ef44d2bbde7542ac81ef232704fe0f6c352d65c6b8798680561eb5c",
+      "blob": "ed0876647e82a4b33c400925fb1b9121a18c196f"
+    }
+  ],
+  "unchangedControlFiles": 5,
+  "unchangedControls": [
+    {
+      "path": ".github/CONCIERGE-BETA-PREVIEW-RELEASE-CHECK-2026-10-10.md",
+      "blob": "24c3da769ba9724389185208020b875b9b925c6a"
+    },
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "blob": "9540d3c50339b976e6fff19acd8283037aa000e1"
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "blob": "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+    },
+    {
+      "path": "package.json",
+      "blob": "2fcc14494f8130625cc9acc514568d7d719e1282"
+    },
+    {
+      "path": "vercel.json",
+      "blob": "620ee85530ae3a417ee925e0f81e347a1dbec399"
+    }
+  ]
+}

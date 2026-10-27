@@ -1,0 +1,13 @@
+{
+  "scope": "closure-qa-20261027",
+  "initialHead": "83c0be589ebcdc75042fae0ef7949a1e671690a0",
+  "functionalHead": "6f4f43b36363baf0248f6bf4542d780ce941a9a3",
+  "newUniqueCases": 6,
+  "passed": 6,
+  "failedFinal": 0,
+  "beforePassed": 1,
+  "beforeFailed": 5,
+  "affectedRegressionsPassedNotRecounted": 8,
+  "crossRepositoryCasesCountedHere": false,
+  "decision": "NO-GO"
+}
