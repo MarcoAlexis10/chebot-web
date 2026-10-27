@@ -137,17 +137,26 @@ const browserJs = `
   }
 
   function readToken() {
+    if (!storageHealthy) return '';
     try { return sessionStorage.getItem(TOKEN_KEY) || ''; }
     catch (_) { storageHealthy = false; showLogin(''); return ''; }
   }
 
   function clearToken() {
-    try { sessionStorage.removeItem(TOKEN_KEY); return true; }
+    try {
+      sessionStorage.removeItem(TOKEN_KEY);
+      if (sessionStorage.getItem(TOKEN_KEY) !== null) throw new Error('TOKEN_NOT_CLEARED');
+      return true;
+    }
     catch (_) { storageHealthy = false; return false; }
   }
 
   function storeToken(token) {
-    try { sessionStorage.setItem(TOKEN_KEY, token); }
+    try {
+      if (!storageHealthy) throw new Error('BROWSER_STORAGE_UNAVAILABLE');
+      sessionStorage.setItem(TOKEN_KEY, token);
+      if (sessionStorage.getItem(TOKEN_KEY) !== token) throw new Error('TOKEN_NOT_PERSISTED');
+    }
     catch (_) { storageHealthy = false; throw new Error('BROWSER_STORAGE_UNAVAILABLE'); }
   }
 
@@ -637,7 +646,7 @@ const browserJs = `
     } catch (error) {
       await revokeSession(accessToken);
       if (generation !== authGeneration) return;
-      clearToken();
+      if (!clearToken() || !storageHealthy) { showLogin(''); return; }
 
       if (error && error.code === 'LOGIN_INVALID') {
         setStatus('Email o contraseña incorrectos.', 'error');
@@ -662,7 +671,10 @@ const browserJs = `
     showLogin('');
     submit.disabled = true;
     try {
-      if (!await revokeSession(accessToken)) {
+      const revoked = await revokeSession(accessToken);
+      if (!storageHealthy) {
+        setStatus('No pudimos limpiar la sesión local de esta pestaña. Cerrala antes de volver a ingresar; el cierre en el servicio no asegura la retirada inmediata de un JWT emitido.', 'error');
+      } else if (!revoked) {
         setStatus('Saliste de este navegador. No pudimos confirmar el cierre de la sesión en el servicio.', 'error');
       }
     } finally {

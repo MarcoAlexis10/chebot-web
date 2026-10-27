@@ -1,0 +1,14 @@
+✔ silently lost token persistence cannot reveal the manager panel (4.957338ms)
+✔ a stale token left after failed replacement cannot restore a different session through BFCache (3.099557ms)
+✔ silent token removal failure at logout stays terminal for this page and cannot be restored (1.718141ms)
+✔ failed provider logout cannot overwrite a local-cleanup failure with a false local-exit claim (1.92996ms)
+✔ readback failure after token write blocks login and attempts to revoke only the newly issued token (1.877582ms)
+✔ successful token write and removal preserve deliberate login and logout without storage warnings (2.767884ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.710079

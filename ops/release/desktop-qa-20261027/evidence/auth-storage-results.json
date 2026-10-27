@@ -1,0 +1,9 @@
+{
+  "newCases": 6,
+  "beforePassed": 1,
+  "beforeFailed": 5,
+  "passed": 6,
+  "failed": 0,
+  "command": "node --test qa/security/auth-storage-desktop-new.test.cjs",
+  "scope": "Actual generated manager Auth script, fictional DOM/storage/transport. No managed session or real logout. Silent persistence/removal failures keep the page terminal; issued JWT revocation remains a server requirement."
+}

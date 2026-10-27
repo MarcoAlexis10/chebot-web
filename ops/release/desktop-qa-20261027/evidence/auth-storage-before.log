@@ -1,0 +1,101 @@
+✖ silently lost token persistence cannot reveal the manager panel (5.974407ms)
+✖ a stale token left after failed replacement cannot restore a different session through BFCache (2.962861ms)
+✖ silent token removal failure at logout stays terminal for this page and cannot be restored (1.768517ms)
+✖ failed provider logout cannot overwrite a local-cleanup failure with a false local-exit claim (1.943951ms)
+✖ readback failure after token write blocks login and attempts to revoke only the newly issued token (7.822694ms)
+✔ successful token write and removal preserve deliberate login and logout without storage warnings (1.944872ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 1
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.153322
+
+✖ failing tests:
+
+test at web/qa/security/auth-storage-desktop-new.test.cjs:5:1
+✖ silently lost token persistence cannot reveal the manager panel (5.974407ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-storage-desktop-new.test.cjs:5:215)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-storage-desktop-new.test.cjs:6:1
+✖ a stale token left after failed replacement cannot restore a different session through BFCache (2.962861ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-storage-desktop-new.test.cjs:6:432)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-storage-desktop-new.test.cjs:7:1
+✖ silent token removal failure at logout stays terminal for this page and cannot be restored (1.768517ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-storage-desktop-new.test.cjs:7:301)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-storage-desktop-new.test.cjs:8:1
+✖ failed provider logout cannot overwrite a local-cleanup failure with a false local-exit claim (1.943951ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /Saliste de este navegador/. Input:
+  
+  'Saliste de este navegador. No pudimos confirmar el cierre de la sesión en el servicio.'
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-storage-desktop-new.test.cjs:8:302)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Saliste de este navegador. No pudimos confirmar el cierre de la sesión en el servicio.',
+    expected: /Saliste de este navegador/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at web/qa/security/auth-storage-desktop-new.test.cjs:9:1
+✖ readback failure after token write blocks login and attempts to revoke only the newly issued token (7.822694ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(h.calls.some(c=>c.url.includes('/logout?')&&c.options.headers.Authorization==='Bearer FICTIONAL_NEW_TOKEN'))
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/auth-storage-desktop-new.test.cjs:9:651)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
