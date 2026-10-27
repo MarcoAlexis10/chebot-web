@@ -1,0 +1,23 @@
+{
+  "scope": "night-qa-20261027",
+  "recordedAtArgentina": "2026-10-27T01:13:49.564123-03:00",
+  "initialHead": "58bb6954303ce328e4791bdbf46cbbad5695c4de",
+  "functionalHead": "e8c247f9edca39a44093500d34dff7a8a2094ca8",
+  "uniqueNewTests": 15,
+  "passed": 15,
+  "failedFinal": 0,
+  "backendCodeIntegrations": 5,
+  "integrationsCountedHere": false,
+  "affectedRegression": {
+    "cases": 8,
+    "passed": 8,
+    "countedAgain": false
+  },
+  "realMessages": 0,
+  "nativeCasesExecuted": 0,
+  "ASUSUsed": false,
+  "deployment": false,
+  "costIncremental": 0,
+  "historicSuitesExecuted": false,
+  "decision": "NO-GO"
+}

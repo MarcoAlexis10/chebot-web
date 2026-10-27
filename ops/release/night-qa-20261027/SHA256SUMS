@@ -1,0 +1,10 @@
+d9ea410836a3c81d8a10a64009edcd79c369d0ba54b41e0c9bd77c575ea6c7a9  ops/release/night-qa-20261027/CONTINUIDAD.md
+6199a5258e9d930f1bf4cc4295f40872589d419b92296d2144c3a1744ec47469  ops/release/night-qa-20261027/RESULTS.json
+4291e3564d13997f5f2f584556a51b0439fb9c319a678496823cbd82f0d9e8c2  ops/release/night-qa-20261027/evidence/incident-confirmation-after.log
+a82f6752096e07282ff293e5bd0acdfde0de0eaddc63b2ac748cd725e10fd4a5  ops/release/night-qa-20261027/evidence/incident-confirmation-before.log
+ff30380e49a34d85304864997982f94d5f535823dfcdf129c4783b6a8c4dc60f  ops/release/night-qa-20261027/evidence/incident-confirmation-deadline-regression.log
+1f3d01432c901535e1eeb6d7b4e6b9db203046be506f375be6f58776d036c8d4  ops/release/night-qa-20261027/evidence/incident-confirmation-results.json
+baccd96f1808dbc3f6f2ef372233ac1e9af587de147b34b331d67071aad67ebb  ops/release/night-qa-20261027/evidence/manager-deadline-after.log
+a9fe86923ffb0e6231da5cc4c85a03e8fa008607d916ae9a64798dbab9cbf13f  ops/release/night-qa-20261027/evidence/manager-deadline-before.log
+fbfa3316f7ed29c863c250a32f482418dcf9b1330f1fcb1671ee9512ed3f6f83  ops/release/night-qa-20261027/evidence/manager-deadline-results.json
+9a22b532bda9e03286b7e31fcdfb267a0ea96d10bc10c02bda5bb8b339265016  ops/release/night-qa-20261027/evidence/source-publication.json

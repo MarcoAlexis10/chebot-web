@@ -1,0 +1,163 @@
+{
+  "repo": "web",
+  "start": "58bb6954303ce328e4791bdbf46cbbad5695c4de",
+  "functionalHead": "e8c247f9edca39a44093500d34dff7a8a2094ca8",
+  "branch": "qa/cheveni-release-20261025",
+  "changed": [
+    {
+      "path": "manager-incident-actions-v1.js",
+      "sha": "fc1204cbb91519aeaba4a4849627100d791cf0ad",
+      "sha256": "f473a6ddcde3a513c2902cd0ab094496a7294cb528d084904598ff7b34e01659",
+      "matchesGitHub": true
+    },
+    {
+      "path": "manager-incidents-v1.js",
+      "sha": "cfe45a277a1acb727bcf55c5911381223c758f3f",
+      "sha256": "76b27b1fab68f9ca8729417172918cc8b8a4150bee23e43edfca478efa5a57dd",
+      "matchesGitHub": true
+    },
+    {
+      "path": "manager-requests-v1.js",
+      "sha": "c5a005f5ea36bc7348de11b40776ccde2dd4956c",
+      "sha256": "6679e9cfc107ac7270c083b86692622048c3372599936de6e67ec2b041e6e919",
+      "matchesGitHub": true
+    },
+    {
+      "path": "ops/release/night-qa-20261027/evidence/incident-confirmation-after.log",
+      "sha": "c1a0051bc5bce65e2d9459314a262443f9a3b379",
+      "sha256": "4291e3564d13997f5f2f584556a51b0439fb9c319a678496823cbd82f0d9e8c2",
+      "matchesGitHub": true
+    },
+    {
+      "path": "ops/release/night-qa-20261027/evidence/incident-confirmation-before.log",
+      "sha": "84c27a0b87a26f5fd36be5f5800b32fc7b6da30c",
+      "sha256": "a82f6752096e07282ff293e5bd0acdfde0de0eaddc63b2ac748cd725e10fd4a5",
+      "matchesGitHub": true
+    },
+    {
+      "path": "ops/release/night-qa-20261027/evidence/incident-confirmation-deadline-regression.log",
+      "sha": "d0eeb08b54d12a3319ddbde6b6c7fe1288daac96",
+      "sha256": "ff30380e49a34d85304864997982f94d5f535823dfcdf129c4783b6a8c4dc60f",
+      "matchesGitHub": true
+    },
+    {
+      "path": "ops/release/night-qa-20261027/evidence/incident-confirmation-results.json",
+      "sha": "ae9c523e512f847f852bfd73b32980a4111b5d40",
+      "sha256": "1f3d01432c901535e1eeb6d7b4e6b9db203046be506f375be6f58776d036c8d4",
+      "matchesGitHub": true
+    },
+    {
+      "path": "ops/release/night-qa-20261027/evidence/manager-deadline-after.log",
+      "sha": "b89ed2694389270500f3185eba09118a2bd670a8",
+      "sha256": "baccd96f1808dbc3f6f2ef372233ac1e9af587de147b34b331d67071aad67ebb",
+      "matchesGitHub": true
+    },
+    {
+      "path": "ops/release/night-qa-20261027/evidence/manager-deadline-before.log",
+      "sha": "0c4b1e79cb0ed328713acfa358aa0662660e680f",
+      "sha256": "a9fe86923ffb0e6231da5cc4c85a03e8fa008607d916ae9a64798dbab9cbf13f",
+      "matchesGitHub": true
+    },
+    {
+      "path": "ops/release/night-qa-20261027/evidence/manager-deadline-results.json",
+      "sha": "0fe57d2d312e519dff51d38f2eca6d3a87ee592a",
+      "sha256": "fbfa3316f7ed29c863c250a32f482418dcf9b1330f1fcb1671ee9512ed3f6f83",
+      "matchesGitHub": true
+    },
+    {
+      "path": "qa/security/incident-confirmation-night-new.test.cjs",
+      "sha": "0947a5211f9431824c231667e21b86901ff31b78",
+      "sha256": "cc2f37ef64027abd6026621f22fb592a2d8aee64b85786c2ad22e5a2fb36a80e",
+      "matchesGitHub": true
+    },
+    {
+      "path": "qa/security/incident-intent-noasus-delta.test.cjs",
+      "sha": "84379c4a29e9c75f4bdc00b078e2da553602a50f",
+      "sha256": "f1437e3f0478a05497d4d1bda876397bea1f1635ee17b004ed7618ada8bf7747",
+      "matchesGitHub": true
+    },
+    {
+      "path": "qa/security/intensive-20261025/session-denial-new.test.cjs",
+      "sha": "4cdb23c34a7f388a5f807791895c9443879a6a60",
+      "sha256": "c8fe249ec5ed942840c374e175a55136427ba3aba7b10db2c262b6ac04ea43d2",
+      "matchesGitHub": true
+    },
+    {
+      "path": "qa/security/manager-deadline-night-new.test.cjs",
+      "sha": "57927d653b78eba3dcc7549418c43bd5349f9b52",
+      "sha256": "4889dbf603b9bbee39fcda56cc9a93b8d7c966f999a549822e9336d0a83d315c",
+      "matchesGitHub": true
+    },
+    {
+      "path": "qa/security/request-dispatch-intent-delta.test.cjs",
+      "sha": "fd1485893ad8cf9e17ef3bea472fdb63c8505813",
+      "sha256": "b1dc62cd1ce4262cea96fcf8dcb1b4ad598f8a0fb442c0679a4c134a39fb7ebb",
+      "matchesGitHub": true
+    },
+    {
+      "path": "qa/security/request-session-integral-new.test.cjs",
+      "sha": "632cf9558cb71a2b94400cdd9d4209829885120c",
+      "sha256": "a25f6a37fed6493722dc70aca7ff923bde178cb632f0b14a10f76d4e84dbb553",
+      "matchesGitHub": true
+    },
+    {
+      "path": "test/manager-uncertain-actions.test.cjs",
+      "sha": "d0635551e86c0d0e19e96eeba275d70300e25480",
+      "sha256": "f124d980ce0494ec588ff15b9c6273b31d9b8c84a1e3f5b96f066ecf50c67be2",
+      "matchesGitHub": true
+    }
+  ],
+  "unchangedControls": [
+    {
+      "path": ".github/CONCIERGE-BETA-PREVIEW-RELEASE-CHECK-2026-10-10.md",
+      "sha": "24c3da769ba9724389185208020b875b9b925c6a"
+    },
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "sha": "9540d3c50339b976e6fff19acd8283037aa000e1"
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "sha": "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+    },
+    {
+      "path": "package.json",
+      "sha": "2fcc14494f8130625cc9acc514568d7d719e1282"
+    },
+    {
+      "path": "vercel.json",
+      "sha": "620ee85530ae3a417ee925e0f81e347a1dbec399"
+    },
+    {
+      "path": "manager-auth-v1.js",
+      "sha": "13836c7005b4e12c524ac227a8288983c968ebc9"
+    },
+    {
+      "path": "manager-legal-publication-gate-v1.cjs",
+      "sha": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1"
+    },
+    {
+      "path": "manager-build-config.cjs",
+      "sha": "7ca9a62658bce114967e2ae82b0217121bd27adc"
+    },
+    {
+      "path": "manager-signup-v1.js",
+      "sha": "b95b344f8f02950ca74a4b92d82bc12953880a0f"
+    },
+    {
+      "path": "manager-signup-admin-v1.js",
+      "sha": "9727652e0d2a468d842fdd33739d77ed0b4fa328"
+    },
+    {
+      "path": "manager-password-recovery-v1.js",
+      "sha": "94d05631049cd327354df96d6c59f155dd7732ba"
+    },
+    {
+      "path": "manager-invite-v1.js",
+      "sha": "95f0555ff474109c41eac0bee54de2e2215ea30f"
+    }
+  ],
+  "allChangedFilesVerified": true,
+  "removedFiles": [],
+  "protectedChanges": []
+}
