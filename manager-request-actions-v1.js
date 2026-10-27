@@ -157,6 +157,9 @@ replaceRequired(
               throw new Error('REQUEST_DECISION_RESPONSE_INVALID');
             }
             decisionConfirmed = true;
+            if (body.notification && body.notification.reconciliation_required === true) {
+              window.alert('La decisión quedó registrada. El aviso al huésped sigue en revisión; no repitas la decisión ni el envío. Revisá el registro con soporte.');
+            }
             const refreshed = await loadManagerRequests(accessToken);
             if (actionSequence !== loadSequence || !currentView()) return;
             const matching = Array.isArray(refreshed) ? refreshed.filter(row => row.id === item.id) : [];
@@ -164,6 +167,9 @@ replaceRequired(
                 matching[0].status !== decisionValue) throw new Error('REQUEST_REFRESH_UNCONFIRMED');
             renderRequests(refreshed);
           } catch (error) {
+            // The persisted intent stays for reconciliation, but an old page
+            // or bearer must not alert or alter a newer manager's view.
+            if (!currentView()) return;
             if (error && error.message === 'REQUEST_INTENT_UNAVAILABLE') {
               approve.disabled = true; reject.disabled = true;
               window.alert('No pude preparar la acción de forma segura. No se envió la decisión. Cerrá y volvé a abrir esta página antes de continuar.');

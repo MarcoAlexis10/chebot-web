@@ -1,0 +1,11 @@
+✔ a confirmed decision with unknown notification persistence warns without replaying the decision (18.056251ms)
+✔ an ambiguous notification warning is not shown by a late decision from a replaced session (3.504992ms)
+✔ a confirmed notification preserves the ordinary decision refresh without extra warnings (2.376979ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 131.208348

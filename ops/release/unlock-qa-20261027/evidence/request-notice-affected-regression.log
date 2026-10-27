@@ -1,0 +1,17 @@
+✔ a rendered request cannot dispatch using a replacement manager session (23.217443ms)
+✔ a request button detached by pagehide cannot dispatch on the old render generation (3.255695ms)
+✔ session replacement while the confirmation dialog is open is checked before dispatch (2.36423ms)
+✔ a late fresh list after committed decision cannot repaint a page hidden in the meantime (4.91149ms)
+✔ malformed decision fields cannot trigger a refresh or certify success (12.246064ms)
+✔ a fresh list with another property or contradictory status is not the decision confirmation (8.371479ms)
+✔ exact typed receipt and matching fresh scope preserve approve and reject flows (13.247136ms)
+✔ auth denial clears rendered private request details before another action (6.390198ms)
+✔ the exact immutable request hold leaves no false pending-decision marker (4.446483ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 196.37835

@@ -1,0 +1,47 @@
+✖ a confirmed decision with unknown notification persistence warns without replaying the decision (56.81719ms)
+✖ an ambiguous notification warning is not shown by a late decision from a replaced session (6.12234ms)
+✔ a confirmed notification preserves the ordinary decision refresh without extra warnings (2.945382ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 166.2217
+
+✖ failing tests:
+
+test at web/qa/security/request-notice-unlock-new.test.cjs:5:1
+✖ a confirmed decision with unknown notification persistence warns without replaying the decision (56.81719ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /decisión.*registrada.*aviso.*revisión/i. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-notice-unlock-new.test.cjs:6:312)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /decisión.*registrada.*aviso.*revisión/i,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at web/qa/security/request-notice-unlock-new.test.cjs:8:1
+✖ an ambiguous notification warning is not shown by a late decision from a replaced session (6.12234ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/workspace/scratch/ad052d5eda64/web/qa/security/request-notice-unlock-new.test.cjs:9:353)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

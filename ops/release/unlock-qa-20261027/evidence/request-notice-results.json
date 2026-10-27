@@ -1,0 +1,12 @@
+{
+  "newCases": 3,
+  "beforePassed": 1,
+  "beforeFailed": 2,
+  "passed": 3,
+  "failed": 0,
+  "affectedRegressionsPassed": 9,
+  "regressionReason": "Request action catch now suppresses stale-session alerts; existing session/lifecycle/receipt cases directly affected",
+  "command": "node --test web/qa/security/request-notice-unlock-new.test.cjs",
+  "scope": "actual generated request browser; fictional DOM/storage/HTTP",
+  "decision": "NO-GO"
+}
