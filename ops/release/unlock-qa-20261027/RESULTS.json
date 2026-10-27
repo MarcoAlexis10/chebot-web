@@ -1,0 +1,11 @@
+{
+  "scope": "unlock-qa-20261027",
+  "initialHead": "00f7957f06ae317e87bec11913a2c531b079419d",
+  "functionalHead": "522d148b7d406c5973b6fa3899d798c9d8028f1e",
+  "newCases": 3,
+  "passed": 3,
+  "failedFinal": 0,
+  "affectedHistoricalRegressionsPassedNotRecounted": 9,
+  "crossRepositoryTestsCountedHere": false,
+  "decision": "NO-GO"
+}

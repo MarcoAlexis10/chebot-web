@@ -1,3 +1,17 @@
+# Último cierre web — desbloqueo QA, 27/10/2026
+
+2026-10-27T13:26:15.776192-03:00, Argentina. **Beta NO-GO.** Inicio `00f7957f06ae317e87bec11913a2c531b079419d`, código/pruebas `522d148b7d406c5973b6fa3899d798c9d8028f1e`, rama `qa/cheveni-release-20261025`. Última sección; historial conservado debajo.
+
+Commit `522d148b7d406c5973b6fa3899d798c9d8028f1e`: muestra aviso de conciliación de notificación tras decisión registrada; una sesión vieja no puede abrir alertas o modificar la nueva vista desde catch. Intent persistido y prohibición de replay intactos. Tres casos nuevos pasan (antes uno/dos); nueve regresiones directamente afectadas pasan, no se suman. Tres integraciones nuevas backend/web se cuentan solo en backend, con Auth/SQL/proveedores/DOM ficticios; no validación operativa.
+
+Fuentes emparejadas en candidato backend: backend `b93cb29b1eba5bd2f0422c737b9e0a414b0f223d`, web `522d148b7d406c5973b6fa3899d798c9d8028f1e`. Se fijan 17 fuentes web; no se repite build histórico ni despliega. Logs/resultados/hashes en `../unlock-qa-20261027/`.
+
+[Informe maestro actualizado](https://github.com/MarcoAlexis10/chebot-backend/blob/qa/cheveni-native-nine-preflight-20261025/ops/release/desktop-qa-20261027/CONTINUIDAD.md) y [candidato/procedimiento único](https://github.com/MarcoAlexis10/chebot-backend/blob/qa/cheveni-native-nine-preflight-20261025/ops/release/operational-candidate-20261026/NEXT-VALIDATION.md). Siete nativos, cuota/freno US$0, Auth transaccional/journal, A2/custodia, comunicaciones y aceptación/operación siguen pendientes. Ninguna acción ASUS ni permiso de lanzamiento implícito.
+
+---
+
+# Histórico web conservado
+
 # Última continuación web — cierre técnico QA 27/10/2026
 
 2026-10-27T12:50:07.970048-03:00, Argentina. **Beta NO-GO.** Inicio `83c0be589ebcdc75042fae0ef7949a1e671690a0`, código/pruebas `6f4f43b36363baf0248f6bf4542d780ce941a9a3`, rama `qa/cheveni-release-20261025`. Este apartado actualiza el informe existente y conserva debajo su versión histórica.

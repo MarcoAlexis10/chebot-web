@@ -1,0 +1,39 @@
+{
+  "repository": "MarcoAlexis10/chebot-web",
+  "initialHead": "00f7957f06ae317e87bec11913a2c531b079419d",
+  "functionalHead": "522d148b7d406c5973b6fa3899d798c9d8028f1e",
+  "changedFilesMatchGitHub": [
+    {
+      "path": "manager-request-actions-v1.js",
+      "blob": "01bb85dd3fd67c826aee56969d60f5ecfd517cf2",
+      "sha256": "f3376fd7ea839c9982586515196c780acab4c716a7009e0d139969d087796d84"
+    },
+    {
+      "path": "qa/security/request-notice-unlock-new.test.cjs",
+      "blob": "4f9ce433a8032661f6d4dd12ea33daf3af4a55b2",
+      "sha256": "500c1e437d3c8e0ae8950bdb36cc3384aa2d89c322e11eb50cc50b37f75ccd19"
+    },
+    {
+      "path": "ops/release/unlock-qa-20261027/evidence/request-notice-affected-regression.log",
+      "blob": "433382d5cd75219d8efc2154057aaa4a38237e8d",
+      "sha256": "56d90933f7c95679e88864f400065377f141be0b736e7ac5a6602d459891173d"
+    },
+    {
+      "path": "ops/release/unlock-qa-20261027/evidence/request-notice-after.log",
+      "blob": "09e62b06272a959301aad5fc9b3508d6dcae7b75",
+      "sha256": "52918737c257bc314d3662a458a2667fc300ae7c816c1859b341ade272e01d01"
+    },
+    {
+      "path": "ops/release/unlock-qa-20261027/evidence/request-notice-before.log",
+      "blob": "5f69437ca5c702acfa4eba8712c52c385d31775d",
+      "sha256": "9a96723a0d5c63de6f8bee905b0551ecb3b8f599317c9dc398eb542ea4c7c142"
+    },
+    {
+      "path": "ops/release/unlock-qa-20261027/evidence/request-notice-results.json",
+      "blob": "1f32378e41eb6ea0f1eb394525fbcfcc94e13308",
+      "sha256": "340d3b0168f89194b7bb507573fb1cf8bd7dc243e0f638b77df5aeb1f62fa75f"
+    }
+  ],
+  "unchangedProtectedControls": 6,
+  "candidateSourceFilesChecked": 17
+}
