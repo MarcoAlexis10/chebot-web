@@ -1,0 +1,148 @@
+TAP version 13
+# Subtest: silently lost token persistence cannot reveal the manager panel
+ok 1 - silently lost token persistence cannot reveal the manager panel
+  ---
+  duration_ms: 11.838879
+  type: 'test'
+  ...
+# Subtest: a stale token left after failed replacement cannot restore a different session through BFCache
+ok 2 - a stale token left after failed replacement cannot restore a different session through BFCache
+  ---
+  duration_ms: 6.957825
+  type: 'test'
+  ...
+# Subtest: silent token removal failure at logout stays terminal for this page and cannot be restored
+ok 3 - silent token removal failure at logout stays terminal for this page and cannot be restored
+  ---
+  duration_ms: 5.006794
+  type: 'test'
+  ...
+# Subtest: failed provider logout cannot overwrite a local-cleanup failure with a false local-exit claim
+ok 4 - failed provider logout cannot overwrite a local-cleanup failure with a false local-exit claim
+  ---
+  duration_ms: 4.895817
+  type: 'test'
+  ...
+# Subtest: readback failure after token write blocks login and attempts to revoke only the newly issued token
+ok 5 - readback failure after token write blocks login and attempts to revoke only the newly issued token
+  ---
+  duration_ms: 9.399102
+  type: 'test'
+  ...
+# Subtest: successful token write and removal preserve deliberate login and logout without storage warnings
+ok 6 - successful token write and removal preserve deliberate login and logout without storage warnings
+  ---
+  duration_ms: 4.104344
+  type: 'test'
+  ...
+# Subtest: current properties HTTP 403 clears previously authorized private panel before parsing denial JSON
+ok 7 - current properties HTTP 403 clears previously authorized private panel before parsing denial JSON
+  ---
+  duration_ms: 16.588687
+  type: 'test'
+  ...
+# Subtest: current stays HTTP 403 clears previously authorized private panel before parsing denial JSON
+ok 8 - current stays HTTP 403 clears previously authorized private panel before parsing denial JSON
+  ---
+  duration_ms: 10.183895
+  type: 'test'
+  ...
+# Subtest: knowledge 403 conceals all cached sections through the current auth gate
+ok 9 - knowledge 403 conceals all cached sections through the current auth gate
+  ---
+  duration_ms: 11.617149
+  type: 'test'
+  ...
+# Subtest: requests 403 conceals all cached sections through the current auth gate
+ok 10 - requests 403 conceals all cached sections through the current auth gate
+  ---
+  duration_ms: 8.847828
+  type: 'test'
+  ...
+# Subtest: incidents 403 conceals all cached sections through the current auth gate
+ok 11 - incidents 403 conceals all cached sections through the current auth gate
+  ---
+  duration_ms: 9.575544
+  type: 'test'
+  ...
+# Subtest: old-generation 403 cannot clear a newly verified current panel
+ok 12 - old-generation 403 cannot clear a newly verified current panel
+  ---
+  duration_ms: 3.657561
+  type: 'test'
+  ...
+# Subtest: upstream 503 without a permission denial does not impersonate revoked Auth
+ok 13 - upstream 503 without a permission denial does not impersonate revoked Auth
+  ---
+  duration_ms: 4.780708
+  type: 'test'
+  ...
+# Subtest: a current 401 from private properties conceals every section and clears the browser credential
+ok 14 - a current 401 from private properties conceals every section and clears the browser credential
+  ---
+  duration_ms: 10.441434
+  type: 'test'
+  ...
+# Subtest: a 401 from an earlier page generation cannot log out a freshly reverified session
+ok 15 - a 401 from an earlier page generation cannot log out a freshly reverified session
+  ---
+  duration_ms: 7.876168
+  type: 'test'
+  ...
+# Subtest: Knowledge signals current authentication loss without disclosing a token
+ok 16 - Knowledge signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 3.692554
+  type: 'test'
+  ...
+# Subtest: Requests signals current authentication loss without disclosing a token
+ok 17 - Requests signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 2.935924
+  type: 'test'
+  ...
+# Subtest: Incidents signals current authentication loss without disclosing a token
+ok 18 - Incidents signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 2.856495
+  type: 'test'
+  ...
+# Subtest: duplicate recovery submit events issue only one pending request
+ok 19 - duplicate recovery submit events issue only one pending request
+  ---
+  duration_ms: 5.199906
+  type: 'test'
+  ...
+# Subtest: cancelled recovery response cannot replace the message of a new recovery form
+ok 20 - cancelled recovery response cannot replace the message of a new recovery form
+  ---
+  duration_ms: 7.159699
+  type: 'test'
+  ...
+# Subtest: storage access failure during a private response conceals the panel and disables new login
+ok 21 - storage access failure during a private response conceals the panel and disables new login
+  ---
+  duration_ms: 3.829189
+  type: 'test'
+  ...
+# Subtest: section storage denial emits once while visible and does not cause a hidden-panel observer loop
+ok 22 - section storage denial emits once while visible and does not cause a hidden-panel observer loop
+  ---
+  duration_ms: 4.730949
+  type: 'test'
+  ...
+# Subtest: each generated private module and the actual auth gate cooperate to conceal a revoked session
+ok 23 - each generated private module and the actual auth gate cooperate to conceal a revoked session
+  ---
+  duration_ms: 13.457939
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 245.596257

@@ -207,7 +207,8 @@ const browserJs = `
       // timeout is an unknown result; callers retain their persisted intent.
       return await Promise.race([deadline, (async () => {
         const response = await fetch(url, {...options, redirect: 'error', signal: controller.signal});
-        if (response.status === 401 && sequence === loadSequence && readSectionToken() === accessToken
+        // A current authorization denial invalidates cached private UI too.
+        if ([401, 403].includes(response.status) && sequence === loadSequence && readSectionToken() === accessToken
             && !document.body.classList.contains('manager-auth-pending')) {
           window.dispatchEvent(new Event('cheveni-manager-session-denied'));
         }

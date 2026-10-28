@@ -176,7 +176,8 @@ const browserJs = `
       // This never retries login, recovery or logout after an unknown outcome.
       return await Promise.race([aborted, (async () => {
         const response = await fetch(url, {...options, signal: controller.signal});
-        if (response.status === 401 && [BACKEND_SESSION_URL, BACKEND_PROPERTIES_URL, BACKEND_STAYS_URL].includes(url) &&
+        // A current authorization denial invalidates cached private UI too.
+        if ([401, 403].includes(response.status) && [BACKEND_SESSION_URL, BACKEND_PROPERTIES_URL, BACKEND_STAYS_URL].includes(url) &&
             generation === authGeneration && accessToken && readToken() === accessToken) {
           showLogin('La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
         }

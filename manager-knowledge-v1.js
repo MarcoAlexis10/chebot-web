@@ -387,7 +387,8 @@ const browserJs = `
     const sequence = loadSequence;
     const accessToken = options.headers && String(options.headers.Authorization || '').replace(/^Bearer /, '');
     const response = await fetch(url, {...options, redirect: 'error'});
-    if (response.status === 401 && !options.signal?.aborted && sequence === loadSequence && readSectionToken() === accessToken
+    // A current authorization denial invalidates cached private UI too.
+    if ([401, 403].includes(response.status) && !options.signal?.aborted && sequence === loadSequence && readSectionToken() === accessToken
         && !document.body.classList.contains('manager-auth-pending')) {
       window.dispatchEvent(new Event('cheveni-manager-session-denied'));
     }

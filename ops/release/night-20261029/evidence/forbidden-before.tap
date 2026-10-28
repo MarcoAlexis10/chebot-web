@@ -1,0 +1,105 @@
+✖ current properties HTTP 403 clears previously authorized private panel before parsing denial JSON (19.116983ms)
+✖ current stays HTTP 403 clears previously authorized private panel before parsing denial JSON (6.806937ms)
+✖ knowledge 403 conceals all cached sections through the current auth gate (9.497969ms)
+✖ requests 403 conceals all cached sections through the current auth gate (6.956062ms)
+✖ incidents 403 conceals all cached sections through the current auth gate (8.5161ms)
+✔ old-generation 403 cannot clear a newly verified current panel (2.92298ms)
+✔ upstream 503 without a permission denial does not impersonate revoked Auth (3.091774ms)
+ℹ Error: Test "knowledge 403 conceals all cached sections through the current auth gate" at qa/security/forbidden-private-panel-night-new.test.cjs:12:146 generated asynchronous activity after the test ended. This activity created the error "TypeError: list.replaceChildren is not a function" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "requests 403 conceals all cached sections through the current auth gate" at qa/security/forbidden-private-panel-night-new.test.cjs:12:146 generated asynchronous activity after the test ended. This activity created the error "TypeError: list.replaceChildren is not a function" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ Error: Test "incidents 403 conceals all cached sections through the current auth gate" at qa/security/forbidden-private-panel-night-new.test.cjs:12:146 generated asynchronous activity after the test ended. This activity created the error "TypeError: list.replaceChildren is not a function" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+ℹ tests 7
+ℹ suites 0
+ℹ pass 2
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 226.57984
+
+✖ failing tests:
+
+test at qa/security/forbidden-private-panel-night-new.test.cjs:4:43
+✖ current properties HTTP 403 clears previously authorized private panel before parsing denial JSON (19.116983ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/night-20261029/web/qa/security/forbidden-private-panel-night-new.test.cjs:9:24)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at qa/security/forbidden-private-panel-night-new.test.cjs:4:43
+✖ current stays HTTP 403 clears previously authorized private panel before parsing denial JSON (6.806937ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/night-20261029/web/qa/security/forbidden-private-panel-night-new.test.cjs:9:24)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at qa/security/forbidden-private-panel-night-new.test.cjs:12:146
+✖ knowledge 403 conceals all cached sections through the current auth gate (9.497969ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/night-20261029/web/qa/security/forbidden-private-panel-night-new.test.cjs:15:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at qa/security/forbidden-private-panel-night-new.test.cjs:12:146
+✖ requests 403 conceals all cached sections through the current auth gate (6.956062ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/night-20261029/web/qa/security/forbidden-private-panel-night-new.test.cjs:15:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at qa/security/forbidden-private-panel-night-new.test.cjs:12:146
+✖ incidents 403 conceals all cached sections through the current auth gate (8.5161ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/night-20261029/web/qa/security/forbidden-private-panel-night-new.test.cjs:15:9)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

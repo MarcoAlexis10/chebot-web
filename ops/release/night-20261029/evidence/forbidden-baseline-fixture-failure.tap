@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: each generated private module and the actual auth gate cooperate to conceal a revoked session
+not ok 1 - each generated private module and the actual auth gate cooperate to conceal a revoked session
+  ---
+  duration_ms: 20.985362
+  type: 'test'
+  location: '/workspace/scratch/37f3c14d58ee/managed-real/web/qa/security/intensive-20261025/session-denial-new.test.cjs:43:1'
+  failureType: 'testCodeFailure'
+  error: 'knowledge'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/managed-real/web/qa/security/intensive-20261025/session-denial-new.test.cjs:47:10)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Error: Test "each generated private module and the actual auth gate cooperate to conceal a revoked session" at managed-real/web/qa/security/intensive-20261025/session-denial-new.test.cjs:43:1 generated asynchronous activity after the test ended. This activity created the error "TypeError: list.replaceChildren is not a function" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 210.285274

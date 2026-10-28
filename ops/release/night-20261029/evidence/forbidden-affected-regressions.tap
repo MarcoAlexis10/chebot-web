@@ -1,0 +1,119 @@
+TAP version 13
+# Subtest: silently lost token persistence cannot reveal the manager panel
+ok 1 - silently lost token persistence cannot reveal the manager panel
+  ---
+  duration_ms: 7.579675
+  type: 'test'
+  ...
+# Subtest: a stale token left after failed replacement cannot restore a different session through BFCache
+ok 2 - a stale token left after failed replacement cannot restore a different session through BFCache
+  ---
+  duration_ms: 7.113428
+  type: 'test'
+  ...
+# Subtest: silent token removal failure at logout stays terminal for this page and cannot be restored
+ok 3 - silent token removal failure at logout stays terminal for this page and cannot be restored
+  ---
+  duration_ms: 5.275989
+  type: 'test'
+  ...
+# Subtest: failed provider logout cannot overwrite a local-cleanup failure with a false local-exit claim
+ok 4 - failed provider logout cannot overwrite a local-cleanup failure with a false local-exit claim
+  ---
+  duration_ms: 5.053895
+  type: 'test'
+  ...
+# Subtest: readback failure after token write blocks login and attempts to revoke only the newly issued token
+ok 5 - readback failure after token write blocks login and attempts to revoke only the newly issued token
+  ---
+  duration_ms: 7.237165
+  type: 'test'
+  ...
+# Subtest: successful token write and removal preserve deliberate login and logout without storage warnings
+ok 6 - successful token write and removal preserve deliberate login and logout without storage warnings
+  ---
+  duration_ms: 3.890072
+  type: 'test'
+  ...
+# Subtest: a current 401 from private properties conceals every section and clears the browser credential
+ok 7 - a current 401 from private properties conceals every section and clears the browser credential
+  ---
+  duration_ms: 6.992486
+  type: 'test'
+  ...
+# Subtest: a 401 from an earlier page generation cannot log out a freshly reverified session
+ok 8 - a 401 from an earlier page generation cannot log out a freshly reverified session
+  ---
+  duration_ms: 5.086874
+  type: 'test'
+  ...
+# Subtest: Knowledge signals current authentication loss without disclosing a token
+ok 9 - Knowledge signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 2.59528
+  type: 'test'
+  ...
+# Subtest: Requests signals current authentication loss without disclosing a token
+ok 10 - Requests signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 1.807123
+  type: 'test'
+  ...
+# Subtest: Incidents signals current authentication loss without disclosing a token
+ok 11 - Incidents signals current authentication loss without disclosing a token
+  ---
+  duration_ms: 1.801204
+  type: 'test'
+  ...
+# Subtest: duplicate recovery submit events issue only one pending request
+ok 12 - duplicate recovery submit events issue only one pending request
+  ---
+  duration_ms: 3.733085
+  type: 'test'
+  ...
+# Subtest: cancelled recovery response cannot replace the message of a new recovery form
+ok 13 - cancelled recovery response cannot replace the message of a new recovery form
+  ---
+  duration_ms: 6.450049
+  type: 'test'
+  ...
+# Subtest: storage access failure during a private response conceals the panel and disables new login
+ok 14 - storage access failure during a private response conceals the panel and disables new login
+  ---
+  duration_ms: 4.12186
+  type: 'test'
+  ...
+# Subtest: section storage denial emits once while visible and does not cause a hidden-panel observer loop
+ok 15 - section storage denial emits once while visible and does not cause a hidden-panel observer loop
+  ---
+  duration_ms: 4.787083
+  type: 'test'
+  ...
+# Subtest: each generated private module and the actual auth gate cooperate to conceal a revoked session
+not ok 16 - each generated private module and the actual auth gate cooperate to conceal a revoked session
+  ---
+  duration_ms: 5.434298
+  type: 'test'
+  location: '/workspace/scratch/37f3c14d58ee/night-20261029/web/qa/security/intensive-20261025/session-denial-new.test.cjs:43:1'
+  failureType: 'testCodeFailure'
+  error: 'knowledge'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/night-20261029/web/qa/security/intensive-20261025/session-denial-new.test.cjs:47:10)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Error: Test "each generated private module and the actual auth gate cooperate to conceal a revoked session" at night-20261029/web/qa/security/intensive-20261025/session-denial-new.test.cjs:43:1 generated asynchronous activity after the test ended. This activity created the error "TypeError: list.replaceChildren is not a function" and would have caused the test to fail, but instead triggered an unhandledRejection event.
+1..16
+# tests 16
+# suites 0
+# pass 15
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 186.083649

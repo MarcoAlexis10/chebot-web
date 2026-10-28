@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: current properties HTTP 403 clears previously authorized private panel before parsing denial JSON
+ok 1 - current properties HTTP 403 clears previously authorized private panel before parsing denial JSON
+  ---
+  duration_ms: 9.483139
+  type: 'test'
+  ...
+# Subtest: current stays HTTP 403 clears previously authorized private panel before parsing denial JSON
+ok 2 - current stays HTTP 403 clears previously authorized private panel before parsing denial JSON
+  ---
+  duration_ms: 6.090257
+  type: 'test'
+  ...
+# Subtest: knowledge 403 conceals all cached sections through the current auth gate
+ok 3 - knowledge 403 conceals all cached sections through the current auth gate
+  ---
+  duration_ms: 6.582688
+  type: 'test'
+  ...
+# Subtest: requests 403 conceals all cached sections through the current auth gate
+ok 4 - requests 403 conceals all cached sections through the current auth gate
+  ---
+  duration_ms: 5.171262
+  type: 'test'
+  ...
+# Subtest: incidents 403 conceals all cached sections through the current auth gate
+ok 5 - incidents 403 conceals all cached sections through the current auth gate
+  ---
+  duration_ms: 8.160786
+  type: 'test'
+  ...
+# Subtest: old-generation 403 cannot clear a newly verified current panel
+ok 6 - old-generation 403 cannot clear a newly verified current panel
+  ---
+  duration_ms: 2.8403
+  type: 'test'
+  ...
+# Subtest: upstream 503 without a permission denial does not impersonate revoked Auth
+ok 7 - upstream 503 without a permission denial does not impersonate revoked Auth
+  ---
+  duration_ms: 3.029254
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 204.75119
