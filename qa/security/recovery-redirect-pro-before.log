@@ -1,0 +1,59 @@
+✖ recovery GET refuses a 307 without forwarding fictional credentials or password (28.733629ms)
+✖ recovery PUT refuses a 307 without forwarding fictional credentials or password (7.932056ms)
+✖ recovery POST refuses a 307 without forwarding fictional credentials or password (5.315826ms)
+✔ direct identity/update response remains readable without a redirect (3.257341ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 167.71205
+
+✖ failing tests:
+
+test at qa/security/recovery-redirect-pro-new.test.cjs:10:41
+✖ recovery GET refuses a 307 without forwarding fictional credentials or password (28.733629ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/pro-preflight/web/qa/security/recovery-redirect-pro-new.test.cjs:11:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at qa/security/recovery-redirect-pro-new.test.cjs:10:41
+✖ recovery PUT refuses a 307 without forwarding fictional credentials or password (7.932056ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/pro-preflight/web/qa/security/recovery-redirect-pro-new.test.cjs:11:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at qa/security/recovery-redirect-pro-new.test.cjs:10:41
+✖ recovery POST refuses a 307 without forwarding fictional credentials or password (5.315826ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/workspace/scratch/37f3c14d58ee/pro-preflight/web/qa/security/recovery-redirect-pro-new.test.cjs:11:20)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }

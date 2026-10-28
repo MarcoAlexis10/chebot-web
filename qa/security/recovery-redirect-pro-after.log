@@ -1,0 +1,12 @@
+✔ recovery GET refuses a 307 without forwarding fictional credentials or password (20.761063ms)
+✔ recovery PUT refuses a 307 without forwarding fictional credentials or password (7.636305ms)
+✔ recovery POST refuses a 307 without forwarding fictional credentials or password (2.456815ms)
+✔ direct identity/update response remains readable without a redirect (4.744287ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 148.573017
