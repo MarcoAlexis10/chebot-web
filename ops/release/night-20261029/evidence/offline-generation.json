@@ -1,0 +1,62 @@
+{
+  "status": "offline_manager_generation_verified_held",
+  "generatorsExecuted": 11,
+  "generatedFiles": 12,
+  "scriptsCompiled": 8,
+  "generated": [
+    {
+      "path": "manager/activar/index.html",
+      "sha256": "9fd1c69eea10d7e155e433284ede8d8e345c3020e5aa8330355d362b9ee187f3"
+    },
+    {
+      "path": "manager/altas/index.html",
+      "sha256": "c169acdf04b4cb6ccab5c5fc498e895cdbf9498aff3d4c9c02eee027b965df8e"
+    },
+    {
+      "path": "manager/index.html",
+      "sha256": "32ff4fa6c61ff386a8fded05d6fef931f7d6760ecfcc553f6f5a427fc142fbbe"
+    },
+    {
+      "path": "manager/manager-auth.css",
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44"
+    },
+    {
+      "path": "manager/manager-auth.js",
+      "sha256": "a3e4467469ad5a8681b423f9323d9140c48d694e92280e2a5c9d30c8e1144d52"
+    },
+    {
+      "path": "manager/manager-incidents.js",
+      "sha256": "54897c017f4b3b0c0df33971bcf1450d32383e314ef670381ce58a6dec0e37d8"
+    },
+    {
+      "path": "manager/manager-invite.css",
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a"
+    },
+    {
+      "path": "manager/manager-invite.js",
+      "sha256": "7aab34ca4020b070fa954b95a47fbab47d559e55b32ca979252784bdd4a41971"
+    },
+    {
+      "path": "manager/manager-knowledge.js",
+      "sha256": "1f4e706e666864b9a067d94f36cdb112070387b5bd24940583a02ebc1ccd979d"
+    },
+    {
+      "path": "manager/manager-requests.js",
+      "sha256": "a41ab64c57e2a0a5a1fc52939cb34de6544767b84513987c03ac84f29556743c"
+    },
+    {
+      "path": "manager/manager.css",
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a"
+    },
+    {
+      "path": "manager/reset-password/index.html",
+      "sha256": "eb81529dac0d807265dd8d7ea9b2d6f7ed226a50903035032f3b578a245fe08e"
+    }
+  ],
+  "serviceConnections": 0,
+  "browserScriptsExecuted": false,
+  "realSignupEnabled": false,
+  "operationalApproval": false,
+  "decision": "NO-GO",
+  "cleanupVerified": true
+}
