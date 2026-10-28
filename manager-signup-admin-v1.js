@@ -70,8 +70,34 @@ a{color:#0f766e}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center
 var TOKEN_KEY='chebot_manager_preview_access_token';
 var token='';try{token=sessionStorage.getItem(TOKEN_KEY)||''}catch(_){}
 var REVIEW_KEY='cheveni_manager_signup_admin_review_v1';
+
+  // Durable identity is persisted before dispatch; legacy/unknown markers are
+  // never converted into permission to retry. This is not server-side auth.
+  function durableManagerIntentPending(key) {
+    return sessionStorage.getItem(key) !== null || sessionStorage.getItem(key + ':durable-intent-v2') !== null;
+  }
+  function beginManagerDurableIntent(key) {
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_REVIEW_REQUIRED');
+    const id = window.crypto.randomUUID();
+    if (typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) throw new Error('MANAGER_INTENT_UNAVAILABLE');
+    const saved = JSON.stringify({version:2,intentId:id.toLowerCase()}), durableKey = key + ':durable-intent-v2';
+    sessionStorage.setItem(durableKey, saved);
+    if (sessionStorage.getItem(durableKey) !== saved) throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    sessionStorage.setItem(key, '1');
+    if (sessionStorage.getItem(key) !== '1') throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    return id.toLowerCase();
+  }
+  function clearManagerDurableIntent(key) {
+    sessionStorage.removeItem(key + ':durable-intent-v2');
+    sessionStorage.removeItem(key);
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_NOT_CLEARED');
+  }
+  function preserveManagerDurableIntent(key) {
+    try { if (sessionStorage.getItem(key) === null) sessionStorage.setItem(key, '1'); } catch (_) {}
+  }
+
 var EXPECTED_WEB_ORIGIN=${JSON.stringify(config.webOrigin)};
-function reviewRequired(){try{return sessionStorage.getItem(REVIEW_KEY)==='1'}catch(_){return true}}
+function reviewRequired(){try{return durableManagerIntentPending(REVIEW_KEY)}catch(_){return true}}
 var API='${config.apiOrigin}/api/concierge/manager/signup-admin';
 var access=document.getElementById('access-status'),issueStatus=document.getElementById('issue-status');
 var issueForm=document.getElementById('issue-form'),issueButton=document.getElementById('issue-button');
@@ -115,13 +141,13 @@ function knownDenial(status,code){
  return Boolean(codes[status]&&codes[status].includes(code));
 }
 async function api(method,body){
- var mutating=method!=='GET';
+ var mutating=method!=='GET',stableIntentId=null;
  if(!currentPageSession()){clearPrivateView();throw new Error('SESSION_CHANGED')}
  if(mutating&&(mutationPending||mutationUncertain||reviewRequired())){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
  if(mutating&&sessionStorage.getItem(TOKEN_KEY)!==token)throw new Error('SESSION_CHANGED');
  if(mutating){
   mutationPending=true;readGeneration++;
-  try{sessionStorage.setItem(REVIEW_KEY,'1');if(sessionStorage.getItem(REVIEW_KEY)!=='1')throw new Error('INTENT_NOT_PERSISTED')}
+  try{stableIntentId=beginManagerDurableIntent(REVIEW_KEY)}
   catch(_){freezeMutation();mutationPending=false;throw new Error('MUTATION_REVIEW_REQUIRED')}
   clearPrivateView();
  }
@@ -129,6 +155,7 @@ async function api(method,body){
 
  var options={method:method,mode:'cors',credentials:'omit',cache:'no-store',
    headers:{Authorization:'Bearer '+token},signal:controller.signal};
+ if(mutating)options.headers['Idempotency-Key']=stableIntentId;
  if(body){options.headers['Content-Type']='application/json';options.body=JSON.stringify(body)}
  try{
   var resp=await fetch(API,options),data=null;
@@ -140,7 +167,7 @@ async function api(method,body){
    var success=valid&&resp.ok&&data.ok===true&&expected&&data.code===expected&&(body.action!=='issue'||validCapability(data));
    var denied=valid&&!resp.ok&&data.ok!==true&&knownDenial(resp.status,data.code);
    if(!success&&!denied){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
-   try{sessionStorage.removeItem(REVIEW_KEY);if(sessionStorage.getItem(REVIEW_KEY)!==null)throw new Error('INTENT_NOT_CLEARED')}
+   try{clearManagerDurableIntent(REVIEW_KEY)}
    catch(_){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
   }
   return {code:resp.status,data:data||{}};

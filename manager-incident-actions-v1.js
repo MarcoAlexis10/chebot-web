@@ -228,21 +228,47 @@ replaceRequired(
       };
 
       const availableActions = actionMap[item.status] || [];
+
+  // Durable identity is persisted before dispatch; legacy/unknown markers are
+  // never converted into permission to retry. This is not server-side auth.
+  function durableManagerIntentPending(key) {
+    return sessionStorage.getItem(key) !== null || sessionStorage.getItem(key + ':durable-intent-v2') !== null;
+  }
+  function beginManagerDurableIntent(key) {
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_REVIEW_REQUIRED');
+    const id = window.crypto.randomUUID();
+    if (typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) throw new Error('MANAGER_INTENT_UNAVAILABLE');
+    const saved = JSON.stringify({version:2,intentId:id.toLowerCase()}), durableKey = key + ':durable-intent-v2';
+    sessionStorage.setItem(durableKey, saved);
+    if (sessionStorage.getItem(durableKey) !== saved) throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    sessionStorage.setItem(key, '1');
+    if (sessionStorage.getItem(key) !== '1') throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    return id.toLowerCase();
+  }
+  function clearManagerDurableIntent(key) {
+    sessionStorage.removeItem(key + ':durable-intent-v2');
+    sessionStorage.removeItem(key);
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_NOT_CLEARED');
+  }
+  function preserveManagerDurableIntent(key) {
+    try { if (sessionStorage.getItem(key) === null) sessionStorage.setItem(key, '1'); } catch (_) {}
+  }
+
       const reviewKey = 'chebot_manager_incident_review_v1:' + item.id;
       const renderedToken = readSectionToken(), renderedSequence = loadSequence;
       let mutationInFlight = false;
+      let stableIntentId = null;
       const reviewNotice = document.createElement('span');
       reviewNotice.className = 'muted';
-      const reviewBlocked = () => { try { return sessionStorage.getItem(reviewKey) === '1'; } catch (_) { return true; } };
+      const reviewBlocked = () => { try { return durableManagerIntentPending(reviewKey); } catch (_) { return true; } };
       const currentAttempt = token => token && token === renderedToken && readSectionToken() === token &&
         renderedSequence === loadSequence && !document.body.classList.contains('manager-auth-pending');
       const recordIntent = () => {
-        try { sessionStorage.setItem(reviewKey, '1'); if (sessionStorage.getItem(reviewKey) !== '1') throw new Error('NOT_RECORDED'); }
+        try { stableIntentId = beginManagerDurableIntent(reviewKey); }
         catch (_) { throw new Error('INCIDENT_INTENT_UNAVAILABLE'); }
       };
       const clearIntent = () => {
-        sessionStorage.removeItem(reviewKey);
-        if (sessionStorage.getItem(reviewKey) !== null) throw new Error('INTENT_NOT_CLEARED');
+        clearManagerDurableIntent(reviewKey);
       };
       const freeze = message => {
         mutationInFlight = true;
@@ -250,7 +276,7 @@ replaceRequired(
         reviewNotice.textContent = message; action.appendChild(reviewNotice);
       };
       const freezeForReview = () => {
-        try { sessionStorage.setItem(reviewKey, '1'); } catch (_) {}
+        preserveManagerDurableIntent(reviewKey);
         freeze('Resultado en revisión. No repitas la acción; verificá el registro con soporte.');
       };
       const freezeBeforeDispatch = () => freeze('No pude preparar la acción de forma segura. No se envió. Cerrá y volvé a abrir esta página antes de continuar.');
@@ -313,6 +339,7 @@ replaceRequired(
                 cache: 'no-store',
                 headers: {
                   Authorization: 'Bearer ' + accessToken,
+                  'Idempotency-Key': stableIntentId,
                   'Content-Type': 'application/json',
                   Accept: 'application/json'
                 },
@@ -417,6 +444,7 @@ replaceRequired(
               cache: 'no-store',
               headers: {
                 Authorization: 'Bearer ' + accessToken,
+                'Idempotency-Key': stableIntentId,
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
               },

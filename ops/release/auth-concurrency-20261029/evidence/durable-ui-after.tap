@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: request persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+ok 1 - request persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+  ---
+  duration_ms: 28.325366
+  type: 'test'
+  ...
+# Subtest: incident persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+ok 2 - incident persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+  ---
+  duration_ms: 11.735919
+  type: 'test'
+  ...
+# Subtest: admin persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+ok 3 - admin persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+  ---
+  duration_ms: 6.028592
+  type: 'test'
+  ...
+# Subtest: knowledge persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+ok 4 - knowledge persists UUID before HTTP and retains it unchanged on UNKNOWN and reload
+  ---
+  duration_ms: 6.602528
+  type: 'test'
+  ...
+# Subtest: all four surfaces preserve legacy unresolved v1 markers rather than minting a retry UUID
+ok 5 - all four surfaces preserve legacy unresolved v1 markers rather than minting a retry UUID
+  ---
+  duration_ms: 21.622349
+  type: 'test'
+  ...
+# Subtest: orphaned or malformed v2 records stay blocked even when the old marker is absent
+ok 6 - orphaned or malformed v2 records stay blocked even when the old marker is absent
+  ---
+  duration_ms: 22.56725
+  type: 'test'
+  ...
+# Subtest: silent failure to persist durable identity prevents every action from reaching HTTP
+ok 7 - silent failure to persist durable identity prevents every action from reaching HTTP
+  ---
+  duration_ms: 10.25836
+  type: 'test'
+  ...
+# Subtest: missing secure randomness has no insecure fallback and produces no HTTP mutation
+ok 8 - missing secure randomness has no insecure fallback and produces no HTTP mutation
+  ---
+  duration_ms: 11.430906
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 217.273976

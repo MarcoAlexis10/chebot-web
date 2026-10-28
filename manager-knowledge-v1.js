@@ -92,20 +92,46 @@ const browserJs = `
     container.appendChild(tag);
   }
 
+
+  // Durable identity is persisted before dispatch; legacy/unknown markers are
+  // never converted into permission to retry. This is not server-side auth.
+  function durableManagerIntentPending(key) {
+    return sessionStorage.getItem(key) !== null || sessionStorage.getItem(key + ':durable-intent-v2') !== null;
+  }
+  function beginManagerDurableIntent(key) {
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_REVIEW_REQUIRED');
+    const id = window.crypto.randomUUID();
+    if (typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) throw new Error('MANAGER_INTENT_UNAVAILABLE');
+    const saved = JSON.stringify({version:2,intentId:id.toLowerCase()}), durableKey = key + ':durable-intent-v2';
+    sessionStorage.setItem(durableKey, saved);
+    if (sessionStorage.getItem(durableKey) !== saved) throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    sessionStorage.setItem(key, '1');
+    if (sessionStorage.getItem(key) !== '1') throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    return id.toLowerCase();
+  }
+  function clearManagerDurableIntent(key) {
+    sessionStorage.removeItem(key + ':durable-intent-v2');
+    sessionStorage.removeItem(key);
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_NOT_CLEARED');
+  }
+  function preserveManagerDurableIntent(key) {
+    try { if (sessionStorage.getItem(key) === null) sessionStorage.setItem(key, '1'); } catch (_) {}
+  }
+
   let knowledgeMutationPending = false;
   const knowledgeUncertain = new Set();
   const REVIEW_PREFIX = 'cheveni_knowledge_decision_review_v1:';
   function needsReview(key) {
     if (knowledgeUncertain.has(key)) return true;
-    try { return sessionStorage.getItem(REVIEW_PREFIX + key) !== null; } catch (_) { return true; }
+    try { return durableManagerIntentPending(REVIEW_PREFIX + key); } catch (_) { return true; }
   }
   function storeIntent(key) {
     knowledgeUncertain.add(key);
-    try { sessionStorage.setItem(REVIEW_PREFIX + key, '1'); return sessionStorage.getItem(REVIEW_PREFIX + key) === '1'; }
+    try { return beginManagerDurableIntent(REVIEW_PREFIX + key); }
     catch (_) { return false; }
   }
   function clearIntent(key) {
-    try { sessionStorage.removeItem(REVIEW_PREFIX + key); if (sessionStorage.getItem(REVIEW_PREFIX + key) !== null) return false; }
+    try { clearManagerDurableIntent(REVIEW_PREFIX + key); }
     catch (_) { return false; }
     knowledgeUncertain.delete(key); return true;
   }
@@ -136,7 +162,8 @@ const browserJs = `
 
     if (!window.confirm(promptText)) return;
     if (!currentView()) return;
-    if (!storeIntent(mutationKey)) {
+    const stableIntentId = storeIntent(mutationKey);
+    if (!stableIntentId) {
       button.disabled = true;
       window.alert('No pudimos guardar la operación pendiente. No se envió la decisión.');
       return;
@@ -169,6 +196,7 @@ const browserJs = `
         cache: 'no-store',
         headers: {
           Authorization: 'Bearer ' + accessToken,
+          'Idempotency-Key': stableIntentId,
           'Content-Type': 'application/json',
           Accept: 'application/json'
         },

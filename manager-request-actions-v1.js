@@ -22,7 +22,33 @@ replaceRequired(
   const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
   `  const BACKEND_REQUESTS_URL = ${JSON.stringify(config.apiUrl('requests'))};
   const BACKEND_REQUEST_DECISION_URL = ${JSON.stringify(config.apiUrl('requests/decision'))};
-  const TOKEN_KEY = 'chebot_manager_preview_access_token';`,
+  const TOKEN_KEY = 'chebot_manager_preview_access_token';
+
+  // Durable identity is persisted before dispatch; legacy/unknown markers are
+  // never converted into permission to retry. This is not server-side auth.
+  function durableManagerIntentPending(key) {
+    return sessionStorage.getItem(key) !== null || sessionStorage.getItem(key + ':durable-intent-v2') !== null;
+  }
+  function beginManagerDurableIntent(key) {
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_REVIEW_REQUIRED');
+    const id = window.crypto.randomUUID();
+    if (typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) throw new Error('MANAGER_INTENT_UNAVAILABLE');
+    const saved = JSON.stringify({version:2,intentId:id.toLowerCase()}), durableKey = key + ':durable-intent-v2';
+    sessionStorage.setItem(durableKey, saved);
+    if (sessionStorage.getItem(durableKey) !== saved) throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    sessionStorage.setItem(key, '1');
+    if (sessionStorage.getItem(key) !== '1') throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    return id.toLowerCase();
+  }
+  function clearManagerDurableIntent(key) {
+    sessionStorage.removeItem(key + ':durable-intent-v2');
+    sessionStorage.removeItem(key);
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_NOT_CLEARED');
+  }
+  function preserveManagerDurableIntent(key) {
+    try { if (sessionStorage.getItem(key) === null) sessionStorage.setItem(key, '1'); } catch (_) {}
+  }
+`,
   'decision endpoint constant'
 );
 
@@ -70,7 +96,7 @@ replaceRequired(
         const renderedToken = readSectionToken(), renderedSequence = loadSequence;
         const currentView = () => renderedToken && readSectionToken() === renderedToken && renderedSequence === loadSequence &&
           !document.body.classList.contains('manager-auth-pending');
-        const reviewBlocked = () => { try { return sessionStorage.getItem(reviewKey) === '1'; } catch (_) { return true; } };
+        const reviewBlocked = () => { try { return durableManagerIntentPending(reviewKey); } catch (_) { return true; } };
         if (reviewBlocked()) {
           approve.disabled = true; reject.disabled = true;
           const review = document.createElement('span');
@@ -84,6 +110,7 @@ replaceRequired(
           let decisionConfirmed = false;
           let reconciliationRequired = false;
           let intentRecorded = false;
+          let stableIntentId = null;
           const verb = decisionValue === 'approved' ? 'aprobar' : 'rechazar';
           if (!window.confirm('¿Confirmás ' + verb + ' esta solicitud?')) return;
           if (!currentView()) return;
@@ -114,8 +141,7 @@ replaceRequired(
             // Persist BEFORE dispatch: navigation, reload or a new render must
             // not lose an in-flight action whose acknowledgement is unknown.
             try {
-              sessionStorage.setItem(reviewKey, '1');
-              if (sessionStorage.getItem(reviewKey) !== '1') throw new Error('NOT_RECORDED');
+              stableIntentId = beginManagerDurableIntent(reviewKey);
               intentRecorded = true;
             } catch (_) { throw new Error('REQUEST_INTENT_UNAVAILABLE'); }
             requestStarted = true;
@@ -125,6 +151,7 @@ replaceRequired(
               cache: 'no-store',
               headers: {
                 Authorization: 'Bearer ' + accessToken,
+                'Idempotency-Key': stableIntentId,
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
               },
@@ -176,7 +203,7 @@ replaceRequired(
               return;
             }
             if (requestStarted && (!responseReceived || reconciliationRequired || decisionConfirmed)) {
-              try { sessionStorage.setItem(reviewKey, '1'); } catch (_) {}
+              preserveManagerDurableIntent(reviewKey);
               approve.disabled = true; reject.disabled = true;
               window.alert(decisionConfirmed
                 ? 'La decisión se registró, pero falta actualizar la vista. Recargá para revisar el estado; no la repitas.'
@@ -185,8 +212,7 @@ replaceRequired(
             }
             if (intentRecorded) {
               try {
-                sessionStorage.removeItem(reviewKey);
-                if (sessionStorage.getItem(reviewKey) !== null) throw new Error('INTENT_NOT_CLEARED');
+                clearManagerDurableIntent(reviewKey);
               } catch (_) {
                 approve.disabled = true; reject.disabled = true;
                 window.alert('La acción sigue bloqueada hasta revisar su estado. No repitas la decisión.');
