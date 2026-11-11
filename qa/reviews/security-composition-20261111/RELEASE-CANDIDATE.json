@@ -1,0 +1,86 @@
+{
+  "schema": "CHEVENI_PRIVATE_WRITE_COMPOSITION_HELD_V1",
+  "date": "2026-11-11",
+  "betaDecision": "NO-GO",
+  "operationalApproval": false,
+  "mayDeploy": false,
+  "mayExecuteNativeSql": false,
+  "versions": {
+    "webQaCode": {
+      "repo": "MarcoAlexis10/chebot-web",
+      "branch": "qa/cheveni-integral-held-20261111",
+      "commit": "dd701f3a3151728ae24ac0d727281c55992c8091",
+      "tree": "0188160c25cb4880e66884ae378eb53120ded735",
+      "firstIncrementalCommit": "a2aa88b4847a9c7856df2ee0d9da7f63d5d3937f",
+      "base": "0e552f4bddec3e5b7de38c1de4e03d833ffb2834"
+    },
+    "backend": {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "commit": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "modified": false
+    },
+    "native17": {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "commit": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "modified": false,
+      "sqlExecuted": false
+    }
+  },
+  "scope": {
+    "qaPackage": "../../private-writer-composition-20261111-v1",
+    "publicRouteRegistered": false,
+    "frontendBuildWired": false,
+    "runtimeCandidateHeld": true,
+    "originalLegalGuardPreserved": true,
+    "originalPrelegalHoldPreserved": true,
+    "reviewModeOnly": "OFFLINE_FIXTURE",
+    "reviewCanGrantOperationalAuthority": false,
+    "supportedTypedPrivateOperation": "concierge_manager_create_stay",
+    "legacyGenericOperationMapping": "NONE: eleven operations retained, no fallback",
+    "physicalConnectionOrPermissionEvidence": false,
+    "positiveSignedGatewayEvidence": false
+  },
+  "evidence": {
+    "uniqueNewCases": 18,
+    "newSuitePass": 18,
+    "newSuiteFail": 0,
+    "newSuiteSkip": 0,
+    "laterAffectedGuardCasePass": 1,
+    "laterGuardCaseIsAdditionalUniqueTest": false,
+    "provider": "DOUBLE",
+    "sql": "CALLBACKS / MAP / NO_ENGINE",
+    "actualJwtSignatureVerified": false,
+    "journalSignaturesGenerated": false,
+    "historicalSuitesRepeated": false,
+    "priorThreeFrontendRegressionsRepeated": false,
+    "browserTestsExecuted": false
+  },
+  "blockers": [
+    "Native17 host/artifact/ACL/RLS/login/owners and physical writer/readback evidence unapproved",
+    "Readback-only credential incompatible with historical writer-client session_user guard without a reviewed successor",
+    "Current managed Auth/common revocation fence and trusted source not connected",
+    "Independent journal/witness and compatible signed transcript absent",
+    "No generic mapping for legacy requests/knowledge/signup/phone mutations",
+    "Root DEV issuer and private QA issuer require an explicit reviewed cutover, no token rewriting",
+    "Trusted original-intent snapshot recovery/custody/D02-A needed before post-restart reconciliation",
+    "A2 integral remains unverified for Auth/Vault/Storage/config/keys/current external floors",
+    "Chromium AF_UNIX/EPERM requires another accredited lab; four cases still pending",
+    "Legal/retention and commercial/operation release gates remain held"
+  ],
+  "references": {
+    "package": "PACKAGE-MANIFEST.json",
+    "testEvidence": "TEST-EVIDENCE.json",
+    "operations": "OPERATION-MATRIX.json",
+    "dependencies": "NATIVE17-A2-DEPENDENCIES.md",
+    "previousA2NativeEvidence": "../post-integration-20261111/REUSED-EVIDENCE.json"
+  },
+  "pilot": {
+    "brand": "Che Ven\u00ed",
+    "city": "CABA",
+    "managers": 1,
+    "properties": 1,
+    "trialDays": 30,
+    "automaticCharge": false,
+    "outsideConcierge": "Che Ven\u00ed Free"
+  }
+}

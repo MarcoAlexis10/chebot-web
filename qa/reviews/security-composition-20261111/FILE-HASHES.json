@@ -1,0 +1,245 @@
+{
+  "selfExcluded": true,
+  "files": [
+    {
+      "path": "qa/private-writer-composition-20261111-v1/README.md",
+      "gitBlob": "ee2656cc288765ddbab9943404af1af25b02b546",
+      "sha256": "97d36035c63c9019344d9e937c1b2cbd0bb03abe5514d48c5373238a2231ed8b",
+      "bytes": 5296
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/UPSTREAM-PINS.json",
+      "gitBlob": "141d8b2544244556a0fcf97dcb3ac187e375861e",
+      "sha256": "0a51d93a4c05fc4c103b5f66d2062d48710befe4a043c09cb8f31102108d4738",
+      "bytes": 4163
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/composition.mjs",
+      "gitBlob": "4f7114a5c3c4be2fbdbf0a512889fc91b1b59e74",
+      "sha256": "62e9c3c4d0ceaaeec729d59f81b599edd4d59951568dbd6b7f3471e9a4bb4c57",
+      "bytes": 11697
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/composition.test.mjs",
+      "gitBlob": "8e01df21c270901c1171d87de9c18a2c248fbb54",
+      "sha256": "83493a8e4d13395a10f8208f3a35a62e96496f5f80acacc56337e46b17bc710c",
+      "bytes": 14884
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/independent-ports.mjs",
+      "gitBlob": "3bd6f88faf446c4fdbacb15bd61bfb8a259669a0",
+      "sha256": "5b50ae3798255a1d3faef7a583243c4be67811c2ec7b446173cffb169120e51f",
+      "bytes": 1623
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/backend/concierge-manager-legal-admission-guard.js",
+      "gitBlob": "28511d39e60095208d5f693f521e9461825ebe4f",
+      "sha256": "537f517c05c0d21928afdfacd894d0212ca59ce7565ad688e5d0bf4c92847d88",
+      "bytes": 438
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/package.json",
+      "gitBlob": "f9ec9b62f616f5c61144ef14c6cbbb1f8454f745",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/backend-candidates/concierge-independent-revocations.js",
+      "gitBlob": "5d86d993ddf210f395b669c10e0d3ee4277a2570",
+      "sha256": "3da65a79f17ed437a56fada3dd7f2a03c15f0719474f8722c0741ca2d309451d",
+      "bytes": 6503
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/backend-candidates/concierge-prelegal-sensitive-hold-qa.js",
+      "gitBlob": "1f3eb182d65825dd863b1ba18421694d5f76f115",
+      "sha256": "80b0b9834c97f5cec68adfea89f6d44ccee3e6c9a6748d598174b5be79ca7364",
+      "bytes": 460
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/fencing/authority.mjs",
+      "gitBlob": "f7da4b1342c61c69b7105253f82501ea5d4ec0b7",
+      "sha256": "3d5732333c98d209273f447b7417458cec119aee29212e09bcacde3970c46c49",
+      "bytes": 2516
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/gateway-journal-v1/sql-ports.mjs",
+      "gitBlob": "b754d70f6d849ca2b594f05ae2f93bd551eb56c4",
+      "sha256": "e202c7643af3e1522b24221230560c1a862990d12d4bc712fbbf54db1667f286",
+      "bytes": 3597
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/gateway-journal-v1/transport-identity.mjs",
+      "gitBlob": "92f279909fb3a1c1a1748aba6c73ff4b6f08eda2",
+      "sha256": "96d52be21cd34479ad95b3429244718d531ad985e268dd4d506737ca4d716024",
+      "bytes": 944
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/writer-auth-closure-v1/authority-ports.mjs",
+      "gitBlob": "e200d39cf14b56343833ef16e8805995778939d6",
+      "sha256": "354cd37e72de73baac486360d7a96d8407f40745578e4f01168d6731e1aa9d07",
+      "bytes": 5146
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/concierge-guest-journey-review-v2/guest-journey.mjs",
+      "gitBlob": "31330c7fc3c55dc54d1522f83c55291575c45154",
+      "sha256": "b3ebfefeb206b2e225eb7bf12d9aee80389878901d1f2f81e772bfb4af79fca3",
+      "bytes": 2769
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/concierge-guest-presentation-review-v1/presentation.mjs",
+      "gitBlob": "7de123d471f6868c4cfddcac1f9ef0862e90fd38",
+      "sha256": "087e02c9bc4eea3ae72f8c027596d0246c6f05777efd833f1d7930fcd7124749",
+      "bytes": 1358
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/concierge-stay-command-review-v1/stay-command.mjs",
+      "gitBlob": "ff610557dd05459685c134c7d05ce2a91322013d",
+      "sha256": "52534af3510dc9e804a136bfe65802521a146b3aac9b141102fe65e2418e86a2",
+      "bytes": 2543
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/codec.mjs",
+      "gitBlob": "550f1fb4cab5b8279e234febe0924de8ae528672",
+      "sha256": "e52815189b4450a62bce44dab5224bd292f06237447dead8d979cd759315b57f",
+      "bytes": 5545
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/schema.json",
+      "gitBlob": "af8b9ca4b127c276fc079a53e237b8e49412a5b7",
+      "sha256": "f58c3d54026b33b017e63783e333bbf1e98b3a2fa0c3758a681e5e3d7cd4f036",
+      "bytes": 5955
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/guest-phone-authority-review-v1/guest-phone.mjs",
+      "gitBlob": "f690dfd5975ad75adeb4216fee483706a384936a",
+      "sha256": "be6fd6ec03679f3648c11797b21f917d06b6b6f3fe0b3f0ac9cc1582cf4cf20c",
+      "bytes": 4792
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/journal-contract-v2/receipts.mjs",
+      "gitBlob": "b556def28466df29f60fb11b56d188df34712216",
+      "sha256": "25d7a2db6267231ded5988425bb80c015d2094d968ec24e535814b41d6dc9fdb",
+      "bytes": 5001
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/service-integration-v1/guest-review.mjs",
+      "gitBlob": "63ed8473baaef38d8b561375b04595338342b16a",
+      "sha256": "9d3266f11c5013345c8b3ec66de40353a4a70046979e61d60de1bd91505e3297",
+      "bytes": 4135
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/writer-gateway-v2/gateway.mjs",
+      "gitBlob": "1064cd93098899208b279c2b1136cfa9a20ca8d9",
+      "sha256": "a318815ed08c64069347f5334e4bbfc650894b30a7027378da7099dac2ecf26e",
+      "bytes": 15572
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/writer-gateway-v2/sdk-identity.mjs",
+      "gitBlob": "dd10880d2b13bc9e803d9b41ee1f438814e5e27c",
+      "sha256": "277ad02565332733599886feec7b87e3b286a8ca4363aa1515e5214c5f91b35e",
+      "bytes": 2387
+    },
+    {
+      "path": "qa/private-writer-composition-20261111-v1/writer-overlay.patch",
+      "gitBlob": "b27baad93304cce0f119068c6cab994871b7c2b0",
+      "sha256": "c8f81e1b64009fb5a628d2738e5e8573c16200c006e556f2c29559bf28173ed4",
+      "bytes": 22552
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/CLOSURE.md",
+      "gitBlob": "c4db3bf757bde4a1d6fb5b9c1da93ff07410cae4",
+      "sha256": "3fb2d3b3c19460f6d07308c1c3374dbf0203ef6b0c9026599bc1ced1ae821b5f",
+      "bytes": 12387
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/GO-NO-GO.md",
+      "gitBlob": "817482df335426defc43590c5ff76f6b0ddf190e",
+      "sha256": "f1a7d2a32d179c15c1fd43369d6a1e9f450d220484e3b4f1a6b5cf96d3ddf206",
+      "bytes": 1957
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/NATIVE17-A2-DEPENDENCIES.md",
+      "gitBlob": "01b901f689051b3b152bcc04d50c2fe416ddeae0",
+      "sha256": "7021c83445d3b0920d1097ae855af99e858208c8d4a583f4b0d1654bd08e525f",
+      "bytes": 4957
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/OPERATION-MATRIX.json",
+      "gitBlob": "e1bfae715a0cf54f2dea4fc7ae3c9a23379eaab4",
+      "sha256": "d70b21699b8418a57c667130d1dd03700d6b171ec639e40d0c957aff8d6ec667",
+      "bytes": 1617
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/PACKAGE-MANIFEST.json",
+      "gitBlob": "f4318963e2cd921c29a5bdb2a0907ebaaf4c9ac6",
+      "sha256": "ca0080c70eea8d6c2aa4631028c54136a261aebd5ad1b46509aca576f2924b5f",
+      "bytes": 6037
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/PRODUCT-SOURCE-COMPATIBILITY.json",
+      "gitBlob": "e28454968f17a9c56e3fd8561a35b3bc165a1359",
+      "sha256": "2c38e27bc0c2e4841ccb0ed1889df8d98c9e34fa0cf57162031d4ba02f3a92c7",
+      "bytes": 6865
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/PROGRESS.json",
+      "gitBlob": "8f96ee00c4f652ab0d3f3a1ed4c00182cd0f630a",
+      "sha256": "ced164f386e529ecf5b8bdff07ed204659a65c2f8278c8f9d207f0033aa279cf",
+      "bytes": 867
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/RELEASE-CANDIDATE.json",
+      "gitBlob": "c0e80ec1c718502f24d59c0b4cd8096c2e58365b",
+      "sha256": "a98da9f2c697393804b2d553741d5d5da730a8bbd4f16c0829c1448af9f2c40b",
+      "bytes": 3453
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/TEST-EVIDENCE.json",
+      "gitBlob": "4c3679fe23982760dad6c314fca6a0e939cdf0e3",
+      "sha256": "e8b1ecdb82474a22a3806076bc62097c158c623e1de5555ec5a117d3d4e7f7e5",
+      "bytes": 2988
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/security-composition-double-guard-focal.tap",
+      "gitBlob": "1f541f9d923d51546079b0918cacc3305332f645",
+      "sha256": "600680181ab40441d4f906813bf31fe2a7a720d8e2d88ef8094c092d40835d79",
+      "bytes": 977
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/security-composition-final.tap",
+      "gitBlob": "c58b1cb5a0a1593e36eab24fd70ead98976ea0ac",
+      "sha256": "bf87b7b86b4c4c2bbf5b9fb85aec74bd47c678f2c29f64c27b375f0c1fdccb14",
+      "bytes": 5290
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/security-composition-first.tap",
+      "gitBlob": "47bdc9fd720ffe2fbc93685dc81747d013ace22b",
+      "sha256": "6722588213f243d3613382017c5dd8ac38d122b9539d820d6c72e17e446438d4",
+      "bytes": 5921
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/security-composition-focal-final.tap",
+      "gitBlob": "aa30a0c8ee67b17fde21fff99a7b6abc09c408ba",
+      "sha256": "846a15d1e527499db2e633b8f9a709247015047000916aded73b98c90c969982",
+      "bytes": 951
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/security-composition-issuer-focal.tap",
+      "gitBlob": "1f9e4adfff391e6801ba18f456c1f0031e19bcb0",
+      "sha256": "8238b50a494e0791e7cbdd31822fdadc76b23a99e42a8c73735a1966bea6c8b0",
+      "bytes": 925
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/security-composition-path-focal.tap",
+      "gitBlob": "2b3bff742232b358d99ae7426c904a0c7ef59f96",
+      "sha256": "7a6acc9c26773dd00da83f334db3eaa6631e11f4d3363ee89ba9287288e19377",
+      "bytes": 951
+    },
+    {
+      "path": "qa/reviews/security-composition-20261111/security-composition-pin-path-error.tap",
+      "gitBlob": "8a574129b72dbaacd60343d910ed4ca28519d7c0",
+      "sha256": "d250bd6949115531ab73c6c0809550cba397988231f52fb35b13f7cea7171f42",
+      "bytes": 1734
+    }
+  ]
+}

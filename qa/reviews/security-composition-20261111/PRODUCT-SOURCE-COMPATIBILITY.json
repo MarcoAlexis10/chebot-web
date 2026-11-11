@@ -1,0 +1,216 @@
+{
+  "selectedProductSourcesUnchangedFromPostIntegration": true,
+  "webSourceBaseline": "5f70ab215d52f9820a1af256ab36e092feb9ffd7",
+  "backendBaseline": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "sources": {
+    "web": [
+      {
+        "path": "package.json",
+        "gitBlob": "2fcc14494f8130625cc9acc514568d7d719e1282"
+      },
+      {
+        "path": "manager-build-config.cjs",
+        "gitBlob": "7ca9a62658bce114967e2ae82b0217121bd27adc"
+      },
+      {
+        "path": "manager-legal-publication-gate-v1.cjs",
+        "gitBlob": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1"
+      },
+      {
+        "path": "manager-v1.js",
+        "gitBlob": "f5d5e39f5a797a00a3efa30ba3450819eb2c720f"
+      },
+      {
+        "path": "manager-auth-v1.js",
+        "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4"
+      },
+      {
+        "path": "manager-incidents-v1.js",
+        "gitBlob": "d42c1ce4e4a478b7a87030bc2b5a5bb194fc7b52"
+      },
+      {
+        "path": "manager-incident-actions-v1.js",
+        "gitBlob": "de4e788b944f3c8d3f8ba115e4c54ace6ddecf70"
+      },
+      {
+        "path": "manager-requests-v1.js",
+        "gitBlob": "511c7e0c1f472c6a799a955cccbfc598b73b00c1"
+      },
+      {
+        "path": "manager-request-actions-v1.js",
+        "gitBlob": "902f02823b14f80ab6e5e52b2c808889d7718693"
+      },
+      {
+        "path": "manager-knowledge-v1.js",
+        "gitBlob": "32f09e5022282ff93b1d918bbad50096122314d6"
+      },
+      {
+        "path": "manager-invite-v1.js",
+        "gitBlob": "95f0555ff474109c41eac0bee54de2e2215ea30f"
+      },
+      {
+        "path": "manager-signup-v1.js",
+        "gitBlob": "b95b344f8f02950ca74a4b92d82bc12953880a0f"
+      },
+      {
+        "path": "manager-signup-admin-v1.js",
+        "gitBlob": "6a2b4cdfc0a4b27a6987e913a596ea14b19dfe88"
+      },
+      {
+        "path": "vercel.json",
+        "gitBlob": "620ee85530ae3a417ee925e0f81e347a1dbec399"
+      }
+    ],
+    "backend": [
+      {
+        "path": "concierge-manager-incidents.js",
+        "gitBlob": "8e099967b570c2a895c7179714498b0a1f19f558"
+      },
+      {
+        "path": "concierge-notification-authority.js",
+        "gitBlob": "34453e399bdba4fd48af7dcf7b8e5b81de7102ce"
+      },
+      {
+        "path": "concierge-dev-target.js",
+        "gitBlob": "a9d3222826be26891302765c9494b0b5502c66c3"
+      },
+      {
+        "path": "concierge-prelegal-sensitive-hold-qa.js",
+        "gitBlob": "1f3eb182d65825dd863b1ba18421694d5f76f115"
+      },
+      {
+        "path": "concierge-manager-release-hold-qa.js",
+        "gitBlob": "a4b793d2ed357fe3dda342c58439f9fae81b16da"
+      },
+      {
+        "path": "concierge-manager-legal-admission-guard.js",
+        "gitBlob": "28511d39e60095208d5f693f521e9461825ebe4f"
+      },
+      {
+        "path": "concierge-manager-auth-session.js",
+        "gitBlob": "cc2ad91c73d821e9de9a3f59efc76753d1b2e3e1"
+      },
+      {
+        "path": "concierge-independent-revocations.js",
+        "gitBlob": "b96a2672843b924f595b32c4262a0615d6467d7d"
+      },
+      {
+        "path": "concierge-meta-acceptance.js",
+        "gitBlob": "947eac50925b1c08a91c8f9ee1cacc60f777e91a"
+      },
+      {
+        "path": "concierge-manager-http-intent.js",
+        "gitBlob": "d0deb1aed55f27858de0d606811087b6757da61c"
+      },
+      {
+        "path": "concierge-manager-requests.js",
+        "gitBlob": "a0cebf4b07d7dcac37928dc6783d83ec90c59f87"
+      },
+      {
+        "path": "concierge-manager-knowledge.js",
+        "gitBlob": "9bd518bea2ee86fcbf2e525f4d5565b3c855528e"
+      },
+      {
+        "path": "concierge-manager-stays.js",
+        "gitBlob": "a7f8f527a8c794d2638739c35b971526d23c80af"
+      },
+      {
+        "path": "concierge-manager-guest-phone-change.js",
+        "gitBlob": "47239df7e1a2ac4137a79ede8c7cb7f64c50e1ba"
+      },
+      {
+        "path": "concierge-manager-property-receipt.js",
+        "gitBlob": "a81f62552a045ea7ab386a33062661c251e45509"
+      },
+      {
+        "path": "concierge-manager-properties.js",
+        "gitBlob": "60e7039b0683ea1d3dd06c1b9c3c9185e10daa56"
+      },
+      {
+        "path": "concierge-manager-session.js",
+        "gitBlob": "45ed9bd92680d8e6590c0709ac24b3d8f5af3205"
+      },
+      {
+        "path": "index.js",
+        "gitBlob": "1745cfd6d9dd374a5681aa584329fc63cedb9284"
+      },
+      {
+        "path": "concierge-postcheckout-private-access.js",
+        "gitBlob": "8985c888d2cc1f110dabaf9250723acb60824788"
+      },
+      {
+        "path": "concierge-learning-qa-window.js",
+        "gitBlob": "6ccc70bd87e2c8a3c63da66d63d8eee193a6584d"
+      },
+      {
+        "path": "concierge-incident-protocol-key.js",
+        "gitBlob": "cf74045ab560d2a574fc3d5e6fed6f6e604e8842"
+      },
+      {
+        "path": "concierge-manager-signup-admin.js",
+        "gitBlob": "a5942c00d0e3007c77096ecae4559a9e7f90ba5d"
+      },
+      {
+        "path": "concierge-manager-signup.js",
+        "gitBlob": "8506af8ffbd1e315da013b65eb6045df1fbdd036"
+      },
+      {
+        "path": "concierge-notification-resilience.js",
+        "gitBlob": "fba935abca3b5e4550554d4a86c54be5fdbb4c96"
+      },
+      {
+        "path": "concierge-guest-incident-intake-receipts.js",
+        "gitBlob": "b609017473b9ef22dd3494cda7ddfe0504114bf3"
+      },
+      {
+        "path": "concierge-guest-activation-receipts.js",
+        "gitBlob": "c03da9c882d0246bab65cb73101e1e7f0f7ee13d"
+      },
+      {
+        "path": "concierge-guest-private-receipts.js",
+        "gitBlob": "9cb5cd7ec1c5410cb30d8f972a0330679aad5f7a"
+      },
+      {
+        "path": "concierge-guest-mutation-receipts.js",
+        "gitBlob": "626df0b5ed9097404f199d6dd05f9fef499de256"
+      },
+      {
+        "path": "concierge-guest-reply-guard.js",
+        "gitBlob": "4b540e2c28f3da3efb4ba5a5e6ba59bdf5e63a23"
+      },
+      {
+        "path": "concierge-beta-clock-runtime-guard.js",
+        "gitBlob": "d001a355e1b8ce76b32c82b9f6caa99a14604e59"
+      },
+      {
+        "path": "concierge-beta-ba-scope-guard.js",
+        "gitBlob": "4da5ec0b4a78e0997196b73c093e614fc086333a"
+      },
+      {
+        "path": "concierge-invite-durable-dispatch.js",
+        "gitBlob": "95abbfba693ecf3c0eb875554444b7effb5989aa"
+      },
+      {
+        "path": "concierge-guarded-intake.js",
+        "gitBlob": "10e1e506571280777901f08445c553ddfd34facb"
+      },
+      {
+        "path": "concierge-retention-boundary.js",
+        "gitBlob": "b40a1eef7035bc941b8b6d44b51c7bf84f664a7f"
+      },
+      {
+        "path": "concierge-operational-context.js",
+        "gitBlob": "3ff93140dcfb5cca1d9587a22c78d9b55ff0d966"
+      },
+      {
+        "path": "concierge-retention-store.js",
+        "gitBlob": "a9b3b28dc744db36ecf765310c25cae2eeb198a4"
+      },
+      {
+        "path": "vercel.json",
+        "gitBlob": "8fdd4dd5765b1ac1208a9f00809392ddf1a1da5c"
+      }
+    ]
+  },
+  "scope": "Version/fingerprint comparison only, no suites reexecuted"
+}

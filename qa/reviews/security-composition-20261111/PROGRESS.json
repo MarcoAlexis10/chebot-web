@@ -2,7 +2,7 @@
   "webBase": "0e552f4bddec3e5b7de38c1de4e03d833ffb2834",
   "backendUnchanged": "9beb837a621f9a8f06601043afa64b3bba317cb5",
   "native17Unchanged": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
-  "state": "CANDIDATE_IMPLEMENTED / OFFLINE_CONTRACT_TESTS / REMOTE_GATES_HELD",
+  "state": "SAFE_QA_COMPOSITION_COMPLETED / NATIVE_AND_OPERATIONAL_GATES_UNRESOLVED",
   "uniqueNewCasesPassed": 18,
   "completeFirstAttempt": {
     "passed": 16,
@@ -27,5 +27,6 @@
     "pass": 1,
     "fail": 0,
     "newUniqueCase": false
-  }
+  },
+  "codeCommit": "dd701f3a3151728ae24ac0d727281c55992c8091"
 }
