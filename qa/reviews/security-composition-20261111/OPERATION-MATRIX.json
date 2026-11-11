@@ -1,0 +1,38 @@
+{
+  "historicalOperations": [
+    "concierge_manager_decide_request",
+    "concierge_manager_set_incident_state",
+    "concierge_activate_knowledge_version",
+    "concierge_reject_knowledge_version",
+    "concierge_propose_incident_learning",
+    "concierge_request_guest_phone_replacement",
+    "concierge_approve_guest_phone_replacement",
+    "concierge_record_manager_signup_screening",
+    "concierge_resolve_manager_signup_followup",
+    "concierge_prepare_signup_invite",
+    "concierge_revoke_signup_invite"
+  ],
+  "privateCbf1Operations": [
+    "concierge_manager_create_stay"
+  ],
+  "intersection": [],
+  "historicalRpcCurrentlyAcceptsCreateStay": false,
+  "rootStaysRouteReadOnly": true,
+  "fallbackAllowed": false,
+  "native17ServiceActionSeparateDomain": {
+    "entry": "concierge_service_qa_v1.manager_action(uuid,uuid,bigint,uuid,uuid,uuid,text,jsonb)",
+    "concepts": [
+      "checkout",
+      "suspend",
+      "incident_state"
+    ],
+    "legacyRenamingAloneValid": false,
+    "missing": "Current incident-to-stay/property/actor resolution, domain args/authority, exact private driver and reviewed ABI; no automatic generic translation"
+  },
+  "roleGap": {
+    "modelConnectionPrincipal": "cheveni_writer_client_v1",
+    "readbackOnlyCredentialVerified": false,
+    "sqlSessionUserGuardRequiresWriterClient": true,
+    "permissionsOrRolesChanged": false
+  }
+}

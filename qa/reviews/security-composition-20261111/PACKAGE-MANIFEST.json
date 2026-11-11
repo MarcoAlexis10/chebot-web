@@ -1,0 +1,147 @@
+{
+  "type": "UNREGISTERED_HELD_QA_PACKAGE",
+  "sources": [
+    {
+      "path": "writer-overlay.patch",
+      "gitBlob": "b27baad93304cce0f119068c6cab994871b7c2b0",
+      "sha256": "c8f81e1b64009fb5a628d2738e5e8573c16200c006e556f2c29559bf28173ed4",
+      "bytes": 22552
+    },
+    {
+      "path": "composition.test.mjs",
+      "gitBlob": "51574b704af679df7dbe8e990ca6f98960c3f395",
+      "sha256": "47a66a5c2d56fe5e57d06be535c8f5a2645ff48efbb56b6a4d3a61fe1ac1bafb",
+      "bytes": 14502
+    },
+    {
+      "path": "README.md",
+      "gitBlob": "74c1d6f1a6504fa0b52a6a0d07a15f134dd59cf0",
+      "sha256": "fae0090dcafaedced3d23370f21ac19feb80cc080147d889558026f8d29bc667",
+      "bytes": 4946
+    },
+    {
+      "path": "independent-ports.mjs",
+      "gitBlob": "3bd6f88faf446c4fdbacb15bd61bfb8a259669a0",
+      "sha256": "5b50ae3798255a1d3faef7a583243c4be67811c2ec7b446173cffb169120e51f",
+      "bytes": 1623
+    },
+    {
+      "path": "UPSTREAM-PINS.json",
+      "gitBlob": "bab9c4a7da3e01f590b38f76a95a95995f6e44b0",
+      "sha256": "530f17429fb23d0601f8646bcbe03df2ef6532a645929aafc2c7aa0bf614dae6",
+      "bytes": 3803
+    },
+    {
+      "path": "composition.mjs",
+      "gitBlob": "1740768bf2cb41d795a3fcd8ed0138a5d3667106",
+      "sha256": "1891e2c88d52b75c7335e9d25c1ecd402e3b411f11b0fde639857e7a50e472ff",
+      "bytes": 11531
+    },
+    {
+      "path": "vendor/package.json",
+      "gitBlob": "f9ec9b62f616f5c61144ef14c6cbbb1f8454f745",
+      "sha256": "89c47db7851f89caec72da4f215ebc21cf1e294aeef3b45d2583562d846ab035",
+      "bytes": 33
+    },
+    {
+      "path": "vendor/qa/service-integration-v1/guest-review.mjs",
+      "gitBlob": "63ed8473baaef38d8b561375b04595338342b16a",
+      "sha256": "9d3266f11c5013345c8b3ec66de40353a4a70046979e61d60de1bd91505e3297",
+      "bytes": 4135
+    },
+    {
+      "path": "vendor/qa/concierge-guest-journey-review-v2/guest-journey.mjs",
+      "gitBlob": "31330c7fc3c55dc54d1522f83c55291575c45154",
+      "sha256": "b3ebfefeb206b2e225eb7bf12d9aee80389878901d1f2f81e772bfb4af79fca3",
+      "bytes": 2769
+    },
+    {
+      "path": "vendor/qa/concierge-guest-presentation-review-v1/presentation.mjs",
+      "gitBlob": "7de123d471f6868c4cfddcac1f9ef0862e90fd38",
+      "sha256": "087e02c9bc4eea3ae72f8c027596d0246c6f05777efd833f1d7930fcd7124749",
+      "bytes": 1358
+    },
+    {
+      "path": "vendor/qa/cheveni-beta-release-candidate-v1/gateway-journal-v1/sql-ports.mjs",
+      "gitBlob": "b754d70f6d849ca2b594f05ae2f93bd551eb56c4",
+      "sha256": "e202c7643af3e1522b24221230560c1a862990d12d4bc712fbbf54db1667f286",
+      "bytes": 3597
+    },
+    {
+      "path": "vendor/qa/cheveni-beta-release-candidate-v1/gateway-journal-v1/transport-identity.mjs",
+      "gitBlob": "92f279909fb3a1c1a1748aba6c73ff4b6f08eda2",
+      "sha256": "96d52be21cd34479ad95b3429244718d531ad985e268dd4d506737ca4d716024",
+      "bytes": 944
+    },
+    {
+      "path": "vendor/qa/cheveni-beta-release-candidate-v1/fencing/authority.mjs",
+      "gitBlob": "f7da4b1342c61c69b7105253f82501ea5d4ec0b7",
+      "sha256": "3d5732333c98d209273f447b7417458cec119aee29212e09bcacde3970c46c49",
+      "bytes": 2516
+    },
+    {
+      "path": "vendor/qa/cheveni-beta-release-candidate-v1/writer-auth-closure-v1/authority-ports.mjs",
+      "gitBlob": "e200d39cf14b56343833ef16e8805995778939d6",
+      "sha256": "354cd37e72de73baac486360d7a96d8407f40745578e4f01168d6731e1aa9d07",
+      "bytes": 5146
+    },
+    {
+      "path": "vendor/qa/contract-v1/codec.mjs",
+      "gitBlob": "550f1fb4cab5b8279e234febe0924de8ae528672",
+      "sha256": "e52815189b4450a62bce44dab5224bd292f06237447dead8d979cd759315b57f",
+      "bytes": 5545
+    },
+    {
+      "path": "vendor/qa/contract-v1/schema.json",
+      "gitBlob": "af8b9ca4b127c276fc079a53e237b8e49412a5b7",
+      "sha256": "f58c3d54026b33b017e63783e333bbf1e98b3a2fa0c3758a681e5e3d7cd4f036",
+      "bytes": 5955
+    },
+    {
+      "path": "vendor/qa/writer-gateway-v2/sdk-identity.mjs",
+      "gitBlob": "dd10880d2b13bc9e803d9b41ee1f438814e5e27c",
+      "sha256": "277ad02565332733599886feec7b87e3b286a8ca4363aa1515e5214c5f91b35e",
+      "bytes": 2387
+    },
+    {
+      "path": "vendor/qa/writer-gateway-v2/gateway.mjs",
+      "gitBlob": "1064cd93098899208b279c2b1136cfa9a20ca8d9",
+      "sha256": "a318815ed08c64069347f5334e4bbfc650894b30a7027378da7099dac2ecf26e",
+      "bytes": 15572
+    },
+    {
+      "path": "vendor/qa/backend-candidates/concierge-prelegal-sensitive-hold-qa.js",
+      "gitBlob": "1f3eb182d65825dd863b1ba18421694d5f76f115",
+      "sha256": "80b0b9834c97f5cec68adfea89f6d44ccee3e6c9a6748d598174b5be79ca7364",
+      "bytes": 460
+    },
+    {
+      "path": "vendor/qa/backend-candidates/concierge-independent-revocations.js",
+      "gitBlob": "5d86d993ddf210f395b669c10e0d3ee4277a2570",
+      "sha256": "3da65a79f17ed437a56fada3dd7f2a03c15f0719474f8722c0741ca2d309451d",
+      "bytes": 6503
+    },
+    {
+      "path": "vendor/qa/journal-contract-v2/receipts.mjs",
+      "gitBlob": "b556def28466df29f60fb11b56d188df34712216",
+      "sha256": "25d7a2db6267231ded5988425bb80c015d2094d968ec24e535814b41d6dc9fdb",
+      "bytes": 5001
+    },
+    {
+      "path": "vendor/qa/guest-phone-authority-review-v1/guest-phone.mjs",
+      "gitBlob": "f690dfd5975ad75adeb4216fee483706a384936a",
+      "sha256": "be6fd6ec03679f3648c11797b21f917d06b6b6f3fe0b3f0ac9cc1582cf4cf20c",
+      "bytes": 4792
+    },
+    {
+      "path": "vendor/qa/concierge-stay-command-review-v1/stay-command.mjs",
+      "gitBlob": "ff610557dd05459685c134c7d05ce2a91322013d",
+      "sha256": "52534af3510dc9e804a136bfe65802521a146b3aac9b141102fe65e2418e86a2",
+      "bytes": 2543
+    }
+  ],
+  "sqlExecuted": false,
+  "signedReceiptsGenerated": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

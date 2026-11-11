@@ -1,0 +1,20 @@
+{
+  "webBase": "0e552f4bddec3e5b7de38c1de4e03d833ffb2834",
+  "backendUnchanged": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native17Unchanged": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "state": "CANDIDATE_IMPLEMENTED / OFFLINE_CONTRACT_TESTS / REMOTE_GATES_HELD",
+  "uniqueNewCasesPassed": 17,
+  "completeFirstAttempt": {
+    "passed": 16,
+    "failed": 1
+  },
+  "finalFocalCase": {
+    "passed": 1,
+    "failed": 0
+  },
+  "historicalSuitesExecuted": false,
+  "chromiumAttempted": false,
+  "newBranchesCreated": false,
+  "sqlExecuted": false,
+  "go": "NO-GO"
+}
