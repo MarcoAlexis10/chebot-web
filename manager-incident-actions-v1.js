@@ -282,9 +282,12 @@ replaceRequired(
       const freezeBeforeDispatch = () => freeze('No pude preparar la acción de forma segura. No se envió. Cerrá y volvé a abrir esta página antes de continuar.');
       const knownPreDispatchDenial = (response, body) => {
         const code = body && (body.error || (body.learning && body.learning.reason));
-        return [400,401,403,404,409].includes(response.status) && body && body.ok === false &&
-          body.reconciliation_required !== true && (!body.learning || body.learning.reconciliation_required !== true) &&
+        const heldBeforeDispatch = response.status === 503 && code === 'MANAGER_OPERATIONS_NOT_RELEASED';
+        const knownValidationDenial = [400,401,403,404,409].includes(response.status) &&
           ['AUTH_HEADER_REQUIRED','AUTH_TOKEN_INVALID','MANAGER_ACCESS_DENIED','MANAGER_PERMISSION_DENIED','CORS_ORIGIN_NOT_ALLOWED','INCIDENT_ID_INVALID','INVALID_INCIDENT_STATUS','INVALID_INCIDENT_EVENT_SUMMARY','MANAGER_MESSAGE_REQUIRED','MANAGER_MESSAGE_TOO_LONG','RESOURCE_OUT_OF_SCOPE','INCIDENT_NOT_READY_FOR_LEARNING','NO_EXISTING_PROTOCOL_TO_VERSION','NO_MANAGER_RESOLUTION_TO_LEARN'].includes(code);
+        return Boolean(body && body.ok === false &&
+          body.reconciliation_required !== true && (!body.learning || body.learning.reconciliation_required !== true) &&
+          (heldBeforeDispatch || knownValidationDenial));
       };
       const receiptId = value => typeof value === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(value);
       const validLearningReceipt = receipt => receipt && receipt.ok === true && receipt.status === 'draft_created' &&
