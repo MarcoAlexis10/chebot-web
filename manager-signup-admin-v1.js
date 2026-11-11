@@ -165,7 +165,13 @@ async function api(method,body){
   if(mutating){
    var valid=data&&typeof data==='object'&&!Array.isArray(data)&&data.reconciliation_required!==true;
    var success=valid&&resp.ok&&data.ok===true&&expected&&data.code===expected&&(body.action!=='issue'||validCapability(data));
-   var denied=valid&&!resp.ok&&data.ok!==true&&knownDenial(resp.status,data.code);
+   // Only the literal outer release-guard receipt proves a pre-dispatch hold.
+   // A proxy/CORS failure or an UNKNOWN response must keep the durable intent.
+   var releaseHeld=valid&&!resp.ok&&resp.status===503&&data.ok===false&&
+     data.error==='MANAGER_OPERATIONS_NOT_RELEASED'&&
+     Object.keys(data).sort().join('|')==='error|ok';
+   var denied=valid&&!resp.ok&&
+     ((data.ok!==true&&knownDenial(resp.status,data.code))||releaseHeld);
    if(!success&&!denied){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
    try{clearManagerDurableIntent(REVIEW_KEY)}
    catch(_){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
