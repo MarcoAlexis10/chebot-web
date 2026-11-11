@@ -1,0 +1,98 @@
+{
+  "purpose": "Acceptance requirements only; NOT executable tests or an execution grant",
+  "allCasesStatus": "NOT_EXECUTED_IN_THIS_RUN",
+  "mayExecuteNativeSql": false,
+  "mayContactAuthProvider": false,
+  "maySignReceipts": false,
+  "requirements": [
+    {
+      "id": "JWT-OLD",
+      "trigger": "JWT emitido antes de revocaci\u00f3n",
+      "expectedEvidence": "Despu\u00e9s de revocar la sesi\u00f3n/autoridad, ning\u00fan token a\u00fan no vencido admite lectura o escritura privada; no depende de esperar exp.",
+      "dependencies": [
+        "Auth administrado",
+        "fence com\u00fan",
+        "prueba independiente fresca"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    },
+    {
+      "id": "REFRESH-RACE",
+      "trigger": "Refresh concurrente con logout/restricci\u00f3n",
+      "expectedEvidence": "Un token nuevo no recupera permisos o reutiliza el binding anterior. Identificar si cambia session_id y acreditar el orden con el proveedor.",
+      "dependencies": [
+        "Auth administrado",
+        "versiones del proveedor",
+        "revocadores participantes"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    },
+    {
+      "id": "REVOKE-WRITE",
+      "trigger": "Operaci\u00f3n pendiente al revocar",
+      "expectedEvidence": "Ordenar por autoridad/fence y COMMIT reales; preservar historia de efectos anteriores y negar exposici\u00f3n posterior sin autoridad vigente.",
+      "dependencies": [
+        "PostgreSQL17.11 autorizado",
+        "dos conexiones independientes",
+        "hooks/roles/ACL"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    },
+    {
+      "id": "INTENT-RACE",
+      "trigger": "Misma intenci\u00f3n en dos workers/reinicio",
+      "expectedEvidence": "Como m\u00e1ximo un efecto durable para la identidad revisada; sin depender de WeakMap/Set del proceso ni de una pesta\u00f1a.",
+      "dependencies": [
+        "SQL nativo autorizado",
+        "PK/locks durables",
+        "driver exacto"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    },
+    {
+      "id": "INTENT-CONFLICT",
+      "trigger": "Misma intenci\u00f3n con argumentos o autoridad cambiados",
+      "expectedEvidence": "CONFLICT sin nuevo efecto; conservar historia. No equiparar hashes JSONB hist\u00f3ricos con frames CBF1.",
+      "dependencies": [
+        "protocolo seleccionado",
+        "mapping de hashes",
+        "fence de autoridad"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    },
+    {
+      "id": "ACK-LOSS",
+      "trigger": "Respuesta perdida despu\u00e9s de COMMIT",
+      "expectedEvidence": "UNKNOWN bloquea reenv\u00edo; readback independiente con autorizaci\u00f3n actual y correlaci\u00f3n de intento/efecto confirma estado sin repetir mutaci\u00f3n.",
+      "dependencies": [
+        "driver privado seleccionado",
+        "commit externo",
+        "readback desde otra sesi\u00f3n",
+        "journal independiente"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    },
+    {
+      "id": "LATE-EXPIRY",
+      "trigger": "Expiraci\u00f3n/revocaci\u00f3n despu\u00e9s de confirmar efecto",
+      "expectedEvidence": "No afirmar rollback ni devolver \u00e9xito privado no autorizado; conservar efecto y exigir conciliaci\u00f3n.",
+      "dependencies": [
+        "SQL/driver exactos",
+        "Auth vigente",
+        "proof final"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    },
+    {
+      "id": "RESTORE-FLOOR",
+      "trigger": "Restore anterior a restricciones o ACK",
+      "expectedEvidence": "Destino en cuarentena; aplicar pisos/inventario externo actual sin regresi\u00f3n ni inferencia por ausencia; ning\u00fan tr\u00e1fico antes de reconciliar.",
+      "dependencies": [
+        "A2 del release exacto",
+        "custodio/witness durable",
+        "Auth/Vault/Storage/config recuperados"
+      ],
+      "status": "PREPARED_NOT_EXECUTED"
+    }
+  ]
+}

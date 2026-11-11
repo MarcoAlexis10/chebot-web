@@ -1,0 +1,115 @@
+{
+  "schema": "CHEVENI_POST_INTEGRATION_HELD_CANDIDATE_V1",
+  "date": "2026-11-11",
+  "decision": "NO-GO",
+  "mayActivate": false,
+  "mayDeploy": false,
+  "mayRunNativeSql": false,
+  "compatibleScope": "HELD_HTTP_CONTRACT_ONLY / NOT_OPERATIONAL",
+  "versions": {
+    "web": {
+      "repo": "MarcoAlexis10/chebot-web",
+      "branch": "qa/cheveni-integral-held-20261111",
+      "codeCommit": "5f70ab215d52f9820a1af256ab36e092feb9ffd7",
+      "tree": "0b1b45bb1c153c2f9aa55ecd1d62becaba397929",
+      "base": "f2944f76af51b979f8d268ab445460b723adecbd"
+    },
+    "backend": {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "unchangedCommit": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "newBranchCreated": false,
+      "filesModified": false
+    },
+    "native17": {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "unchangedCommit": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "status": "PARTIAL / PRE-FLIGHT NO-GO",
+      "filesModified": false,
+      "sqlExecuted": false
+    }
+  },
+  "delta": {
+    "changed": [
+      {
+        "repo": "web",
+        "path": "manager-auth-v1.js",
+        "before": "1199d0fa8aa80a6ed452f3f108ae570dcdc238a5",
+        "after": "e6addc4602c28cf0d057a529927be563a2a9c8e4"
+      }
+    ],
+    "previousPinFileUnmodified": true
+  },
+  "newExecution": {
+    "focusedGeneratedJavascriptVmTests": {
+      "before": {
+        "pass": 1,
+        "fail": 2,
+        "skip": 0
+      },
+      "after": {
+        "pass": 3,
+        "fail": 0,
+        "skip": 0
+      },
+      "isBrowser": false
+    },
+    "fullOfflineBuild": {
+      "exitCode": 0,
+      "outputs": 33,
+      "changedOutputs": [
+        "manager/manager-auth.js"
+      ]
+    },
+    "chromiumDiagnosis": {
+      "freshNamespaces": 2,
+      "sandboxDisabled": false,
+      "browserBootstrapPassed": false,
+      "applicationAssertionsExecuted": 0
+    },
+    "pendingBrowserCases": {
+      "count": 4,
+      "status": "NOT_EXECUTED_THIS_RUN"
+    }
+  },
+  "priorEvidence": {
+    "sourceClosureCommit": "f2944f76af51b979f8d268ab445460b723adecbd",
+    "tests31_66_14_18_17": "INHERITED_NOT_REEXECUTED",
+    "httpsExchanges67": "INHERITED_NOT_REEXECUTED",
+    "limit": "Evidence is tied to its original commits; new auth feedback has only the focused delta validation stated here."
+  },
+  "protocolCompatibility": {
+    "rootBackendSelected": "REST public concierge_manager_write_idempotent_v2 / historical JSONB protocol, HELD",
+    "native17Candidate": "Private writer contract CBF1 / scope_v2 write_v2 readback_v2, UNAPPLIED",
+    "connected": false,
+    "equivalenceByV2NameAllowed": false,
+    "fallbackPublicRpcAllowed": false,
+    "backendGeneralDmlAllowed": false
+  },
+  "goMatrix": "GO-NO-GO.md",
+  "securityContracts": "SECURITY-CONTRACTS.md",
+  "sourcePins": "SOURCE-PINS.json",
+  "generatedOutputs": "BUILD-OUTPUTS.json",
+  "existingPublicEnvironmentReference": "../integral-held-20261111/ENVIRONMENT-REFERENCE.json",
+  "newSecrets": false,
+  "newApprovalManifest": false,
+  "migrations": {
+    "newBundleSelected": false,
+    "inventoryReference": "../integral-held-20261111/MIGRATION-INVENTORY.json",
+    "executed": false
+  },
+  "pilot": {
+    "brand": "Che Ven\u00ed",
+    "city": "CABA",
+    "foundingManagers": 1,
+    "properties": 1,
+    "trialDays": 30,
+    "automaticCharge": false,
+    "outsideConcierge": "Che Ven\u00ed Free"
+  },
+  "actions": {
+    "dispatch": false,
+    "newBranchesCreated": false,
+    "workflowFilesModified": false
+  },
+  "securitySourcePins": "SECURITY-SOURCE-PINS.json"
+}

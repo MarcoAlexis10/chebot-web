@@ -1,0 +1,175 @@
+{
+  "buildExecuted": true,
+  "outputCount": 33,
+  "changedSincePreviousBuild": [
+    "manager/manager-auth.js"
+  ],
+  "removed": [],
+  "files": [
+    {
+      "path": "apple-touch-icon.png",
+      "sha256": "68262da0afddb7ba340c8f0f57008555984c6c8da55591222aab1f0eedb837e7",
+      "bytes": 30148
+    },
+    {
+      "path": "barcelona/index.html",
+      "sha256": "7fc05b2c412bb1dddd235a73fd92c5536628c43b49c9a700fed91e0a1bc85563",
+      "bytes": 19835
+    },
+    {
+      "path": "buenos-aires/index.html",
+      "sha256": "6b2fe79c878b5223405b71b4a084b8b947e49fa5d51ac4627ff930d328ba7a52",
+      "bytes": 43488
+    },
+    {
+      "path": "cobertura/index.html",
+      "sha256": "b0602d475bf6c659e020d8ed2a95d31cf39ff0a2f23dbeabc688dfe5c597d9d5",
+      "bytes": 5921
+    },
+    {
+      "path": "como-funciona/index.html",
+      "sha256": "0eb1bc277b888a42525bcbbd33a96f709ac66d5f2f19fc4ce728b07b93d1b853",
+      "bytes": 6206
+    },
+    {
+      "path": "contacto/index.html",
+      "sha256": "7670a68d5c2974648fc8e3bfc99ddc591417c1b2a52bfbb9b6b75094d22e8754",
+      "bytes": 4524
+    },
+    {
+      "path": "directorio/index.html",
+      "sha256": "9321a2027d8beb74efff35d521cbf3a9740e50dd21abbfbb7ac54b17981dd5c9",
+      "bytes": 5435
+    },
+    {
+      "path": "favicon.png",
+      "sha256": "cec773020dea17f2293946a60197448ec00cb8deb4c1baa3ca1d23bd0a3a1e80",
+      "bytes": 5488
+    },
+    {
+      "path": "index.html",
+      "sha256": "6f02a358cff0bc67e76743fe294c98df35f09a7496eef41d754ad1287964311b",
+      "bytes": 6726
+    },
+    {
+      "path": "lisboa/index.html",
+      "sha256": "ad9d7c369e3fab1fba8ef7b4e7f650d797d066b9b0b76e584d59c1f023255245",
+      "bytes": 15250
+    },
+    {
+      "path": "madrid/index.html",
+      "sha256": "208b54bf516dc8496d603390097359e6553d45f36de91465bf7c9e9bfddb254e",
+      "bytes": 18204
+    },
+    {
+      "path": "manager/activar/index.html",
+      "sha256": "9fd1c69eea10d7e155e433284ede8d8e345c3020e5aa8330355d362b9ee187f3",
+      "bytes": 12057
+    },
+    {
+      "path": "manager/altas/index.html",
+      "sha256": "73076e29a08e2fb3e2797d0dd23566ef51dd3a82574353f2422f3df7b0f7db15",
+      "bytes": 21553
+    },
+    {
+      "path": "manager/index.html",
+      "sha256": "32ff4fa6c61ff386a8fded05d6fef931f7d6760ecfcc553f6f5a427fc142fbbe",
+      "bytes": 8785
+    },
+    {
+      "path": "manager/manager-auth.css",
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "bytes": 2863
+    },
+    {
+      "path": "manager/manager-auth.js",
+      "sha256": "96865c929274da907eec2599b937c23699e8da528f2f30db4ea2c97d4dd157c6",
+      "bytes": 26796
+    },
+    {
+      "path": "manager/manager-incidents.js",
+      "sha256": "fba302518779b6564090350a364fc1168b0801ba941c5924a48e5491c3e146d4",
+      "bytes": 34151
+    },
+    {
+      "path": "manager/manager-invite.css",
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "bytes": 875
+    },
+    {
+      "path": "manager/manager-invite.js",
+      "sha256": "7aab34ca4020b070fa954b95a47fbab47d559e55b32ca979252784bdd4a41971",
+      "bytes": 9318
+    },
+    {
+      "path": "manager/manager-knowledge.js",
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c",
+      "bytes": 19718
+    },
+    {
+      "path": "manager/manager-requests.js",
+      "sha256": "12935ec154a1d5965b31ce08258574ae0cc4363cf5fd1e79804e247e2e3f2e30",
+      "bytes": 20787
+    },
+    {
+      "path": "manager/manager.css",
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a",
+      "bytes": 3755
+    },
+    {
+      "path": "manager/reset-password/index.html",
+      "sha256": "eb81529dac0d807265dd8d7ea9b2d6f7ed226a50903035032f3b578a245fe08e",
+      "bytes": 12938
+    },
+    {
+      "path": "medellin/index.html",
+      "sha256": "e6e8ad67df412cbc561bfe3bc741a83ba7387c5377348671a153e1ed44081645",
+      "bytes": 16899
+    },
+    {
+      "path": "og-chebot.png",
+      "sha256": "4d322ddf4ea7a6b244bdaf7f6c9d548c753cc3be718622832b2e1ec6791247c9",
+      "bytes": 219922
+    },
+    {
+      "path": "privacidad/index.html",
+      "sha256": "dbe5e409570b2528c35b68f918c16b7d6a685985ba823df1a03aa69b3dc50506",
+      "bytes": 5844
+    },
+    {
+      "path": "registrar-negocio/index.html",
+      "sha256": "0cdf7df87ef4ee64477d73c9885237a2ad1a92bdd66c679a95ee05513277079a",
+      "bytes": 13044
+    },
+    {
+      "path": "rio-de-janeiro/index.html",
+      "sha256": "0c37f044fdd2b3174a804b69cedb4eac085c16fb7b3423f50a8f89ad00f47d2b",
+      "bytes": 19068
+    },
+    {
+      "path": "robots.txt",
+      "sha256": "61ff1e0e5e680b246d0d347da7fba6698fb64ca80a779557bd34679afae1415d",
+      "bytes": 68
+    },
+    {
+      "path": "roma/index.html",
+      "sha256": "34dbe5f0451d47bfcfdc490902783211a464ef213eea52a682eb30ba77a8fcea",
+      "bytes": 23266
+    },
+    {
+      "path": "sitemap.xml",
+      "sha256": "ddcaf72fa2ade4ccbea685eb745a068176076eae91245df901650b26e3a36acd",
+      "bytes": 931
+    },
+    {
+      "path": "style.css",
+      "sha256": "b5f369d2fb4e7d4be4d07c246108e8dcb06e17baba30085fa965b62ae8cd1021",
+      "bytes": 5317
+    },
+    {
+      "path": "terminos/index.html",
+      "sha256": "0f73e23ca9968f8a7ec664d5cf9ab2585e772f3494c8f0f3431c6c618a28cbba",
+      "bytes": 5366
+    }
+  ]
+}

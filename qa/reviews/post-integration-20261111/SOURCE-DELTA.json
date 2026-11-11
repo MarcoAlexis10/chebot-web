@@ -1,0 +1,11 @@
+{
+  "changed": [
+    {
+      "repo": "web",
+      "path": "manager-auth-v1.js",
+      "before": "1199d0fa8aa80a6ed452f3f108ae570dcdc238a5",
+      "after": "e6addc4602c28cf0d057a529927be563a2a9c8e4"
+    }
+  ],
+  "previousPinFileUnmodified": true
+}

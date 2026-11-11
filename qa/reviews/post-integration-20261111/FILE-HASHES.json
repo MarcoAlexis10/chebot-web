@@ -1,0 +1,137 @@
+{
+  "selfExcluded": true,
+  "files": [
+    {
+      "path": "manager-auth-v1.js",
+      "bytes": 36188,
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a",
+      "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4"
+    },
+    {
+      "path": "qa/post-integration-20261111-v1/CHROMIUM-DIAGNOSTIC.json",
+      "bytes": 4497,
+      "sha256": "bbe3af940cc578cf2e0764aa00e371c707d06e80309f39f30973ada2d39fcc61",
+      "gitBlob": "73ecfa11f3f98ce6f2efae6956d2bffa1aa6f966"
+    },
+    {
+      "path": "qa/post-integration-20261111-v1/chromium-diagnostic.py",
+      "bytes": 5205,
+      "sha256": "2f7c8c83e52d7d9e974c64372149f1fb902f717e2bb40e996cfbaf49d076d780",
+      "gitBlob": "c54f8ab929f6f837352529a13893275c4e018807"
+    },
+    {
+      "path": "qa/post-integration-20261111-v1/session-restore-feedback.test.cjs",
+      "bytes": 2990,
+      "sha256": "ff11b922457cff270e0a660f2eacddbd641b9313c826bfb845ad80894219002d",
+      "gitBlob": "93a8b53865e4e135e1461b06681530f2c32e288e"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/ACCEPTANCE-REQUIREMENTS.json",
+      "bytes": 3833,
+      "sha256": "aed62caa1d71a88c2a8ee09cd48714ffa54fc8aa27bd89542c212c7e8c0d85ed",
+      "gitBlob": "664bbda4bdd08088c6855fe216adb3f7d025e68b"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/BROWSER-BLOCKER.md",
+      "bytes": 2752,
+      "sha256": "dc819b6022da26b103d2a278fc07936d210dc8adf1732b6d12868c95e51c89ed",
+      "gitBlob": "8b767c800ca06978d96f2d15bd2af9780c1e3de1"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/BUILD-OUTPUTS.json",
+      "bytes": 5292,
+      "sha256": "31435a2b210eb33ba7d2a3fa8d833be1caad735efdd4aded52012b6ad2fc29d0",
+      "gitBlob": "69436c0149ddd1e49045e53317e1c0be3bb7ea61"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/CLOSURE.md",
+      "bytes": 10704,
+      "sha256": "408e0e60090fa4b577610c6df3588b6cd71df0d51dd53720be84cd96c17fe818",
+      "gitBlob": "31e4a65c97330f1f027c3a767c1032d034c09034"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/CORS-PANEL-MATRIX.md",
+      "bytes": 3400,
+      "sha256": "01b6987e2845c6c6a511347ffc3c52984376a06b1d543eec3bd2b8999571484d",
+      "gitBlob": "de37efbcf0f2e39b5a6f64c1681889d840f29e9a"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/GO-NO-GO.md",
+      "bytes": 2768,
+      "sha256": "3b8e3bea17f84ffe128d00b0b2a682af3e400b90e8c89abb3b34abfcf9459ea2",
+      "gitBlob": "f06280dff7dfde8b1ef199cb97c045e6f8b6ea5a"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/PROGRESS.json",
+      "bytes": 1025,
+      "sha256": "caa46d7ad43770bde9fdeba63786f68264d0e0208312cfb543cccb2ddfb15504",
+      "gitBlob": "91ae70ba4cd63f0b8b8621e407fe09c5394892c5"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/RELEASE-CANDIDATE.json",
+      "bytes": 3520,
+      "sha256": "ed116af48075562d30d14c58e5e280982fc1b6b058095f308b62fc4575252018",
+      "gitBlob": "67309f6f492daf69a612daca49db537cdeca5b4e"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/REUSED-EVIDENCE.json",
+      "bytes": 8026,
+      "sha256": "2a0246b009ef87792f1a9583e61230bed62433d6ef02b9c73c3a34663f7bfc41",
+      "gitBlob": "98fb7d35556d5b016a17f7d260c3ef6f9f3d9a5f"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/SECURITY-CONTRACTS.md",
+      "bytes": 9875,
+      "sha256": "9815f33089f4a41c8dc624fee3706fd3e9d44f28110b5e5618ac94464ede9b0c",
+      "gitBlob": "45ebb0485a486ce1cf1a40c55a518347381c7424"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/SECURITY-SOURCE-PINS.json",
+      "bytes": 6861,
+      "sha256": "8c95982cf78c89c180b22a657ae911ce61633f83b1bec14218de8edd9e26ff0e",
+      "gitBlob": "d8533c87006b1fb9077aad0d540979470f5a063f"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/SOURCE-DELTA.json",
+      "bytes": 246,
+      "sha256": "ca28dd797a70fc1d1b880c0b13e778dd5fa496ee3af4cc08d9a040c8ff6e37da",
+      "gitBlob": "adc0df3532e3487ffb9c94d9d5f685736c45ff87"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/SOURCE-PINS.json",
+      "bytes": 4402,
+      "sha256": "3ee982cdffa94ff85b899260980a0949ccfe65b05c456d5c3976e6a980caa1dc",
+      "gitBlob": "e186601bab5f738cfb0cadfc45691af469008e18"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/TEST-EVIDENCE.json",
+      "bytes": 1801,
+      "sha256": "4acd6c4da97f7b1fea8e0ba7890de1a2f042f587c6f9b1c16c0fdc4cf91bc363",
+      "gitBlob": "ea85388c336b4454ee643ce5c5fcc5c010cd3b0f"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/post-chromium-diagnostic.log",
+      "bytes": 4497,
+      "sha256": "bbe3af940cc578cf2e0764aa00e371c707d06e80309f39f30973ada2d39fcc61",
+      "gitBlob": "73ecfa11f3f98ce6f2efae6956d2bffa1aa6f966"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/post-session-feedback-after.tap",
+      "bytes": 1408,
+      "sha256": "10d7ae5deca0ff6d634ba96561d38134174d32a3e1de83ce761f8b4b9059f13f",
+      "gitBlob": "f90a43215a33e16e3f2f897fe195fb6e87da54c1"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/post-session-feedback-before.tap",
+      "bytes": 2920,
+      "sha256": "41426e9bdd34c9638b9c9a217698b694a8e598f28237581357cc448986266f1f",
+      "gitBlob": "8586f951a5efaac55caa10101f2e85a4d276818b"
+    },
+    {
+      "path": "qa/reviews/post-integration-20261111/post-web-build.log",
+      "bytes": 1557,
+      "sha256": "783058f6e1f724706fbe13684874d8adcf4add973d69b24aa3a64ac08cb036e8",
+      "gitBlob": "7dfd31b3f05be26320a66492afcd536ee8e1aba6"
+    }
+  ]
+}

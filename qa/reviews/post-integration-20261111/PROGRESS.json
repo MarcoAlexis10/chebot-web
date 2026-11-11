@@ -1,7 +1,7 @@
 {
   "baseWeb": "f2944f76af51b979f8d268ab445460b723adecbd",
   "backendUnmodified": "9beb837a621f9a8f06601043afa64b3bba317cb5",
-  "stage": "CHROMIUM_DIAGNOSED / UI_FEEDBACK_FIXED / SECURITY_REVIEW_IN_PROGRESS",
+  "stage": "SAFE_OFFLINE_WORK_COMPLETED / BROWSER_BLOCKED / CANDIDATE_HELD",
   "browserAssertionsExecuted": false,
   "focusedVmTests": {
     "pass": 3,

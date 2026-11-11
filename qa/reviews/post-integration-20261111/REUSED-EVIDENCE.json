@@ -1,0 +1,133 @@
+{
+  "sources": [
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/reviews/native17-policy-closure-20261107/CLOSURE.md",
+      "gitBlob": "57158313d37c67553e56dfde81eb5388607957ec",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/reviews/native17-policy-closure-20261107/CLOSURE.md",
+      "sha256": "0be2119a5f6723b612a3c06f27f49261a1778fd2a55d86b08bf120dedbb72118",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/reviews/final-offline-assembly-20261106/REMAINING-BLOCKERS.md",
+      "gitBlob": "14c3eba675e46b91c2679564bcf2f3177beb78d9",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/reviews/final-offline-assembly-20261106/REMAINING-BLOCKERS.md",
+      "sha256": "ca230af243d407a32fff7089f5be84db6fb12efcd62c8b34b1dcb2050cc6be3e",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/reviews/intensive-closure-20261030/A2-MATRIX.md",
+      "gitBlob": "1747f21bd2cd33218444a83e2abfebe393f93f3c",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/reviews/intensive-closure-20261030/A2-MATRIX.md",
+      "sha256": "5b1f2878ae97e63975b88d90e0e0eb808343c79d9836d8cc4428cf91efe7b26b",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/reviews/service-night-20261031/A2-PRIVACY.md",
+      "gitBlob": "979d13b35bacc51c8d420534fa54859b24eff3b0",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/reviews/service-night-20261031/A2-PRIVACY.md",
+      "sha256": "6f4f728906074c6225c665edcf1c30f0bf6b5093df4ce83bc443b2418be50d44",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/reviews/sql-durable-contract-20261105/SQL-CONTRACT.md",
+      "gitBlob": "241f8ee123858824e4b699920ead901fc3dd5019",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/reviews/sql-durable-contract-20261105/SQL-CONTRACT.md",
+      "sha256": "12e8283e0d52fc886149ec2daf26803b9e17d17c38472a6a09fd8c688dfc863b",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/reviews/final-offline-blockers-20261106/WRITER-AUTH-COVERAGE.md",
+      "gitBlob": "b13daf59132f8be827317754e3805248d67aaf7a",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/reviews/final-offline-blockers-20261106/WRITER-AUTH-COVERAGE.md",
+      "sha256": "65a4462c458edbb0559492850c4a841fc5ded2ca5f1ae1bf575035ad1043cc47",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/AUTH-LAB-SHAPE.json",
+      "gitBlob": "cc2cd4c0433b7384c397ea6230184424d336a7e1",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/native17-policy-closure-v1/AUTH-LAB-SHAPE.json",
+      "sha256": "29fa8b9039ab99cd31675eafa8b2be37c010b955883720940d54cc20b054582b",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/DELTA.json",
+      "gitBlob": "e5a088a2ee9c3e4d61b263ce6ca7f5c86fed4e0b",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/native17-policy-closure-v1/DELTA.json",
+      "sha256": "5b841c740d21d81b79bcb1a567db9be3cb4c3ba88a1b18e0e75ee4ee200ec024",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/PLAN-SUCCESSOR.json",
+      "gitBlob": "74d837fe272e4ca90c2f4273b51ede3f166a6816",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/native17-closure-v1/PLAN-SUCCESSOR.json",
+      "sha256": "16a49d40d288ede0c979e5f41847aa93975df1bcd895a0e5184842e5ac24bc0d",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/writer-contract-v2/README.md",
+      "gitBlob": "7f9699411471934dff2303e1c5f286b83212e081",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/writer-contract-v2/README.md",
+      "sha256": "d5b3405f378ef8623550699168b893993429a4f2fad40962f95dba336a6c470c",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/writer-contract-v2/PACKAGE.json",
+      "gitBlob": "18a869f7bcbe6ecd6db27ac2f803ea9547ddf63a",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/writer-contract-v2/PACKAGE.json",
+      "sha256": "435a1a154f0112ec5f0e164f907606e0cd58e04de4ae7063b9f4a0a537e9c03b",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/writer-contract-v2/contract-install-UNAPPLIED.sql",
+      "gitBlob": "52878ee26db968ea4ee34c10ead7aa349946c055",
+      "url": "https://github.com/MarcoAlexis10/cheveni-qa-lab/blob/ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a/qa/writer-contract-v2/contract-install-UNAPPLIED.sql",
+      "sha256": "eb6dcd99bac56d2fdd457107a103ea854f54a9bbd2964502f045fc6c0fb07a19",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/recovery/d01-postcommit-20261024/qa/EVIDENCIA-A2_POSTCOMMIT.json",
+      "gitBlob": "2e52c241aa43cb5197ce7a9816f4a8d07e65ce8e",
+      "sha256": "d733d0e95a5d4fa520331719794627a232bb63803e7f29293988ef447d530f5a",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/ops/recovery/d01-postcommit-20261024/qa/EVIDENCIA-A2_POSTCOMMIT.json",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_RESTORE_OR_HISTORICAL_SUITE_REEXECUTION"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/recovery/d01-postcommit-20261024/RECUPERACION-A2-ALCANCE.md",
+      "gitBlob": "d00347bad2515a39f7b15ae3af073f7e81aa2755",
+      "sha256": "6f367651ef3f90f24ed8fc69eec6b7d452daf26ba25a0efc51938a4746fe03dd",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/ops/recovery/d01-postcommit-20261024/RECUPERACION-A2-ALCANCE.md",
+      "evidenceUse": "READ_EXISTING_EVIDENCE / NO_RESTORE_OR_HISTORICAL_SUITE_REEXECUTION"
+    }
+  ],
+  "independentRuntimeRecertification": false,
+  "sqlExecuted": false,
+  "authServiceContacted": false
+}

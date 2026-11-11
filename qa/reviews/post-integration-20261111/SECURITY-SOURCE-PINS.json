@@ -1,0 +1,123 @@
+{
+  "sources": [
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-auth-session.js",
+      "gitBlob": "cc2ad91c73d821e9de9a3f59efc76753d1b2e3e1",
+      "sha256": "5345e5570f9ec38281c650e611678f22c0e886da7b08bec5d5424c0a2a34fc07",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/concierge-manager-auth-session.js"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-http-intent.js",
+      "gitBlob": "d0deb1aed55f27858de0d606811087b6757da61c",
+      "sha256": "8396a6e2dbb4346a5e298bbc63f074e4156fac6793fc2e40303be82a1bdefcd7",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/concierge-manager-http-intent.js"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-independent-revocations.js",
+      "gitBlob": "b96a2672843b924f595b32c4262a0615d6467d7d",
+      "sha256": "9bf09f7af96decf1d2042346d8229266cd97c5377e7a214eb65bac3b114f995b",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/concierge-independent-revocations.js"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-release-hold-qa.js",
+      "gitBlob": "a4b793d2ed357fe3dda342c58439f9fae81b16da",
+      "sha256": "2ba02ce6e454b5686c3006682d94c85ce6f1a61f4347d61cf65c5425589c6f62",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/concierge-manager-release-hold-qa.js"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-legal-admission-guard.js",
+      "gitBlob": "28511d39e60095208d5f693f521e9461825ebe4f",
+      "sha256": "537f517c05c0d21928afdfacd894d0212ca59ce7565ad688e5d0bf4c92847d88",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/concierge-manager-legal-admission-guard.js"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-prelegal-sensitive-hold-qa.js",
+      "gitBlob": "1f3eb182d65825dd863b1ba18421694d5f76f115",
+      "sha256": "80b0b9834c97f5cec68adfea89f6d44ccee3e6c9a6748d598174b5be79ca7364",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/concierge-prelegal-sensitive-hold-qa.js"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "vercel.json",
+      "gitBlob": "8fdd4dd5765b1ac1208a9f00809392ddf1a1da5c",
+      "sha256": "d2bc35f45e2b0b5158ce464da43021a2af22d50eb11a745b62ced00a24705099",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/vercel.json"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/drafts/AUTH-SESSION-LIVENESS-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "931c1d97f2a33985703705c309ab2f555aae2163",
+      "sha256": "3955b3fa6c6c496f4cb91835063a2a9bf13ef7f46c6fe4eeeedeb176ea535114",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/ops/drafts/AUTH-SESSION-LIVENESS-QA-DO-NOT-APPLY.sql"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/drafts/AUTH-MANAGED-FENCE-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "25a5656028356fc64645f0ff3f7d1002186a3950",
+      "sha256": "b2ba1749f9bd5e33faa1965ddf3daeb13378335f4607ad307a8e27ac76bf2fa5",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/ops/drafts/AUTH-MANAGED-FENCE-QA-DO-NOT-APPLY.sql"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/drafts/MANAGER-WRITE-FENCE-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "88cc01175dae2d3be16fcdfacb3da33a0323b153",
+      "sha256": "f8672e648418998c9b8809de35e27fa5fb1f01794a709ae61d4402b561eee475",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/ops/drafts/MANAGER-WRITE-FENCE-QA-DO-NOT-APPLY.sql"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/drafts/MANAGER-DURABLE-INTENT-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "a42b6a7628192cb281c5746887cfe06e6b595a0f",
+      "sha256": "6c0f8061d08433a1cbac13af1c81f50f8823f3205c52caf5dd4ffe4bf2624718",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/ops/drafts/MANAGER-DURABLE-INTENT-QA-DO-NOT-APPLY.sql"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/drafts/MANAGER-INTENT-RECONCILE-V2-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "68838560b21b9d173cc1b899a122063a45f2e203",
+      "sha256": "b363ba46202d59346cb259722c1f9d9cf8ccfc02a9cc76411f177566e7a8946c",
+      "scope": "READ_SOURCE / NOT_EXECUTED_THIS_RUN",
+      "url": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/ops/drafts/MANAGER-INTENT-RECONCILE-V2-QA-DO-NOT-APPLY.sql"
+    },
+    {
+      "repo": "MarcoAlexis10/chebot-web",
+      "ref": "5f70ab215d52f9820a1af256ab36e092feb9ffd7",
+      "path": "manager-auth-v1.js",
+      "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4",
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a",
+      "scope": "CORRECTED_GENERATOR / FOCUSED_DELTA_TESTED",
+      "url": "https://github.com/MarcoAlexis10/chebot-web/blob/5f70ab215d52f9820a1af256ab36e092feb9ffd7/manager-auth-v1.js"
+    }
+  ],
+  "nativeSqlExecuted": false,
+  "authProviderContacted": false
+}

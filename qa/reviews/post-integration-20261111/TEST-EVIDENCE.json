@@ -1,0 +1,61 @@
+{
+  "node": "v24.22.1",
+  "commands": [
+    {
+      "command": "python web/qa/post-integration-20261111-v1/chromium-diagnostic.py",
+      "scriptExit": 0,
+      "browserBootstrapsPassed": 0,
+      "browserAssertions": 0,
+      "casesPending": 4
+    },
+    {
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/post-integration-20261111-v1/session-restore-feedback.test.cjs",
+      "before": {
+        "pass": 1,
+        "fail": 2,
+        "exit": 1
+      },
+      "after": {
+        "pass": 3,
+        "fail": 0,
+        "exit": 0
+      },
+      "scope": "COMPLETE_GENERATED_JS_IN_VM / SIMULATED_DOM_AND_TRANSPORT / NOT_BROWSER"
+    },
+    {
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- env <fictional public build configuration> npm --prefix web run build",
+      "exit": 0,
+      "outputs": 33,
+      "changedOutputs": [
+        "manager/manager-auth.js"
+      ]
+    }
+  ],
+  "allNewTests": {
+    "pass": 3,
+    "failFinal": 0,
+    "isCumulativeAcrossAttempts": false
+  },
+  "historicalSuitesRepeated": false,
+  "nativeSqlExecuted": false,
+  "servicesContacted": false,
+  "newSignaturesOrAuthorizations": false,
+  "logs": {
+    "post-chromium-diagnostic.log": {
+      "sha256": "bbe3af940cc578cf2e0764aa00e371c707d06e80309f39f30973ada2d39fcc61",
+      "bytes": 4497
+    },
+    "post-session-feedback-before.tap": {
+      "sha256": "41426e9bdd34c9638b9c9a217698b694a8e598f28237581357cc448986266f1f",
+      "bytes": 2920
+    },
+    "post-session-feedback-after.tap": {
+      "sha256": "10d7ae5deca0ff6d634ba96561d38134174d32a3e1de83ce761f8b4b9059f13f",
+      "bytes": 1408
+    },
+    "post-web-build.log": {
+      "sha256": "783058f6e1f724706fbe13684874d8adcf4add973d69b24aa3a64ac08cb036e8",
+      "bytes": 1557
+    }
+  }
+}
