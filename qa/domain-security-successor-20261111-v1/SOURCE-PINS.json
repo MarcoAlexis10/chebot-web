@@ -1,0 +1,113 @@
+{
+  "headsVerifiedBeforeEdits": true,
+  "sources": [
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/catalog-policy-REVIEW-ONLY.sql",
+      "gitBlob": "00a201bc5e3959e23f0524672d4d63c4bb1258a3",
+      "sha256": "5efd1ce2cb3aabe68b0fdd37454adfbec298680e7b4d523af88c985e3f90118c"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/PRIVILEGES-SUCCESSOR.json",
+      "gitBlob": "084a5dcae15cb522884c6fc0af636043177b0140",
+      "sha256": "b7efa08360df3bc18dc37302a2d411ae626be41360c214fa972fa8e51b00bb77"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "ops/drafts/MANAGER-WRITE-FENCE-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "88cc01175dae2d3be16fcdfacb3da33a0323b153",
+      "sha256": "f8672e648418998c9b8809de35e27fa5fb1f01794a709ae61d4402b561eee475"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-incidents.js",
+      "gitBlob": "8e099967b570c2a895c7179714498b0a1f19f558",
+      "sha256": "af7b6716e83982ba9f521a502a05f22599f80f50a0e56ec5bc566770d00b5489"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-knowledge.js",
+      "gitBlob": "9bd518bea2ee86fcbf2e525f4d5565b3c855528e",
+      "sha256": "0098f37bb62dd9ef587beb707389ed38606e98a44ca98bfbea0a6fdd7ecb5522"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-signup-admin.js",
+      "gitBlob": "a5942c00d0e3007c77096ecae4559a9e7f90ba5d",
+      "sha256": "2ab2e2694de78ec909f7ea946d209fdb24dd64a73d06a0a4aba1129cbd448b82"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "79-PATCH-09-FIX-ACTIVATE-KNOWLEDGE-VERSION.sql",
+      "gitBlob": "c64b72c4dd7100e11624fe918a90a6ac1a11f981",
+      "sha256": "28dcc22e58e8c19bfb34fb5864c22ff754d6290f76c92837c3e429ffe45ab7d5"
+    }
+  ],
+  "nativeCatalogExcerpts": {
+    "concierge_service_qa_v1.manager_action": {
+      "path": "sources/concierge_service_qa_v1__manager_action.sql.txt",
+      "startLine": 3434,
+      "endLine": 3475,
+      "sha256": "13d9ca609ff4b2e1285b377779623b856c350dc5f3a82215d71a44e52c6e3eaf"
+    },
+    "concierge_service_qa_v1.manager_scope": {
+      "path": "sources/concierge_service_qa_v1__manager_scope.sql.txt",
+      "startLine": 876,
+      "endLine": 887,
+      "sha256": "efd386c2d76bc361291520b8723bf37c391128290dd3380e057d553cde444a57"
+    },
+    "concierge_writer_contract_v2.check_fences_v2": {
+      "path": "sources/concierge_writer_contract_v2__check_fences_v2.sql.txt",
+      "startLine": 1326,
+      "endLine": 1336,
+      "sha256": "9d970c69e837d198aa594ff0fd2f1fae0ad801b266443851e86c299becaf72d0"
+    },
+    "concierge_writer_contract_v2.scope_v2": {
+      "path": "sources/concierge_writer_contract_v2__scope_v2.sql.txt",
+      "startLine": 1063,
+      "endLine": 1074,
+      "sha256": "38c5b1a4058be8a5893eb95f32c8fac856ddf624a57101f2f5ba227e962d96ae"
+    },
+    "concierge_writer_contract_v2.readback_v2": {
+      "path": "sources/concierge_writer_contract_v2__readback_v2.sql.txt",
+      "startLine": 1116,
+      "endLine": 1116,
+      "sha256": "5562692039a7ac7cf28a88224100f11d0b6561fd625b0069b488821f52e5c481"
+    },
+    "concierge_writer_contract_v2.run_v2": {
+      "path": "sources/concierge_writer_contract_v2__run_v2.sql.txt",
+      "startLine": 1075,
+      "endLine": 1110,
+      "sha256": "99402e98f08b56178bd963abb132241b8f9aca107b6feb96e0f101a908578a3f"
+    },
+    "concierge_writer_cap_v1.auth_live_v1": {
+      "path": "sources/concierge_writer_cap_v1__auth_live_v1.sql.txt",
+      "startLine": 1121,
+      "endLine": 1130,
+      "sha256": "5f9c0b86e51a5756456c4d3d0579fe0e03f495984c603e458cabf7a37ca5680c"
+    },
+    "concierge_runtime_qa_v2.concierge_manager_set_incident_state": {
+      "path": "sources/concierge_runtime_qa_v2__concierge_manager_set_incident_state.sql.txt",
+      "startLine": 179,
+      "endLine": 339,
+      "sha256": "2cee6ed918e6c2de9c81f01581b803a2b5c93534d7466943f231e709d6dfd800"
+    }
+  },
+  "nativeEntryGrantsSource": {
+    "repository": "MarcoAlexis10/cheveni-qa-lab",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "path": "qa/native17-closure-v1/PRIVILEGES-SUCCESSOR.json",
+    "gitBlob": "084a5dcae15cb522884c6fc0af636043177b0140",
+    "sha256": "b7efa08360df3bc18dc37302a2d411ae626be41360c214fa972fa8e51b00bb77"
+  },
+  "excerptInterpretation": "Tracked review sources, not installed database observations",
+  "reusedPackage": "../private-writer-composition-20261111-v1/UPSTREAM-PINS.json"
+}

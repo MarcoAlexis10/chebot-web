@@ -1,0 +1,11 @@
+create or replace function concierge_writer_contract_v2.check_fences_v2() returns void language plpgsql security invoker set search_path='' as $$declare t text;n integer;begin
+ if session_user<>'cheveni_writer_backend_v3' or current_user<>'cheveni_writer_executor_v1' or current_setting('transaction_isolation')<>'read committed' then raise exception 'PRIVATE_CONTRACT_SESSION_REQUIRED';end if;
+ if not exists(select from pg_proc where oid=to_regprocedure('concierge_private.manager_fence_lock_v1()') and not prosecdef and proowner='postgres'::regrole and not exists(select from pg_catalog.aclexplode(coalesce(proacl,pg_catalog.acldefault('f',proowner))) x where x.grantee<>proowner) and 'search_path=""'=any(proconfig) and encode(sha256(convert_to(prosrc,'UTF8')),'hex')='10ea154cd7d63f91856346d0d9619e4796637c337561b92c64b29e0863acadc6') then raise exception 'EXACT_FENCE_BODY_REQUIRED';end if;
+ foreach t in array array['auth.users','auth.sessions','public.concierge_accounts','public.concierge_account_members','public.concierge_manager_web_identities','public.concierge_member_property_permissions','public.concierge_properties','public.concierge_stays'] loop
+ select count(*) into n from pg_trigger where tgrelid=(select c.oid from pg_class c join pg_namespace s on s.oid=c.relnamespace where s.nspname=split_part(t,'.',1) and c.relname=split_part(t,'.',2))
+ and tgname='cheveni_manager_fence_v1' and not tgisinternal and tgenabled in ('O','A') and tgtype=62 and tgfoid=to_regprocedure('concierge_private.manager_fence_lock_v1()')
+ and tgqual is null and tgattr::text='' and tgnargs=0 and octet_length(tgargs)=0 and not tgdeferrable and not tginitdeferred and tgconstraint=0 and tgparentid=0;
+ if n<>1 then raise exception 'CONTRACT_FENCE_COVERAGE_REQUIRED';end if;
+ end loop;
+ perform pg_advisory_xact_lock(1129728581,1);
+end$$;

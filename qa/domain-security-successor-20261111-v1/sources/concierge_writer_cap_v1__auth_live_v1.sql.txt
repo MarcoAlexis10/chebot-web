@@ -1,0 +1,10 @@
+create or replace function concierge_writer_cap_v1.auth_live_v1(p_user uuid,p_session uuid,p_request uuid) returns jsonb
+language plpgsql security definer set search_path='' as $$declare n integer;begin
+ if session_user<>'cheveni_writer_backend_v3' or current_user<>'cheveni_writer_auth_owner_v3' then raise insufficient_privilege using message='PRIVATE_AUTH_BRIDGE_REQUIRED';end if;
+ if p_user is null or p_session is null or p_request is null then return jsonb_build_object('status','DENIED','requestId',p_request);end if;
+ select count(*) into n from auth.sessions s join auth.users u on u.id=s.user_id where s.id=p_session and s.user_id=p_user
+ and (s.not_after is null or s.not_after>clock_timestamp()) and u.email_confirmed_at is not null and u.email_confirmed_at<=clock_timestamp()
+ and (u.banned_until is null or u.banned_until<=clock_timestamp());
+ if n<>1 then return jsonb_build_object('status','DENIED','requestId',p_request);end if;
+ return jsonb_build_object('status','LIVE','requestId',p_request,'userId',p_user,'sessionId',p_session);
+end$$;

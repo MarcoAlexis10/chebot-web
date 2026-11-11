@@ -1,0 +1,161 @@
+create or replace function concierge_runtime_qa_v2.concierge_manager_set_incident_state(p_incident_id uuid, p_account_member_id uuid, p_new_status text, p_event_summary text)
+ RETURNS TABLE(incident_id uuid, resulting_status text)
+ LANGUAGE plpgsql
+ SECURITY INVOKER
+ SET search_path TO ''
+AS $function$
+declare
+  v_incident public.concierge_incidents%rowtype;
+  v_member_role text;
+  v_member_status text;
+  v_can_manage boolean := false;
+begin
+  if p_new_status not in (
+    'resolving',
+    'waiting_guest',
+    'escalated',
+    'waiting_manager',
+    'learning_pending',
+    'closed'
+  ) then
+    if p_new_status='resolved' then
+      raise exception using
+        errcode='23514',
+        message='GUEST_CONFIRMATION_REQUIRED';
+    end if;
+
+    raise exception using
+      errcode='22023',
+      message='INVALID_INCIDENT_STATUS';
+  end if;
+
+  if p_event_summary is null
+     or length(trim(p_event_summary)) < 1
+     or length(trim(p_event_summary)) > 4000 then
+    raise exception using
+      errcode='22023',
+      message='INVALID_INCIDENT_EVENT_SUMMARY';
+  end if;
+
+  select i.id, i.account_id, i.property_id, i.stay_id, i.status
+ into v_incident.id, v_incident.account_id, v_incident.property_id, v_incident.stay_id, v_incident.status
+  from public.concierge_incidents i
+  where i.id=p_incident_id
+  for update;
+
+  if not found then
+    raise exception using
+      errcode='42501',
+      message='RESOURCE_OUT_OF_SCOPE';
+  end if;
+
+  select m.role, m.status
+    into v_member_role, v_member_status
+  from public.concierge_account_members m
+  where m.id=p_account_member_id
+    and m.account_id=v_incident.account_id;
+
+  if not found or v_member_status <> 'active' then
+    raise exception using
+      errcode='42501',
+      message='MANAGER_PERMISSION_DENIED';
+  end if;
+
+  if v_member_role in ('owner','manager') then
+    v_can_manage := true;
+  elsif v_member_role='co_manager' then
+    select coalesce(mp.can_manage_incidents,false)
+      into v_can_manage
+    from public.concierge_member_property_permissions mp
+    where mp.account_id=v_incident.account_id
+      and mp.member_id=p_account_member_id
+      and mp.property_id=v_incident.property_id;
+  end if;
+
+  if not coalesce(v_can_manage,false) then
+    raise exception using
+      errcode='42501',
+      message='MANAGER_PERMISSION_DENIED';
+  end if;
+
+  if p_new_status='learning_pending'
+     and v_incident.status <> 'resolved' then
+    raise exception using
+      errcode='23514',
+      message='INCIDENT_NOT_RESOLVED';
+  end if;
+
+  if p_new_status='closed'
+     and v_incident.status not in ('resolved','learning_pending') then
+    raise exception using
+      errcode='23514',
+      message='INCIDENT_NOT_RESOLVED';
+  end if;
+
+  update public.concierge_incidents i
+     set
+       status=p_new_status,
+       manager_intervention_required=
+         case
+           when p_new_status in ('waiting_manager','escalated') then true
+           when p_new_status in ('resolving','waiting_guest') then false
+           else i.manager_intervention_required
+         end,
+       closed_at=
+         case
+           when p_new_status='closed' then now()
+           else i.closed_at
+         end,
+       updated_at=now()
+   where i.id=v_incident.id;
+
+  insert into public.concierge_incident_events (
+    account_id,
+    incident_id,
+    actor_type,
+    actor_ref,
+    event_type,
+    event_summary
+  )
+  values (
+    v_incident.account_id,
+    v_incident.id,
+    'account_member',
+    p_account_member_id,
+    case
+      when p_new_status='closed' then 'closed'
+      else 'manager_state_changed'
+    end,
+    trim(p_event_summary)
+  );
+
+  insert into public.concierge_audit_events (
+    account_id,
+    actor_type,
+    actor_ref,
+    property_id,
+    stay_id,
+    action_type,
+    entity_type,
+    entity_id,
+    result,
+    reason_code
+  )
+  values (
+    v_incident.account_id,
+    'account_member',
+    p_account_member_id,
+    v_incident.property_id,
+    v_incident.stay_id,
+    'incident_state_changed',
+    'incident',
+    v_incident.id,
+    'changed',
+    null
+  );
+
+  return query
+  select v_incident.id, p_new_status;
+end;
+$function$
+;

@@ -1,0 +1,36 @@
+create function concierge_writer_contract_v2.run_v2(opb bytea,ab bytea,mutate boolean) returns jsonb language plpgsql security invoker set search_path='' set lock_timeout='2s' as $$declare
+ op jsonb;a jsonb;sc jsonb;scope_receipt jsonb;args jsonb;got jsonb;x jsonb;again jsonb;d text;ad text;kd text;values_ text[];ef bytea;
+ saved concierge_writer_contract_v2.bindings%rowtype;legacy concierge_writer_cap_v1.intents%rowtype;n integer;
+begin
+ perform concierge_writer_contract_v2.check_fences_v2();op:=concierge_contract_v1.parse_v1('intent',opb);a:=concierge_contract_v1.parse_v1('attempt',ab);d:=encode(sha256(opb),'hex');ad:=encode(sha256(ab),'hex');kd:=concierge_contract_v1.digest_v1('intent_key',array['tjdgrzzeuuihhqnzvaox',op->>'userId',op->>'intentId']);
+ if a->>'intentDigest' is distinct from d or (mutate and a->>'mode'<>'DISPATCH') or (not mutate and a->>'mode'<>'READBACK') then raise exception 'CONTRACT_ATTEMPT_MISMATCH';end if;
+ scope_receipt:=concierge_writer_contract_v2.scope_v2((op->>'userId')::uuid,(a->>'sessionId')::uuid,(a->>'tokenExpiresAt')::bigint,(op->>'propertyId')::uuid,(a->>'requestId')::uuid);
+ sc:=concierge_contract_v1.parse_v1('scope',decode(scope_receipt->>'frame','hex'));
+ if sc->>'accountId' is distinct from op->>'accountId' or sc->>'memberId' is distinct from op->>'memberId' or sc->>'memberRole' is distinct from op->>'memberRole' then raise exception 'CONTRACT_AUTHORITY_CHANGED';end if;
+ args:=jsonb_build_object('p_member_id',op->>'memberId','p_property_id',op->>'propertyId','p_guest_phone_hash',op->>'guestPhoneHash','p_guest_display_name',op->>'guestDisplayName','p_check_in_at',op->>'checkInAt','p_check_out_at',op->>'checkOutAt','p_access_from',op->>'accessFrom','p_access_until',op->>'accessUntil','p_language',op->>'language');
+ select intent_digest,intent_key_digest,legacy_intent_digest,legacy_authority_digest,legacy_receipt_digest,effect_digest,effect_frame,dispatch_attempt_digest into saved.intent_digest,saved.intent_key_digest,saved.legacy_intent_digest,saved.legacy_authority_digest,saved.legacy_receipt_digest,saved.effect_digest,saved.effect_frame,saved.dispatch_attempt_digest from concierge_writer_contract_v2.bindings where user_id=(op->>'userId')::uuid and intent_id=(op->>'intentId')::uuid;
+ if found then
+  if saved.intent_digest<>d or saved.intent_key_digest<>kd then return jsonb_build_object('status','CONFLICT','intentDigest',d,'intentKeyDigest',kd,'checkedAttemptDigest',ad);end if;
+  select count(*),min(to_jsonb(z)::text)::jsonb into n,got from concierge_writer_cap_v1.reconcile_v1((op->>'userId')::uuid,(a->>'sessionId')::uuid,(a->>'requestId')::uuid,(op->>'intentId')::uuid,op->>'operation',args,(a->>'tokenExpiresAt')::bigint) z;
+  if n<>1 or coalesce(got->>'status','') not in ('COMMITTED','DENIED') then raise exception 'CONTRACT_READBACK_UNRESOLVED';end if;
+  select intent_digest,authority_digest,receipt_digest into strict legacy.intent_digest,legacy.authority_digest,legacy.receipt_digest from concierge_writer_cap_v1.intents where auth_user_id=(op->>'userId')::uuid and intent_id=(op->>'intentId')::uuid;
+  if saved.legacy_intent_digest is distinct from legacy.intent_digest or saved.legacy_authority_digest is distinct from legacy.authority_digest or saved.legacy_receipt_digest is distinct from legacy.receipt_digest or saved.effect_digest is distinct from encode(sha256(saved.effect_frame),'hex') then raise exception 'CONTRACT_LEGACY_BINDING_CHANGED';end if;
+  if mutate then return jsonb_build_object('status','RECONCILIATION_REQUIRED','intentDigest',d,'intentKeyDigest',kd,'checkedAttemptDigest',ad,'dispatchAttemptDigest',saved.dispatch_attempt_digest);end if;
+  return jsonb_build_object('status',got->>'status','intentDigest',d,'intentKeyDigest',kd,'checkedAttemptDigest',ad,'dispatchAttemptDigest',saved.dispatch_attempt_digest,'effectFrame',encode(saved.effect_frame,'hex'),'effectDigest',saved.effect_digest);
+ end if;
+ if not mutate or exists(select from concierge_writer_cap_v1.intents where auth_user_id=(op->>'userId')::uuid and intent_id=(op->>'intentId')::uuid) then return jsonb_build_object('status','UNRESOLVED','intentDigest',d,'intentKeyDigest',kd,'checkedAttemptDigest',ad);end if;
+ select count(*),min(to_jsonb(z)::text)::jsonb into n,got from concierge_writer_cap_v1.write_v1((op->>'userId')::uuid,(a->>'sessionId')::uuid,(a->>'requestId')::uuid,(op->>'intentId')::uuid,op->>'operation',args,(a->>'tokenExpiresAt')::bigint) z;
+ if n<>1 or coalesce(got->>'status','') not in ('COMMITTED','DENIED') then raise exception 'CONTRACT_WRITE_OUTCOME_UNRESOLVED';end if;
+ select intent_digest,authority_digest,receipt_digest into strict legacy.intent_digest,legacy.authority_digest,legacy.receipt_digest from concierge_writer_cap_v1.intents where auth_user_id=(op->>'userId')::uuid and intent_id=(op->>'intentId')::uuid;
+ if got->>'status'='COMMITTED' then
+  if jsonb_typeof(got->'result') is distinct from 'array' or jsonb_array_length(got->'result')<>1 or got->'result'->0->>'result' is distinct from 'created' then raise exception 'CONTRACT_EFFECT_INVALID';end if;x:=got->'result'->0;
+  values_:=array['tjdgrzzeuuihhqnzvaox',d,'COMMITTED',x->>'stay_id',x->>'stay_member_id',x->>'guest_identity_id',x->>'invite_id'];
+ else values_:=array['tjdgrzzeuuihhqnzvaox',d,'DENIED',null,null,null,null];end if;
+ ef:=concierge_contract_v1.frame_v1('effect',values_);
+ insert into concierge_writer_contract_v2.bindings values((op->>'userId')::uuid,(op->>'intentId')::uuid,d,kd,ad,ef,encode(sha256(ef),'hex'),legacy.intent_digest,legacy.authority_digest,legacy.receipt_digest);
+ -- Final check includes work performed by binding-table hooks; rollback all on change.
+ again:=concierge_writer_contract_v2.scope_v2((op->>'userId')::uuid,(a->>'sessionId')::uuid,(a->>'tokenExpiresAt')::bigint,(op->>'propertyId')::uuid,(a->>'requestId')::uuid);
+ sc:=concierge_contract_v1.parse_v1('scope',decode(again->>'frame','hex'));
+ if sc->>'accountId' is distinct from op->>'accountId' or sc->>'memberId' is distinct from op->>'memberId' or sc->>'memberRole' is distinct from op->>'memberRole' then raise exception 'CONTRACT_FINAL_AUTHORITY_CHANGED';end if;
+ return jsonb_build_object('status',got->>'status','intentDigest',d,'intentKeyDigest',kd,'checkedAttemptDigest',ad,'dispatchAttemptDigest',ad,'effectFrame',encode(ef,'hex'),'effectDigest',encode(sha256(ef),'hex'));
+end$$;

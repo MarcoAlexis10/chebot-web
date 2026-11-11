@@ -1,0 +1,1 @@
+create function concierge_writer_contract_v2.readback_v2(opb bytea,ab bytea) returns jsonb language sql security definer set search_path='' as $$select concierge_writer_contract_v2.run_v2(opb,ab,false)$$;

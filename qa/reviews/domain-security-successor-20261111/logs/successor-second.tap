@@ -1,0 +1,131 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: product candidate keeps original guards before inspecting hostile inputs
+ok 1 - product candidate keeps original guards before inspecting hostile inputs
+  ---
+  duration_ms: 1.117608
+  type: 'test'
+  ...
+# Subtest: incident mapping preserves all four historical arguments and separates stable intent from attempt
+ok 2 - incident mapping preserves all four historical arguments and separates stable intent from attempt
+  ---
+  duration_ms: 6.936129
+  type: 'test'
+  ...
+# Subtest: all other legacy operations and ambiguous or extra arguments remain unmapped
+ok 3 - all other legacy operations and ambiguous or extra arguments remain unmapped
+  ---
+  duration_ms: 0.99763
+  type: 'test'
+  ...
+# Subtest: summary uses PostgreSQL character length and space trimming without losing original value
+ok 4 - summary uses PostgreSQL character length and space trimming without losing original value
+  ---
+  duration_ms: 1.704388
+  type: 'test'
+  ...
+# Subtest: current resolved incident/account/stay/property/actor and permission cannot be inferred from names
+ok 5 - current resolved incident/account/stay/property/actor and permission cannot be inferred from names
+  ---
+  duration_ms: 2.500619
+  type: 'test'
+  ...
+# Subtest: DEV issuer, expired JWT and changed session are denied before dispatch
+ok 6 - DEV issuer, expired JWT and changed session are denied before dispatch
+  ---
+  duration_ms: 0.751364
+  type: 'test'
+  ...
+# Subtest: revocation or authority revision between resolve and dispatch prevents write
+ok 7 - revocation or authority revision between resolve and dispatch prevents write
+  ---
+  duration_ms: 1.515979
+  type: 'test'
+  ...
+# Subtest: native transition restrictions stay enforced for close, learning and guest-only resolved
+ok 8 - native transition restrictions stay enforced for close, learning and guest-only resolved
+  ---
+  duration_ms: 2.137872
+  type: 'test'
+  ...
+# Subtest: ACK loss after model effect stays UNKNOWN; readback never resends
+ok 9 - ACK loss after model effect stays UNKNOWN; readback never resends
+  ---
+  duration_ms: 0.879935
+  type: 'test'
+  ...
+# Subtest: same intent with changed arguments conflicts and local interleaving issues one dispatch
+ok 10 - same intent with changed arguments conflicts and local interleaving issues one dispatch
+  ---
+  duration_ms: 6.984722
+  type: 'test'
+  ...
+# Subtest: readback requires all effect, intent, attempt, authority, commit, journal and witness correlations
+ok 11 - readback requires all effect, intent, attempt, authority, commit, journal and witness correlations
+  ---
+  duration_ms: 6.941197
+  type: 'test'
+  ...
+# Subtest: revocation after possible effects preserves UNKNOWN and withholds private readback
+ok 12 - revocation after possible effects preserves UNKNOWN and withholds private readback
+  ---
+  duration_ms: 0.746647
+  type: 'test'
+  ...
+# Subtest: refresh or new session cannot reuse an old binding and restart cannot accept client snapshot
+ok 13 - refresh or new session cannot reuse an old binding and restart cannot accept client snapshot
+  ---
+  duration_ms: 0.359824
+  type: 'test'
+  ...
+# Subtest: connection configuration rejects shared credential and reused callbacks
+ok 14 - connection configuration rejects shared credential and reused callbacks
+  ---
+  duration_ms: 0.184774
+  type: 'test'
+  ...
+# Subtest: deadline after dispatch and clock rollback cannot establish an outcome
+ok 15 - deadline after dispatch and clock rollback cannot establish an outcome
+  ---
+  duration_ms: 0.465681
+  type: 'test'
+  ...
+# Subtest: provider exceptions never expose tokens, payloads or summaries in review results
+ok 16 - provider exceptions never expose tokens, payloads or summaries in review results
+  ---
+  duration_ms: 0.169912
+  type: 'test'
+  ...
+# Subtest: pinned source demonstrates both role generations and disallows granting old readback to a new login
+ok 17 - pinned source demonstrates both role generations and disallows granting old readback to a new login
+  ---
+  duration_ms: 2.640367
+  type: 'test'
+  ...
+# Subtest: existing Native17 action is incident-capable but has no separate attempt/session/authority receipt
+ok 18 - existing Native17 action is incident-capable but has no separate attempt/session/authority receipt
+  ---
+  duration_ms: 0.585639
+  type: 'test'
+  ...
+# Subtest: proposed role closure rejects indirect writes, PUBLIC, ownership, memberships and incomplete RLS/catalog
+ok 19 - proposed role closure rejects indirect writes, PUBLIC, ownership, memberships and incomplete RLS/catalog
+  ---
+  duration_ms: 0.629314
+  type: 'test'
+  ...
+# Subtest: SQL proposal aborts before DDL, exposes only reader entry and keeps scope unimplemented
+ok 20 - SQL proposal aborts before DDL, exposes only reader entry and keeps scope unimplemented
+  ---
+  duration_ms: 0.50554
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 131.511847

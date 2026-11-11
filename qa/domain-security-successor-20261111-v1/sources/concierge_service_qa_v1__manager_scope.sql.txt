@@ -1,0 +1,12 @@
+create or replace function concierge_service_qa_v1.manager_scope(p_user uuid,p_session uuid,p_exp bigint,p_property uuid,p_action text,p_review boolean default true)
+returns jsonb language plpgsql security invoker set search_path='' as $$declare ctx jsonb;a uuid;begin
+ if not ((session_user::text='cheveni_service_manager_backend_v2' and current_user::text='cheveni_service_write_owner_v2') or (session_user::text='cheveni_service_reader_backend_v2' and current_user::text='cheveni_service_read_owner_v2')) then raise insufficient_privilege using message='SERVICE_CALLER_PAIR_HELD';end if;
+
+ perform concierge_service_qa_v1.fence();perform concierge_service_qa_v1.auth_live(p_user,p_session,p_exp);
+ a:=concierge_service_qa_v1.launch(p_property,p_review);
+ select jsonb_build_object('memberId',m.id,'accountId',m.account_id,'role',m.role) into ctx
+ from public.concierge_manager_web_identities i join public.concierge_account_members m on m.id=i.member_id and m.account_id=i.account_id
+ where i.auth_user_id=p_user and i.status='active' and i.revoked_at is null and m.status='active' and m.account_id=a;
+ if ctx is null or not exists(select from concierge_runtime_qa_v2.concierge_authorize_manager_member_action((ctx->>'memberId')::uuid,p_property,p_action) q where q.result='allow')
+ then raise insufficient_privilege using message='SERVICE_MANAGER_DENIED';end if;return ctx;
+end$$;

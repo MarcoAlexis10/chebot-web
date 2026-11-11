@@ -1,0 +1,63 @@
+ case p_operation
+ when 'concierge_manager_decide_request' then
+  keys:=array['p_request_id','p_account_member_id','p_decision','p_approved_value','p_approved_at_time','p_approved_until','p_decision_summary'];
+  if p_arguments->>'p_account_member_id' is distinct from ctx->>'member_id' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from public.concierge_manager_decide_request(p_request_id=>(p_arguments->>'p_request_id')::uuid,p_account_member_id=>(p_arguments->>'p_account_member_id')::uuid,p_decision=>(p_arguments->>'p_decision')::text,p_approved_value=>(p_arguments->>'p_approved_value')::text,p_approved_at_time=>(p_arguments->>'p_approved_at_time')::timestamptz,p_approved_until=>(p_arguments->>'p_approved_until')::timestamptz,p_decision_summary=>(p_arguments->>'p_decision_summary')::text) x;
+ when 'concierge_manager_set_incident_state' then
+  keys:=array['p_incident_id','p_account_member_id','p_new_status','p_event_summary'];
+  if p_arguments->>'p_account_member_id' is distinct from ctx->>'member_id' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from public.concierge_manager_set_incident_state(p_incident_id=>(p_arguments->>'p_incident_id')::uuid,p_account_member_id=>(p_arguments->>'p_account_member_id')::uuid,p_new_status=>(p_arguments->>'p_new_status')::text,p_event_summary=>(p_arguments->>'p_event_summary')::text) x;
+ when 'concierge_activate_knowledge_version' then
+  keys:=array['p_knowledge_item_id','p_version_id','p_approved_by_member_id'];
+  if p_arguments->>'p_approved_by_member_id' is distinct from ctx->>'member_id' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from public.concierge_activate_knowledge_version(p_knowledge_item_id=>(p_arguments->>'p_knowledge_item_id')::uuid,p_version_id=>(p_arguments->>'p_version_id')::uuid,p_approved_by_member_id=>(p_arguments->>'p_approved_by_member_id')::uuid) x;
+ when 'concierge_reject_knowledge_version' then
+  keys:=array['p_knowledge_item_id','p_version_id','p_rejected_by_member_id'];
+  if p_arguments->>'p_rejected_by_member_id' is distinct from ctx->>'member_id' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from public.concierge_reject_knowledge_version(p_knowledge_item_id=>(p_arguments->>'p_knowledge_item_id')::uuid,p_version_id=>(p_arguments->>'p_version_id')::uuid,p_rejected_by_member_id=>(p_arguments->>'p_rejected_by_member_id')::uuid) x;
+ when 'concierge_propose_incident_learning' then
+  keys:=array['p_incident_id','p_account_member_id','p_knowledge_key','p_content','p_risk_level','p_change_summary'];
+  if p_arguments->>'p_account_member_id' is distinct from ctx->>'member_id' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from public.concierge_propose_incident_learning(p_incident_id=>(p_arguments->>'p_incident_id')::uuid,p_account_member_id=>(p_arguments->>'p_account_member_id')::uuid,p_knowledge_key=>(p_arguments->>'p_knowledge_key')::text,p_content=>(p_arguments->>'p_content')::text,p_risk_level=>(p_arguments->>'p_risk_level')::text,p_change_summary=>(p_arguments->>'p_change_summary')::text) x;
+ when 'concierge_request_guest_phone_replacement' then
+  keys:=array['p_manager_id','p_stay_member_id','p_new_phone_hash'];
+  if p_arguments->>'p_manager_id' is distinct from ctx->>'member_id' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from public.concierge_request_guest_phone_replacement(p_manager_id=>(p_arguments->>'p_manager_id')::uuid,p_stay_member_id=>(p_arguments->>'p_stay_member_id')::uuid,p_new_phone_hash=>(p_arguments->>'p_new_phone_hash')::text) x;
+ when 'concierge_approve_guest_phone_replacement' then
+  keys:=array['p_manager_id','p_change_id'];
+  if p_arguments->>'p_manager_id' is distinct from ctx->>'member_id' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from public.concierge_approve_guest_phone_replacement(p_manager_id=>(p_arguments->>'p_manager_id')::uuid,p_change_id=>(p_arguments->>'p_change_id')::uuid) x;
+ when 'concierge_record_manager_signup_screening' then
+  keys:=array['p_invite_id','p_reviewer_auth_user_id','p_decision'];
+  if p_arguments->>'p_reviewer_auth_user_id' is distinct from p_auth_user_id::text or ctx->>'member_role' is distinct from 'owner' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select to_jsonb(public.concierge_record_manager_signup_screening(p_invite_id=>(p_arguments->>'p_invite_id')::uuid,p_reviewer_auth_user_id=>(p_arguments->>'p_reviewer_auth_user_id')::uuid,p_decision=>(p_arguments->>'p_decision')::text)) into result;
+ when 'concierge_resolve_manager_signup_followup' then
+  keys:=array['p_invite_id','p_reviewer_auth_user_id','p_decision'];
+  if p_arguments->>'p_reviewer_auth_user_id' is distinct from p_auth_user_id::text or ctx->>'member_role' is distinct from 'owner' then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  select to_jsonb(public.concierge_resolve_manager_signup_followup(p_invite_id=>(p_arguments->>'p_invite_id')::uuid,p_reviewer_auth_user_id=>(p_arguments->>'p_reviewer_auth_user_id')::uuid,p_decision=>(p_arguments->>'p_decision')::text)) into result;
+ when 'concierge_prepare_signup_invite' then
+  if ctx->>'member_role' is distinct from 'owner' or p_arguments->>'issued_by_auth_user_id' is distinct from p_auth_user_id::text
+   then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  keys:=array['invite_token_sha256','email_normalized','issued_by_auth_user_id','expires_at'];
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  with inserted as(insert into public.concierge_manager_signup_invites(invite_token_sha256,email_normalized,status,issued_by_auth_user_id,expires_at)
+   values(p_arguments->>'invite_token_sha256',p_arguments->>'email_normalized','issued',p_auth_user_id,(p_arguments->>'expires_at')::timestamptz)
+   returning id,email_normalized,expires_at,status) select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from inserted x;
+ when 'concierge_revoke_signup_invite' then
+  if ctx->>'member_role' is distinct from 'owner' or p_arguments->>'revoked_by_auth_user_id' is distinct from p_auth_user_id::text
+   then return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;end if;
+  keys:=array['id','revoked_by_auth_user_id'];
+  if exists(select from jsonb_object_keys(p_arguments) k where not(k=any(keys))) then raise exception 'MANAGER_WRITE_ARGUMENTS_INVALID';end if;
+  with changed as(update public.concierge_manager_signup_invites set status='revoked',revoked_by_auth_user_id=p_auth_user_id,revoked_at=clock_timestamp()
+   where id=(p_arguments->>'id')::uuid and status='issued' returning id) select coalesce(jsonb_agg(to_jsonb(x)),'[]'::jsonb) into result from changed x;
+ else return next jsonb_build_object('status','DENIED','requestId',p_request_id);return;
+ end case;

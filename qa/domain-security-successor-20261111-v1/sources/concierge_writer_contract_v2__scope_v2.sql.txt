@@ -1,0 +1,12 @@
+create function concierge_writer_contract_v2.scope_v2(u uuid,s uuid,e bigint,p uuid,r uuid) returns jsonb language plpgsql security definer set search_path='' set lock_timeout='2s' as $$declare live jsonb;ctx jsonb;n integer;v text[];b bytea;begin
+ perform concierge_writer_contract_v2.check_fences_v2();
+ if u is null or s is null or p is null or r is null or e is null or e<=extract(epoch from clock_timestamp()) then raise exception 'CONTRACT_SCOPE_DENIED';end if;
+ select count(*),min(x::text)::jsonb into n,live from concierge_writer_cap_v1.auth_live_v1(u,s,r) x;
+ if n<>1 or live->>'status' is distinct from 'LIVE' or live->>'userId' is distinct from u::text or live->>'sessionId' is distinct from s::text or live->>'requestId' is distinct from r::text then raise exception 'CONTRACT_SCOPE_DENIED';end if;
+ select count(*),min(to_jsonb(x)::text)::jsonb into n,ctx from concierge_runtime_qa_v2.concierge_resolve_manager_web_context(u) x;
+ if n<>1 or ctx->>'result' is distinct from 'allow' or not exists(select from concierge_runtime_qa_v2.concierge_authorize_manager_member_action((ctx->>'member_id')::uuid,p,'manage_stays') a where a.result='allow' and a.account_id=(ctx->>'account_id')::uuid)
+ or not exists(select from public.concierge_properties z where z.id=p and z.account_id=(ctx->>'account_id')::uuid and z.status='active' and z.city='Buenos Aires')
+ or (select count(*) from public.concierge_properties z where z.account_id=(ctx->>'account_id')::uuid and z.status='active')<>1 then raise exception 'CONTRACT_SCOPE_DENIED';end if;
+ v:=array['tjdgrzzeuuihhqnzvaox',r::text,u::text,s::text,e::text,ctx->>'account_id',ctx->>'member_id',ctx->>'member_role',p::text,floor(extract(epoch from clock_timestamp())*1000)::bigint::text];
+ b:=concierge_contract_v1.frame_v1('scope',v);return jsonb_build_object('frame',encode(b,'hex'),'digest',encode(sha256(b),'hex'));
+end$$;
