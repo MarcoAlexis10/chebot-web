@@ -47,6 +47,8 @@ CBF1 intent fija quince campos de create_stay, incluidos nombre/hash del huéspe
 
 El candidato no crea otro protocolo firmado. El plan usa la interfaz nativa de incidencias y marca INCIDENT_EVIDENCE_SUCCESSOR_NOT_INSTALLED. Para un puente criptográfico hacen falta un dominio de intención/efecto revisado, canonicalización SQL/JS acreditada con vectores, intento y binding actual, claim durable previo, terminal posterior a COMMIT y journal/witness independientes con secuencia/epoch/floors vigentes. CI4/CI-GRANT/2 no conceden permisos de negocio ni sustituyen esas piezas. No se ejecutaron, firmaron, generaron autorizaciones, custodiaron claves ni fabricaron transcripts.
 
+Las revisiones enteras del CurrentResolution ficticio no sustituyen recoveryEpoch/dataset/inventario ni un floor independiente. El reviewer no admite restores y no prueba rollback de un journal. DEPENDENCY-ABI.json enumera los campos del checkpoint CBF1 existente que debe preservar un productor futuro: usar una revisión antigua tras un backup nunca constituye autoridad vigente. No hay actualmente un transcript firmado representable para incidentes; por eso no se enlazan esos campos mediante un comprobante falso.
+
 Se separan expresamente body del cliente, identidad verificada por proveedor, observación actual de autoridad, prueba SQL/COMMIT y comprobante firmado del journal. La coincidencia de un JSON del doble no atraviesa ninguna de esas fronteras operacionales.
 
 ## Privacidad y retención

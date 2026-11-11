@@ -1,0 +1,92 @@
+{
+  "state": "HELD_NOT_IMPLEMENTED",
+  "noNewSignedProtocol": true,
+  "existingWireSource": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/schema.json",
+  "currentCheckpointFields": [
+    [
+      "projectRef",
+      "project"
+    ],
+    [
+      "datasetId",
+      "hash"
+    ],
+    [
+      "recoveryEpoch",
+      "uint"
+    ],
+    [
+      "inventoryDigest",
+      "hash"
+    ],
+    [
+      "intentDigest",
+      "hash"
+    ],
+    [
+      "intentKeyDigest",
+      "hash"
+    ],
+    [
+      "mode",
+      "mode"
+    ],
+    [
+      "revision",
+      "uint"
+    ],
+    [
+      "headDigest",
+      "hash?"
+    ],
+    [
+      "restrictionJournalId",
+      "tag"
+    ],
+    [
+      "restrictionSequence",
+      "uint"
+    ],
+    [
+      "restrictionDigest",
+      "hash"
+    ],
+    [
+      "challenge",
+      "hash"
+    ],
+    [
+      "observedAtMs",
+      "uint"
+    ],
+    [
+      "expiresAtMs",
+      "uint"
+    ]
+  ],
+  "missingIncidentProducer": {
+    "currentResolution": [
+      "issuer/user/session/expiry verified by provider boundary",
+      "incident/stay/property/account/member exact current joins",
+      "manage_incidents and exact scope cardinality",
+      "authorityVersion/restrictionVersion from protected state, not JWT claims",
+      "current independent datasetId/recoveryEpoch/inventory/floors and protection against rollback"
+    ],
+    "durableAdmission": [
+      "original intent identity and canonical domain payload from trusted minimized custody",
+      "NEW/KNOWN classification and CAS/claim from independent durable journal",
+      "attempt/session/authority/restriction/dispatch binding before mutation",
+      "native uniqueness across processes, lost ACK and restart quarantine"
+    ],
+    "sqlEvidence": [
+      "actual connection identity and transaction state",
+      "native commit/effect and immutable attempt binding",
+      "independent reader with no mutation capacity",
+      "journal terminal and witness confirmation correlated to original effect"
+    ]
+  },
+  "missingSignedDomain": "CBF1 intent/effect encode create_stay only; incident fields cannot be smuggled into those frames",
+  "restoredState": "QUARANTINE; never adopt a pre-backup floor as current",
+  "implementedByThisBatch": false,
+  "operationalApproval": false
+}

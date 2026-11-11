@@ -1,0 +1,49 @@
+{
+  "initialHeads": {
+    "web": "8c85ea251cac217fcd61ab820c670e4d5fa14ca4",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "webBranch": "qa/cheveni-integral-held-20261111",
+  "commitsPublished": [
+    {
+      "sha": "a7ff4f80e6cb3f04d289d58a18009a2c1a4f0f3a",
+      "parent": "8c85ea251cac217fcd61ab820c670e4d5fa14ca4",
+      "expectedRefLease": true
+    },
+    {
+      "sha": "54391b6dae94dbf824301cdabe1f4c371a8dac3a",
+      "parent": "a7ff4f80e6cb3f04d289d58a18009a2c1a4f0f3a",
+      "expectedRefLease": true
+    }
+  ],
+  "workflowSources": {
+    "qa/cheveni-integral-held-20261111": "no configured push/create trigger; two workflows target other explicit branches",
+    "blobs": [
+      "9540d3c50339b976e6fff19acd8283037aa000e1",
+      "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+    ],
+    "rereadBeforeFirstPublication": true,
+    "hashComparedBeforeSecondPublication": true,
+    "filesChanged": false,
+    "workflowDispatchInvoked": false,
+    "actionsApiUsed": false,
+    "runsNotQueried": true
+  },
+  "branchesCreated": false,
+  "backendNativeWritten": false,
+  "forcePushOrMerge": false,
+  "sourceSealComparedToInitial": {
+    "changedFiles": 35,
+    "outsideAuthorizedQaDirectories": []
+  },
+  "finalVerification": "Final containing commit/ref and all artifact blobs will be read after publication; no need to rerun tests to verify transport integrity",
+  "artifactValidation": {
+    "packageFilesMatchedSealedRemoteTree": 18,
+    "upstreamWholeFileBlobsMatchedExactRemoteHeads": 8,
+    "allNewJsonParsed": true,
+    "relativeClosureLinksExist": true,
+    "typescriptCompiled": false,
+    "sourceCommit": "54391b6dae94dbf824301cdabe1f4c371a8dac3a"
+  }
+}

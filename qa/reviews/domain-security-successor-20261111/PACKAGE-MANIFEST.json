@@ -1,0 +1,124 @@
+{
+  "version": "CHEVENI_DOMAIN_SUCCESSOR_PACKAGE_1",
+  "scope": "QA sources only; not imported by product build",
+  "candidateSourceCommit": "54391b6dae94dbf824301cdabe1f4c371a8dac3a",
+  "packageFileCount": 18,
+  "packageFiles": [
+    {
+      "path": "qa/domain-security-successor-20261111-v1/README.md",
+      "bytes": 3920,
+      "sha256": "c45f75d0d97fcc57014880e3920f7db0464878603920c763cb70d3e35c9f74c7",
+      "gitBlob": "3fe064ada37c37403a9756ed176c075b340f6915"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/SOURCE-PINS.json",
+      "bytes": 5448,
+      "sha256": "f89aba0b444d1bc0237b7e38704a1ef86941dd5f56b2d71981c84d64bd61e1e3",
+      "gitBlob": "ab391dc4ec9ecf26219a78ea76737cb8fa2dac10"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.d.mts",
+      "bytes": 3287,
+      "sha256": "8cb9837b7474e886eae537e38a226a63ae9485ad62a7f1deda4457a8a393a728",
+      "gitBlob": "a52638278b73883ff49013b198299f7cdd4a5a07"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.mjs",
+      "bytes": 10901,
+      "sha256": "5bfe94fbace345aa3530af641cc6b068addb786893adf9ca16a236c0e5ca9d22",
+      "gitBlob": "8e9799cf6944d1b589b1295a24e55274d83e56ab"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.test.mjs",
+      "bytes": 10953,
+      "sha256": "369529b933bc6bed3a5e2e67558970839ff3c8f54acdaf5745acfce906e8b9c1",
+      "gitBlob": "b8225c36cdb1bcc3bbe0a65bbd137dfdb3c106ba"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/readback-v3-DO-NOT-APPLY.sql",
+      "bytes": 6213,
+      "sha256": "35e58d000de203abe8d6de4bf1563e500d6651ad6fbfb73e3646c664c985d16e",
+      "gitBlob": "b9ad9ebff3009b552cf17bb612a08ee7bff1bc5d"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/role-profile.mjs",
+      "bytes": 2764,
+      "sha256": "fbb346eeb302680ad1f1d86c198e6472caebad6ece9c97104b22c19ea4d36d8f",
+      "gitBlob": "8c06bd0abcefb57ba2e452ed473ff62e828f0cd9"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/source-profile.test.mjs",
+      "bytes": 5477,
+      "sha256": "e6e687584b5778857e3fc55c449775c3a90edf82e0ca3481ebba236df5d4a234",
+      "gitBlob": "5a2e2ee3882cf021c822a2a3ec03d8aa3bbe3a21"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_runtime_qa_v2__concierge_manager_set_incident_state.sql.txt",
+      "bytes": 4109,
+      "sha256": "2cee6ed918e6c2de9c81f01581b803a2b5c93534d7466943f231e709d6dfd800",
+      "gitBlob": "214326dace5789c3cbf6e20a6400dfcf92872cd1"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_service_qa_v1__manager_action.sql.txt",
+      "bytes": 5561,
+      "sha256": "13d9ca609ff4b2e1285b377779623b856c350dc5f3a82215d71a44e52c6e3eaf",
+      "gitBlob": "f6e08fd57ac685ac6db47d562bf2bdffb323358a"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_service_qa_v1__manager_scope.sql.txt",
+      "bytes": 1385,
+      "sha256": "efd386c2d76bc361291520b8723bf37c391128290dd3380e057d553cde444a57",
+      "gitBlob": "7ca2ba1d6f3a67ba7adc804d30b2619ae728eecc"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_writer_cap_v1__auth_live_v1.sql.txt",
+      "bytes": 1058,
+      "sha256": "5f9c0b86e51a5756456c4d3d0579fe0e03f495984c603e458cabf7a37ca5680c",
+      "gitBlob": "f2ab2ffbaf62d7be6dd97801b8394c715debd822"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_writer_contract_v2__check_fences_v2.sql.txt",
+      "bytes": 1836,
+      "sha256": "9d970c69e837d198aa594ff0fd2f1fae0ad801b266443851e86c299becaf72d0",
+      "gitBlob": "9db0604a43d0eff6cf052b8b54b4fd202856b58f"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_writer_contract_v2__readback_v2.sql.txt",
+      "bytes": 205,
+      "sha256": "5562692039a7ac7cf28a88224100f11d0b6561fd625b0069b488821f52e5c481",
+      "gitBlob": "56f3a90df5c5933842e012873ca55b97542f0640"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_writer_contract_v2__run_v2.sql.txt",
+      "bytes": 6360,
+      "sha256": "99402e98f08b56178bd963abb132241b8f9aca107b6feb96e0f101a908578a3f",
+      "gitBlob": "a2e1068b9ba8e6fcf05be82a726903b8ee2faaae"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/concierge_writer_contract_v2__scope_v2.sql.txt",
+      "bytes": 1879,
+      "sha256": "38c5b1a4058be8a5893eb95f32c8fac856ddf624a57101f2f5ba227e962d96ae",
+      "gitBlob": "a46a9301d5f56e81b2ff9d7b77d2df4cfe68f6d1"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/legacy-operation-switch.sql.txt",
+      "bytes": 8955,
+      "sha256": "6276a28216bfc2c877aa34c7b8183438f774b8a78e34a88a3de771ca5a32d32d",
+      "gitBlob": "da7d023cfc9a332f8621ecad60c37fe107a3184f"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/sources/native17-entry-grants.json",
+      "bytes": 359,
+      "sha256": "1e032eb1a1285f810fac200fe05678468b2545b99b3ec3e52815fed2729f2d5a",
+      "gitBlob": "faaeee5c56a64cdc471240104d7a6d4173381ace"
+    }
+  ],
+  "reusedPackageManifest": {
+    "path": "qa/reviews/security-composition-20261111/PACKAGE-MANIFEST.json",
+    "ref": "8c85ea251cac217fcd61ab820c670e4d5fa14ca4",
+    "sha256": "ca0080c70eea8d6c2aa4631028c54136a261aebd5ad1b46509aca576f2924b5f"
+  },
+  "sourcePins": "../../domain-security-successor-20261111-v1/SOURCE-PINS.json",
+  "evidenceLogHashes": "TEST-EVIDENCE.json",
+  "selfHash": "Git tree of container commit; no circular self hash"
+}

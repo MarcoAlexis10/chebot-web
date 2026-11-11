@@ -1,0 +1,72 @@
+{
+  "candidateId": "CHEVENI_CONCIERGE_BETA_V1_CABA_HELD",
+  "revision": "DOMAIN_SECURITY_SUCCESSOR_20261111",
+  "supersedesQaReview": "security-composition-20261111@8c85ea251cac217fcd61ab820c670e4d5fa14ca4",
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "sourceVersions": {
+    "web": "54391b6dae94dbf824301cdabe1f4c371a8dac3a",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "webProductBase": "8c85ea251cac217fcd61ab820c670e4d5fa14ca4",
+  "webSourceAssemblyCommit": "54391b6dae94dbf824301cdabe1f4c371a8dac3a",
+  "closureVersion": "container commit; exact SHA in final direct link; no self-referential hash",
+  "backendReadOnly": true,
+  "native17ReadOnly": true,
+  "productFilesChanged": false,
+  "buildExecutedThisBatch": false,
+  "deployed": false,
+  "packageManifest": "PACKAGE-MANIFEST.json",
+  "operationMatrix": "OPERATION-MATRIX.json",
+  "roleAbi": "ROLE-ABI.md",
+  "securityContracts": "SECURITY-CONTRACTS.md",
+  "dependencyAbi": "DEPENDENCY-ABI.json",
+  "native17A2": "NATIVE17-A2-DEPENDENCIES.md",
+  "testEvidence": "TEST-EVIDENCE.json",
+  "candidateRoot": "qa/domain-security-successor-20261111-v1",
+  "commercial": {
+    "city": "CABA",
+    "foundingManagers": 1,
+    "properties": 1,
+    "freeTrialDays": 30,
+    "automaticBilling": false,
+    "otherCities": "Che Vení Free",
+    "startDate": null,
+    "enabled": false
+  },
+  "configuredServices": false,
+  "secretFreeFutureInputInventory": {
+    "providerGetClaims": "NOT_CONFIGURED",
+    "privateWriterDriver": "NOT_CONFIGURED",
+    "readbackOnlyDriver": "NOT_CONFIGURED",
+    "currentIncidentResolver": "MISSING_PROTECTED_SUCCESSOR",
+    "journalCustody": "NOT_ACCREDITED",
+    "witnessCustody": "NOT_ACCREDITED",
+    "expectedPrivateIssuer": "https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1",
+    "rootIssuerCompatibility": "BLOCKED_DEV_ROOT_QA_PRIVATE; no token rewriting",
+    "launchControl": "CLOSED; original code guards not environment overrides"
+  },
+  "activationAndReversal": "NEXT-EXECUTION.md; descriptive only, separate explicit authorization required",
+  "claims": {
+    "actualProviderVerified": false,
+    "actualSqlVerified": false,
+    "actualJournalVerified": false,
+    "minimumPrivilegeAccredited": false,
+    "physicalConnectionsAccredited": false,
+    "nativeConcurrencyAccredited": false,
+    "restoredIntegralA2": false,
+    "operationalApproval": false
+  },
+  "reusedEvidence": {
+    "31Administrative": "integral-held-20261111@f2944f76af51b979f8d268ab445460b723adecbd",
+    "66Backend": "same closure; backend 9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "14RunnerRegressions": "same integral closure",
+    "18AdministrativeRegressions": "same integral closure",
+    "17OriginalIntegration67LocalHttps": "same integral closure",
+    "3SessionFeedback": "post-integration-20261111@0e552f4bddec3e5b7de38c1de4e03d833ffb2834",
+    "18PrivateComposition": "security-composition-20261111@8c85ea251cac217fcd61ab820c670e4d5fa14ca4",
+    "historicalSuitesReexecuted": false,
+    "newTransportExchanges": 0
+  }
+}
