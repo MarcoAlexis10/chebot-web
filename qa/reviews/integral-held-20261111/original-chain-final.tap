@@ -1,0 +1,137 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532298]", "childNetns": "net:[4026532225]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": true, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: all nine API URLs occur in the actual generated frontend and select built original handlers
+ok 1 - all nine API URLs occur in the actual generated frontend and select built original handlers
+  ---
+  duration_ms: 287.894072
+  type: 'test'
+  ...
+# Subtest: original routed HTTP session: method precedence, CORS, auth and intent remain HELD
+ok 2 - original routed HTTP session: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 25.739125
+  type: 'test'
+  ...
+# Subtest: original routed HTTP properties: method precedence, CORS, auth and intent remain HELD
+ok 3 - original routed HTTP properties: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 14.099968
+  type: 'test'
+  ...
+# Subtest: original routed HTTP stays: method precedence, CORS, auth and intent remain HELD
+ok 4 - original routed HTTP stays: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 11.52242
+  type: 'test'
+  ...
+# Subtest: original routed HTTP invites/send: method precedence, CORS, auth and intent remain HELD
+ok 5 - original routed HTTP invites/send: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 12.334317
+  type: 'test'
+  ...
+# Subtest: original routed HTTP incidents: method precedence, CORS, auth and intent remain HELD
+ok 6 - original routed HTTP incidents: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 11.37811
+  type: 'test'
+  ...
+# Subtest: original routed HTTP requests: method precedence, CORS, auth and intent remain HELD
+ok 7 - original routed HTTP requests: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 11.117792
+  type: 'test'
+  ...
+# Subtest: original routed HTTP knowledge: method precedence, CORS, auth and intent remain HELD
+ok 8 - original routed HTTP knowledge: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 10.814971
+  type: 'test'
+  ...
+# Subtest: original routed HTTP incidents/state: method precedence, CORS, auth and intent remain HELD
+ok 9 - original routed HTTP incidents/state: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 11.248843
+  type: 'test'
+  ...
+# Subtest: original routed HTTP requests/decision: method precedence, CORS, auth and intent remain HELD
+ok 10 - original routed HTTP requests/decision: method precedence, CORS, auth and intent remain HELD
+  ---
+  duration_ms: 10.303041
+  type: 'test'
+  ...
+# Subtest: actual index.js dispatches canonical signup-request through the original closed handler
+ok 11 - actual index.js dispatches canonical signup-request through the original closed handler
+  ---
+  duration_ms: 9.483943
+  type: 'test'
+  ...
+# Subtest: actual index.js signup-admin rejects auth and both missing/malformed/stable intents before body
+ok 12 - actual index.js signup-admin rejects auth and both missing/malformed/stable intents before body
+  ---
+  duration_ms: 5.973914
+  type: 'test'
+  ...
+# Subtest: real auth verifier and write binding refuse unverified credentials without provider traffic
+ok 13 - real auth verifier and write binding refuse unverified credentials without provider traffic
+  ---
+  duration_ms: 11.744247
+  type: 'test'
+  ...
+# Subtest: generated admin JavaScript consumes the original index.js 503 and conceals private data (Node transport)
+ok 14 - generated admin JavaScript consumes the original index.js 503 and conceals private data (Node transport)
+  ---
+  duration_ms: 9.514049
+  type: 'test'
+  ...
+# Subtest: generated admin synthetic submit persists stable intent before original HTTP, then clears exact HELD receipt
+ok 15 - generated admin synthetic submit persists stable intent before original HTTP, then clears exact HELD receipt
+  ---
+  duration_ms: 6.002027
+  type: 'test'
+  ...
+# Subtest: dropped original HTTP acknowledgement preserves generated admin durable intent and blocks retransmission
+ok 16 - dropped original HTTP acknowledgement preserves generated admin durable intent and blocks retransmission
+  ---
+  duration_ms: 5.394892
+  type: 'test'
+  ...
+# Subtest: Chromium: actual administrative frontend stays concealed when original backend preflight is held
+ok 17 - Chromium: actual administrative frontend stays concealed when original backend preflight is held # SKIP Chromium launch blocked by environment; no browser assertions executed
+  ---
+  duration_ms: 0.213315
+  type: 'test'
+  ...
+# Subtest: Chromium: browser enforces real CORS for every original route; no response rewriting
+ok 18 - Chromium: browser enforces real CORS for every original route; no response rewriting # SKIP Chromium launch blocked by environment; no browser assertions executed
+  ---
+  duration_ms: 0.119893
+  type: 'test'
+  ...
+# Subtest: Chromium: actual dashboard cannot open a private session from a fictional token
+ok 19 - Chromium: actual dashboard cannot open a private session from a fictional token # SKIP Chromium launch blocked by environment; no browser assertions executed
+  ---
+  duration_ms: 0.062705
+  type: 'test'
+  ...
+# Subtest: Chromium: original signup build keeps legal form concealed and emits no signup POST
+ok 20 - Chromium: original signup build keeps legal form concealed and emits no signup POST # SKIP Chromium launch blocked by environment; no browser assertions executed
+  ---
+  duration_ms: 0.128856
+  type: 'test'
+  ...
+# Subtest: no provider, private payload read or successful admission occurred in the complete chain
+ok 21 - no provider, private payload read or successful admission occurred in the complete chain
+  ---
+  duration_ms: 0.145452
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 4
+# todo 0
+# duration_ms 614.438154

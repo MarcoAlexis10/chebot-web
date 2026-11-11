@@ -1,0 +1,145 @@
+TAP version 13
+# Subtest: a denied refresh clears private operator data and any prepared invitation link
+ok 1 - a denied refresh clears private operator data and any prepared invitation link
+  ---
+  duration_ms: 6.737317
+  type: 'test'
+  ...
+# Subtest: a late GET from a replaced tab session cannot reopen the operator view
+ok 2 - a late GET from a replaced tab session cannot reopen the operator view
+  ---
+  duration_ms: 2.375544
+  type: 'test'
+  ...
+# Subtest: an older denied GET cannot overwrite a newer successful access check
+ok 3 - an older denied GET cannot overwrite a newer successful access check
+  ---
+  duration_ms: 3.359525
+  type: 'test'
+  ...
+# Subtest: pagehide clears private data and prevents an in-flight GET from reopening the page
+ok 4 - pagehide clears private data and prevents an in-flight GET from reopening the page
+  ---
+  duration_ms: 1.84075
+  type: 'test'
+  ...
+# Subtest: successful revalidation preserves the one-time link while retaining current access
+ok 5 - successful revalidation preserves the one-time link while retaining current access
+  ---
+  duration_ms: 1.97409
+  type: 'test'
+  ...
+# Subtest: storage session invalidation immediately clears operator data
+ok 6 - storage session invalidation immediately clears operator data
+  ---
+  duration_ms: 1.943585
+  type: 'test'
+  ...
+# Subtest: back-forward restoration requires a new successful access check before showing operator data
+ok 7 - back-forward restoration requires a new successful access check before showing operator data
+  ---
+  duration_ms: 2.268833
+  type: 'test'
+  ...
+# Subtest: successful invitation preparation remains visible after its automatic access refresh
+not ok 8 - successful invitation preparation remains visible after its automatic access refresh
+  ---
+  duration_ms: 4.15369
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:49:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + ''
+    - 'https://fictional-manager.example.invalid/manager/activar/#invite=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'https://fictional-manager.example.invalid/manager/activar/#invite=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+  actual: ''
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/211931cbaa69/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:54:31)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: uncertain mutation conceals private data and blocks a second dispatch
+ok 9 - uncertain mutation conceals private data and blocks a second dispatch
+  ---
+  duration_ms: 3.149208
+  type: 'test'
+  ...
+# Subtest: pre-dispatch authority failure conceals private data: replacement
+ok 10 - pre-dispatch authority failure conceals private data: replacement
+  ---
+  duration_ms: 6.686391
+  type: 'test'
+  ...
+# Subtest: pre-dispatch authority failure conceals private data: storage-failure
+ok 11 - pre-dispatch authority failure conceals private data: storage-failure
+  ---
+  duration_ms: 1.780349
+  type: 'test'
+  ...
+# Subtest: an uncertain mutation invalidates a concurrent GET instead of reopening its private view
+not ok 12 - an uncertain mutation invalidates a concurrent GET instead of reopening its private view
+  ---
+  duration_ms: 2.672912
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:68:1'
+  failureType: 'testCodeFailure'
+  error: 'releaseRead is not a function'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/211931cbaa69/web/qa/security/signup-admin-read-lifecycle-new.test.cjs:74:62)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: console is hidden from search/navigation and relies on backend allowlisting
+ok 13 - console is hidden from search/navigation and relies on backend allowlisting
+  ---
+  duration_ms: 0.747745
+  type: 'test'
+  ...
+# Subtest: invitation issue is explicit and does not send invitations
+ok 14 - invitation issue is explicit and does not send invitations
+  ---
+  duration_ms: 0.289275
+  type: 'test'
+  ...
+# Subtest: screening is a one-time internal decision, not manager provisioning
+ok 15 - screening is a one-time internal decision, not manager provisioning
+  ---
+  duration_ms: 0.227372
+  type: 'test'
+  ...
+# Subtest: owner can close pending follow-up only with confirmation, no automatic provisioning
+ok 16 - owner can close pending follow-up only with confirmation, no automatic provisioning
+  ---
+  duration_ms: 0.13998
+  type: 'test'
+  ...
+# Subtest: requests are rendered using textContent, not injected HTML
+ok 17 - requests are rendered using textContent, not injected HTML
+  ---
+  duration_ms: 1.239024
+  type: 'test'
+  ...
+# Subtest: operator console inline JS compiles cleanly
+ok 18 - operator console inline JS compiles cleanly
+  ---
+  duration_ms: 0.936399
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 16
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 113.616257

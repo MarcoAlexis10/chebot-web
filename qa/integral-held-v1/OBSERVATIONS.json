@@ -1,0 +1,684 @@
+{
+  "sourceClosureBackendFiles": 37,
+  "sourceWebFiles": 14,
+  "indexImported": true,
+  "vercelPlatformExecuted": false,
+  "releaseHeld": true,
+  "browserCases": [],
+  "browserStatus": "BLOCKED_BEFORE_BROWSER_START",
+  "browserError": "Error: browserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /usr/bin/chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-sandbox --disable-dev-shm-usage --no-proxy-server --disable-background-networking --host-resolver-rules=MAP fictional-manager.example.invalid 127.0.0.1, MAP fictional-api.example.invalid 127.0.0.1 --user-data-dir=/tmp/playwright_chromiumdev_profile-SClXvX --remote-debugging-pipe --no-startup-window\n<launched> pid=26\n[pid=26][err] /usr/bin/chromium: 9: [: 5225713664: unexpected operator\n[pid=26][err] [26:26:1111/134148.114631:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n[pid=26][err] [1111/134148.114801:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\nCall log:\n  - <launching> /usr/bin/chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-sandbox --disable-dev-shm-usage --no-proxy-server --disable-background-networking --host-resolver-rules=MAP fictional-manager.example.invalid 127.0.0.1, MAP fictional-api.example.invalid 127.0.0.1 --user-data-dir=/tmp/playwright_chromiumdev_profile-SClXvX --remote-debugging-pipe --no-startup-window\n  - <launched> pid=26\n  - [pid=26][err] /usr/bin/chromium: 9: [: 5225713664: unexpected operator\n  - [pid=26][err] [26:26:1111/134148.114631:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n  - [pid=26][err] [1111/134148.114801:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\n  - [pid=26] <gracefully close start>\n  - [pid=26] <kill>\n  - [pid=26] <will force kill>\n  - [pid=26] <process did exit: exitCode=null, signal=SIGABRT>\n  - [pid=26] starting temporary directories cleanup\n  - [pid=26] finished temporary directories cleanup\n  - [pid=26] <gracefully close end>\n",
+  "adminVmTransport": "NODE_HTTPS_WITHOUT_BROWSER_CORS",
+  "requests": [
+    {
+      "path": "/api/concierge/manager/session",
+      "method": "GET",
+      "destination": "concierge-manager-session.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/session",
+      "method": "POST",
+      "destination": "concierge-manager-session.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/session",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-session.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/session",
+      "method": "PUT",
+      "destination": "concierge-manager-session.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/session",
+      "method": "DELETE",
+      "destination": "concierge-manager-session.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/session",
+      "method": "HEAD",
+      "destination": "concierge-manager-session.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/properties",
+      "method": "GET",
+      "destination": "concierge-manager-properties.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/properties",
+      "method": "POST",
+      "destination": "concierge-manager-properties.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/properties",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-properties.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/properties",
+      "method": "PUT",
+      "destination": "concierge-manager-properties.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/properties",
+      "method": "DELETE",
+      "destination": "concierge-manager-properties.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/properties",
+      "method": "HEAD",
+      "destination": "concierge-manager-properties.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/stays",
+      "method": "GET",
+      "destination": "concierge-manager-stays.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/stays",
+      "method": "POST",
+      "destination": "concierge-manager-stays.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/stays",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-stays.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/stays",
+      "method": "PUT",
+      "destination": "concierge-manager-stays.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/stays",
+      "method": "DELETE",
+      "destination": "concierge-manager-stays.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/stays",
+      "method": "HEAD",
+      "destination": "concierge-manager-stays.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/invites/send",
+      "method": "GET",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 405,
+      "corsOrigin": "https://fictional-manager.example.invalid"
+    },
+    {
+      "path": "/api/concierge/manager/invites/send",
+      "method": "POST",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": "https://fictional-manager.example.invalid"
+    },
+    {
+      "path": "/api/concierge/manager/invites/send",
+      "method": "OPTIONS",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 204,
+      "corsOrigin": "https://fictional-manager.example.invalid"
+    },
+    {
+      "path": "/api/concierge/manager/invites/send",
+      "method": "PUT",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 405,
+      "corsOrigin": "https://fictional-manager.example.invalid"
+    },
+    {
+      "path": "/api/concierge/manager/invites/send",
+      "method": "DELETE",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 405,
+      "corsOrigin": "https://fictional-manager.example.invalid"
+    },
+    {
+      "path": "/api/concierge/manager/invites/send",
+      "method": "HEAD",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 405,
+      "corsOrigin": "https://fictional-manager.example.invalid"
+    },
+    {
+      "path": "/api/concierge/manager/incidents",
+      "method": "GET",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents",
+      "method": "POST",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents",
+      "method": "PUT",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents",
+      "method": "DELETE",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents",
+      "method": "HEAD",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests",
+      "method": "GET",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests",
+      "method": "POST",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests",
+      "method": "PUT",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests",
+      "method": "DELETE",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests",
+      "method": "HEAD",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/knowledge",
+      "method": "GET",
+      "destination": "concierge-manager-knowledge.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/knowledge",
+      "method": "POST",
+      "destination": "concierge-manager-knowledge.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/knowledge",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-knowledge.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/knowledge",
+      "method": "PUT",
+      "destination": "concierge-manager-knowledge.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/knowledge",
+      "method": "DELETE",
+      "destination": "concierge-manager-knowledge.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/knowledge",
+      "method": "HEAD",
+      "destination": "concierge-manager-knowledge.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents/state",
+      "method": "GET",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents/state",
+      "method": "POST",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents/state",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents/state",
+      "method": "PUT",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents/state",
+      "method": "DELETE",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/incidents/state",
+      "method": "HEAD",
+      "destination": "concierge-manager-incidents.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests/decision",
+      "method": "GET",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests/decision",
+      "method": "POST",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests/decision",
+      "method": "OPTIONS",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests/decision",
+      "method": "PUT",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests/decision",
+      "method": "DELETE",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/requests/decision",
+      "method": "HEAD",
+      "destination": "concierge-manager-requests.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-request",
+      "method": "POST",
+      "destination": "index.js",
+      "authHeaderPresent": false,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": "https://chebot-web-git-concierge-manager-web-v1-chebot.vercel.app"
+    },
+    {
+      "path": "/api/concierge/manager/signup-request",
+      "method": "GET",
+      "destination": "index.js",
+      "authHeaderPresent": false,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": "https://chebot-web-git-concierge-manager-web-v1-chebot.vercel.app"
+    },
+    {
+      "path": "/api/concierge/manager/signup-request",
+      "method": "PUT",
+      "destination": "index.js",
+      "authHeaderPresent": false,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": "https://chebot-web-git-concierge-manager-web-v1-chebot.vercel.app"
+    },
+    {
+      "path": "/api/concierge/manager/signup-request",
+      "method": "OPTIONS",
+      "destination": "index.js",
+      "authHeaderPresent": false,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 204,
+      "corsOrigin": "https://chebot-web-git-concierge-manager-web-v1-chebot.vercel.app"
+    },
+    {
+      "path": "/api/concierge/manager/signup-request",
+      "method": "OPTIONS",
+      "destination": "index.js",
+      "authHeaderPresent": false,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 403,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "POST",
+      "destination": "index.js",
+      "authHeaderPresent": false,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "POST",
+      "destination": "index.js",
+      "authHeaderPresent": false,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "POST",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "GET",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "GET",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "POST",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "GET",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": false,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    },
+    {
+      "path": "/api/concierge/manager/signup-admin",
+      "method": "POST",
+      "destination": "index.js",
+      "authHeaderPresent": true,
+      "stableIntentPresent": true,
+      "bodyReads": 0,
+      "status": 503,
+      "corsOrigin": null
+    }
+  ],
+  "providerAttempts": []
+}

@@ -1,0 +1,39 @@
+✔ original administrator UI source is pinned, classifier extracted once (2.0676ms)
+✔ original signup-admin UI: exact 503 held before dispatch (0.178129ms)
+✔ original signup-admin UI: prior admin closed 503 (0.074552ms)
+✔ original signup-admin UI: prior legal 503 (0.047021ms)
+✔ original signup-admin UI: prior unconfigured 503 (0.047982ms)
+✔ original signup-admin UI: prior approval 503 (0.041362ms)
+✔ original signup-admin UI: held with reconciliation required remains unknown (0.253773ms)
+✔ original signup-admin UI: held with recognized old code uses unchanged code classification (0.075014ms)
+✔ original signup-admin UI: held with extra debug field remains unknown (0.090556ms)
+✔ original signup-admin UI: held with reconciliation false extra field remains unknown (0.131037ms)
+✔ original signup-admin UI: held without error remains unknown (0.134183ms)
+✔ original signup-admin UI: held without ok remains unknown (0.041272ms)
+✔ original signup-admin UI: held body says ok true remains unknown (0.126571ms)
+✔ original signup-admin UI: held response 502 remains unknown (0.070817ms)
+✔ original signup-admin UI: held response 500 remains unknown (0.022284ms)
+✔ original signup-admin UI: held response 403 remains unknown (0.133392ms)
+✔ original signup-admin UI: lookalike 503 code remains unknown (0.139ms)
+✔ original signup-admin UI: unknown 503 remains unknown (0.040001ms)
+✔ original signup-admin UI: null body remains unknown (0.028653ms)
+✔ original signup-admin UI: string body remains unknown (0.028373ms)
+✔ original signup-admin UI: array body remains unknown (0.014622ms)
+✔ original signup-admin UI: status 503 with fetch response ok true remains unknown (0.0329ms)
+✔ original signup-admin UI: prior owner denial 403 (0.016445ms)
+✔ original signup-admin UI: prior reviewed conflict 409 (0.014673ms)
+✔ original signup-admin UI: prior input denial 400 (0.013791ms)
+✔ original signup-admin UI: prior unauthorized 401 (0.01353ms)
+✔ original signup-admin UI: unknown 403 remains unknown (0.027472ms)
+✔ original signup-admin UI: unknown 409 remains unknown (0.01357ms)
+✔ original signup-admin UI: reviewed 409 with reconciliation remains unknown (0.014191ms)
+✔ original signup-admin UI: recognized status with ok=true must not clear intent (0.01302ms)
+✔ original signup-admin UI: legacy reviewed denial missing ok retains existing behavior (0.015062ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.231998

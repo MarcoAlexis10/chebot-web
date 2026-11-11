@@ -4,13 +4,13 @@ const payload={ok:true,applications:[{id:'00000001-0000-4000-8000-000000000000',
 const response=(body=payload,status=200)=>({ok:status>=200&&status<300,status,json:async()=>body});
 const settle=async()=>{for(let i=0;i<30;i++)await Promise.resolve();};
 function harness(fetcher){
- let html;vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../../manager-signup-admin-v1.js'),'utf8'),{__dirname:'/fictional',console:{log(){}},require:n=>n==='node:path'?path:n==='./manager-build-config.cjs'?{managerBuildConfig:()=>({apiOrigin:'https://fictional-api.example.invalid'})}:{mkdirSync(){},writeFileSync:(_p,text)=>html=text}});
+ let html;vm.runInNewContext(fs.readFileSync(path.resolve(__dirname,'../../manager-signup-admin-v1.js'),'utf8'),{__dirname:'/fictional',console:{log(){}},require:n=>n==='node:path'?path:n==='./manager-build-config.cjs'?{managerBuildConfig:()=>({apiOrigin:'https://fictional-api.example.invalid',webOrigin:'https://fictional-manager.example.invalid'})}:{mkdirSync(){},writeFileSync:(_p,text)=>html=text}});
  const nodes=new Map(),events=new Map(),storage=new Map([[TOKEN,'FICTIONAL_TOKEN']]),state={storageFails:false};
  const element=()=>({hidden:false,disabled:false,value:'',textContent:'',children:[],listeners:{},addEventListener(k,f){this.listeners[k]=f;},appendChild(x){this.children.push(x);},replaceChildren(...xs){this.children=xs;},querySelectorAll(){return [];},reportValidity(){return true;},reset(){}});
  const node=id=>{if(!nodes.has(id)){const x=element();if(['editor','review','refresh','result'].includes(id))x.hidden=true;nodes.set(id,x);}return nodes.get(id);};
- const context={Date,AbortController,setTimeout:()=>1,clearTimeout(){},sessionStorage:{getItem:k=>{if(state.storageFails)throw Error('FICTIONAL_STORAGE_FAILURE');return storage.get(k)||null;},setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},
+ const context={Date,URL,AbortController,setTimeout:()=>1,clearTimeout(){},sessionStorage:{getItem:k=>{if(state.storageFails)throw Error('FICTIONAL_STORAGE_FAILURE');return storage.get(k)||null;},setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)},
  document:{getElementById:node,createElement:()=>element(),querySelectorAll:()=>[node('issue-button'),node('refresh'),node('copy-link')]},
- window:{confirm:()=>false,alert(){},addEventListener:(k,f)=>{if(!events.has(k))events.set(k,[]);events.get(k).push(f);}},
+ window:{crypto:{randomUUID:()=> '00000000-0000-4000-8000-000000000001'},confirm:()=>false,alert(){},addEventListener:(k,f)=>{if(!events.has(k))events.set(k,[]);events.get(k).push(f);}},
  fetch:(url,options)=>{assert.equal(url,'https://fictional-api.example.invalid/api/concierge/manager/signup-admin');return fetcher(options);}};
  vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
  return {node,storage,state,refresh:()=>node('refresh').listeners.click(),emit:(k,data={})=>{for(const f of events.get(k)||[])f(data);}};
@@ -47,8 +47,8 @@ test('back-forward restoration requires a new successful access check before sho
  h.emit('pagehide');h.emit('pageshow',{persisted:true});assert.equal(h.node('editor').hidden,true);release(response());await settle();assert.equal(h.node('editor').hidden,false);assert.equal(count,2);
 });
 test('successful invitation preparation remains visible after its automatic access refresh',async()=>{
- const link='https://fictional-manager.example.invalid/manager/activar/#invite=FICTIONAL';let posts=0;
- const h=harness(async options=>options.method==='GET'?response():(posts++,response({ok:true,code:'INVITATION_PREPARED_NOT_SENT',url:link},201)));
+ const link='https://fictional-manager.example.invalid/manager/activar/#invite='+'F'.repeat(43);let posts=0;
+ const h=harness(async options=>options.method==='GET'?response():(posts++,response({ok:true,code:'INVITATION_PREPARED_NOT_SENT',invitation_id:'00000000-0000-4000-8000-000000000002',expires_at:'2099-01-01T00:00:00Z',url:link},201)));
  await settle();h.node('invite-email').value='fictional-manager@example.invalid';h.node('issue-confirm').checked=true;
  await h.node('issue-form').listeners.submit({preventDefault(){}});
  assert.equal(posts,1);assert.equal(h.node('prepared-link').textContent,link);assert.equal(h.node('editor').hidden,false);assert.equal(h.node('result').hidden,false);
@@ -70,7 +70,9 @@ test('an uncertain mutation invalidates a concurrent GET instead of reopening it
   if(options.method==='POST')return new Promise((_r,reject)=>rejectWrite=reject);
   return ++count===1?Promise.resolve(response()):new Promise(r=>releaseRead=r);
  });await settle();
- const write=h.node('issue-form').listeners.submit({preventDefault(){}}),read=h.refresh();
+ // A read begun BEFORE the mutation may finish late; new reads during a
+ // pending mutation are deliberately suppressed by the real console.
+ const read=h.refresh(),write=h.node('issue-form').listeners.submit({preventDefault(){}});
  rejectWrite(Error('FICTIONAL_OUTCOME_UNKNOWN'));await write;releaseRead(response());await read;
  assert.equal(h.node('editor').hidden,true);assert.equal(h.node('review').hidden,true);assert.equal(h.node('applications').children.length,0);
 });

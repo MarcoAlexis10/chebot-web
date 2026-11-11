@@ -1,0 +1,31 @@
+{
+  "notCumulativePassCounts": true,
+  "attempts": [
+    {
+      "log": "web-admin-regressions.tap",
+      "sha256": "03c6da0f5f003869849b1ac567fb259462c702baab0d687654cef780b1a1f66e",
+      "bytes": 5685
+    },
+    {
+      "log": "web-admin-regressions-corrected.tap",
+      "sha256": "980dc699d073e8089a62ca72a73bcba5cf99823a494d753d288e89ede0713d0e",
+      "bytes": 5340
+    },
+    {
+      "log": "original-chain-first.tap",
+      "sha256": "811b12ab459a11063c6f372df20bf713106c0b3e235c6c33fb51e3b3df4ad21a",
+      "bytes": 96314
+    },
+    {
+      "log": "original-chain-second.tap",
+      "sha256": "26752046f6c92fc11faf6e209455b13c2f8773849767a1c4bf522dcb41e9e643",
+      "bytes": 5439
+    }
+  ],
+  "notes": [
+    "Initial seven-suite backend execution: 66 passing tests; original runner exit 1 because implicit Node 24 spec reporter did not match TAP parser. Fixed only reporter selection and dependent runner source pin; source/test business pins unchanged.",
+    "Admin read-lifecycle regressions: first 3 failures; after browser fixture additions 2 failures; final 18/18. Fixtures lacked crypto, webOrigin, URL, valid capability metadata; concurrency test must begin GET before pending POST because new reads are correctly suppressed.",
+    "First original-chain attempt: 18 hook failures before test assertions because Chromium could not create ProcessSingleton socket (EPERM). HTTP and blocked browser are now separate outcomes; final 17 PASS, 4 browser SKIP. Not a browser PASS.",
+    "No historical Native17, SQL, database or provider tests executed."
+  ]
+}

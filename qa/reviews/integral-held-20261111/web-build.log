@@ -1,0 +1,14 @@
+
+> chebot-web@1.0.0 build
+> node -e "require('./manager-build-config.cjs').managerBuildConfig()" && node build.js && node manager-auth-v1.js && node manager-knowledge-v1.js && node manager-requests-v1.js && node manager-incidents-v1.js && node manager-request-actions-v1.js && node manager-incident-actions-v1.js && node manager-invite-v1.js && node manager-password-recovery-v1.js && node manager-signup-v1.js && node manager-signup-admin-v1.js
+
+Manager Web auth gate installed.
+Manager Web Knowledge real V1 installed.
+Manager Web Requests real V1 installed.
+Manager Web Incidents real V1 installed.
+Manager Web Request Actions V1 installed.
+Manager Web Incident Actions V1 installed.
+Manager Web Invite V1.1 installed.
+Isolated DEV Manager recovery page generated.
+Private Beta manager registration page prepared (no invitation issued). Legal publication gate: NO_OWNER_LEGAL_PUBLICATION_APPROVAL
+Manager invite operator console generated (access denied by default).
