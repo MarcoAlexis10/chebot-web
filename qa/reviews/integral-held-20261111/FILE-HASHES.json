@@ -1,0 +1,186 @@
+{
+  "algorithm": "SHA256 and Git SHA1 blob",
+  "selfExcluded": true,
+  "files": [
+    {
+      "path": "web/qa/integral-held-v1/README.md",
+      "bytes": 1958,
+      "sha256": "89e27b4d21a9df28b8d22d7c7f2d07b0b29a80de4e91d61366963aef3639dffa",
+      "gitBlob": "4af756badc07098184ca03822e6cb35dcabc481a"
+    },
+    {
+      "path": "web/qa/integral-held-v1/SOURCE-PINS.json",
+      "bytes": 4293,
+      "sha256": "78d844470b91e40b5bdc72305334fa5200f0a0e85341aff26a5585d905b8055d",
+      "gitBlob": "0711387190a2b575f20311396d056f2ef13ca4c9"
+    },
+    {
+      "path": "web/qa/integral-held-v1/original-chain.test.mjs",
+      "bytes": 19945,
+      "sha256": "9677c870c9da17acdf721d68a5989f8234e81fcec05ff07e9e791db98a21442b",
+      "gitBlob": "1643676dd5b07bcfbfb59877507eef0343c82144"
+    },
+    {
+      "path": "web/qa/integral-held-v1/OBSERVATIONS.json",
+      "bytes": 23860,
+      "sha256": "8a4c87189124d17b50eba8cbf88b60c46c9d807f4ea04feb601fce1a1feec411",
+      "gitBlob": "5387469ad584e96a9d0356d7b0fdf94db70d93cd"
+    },
+    {
+      "path": "web/qa/integral-held-v1/run-isolated.py",
+      "bytes": 3015,
+      "sha256": "b5c84acdbf77d6cd569785dbcb3315afbe918f3afcea8344686ed7226924f29e",
+      "gitBlob": "c4ba8d2d91c6bc63902b1f63079281ec0464ac4f"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/CONTRACT-MATRIX.json",
+      "bytes": 5299,
+      "sha256": "ac2cd69ff4b1668e5fbeea047e800f9a3ea1f027ee72191c2545e6ee314b9530",
+      "gitBlob": "b8f2fb8a752ce028351140636e1e0588f1c1954f"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/CHECKLIST.md",
+      "bytes": 4965,
+      "sha256": "656507e877aafda257303fbd61cccbd685ab8de04a6bc85fcc01d11387a839c1",
+      "gitBlob": "a683cf4f7b62343d4febd30941c12ba8f85bcbdb"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/MIGRATION-INVENTORY.json",
+      "bytes": 89050,
+      "sha256": "9f9a5e6860f1aaf83b72a478e77cf438caec3c64d3f6d00aa4f244cff7cc4c13",
+      "gitBlob": "6380e69ab572d88adaf6473a1315458501c7ca95"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/TEST-EVIDENCE.json",
+      "bytes": 3267,
+      "sha256": "935895b2a8ad0ead50d124e706649202b9667a044a13e9cb2400687dcccfa980",
+      "gitBlob": "d308e485e452f41d5d84e89fbe8d464395926f1d"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/web-admin-regressions-corrected.tap",
+      "bytes": 5340,
+      "sha256": "980dc699d073e8089a62ca72a73bcba5cf99823a494d753d288e89ede0713d0e",
+      "gitBlob": "21a7c57a0621fce54fb7e12a5dd9a17ffdb40615"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/web-signup-node.tap",
+      "bytes": 2536,
+      "sha256": "6c0e8ad953d19528845bdcfdf0fc9e9a99cb231d98f294617899212e51b73939",
+      "gitBlob": "3b3fbce3797659d9abbb7c78811cdffdc1737f4c"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/RELEASE-CANDIDATE.json",
+      "bytes": 2469,
+      "sha256": "8918d96484add35efffdd97abd054af73739241e6d5dc587fdd889caae01cfb2",
+      "gitBlob": "3e3c7acd126ab23dddf71a1b1fc7648296ab61f2"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/generated-syntax.log",
+      "bytes": 624,
+      "sha256": "575cd1c7b931f964d12757352401cc0b274624f3093d85ffb8ca170ba0226683",
+      "gitBlob": "2dd1b989fcd97c1b332d44f3445e576add7e1573"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/web-admin-regressions.tap",
+      "bytes": 5685,
+      "sha256": "03c6da0f5f003869849b1ac567fb259462c702baab0d687654cef780b1a1f66e",
+      "gitBlob": "18d5c34ea89e68aa5d4e1e5e4cd5a9c82485f0df"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/original-chain-final.tap",
+      "bytes": 6287,
+      "sha256": "80d51c521ee37c520ab4bc23d4b7e62a79e3c734a5a960e008463aeea1c437bb",
+      "gitBlob": "874f424eddc39461d036326e5df6248535cbcb88"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/CHECKOUT-VERIFICATION.json",
+      "bytes": 854,
+      "sha256": "6e6073a9488880023f8f828718a26a2353aa096af74b2109077aa43eed5c2a16",
+      "gitBlob": "b411eadc6cf65b142fcaac240e9edd05b89996bf"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/ACTIONS-EVENT.json",
+      "bytes": 745,
+      "sha256": "e34b2b9e2eb104a8d6e6146cba78418e73b83228454e3c8dba9f2c7acd16df3e",
+      "gitBlob": "13f5c18ed5fb5458819ad16d9c2ad111da9da451"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/BUILD-OUTPUTS.json",
+      "bytes": 5217,
+      "sha256": "c4794cdf4389c41a2123a086b311acbd1121c816ab06082f69cf1585a57020f6",
+      "gitBlob": "ade8d317c20c75fc851bbde496b25e672aefeab8"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/CLOSURE.md",
+      "bytes": 12199,
+      "sha256": "b79e5de7647b7e36021e97106eb8fde7d22f3ff08138b9f658f1e78d8a04fabf",
+      "gitBlob": "1aedc734c1c1965ea3d2addab4d2a81d290aab65"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/web-admin-regressions-final.tap",
+      "bytes": 3988,
+      "sha256": "31db77dc475f35718369ecc5c2e6ab84dbd50a0f3c4b3d9e828fc53fe39b8ea4",
+      "gitBlob": "8ad7dcc647a84ad7cba0fee885b0f43e0d233d57"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/WORKFLOW-REVIEW.json",
+      "bytes": 4713,
+      "sha256": "09dd7c0ee9895522f4e7e9bbad74a9867fc300b62a9f0585b3f59e0f55a2c49e",
+      "gitBlob": "88dd86890d16a9412fa32fbc46802426c1c0157b"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/FAILURE-HISTORY.json",
+      "bytes": 1669,
+      "sha256": "43e4ccf61ec001698a2b2724a276aa059e6db4c30527cdc129c42407ab7b44cd",
+      "gitBlob": "b95fa168b781b252a418a5c59105c60fff5cb96e"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/web-build.log",
+      "bytes": 970,
+      "sha256": "c9267edf34044092d89b39a33670567dc5dd7c95502b28389963c5176920d1ee",
+      "gitBlob": "9bbf56600fc5027ae818fcc3d0c1009e882f9182"
+    },
+    {
+      "path": "web/qa/reviews/integral-held-20261111/ENVIRONMENT-REFERENCE.json",
+      "bytes": 2413,
+      "sha256": "f205a9160a4456130b27f17bdd5d5bead3f4f1396787280cc1786805553c276c",
+      "gitBlob": "1d26a767a3a0e79040530a7eceb3a3bf7d57a123"
+    },
+    {
+      "path": "backend/qa/reviews/integral-held-20261111/backend-runner-guards.tap",
+      "bytes": 2656,
+      "sha256": "1e9ee3c1ed299ab3a48a971734c2c0f794184e8d4d7669d1c628f942a4968efe",
+      "gitBlob": "49658c0ab63cffe6a63440017993f9091726f53c"
+    },
+    {
+      "path": "backend/qa/reviews/integral-held-20261111/backend-held-batch-original-reporter.log",
+      "bytes": 6282,
+      "sha256": "58d7ca8ce46665c4fe38869f31d05b885b99e0bda324a93adb0d607a04c91810",
+      "gitBlob": "e0277fcb3c2437a71505564cb41b0910e44357d8"
+    },
+    {
+      "path": "backend/qa/reviews/integral-held-20261111/backend-held-batch.tap",
+      "bytes": 14176,
+      "sha256": "844de0fb2a415a020e2407d31f273840770d5e72945f989fd831991d72d92dba",
+      "gitBlob": "b9c4f8d6429806de0c50487bee0749b30ccde0f8"
+    },
+    {
+      "path": "web/qa/security/signup-admin-read-lifecycle-new.test.cjs",
+      "bytes": 8354,
+      "sha256": "b130acbe8fbb8c18d4c326456fa487b9fdebbee4714063c89fbaf2a1c08a9b3b",
+      "gitBlob": "7d51c00e1dbca1b3d79691f08ba3583473456892"
+    },
+    {
+      "path": "backend/qa/cheveni-manager-held-qa-successors-v1/run-held-batch.mjs",
+      "bytes": 7312,
+      "sha256": "fe5d4d42b66c625f416cb21167c637cd1380c69401af1cddaeae6acc7f9f5b87",
+      "gitBlob": "015a818fe6b9ccd40f554d71cbc85affeebb432a"
+    },
+    {
+      "path": "backend/qa/cheveni-manager-held-qa-successors-v1/run-held-batch.guard.test.mjs",
+      "bytes": 4246,
+      "sha256": "850a17e8dba396f9d731f23985ad1400f659f296fda6ddfd7fbed846c0d17470",
+      "gitBlob": "6d939c79b001e2ac2b11c5b52260f3b938917c59"
+    }
+  ]
+}

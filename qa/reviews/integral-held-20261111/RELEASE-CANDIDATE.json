@@ -1,0 +1,91 @@
+{
+  "schema": "CHEVENI_OFFLINE_HELD_ASSEMBLY_V1",
+  "date": "2026-11-11",
+  "betaDecision": "NO-GO",
+  "deployable": false,
+  "mayActivate": false,
+  "versions": {
+    "web": {
+      "repo": "MarcoAlexis10/chebot-web",
+      "branch": "qa/cheveni-integral-held-20261111",
+      "testedCodeCommit": "f79d5543ac69469dbcf44b1e76f422cd86a49e00",
+      "tree": "0b04173eff50834c177b47e26f6dd274b2e97c9d",
+      "base": "c8fe4939a9901cbd5774ed9a7d4fab0157b2e470"
+    },
+    "backend": {
+      "repo": "MarcoAlexis10/chebot-backend",
+      "branch": "qa/cheveni-integral-held-20261111",
+      "testedCodeCommit": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "tree": "37cfa938ca70911113bac57b4d3882470cf67bde",
+      "base": "569612e82c54f8f0bec5bd42e3a2aca47c70cb13"
+    },
+    "native17": {
+      "repo": "MarcoAlexis10/cheveni-qa-lab",
+      "referenceCommit": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "status": "PARTIAL / UNAUTHORIZED / PRE-FLIGHT NO-GO",
+      "executed": false
+    }
+  },
+  "runtime": {
+    "node": "v24.22.1",
+    "kernelNetworkNamespace": true,
+    "providerCalls": 0,
+    "originalHttpsRequests": 67,
+    "privateBodyReads": 0
+  },
+  "checks": {
+    "signupNode": {
+      "pass": 31,
+      "fail": 0,
+      "skip": 0
+    },
+    "sevenSuiteBackendBatch": {
+      "pass": 66,
+      "fail": 0,
+      "skip": 0
+    },
+    "runnerGuardRegressions": {
+      "pass": 14,
+      "fail": 0,
+      "skip": 0
+    },
+    "adminRegressions": {
+      "pass": 18,
+      "fail": 0,
+      "skip": 0
+    },
+    "jointOriginalChain": {
+      "pass": 17,
+      "fail": 0,
+      "skip": 4,
+      "browserAssertionsExecuted": false
+    }
+  },
+  "finalPassCountsNotCumulativeAcrossAttempts": true,
+  "selectedMigrationBundle": null,
+  "sqlExecuted": false,
+  "references": {
+    "sourcePins": "../../integral-held-v1/SOURCE-PINS.json",
+    "migrationInventory": "MIGRATION-INVENTORY.json",
+    "generatedBuildHashes": "BUILD-OUTPUTS.json",
+    "contractMatrix": "CONTRACT-MATRIX.json",
+    "failureHistory": "FAILURE-HISTORY.json"
+  },
+  "scope": {
+    "city": "CABA",
+    "foundingManagers": 1,
+    "properties": 1,
+    "trialDays": 30,
+    "automaticCharge": false,
+    "outsideConcierge": "Che Ven\u00ed Free"
+  },
+  "actions": {
+    "manualDispatch": false,
+    "automaticCreateEvent": "43030384144",
+    "conclusion": "skipped",
+    "runnerAssigned": false,
+    "stepsExecuted": 0,
+    "nativeSqlExecuted": false,
+    "evidence": "ACTIONS-EVENT.json"
+  }
+}

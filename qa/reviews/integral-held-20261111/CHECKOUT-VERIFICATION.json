@@ -1,0 +1,29 @@
+{
+  "web": {
+    "originalFiles": 243,
+    "unchangedVerified": 242,
+    "changes": [
+      {
+        "path": "qa/security/signup-admin-read-lifecycle-new.test.cjs",
+        "before": "c197e8d0c47b9c217f52492246c49c164b58b3a4",
+        "after": "7d51c00e1dbca1b3d79691f08ba3583473456892"
+      }
+    ]
+  },
+  "backend": {
+    "originalFiles": 2076,
+    "unchangedVerified": 2074,
+    "changes": [
+      {
+        "path": "qa/cheveni-manager-held-qa-successors-v1/run-held-batch.guard.test.mjs",
+        "before": "4660b3ae2152e0ec3310917de4b5e8a08d82bf9f",
+        "after": "6d939c79b001e2ac2b11c5b52260f3b938917c59"
+      },
+      {
+        "path": "qa/cheveni-manager-held-qa-successors-v1/run-held-batch.mjs",
+        "before": "719af748cf519f32112334e71be9e02fd4a357fd",
+        "after": "015a818fe6b9ccd40f554d71cbc85affeebb432a"
+      }
+    ]
+  }
+}

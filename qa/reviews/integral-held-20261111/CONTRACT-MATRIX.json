@@ -1,0 +1,204 @@
+{
+  "routeInterpreter": "Local interpretation of original vercel.json, NOT Vercel runtime",
+  "routes": [
+    {
+      "path": "/api/concierge/manager/session",
+      "frontendMethodsFromSource": [
+        "GET"
+      ],
+      "destination": "concierge-manager-session.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/properties",
+      "frontendMethodsFromSource": [
+        "GET"
+      ],
+      "destination": "concierge-manager-properties.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/stays",
+      "frontendMethodsFromSource": [
+        "GET"
+      ],
+      "destination": "concierge-manager-stays.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/invites/send",
+      "frontendMethodsFromSource": [
+        "POST"
+      ],
+      "destination": "index.js",
+      "observedMethods": {
+        "GET": 405,
+        "POST": 503,
+        "OPTIONS": 204,
+        "PUT": 405,
+        "DELETE": 405,
+        "HEAD": 405
+      },
+      "corsOriginHeader": "https://fictional-manager.example.invalid",
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/incidents",
+      "frontendMethodsFromSource": [
+        "GET"
+      ],
+      "destination": "concierge-manager-incidents.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/requests",
+      "frontendMethodsFromSource": [
+        "GET"
+      ],
+      "destination": "concierge-manager-requests.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/knowledge",
+      "frontendMethodsFromSource": [
+        "GET",
+        "POST"
+      ],
+      "destination": "concierge-manager-knowledge.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/incidents/state",
+      "frontendMethodsFromSource": [
+        "POST"
+      ],
+      "destination": "concierge-manager-incidents.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    },
+    {
+      "path": "/api/concierge/manager/requests/decision",
+      "frontendMethodsFromSource": [
+        "POST"
+      ],
+      "destination": "concierge-manager-requests.js",
+      "observedMethods": {
+        "GET": 503,
+        "POST": 503,
+        "OPTIONS": 503,
+        "PUT": 503,
+        "DELETE": 503,
+        "HEAD": 503
+      },
+      "corsOriginHeader": null,
+      "bodyReads": 0,
+      "activeAuthVerified": false,
+      "sqlIdempotencyVerified": false,
+      "browserCorsVerified": false
+    }
+  ],
+  "signupRequest": {
+    "canonicalPath": "/api/concierge/manager/signup-request",
+    "destination": "index.js",
+    "indexActuallyImportedAndInvoked": true,
+    "previewPreflightCanonicalOrigin": 204,
+    "previewPreflightFictionalBuildOrigin": 403,
+    "postStatus": 503,
+    "legalAdmission": "CLOSED"
+  },
+  "signupAdmin": {
+    "destination": "index.js",
+    "status": 503,
+    "corsOriginHeader": null,
+    "actualGeneratedJsOnNodeTransport": true,
+    "durableIntentPersistedBeforeDispatch": true,
+    "exactHoldClearsIntent": true,
+    "lostReceiptPreservesIntentAndBlocksRetransmit": true
+  }
+}

@@ -1,0 +1,2178 @@
+{
+  "purpose": "Inventory only, NOT an installation order or approved release migration set",
+  "selectedMigrationBundle": null,
+  "native17": "UNAUTHORIZED / PRE-FLIGHT NO-GO",
+  "sqlExecuted": false,
+  "files": [
+    {
+      "repo": "chebot-backend",
+      "path": "05-PREFLIGHT-SOLO-LECTURA.sql",
+      "gitBlob": "bb327766342bf06f52e0b7bc1d8002bebb09ffef",
+      "sha256": "e3d2256da9f85edfb4aac10a095e4bddf144f65cd8e12e8ee2ac5e19b51f5663",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "100-VERIFY-12-OPERATIONAL-ACCESS.sql",
+      "gitBlob": "9c8a245ad82ffc0850cadaa66fbfb4ff2382329a",
+      "sha256": "1f376130400f23511061ba227b3f44662f921e32aaccf2bd81bc88f2a06d5478",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "101-SMOKE-TEST-12-OPERATIONAL-ACCESS-ROLLBACK.sql",
+      "gitBlob": "9ca3c1ccfb8b6bbc19df5f5f2be56f9330c398d9",
+      "sha256": "8dcae67424bfb755fad9c7420f5daca905e4e3e87f238c5db8bb91bc91934aa6",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "102-NEGATIVE-TEST-12-BEFORE-WINDOW-ROLLBACK.sql",
+      "gitBlob": "e59f41c484c16ef9c04865cd2f43ec3f3e267053",
+      "sha256": "5baf9d283d3ebc964b74998b4942d5d89121c99e6cbd7d6f45d9a848556a377e",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "103-NEGATIVE-TEST-12-NO-AUTHORIZATION-ROLLBACK.sql",
+      "gitBlob": "728f81417062b9049828a0060f3a44fdcaab57ba",
+      "sha256": "7c2922f8160fd094494c98a16fa8bce0ec9bd3e85c6e4f6acef1c0a390221a5b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "103-NEGATIVE-TEST-12-UNASSIGNED-ACCESS-POINT-ROLLBACK.sql",
+      "gitBlob": "8070eae1448fa359df8c798f2d7ec9672849ff8d",
+      "sha256": "45c9147168be6e71793d7abb54c7281db91862cd221260ab69e07651f238d6f9",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "104-NEGATIVE-TEST-12-REVOKED-TASK-ROLLBACK.sql",
+      "gitBlob": "87806febb5de6ee88740ea48ef9445e1180034b8",
+      "sha256": "2ca8e972d0b10aa19435dd132f3a5fa722d569e6967325e74212596d4b9d3934",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "105-NEGATIVE-TEST-12-CO-MANAGER-PERMISSION.sql",
+      "gitBlob": "dc5764d565a42cef51f70d89920060b2d820ce14",
+      "sha256": "ddc42825dd91e88a14ab2bdaef0ab74ba4c832dd937492a422068963dad4f338",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "107-MIGRACION-13-SESSION-ROUTING.sql",
+      "gitBlob": "c3958cd5f1f80c76d5bf60379b0603ed29b82396",
+      "sha256": "f4333a1af250880789c0a4f016606a843defa396edea457ac465797f71b5c1e7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "108-ROLLBACK-13-SESSION-ROUTING.sql",
+      "gitBlob": "2049690d76ca5aef92dac49480d938b2a60e962d",
+      "sha256": "a7e61d3736204dfc80094ab9631e87a948a0eadd73a1a76a75177a51903c35ae",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "109-VERIFY-13-SESSION-ROUTING.sql",
+      "gitBlob": "512c48832d6bbd0ec259a092735eafa060620f54",
+      "sha256": "26f53dd0f1817ccbab5f6fd9f38fb1646abfb515a196e7d812f964a798681f4b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "110-SMOKE-TEST-13-SESSION-ROUTING-ROLLBACK.sql",
+      "gitBlob": "16212398f63780e205680e1b0cf629a2df51c29b",
+      "sha256": "5c0b20dabff7b38d82cdbadf0493153b658eaee47870cf79e6cf4b44c88bbc83",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "111-NEGATIVE-TEST-13-AMBIGUOUS-CONTEXT-ROLLBACK.sql",
+      "gitBlob": "7c30b7bd5ba8a8e85aa8febc8182b0184db637bd",
+      "sha256": "16956bc993668a9edcf028f60594fc5241e27aa43e151e4dfd14e847a00f752f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "112-TEST-13-CHECKOUT-TO-FREE-ROLLBACK.sql",
+      "gitBlob": "8aad4fb9cb6ae2ade348beb64ad7b1b97de1d6ce",
+      "sha256": "e391a17158d631be362012c98591815449f6f2fbb214579ce956153ad2b29a9b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "113-TEST-13-ENTRY-LINK-NO-AUTHORITY-ROLLBACK.sql",
+      "gitBlob": "db188244057794ea7a40fa31ff391263c3451461",
+      "sha256": "b5e2f65a69cebd133d34ba43ee2b960a9fe930edd7f138cf5de6e08b6fbb331f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "114-NEGATIVE-TEST-13-INACTIVE-ACTORS-ROLLBACK.sql",
+      "gitBlob": "995b91bc0485b51d69aa1909239000534aa52a6d",
+      "sha256": "ca2c1c4b5a97103d0b0bfa473cfbe8d663650632bb5294b3ffd6743b3f8e93cd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "116-PREFLIGHT-14-ANALYTICS-BETA.sql",
+      "gitBlob": "64ad2723e1ea27a3728ebc67b9b8443b1d443b16",
+      "sha256": "2d81b545184a99e54409acbd112bf26e5bde4f5148db93522f112af12951d161",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "117-MIGRACION-14-ANALYTICS-BETA.sql",
+      "gitBlob": "5608e2aef587f5f719ff281573f9f30b3a0c42e8",
+      "sha256": "c979bc9b47b3d81300d050a2117cd4e9231caaa627d5328040a8b7377a81ad04",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "118-ROLLBACK-14-ANALYTICS-BETA.sql",
+      "gitBlob": "4fdb6266582447164dddd6ca0e425eb1e5297154",
+      "sha256": "e8fa7fdefcf75e76e8b518c07f2c89e2b5192ae3a47d862a779c88a881ab742a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "119-VERIFY-14-ANALYTICS-BETA.sql",
+      "gitBlob": "d272a59ed4746d58b90db4055da6025c4409be99",
+      "sha256": "8d87680ab6d620b8c67cdc7bc94e9ffae8d73553c5df2205cac1a7e41ad1b040",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "120-SMOKE-TEST-14-ANALYTICS-BETA-ROLLBACK.sql",
+      "gitBlob": "2f4f2c31cea50cb9a4b83109aab51e7849c97837",
+      "sha256": "807d88854bdbd5d661cbd9170d19424d50f9ca2168c733f12c9b145aaf7aac6f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "121-NEGATIVE-TEST-14-TRIVIAL-EVENT-ROLLBACK.sql",
+      "gitBlob": "e7b0eb834b1b56a1644f4002280366f53182c228",
+      "sha256": "66d6ea5c6f3d4e5f4b8bb403bb4fca95c578a4ba50af2c5617b1df9528a9a259",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "122-NEGATIVE-TEST-14-CROSS-TENANT-ROLLBACK.sql",
+      "gitBlob": "a15713faa422ca96c2bb72499e493952940daf33",
+      "sha256": "fa1ecbcf46c4dd7799ddf747c88498eca29471848e2cd5650997fd2d8634b71c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "123-NEGATIVE-TEST-14-APPEND-ONLY-ROLLBACK.sql",
+      "gitBlob": "f6af83f4e53bc8247bdf9bd60d0236bc8e938dcb",
+      "sha256": "635bc6cdc58220981fe7b70d8d41be806f5c548e8528ddc6175b2eb66bf94af6",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "124-NEGATIVE-TEST-14-INTERVENTION-GUARD-ROLLBACK.sql",
+      "gitBlob": "19b6574234b0fd9be2d6598cd5ec2bb55545c6af",
+      "sha256": "e5fa6c320edff860f7bf888678a88d817ec67854cb67db213b726f5a29ac19cd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "126-PREFLIGHT-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "gitBlob": "dae930b56b52b20360a235c76be16fad50718921",
+      "sha256": "87826e9602c5a58443435bad1b7483a98ebe53e5fb337843e21e7bc0c3b21d89",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "gitBlob": "7c7ee0ece4c227a8fedfac68dc0b3eebf31e3e70",
+      "sha256": "9cb2a51043483a38d2d337888b01299e39aac8ffe193544dd837e1c1689f1fa3",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "128-ROLLBACK-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "gitBlob": "1475458233c99fe1f4404a9e3e4228dbcad288bd",
+      "sha256": "51aaeaed06408780812b3eb427f6835c0fdca9ac1d430c74523c12d9715c4571",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "129-VERIFY-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "gitBlob": "ea88eb972ea300b7365a652d7214ae15addac356",
+      "sha256": "04281b4d7dc218fea184fe941623048048365c14a27b7bb97524d895187ff5eb",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "130-SMOKE-TEST-15-TENANT-GUARD-ROLLBACK.sql",
+      "gitBlob": "d1b6032b50f1400c5607994f056517c519ad6ca4",
+      "sha256": "e6e451e6aa48d495b5370b056b06095bc5c0b43050d3597542e508211e4ead81",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "131-NEGATIVE-TEST-15-CO-MANAGER-UNASSIGNED-ROLLBACK.sql",
+      "gitBlob": "7cd3114d97d56d0b6e715f2fb42e01663f8ae7f1",
+      "sha256": "a8e14846163e947e69f44f301a9d75f6c9f20764ad504a25d50e102cbfbf4268",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "132-NEGATIVE-TEST-15-INACTIVE-MEMBER-ROLLBACK.sql",
+      "gitBlob": "55f39854e7abcfc88c05da6c806e2188a63f4964",
+      "sha256": "65b139ca1499f51ef34cfed9b4bfd5d19e2d4a7d8f8cb364a0effa8be1ecfcaf",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "134-PATCH-NOTIFICATION-ACCESS-GRACE.sql",
+      "gitBlob": "20da1e8e998a3df301afb18b12d5ddb84f956e5f",
+      "sha256": "844ebbd0800fad9911cf6f4c5e70f4c629aa394c9fadc420bf1883428f6a5bb3",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "135-ROLLBACK-NOTIFICATION-ACCESS-GRACE.sql",
+      "gitBlob": "1604be76df8af9d9c1bb9ac0b290e8538bcfd4df",
+      "sha256": "3613b289513e6f762bb6da6d808e133abbf1825849a56304354af501bc34b5b2",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "136-VERIFY-NOTIFICATION-ACCESS-GRACE.sql",
+      "gitBlob": "003460e5981efb3ca568565da329c17dfe611908",
+      "sha256": "744222288027c9a1e7dbc34769a088987c3620442bbf7ccd870a1aa7a7428b25",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "137-PATCH-NOTIFICATION-RETRY-CLAIM-GUARDS.sql",
+      "gitBlob": "e7cfb4345d71b7bfe165b48337c0b5dad5b9cadc",
+      "sha256": "f04cd937b5185786b0d2be3036f45d39808ec830539fb8cb223a8860adbcf32a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "138-VERIFY-NOTIFICATION-RETRY-CLAIM-GUARDS-READONLY.sql",
+      "gitBlob": "28db656cd7933bde3373dd099c3dc61db2cfa139",
+      "sha256": "bda8ddfc802c68d590ab79b11a986f9d638798108e72686d8e08be942eaf5791",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "139-VERIFY-NOTIFICATION-CLAIM-ISOLATED-TEMP-DEV.sql",
+      "gitBlob": "766a2ac8ae9797bdad94a16f5d0aab7679004da0",
+      "sha256": "dfec83458c015a42d50856417258e08c83c8dcbc973d3e32abd6eeee85f08c26",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "140-MIGRATION-WHATSAPP-INBOUND-IDEMPOTENCY-DEV.sql",
+      "gitBlob": "a2b362692fb19f8328b6c8366eb919915f717bf8",
+      "sha256": "5107806fedd91d60761780204c114110d00d76f629d2693fb0418e61ba67224a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "141-VERIFY-WHATSAPP-INBOUND-IDEMPOTENCY-ROLLBACK-DEV.sql",
+      "gitBlob": "cc0d5b8189bade92cf9bd9b5ab3bdb4a484c3bfa",
+      "sha256": "e19ef3542e2c4e49d1667f1db3bfd490a0560e57c3105d9bc1d51e1dcd014d1e",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "142-PATCH-REQUEST-EARLY-LATE-STAY-TIMES-DEV.sql",
+      "gitBlob": "ee30510e38d16663f30bc24f04188037e2da5422",
+      "sha256": "f820e112c74bc614cd98f904cc4deac956714a8003dbec84289cc2666c7f7800",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "143-RECONCILE-QA-EARLY-CHECKIN-STAY-TIME-DEV.sql",
+      "gitBlob": "5d4a24123b43fdd494044996c1477ab0bdb50ac2",
+      "sha256": "4a32b8a7d7e9578efd8d98d3b574b122f1944a872d551c892959dfa3928fad63",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "144-NEGATIVE-TEST-GATE4-PROPERTY-AND-EXPIRED-ROLLBACK-DEV.sql",
+      "gitBlob": "bff95d67d82f5cb982f5499916b6f8a24c441c5a",
+      "sha256": "c3d4759e43794a09217946f45b1c8e944db1e3560cb9aa5815e7b04a2eb657d5",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "145-PATCH-EXPLICIT-MANAGER-INCIDENT-INTAKE-DEV.sql",
+      "gitBlob": "b3b3b757af7b3d747a98db61537ce02c57a9d55a",
+      "sha256": "9a8c10d188b11d0de47a6fa1eed27cb6b27401733301a4b1aad8436a6a8b8acf",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "146-VERIFY-EXPLICIT-MANAGER-INTAKE-ROLLBACK-DEV.sql",
+      "gitBlob": "9a4ce26cb02d0503a6b0dc960082d5105e0a0551",
+      "sha256": "369aa5454614cce8ffbfda9f744d1f3e0e203e30f2b36694776cd203653964c6",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "147-VERIFY-NOTIFICATION-STATUS-CALLBACKS-ROLLBACK-DEV.sql",
+      "gitBlob": "606b23a4dbb07564c06b92ab6fefa6fe5d25306e",
+      "sha256": "bae73472932803ae463671db826e099a10f020ef73c6502b885ceda4b8203682",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "148-PATCH-EARLY-META-NOTIFICATION-CALLBACK-BUFFER-DEV.sql",
+      "gitBlob": "064e00f7727c7de680356529c8976112b2dfccb9",
+      "sha256": "750c74e3bb9c203fad7b269e40e45e9da182efa2b0f94d6e41d66ba29cad7fc2",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "149-VERIFY-EARLY-META-CALLBACK-BUFFER-ROLLBACK-DEV.sql",
+      "gitBlob": "c6711457a97ad9f13605f9ddc036c07dfd1aea95",
+      "sha256": "40b415484f9e1c3556b3fd4b02682e8af2e9990c7c060e089ad13885b1aa4fe8",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "150-ROLLBACK-EARLY-META-CALLBACK-BUFFER-DEV-DO-NOT-RUN.sql",
+      "gitBlob": "9543864dd3a45156a12873061938a7c29e99b517",
+      "sha256": "be0ca0a4aa958715da51aea68aef955ea6650a8ddb31d1c0678b50110b530bc0",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "151-PATCH-EARLY-META-CALLBACK-EXPIRY-DEV.sql",
+      "gitBlob": "2df4936aa4764a143b353f362f4ea5a450fed334",
+      "sha256": "edd260ad62c83a440b8cb5edf95e60a3b752d88806b3eba3150ffb24a276b77d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "152-VERIFY-EARLY-META-CALLBACK-EXPIRY-ROLLBACK-DEV.sql",
+      "gitBlob": "a67fa597dcabd6061c269c4669db29c996024404",
+      "sha256": "786d36bbb7d45594c291e5168feaa8434c85ef5f7b3c299e54b827134af628c5",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "153-PATCH-INCIDENT-GUEST-RESOLUTION-IDEMPOTENCY-DEV.sql",
+      "gitBlob": "fefb432cfd155ec392640fc0450abcccc1eb8b37",
+      "sha256": "872d85ca51c9c9510a0f5cdc38e7ff6ef58cd53f25d7e9bc6168991a0e7a2283",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "154-VERIFY-INCIDENT-RESOLUTION-IDEMPOTENCY-ROLLBACK-DEV.sql",
+      "gitBlob": "4295c9e31a835090449c729355f5e70a9df8b37f",
+      "sha256": "eedb1543ade35ef636b3b254c14b7cd81429af1b8a47f0c4d8da6d82d4738c84",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "155-VERIFY-REAL-CHECKOUT-TO-FREE-ROLLBACK-DEV.sql",
+      "gitBlob": "d1e634f98df387f74fa1235a730e95e3f3bb0c54",
+      "sha256": "ddf9e86b00ed6705fd4a7c7e2564c99aa35b57de8087ac895174b572b9b8661f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "156-VERIFY-MANAGER-PROPERTY-PERMISSIONS-ROLLBACK-DEV.sql",
+      "gitBlob": "833b84668604553e4883138681cb96a825918254",
+      "sha256": "d8273aef23236fbf88944c212ec9b6de64ca25bea57ececda3e1e36dd8c27cfa",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "157-VERIFY-COMPANION-INVITE-ACTIVATION-ROLLBACK-DEV.sql",
+      "gitBlob": "0405d78562d1145da84b08d396b021fdf878cf5e",
+      "sha256": "8e79266e10183997bd97cc9e76aa4b19fbe1e5c9d9a616ee18d93bbeee7200f9",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "158-VERIFY-PENDING-ACTION-REVOKED-ACTOR-ROLLBACK-DEV.sql",
+      "gitBlob": "b2c01e97bf76dc40c7866375ae5af0573e90f982",
+      "sha256": "3909998dea6dde60c83433854f7457a79f8464a5c8f4a666455a924b25822bd5",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "159-PATCH-PENDING-CONFIRM-ACTOR-ACTIVE-GUARD-DEV.sql",
+      "gitBlob": "a0c38ceec1ca9ac1f560e364a8d0aa6afda68af9",
+      "sha256": "dadd1f9eb2dd6ac19348524ea9dca6c5280923d3b2e5b5e446ffeb257632c0c2",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "160-VERIFY-PENDING-ACTION-CONFIRMATION-MATRIX-ROLLBACK-DEV.sql",
+      "gitBlob": "3369c1b55e2e0beaadd0c4a8d7e90fd6ccc886c1",
+      "sha256": "4b36ff765b758be45ed0357cf9cff588828f6ee22e20c6c697922daec8f24a72",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "161-SETUP-SECOND-MANAGER-ISOLATION-DEV.sql",
+      "gitBlob": "785ab269584c123eef88d6bf47c5c82cfffafb74",
+      "sha256": "07d3f267286c8ced2274592b7cb26523013a94e6fe13fb8c0e2a28bdc5656f42",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "162-VERIFY-PENDING-GUEST-AFTER-CHECKOUT-ROLLBACK-DEV.sql",
+      "gitBlob": "43b5c146837c8d2357c64dc4d332b267c0b8b6a5",
+      "sha256": "e3d30b0a73052b26f2b21e03d378944987a5e0b760fcb8123ada4ae4439e097d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "163-PATCH-PENDING-GUEST-STAY-VALIDITY-DEV.sql",
+      "gitBlob": "294934d73c8005bcc12a945c1451cc87a52848bd",
+      "sha256": "806fc3d3d937e713e47a1d45a7a058241b63c4d40c3245e91db2ab2f44dda497",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "164-VERIFY-PENDING-GUEST-STAY-SCOPE-LIFECYCLE-ROLLBACK-DEV.sql",
+      "gitBlob": "b20fbf2dd8f06dacca619ceadb428a034973990d",
+      "sha256": "ba5d17663f327a918a5788e025ba955553bbb1b0cd533925965480e222da2508",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "165-VERIFY-AMBIGUOUS-NOTIFICATION-FREEZE-ROLLBACK-DEV.sql",
+      "gitBlob": "14c683b38f5c0cce2dc64ba802286f0a466eaabd",
+      "sha256": "c9f0369cdf928ec63ba20114b972675ca935419c2a6afa2c5b0bcb999db874bd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "166-VERIFY-PENDING-MANAGER-PROPERTY-PERMISSION-ROLLBACK-DEV.sql",
+      "gitBlob": "0701372b49816905cef378afa23ee03c4e743a64",
+      "sha256": "1d2169317a9fbbd175a3807ac09f24638e184509f691f5d1f838402344b12af9",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "167-PATCH-PENDING-MANAGER-PROPERTY-SCOPE-DEV.sql",
+      "gitBlob": "3fe137aa5ce806c8e015ac4f6a4a07544cbd4223",
+      "sha256": "d520d2beabde791d96874edf4c592ed1ed84569d25b8d0c45580badc2d1cc252",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "168-PATCH-GUEST-PHONE-REPLACEMENT-AUTHORIZATION-DEV.sql",
+      "gitBlob": "c6944a46f593e9e43d9f7216d879aa0a7ac8769a",
+      "sha256": "83d4d9dc3f74c11c7ff035660708946545c8f89599e74a6b70af57c473b50a53",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "169-VERIFY-GUEST-PHONE-REPLACEMENT-ROLLBACK-DEV.sql",
+      "gitBlob": "ac45afe057b22fd76e9f305cf7cf2514b211c963",
+      "sha256": "70924d7dd1eeca875d2ffcdaa0e63d5a48d65a877163f52ad04354d9c2c60b26",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "17-PREFLIGHT-VAULT-RLS-SOLO-LECTURA.sql",
+      "gitBlob": "ab6f93623181a3f316ce933418f5763e835d86cf",
+      "sha256": "5fdb873fa8a63390e6a74582a84aa3d0d11722d84db6c3380ba9d6201c50cd81",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "170-VERIFY-POST-CHECKOUT-ACCESS-OVERRUN-ROLLBACK-DEV.sql",
+      "gitBlob": "a271efa33666169b3175b32c02d689a4bde6be7c",
+      "sha256": "ec0a95df8af1f2e76f15e482a60b9e29f5209dc40f203455402dde583b1cb044",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "171-PATCH-POST-CHECKOUT-AUTHORIZATION-UPPER-BOUND-DEV.sql",
+      "gitBlob": "70be585ff4bede7d2291464b5714160328ac0c4a",
+      "sha256": "2a001e40f3c0a6b26c4610970824d009f13b54302a0eb0e0fedd85b18a91b3a3",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "172-PATCH-SECRET-CHECKOUT-DENY-ORDER-DEV.sql",
+      "gitBlob": "977367017d03b1c41c6b42e9f2c5a1452cf9f819",
+      "sha256": "de45ce574946174f895c07b0328f5aee7e1919d3d06eb0bb74a3bacb4b7beea4",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "173-VERIFY-ACCESS-NOTIFICATION-POST-CHECKOUT-ROLLBACK-DEV.sql",
+      "gitBlob": "d812cad68f0831a73edc29ede08012abd5d4d4ee",
+      "sha256": "6a097f3fd0c09237bae41ddab885921e214be249fb935dd3caaa327ddb814e45",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "174-PATCH-ACCESS-NOTIFICATION-CHECKOUT-UPPER-BOUND-DEV.sql",
+      "gitBlob": "f8036b9d14be424eb5ee8819b53aa54b44957d6f",
+      "sha256": "f3f8388e972f7bca937437163c2f1015d6aeddd99b1d412a211be889cde9f174",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "175-HARDEN-PUBLIC-RLS-EVENT-TRIGGER-EXECUTE-DEV.sql",
+      "gitBlob": "e61aa5dc11adec03b21fc742297aa7be764c495e",
+      "sha256": "b1966cf395da562af2d96e0a8082b6866de0bab2aa86280f45c447db0a3d07b6",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "176-VERIFY-TWO-AUTH-MANAGER-PROPERTY-MATRIX-READONLY-DEV.sql",
+      "gitBlob": "e3790988505192408de99d5b6e8123759b1fd512",
+      "sha256": "967f14e0543d7fbf46e33f24fcc6d6116db1e241f44dd58c37b3a1df7d9fd581",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "177-PATCH-MANAGER-WHATSAPP-LEARNING-CONVERSATION-DEV.sql",
+      "gitBlob": "baa07c8cb609b117becf98c9a0f4ef503a91e947",
+      "sha256": "667594ff9292fd5b24137d39ca549f40cdea619f21f48c547a5da2a895ee80f0",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "178-VERIFY-MANAGER-WHATSAPP-LEARNING-ROLLBACK-DEV.sql",
+      "gitBlob": "9b7da2e03728f1f5d39b70dffb38fc781a3b5dbf",
+      "sha256": "2264491051d558942f26b35e6a016ae4ef025096b992bd05d8985628a993fce1",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "179-PATCH-MANAGER-LEARNING-DUAL-PERMISSION-DEV.sql",
+      "gitBlob": "56579d8a9ab4be6e95450bab7bcdc2497e7045f2",
+      "sha256": "31d84f6fe2d70286ac41b9cee74be612163757d90bcda3821c484f1e2f121b89",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "180-BETA-30-DIAS-SCORECARD-READONLY-DEV.sql",
+      "gitBlob": "bf6bb887e23b62f64a16a8c950400df10bac8a6a",
+      "sha256": "f9364faed8b7f7eb6e09dfbadf41be90b06861050c6a8f69fdf8bbc71d54bbfd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "181-PATCH-LEARNING-SYMPTOM-SCOPED-KEYS-DEV.sql",
+      "gitBlob": "f9edfb111bb65b9bfc039825359741aa5f8aa3e7",
+      "sha256": "d1dce14a08fcf318c879c31fd5304b9f94ea25caafebe2cc90502cb2ff8f4a87",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "182-VERIFY-LEARNING-SYMPTOM-KEYS-READONLY-DEV.sql",
+      "gitBlob": "64cad7d9afbbf3cd3b797d2d67bd87522aafd487",
+      "sha256": "1dfd25ad428c63692ba9a372c04f79f65ff678e6d7d7b4d2a41cc885278040eb",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "183-VERIFY-TWO-MANAGERS-CROSS-MODULE-ISOLATION-READONLY-DEV.sql",
+      "gitBlob": "2c1e44a9363b8015ddd5a633d82600aa179b2932",
+      "sha256": "cf40bc200cc203dd7d842d5ab9884659bdff3f03b7d36a6b892f7bcb3b9e20f7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "184-HARDEN-WHATSAPP-LEARNING-CONTENT-PRIVACY-DEV.sql",
+      "gitBlob": "665e2dfa92059ef221f5ef3b32680d350e6d8e82",
+      "sha256": "c651f456c94a6a34f4273c0ae65b2ba08e1b217c03e80fdd235d30a3111aa9a7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "185-VERIFY-LEARNING-CONTENT-PRIVACY-READONLY-DEV.sql",
+      "gitBlob": "a87dac7151535934ed7ddc71116332aa4e1ca954",
+      "sha256": "5c625fefcd3ac0012ee967c8ca8efdd1dab82cc5860d6d7b150d7199182e4286",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "186-PATCH-LEARNING-CORRECTION-RETAIN-VERSION-HISTORY-DEV.sql",
+      "gitBlob": "1104b8cf6386a381b4ac3af24a411ede374e8a09",
+      "sha256": "5eeabf9cdf7763446b59c53a98273f7bdf8b13e64758858fde3cc752ed1bd0a3",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "187-VERIFY-LEARNING-REVISION-CONTRACT-READONLY-DEV.sql",
+      "gitBlob": "3c4eb2e156cf3319eeb6a3c1e2f03ef24acc3242",
+      "sha256": "70e3c06200d5c7e6a04d9989f8801f470bddebb5c3f22f904dda9e8ad9835937",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "188-PATCH-LEARNING-PENDING-INCIDENT-LIFECYCLE-DEV.sql",
+      "gitBlob": "547aa351221fb85c4214eac96373282cc9642862",
+      "sha256": "7afdc89c99ea65692421c15b064408d6c04dff45c158c390e66366e11fa1763f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "189-VERIFY-LEARNING-INCIDENT-LIFECYCLE-READONLY-DEV.sql",
+      "gitBlob": "44f62958a5835c181ace271a4f34040e54726480",
+      "sha256": "ac9d874e6584b0bbcbbf94c0870c08018b1df8b3eb93b4aca82c0390219783e4",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "190-PATCH-REVOKE-ORPHANED-GUEST-CHANNEL-DEV.sql",
+      "gitBlob": "e737fabc431e022a8f0985835c200d1fc80e6ed9",
+      "sha256": "2397fd565fcad0fa24145ebd5a434a03b38d95f9441a6262ca6226aebc89c5ea",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "191-VERIFY-GUEST-CHANNEL-REPLACEMENT-SCOPE-READONLY-DEV.sql",
+      "gitBlob": "024ec0eb487ddf3119c761481c432bbf3687cb03",
+      "sha256": "20334bccd8ae4cd43f392fd8e856446f83208e9d7e9008731c7e6f6498f45c4a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "192-BETA-30-PLUS-30-PER-MANAGER-READONLY-DEV.sql",
+      "gitBlob": "b03850fd653d4bd6dd2c5bc414ef1f7cb46f57c3",
+      "sha256": "ec7ae88e778d67241fce169b3ba1426516c89d8441d8b1310f9c1064559081d3",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "193-VERIFY-INDIVIDUAL-BETA-CLOCKS-READONLY-DEV.sql",
+      "gitBlob": "907d9fd1e8bc8508e127b79ac9551e05fc73cdcc",
+      "sha256": "f6c11ff7310f605249fa341a501ef258c8c3cb061241c248a632e4a88794604c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "194-VERIFY-GUEST-INCIDENT-PROTOCOL-ROLLBACK-DEV.sql",
+      "gitBlob": "fd7fb815ed5ddaa06e8aaf76df7f5550f1ac19ec",
+      "sha256": "a22231e422d8dd9cbd8ce6922567624776743ebb4f8dcb16c775c0bf83fcfe9a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "195-VERIFY-SCHEDULED-STAY-GUEST-PROTOCOL-ROLLBACK-DEV.sql",
+      "gitBlob": "556d576f5ce6b617060e27ab244179045df18662",
+      "sha256": "384e300b940a6e7d98e71985ffe13b077da1a113a32ebb140622f66680d6ca16",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "20-MIGRACION-01-ACCOUNTS-MEMBERS.sql",
+      "gitBlob": "94d872b3ce13873567c86d85a0ee4924f4b01b5f",
+      "sha256": "70ecf2b8bdf4942c5b80e0a82afc82235490c8ed7fc9ff779cd98c8b6ca7a0bd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "206-QA277-BEGIN-BETA-CLOCK-DO-NOT-RUN.sql",
+      "gitBlob": "c93844524bc7037bc90ad97155380d91c902e0d3",
+      "sha256": "bea579e91d0c0f92b280bc536d269bec1e7f53b125db77d3ed7f39ef2234684a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "207-QA277-BETA-CLOCK-ROLLBACK-DO-NOT-RUN.sql",
+      "gitBlob": "72c6480aea476b916e62d50214a596fafe4a0d83",
+      "sha256": "bb50a9d466e6537c98e392b0ec0b5fffd7904771fee9f1c557dacdbd55bdf528",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "21-ROLLBACK-01-ACCOUNTS-MEMBERS.sql",
+      "gitBlob": "8337428cc43d948ffed2b822d86d686816873e19",
+      "sha256": "e68c4b8c8575ed26120fa5f906e7f16be79960c3df486c71dec7e34d456debdf",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "22-VERIFY-01-ACCOUNTS-MEMBERS.sql",
+      "gitBlob": "c7fbe6f23d50d663110a3eada56a37d5b3550006",
+      "sha256": "ea892720d93d3d124c68a8c9663ce76efea395a328bf7812dbd635aa6571ec1a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "23-SMOKE-TEST-01-ACCOUNTS-MEMBERS-ROLLBACK.sql",
+      "gitBlob": "dcc582ddf600f8da46b0e4298101cfe0ca106873",
+      "sha256": "ede9e2430a21ac6e967316217e1bddce6579b78fe3c6fc2142cc7db4ea89e781",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "25-MIGRACION-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "gitBlob": "a8d9e05274f3eb8012447b4609b76b68948ea4af",
+      "sha256": "3e8455810c9a68d93d444534cb7b6bac3241285b52a9a4896f59c4a2d28f7a6c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "26-ROLLBACK-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "gitBlob": "f44c3f262eb6a9ab3cd6b2fcec7486bae068eb8f",
+      "sha256": "9d4e82c3835503174965ee9e16a7be8ab0ef92be40257d83551e771588019995",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "27-VERIFY-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "gitBlob": "46a0ba4cc150fac0029a4b393d0d282df0fa7762",
+      "sha256": "36da09883a3626c75df28c47100cfa54e64c8e1c921ec638870f7cb56e567b5f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "28-SMOKE-TEST-02-MULTITENANT-PROPERTIES-ROLLBACK.sql",
+      "gitBlob": "8630e0155d323cd11a9d888166c46167246a71e6",
+      "sha256": "10da9f877320d643ab77261c76379df2dce2198a00ed21c1ffb764c5bc07c9cc",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "29-NEGATIVE-TEST-02-CROSS-TENANT.sql",
+      "gitBlob": "a44bea728c5e57a5000e1968c36bea052d8fa406",
+      "sha256": "2ac659828852f5bb61da80fa6fa694fa376d7ddc809e2e59f0b4f8aade82e97c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "31-MIGRACION-03-GUEST-IDENTITIES-STAYS-MEMBERS-INVITES.sql",
+      "gitBlob": "7a20a0a88cf28e7257854d6fa538dd88b0ced040",
+      "sha256": "7be12e04cb0b3e19a4fd8123d59d53c2f827dcdc239a155f43ff572f0b27e498",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "32-ROLLBACK-03-GUEST-IDENTITIES-STAYS-MEMBERS-INVITES.sql",
+      "gitBlob": "d933210fce1bffd61aa14a17c13ac358c43abc0b",
+      "sha256": "fc976f9d9c9e7623c27ac578da6880de4b663c0b3a18b3efd04729f86ca2253e",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "33-VERIFY-03-GUEST-IDENTITIES-STAYS-MEMBERS-INVITES.sql",
+      "gitBlob": "f5f7c9b594a8ac7e5645660ce55709cd3283f026",
+      "sha256": "8d2b3ea11f6d5911eb2178a9bd381972f7543e205425e157c4da00d885438cf7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "34-SMOKE-TEST-03-STAY-MEMBERS-INVITES-ROLLBACK.sql",
+      "gitBlob": "c0a9404e08652c03087fc4c99c7515689547fbca",
+      "sha256": "2bb66c3acb4250b4354d4eda851c7485398eb9b53061612defcbe7b7e9fb8c7f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "35-NEGATIVE-TEST-03-CROSS-TENANT-STAY.sql",
+      "gitBlob": "a2c6e47c879522568097f54959d8d5d1bf5242a9",
+      "sha256": "c621422d179d59ff53395c3dc210e365786f6faeebaac51962a41fdadfa5f8ad",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "36-NEGATIVE-TEST-03-OVERLAP-STAY.sql",
+      "gitBlob": "3b822b8e7ae945cb2d62d348ab313167104d3115",
+      "sha256": "99620b449dc3ebb0f8a2993b04b9b56c717b881d15e40e96f49c38d38a7b7a48",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "38-MIGRACION-04-PENDING-ACTIONS.sql",
+      "gitBlob": "b57d7f5a2dcf7fe0ad04475e6ee8a235bedbebd2",
+      "sha256": "43947558a32c25454673f57f294d3bf468be46aff8a10f8c1f0b8e71ce6c734d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "39-ROLLBACK-04-PENDING-ACTIONS.sql",
+      "gitBlob": "063602fa290ca1dafdef8848f611fb5e76a7bc8b",
+      "sha256": "aae4f706fc6f168306c0ab6be5c065b8577ae0295687a52b52effccd89a6e623",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "40-VERIFY-04-PENDING-ACTIONS.sql",
+      "gitBlob": "c0930c1d1bb3ad9831d98a39d2facdb424ed4c0e",
+      "sha256": "7fa290c86732e59fbe843cb2b9cbbf4356b8c4af1d562f1cf3ed6f90c3b07486",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "41-SMOKE-TEST-04-PENDING-ACTIONS-ROLLBACK.sql",
+      "gitBlob": "43a05e7065684fcd8198167b24dc2ce2d291383c",
+      "sha256": "f0524bde5b298b0774e35ddc98478904bec6c3a89f61ac328d5898ab73647ac9",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "42-NEGATIVE-TEST-04-DUPLICATE-PENDING.sql",
+      "gitBlob": "ae4cf530a93275f5cd30e52caa80969ef9ee58f2",
+      "sha256": "d8431839792e727ac70f4c621ccefa65898f98ef91bff8d05db7865f533d3486",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "44-MIGRACION-05-ACCESS-POINTS-POLICIES.sql",
+      "gitBlob": "1b39cbcd67860594267b60fcd8cb44cb31213f4d",
+      "sha256": "cc8c6189c93e6c36ad9dee19c60e7e1b14721c311c865c4ec772432d5ae977c2",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "45-ROLLBACK-05-ACCESS-POINTS-POLICIES.sql",
+      "gitBlob": "d298347a30a906a928d278ba78d680fa638ecb3a",
+      "sha256": "de2356e426e513d15031718a39f63df43e99226571c329e30e4624f92b457008",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "46-VERIFY-05-ACCESS-POINTS-POLICIES.sql",
+      "gitBlob": "75b9990e461921118d925dd24411136261ba45c0",
+      "sha256": "b555d6bdcfe22fd7eeadbdcc30b326ba21f6269ded52a008199c90b4a7920e03",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "47-SMOKE-TEST-05-ACCESS-POINTS-POLICIES-ROLLBACK.sql",
+      "gitBlob": "0f19202ee1205ea6002a72c5dfbc1bbc49508de7",
+      "sha256": "1e2ded6f1240239b87996ae1ed8297e45cbe7fd5aa0797a2ca239ada9d106b4f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "48-NEGATIVE-TEST-05-CROSS-TENANT-ACCESS-POINT.sql",
+      "gitBlob": "d564a96bbf33751e1071fa6f9d113b940c3d894f",
+      "sha256": "fc6691aeffc91da87f235b48ef2bb2604a9cbc152b9d85e7035b3e3be73d5544",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "49-NEGATIVE-TEST-05-INVALID-SCOPE.sql",
+      "gitBlob": "0a1246d48b298cd02ba6d8f8179517754c48da88",
+      "sha256": "eb0de5004acbd5686240cd58b4af5d0d46e1c776d448e27b62f35cb1bb0fb314",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "51-MIGRACION-06-SECRET-VERSIONS-VAULT.sql",
+      "gitBlob": "77ccc2417588b86de35d319c529bafbb5f99caef",
+      "sha256": "10cab5f1dccae5a8521c01f29ef5db32b8eaa01dc929574d561dfc248836b84f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "52-ROLLBACK-06-SECRET-VERSIONS-VAULT.sql",
+      "gitBlob": "f1654b119314a3e91eb9c12941d6e86550d144b6",
+      "sha256": "0fde072d5935fcac3b7eb704513077153e9f9d311ebaa5485551c0339d88d3ec",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "53-VERIFY-06-SECRET-VERSIONS-VAULT.sql",
+      "gitBlob": "364a2f52a9febaca27409fc9eeb9fa0575e49115",
+      "sha256": "24009c520f9afeb1a2f136a469aec17083ce7313073042824cf149362b7b2370",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "54-SMOKE-TEST-06-VAULT-ROTATION-ROLLBACK.sql",
+      "gitBlob": "98abb83e0333439746b6777365ff291bc7d668b5",
+      "sha256": "7a8cb0b43f0e23b352af787eb77d8aa6ec26a6a9d3fe92afdb667f5c1c86329f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "55-NEGATIVE-TEST-06-CROSS-TENANT-ROTATION.sql",
+      "gitBlob": "02418ded1be8f32f4023fd1ee04d456639df7177",
+      "sha256": "6e76aee1102c0d13da70a7932e09555d74d4496d8969299a74ae9d93360e26b8",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "56-NEGATIVE-TEST-06-EMPTY-SECRET.sql",
+      "gitBlob": "8c3019e0f9dfc25a19db9a1ae126ecc442c105da",
+      "sha256": "155b053641001537621d50e473fd56e7c241e03a589e5bc331792444d6f532dc",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "58-MIGRACION-07-ACCESS-AUTHORIZATIONS.sql",
+      "gitBlob": "f145e22d178180e736a3185513b38d9445619e34",
+      "sha256": "6234f0ed9282937c2dae647aae67bf4c611989abb69f740fc1bdda7a2dd87284",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "59-ROLLBACK-07-ACCESS-AUTHORIZATIONS.sql",
+      "gitBlob": "4a9c6663f7d7183738b40e54287ddbd17845cc3b",
+      "sha256": "b944da1bf39c8064fd99dc11fc0319498cc22b8079e18db20089da5435f20533",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "60-VERIFY-07-ACCESS-AUTHORIZATIONS.sql",
+      "gitBlob": "1ae054cd0810e6bd69e6ebce7de6e85e1cf33124",
+      "sha256": "a47e181a33a7b59326376a5f930bfaf35570e797a0b108e997216e6e7ccd5a44",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "61-SMOKE-TEST-07-AUTHORIZATION-ALLOW-ROLLBACK.sql",
+      "gitBlob": "6c6a825872e6271a41e953b82b80be9f616de646",
+      "sha256": "49d5706c000cabb066ce2f7df3e9c99cd884997092ab63162b9bcb5f508f0e27",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "62-NEGATIVE-TEST-07-WRONG-IDENTITY-ROLLBACK.sql",
+      "gitBlob": "f9919c34917301b1e9a6a42da70e66881618c7ee",
+      "sha256": "7a0685d383ffd4af2c8996c3a56545985d1bea7562feb89a5624bc2eb196fc6f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "63-NEGATIVE-TEST-07-CROSS-PROPERTY-GRANT.sql",
+      "gitBlob": "009e75e1bc9f078c3d2053e39981aef17ac5b3db",
+      "sha256": "ff401c01a37da7e59b8b03434128ceafc8057280daea10b63bd66a6f3c3f7a12",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "65-MIGRACION-08-SECURE-REVEAL-AUDIT.sql",
+      "gitBlob": "ec289bacf91af92fc5101e73224a4ac4c67c2be0",
+      "sha256": "1dd7dee78aeb0448c8dd5eee0314f11f64370d92cc1621e5490b1933480944f8",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "66-ROLLBACK-08-SECURE-REVEAL-AUDIT.sql",
+      "gitBlob": "47bf5efeefc38094fcd045dc3ada1c5f77771719",
+      "sha256": "f0b29ef0eb1171ef9005d989cdb058117f2673954901cd1cd7aab5036b4730d7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "67-VERIFY-08-SECURE-REVEAL-AUDIT.sql",
+      "gitBlob": "5adf83b3d018896aa2c11761d9dc2f2e320142bc",
+      "sha256": "ec194399f0cff93dee72a90f75168b856c31c4c48ef6265125ff295246dc1809",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "68-SMOKE-TEST-08-SECURE-REVEAL-ALLOW-ROLLBACK.sql",
+      "gitBlob": "4e08b2c76fce7e37a425958855a356ff07eadad9",
+      "sha256": "daf048506d432cfd64f7a60bdd346e6e22e3d099f848a849e22346362daf6c22",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "69-NEGATIVE-TEST-08-DENY-NO-VAULT-ROLLBACK.sql",
+      "gitBlob": "fdfee37f3d6b6d8b2cbe8a1c8b8b9b69715a2079",
+      "sha256": "723611f5abfd9f24ca0dc91dd294cc826f5ed707c8a095f828011ff99a4c9400",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "70-NEGATIVE-TEST-08-NO-GRANT-ROLLBACK.sql",
+      "gitBlob": "29f677ddeed8fa3e27b242ed4a85adf5d2b80e64",
+      "sha256": "9d5f7631bdc16b527ba51b5346c515bb75c777e36bdb748a7bdc6745afbb27ff",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "72-MIGRACION-09-KNOWLEDGE-VERSIONING.sql",
+      "gitBlob": "d2111823e01bb39ff6ce936d6f8dea3588d49725",
+      "sha256": "cfdbff7ad21d35bad28137097fe1031e8ac7a8734a0eedd33d217dcabb0b6252",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "73-ROLLBACK-09-KNOWLEDGE-VERSIONING.sql",
+      "gitBlob": "303923f9d05e0898276d081ad4b419e14810183a",
+      "sha256": "cb162e38f7507d8ddb36d263af20279ee670d162e0f6096c08c56c566e489915",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "74-VERIFY-09-KNOWLEDGE-VERSIONING.sql",
+      "gitBlob": "82a1786f452f3735b665da2ce5ecd73efe17d9c8",
+      "sha256": "ea435df45ebdc7c8819168507d4ca8bfe8fce815e93f097a04577ac13e0dba98",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "75-SMOKE-TEST-09-KNOWLEDGE-PRECEDENCE-ROLLBACK.sql",
+      "gitBlob": "404e088a4a4fb06311553b137c48c3606fa7cfd3",
+      "sha256": "76fa342743e9bd71a09eef1d1d4786e5da84492de40f722ba37be6fdf84f8dc7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "76-SMOKE-TEST-09-KNOWLEDGE-REVERSAL-ROLLBACK.sql",
+      "gitBlob": "b9a2e37f01d0d8ff6f34033bcb42b1457b079445",
+      "sha256": "6d8146f96e29c4623ee7ab205abbd896b6d397a1e9619f090fde01e3bf48831d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "77-NEGATIVE-TEST-09-SAFETY-SECOND-APPROVER.sql",
+      "gitBlob": "b5b321a86e8ed2b2cae3821202cbb6b527a5a933",
+      "sha256": "0f03e22d3ca4f3bc27cc1994d6dd958b66f8a3f4eae53b4ae3cb04c5a37fb2cb",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "79-PATCH-09-FIX-ACTIVATE-KNOWLEDGE-VERSION.sql",
+      "gitBlob": "c64b72c4dd7100e11624fe918a90a6ac1a11f981",
+      "sha256": "28dcc22e58e8c19bfb34fb5864c22ff754d6290f76c92837c3e429ffe45ab7d5",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "80-VERIFY-PATCH-09-FIX-ACTIVATE-KNOWLEDGE-VERSION.sql",
+      "gitBlob": "28b3a32152c2e02708aba2d1e09e1d4892bb6e13",
+      "sha256": "45fab1282cee6fcf59c64eb3aced488b1bb9c78630560604eb031897640ad8ef",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "82-MIGRACION-10-INCIDENTS-ESCALATION.sql",
+      "gitBlob": "45b3e08e331fdb9eef1b12887e2eb6aab2be7748",
+      "sha256": "f061b02b28479d89dcfafa6ec22347906042307ca14fd8cb5a032d2001b73fef",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "83-ROLLBACK-10-INCIDENTS-ESCALATION.sql",
+      "gitBlob": "35385adef32e7873dc15d052136a1ffd0f8be227",
+      "sha256": "b5f42d1f6993c40040d885a7fa753236b4db4c9993fb1aa6cbb06b4f96d496ab",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "84-VERIFY-10-INCIDENTS-ESCALATION.sql",
+      "gitBlob": "43474bd6d63f844821164b305bd3e2b352508143",
+      "sha256": "dbc12f8627140ba22817f6ff0e22c4138afb20b1f61ec68bb76733f51aec2fcb",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "85-SMOKE-TEST-10-INCIDENT-MEDIATION-ROLLBACK.sql",
+      "gitBlob": "ff95208fc0b015058f4e33e264058d84967d5a27",
+      "sha256": "7a4045f8f965f4458c30b324b92481da4df6f2c5dafcd59c9da5ca98897eb2b7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "86-NEGATIVE-TEST-10-WRONG-IDENTITY-ROLLBACK.sql",
+      "gitBlob": "0932471f29375b8a9d66b80efb4e56242bbad303",
+      "sha256": "e28d25a52727b3b6adc8b10489c6f79f4c110ed820b8de639e1116ac25dcb467",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "87-NEGATIVE-TEST-10-MANAGER-CANNOT-RESOLVE.sql",
+      "gitBlob": "1c266889704b1db34f2d5b3db2a41c1343aa72ec",
+      "sha256": "74fe2145fd287470863e5cdefe22997b300f0448e0cd66aff55880e37796f52d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "89-MIGRACION-11-REQUESTS-MEDIATION.sql",
+      "gitBlob": "c5b4cb28654aa4c39c05db5f5b9a00f991474406",
+      "sha256": "72599bd0c073b3933aaef04c7297f7cbaf125920c665e2ad8ca1c7d4c5c0f734",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "90-ROLLBACK-11-REQUESTS-MEDIATION.sql",
+      "gitBlob": "6c83b0f8ae8c47d598d7298c543713344683d7e3",
+      "sha256": "7aec73cb92b43404dc5f2bc626bfdb645d18efde43769b0432af4ea5f9c9a1a0",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "91-VERIFY-11-REQUESTS-MEDIATION.sql",
+      "gitBlob": "15a984aff45d6a077ef88dd09bc4c421f7fac786",
+      "sha256": "995ff754fcd670641b236e81eb51eeebee8871b41a34fd9e95a27d5aec0630ac",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "92-SMOKE-TEST-11-REQUESTS-MEDIATION-ROLLBACK.sql",
+      "gitBlob": "ca8e29d94520b2916df0ad058deb89124dba8ea2",
+      "sha256": "dab0220fb6d5f9ed7d209ff3eaf8503d72b75b664d6839adda886293dbb2e503",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "93-NEGATIVE-TEST-11-WRONG-IDENTITY-ROLLBACK.sql",
+      "gitBlob": "63ffd469a33291b30455cf1e00b7dac7d2635b3e",
+      "sha256": "9daa88de0fa8b1d3a0f0008c92ce55a62fb7fbd0556eff5b5f390f2e603ead23",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "94-NEGATIVE-TEST-11-CO-MANAGER-PERMISSION.sql",
+      "gitBlob": "de6aafc52ecb35ff9c5eca04f1800a36371aa91c",
+      "sha256": "afb0329912d39f705136c1ceb3595e6360f593e7b23ffab852b09f6e33341876",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "95-NEGATIVE-TEST-11-STAY-OVERLAP.sql",
+      "gitBlob": "48815b9656b4da28f07c440b85796d3ba94d0781",
+      "sha256": "ec9aa8393fe266bff3c083b9760952c34a402fe253e4fa9c83027777fa9a564c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "97-PREFLIGHT-12-OPERATIONAL-DEPENDENCIES.sql",
+      "gitBlob": "252808b3b87303d160c6af246131b544a0f3d24a",
+      "sha256": "337953983edb6a40c9796f00753130bd7becbb4bc6b8c71c5e28b9f1f3a9f99e",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "98-MIGRACION-12-OPERATIONAL-ACCESS.sql",
+      "gitBlob": "a6a47ad9c1dc8d5561e1585cfec193445e8bc22a",
+      "sha256": "f34b77da2fd350f647faa8867649084227c467a9f3860756be5154325679b51f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "99-ROLLBACK-12-OPERATIONAL-ACCESS.sql",
+      "gitBlob": "9b0728ee82ac070b6c8d927a74b3296ea4449e90",
+      "sha256": "d0eb00d9a77db500caac00c37e42ca464c8d250a5bca6f42ded2a397b2a18cec",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/20261017_concierge_invite_claim_rpc_PRELEGAL_DO_NOT_APPLY.sql",
+      "gitBlob": "66abffb43791f99d9a0e90e70e56f0c1c5f67a97",
+      "sha256": "3750267f1f2f5958ea83727928e9be9bf942bf3924e89a7816cc4f19102571ca",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/20261017_concierge_invite_dispatch_claims_PRELEGAL_DO_NOT_APPLY.sql",
+      "gitBlob": "122bbdf08c9096e9ce7adcec889fe6e0013bd692",
+      "sha256": "162b2789125945b346fae357cf2230df7dcf628910d09b0985e1b1f73efda381",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/20261017_guest_prior_notice_evidence_PRELEGAL_DO_NOT_APPLY.sql",
+      "gitBlob": "32c9b0549577120234a3a8f8c7a86cac11f7ed99",
+      "sha256": "7d98392ed999539bd6be0173bea189dec90e46a5f44e1db16f40d355fd21575f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/20261017_invite_claim_atomic_insert_PRELEGAL_DO_NOT_EXECUTE.sql",
+      "gitBlob": "0901f26b4ff6b6c20cdc4b1c3476aad73a3918b9",
+      "sha256": "df8ddf1129e795cc6ae4d022db56ff72ed95c8315a8093809a4d1029be59460b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/AUTH-MANAGED-FENCE-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "25a5656028356fc64645f0ff3f7d1002186a3950",
+      "sha256": "b2ba1749f9bd5e33faa1965ddf3daeb13378335f4607ad307a8e27ac76bf2fa5",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/AUTH-SESSION-LIVENESS-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "931c1d97f2a33985703705c309ab2f555aae2163",
+      "sha256": "3955b3fa6c6c496f4cb91835063a2a9bf13ef7f46c6fe4eeeedeb176ea535114",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/BA-BETA-ATOMIC-ACL-BUNDLE-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "7217398c38a2388dffb64f48ca653b436751634b",
+      "sha256": "53c1f9392fc4ea216f4a52e5d9d7bc66f30d8171b06c73b9f1feb5bc8ff900ed",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/BACKEND-RPC-ACL-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "be38289a2d7520bc55bdbb9255ef7503b05f739e",
+      "sha256": "608ad7533837dd239dabc2ed97b1ca36b5cbd2fb554b581df2bdd7db074b5285",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/GUEST-INTAKE-ATOMIC-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "ce281eac435235872c7bf2926ec1db4ef3a7f644",
+      "sha256": "4e02432f248b76d8a1a1905b8e192beacac43eaea89bce7345b01802570392df",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/GUEST-INTAKE-ROLE-BOUNDARY-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "01fff22d8fab990f9df6cdf359ae4540a5fbc6eb",
+      "sha256": "cc945cc84f298913d031ca5700600b5b471c71ec830bbcc50db62d2a5102e1eb",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/GUEST-RUNTIME-AUTHORITY-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "be357e77af072df927dd58f80c4471a0a34c7668",
+      "sha256": "5810f05b816f7606542544ee9d1e5eed8f4f4db21795bb573065aa13c9a17e09",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/INVITE-DURABLE-DISPATCH-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "42fe19af93edbd61e12c2e0ba58a8e5fd4f7da89",
+      "sha256": "b07f2a1a79b5de6fa0843c6a5666b0e86009f9c8f1571f9f68813bcfad62b15c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/INVITE-PRIVACY-ROLE-BOUNDARY-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "480d7edee63695a6420cf54fe9dab44a76fadd38",
+      "sha256": "bb020af4ed996fe506df7b93747faa4aae9cbdc04d7fb2f63651713d085c792d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/MANAGED-FENCE-COVERAGE-DELTA-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "8095f394f978f078505fbd0e9c66373159cb3bf9",
+      "sha256": "26d79d5e7cc318bd3a206d31b6fae4258aab72d32b33ba09a0ce148cf9aa3066",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/MANAGER-DURABLE-INTENT-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "a42b6a7628192cb281c5746887cfe06e6b595a0f",
+      "sha256": "6c0f8061d08433a1cbac13af1c81f50f8823f3205c52caf5dd4ffe4bf2624718",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/MANAGER-DURABLE-INTENT-ROLLBACK-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "b1bcfd272dd54168ebd772e80d9bbad78dc33366",
+      "sha256": "e99fb56abe0d293f7e13fad389a9066c8eb88e5a5752be8f6c6fa5416b1bb759",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/MANAGER-INTENT-RECONCILE-V2-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "68838560b21b9d173cc1b899a122063a45f2e203",
+      "sha256": "b363ba46202d59346cb259722c1f9d9cf8ccfc02a9cc76411f177566e7a8946c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/MANAGER-WRITE-FENCE-QA-DO-NOT-APPLY.sql",
+      "gitBlob": "88cc01175dae2d3be16fcdfacb3da33a0323b153",
+      "sha256": "f8672e648418998c9b8809de35e27fa5fb1f01794a709ae61d4402b561eee475",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/drafts/VERIFIED-EVIDENCE-ENROLLMENT-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "70f4d858f879cc7d456dee03899af2533aac2d00",
+      "sha256": "a76a5dbbb86b0a987d13df622dd00d4cc7b63115b0697b2861e69b2ef9d08e24",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/legal/acceptance-transaction-20261024/LEGACY-CLOSURE-FICTIONAL-DO-NOT-INSTALL.sql",
+      "gitBlob": "dc5104b7775592ded4733ac2f0e3aadc1254072c",
+      "sha256": "7ba8193e586031dd77a4ffb4700d97b5771dcc7a10167d6ed3801a2af89bbe84",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/legal/acceptance-transaction-20261024/LEGAL-ACCEPTANCE-FICTIONAL-DO-NOT-INSTALL.sql",
+      "gitBlob": "db818110a5272f57c2f6867b5243a0a857a6e06f",
+      "sha256": "926d662454855ad4f6a23ba917c24dea1c703dde6f8c687da844737ddefa2d65",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/audit-20261021/managed-readonly.sql",
+      "gitBlob": "848d8eb29f4dd5fe69d28838754493fa14853e87",
+      "sha256": "a527b344827901a20539d3d73d58be669e7be31476fdc5b29409dcbed7168390",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/audit-20261021/metadata-readonly.sql",
+      "gitBlob": "af329db0802aee0b1636c852b89351adf1e8010d",
+      "sha256": "a0a3918b870d64502317fede9800a22d909e85cff67937120f3f036e3a37add3",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/audit-20261021/queue-status-readonly.sql",
+      "gitBlob": "e625cd94cbd7007a7e24ebbf846ee913d1c834f1",
+      "sha256": "1d462af509db5e8f3b2050c0beac470fcab37632d65c27e0550df754e7a483cc",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/audit-20261021/queues-readonly.sql",
+      "gitBlob": "1ca98aec7fe39d387a868327f1e189f638a43c8f",
+      "sha256": "85162948c27d35427056d7ea7016da5f1665cd9977e12aa7fe91a77fadb34c0e",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/audit-20261021/writers-readonly.sql",
+      "gitBlob": "188fb3cfd6b8c95f1140970d95ecf15a74b37f96",
+      "sha256": "4b6b4c4134d1b835b8dce3eb5ebe96ccd057fb01bed25e08fc1737ddf6dc91b4",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/d01-postcommit-20261024/D01-CHECKOUT-FICTIONAL-DO-NOT-INSTALL.sql",
+      "gitBlob": "470e0dda470353e9cd54841dc2fd4871f5c269e0",
+      "sha256": "858ec27a86696dda03aac38f3b9e305758803d8d61f4b4ed3a7e1ce10be237ac",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/independent-controls-20261024/qa/ADMISSION-MODEL-ONLY-DO-NOT-INSTALL.sql",
+      "gitBlob": "22f9d37fac91260abe8762f05b42affe0f0186e7",
+      "sha256": "d64ab9570feb151e52caca5f22a4adabc03499cfb518d1d636e31e24cc68c169",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/operational-capture-20261023/source/concierge-runtime-dev-schema.sql",
+      "gitBlob": "acbd63785006dc14f1393171644f80c18d1bc790",
+      "sha256": "220ca0bebd3fa3131dfdf8b8003ed88e1d048d23b035c81af4102b14d758916f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/private-adapter-20261023/METADATOS-PRIVADOS-NO-EJECUTAR.sql",
+      "gitBlob": "855fe5989bacd1e0f8396f72139c51c13b7d9795",
+      "sha256": "c28e08a9bb442cbf6369bfd64edd557199e57db57f769a385618c797a2d5b107",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/private-release-20261023/prepared/concierge-runtime-dev-schema.sql",
+      "gitBlob": "acbd63785006dc14f1393171644f80c18d1bc790",
+      "sha256": "220ca0bebd3fa3131dfdf8b8003ed88e1d048d23b035c81af4102b14d758916f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/retention-20261024/RETENTION-FICTIONAL-DO-NOT-INSTALL.sql",
+      "gitBlob": "bd8e9480c7a97b27324045e70aa02a0a540f1ab1",
+      "sha256": "32bbe44cf3e32d94e3cd9b70a11f3c0f501fa82a599fad5178e36cd94b7c3d7f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/technical-closure-20261022/qa/a2-input/ops/drafts/BA-BETA-ATOMIC-ACL-BUNDLE-PRELEGAL-DO-NOT-APPLY.sql",
+      "gitBlob": "6e0ae8c85fd4439510f3ec220249777b9c5e8417",
+      "sha256": "f12b5b10f3120eeda3bbbc6d48604a894b63169c6ed66743f2895d499a516846",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/technical-closure-20261022/qa/a2-input/test/fixtures/concierge-invite-postgres-seed.sql",
+      "gitBlob": "b1fc02bc785efd538aa2c48434d6b7f2a4145f91",
+      "sha256": "833244dc861148b912d7ff7bf71f3512b6bbbc29d6053864a38ab4bc97a8b6e1",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/technical-closure-20261022/qa/a2-input/test/fixtures/concierge-runtime-dev-functions.sql",
+      "gitBlob": "2b47dfde22807a2c4aa068a601ae1ab8a0d3588a",
+      "sha256": "5f3a1b4814301a05f97d4a0b0031b476b23e30cf0a9d68760e87a5ec4165d429",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/technical-closure-20261022/qa/a2-input/test/fixtures/concierge-runtime-dev-indexes-triggers.sql",
+      "gitBlob": "a49227b0d0265663b00d4f05953b3f54b076fc2a",
+      "sha256": "7111edd213e678b6027afdc1007ba6336e470fd84c49a9211bbcdb8757402656",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/recovery/technical-closure-20261022/qa/a2-input/test/fixtures/concierge-runtime-dev-schema.sql",
+      "gitBlob": "acbd63785006dc14f1393171644f80c18d1bc790",
+      "sha256": "220ca0bebd3fa3131dfdf8b8003ed88e1d048d23b035c81af4102b14d758916f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/auth-concurrency-20261029/evidence/sql/cleanup-reconcile-after-transport-change.sql",
+      "gitBlob": "65d8f8eaaea2d8e040380c71dfc39d7f9cc879d5",
+      "sha256": "3c2372b176abf7d110a79366d56e02c5c490ea6b42b51a9d6a88dfd398bb2c04",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/auth-concurrency-20261029/evidence/sql/http-suboperations-exact-cleanup.sql",
+      "gitBlob": "0ad94536cb49d175c55190e4b9481c0e48faaacb",
+      "sha256": "891eb95b8fff09ad395e8d5e2b9bfcce2eab6f76e53a01f598f664eb84010bc4",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/auth-concurrency-20261029/evidence/sql/http-suboperations-first-request.sql",
+      "gitBlob": "8c18816a53cbd7edab2d6bbc79a822f5785d6edb",
+      "sha256": "f361d64cf1e919c75d87007b6d266d9cc1bb5d1d0e15cf0af14dc96a8b1eb826",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/auth-concurrency-20261029/evidence/sql/http-suboperations-independent-reentry.sql",
+      "gitBlob": "7e2a646d5c1a471fc037676670f26d07a805aec1",
+      "sha256": "2247be3db2de31185a83d277ce4e065feec21105f4f863745848ba6ece953c89",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/auth-concurrency-20261029/evidence/sql/recovery-catalog-manifest.sql",
+      "gitBlob": "f10a81697207edef4d6421b72f6de3be7ae80547",
+      "sha256": "1bff89511e39f07f683a4f0d4a00c7821707acbbad8c7df94b139dd6eab35023",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/launch-closure-20261024/LIFECYCLE-FICTIONAL-DO-NOT-INSTALL.sql",
+      "gitBlob": "bf7a3d3f2c5ae959bd62cff1db60f81342aef26c",
+      "sha256": "b550733a66ddecbf9f0e6c5f569b0621bfa7dbb806aa5b84b3e84725fd9f970b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/components/boundary.sql",
+      "gitBlob": "0c930a05a571eb5bc73994c6c2dc7eb9b543f6d2",
+      "sha256": "1592ffe7d3566678a9ea257ad396ea78330d6272e31130f9e3c3c5f813ad28c7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/components/rollback.sql",
+      "gitBlob": "cc9e27a6d484aea3d5db7035442a8603c74a8806",
+      "sha256": "7e5293c8e07e1b03ff1119cb525368ef70e6d3319f28aeefbbe85ae6453a258c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/components/schema.sql",
+      "gitBlob": "a75f5e7fe9663a452755fa7f349713bea958a6fd",
+      "sha256": "6b4d9012f5935e08b605b1aefdad77a8f094afc309489f046449c40d63810972",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/components/stay-fence-fix.sql",
+      "gitBlob": "3f03672decdfedc72fec8fbd8cf786e2d9950cf7",
+      "sha256": "abcf80944c8f3bd646807253820a11e5c035ca697f67409ec40c18d8b0afa778",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/boundary-postcheck.sql",
+      "gitBlob": "c530a3ef1e4661603cdd7a609d0298d20eef75a4",
+      "sha256": "93855d73c33567b20670776312fc3d0967569be80b6bf7a36648619c4f816f37",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/boundary-transactional-dryrun.sql",
+      "gitBlob": "c8947d8bd633d5fc0076ba1d835af5c7a071431a",
+      "sha256": "4b46c28539e23b13a9824a34f950855d5bfab048f9f12b07eb848fcfca4d9724",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/business-and-journal-explicit-rollback.sql",
+      "gitBlob": "c8f3209ec4e37e510c675e51d1b2771c62fba35e",
+      "sha256": "6b6ad7315e629a2f070d355f60e87119ba15a97f183a83f24e3b428c31daac16",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/consecutive-after-stay-fix.sql",
+      "gitBlob": "1882b1b11ec885315b96ae5a1df6db37fe852adf",
+      "sha256": "6bf927b94359e1e6de8356b1477e33a677b627128040ba82f0000dce9ff7174b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/consecutive-failure-diagnostic.sql",
+      "gitBlob": "ff138c3a79db31b67f8c1f0f62c400e7eba6bd35",
+      "sha256": "b1008ac37fec00982fb83328f71f4dea37b98b55c0132130bf5d905c3314a5b8",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/correction-reconcile-after-connection-error.sql",
+      "gitBlob": "9c58ce62109acbd8802de72056cc5ba545217896",
+      "sha256": "a4817a63f7231560f73b0ac4e6d9435c0110e24b2b703a0a4cb7db2902fcfe3d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/correction-reconcile-second-connection-error.sql",
+      "gitBlob": "705850776b1b401ca7b18d23585f609fb74e7631",
+      "sha256": "7c83914d65c5a65511c30c2d1c8ef242820160da61195063aea0618cdf1be2a7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-contention-recheck.sql",
+      "gitBlob": "595be0c6de54bafeffe8bcd5070cb7e7cfed6bc8",
+      "sha256": "cfbd98ef81ffc441ff3417b908e06b7db3732ff96504596df82803b07a59d973",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-contention.sql",
+      "gitBlob": "595be0c6de54bafeffe8bcd5070cb7e7cfed6bc8",
+      "sha256": "cfbd98ef81ffc441ff3417b908e06b7db3732ff96504596df82803b07a59d973",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-holder-lock-recheck.sql",
+      "gitBlob": "595be0c6de54bafeffe8bcd5070cb7e7cfed6bc8",
+      "sha256": "cfbd98ef81ffc441ff3417b908e06b7db3732ff96504596df82803b07a59d973",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-holder-lock.sql",
+      "gitBlob": "595be0c6de54bafeffe8bcd5070cb7e7cfed6bc8",
+      "sha256": "cfbd98ef81ffc441ff3417b908e06b7db3732ff96504596df82803b07a59d973",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-holder.sql",
+      "gitBlob": "2cc71495f0b9e121f7fcaf602bdcb4d0346c848a",
+      "sha256": "c517aa7e4160eb294c0ad338307e96cd1968b16f6e2cdb963b62b835ce7b47fe",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-invalid-fixture-reconcile.sql",
+      "gitBlob": "c3e1d87072d05141d81768c8a2730ab707cbf9d3",
+      "sha256": "a5632efc56b13cad3e4140e96de5edef881a22a3775ffcfec48f4241fcbe075c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-timed-holder.sql",
+      "gitBlob": "6e18a1c36e7639b7d5ae6781b2a391da8d2015fb",
+      "sha256": "0ba10f403e45f187dd84174dc8d62e4d9a7248f6f6d9b161ca8e775b90386777",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-timed-waiter.sql",
+      "gitBlob": "88671b2c712a5182854c1e832b5c8af4e41e5e92",
+      "sha256": "86c9baa3d0ed63bd2d19500ba4cc74f6a314b0fb10821662907c5a4c707d11fc",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-valid-contention-recheck.sql",
+      "gitBlob": "529f5ae062be28c131f8fc052d34d8d989c4c2ba",
+      "sha256": "70d7ce12e306a37abbbef053682e9836ef178bd67e84b1bf3eef4a2adfdcd68b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-valid-contention.sql",
+      "gitBlob": "529f5ae062be28c131f8fc052d34d8d989c4c2ba",
+      "sha256": "70d7ce12e306a37abbbef053682e9836ef178bd67e84b1bf3eef4a2adfdcd68b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-valid-holder-lock-recheck.sql",
+      "gitBlob": "529f5ae062be28c131f8fc052d34d8d989c4c2ba",
+      "sha256": "70d7ce12e306a37abbbef053682e9836ef178bd67e84b1bf3eef4a2adfdcd68b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-valid-holder-lock.sql",
+      "gitBlob": "529f5ae062be28c131f8fc052d34d8d989c4c2ba",
+      "sha256": "70d7ce12e306a37abbbef053682e9836ef178bd67e84b1bf3eef4a2adfdcd68b",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-valid-holder.sql",
+      "gitBlob": "1ea76062d029349336265b99bcf183f06e537ef8",
+      "sha256": "a884ca5fbc32c87c4dbf2dab93d7ccc6e006f7a21ea5cc61433a523cacb19d85",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/duplicate-valid-waiter.sql",
+      "gitBlob": "ca2105933016fd3118b08871cdf087a30b3f2767",
+      "sha256": "0b8679d473c5daab789e4f834e4835bff655673b429455591da7707499c122de",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/durable-reconciliation-new-request.sql",
+      "gitBlob": "7f9bc1be252e4b551ce54319dcec60d44bf87ca3",
+      "sha256": "7a08e0ca6dde1676d646654534efb58b636ab27ade010ca4e2817fc21bb5d92d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/empty-owned-uninstall-dryrun-rollback.sql",
+      "gitBlob": "0c2ede47c46da2b7e529554ad72de53e1f59a814",
+      "sha256": "d9649ceb04dfb9e9ff2f1b73153340beb161cab9913fa0dd1a50e68036ba40b6",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/exact-owned-fixture-cleanup.sql",
+      "gitBlob": "dd07ec75c6a74ee37b5f7b264b39793d7a39402b",
+      "sha256": "1bb47ec0a0b471a4e8e898e5322ee6382a920fd5d8c328822794daebb539bfbd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/final-component-and-recovery-inventory.sql",
+      "gitBlob": "fd45efe8979b123a8c455b2913545820a5d4dbca",
+      "sha256": "fed3559463b5da464327f80d2fdf999ca19898b14131d7973d4d1673c87bd2a0",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/final-readonly-durability-and-clean-state.sql",
+      "gitBlob": "67c74b5bc7e5929a2e1f91406dc393b174ddd0a8",
+      "sha256": "4cd6dc137b7978ccaf62f941802f0f556839577dd73e7505f91dd43810955bfc",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/fixture-authorities-create.sql",
+      "gitBlob": "9bfa19d95519c83bb0e12ee20f9023eaab2bd706",
+      "sha256": "0f9b6c3c16f4f8fab60ddaf4328e90e63b3e8ad3362280e49a10a1fdb4563091",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/fixture-evidence-export-before-cleanup.sql",
+      "gitBlob": "0506b008025e3b8a1ccd710e9060785d84afbcbe",
+      "sha256": "9748d287a357704c33c81547bbc405c7a3726f2488e7dea08875ee0067bfbb52",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/preexisting-rls-helper-catalog-only.sql",
+      "gitBlob": "b12ac2dfa02a9b0596638ee4ea4058835049229a",
+      "sha256": "d7eebdf97bc95bda19da59701ec634a6cdb3e32447deeb0d829c63ed958bedf6",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/repeatable-read-denied.sql",
+      "gitBlob": "f09d3e735913d979e1e0a4f7f2c2fd3639a8d1a8",
+      "sha256": "4254e764e04287f162a5d99ff8c7d407b3da2b48b1a19967b90010962dfab2dd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/rls-and-browser-rpc-denials.sql",
+      "gitBlob": "b3e5cfede1925c4d5ad173368b88d989b5096cfa",
+      "sha256": "a78c4d3de82077b9a12f6b5943cf22a46e5dc611a23f07d5f5173278e54e2fcf",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/role-epoch-and-sequential-revocation.sql",
+      "gitBlob": "dca7abe60eab6e6d5c7ba0801b57283d78f532f5",
+      "sha256": "7d4df6950175ba94b53e149a9a7b87fb333060908546dfe614f1f42d231fcab1",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/schema-postcheck-verified.sql",
+      "gitBlob": "b15b70f4e2d7005bd84d30410fe78cb018e803d2",
+      "sha256": "da121221fa0c687577bee69ae092e0b59eaa699e0d2c185cdbbbe0528d90f666",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/schema-postcheck.sql",
+      "gitBlob": "b15b70f4e2d7005bd84d30410fe78cb018e803d2",
+      "sha256": "da121221fa0c687577bee69ae092e0b59eaa699e0d2c185cdbbbe0528d90f666",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/serial-intents-and-property-isolation.sql",
+      "gitBlob": "285d4a2040b0ebba0e1826b39a9ab480f07cdc1b",
+      "sha256": "472eec7e8fbf58f2d27221c38d577da536d7b92dca9f70e8e240d46fd80c824f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/stay-scope-corrective-postcheck.sql",
+      "gitBlob": "7f1b7c3f15b6eecc368573842c7f5c2989d7b2f3",
+      "sha256": "ede0ea6fed9a4874f99090170905a449f953c2b733cf491ed68fae8f389ad5b5",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/temporal-and-consecutive-before.sql",
+      "gitBlob": "c9f9cc6d9b125ba820aef50d82269f3e9d2c4a98",
+      "sha256": "64426903b26148a46ba5db8f55cb0eb6cfd287962e8763698e10caca65251979",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/timed-concurrency-preflight.sql",
+      "gitBlob": "ebe2d02805e225b5e950b4fafab5b65eef21d776",
+      "sha256": "3148fa67cdebe397f186ea060ab461f5d1040e80d40b0e4ba6f8445bdd03e8a7",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/managed-real-20261028/evidence/sql/vault-canary-supported-api-rollback.sql",
+      "gitBlob": "c8f76969ef5bfda1d07b96631aa40b5987c05b38",
+      "sha256": "704ff8c231b8d1447237c2890ef02089182e496936a5a0a398f0965068444bef",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/components/read-null-fence-fix.sql",
+      "gitBlob": "eac531cda2f335b6890ca890587a7d1c40e86a14",
+      "sha256": "bc896d7fff364e27cc46afa98ba87fd1590035603a9444881e2043e26b6736c6",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/components/read-null-fence-quarantine.sql",
+      "gitBlob": "743795fccef7ffd000fa0aad64179acaeadbcad5",
+      "sha256": "ec31502958a66378bffe330226ee453f4fbec9525c1c5677113282ccb1e09f76",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/evidence/sql/final-readonly-state.sql",
+      "gitBlob": "af9ed947cb645ee4303e748042c66f4585fb6d52",
+      "sha256": "984dbd7ee8c43e0fd974ff39dd2213364e4b388819c7f5ede2f88ecc8912019c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/evidence/sql/initial-counts-read.sql",
+      "gitBlob": "b3dee966c8af86712a01ddd551118c7310c1bf1b",
+      "sha256": "9652fa34a323bcaeef2900fa26381d5c93a0bcc16392360b07f373db919f68d2",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/evidence/sql/initial-function-preflight-read.sql",
+      "gitBlob": "bdb7a678f0d1a8b76f7df798b69dc440ec18dcc6",
+      "sha256": "a31b2214f213151b599285761133c573230c763d52f49eadf8307edea52ef2df",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/evidence/sql/initial-recovery-read.sql",
+      "gitBlob": "f71b3e304ff8591eb215ca8310571b712af83e63",
+      "sha256": "47fdaf054ea99a215588519a5b2b71fede038f61b69a7938bb3bf13de436bef4",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/evidence/sql/null-reader-after-and-cleanup.sql",
+      "gitBlob": "452670582d3104e3cf09cd0f9da6fe7ea7fec469",
+      "sha256": "e274b1aadf2f59a00f649cc6df249b8c822b34baa7234f42616a8f48c1d17408",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/evidence/sql/null-reader-before.sql",
+      "gitBlob": "8f3ae2f055ddcf09af3eb409f906be7283f1e3ef",
+      "sha256": "0dc12f7f168ef32b5774bc9d623e37d82a18f9c7c674657c0ebb90688f2ff2a1",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/night-20261029/evidence/sql/read-fix-quarantine-reversal-dryrun.sql",
+      "gitBlob": "1f9634995d6bde76ad1bfa64f18d84d687b23a8e",
+      "sha256": "d45cfecd759b1c071afa3c68b674856c75cb6b0d6772c30a9fe6db7350bae8ce",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/operational-candidate-20261026/auth-catalog-readonly.sql",
+      "gitBlob": "1dc4a5d24c23cdad5b8f6f2f4dacf46fdd7e1c29",
+      "sha256": "fd2e282775018950b4631692485020ec8dd1e52e061f176d14d6653f713c609e",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/operational-candidate-20261026/evidence/auth-catalog-actual/authorized.sql",
+      "gitBlob": "1dc4a5d24c23cdad5b8f6f2f4dacf46fdd7e1c29",
+      "sha256": "fd2e282775018950b4631692485020ec8dd1e52e061f176d14d6653f713c609e",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/prelaunch-20261022/metadata-readonly.sql",
+      "gitBlob": "6cd815757fe0a715c6e361c1947ac40003aaac38",
+      "sha256": "6164b72340bf28fc588fedf6f224772b9e230d74a7b57dab6f5ad6b879c864fb",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "ops/release/pro-preflight-20261028/QA-CATALOG-READONLY-PREPARED.sql",
+      "gitBlob": "f28467d7b81a56cd967cac2a64bcdf6979314b6a",
+      "sha256": "73c901ede8535a91f60594921e3272e5fb1ae50c69b46cb31014cb2405282937",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/196-PATCH-CHECKOUT-REMINDER-SHORT-STAYS-DEV.sql",
+      "gitBlob": "7b9df3dedff0ddb6893a6f97ea2b2658256d5ce6",
+      "sha256": "b7c165fcfdec500b8d1870a3ed1d44a4c0f17cf0d2b1f4d73e65514c331992ce",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/197-VERIFY-CHECKOUT-REMINDER-SHORT-STAYS-ROLLBACK-DEV.sql",
+      "gitBlob": "e357c655069c1995e35379ee7feb162ed93c9feb",
+      "sha256": "bd057900f48539357ade4c718b40721c4c18b9b2a942200d0dab92a381dc9ece",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/198-P4-ANA-DEMO-INBOUND-E2E-READONLY-DEV.sql",
+      "gitBlob": "05de8e76f463401d4389ba2a55a18b268e435f4a",
+      "sha256": "1bba6af19e4c5fd58c0393b184e8a3018480099652812b9ee3fd4c9064fcee27",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/199-P4-ANA-DEMO-POSTCHECKOUT-READONLY-DEV.sql",
+      "gitBlob": "360c27784662730b25eb2a2a360bede3932b4713",
+      "sha256": "25b7f3bcaf942794ff04180dd69da6914353ef94d15adbcd437bd50c07bf680c",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/200-P5-CHECKOUT-QUEUE-READONLY-PRESTART-DEV.sql",
+      "gitBlob": "9f5419dd251eee1bae1baf9aaf765001c599a794",
+      "sha256": "aa80e141b391125761957ccaaf1de7b04fccb3bc9878ea642bb4a29125a3d31d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/201-PATCH-POSTCHECKOUT-STALE-GUEST-SESSION-FREE-DEV.sql",
+      "gitBlob": "40701ddd240211ad80c474a1641080dd5a3d48bc",
+      "sha256": "b930b15e81bc9c038cb23bf9ac7e78778c0411205ed6c6dc8647bb875263a9b9",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/202-VERIFY-POSTCHECKOUT-FREE-TRANSIENT-ROLLBACK-DEV.sql",
+      "gitBlob": "f14989f38ef05f2fff2df89066da3161c657de36",
+      "sha256": "4c760e138d1fe64456239c971c5bc15320883bbb177d64c71c812f365d0bbeb8",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/203-CANCEL-POSTCHECKOUT-QA-PENDING-NOTIFICATIONS-DEV.sql",
+      "gitBlob": "1bc527f277dccf88b78c2b42f615cf652757458f",
+      "sha256": "d40ec4290f24bc7f34644592b4d06e6198901a4f31bacee87a75917cc36f5e17",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/204-P5-SUPERVISED-SINGLE-PREARRIVAL-READONLY-DEV.sql",
+      "gitBlob": "c60e871f67293674e12237b3e43463c13e7bd04c",
+      "sha256": "6193eee19d29cf356389a22647238173977f47240a35a7d1e7f2d8d944655e26",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/205-PREPARE-QA-CLIMATE-V4-DRAFT-DEV.sql",
+      "gitBlob": "43cec8d3843eaa1ec482d6ae23c1d9476671d3a8",
+      "sha256": "c50e09f0984edeab88df5cc8f88545646f949b9adec94761470a829372e19c78",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/206-P3-LIMITED-PILOT-DYNAMIC-READONLY-DEV.sql",
+      "gitBlob": "b96ab70df552784c10451b87428642efea44ba0b",
+      "sha256": "f0c9e3c1ee46af308246f0acca38951886480aec7f717271992b3436923e94e1",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/209-P3-PILOTO-UNA-PROPIEDAD-MULTIESTADIA-READONLY-DEV.sql",
+      "gitBlob": "6df48551da50f11fb9ee570656f12219907228c7",
+      "sha256": "9494fddb3da075a1849cbc3934026726662817c95c356101dc35e3c455792334",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/210-VERIFY-P3-MULTIESTADIA-CASES-READONLY-DEV.sql",
+      "gitBlob": "67f14a0935702056ed401c4446c770224511ca83",
+      "sha256": "73008985c73ef6fdba88dcf9965a6ec624f3d4f85348aa5cdcdd38bf71efedcd",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/211-P7-SUPERVISION-DURANTE-ESTADIA-READONLY-DEV.sql",
+      "gitBlob": "f2887146749d2c95175cb90ae5540b8ce65b7b7d",
+      "sha256": "8ab6877f904e53b5b7a7160a8f2995523a3aa4c4f971c5bf5015e72a152ae5c0",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/212-VERIFY-P7-IN-STAY-DECISIONS-READONLY-DEV.sql",
+      "gitBlob": "1ed1962a11880c8fecf6338959bd9a2ee82aad8b",
+      "sha256": "38a899ba4d7842e1b93081ab5209583fd0b38bc3594620e6e5467b73752b552f",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/213-REVOKE-ONE-EXPIRED-QA-GRANT-DEV.sql",
+      "gitBlob": "e641534f613521eac4d3413867e0c668bcfb5f5b",
+      "sha256": "a9bb7c54d9b75d99707ae1e2b8a3eeb7d3663ce6bacc9d17ae4f40d28e9a9147",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/215-MANAGER-INVITE-SIGNUP-DEV.sql",
+      "gitBlob": "43b63d047ecd409defba498e3ddd390b3c7a2329",
+      "sha256": "fcdb532e6c8c9dc7ada852e8c2b2410f008bfd51612186980023f14acab3f99d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/216-VERIFY-MANAGER-INVITE-SIGNUP-ROLLBACK-DEV.sql",
+      "gitBlob": "ee534b62301d08204991649651d0e89fdf36efa0",
+      "sha256": "409ca179c16761a56740637772f2e24c7d6b79aa2e1b3b76bdcc21769e0471bc",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/219-MANAGER-PRIVACY-VERSION-PREFLIGHT-DEV.sql",
+      "gitBlob": "1fa4dbc8f98f1283c9dfa10bdd6ed82ea5ef9320",
+      "sha256": "58269302d00e932ebd465a6d4451e0f3e361a8b81529b27c2a9828a68e251569",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/220-VERIFY-MANAGER-PRIVACY-VERSION-ROLLBACK-DEV.sql",
+      "gitBlob": "d8c9e1d76c42ebf61a9bc27c1c9ae58c6980f4b0",
+      "sha256": "79ce6e047cdb627aef6ba56b1794596652a4bdd4b180aef3a4f037e863584434",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/221-MANAGER-INVITE-OPERATOR-AUDIT-DEV.sql",
+      "gitBlob": "95ee1c00d71e6301b2a9268899019661573918af",
+      "sha256": "45137cdfb764f5b6badbbd4e822338f33201a9cc5fce55096144f94b357e2f87",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/222-VERIFY-MANAGER-INVITE-OPERATOR-AUDIT-ROLLBACK-DEV.sql",
+      "gitBlob": "1d8ccd26cd72778f881c8a036ebe30ae89a883c1",
+      "sha256": "32b45db6946723937f5e753aea47028de4515f49558ac8632a8f3071bba64caf",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/223-MANAGER-SIGNUP-ADMIN-READONLY-GATE-DEV.sql",
+      "gitBlob": "86c982cb8e34cb2504b77db7989720c2f346167a",
+      "sha256": "d5dc5ddaa539a50ee91fdd18159ad141b7f548c0b4967cb2c711f580186b24c0",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/224-VERIFY-MANAGER-INVITE-REISSUE-ROLLBACK-DEV.sql",
+      "gitBlob": "0c622bfad8055ca5add65b781cc60dbb0a7b9e23",
+      "sha256": "abe48c0bda301d9fd7e19a2e0bee4121eb4cd961b019b98978f9e605848896d1",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/225-MANAGER-SIGNUP-SCREENING-DEV.sql",
+      "gitBlob": "b03afab0c75027f12e7d513ef2cd0c7705c4dfea",
+      "sha256": "30d0bab6b0d9bb4acbdff39ff77fd651ff4a37b5f662e52ce96375bd8c62c8a4",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/226-VERIFY-MANAGER-SCREENING-ROLLBACK-DEV.sql",
+      "gitBlob": "5f3272690db276874bce64a01c3bc24d56880910",
+      "sha256": "c3d064bf61c6d5966dab963d80c6614d108541fc47bafa7b15aab5b34f63b457",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/227-SCREENING-READONLY-GATE-DEV.sql",
+      "gitBlob": "f2a9d41d0f18d214aae38a22e6daf1dcd14087c0",
+      "sha256": "619e51a6e19bd80e22cf11049442e53ce9098c032ecccd74b28dcf99c3ebf7db",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/228-FIRST-MANAGER-GO-B-READONLY-PREFLIGHT-DEV.sql",
+      "gitBlob": "21eef0c19300f24926a18759ceeae86429f4e3af",
+      "sha256": "55e0a663356064f463863558896f2c943770959f32cdc3c33248cb44b4c66ded",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/229-VERIFY-FIRST-MANAGER-GO-B-ROLLBACK-DEV.sql",
+      "gitBlob": "a929e962e1c648fb64a7347d825fa495ef86358d",
+      "sha256": "a8142bb9aed4137ed0e4a274e9743b4c3e63ebd58d29708fb81500aa283610aa",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/230-EXPIRED-QA-GUEST-ACCESS-READONLY-GATE-DEV.sql",
+      "gitBlob": "751513f572e420c646f5d720af7500cb76fc755f",
+      "sha256": "15ecced38c3bb4db146cb97d483b4800c0e48f2ba89c60bc686beca8bd4755d0",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/231-MANAGER-SCREENING-FOLLOWUP-AUDIT-DEV.sql",
+      "gitBlob": "773841701dcecbe199aef4adf9faa152f12262d4",
+      "sha256": "a8c0079ff060a5542ea05a1f3005ae70e2ddb2b39f5385d5f5b69bd8546c2e9a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/232-VERIFY-MANAGER-FOLLOWUP-AUDIT-ROLLBACK-DEV.sql",
+      "gitBlob": "879d0bb8c3f45128036479251c763a19d5e904fe",
+      "sha256": "35cbc6e2976fae2df201f005809609db19dde4a18f61574b1bc14c7cc4087d62",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/233-SCREENING-HISTORY-READONLY-GATE-DEV.sql",
+      "gitBlob": "f2286e70df9c8dcb6adaa13fa832b21dbb2745d5",
+      "sha256": "8b2637026467bc412424fb856e574bc6499bc7910667e533bfd5ec13f5fb30cb",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/236-CONSENT-RETENTION-READONLY-INVENTORY-DEV.sql",
+      "gitBlob": "4206080d123e1f1838c9421d7af8cf345d252513",
+      "sha256": "4bcc9e2a9f8c13a43b6478465210e02066e1dfeb1c8eae364caf7f216a6f236d",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/240-P5-META-SENT-UNCONFIRMED-RECONCILIATION-READONLY-DEV.sql",
+      "gitBlob": "0db7921a84a2932530dfabc7956c6a966a7443ae",
+      "sha256": "017257f453ba48bb8144b342166b27b385092dd300f483bd002d59346c59de15",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/241-VERIFY-P5-META-DELIVERY-DECISIONS-READONLY-DEV.sql",
+      "gitBlob": "8bc0a8a79c654052838bbf1d365a01979d05bc42",
+      "sha256": "f4b34a65f38eaaa8ad19724c54f1b516dfdc264f663616f9578d21c3cf0a7109",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/242-VERIFY-P7-UNCONFIRMED-COMMERCIAL-DELIVERY-STOP-READONLY-DEV.sql",
+      "gitBlob": "675e303a0f6c0f390b51e248ebdc9554f782667b",
+      "sha256": "82cef0bb11b7abc815fada037882e3715655ebea6f7a4f4660b2709b95db5b96",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/BETA-LIMITADA-P3-READONLY-PREFLIGHT-2026-10-11.sql",
+      "gitBlob": "4f48a6bcbf7a61ce7e417621b60d46469229ee47",
+      "sha256": "cf0b24cbed46fc861a7496eeef31944dad46937a02474fb6de2edcf65c76ce31",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/concierge/NOTIFICATION-RESILIENCE-READONLY-PREFLIGHT-2026-10-09.sql",
+      "gitBlob": "06dcc7961c270c70154d7511b3f25849b6f4ee47",
+      "sha256": "e305c79ee839c04906ca8106899f79f2e01a459f5d623453c75a97640d554357",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "qa/gastronomia/DEV-ONLY-CONCIERGE-GASTRONOMY-STAGING-SCHEMA-2026-10-08.sql",
+      "gitBlob": "1b2b38345ddb548ed9a63d957fb08f1791d273a1",
+      "sha256": "4a29072a619cea1704f45c73b1abf392d9132a488f2c19b89a6d47055495d5c5",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "test/fixtures/concierge-intake-dev-functions.sql",
+      "gitBlob": "8ad2a265f4922803316c042fb506b00bde77c673",
+      "sha256": "c1074f16633bc3b853119de37c303f43529775ee1728d7a9736e630ca953303a",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "test/fixtures/concierge-invite-dev-metadata-schema.sql",
+      "gitBlob": "b5f6509f93b954c8acd025f4f7a740c82bcdf50c",
+      "sha256": "139f14156a814f3e4e4779dc8294313c5dbd43535d508f045a1a267888b2c878",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "test/fixtures/concierge-invite-postgres-seed.sql",
+      "gitBlob": "b1fc02bc785efd538aa2c48434d6b7f2a4145f91",
+      "sha256": "833244dc861148b912d7ff7bf71f3512b6bbbc29d6053864a38ab4bc97a8b6e1",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "test/fixtures/concierge-runtime-dev-functions.sql",
+      "gitBlob": "2b47dfde22807a2c4aa068a601ae1ab8a0d3588a",
+      "sha256": "5f3a1b4814301a05f97d4a0b0031b476b23e30cf0a9d68760e87a5ec4165d429",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "test/fixtures/concierge-runtime-dev-indexes-triggers.sql",
+      "gitBlob": "a49227b0d0265663b00d4f05953b3f54b076fc2a",
+      "sha256": "7111edd213e678b6027afdc1007ba6336e470fd84c49a9211bbcdb8757402656",
+      "apply": false
+    },
+    {
+      "repo": "chebot-backend",
+      "path": "test/fixtures/concierge-runtime-dev-schema.sql",
+      "gitBlob": "acbd63785006dc14f1393171644f80c18d1bc790",
+      "sha256": "220ca0bebd3fa3131dfdf8b8003ed88e1d048d23b035c81af4102b14d758916f",
+      "apply": false
+    }
+  ]
+}

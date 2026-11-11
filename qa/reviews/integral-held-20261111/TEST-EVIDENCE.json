@@ -1,0 +1,78 @@
+{
+  "node": "v24.22.1",
+  "commands": [
+    {
+      "command": "node --test qa/security/signup-admin-held-denial-20261111.test.cjs",
+      "cwd": "web",
+      "pass": 31,
+      "fail": 0,
+      "skip": 0,
+      "log": "web-signup-node.tap",
+      "scope": "Exact extracted browser classifier from original generator, full checkout; not a browser test",
+      "logSha256": "6c0e8ad953d19528845bdcfdf0fc9e9a99cb231d98f294617899212e51b73939",
+      "exitCode": 0
+    },
+    {
+      "command": "node qa/cheveni-manager-held-qa-successors-v1/run-held-batch.mjs --review-only",
+      "cwd": "backend",
+      "pass": 66,
+      "fail": 0,
+      "skip": 0,
+      "log": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/qa/reviews/integral-held-20261111/backend-held-batch.tap",
+      "scope": "Original seven-suite batch, QA successors plus original signup, after explicit TAP reporter correction",
+      "logSha256": "844de0fb2a415a020e2407d31f273840770d5e72945f989fd831991d72d92dba",
+      "exitCode": 0
+    },
+    {
+      "command": "node --test --test-reporter=tap qa/cheveni-manager-held-qa-successors-v1/run-held-batch.guard.test.mjs",
+      "cwd": "backend",
+      "pass": 14,
+      "fail": 0,
+      "skip": 0,
+      "log": "https://github.com/MarcoAlexis10/chebot-backend/blob/9beb837a621f9a8f06601043afa64b3bba317cb5/qa/reviews/integral-held-20261111/backend-runner-guards.tap",
+      "scope": "Existing guard regressions repeated because runner changed and dependent source pin required update",
+      "logSha256": "1e9ee3c1ed299ab3a48a971734c2c0f794184e8d4d7669d1c628f942a4968efe",
+      "exitCode": 0
+    },
+    {
+      "command": "node --test --test-reporter=tap test/manager-signup-admin-build.test.cjs qa/security/signup-admin-read-lifecycle-new.test.cjs",
+      "cwd": "web",
+      "pass": 18,
+      "fail": 0,
+      "skip": 0,
+      "log": "web-admin-regressions-final.tap",
+      "scope": "Affected administrative build/lifecycle regressions after fixture repair",
+      "logSha256": "31db77dc475f35718369ecc5c2e6ab84dbd50a0f3c4b3d9e828fc53fe39b8ea4",
+      "exitCode": 0
+    },
+    {
+      "command": "python web/qa/integral-held-v1/run-isolated.py --loopback -- node --test --test-reporter=tap web/qa/integral-held-v1/original-chain.test.mjs",
+      "cwd": "parent of web/backend",
+      "pass": 17,
+      "fail": 0,
+      "skip": 4,
+      "log": "original-chain-final.tap",
+      "scope": "Original native imports + actual local HTTPS + generated admin JS in VM; 4 browser cases NOT EXECUTED",
+      "logSha256": "80d51c521ee37c520ab4bc23d4b7e62a79e3c734a5a960e008463aeea1c437bb",
+      "exitCode": 0
+    }
+  ],
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "publicFictionalConfiguration": "ENVIRONMENT-REFERENCE.json",
+    "network": "fresh network namespace; no egress"
+  },
+  "generatedScriptsCompile": 13,
+  "originalHttpsExchanges": 67,
+  "providerAttempts": 0,
+  "privateBodyReads": 0,
+  "finalPass": 146,
+  "finalSkip": 4,
+  "finalFail": 0,
+  "countsAreNotNewHistoricalTestClaims": true,
+  "notCumulativeAcrossAttempts": true,
+  "browser": "BLOCKED_BEFORE_START_EPERM_SOCKET",
+  "native17SqlExecuted": false,
+  "actions": "Automatic create event skipped; see ACTIONS-EVENT.json"
+}

@@ -1,0 +1,186 @@
+{
+  "web": [
+    {
+      "path": ".github/workflows/concierge-manager-preview-build-only.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "concierge-manager-web-v1",
+        "qa/cheveni-web-local-review-20261018"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/qa284-che-veni-brand-build-only.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa284-che-veni-brand-copy-preview"
+      ],
+      "candidateBranchMatchesPush": false
+    }
+  ],
+  "backend": [
+    {
+      "path": ".github/workflows/concierge-worker-qa250-all-modules-local-only.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "concierge-v3-design"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/qa279-current-dev-worker-offline.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa279-dev-clock-off-synthetic-cpu-offline"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/qa277-beta-clock-offline.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa277-beta-clock-first-verified-stay-staged"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/qa272-minimal-dev-candidate.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa272-dev-integration-review-minimal"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/qa280-cloudflare-clock-preview-offline.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa280-cloudflare-beta-clock-runtime-gate-staged"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/concierge-worker-qa247-local-only.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "concierge-v3-design"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/cheveni-native-ci-only.yml",
+      "events": [
+        "create",
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa/cheveni-native-concurrency-20261017",
+        "qa/cheveni-local-stack-review-20261017"
+      ],
+      "candidateBranchMatchesPush": false,
+      "automaticCreateEvent": true,
+      "jobConditions": {
+        "native-postgres-concurrency": "github.ref == 'refs/heads/qa/cheveni-native-concurrency-20261017' || github.ref == 'refs/heads/qa/cheveni-local-stack-review-20261017'"
+      }
+    },
+    {
+      "path": ".github/workflows/cheveni-nine-preflight-manual.yml",
+      "events": [
+        "workflow_dispatch"
+      ],
+      "pushBranches": [],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/cheveni-installation-contract-unit-qa.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa/cheveni-local-stack-review-20261017"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/cheveni-legal-qa-20261024.yml",
+      "events": [
+        "push"
+      ],
+      "pushBranches": [
+        "qa/cheveni-legal-compliance-20261024"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/cheveni-local-stack-ci-only.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "qa/cheveni-local-stack-review-20261017"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/concierge-preview-qa.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "concierge-v3-design"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/concierge-worker-qa249-real-handler-local-only.yml",
+      "events": [
+        "push",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "concierge-v3-design"
+      ],
+      "candidateBranchMatchesPush": false
+    },
+    {
+      "path": ".github/workflows/guest-privacy-precollection-prototype.yml",
+      "events": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ],
+      "pushBranches": [
+        "feature/guest-privacy-gate-prelegal"
+      ],
+      "candidateBranchMatchesPush": false
+    }
+  ]
+}
