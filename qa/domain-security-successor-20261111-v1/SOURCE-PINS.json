@@ -49,6 +49,14 @@
       "path": "79-PATCH-09-FIX-ACTIVATE-KNOWLEDGE-VERSION.sql",
       "gitBlob": "c64b72c4dd7100e11624fe918a90a6ac1a11f981",
       "sha256": "28dcc22e58e8c19bfb34fb5864c22ff754d6290f76c92837c3e429ffe45ab7d5"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/writer-contract-v2/contract-install-UNAPPLIED.sql",
+      "gitBlob": "52878ee26db968ea4ee34c10ead7aa349946c055",
+      "sha256": "eb6dcd99bac56d2fdd457107a103ea854f54a9bbd2964502f045fc6c0fb07a19",
+      "usage": "Historical bindings/intents types and ACL; not the current Native17 caller generation"
     }
   ],
   "nativeCatalogExcerpts": {

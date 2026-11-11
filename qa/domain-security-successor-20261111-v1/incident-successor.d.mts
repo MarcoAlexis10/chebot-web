@@ -35,5 +35,10 @@ export interface ReviewOptions {
  reader:{principal:'cheveni_incident_readback_backend_v1';readOnly:true;readback:(plan:IncidentPlan)=>Promise<ModelEvidence>};
  clock?:()=>number;budgetMs?:number;
 }
+export const OP: 'concierge_manager_set_incident_state';
+export const SERVICE_SQL: string;
+export const QA_ISSUER: string;
+export function record<T extends Record<string,unknown>>(input:unknown,keys:readonly string[]):T;
+export function snapshot(input:unknown):Readonly<HistoricalIncidentCommand>;
 export function createHeldIncidentCandidate(options?:unknown):{execute(...args:unknown[]):Promise<ReviewResult>;reconcile(...args:unknown[]):Promise<ReviewResult>};
 export function createIncidentContractReview(options:ReviewOptions):{execute(token:string,command:HistoricalIncidentCommand):Promise<ReviewResult>;reconcile(token:string,intentId:UUID):Promise<ReviewResult>};

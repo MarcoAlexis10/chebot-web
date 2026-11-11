@@ -7,3 +7,5 @@ Implementado bajo qa/domain-security-successor-20261111-v1: adaptador de inciden
 La composición anterior exigía writer_client_v1, mientras el catálogo Native17 sucesor exige writer_backend_v3. Ninguno equivale a una credencial readback-only. El manager_action nativo admite incident_state pero deduplica por user/request y no conserva intento, versión de autoridad o recibo de sesión. La nueva traducción preserva esas identidades y declara la evidencia sucesora faltante; no inventa un pase.
 
 Continuar con matriz de las once operaciones, contrato ROLE-ABI/SECURITY-CONTRACTS, dependencias Native17/A2, manifiesto y CLOSURE final. No repetir Chromium ni suites históricas. Consultar TEST-EVIDENCE al consolidar; no sumar repeticiones como casos únicos.
+
+El cierre consolidado, cuando esté presente como CLOSURE.md en este directorio, reemplaza este checkpoint. No retomar tareas ya declaradas completadas allí.

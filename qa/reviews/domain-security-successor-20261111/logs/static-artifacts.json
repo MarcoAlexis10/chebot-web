@@ -1,0 +1,11 @@
+{
+  "kind": "STATIC_ARTIFACT_CONSISTENCY",
+  "matrixOperations": 11,
+  "domains": 5,
+  "exactArgumentSets": true,
+  "nativeExcerptsHashMatched": 8,
+  "result": "PASS",
+  "nativeSqlExecuted": false,
+  "typescriptCompiled": false,
+  "typescriptCompiler": "UNAVAILABLE; no install attempted"
+}

@@ -1,0 +1,320 @@
+{
+  "version": "CHEVENI_DOMAIN_SECURITY_SUCCESSOR_REVIEW_1",
+  "sourceHeads": {
+    "web": "8c85ea251cac217fcd61ab820c670e4d5fa14ca4",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "sourcePins": "../../domain-security-successor-20261111-v1/SOURCE-PINS.json",
+  "selectedDomain": "incidencias",
+  "selectionReason": "Actual Native17 manager_action resolves incident against explicit stay/property/account and calls exact four-argument business function; other domains lack an equivalent private frontdoor/evidence ABI",
+  "privateCbf1Operations": [
+    "concierge_manager_create_stay"
+  ],
+  "cbf1Intersection": [],
+  "legacyRestFallbackAllowed": false,
+  "genericDmlAllowed": false,
+  "operationallyMigratedCount": 0,
+  "operations": [
+    {
+      "operation": "concierge_manager_decide_request",
+      "domain": "solicitudes",
+      "arguments": [
+        "p_request_id",
+        "p_account_member_id",
+        "p_decision",
+        "p_approved_value",
+        "p_approved_at_time",
+        "p_approved_until",
+        "p_decision_summary"
+      ],
+      "authorityAndScope": "request -> stay/property/account; active actor; approve_requests",
+      "effects": "request decision, optional approved stay times, decision history/audit",
+      "historicalBusinessReceipt": [
+        "request_id",
+        "resulting_status",
+        "stay_updated",
+        "effective_time"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "private request resolver and approve_requests scope",
+        "typed request/value/time ABI, business receipt and independent readback",
+        "SQL idempotency/fence for request and stay update"
+      ]
+    },
+    {
+      "operation": "concierge_manager_set_incident_state",
+      "domain": "incidencias",
+      "arguments": [
+        "p_incident_id",
+        "p_account_member_id",
+        "p_new_status",
+        "p_event_summary"
+      ],
+      "authorityAndScope": "incident -> stay/property/account; current member manage_incidents; active session",
+      "effects": "incident status/intervention/closed_at, event summary, audit; Native17 adds service audit/commands; root notification and learning are separate and remain disabled",
+      "historicalBusinessReceipt": [
+        "incident_id",
+        "resulting_status"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": "incident-successor.mjs / OFFLINE_FIXTURE only",
+      "mappingState": "TYPED_TRANSLATION_REVIEWED_NOT_NATIVE",
+      "missing": [
+        "current trusted incident resolver with authority/restriction revision (manager_scope has no revision)",
+        "incident-only least-privilege wrapper around manager_action (entry also admits checkout/suspend)",
+        "durable intent/attempt/session/authority binding, dispatch/commit evidence, independent readback",
+        "signed journal/witness and codec/receipt domain successor; existing CBF1 cannot encode incident"
+      ]
+    },
+    {
+      "operation": "concierge_activate_knowledge_version",
+      "domain": "conocimiento",
+      "arguments": [
+        "p_knowledge_item_id",
+        "p_version_id",
+        "p_approved_by_member_id"
+      ],
+      "authorityAndScope": "item/version -> account/property; matching actor manage_knowledge; proposal also incident scope/manage_incidents",
+      "effects": "activate exact version, retain history and update current item",
+      "historicalBusinessReceipt": [
+        "knowledge_item_id",
+        "version_id",
+        "version_number",
+        "resulting_status"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "typed item/version/incident resolver; account/building/property scope retained",
+        "domain ABI for every argument, draft/active/rejected receipts and immutable history",
+        "independent durable readback and current dual permission where required"
+      ]
+    },
+    {
+      "operation": "concierge_reject_knowledge_version",
+      "domain": "conocimiento",
+      "arguments": [
+        "p_knowledge_item_id",
+        "p_version_id",
+        "p_rejected_by_member_id"
+      ],
+      "authorityAndScope": "item/version -> account/property; matching actor manage_knowledge; proposal also incident scope/manage_incidents",
+      "effects": "reject exact version, preserve item status/history",
+      "historicalBusinessReceipt": [
+        "knowledge_item_id",
+        "version_id",
+        "version_number",
+        "resulting_item_status",
+        "resulting_version_status"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "typed item/version/incident resolver; account/building/property scope retained",
+        "domain ABI for every argument, draft/active/rejected receipts and immutable history",
+        "independent durable readback and current dual permission where required"
+      ]
+    },
+    {
+      "operation": "concierge_propose_incident_learning",
+      "domain": "conocimiento",
+      "arguments": [
+        "p_incident_id",
+        "p_account_member_id",
+        "p_knowledge_key",
+        "p_content",
+        "p_risk_level",
+        "p_change_summary"
+      ],
+      "authorityAndScope": "item/version -> account/property; matching actor manage_knowledge; proposal also incident scope/manage_incidents",
+      "effects": "create draft version from incident; privacy checks and dual permission; never automatic activation",
+      "historicalBusinessReceipt": [
+        "knowledge_item_id",
+        "version_id",
+        "version_number",
+        "item_status",
+        "version_status"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "typed item/version/incident resolver; account/building/property scope retained",
+        "domain ABI for every argument, draft/active/rejected receipts and immutable history",
+        "independent durable readback and current dual permission where required"
+      ]
+    },
+    {
+      "operation": "concierge_request_guest_phone_replacement",
+      "domain": "reemplazo_telefonico",
+      "arguments": [
+        "p_manager_id",
+        "p_stay_member_id",
+        "p_new_phone_hash"
+      ],
+      "authorityAndScope": "stay_member or change -> original identity/stay/property/account; active manager manage_team; publication gate",
+      "effects": "request replacement or approve identity-generation change; invalidate old identity and publish current heads on approval",
+      "historicalBusinessReceipt": [
+        "result",
+        "reason_code",
+        "change_id"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "privacy-safe domain ABI (phone hash is personal data)",
+        "identity generation, original stay member/change and current published heads",
+        "request/approve-specific durable binding, receipt and readback; no generic create_stay translation"
+      ]
+    },
+    {
+      "operation": "concierge_approve_guest_phone_replacement",
+      "domain": "reemplazo_telefonico",
+      "arguments": [
+        "p_manager_id",
+        "p_change_id"
+      ],
+      "authorityAndScope": "stay_member or change -> original identity/stay/property/account; active manager manage_team; publication gate",
+      "effects": "request replacement or approve identity-generation change; invalidate old identity and publish current heads on approval",
+      "historicalBusinessReceipt": [
+        "result",
+        "reason_code",
+        "change_id"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "privacy-safe domain ABI (phone hash is personal data)",
+        "identity generation, original stay member/change and current published heads",
+        "request/approve-specific durable binding, receipt and readback; no generic create_stay translation"
+      ]
+    },
+    {
+      "operation": "concierge_record_manager_signup_screening",
+      "domain": "administracion_managers",
+      "arguments": [
+        "p_invite_id",
+        "p_reviewer_auth_user_id",
+        "p_decision"
+      ],
+      "authorityAndScope": "current owner; reviewer/issuer/revoker must be exact Auth user; invitation/application current review state",
+      "effects": "record internal screening recommendation; no provisioning",
+      "historicalBusinessReceipt": [
+        "SCREENING_RECORDED",
+        "ALREADY_REVIEWED",
+        "APPLICATION_NOT_REVIEWABLE",
+        "INVALID_REQUEST"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "separate owner-only admin ABI, exact invitation/application and decision history",
+        "privacy/minimization for email/token-hash and no provisioning/send",
+        "durable outcome/readback for scalar vs row receipts; signup legal/prelegal guards unchanged"
+      ]
+    },
+    {
+      "operation": "concierge_resolve_manager_signup_followup",
+      "domain": "administracion_managers",
+      "arguments": [
+        "p_invite_id",
+        "p_reviewer_auth_user_id",
+        "p_decision"
+      ],
+      "authorityAndScope": "current owner; reviewer/issuer/revoker must be exact Auth user; invitation/application current review state",
+      "effects": "append followup resolution preserving both decisions; no provisioning",
+      "historicalBusinessReceipt": [
+        "FOLLOWUP_RESOLVED_NO_PROVISIONING",
+        "ALREADY_RESOLVED",
+        "FOLLOWUP_NOT_REVIEWABLE",
+        "INVALID_REQUEST"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "separate owner-only admin ABI, exact invitation/application and decision history",
+        "privacy/minimization for email/token-hash and no provisioning/send",
+        "durable outcome/readback for scalar vs row receipts; signup legal/prelegal guards unchanged"
+      ]
+    },
+    {
+      "operation": "concierge_prepare_signup_invite",
+      "domain": "administracion_managers",
+      "arguments": [
+        "invite_token_sha256",
+        "email_normalized",
+        "issued_by_auth_user_id",
+        "expires_at"
+      ],
+      "authorityAndScope": "current owner; reviewer/issuer/revoker must be exact Auth user; invitation/application current review state",
+      "effects": "insert issued invitation with normalized email/token hash/expiry; no send",
+      "historicalBusinessReceipt": [
+        "id",
+        "email_normalized",
+        "expires_at",
+        "status"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "separate owner-only admin ABI, exact invitation/application and decision history",
+        "privacy/minimization for email/token-hash and no provisioning/send",
+        "durable outcome/readback for scalar vs row receipts; signup legal/prelegal guards unchanged"
+      ]
+    },
+    {
+      "operation": "concierge_revoke_signup_invite",
+      "domain": "administracion_managers",
+      "arguments": [
+        "id",
+        "revoked_by_auth_user_id"
+      ],
+      "authorityAndScope": "current owner; reviewer/issuer/revoker must be exact Auth user; invitation/application current review state",
+      "effects": "revoke only issued invitation and record exact revoker",
+      "historicalBusinessReceipt": [
+        "id"
+      ],
+      "receiptSource": "backend handler validators and pinned writer switch; Native17 body where present",
+      "cbf1Compatible": false,
+      "operationalState": "HELD",
+      "candidate": null,
+      "mappingState": "EXPLICITLY_UNMAPPED",
+      "missing": [
+        "separate owner-only admin ABI, exact invitation/application and decision history",
+        "privacy/minimization for email/token-hash and no provisioning/send",
+        "durable outcome/readback for scalar vs row receipts; signup legal/prelegal guards unchanged"
+      ]
+    }
+  ]
+}

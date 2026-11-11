@@ -1,0 +1,218 @@
+{
+  "version": "CHEVENI_SUCCESSOR_EXECUTED_EVIDENCE_1",
+  "runtime": "Node v24.22.1 observed locally; same binary PATH in the original isolated launcher",
+  "uniqueCases": {
+    "reviewerWithDoubles": 17,
+    "staticSourceAndProfileCases": 4,
+    "total": 21,
+    "finalPass": 21,
+    "finalFail": 0,
+    "finalSkip": 0
+  },
+  "noRepeatedExecutionAddedAsNewCase": true,
+  "finalCoverage": "17 cases in incident-final.tap; 4 source/profile cases in successor-second.tap, with changed CBF operation and proposed role closure cases rerun individually in their focused logs",
+  "executions": [
+    {
+      "log": "logs/incident-first.tap",
+      "kind": "NODE_WITH_FICTITIOUS_PORTS",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/domain-security-successor-20261111-v1/incident-successor.test.mjs",
+      "counts": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "skipped": 0
+      },
+      "caseNames": [
+        "product candidate keeps original guards before inspecting hostile inputs",
+        "incident mapping preserves all four historical arguments and separates stable intent from attempt",
+        "all other legacy operations and ambiguous or extra arguments remain unmapped",
+        "summary uses PostgreSQL character length and space trimming without losing original value",
+        "current resolved incident/account/stay/property/actor and permission cannot be inferred from names",
+        "DEV issuer, expired JWT and changed session are denied before dispatch",
+        "revocation or authority revision between resolve and dispatch prevents write",
+        "native transition restrictions stay enforced for close, learning and guest-only resolved",
+        "ACK loss after model effect stays UNKNOWN; readback never resends",
+        "same intent with changed arguments conflicts and local interleaving issues one dispatch",
+        "readback requires all effect, intent, attempt, authority, commit, journal and witness correlations",
+        "revocation after possible effects preserves UNKNOWN and withholds private readback",
+        "refresh or new session cannot reuse an old binding and restart cannot accept client snapshot",
+        "connection configuration rejects shared credential and reused callbacks",
+        "deadline after dispatch and clock rollback cannot establish an outcome"
+      ],
+      "sha256": "c94ce92abd3ccd31bcb8e25803b6cd133a209de29eb66d662b79d6cfc7768631",
+      "networkIsolation": "Original launcher, fresh user/net namespace; different namespace, empty external routes, ENETUNREACH=101; no loopback enabled",
+      "intermediateExpectedFailure": false
+    },
+    {
+      "log": "logs/privacy-before.tap",
+      "kind": "NODE_WITH_FICTITIOUS_PORTS",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='provider exceptions' web/qa/domain-security-successor-20261111-v1/incident-successor.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "caseNames": [
+        "provider exceptions never expose tokens, payloads or summaries in review results"
+      ],
+      "sha256": "3abebaecdb566fb0ab97191f74ea0e6779124b44ef722c423a07671d0d3ae928",
+      "networkIsolation": "Original launcher, fresh user/net namespace; different namespace, empty external routes, ENETUNREACH=101; no loopback enabled",
+      "intermediateExpectedFailure": true
+    },
+    {
+      "log": "logs/successor-second.tap",
+      "kind": "NODE_WITH_FICTITIOUS_PORTS_AND_STATIC_SOURCE_CASES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/domain-security-successor-20261111-v1/incident-successor.test.mjs web/qa/domain-security-successor-20261111-v1/source-profile.test.mjs",
+      "counts": {
+        "tests": 20,
+        "pass": 20,
+        "fail": 0,
+        "skipped": 0
+      },
+      "caseNames": [
+        "product candidate keeps original guards before inspecting hostile inputs",
+        "incident mapping preserves all four historical arguments and separates stable intent from attempt",
+        "all other legacy operations and ambiguous or extra arguments remain unmapped",
+        "summary uses PostgreSQL character length and space trimming without losing original value",
+        "current resolved incident/account/stay/property/actor and permission cannot be inferred from names",
+        "DEV issuer, expired JWT and changed session are denied before dispatch",
+        "revocation or authority revision between resolve and dispatch prevents write",
+        "native transition restrictions stay enforced for close, learning and guest-only resolved",
+        "ACK loss after model effect stays UNKNOWN; readback never resends",
+        "same intent with changed arguments conflicts and local interleaving issues one dispatch",
+        "readback requires all effect, intent, attempt, authority, commit, journal and witness correlations",
+        "revocation after possible effects preserves UNKNOWN and withholds private readback",
+        "refresh or new session cannot reuse an old binding and restart cannot accept client snapshot",
+        "connection configuration rejects shared credential and reused callbacks",
+        "deadline after dispatch and clock rollback cannot establish an outcome",
+        "provider exceptions never expose tokens, payloads or summaries in review results",
+        "pinned source demonstrates both role generations and disallows granting old readback to a new login",
+        "existing Native17 action is incident-capable but has no separate attempt/session/authority receipt",
+        "proposed role closure rejects indirect writes, PUBLIC, ownership, memberships and incomplete RLS/catalog",
+        "SQL proposal aborts before DDL, exposes only reader entry and keeps scope unimplemented"
+      ],
+      "sha256": "9fb91e42e25350444f09add930d7c364f45a75f829de9326fa9353f2942b609c",
+      "networkIsolation": "Original launcher, fresh user/net namespace; different namespace, empty external routes, ENETUNREACH=101; no loopback enabled",
+      "intermediateExpectedFailure": false
+    },
+    {
+      "log": "logs/expiry-before.tap",
+      "kind": "NODE_WITH_FICTITIOUS_PORTS",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='expiry during final' web/qa/domain-security-successor-20261111-v1/incident-successor.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "caseNames": [
+        "expiry during final authority read and same-claims refresh cannot expose a result"
+      ],
+      "sha256": "4866069ff9abd248a1d6b6b6081985a3a505e4a4630fe930cbe5c878e38cfd17",
+      "networkIsolation": "Original launcher, fresh user/net namespace; different namespace, empty external routes, ENETUNREACH=101; no loopback enabled",
+      "intermediateExpectedFailure": true
+    },
+    {
+      "log": "logs/incident-final.tap",
+      "kind": "NODE_WITH_FICTITIOUS_PORTS",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/domain-security-successor-20261111-v1/incident-successor.test.mjs",
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "skipped": 0
+      },
+      "caseNames": [
+        "product candidate keeps original guards before inspecting hostile inputs",
+        "incident mapping preserves all four historical arguments and separates stable intent from attempt",
+        "all other legacy operations and ambiguous or extra arguments remain unmapped",
+        "summary uses PostgreSQL character length and space trimming without losing original value",
+        "current resolved incident/account/stay/property/actor and permission cannot be inferred from names",
+        "DEV issuer, expired JWT and changed session are denied before dispatch",
+        "revocation or authority revision between resolve and dispatch prevents write",
+        "native transition restrictions stay enforced for close, learning and guest-only resolved",
+        "ACK loss after model effect stays UNKNOWN; readback never resends",
+        "same intent with changed arguments conflicts and local interleaving issues one dispatch",
+        "readback requires all effect, intent, attempt, authority, commit, journal and witness correlations",
+        "revocation after possible effects preserves UNKNOWN and withholds private readback",
+        "refresh or new session cannot reuse an old binding and restart cannot accept client snapshot",
+        "connection configuration rejects shared credential and reused callbacks",
+        "deadline after dispatch and clock rollback cannot establish an outcome",
+        "provider exceptions never expose tokens, payloads or summaries in review results",
+        "expiry during final authority read and same-claims refresh cannot expose a result"
+      ],
+      "sha256": "4815e36f180875cd867a412c35ca3dbe475a99e227fd02daad5b176bfdcc2a5b",
+      "networkIsolation": "Original launcher, fresh user/net namespace; different namespace, empty external routes, ENETUNREACH=101; no loopback enabled",
+      "intermediateExpectedFailure": false
+    },
+    {
+      "log": "logs/cbf-operation-focused.tap",
+      "kind": "STATIC_SOURCE_FOCUSED",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='existing Native17 action' web/qa/domain-security-successor-20261111-v1/source-profile.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "caseNames": [
+        "existing Native17 action is incident-capable but has no separate attempt/session/authority receipt"
+      ],
+      "sha256": "75a237bc61759bcf24d1abe4c045749d9c72bd2c1f628e362f85ba26975e6e83",
+      "networkIsolation": "Original launcher, fresh user/net namespace; different namespace, empty external routes, ENETUNREACH=101; no loopback enabled",
+      "intermediateExpectedFailure": false
+    },
+    {
+      "log": "logs/role-closure-focused.tap",
+      "kind": "STATIC_PROPOSED_PROFILE_FOCUSED",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='proposed role closure' web/qa/domain-security-successor-20261111-v1/source-profile.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "caseNames": [
+        "proposed role closure rejects indirect writes, PUBLIC, ownership, memberships and incomplete RLS/catalog"
+      ],
+      "sha256": "4d8697c0ed4170cd75bf4937617d04be34328cb9bd61d201e0595fa2bf32f31e",
+      "networkIsolation": "Original fresh user/net launcher; ENETUNREACH=101; no loopback",
+      "reason": "Disambiguate loginSchemaCreate from ownerOwnsDataTables; owner of reader code/schema is not owner of data tables",
+      "intermediateExpectedFailure": false
+    }
+  ],
+  "failuresCorrected": [
+    {
+      "log": "logs/privacy-before.tap",
+      "bug": "Raw provider exception could expose private message through reason",
+      "fix": "Fixed public code PRE_DISPATCH_CONTRACT_HELD, no external exception text",
+      "finalEvidence": "logs/incident-final.tap"
+    },
+    {
+      "log": "logs/expiry-before.tap",
+      "bug": "Token could expire during final resolver await and still return REVIEW_MATCHED",
+      "fix": "Original verifiedIdentity check after current-resolution await and exact bearer binding for reconciliation",
+      "finalEvidence": "logs/incident-final.tap"
+    }
+  ],
+  "staticOnly": [
+    "logs/static-syntax.log",
+    "logs/static-artifacts.json"
+  ],
+  "types": "incident-successor.d.mts provided; tsc unavailable, not compiled, no installation attempted",
+  "notExecuted": {
+    "nativePostgresql": true,
+    "remoteSql": true,
+    "providerAuth": true,
+    "jwtSignatureVerificationReal": true,
+    "signedJournalOrWitness": true,
+    "physicalIndependentConnections": true,
+    "realCommitRollback": true,
+    "restoreA2": true,
+    "chromiumCases": 4,
+    "historicalSuites": true
+  },
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

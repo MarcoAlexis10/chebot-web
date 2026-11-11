@@ -8,10 +8,10 @@ export const PROFILES=Object.freeze({
  proposedIncidentReader:Object.freeze({sessionUser:'cheveni_incident_readback_backend_v1',definerOwner:'cheveni_incident_readback_owner_v1'})
 });
 export function compareReadbackProposal(input) {
- const x=record(input,['sessionUser','currentUserAtConnect','definerOwner','ownerCanLogin','superuser','bypassRls','memberships','loginTablePrivileges','ownerTablePrivileges','loginExecute','ownerExecute','publicReachableMutators','schemaCreate','ownsDataTables','rlsSelectPolicies','catalogComplete']);
+ const x=record(input,['sessionUser','currentUserAtConnect','definerOwner','ownerCanLogin','superuser','bypassRls','memberships','loginTablePrivileges','ownerTablePrivileges','loginExecute','ownerExecute','publicReachableMutators','loginSchemaCreate','ownerOwnsDataTables','rlsSelectPolicies','catalogComplete']);
  const errors=[];
  if(x.sessionUser!==PROFILES.proposedReadback.sessionUser || x.currentUserAtConnect!==x.sessionUser || x.definerOwner!==PROFILES.proposedReadback.definerOwner)errors.push('CALLER_PAIR');
- if(x.ownerCanLogin!==false || x.superuser!==false || x.bypassRls!==false || x.schemaCreate!==false || x.ownsDataTables!==false)errors.push('ROLE_ATTRIBUTES');
+ if(x.ownerCanLogin!==false || x.superuser!==false || x.bypassRls!==false || x.loginSchemaCreate!==false || x.ownerOwnsDataTables!==false)errors.push('ROLE_ATTRIBUTES');
  for(const k of ['memberships','loginTablePrivileges','publicReachableMutators'])if(!Array.isArray(x[k]) || x[k].length)errors.push(k);
  const equals=(a,b)=>Array.isArray(a)&&new Set(a).size===a.length&&JSON.stringify([...a].sort())===JSON.stringify([...b].sort());
  if(!equals(x.loginExecute,['concierge_readback_v3.readback_v3(bytea,bytea)']))errors.push('LOGIN_EXECUTE');
