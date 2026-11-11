@@ -1,0 +1,28 @@
+{
+  "baseWeb": "f2944f76af51b979f8d268ab445460b723adecbd",
+  "backendUnmodified": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "stage": "CHROMIUM_DIAGNOSED / UI_FEEDBACK_FIXED / SECURITY_REVIEW_IN_PROGRESS",
+  "browserAssertionsExecuted": false,
+  "focusedVmTests": {
+    "pass": 3,
+    "fail": 0
+  },
+  "historicalSuitesRepeated": false,
+  "files": [
+    {
+      "path": "web/manager-auth-v1.js",
+      "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4",
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a"
+    },
+    {
+      "path": "web/qa/post-integration-20261111-v1/chromium-diagnostic.py",
+      "gitBlob": "c54f8ab929f6f837352529a13893275c4e018807",
+      "sha256": "2f7c8c83e52d7d9e974c64372149f1fb902f717e2bb40e996cfbaf49d076d780"
+    },
+    {
+      "path": "web/qa/post-integration-20261111-v1/session-restore-feedback.test.cjs",
+      "gitBlob": "93a8b53865e4e135e1461b06681530f2c32e288e",
+      "sha256": "ff11b922457cff270e0a660f2eacddbd641b9313c826bfb845ad80894219002d"
+    }
+  ]
+}

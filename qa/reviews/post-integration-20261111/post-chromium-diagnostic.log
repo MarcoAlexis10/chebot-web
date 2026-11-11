@@ -1,0 +1,131 @@
+{
+  "scope": "diagnostic only, NOT browser application tests",
+  "networkPolicyChanged": false,
+  "sandboxDisabled": false,
+  "binarySha256": "ce1ff960ce428a4a88b1b1c38516bdf1954a57fc24036161b7a0d8d0f8aec511",
+  "headlessShellInstalled": false,
+  "attempts": [
+    {
+      "mapping": "root",
+      "uid": 0,
+      "parentNetns": "net:[4026532301]",
+      "childNetns": "net:[4026532228]",
+      "externalConnectErrno": 101,
+      "ipv4Routes": "",
+      "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+      "socketResults": {
+        "AF_UNIX:SOCK_STREAM": {
+          "created": false,
+          "errno": 1
+        },
+        "AF_UNIX:SOCK_DGRAM": {
+          "created": false,
+          "errno": 1
+        },
+        "AF_INET:SOCK_STREAM": {
+          "created": true
+        },
+        "AF_INET:SOCK_DGRAM": {
+          "created": true
+        },
+        "AF_NETLINK:SOCK_STREAM": {
+          "created": false,
+          "errno": 1
+        },
+        "AF_NETLINK:SOCK_DGRAM": {
+          "created": false,
+          "errno": 1
+        },
+        "socketpair:SOCK_STREAM": {
+          "created": true
+        },
+        "socketpair:SOCK_DGRAM": {
+          "created": true
+        }
+      },
+      "controls": {
+        "CapEff": "000001ffffffffff",
+        "NoNewPrivs": "1",
+        "Seccomp": "2",
+        "Seccomp_filters": "1"
+      },
+      "browserAssertionsExecuted": false,
+      "browserCommandWithoutProfilePath": [
+        "/usr/lib/chromium/chromium",
+        "--headless",
+        "--dump-dom",
+        "--no-first-run",
+        "--no-proxy-server",
+        "--disable-background-networking",
+        "about:blank"
+      ],
+      "browser": {
+        "exitCode": 1,
+        "stdout": "",
+        "stderr": "[7:7:1111/152336.985147:ERROR:content/browser/zygote_host/zygote_host_impl_linux.cc:103] Running as root without --no-sandbox is not supported. See https://crbug.com/638180.\n",
+        "timedOut": false
+      }
+    },
+    {
+      "mapping": "current",
+      "uid": 1000,
+      "parentNetns": "net:[4026532301]",
+      "childNetns": "net:[4026532231]",
+      "externalConnectErrno": 101,
+      "ipv4Routes": "",
+      "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+      "socketResults": {
+        "AF_UNIX:SOCK_STREAM": {
+          "created": false,
+          "errno": 1
+        },
+        "AF_UNIX:SOCK_DGRAM": {
+          "created": false,
+          "errno": 1
+        },
+        "AF_INET:SOCK_STREAM": {
+          "created": true
+        },
+        "AF_INET:SOCK_DGRAM": {
+          "created": true
+        },
+        "AF_NETLINK:SOCK_STREAM": {
+          "created": false,
+          "errno": 1
+        },
+        "AF_NETLINK:SOCK_DGRAM": {
+          "created": false,
+          "errno": 1
+        },
+        "socketpair:SOCK_STREAM": {
+          "created": true
+        },
+        "socketpair:SOCK_DGRAM": {
+          "created": true
+        }
+      },
+      "controls": {
+        "CapEff": "0000000000000000",
+        "NoNewPrivs": "1",
+        "Seccomp": "2",
+        "Seccomp_filters": "1"
+      },
+      "browserAssertionsExecuted": false,
+      "browserCommandWithoutProfilePath": [
+        "/usr/lib/chromium/chromium",
+        "--headless",
+        "--dump-dom",
+        "--no-first-run",
+        "--no-proxy-server",
+        "--disable-background-networking",
+        "about:blank"
+      ],
+      "browser": {
+        "exitCode": -6,
+        "stdout": "",
+        "stderr": "[15:15:1111/152337.093567:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n[1111/152337.094233:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\n[1:1:0100/000000.151481:ERROR:content/zygote/zygote_main_linux.cc:197] Failed sending zygote boot message: Broken pipe (32)\n[23:23:0100/000000.151766:ERROR:content/zygote/zygote_linux.cc:662] write: Broken pipe (32)\n",
+        "timedOut": false
+      }
+    }
+  ]
+}

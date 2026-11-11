@@ -728,7 +728,9 @@ const browserJs = `
       loadManagerStays(existingToken).catch(() => { if (generation === authGeneration) renderStaysError(); });
     } catch (_) {
       if (generation !== authGeneration) return;
-      showLogin('Tu sesión venció. Iniciá sesión nuevamente.');
+      // A fetch failure, unreadable response or HELD 503 does not prove expiry.
+      // Explicit current 401/403 responses are already handled by fetchAuth.
+      showLogin('No pudimos comprobar tu sesión. El panel sigue cerrado por seguridad.');
     }
   }
   window.addEventListener('cheveni-manager-session-denied', () => {

@@ -1,0 +1,15 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+
+> chebot-web@1.0.0 build
+> node -e "require('./manager-build-config.cjs').managerBuildConfig()" && node build.js && node manager-auth-v1.js && node manager-knowledge-v1.js && node manager-requests-v1.js && node manager-incidents-v1.js && node manager-request-actions-v1.js && node manager-incident-actions-v1.js && node manager-invite-v1.js && node manager-password-recovery-v1.js && node manager-signup-v1.js && node manager-signup-admin-v1.js
+
+Manager Web auth gate installed.
+Manager Web Knowledge real V1 installed.
+Manager Web Requests real V1 installed.
+Manager Web Incidents real V1 installed.
+Manager Web Request Actions V1 installed.
+Manager Web Incident Actions V1 installed.
+Manager Web Invite V1.1 installed.
+Isolated DEV Manager recovery page generated.
+Private Beta manager registration page prepared (no invitation issued). Legal publication gate: NO_OWNER_LEGAL_PUBLICATION_APPROVAL
+Manager invite operator console generated (access denied by default).
