@@ -21,14 +21,14 @@ const request=()=>({p_auth_user_id:user,p_session_id:session,p_request_id:id(7),
   p_access_until:'2026-11-14T12:00:00.000Z',p_language:'es'}});
 function fixture(){
  let sequence=100;
- const state={now:baseTime,session,revoked:false,manage:true,claims:0,observations:0,calls:[],ledger:new Map(),
+ const state={now:baseTime,session,issuer:'https://'+PROJECT+'.supabase.co/auth/v1',revoked:false,manage:true,claims:0,observations:0,calls:[],ledger:new Map(),
   loseAck:false,wrongReadBackend:false,alterReadReceipt:false,onInspect:null,onWrite:null,claimsHook:null,budget:500};
  const next=()=>id(sequence++);
  const claims=async bearer=>{
   state.claims++;if(state.claimsHook)await state.claimsHook(state.claims);
   assert.ok([token,renewed].includes(bearer));
   return {error:null,data:{claims:{sub:user,session_id:state.session,exp:expiry,iat:Math.floor(baseTime/1000)-60,
-   iss:'https://'+PROJECT+'.supabase.co/auth/v1',aud:'authenticated',role:'authenticated',is_anonymous:false,
+   iss:state.issuer,aud:'authenticated',role:'authenticated',is_anonymous:false,
    user_metadata:{role:'owner'}}}};
  };
  const readSource=async r=>{state.observations++;return {requestId:r.requestId,principal:'manager',userId:user,
@@ -204,4 +204,9 @@ test('cancelled late SDK and silent provider do not advance to authority/SQL aft
  await new Promise(r=>setImmediate(r));assert.equal(h.state.observations,0);assert.equal(h.state.calls.length,0);
  const silent=fixture();silent.state.budget=20;silent.state.claimsHook=()=>new Promise(()=>{});
  assert.equal((await silent.make().review(token,request())).state,'HELD');assert.equal(silent.state.calls.length,0);
+});
+test('historical DEV issuer is not rewritten or trusted as the private QA issuer',async()=>{
+ const h=fixture();h.state.issuer='https://tyvwgsdzqipusodxtydv.supabase.co/auth/v1';
+ const r=await h.review.review(token,request());assert.equal(r.state,'HELD');
+ assert.equal(h.state.observations,0);assert.equal(h.state.calls.length,0);noOperationalApproval(r);
 });

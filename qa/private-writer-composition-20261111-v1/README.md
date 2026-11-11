@@ -1,6 +1,6 @@
 # Composición privada candidata — offline y retenida
 
-Este paquete no se importa desde el build, handlers o router. No tiene driver de red, SQL instalado, cliente Auth, credenciales o valores por defecto que conecten servicios. `createHeldPrivateStayCandidate` conserva el hard stop prelegal original **antes de leer opciones, token o comando**. No acepta un override de held. Un resultado de revisión nunca concede aprobación operativa.
+Este paquete no se importa desde el build, handlers o router. No tiene driver de red, SQL instalado, cliente Auth, credenciales o valores por defecto que conecten servicios. `createHeldPrivateStayCandidate` conserva la admisión legal original cerrada y el hard stop prelegal original **antes de leer opciones, token o comando**. No acepta un override de held. Un resultado de revisión nunca concede aprobación operativa.
 
 ## Conexión nueva
 
@@ -22,7 +22,7 @@ Las reservas locales y el Map ficticio **no acreditan** unicidad SQL, concurrenc
 
 ## Fuentes y ejecución
 
-Se materializaron 16 dependencias seleccionadas, cotejadas con el árbol GitHub `cheveni-qa-lab@ce5c747c…`. Sólo el gateway recibe el overlay histórico ya sellado, cuyo resultado es `a318815e…`; no se cambiaron sus verificadores o holds. UPSTREAM-PINS.json separa fuente original y salida del overlay. No se ejecutaron tests upstream, generadores de claves, PGlite o SQL.
+Se materializaron 16 dependencias seleccionadas, cotejadas con el árbol GitHub `cheveni-qa-lab@ce5c747c…`, y el guard legal original del backend `9beb837a…`. Sólo el gateway recibe el overlay histórico ya sellado, cuyo resultado es `a318815e…`; no se cambiaron sus verificadores o holds. UPSTREAM-PINS.json separa fuente original y salida del overlay. No se ejecutaron tests upstream, generadores de claves, PGlite o SQL.
 
 Con checkouts hermanos `web`/`backend` y fuentes fijadas:
 
@@ -30,6 +30,6 @@ Con checkouts hermanos `web`/`backend` y fuentes fijadas:
 python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/private-writer-composition-20261111-v1/composition.test.mjs
 ```
 
-La ejecución de este lote obtuvo 16 PASS y un fallo de path de fixture; el caso afectado se corrigió y pasó focalmente. Luego se fijó también el blob de ese input; su path de pin tuvo un fallo corregido y el caso volvió a pasar. **17 casos únicos acreditados mediante 16 + 1**, no una suite completa final de 17 reejecutada ni 18/19 pruebas nuevas. Los logs conservan los fallos y repeticiones focalizadas.
+La primera ejecución obtuvo 16 PASS y un fallo de path de fixture; el caso afectado se corrigió y pasó focalmente. Luego se fijó también el blob de ese input; su path de pin tuvo un fallo corregido y el caso volvió a pasar. Se añadió el rechazo del emisor DEV y cambió el proveedor compartido del fixture para comprobarlo; por ese cambio se repitió sólo esta suite nueva de composición: **18/18, cero fallos y cero SKIP**. Después se conservó también el guard legal original en el candidato y se repitió únicamente el caso directamente afectado: 1/1. Son **18 casos únicos**, no 19 ni la suma de pasadas/focales. Los logs conservan fallos y correcciones.
 
 Para repetir sólo el caso corregido se utilizó `--test-name-pattern='eleven historical'`. No repetir suites antiguas por rutina. Chromium permanece pendiente de otro laboratorio; no se intentó aquí.

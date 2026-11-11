@@ -1,0 +1,75 @@
+{
+  "node": "v24.22.1",
+  "network": "fresh kernel network namespace; no external routes; external connect ENETUNREACH; environment cleared by original isolated launcher",
+  "newSuite": "qa/private-writer-composition-20261111-v1/composition.test.mjs",
+  "uniqueNewCases": 18,
+  "completeRun": {
+    "log": "security-composition-final.tap",
+    "pass": 18,
+    "fail": 0,
+    "skip": 0,
+    "exit": 0
+  },
+  "laterAffectedGuardRegression": {
+    "log": "security-composition-double-guard-focal.tap",
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "exit": 0,
+    "reason": "Retain original backend legal guard in addition to original prelegal hold",
+    "newUniqueCase": false
+  },
+  "failureHistory": [
+    "Initial new suite: 16 PASS / 1 FAIL from incorrect sibling-checkout path; fixed and focal PASS.",
+    "Additional input source pin used a wrong review-document path; fixed and focal PASS.",
+    "Shared fixture getClaims changed for DEV issuer rejection; the new composition suite was rerun as 18/18. Historical suites were not rerun."
+  ],
+  "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/private-writer-composition-20261111-v1/composition.test.mjs",
+  "focalCommands": [
+    "--test-name-pattern=eleven historical",
+    "--test-name-pattern=historical DEV issuer",
+    "--test-name-pattern=real candidate keeps original"
+  ],
+  "notCumulativeAcrossAttempts": true,
+  "jwtSignatureVerified": false,
+  "sdkProvider": "CONTROLLED_DOUBLE",
+  "sqlTransport": "CONTROLLED_CALLBACKS / MAP_FIXTURE",
+  "realSqlCommitVerified": false,
+  "physicalReadbackIndependenceVerified": false,
+  "journalSignaturesGenerated": false,
+  "positiveFullCryptographicGatewayTested": false,
+  "native17OrA2Executed": false,
+  "historicalSuitesRepeated": false,
+  "priorThreeFrontendRegressionsRepeated": false,
+  "chromiumAttempted": false,
+  "logs": {
+    "security-composition-final.tap": {
+      "sha256": "bf87b7b86b4c4c2bbf5b9fb85aec74bd47c678f2c29f64c27b375f0c1fdccb14",
+      "bytes": 5290
+    },
+    "security-composition-first.tap": {
+      "sha256": "6722588213f243d3613382017c5dd8ac38d122b9539d820d6c72e17e446438d4",
+      "bytes": 5921
+    },
+    "security-composition-pin-path-error.tap": {
+      "sha256": "d250bd6949115531ab73c6c0809550cba397988231f52fb35b13f7cea7171f42",
+      "bytes": 1734
+    },
+    "security-composition-path-focal.tap": {
+      "sha256": "7a6acc9c26773dd00da83f334db3eaa6631e11f4d3363ee89ba9287288e19377",
+      "bytes": 951
+    },
+    "security-composition-double-guard-focal.tap": {
+      "sha256": "600680181ab40441d4f906813bf31fe2a7a720d8e2d88ef8094c092d40835d79",
+      "bytes": 977
+    },
+    "security-composition-issuer-focal.tap": {
+      "sha256": "8238b50a494e0791e7cbdd31822fdadc76b23a99e42a8c73735a1966bea6c8b0",
+      "bytes": 925
+    },
+    "security-composition-focal-final.tap": {
+      "sha256": "846a15d1e527499db2e633b8f9a709247015047000916aded73b98c90c969982",
+      "bytes": 951
+    }
+  }
+}

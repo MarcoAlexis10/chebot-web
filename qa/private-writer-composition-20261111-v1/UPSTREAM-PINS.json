@@ -73,5 +73,15 @@
   },
   "gatewayOutputSha256": "a318815ed08c64069347f5334e4bbfc650894b30a7027378da7099dac2ecf26e",
   "sqlExecuted": false,
-  "historicalSuitesExecuted": false
+  "historicalSuitesExecuted": false,
+  "backendSources": {
+    "repo": "MarcoAlexis10/chebot-backend",
+    "commit": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "files": {
+      "concierge-manager-legal-admission-guard.js": {
+        "gitBlob": "28511d39e60095208d5f693f521e9461825ebe4f",
+        "sha256": "537f517c05c0d21928afdfacd894d0212ca59ce7565ad688e5d0bf4c92847d88"
+      }
+    }
+  }
 }

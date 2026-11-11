@@ -7,6 +7,7 @@ import {createSdkIdentityBoundary,verifiedIdentity} from './vendor/qa/writer-gat
 import {createClosedAuthorityReview} from './vendor/qa/cheveni-beta-release-candidate-v1/writer-auth-closure-v1/authority-ports.mjs';
 import {createStayCommandReview} from './vendor/qa/concierge-stay-command-review-v1/stay-command.mjs';
 import {conciergePrelegalSensitiveHold} from './vendor/qa/backend-candidates/concierge-prelegal-sensitive-hold-qa.js';
+import {managerLegalAdmissionReady} from './vendor/backend/concierge-manager-legal-admission-guard.js';
 import {SQL_STATEMENTS} from './vendor/qa/writer-gateway-v2/gateway.mjs';
 import {createIndependentWriterPorts} from './independent-ports.mjs';
 
@@ -34,8 +35,8 @@ export function createHeldPrivateStayCandidate(options){
   return candidate;
  };
  return Object.freeze({
-  async create(token,command){if(conciergePrelegalSensitiveHold())return closed();return get().create(token,command);},
-  async reconcile(token,command){if(conciergePrelegalSensitiveHold())return closed();return get().reconcile(token,command);}
+  async create(token,command){if(!managerLegalAdmissionReady()||conciergePrelegalSensitiveHold())return closed();return get().create(token,command);},
+  async reconcile(token,command){if(!managerLegalAdmissionReady()||conciergePrelegalSensitiveHold())return closed();return get().reconcile(token,command);}
  });
 }
 

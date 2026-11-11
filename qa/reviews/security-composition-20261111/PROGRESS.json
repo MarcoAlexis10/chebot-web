@@ -3,7 +3,7 @@
   "backendUnchanged": "9beb837a621f9a8f06601043afa64b3bba317cb5",
   "native17Unchanged": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
   "state": "CANDIDATE_IMPLEMENTED / OFFLINE_CONTRACT_TESTS / REMOTE_GATES_HELD",
-  "uniqueNewCasesPassed": 17,
+  "uniqueNewCasesPassed": 18,
   "completeFirstAttempt": {
     "passed": 16,
     "failed": 1
@@ -16,5 +16,16 @@
   "chromiumAttempted": false,
   "newBranchesCreated": false,
   "sqlExecuted": false,
-  "go": "NO-GO"
+  "go": "NO-GO",
+  "completeFinalAttempt": {
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0
+  },
+  "originalLegalAndPrelegalGuardsRetained": true,
+  "laterAffectedGuardRegression": {
+    "pass": 1,
+    "fail": 0,
+    "newUniqueCase": false
+  }
 }

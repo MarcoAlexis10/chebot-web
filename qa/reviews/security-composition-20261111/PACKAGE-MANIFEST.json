@@ -9,15 +9,15 @@
     },
     {
       "path": "composition.test.mjs",
-      "gitBlob": "51574b704af679df7dbe8e990ca6f98960c3f395",
-      "sha256": "47a66a5c2d56fe5e57d06be535c8f5a2645ff48efbb56b6a4d3a61fe1ac1bafb",
-      "bytes": 14502
+      "gitBlob": "8e01df21c270901c1171d87de9c18a2c248fbb54",
+      "sha256": "83493a8e4d13395a10f8208f3a35a62e96496f5f80acacc56337e46b17bc710c",
+      "bytes": 14884
     },
     {
       "path": "README.md",
-      "gitBlob": "74c1d6f1a6504fa0b52a6a0d07a15f134dd59cf0",
-      "sha256": "fae0090dcafaedced3d23370f21ac19feb80cc080147d889558026f8d29bc667",
-      "bytes": 4946
+      "gitBlob": "ee2656cc288765ddbab9943404af1af25b02b546",
+      "sha256": "97d36035c63c9019344d9e937c1b2cbd0bb03abe5514d48c5373238a2231ed8b",
+      "bytes": 5296
     },
     {
       "path": "independent-ports.mjs",
@@ -27,15 +27,15 @@
     },
     {
       "path": "UPSTREAM-PINS.json",
-      "gitBlob": "bab9c4a7da3e01f590b38f76a95a95995f6e44b0",
-      "sha256": "530f17429fb23d0601f8646bcbe03df2ef6532a645929aafc2c7aa0bf614dae6",
-      "bytes": 3803
+      "gitBlob": "141d8b2544244556a0fcf97dcb3ac187e375861e",
+      "sha256": "0a51d93a4c05fc4c103b5f66d2062d48710befe4a043c09cb8f31102108d4738",
+      "bytes": 4163
     },
     {
       "path": "composition.mjs",
-      "gitBlob": "1740768bf2cb41d795a3fcd8ed0138a5d3667106",
-      "sha256": "1891e2c88d52b75c7335e9d25c1ecd402e3b411f11b0fde639857e7a50e472ff",
-      "bytes": 11531
+      "gitBlob": "4f7114a5c3c4be2fbdbf0a512889fc91b1b59e74",
+      "sha256": "62e9c3c4d0ceaaeec729d59f81b599edd4d59951568dbd6b7f3471e9a4bb4c57",
+      "bytes": 11697
     },
     {
       "path": "vendor/package.json",
@@ -138,10 +138,17 @@
       "gitBlob": "ff610557dd05459685c134c7d05ce2a91322013d",
       "sha256": "52534af3510dc9e804a136bfe65802521a146b3aac9b141102fe65e2418e86a2",
       "bytes": 2543
+    },
+    {
+      "path": "vendor/backend/concierge-manager-legal-admission-guard.js",
+      "gitBlob": "28511d39e60095208d5f693f521e9461825ebe4f",
+      "sha256": "537f517c05c0d21928afdfacd894d0212ca59ce7565ad688e5d0bf4c92847d88",
+      "bytes": 438
     }
   ],
   "sqlExecuted": false,
   "signedReceiptsGenerated": false,
   "operationalApproval": false,
-  "betaDecision": "NO-GO"
+  "betaDecision": "NO-GO",
+  "bothOriginalPreventiveGuardsRetained": true
 }
