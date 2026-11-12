@@ -1,0 +1,28 @@
+create function concierge_invite_private.property_receipt_v1(
+ p_user uuid,p_session uuid,p_expiry bigint,p_member uuid,p_role text,p_revision bigint,
+ p_account uuid,p_intent uuid,p_key bytea
+) returns jsonb language plpgsql security definer set search_path='' as $$
+declare r concierge_invite_private.manager_result_v1; held jsonb;begin
+ held:=pg_catalog.jsonb_build_object('version','CHEVENI_PROPERTY_CAPTURE_1','key',pg_catalog.encode(p_key,'hex'),
+  'intentId',p_intent,'accountId',p_account,'state','HELD','propertyId',null);
+ if session_user::text<>'cheveni_private_mutation_backend_v1'
+ or current_user::text<>'cheveni_private_mutation_owner_v1'
+ or p_intent is null or p_key is null or pg_catalog.octet_length(p_key)<>32
+ or concierge_invite_private.check_private_mutation_authority_v1(
+  p_user,p_session,p_expiry,p_member,p_role,p_revision,p_account,null,'property_create') is not true
+ then return held;end if;
+ select * into r from concierge_invite_private.manager_result_v1
+  where principal_id=p_user and intent_id=p_intent;
+ if not found then return held||pg_catalog.jsonb_build_object('state','UNKNOWN');end if;
+ if (r.account_id,r.member_id,r.original_role,r.operation,r.command_digest)
+  is distinct from (p_account,p_member,p_role,'property_create'::text,p_key)
+ then return held;end if;
+ if r.state='denied_before_effect' then
+  return held||pg_catalog.jsonb_build_object('state','DENIED_NO_EFFECT');end if;
+ if r.state<>'committed' or not exists(
+  select 1 from concierge_invite_private.beta_property_slot_v1 s
+  join public.concierge_properties p on p.id=s.property_id and p.account_id=s.account_id
+  where s.account_id=p_account and s.property_id=r.result_property_id and s.city='CABA'
+  and p.city='Buenos Aires' and p.status in ('draft','active')) then return held;end if;
+ return held||pg_catalog.jsonb_build_object('state','COMMITTED','propertyId',r.result_property_id);
+end$$;

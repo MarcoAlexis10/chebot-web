@@ -1,0 +1,10 @@
+create table concierge_invite_private.property_capture_v1 (
+  principal_id uuid not null,
+  intent_id uuid not null,
+  address text not null,
+  floor_or_unit text,
+  primary key(principal_id,intent_id),
+  foreign key(principal_id,intent_id)
+    references concierge_invite_private.manager_result_v1(principal_id,intent_id)
+    deferrable initially deferred
+);
