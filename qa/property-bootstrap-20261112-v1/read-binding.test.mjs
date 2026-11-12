@@ -1,0 +1,11 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {readAbi} from '../property-authority-preflight-20261112-v1/read-cut.mjs';
+import {reviewReadBinding} from './read-binding.mjs';import {readVector} from './read-fixtures.mjs';import {id} from './fixtures.mjs';
+test('the existing 26-argument reader maps exact positions and bytea widths, retaining original attempt/key and deriving account without a new ABI',()=>{
+ const r=reviewReadBinding(readVector());assert.equal(r.state,'READ2_ARGUMENT_MAPPING_REVIEWED_HELD');assert.equal(r.argumentCount,26);assert.deepEqual(r.arguments.map(x=>[x.name,x.type]),readAbi().exactProposedArguments);assert.deepEqual(r.arguments.filter(x=>x.type==='bytea').map(x=>x.bytes),[32,32,32,32]);assert.equal(r.arguments.find(x=>x.name==='p_expiry').origin,'current-provider.exp');assert.equal(r.arguments.find(x=>x.name==='p_key').origin,'original-source.mutationKey');assert.equal(r.arguments.find(x=>x.name==='p_attempt').origin,'original-source.attemptId');assert.equal(r.arguments.some(x=>x.name==='p_account'),false);assert.equal(r.accountDerivedFromOriginalRequired,true);assert.equal(r.originalKeyVerified,false);assert.equal(r.statement,null);assert.equal(r.rawArgumentsReturned,false);
+});
+test('missing supplemental revisions and source lineage cannot be guessed from read DTOs, updated_at, old authority or client-selected account/key',()=>{
+ assert.equal(reviewReadBinding({...readVector(),supplement:null}).state,'READ2_ARGUMENT_BINDING_INCOMPATIBLE_HELD');
+ for(const patch of [{accountId:id(99)},{memberId:id(99)},{sessionId:id(99)},{readRequestId:id(99)},{originalRef:id(99)},{attemptId:id(99)},{authorityRevision:7},{recoveryEpoch:9},{inventoryRevision:0},{founderRevision:1.5},{quotaRevision:Number.MAX_SAFE_INTEGER+1},{jurisdictionRevision:null},{mutationKey:'d'.repeat(63)},{mutationKey:'D'.repeat(64)},{inventoryDigest:'e'.repeat(64)},{authorityCommitRef:id(99)},{expiresAtMs:readVector().review.checkedAtMs}]){const x=readVector();Object.assign(x.supplement,patch);assert.equal(reviewReadBinding(x).state,'READ2_ARGUMENT_BINDING_INCOMPATIBLE_HELD');}
+ const client=readVector();client.review.request.key=client.supplement.mutationKey;assert.equal(reviewReadBinding(client).state,'READ2_ARGUMENT_BINDING_INCOMPATIBLE_HELD');
+});

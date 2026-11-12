@@ -1,0 +1,4 @@
+function concierge_invite_private.verify_invite_custody_v1(
+  p_attempt uuid,p_handoff uuid,p_ref uuid,p_digest bytea,p_accepted_at timestamptz
+) returns boolean language sql volatile security invoker set search_path=''
+as $$ select false $$;

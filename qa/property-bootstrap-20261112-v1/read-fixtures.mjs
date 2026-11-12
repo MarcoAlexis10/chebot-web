@@ -1,0 +1,7 @@
+// Reuse ONLY the prior synthetic fixture function, never its registered tests.
+import fs from 'node:fs';import vm from 'node:vm';import {capture,id} from './fixtures.mjs';
+const source=fs.readFileSync(new URL('../property-authority-preflight-20261112-v1/read.test.mjs',import.meta.url),'utf8');
+const begin=source.indexOf('export function reading(){'),end=source.indexOf("\ntest(",begin);
+if(begin<0||end<begin||source.indexOf('export function reading(){',begin+1)>=0)throw Error('READ_FIXTURE_SOURCE_DRIFT');
+const make=vm.runInNewContext(source.slice(begin,end).replace('export ','')+'\nreading;',{capture,id},{timeout:1000});
+export function readVector(){const review=structuredClone(make()),c=review.after,q=review.request;return{mode:'OFFLINE_VECTOR',review,supplement:{kind:'SYNTHETIC_ORIGINAL_READ_BINDING_NOT_VERIFIED',readRequestId:q.readRequestId,originalRef:q.originalRef,intentId:q.intentId,attemptId:q.attemptId,accountId:q.accountId,memberId:q.memberId,sessionId:q.sessionId,sessionRevision:q.sessionRevision,authorityRevision:c.authorityRevision,restrictionsRevision:c.restrictionsRevision,datasetId:c.datasetId,recoveryEpoch:c.recoveryEpoch,inventoryDigest:c.inventoryDigest,authorityCommitRef:c.authorityCommitRef,bootstrapProvenanceRef:c.bootstrapProvenanceRef,inventoryRevision:11,founderRevision:2,quotaRevision:5,jurisdictionRevision:3,mutationKey:'d'.repeat(64),observedAtMs:review.checkedAtMs-1,expiresAtMs:review.checkedAtMs+500}};}

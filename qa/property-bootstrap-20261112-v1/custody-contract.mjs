@@ -1,0 +1,6 @@
+// Existing protocol/source compatibility only, not a new signed protocol.
+import fs from 'node:fs';import {fields} from '../private-writer-composition-20261111-v1/vendor/qa/contract-v1/codec.mjs';
+import {out} from '../functional-night-20261112-v1/core.mjs';
+import {createProtectedOriginalComparator} from '../property-authority-preflight-20261112-v1/original-reference.mjs';
+export function reviewPropertyCustodyReuse(){const codec=fs.readFileSync(new URL('../private-writer-composition-20261111-v1/vendor/qa/contract-v1/codec.mjs',import.meta.url),'utf8'),custody=fs.readFileSync(new URL('./invite-custody.source.txt',import.meta.url),'utf8');if(!codec.includes("operation:['concierge_manager_create_stay']")||!custody.includes('as $$ select false $$;'))return out('CUSTODY_SOURCE_DRIFT_HELD',{originalAvailable:false});return out('PROPERTY_ORIGINAL_CUSTODY_MISSING_HELD',{originalAvailable:false,cbf1PropertyIntentCompatible:false,cbf1IntentFields:fields('intent'),inviteVerifierImplemented:false,privateCaptureComparatorRequired:true,opaqueReferenceSufficient:false,duplicateRemovalAuthorized:false,newProtocolCreated:false,signatureProduced:false,personalHashGenerated:false});}
+export const createPropertyOriginalPort=createProtectedOriginalComparator;

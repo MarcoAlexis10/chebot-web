@@ -1,0 +1,24 @@
+{
+  "classification": "INERT_QA_OVERLAY_NOT_STANDALONE_APP",
+  "baseSourceWeb": "f1a073a9ca951025c951139d61d695b841cdc98e",
+  "basePackage": "qa/first-property-20261112-v1/generated",
+  "files": [
+    {
+      "path": "overlays/manager/propiedad/index.html",
+      "sha256": "3d0bcfbfc56f280f41e91eb87533f2c1b2c070e3c7e276cf7a74f9d9f7e9dc72",
+      "bytes": 8916,
+      "baseSha256": "e23aeb6fea3900a3c2ff6acb5c8b09b65675af1c218108cb307fcbb42e2dd7c9"
+    },
+    {
+      "path": "overlays/manager/recorrido/index.html",
+      "sha256": "926da9919b1742ed6b10b3033c1bfea3462548097e298b4dc8a41827c4d5e0ac",
+      "bytes": 4674,
+      "baseSha256": "ddcf059bbf586f94323bb282580a4522284897658f054a1027d71bfea32852a8"
+    }
+  ],
+  "mergedFileCount": 18,
+  "networkAllowed": false,
+  "formsInert": true,
+  "browserExecuted": false,
+  "betaDecision": "NO-GO"
+}
