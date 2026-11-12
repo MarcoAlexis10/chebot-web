@@ -17,3 +17,13 @@ Native17 checkout sólo tiene proyección de negocio: p_request es intención es
 public-catalog-producer.mjs construye una proyección interna mínima desde fuente/revisión/retirada independientes y la consume mediante reviewPublicProjection anterior. No devuelve DTO con IDs ni texto libre; sólo plantilla global y flags HELD. Tres casos nuevos PASS. Productor protegido default ausente, no acepta adapters.
 
 Total único al checkpoint: 11 PASS nuevos, cero suites anteriores repetidas. Siguiente: selección real DTO de properties/stays frente a revisiones privadas (no inferir revisión desde updated_at), composición del recorrido inerte y consolidación de evidence.
+
+## Checkpoint 3 — DTO originales y revalidación completa
+
+read-selection.mjs reutiliza parseManagerPropertyReceipt real y compara los DTO exactos de GET properties/stays con el suplemento privado de revisión. El DTO no contiene revisión de entidad, cupo, emisor/session_id ni binding de huésped; no se derivan desde updated_at o primera fila. Selección explícita, account/member/role/estado/permisos y ventanas exactos, tipos y cardinalidad coherentes. Tres casos nuevos PASS. ISO con offset o fracción .000000 exactamente representable se convierte a UTC canónico; microsegundos no representables e imposibles se rechazan, sin truncar. Son vectores de forma, no GET real o Auth positivo.
+
+Se amplió un caso de propiedad para detectar dos filas distintas frente al piloto de una sola propiedad: FAIL intermedio del adaptador nuevo, corregido con cierre; no toma el listado como contador de cupo protegido.
+
+Nueva prueba de revalidación detectó que la versión inicial del binding omitía generación del huésped, revisión del building y revisor de decisión. Se fijaron en el binding, FAIL intermedio conservado y cinco pruebas de binding finales PASS (cuatro repetidas por el cambio, una nueva). Sin efecto operativo ni autoridad acreditada en ninguna versión.
+
+Total único: 15 nuevos PASS. Próximo: ensamblar contratos con el candidato retenido existente y validar salida navegable sin modificar scripts compartidos; consolidar matriz corta de dependencias y cierre. No repetir 19 + tres del cierre anterior.

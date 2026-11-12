@@ -1011,6 +1011,27 @@
       "bytes": 12692,
       "sha256": "3b3870bf9db94b08968b94ec548a6cbc38fa7baba01c1a7ddbb337dbba05fcaf",
       "gitBlob": "a47a8246d7355b2e6dadda314cb749e5c6ac5e47"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-manager-property-receipt.js",
+      "bytes": 1442,
+      "sha256": "44c8637322ff4eae16c4d251d08f62390a9365b8314be2acb67f19b4ade8fa97",
+      "gitBlob": "a81f62552a045ea7ab386a33062661c251e45509"
+    }
+  ],
+  "externalSourceBlobs": [
+    {
+      "repo": "native",
+      "path": "qa/native17-closure-v1/service-successor-REVIEW-ONLY.sql",
+      "gitBlob": "dbaa9df6389768169412bb4500c69084463ef594",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+    },
+    {
+      "repo": "native",
+      "path": "qa/native17-closure-v1/SERVICE-PORTS.json",
+      "gitBlob": "13d4103fd1c7961ed528952f0d67e31f4f293e5d",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
     }
   ]
 }

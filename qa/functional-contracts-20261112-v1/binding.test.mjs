@@ -25,3 +25,9 @@ test('stay ABI requires a current guest-binding source and does not accept an op
  const x=bound('stay',stayCase('stay.guest.bind')),r=createDomainAbiReview();assert.equal(r.compile(x).state,'DOMAIN_ABI_REVIEW_HELD');assert.ok(fail({...x,observations:{...x.observations,guestBinding:null}}));for(const patch of [{propertyId:id(99)},{stayId:id(99)},{identityGeneration:0},{status:'revoked'},{expiresAtMs:x.request.nowMs}])assert.ok(fail({...x,observations:{...x.observations,guestBinding:{...x.observations.guestBinding,...patch}}}));
  const max=bound();max.request.snapshot.revision=Number.MAX_SAFE_INTEGER;max.request.command.expectedRevision=Number.MAX_SAFE_INTEGER;assert.ok(fail(max));
 });
+test('revalidation binds guest generation, building revision and decision reviewer rather than only their identifiers',()=>{
+ const r=createDomainAbiReview(),g=bound('stay',stayCase('stay.guest.bind')),gh=r.compile(g).handle;assert.ok(gh);
+ assert.equal(r.revalidate(gh,{...g.observations,guestBinding:{...g.observations.guestBinding,identityGeneration:3}},g.request.nowMs).state,'DOMAIN_SOURCES_CHANGED_HELD');
+ const q=propertyCase('property.draft.create');q.command.payload.buildingId=id(90);const b=bound('property',q),bh=r.compile(b).handle;assert.ok(bh);assert.equal(r.revalidate(bh,{...b.observations,building:{...b.observations.building,revision:4}},b.request.nowMs).state,'DOMAIN_SOURCES_CHANGED_HELD');
+ const d=bound('property',propertyCase('property.decision','ready_for_review')),dh=r.compile(d).handle;assert.ok(dh);assert.equal(r.revalidate(dh,{...d.observations,decision:{...d.observations.decision,reviewerMemberId:id(99)}},d.request.nowMs).state,'DOMAIN_SOURCES_CHANGED_HELD');
+});

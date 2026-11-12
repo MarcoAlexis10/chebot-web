@@ -24,3 +24,8 @@ export interface CatalogReview extends Fresh {accountId:UUID;propertyId:UUID;ite
 export interface CatalogWithdrawal extends Fresh {accountId:UUID;propertyId:UUID;itemId:UUID;withdrawalRevision:number;withdrawn:false;currentApprovalRevision:number;currentContentRevision:number}
 /** Actual binding schema remains the prior prearrival OFFLINE_VECTOR shape. */
 export interface CatalogInput {mode:'OFFLINE_VECTOR';reservationVector:unknown;source:CatalogSource;review:CatalogReview;withdrawal:CatalogWithdrawal;expected:{itemId:UUID;versionId:UUID;contentRevision:number;approvalRevision:number;revocationRevision:number;sourceRevision:number;reviewRef:UUID;approvalAuthorityRevision:number}}
+export interface PropertyReadDto {ok:true;session:{account_id:UUID;member_id:UUID;role:'owner'|'manager'|'co_manager'};properties:readonly {property_id:UUID;internal_name:string;property_status:string;member_role:string;can_manage_stays:boolean;can_manage_incidents:boolean;can_approve_requests:boolean;can_manage_knowledge:boolean;can_manage_secrets:boolean;can_manage_team:boolean}[]}
+export interface StayReadDto {ok:true;session:{account_id:UUID;member_id:UUID;role:'owner'|'manager'|'co_manager'};stays:readonly {stay_id:UUID;property_id:UUID;property_internal_name:string;check_in_at:string;check_out_at:string;access_from:string;access_until:string;status:string;created_at:string;updated_at:string}[]}
+/** Private revision supplement remains a synthetic vector, not authority. */
+export interface PropertySelectionVector {mode:'OFFLINE_VECTOR';response:PropertyReadDto;selectedPropertyId:UUID;boundInput:Input|null}
+export interface StaySelectionVector {mode:'OFFLINE_VECTOR';response:StayReadDto;selectedStayId:UUID;boundInput:Input|null}
