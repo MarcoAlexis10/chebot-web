@@ -7,3 +7,9 @@ Se recuperaron CLOSURE/NEXT/PROPERTY-CAPTURE/READER-ABI/PRIVACY/TEST-EVIDENCE/GO
 La composición de fuente demuestra un ciclo inválido: scope_v2 exige propiedad activa y manage_stays; manager_scope pasa por launch, que requiere propiedad activa y trial iniciado. No es authority para crear el primer borrador NULL. auth_live/fence sólo admiten pares service_* distintos de los de la captura y read/2. El productor property_create sigue WHERE false. No se amplían pares o grants.
 
 authority-source.mjs reutiliza la frontera protegida anterior y fija estas incompatibilidades. Los extractos .source.txt son texto para revisión, no SQL ejecutable. Próximo: reader post-captura con permiso de lectura independiente del requisito cupo libre de creación; original/custodia; preflight ASUS manual.
+
+## Reader y minimización
+
+Primer checkpoint publicado: 94903faa2c2c95e8853d1147e3d0a8a643944998. Cinco casos únicos nuevos aprobados hasta este checkpoint (1 fuente, 2 reader, 1 custodia, 1 composición). Sólo se reejecutaron los dos reader propios afectados por añadir floors; no los diez anteriores. Se conserva un fallo inicial de fixture incompleto y luego el FAIL específico que mostró consistencia sin floor; corrección reutilizando reviewRevisionCut y dos PASS. Ningún fallo produjo permiso o efecto; toda salida operacional siguió UNKNOWN/HELD.
+
+read/2 ahora distingue permiso de consulta post-captura, slot ocupado, identidad de la lectura actual y sesión/revisión histórica. Referencia opaca y key no reemplazan el original. Matriz D02-A concreta sin plazo nuevo, almacenamiento o clave. Próximo: procedimiento ASUS manual y verificación estática del paquete.

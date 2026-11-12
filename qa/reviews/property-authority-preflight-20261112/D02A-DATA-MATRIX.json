@@ -1,0 +1,19 @@
+{
+  "status": "REVIEW_ONLY_NO_NEW_STORAGE",
+  "generalD02ADecisionPreserved": true,
+  "specificCaptureCustodyApproved": false,
+  "retentionDays": null,
+  "data": [
+    {"fields": ["property_capture_v1.address", "property_capture_v1.floor_or_unit"], "purpose": "Exact original argument conflict detection in historical writer", "access": "Protected comparator only; not reader/UI/catalog", "custody": "Unaccredited; no new copy implemented", "minimization": "May replace duplicate only if an approved custodian compares exact original without client reconstruction", "pendingDecision": "Specific purpose, minimization, custody, retention/erasure/backups"},
+    {"fields": ["concierge_properties.address", "concierge_properties.floor_or_unit"], "purpose": "Private property configuration", "access": "Current authorized property access; not pre-arrival/public", "custody": "Existing source only, not stored by this QA package", "minimization": "Never copy into receipt, journal or public view", "pendingDecision": "Applicable retention and A2 treatment"},
+    {"fields": ["originalRef", "intentId", "attemptId", "userId", "sessionId", "accountId", "memberId"], "purpose": "Bind original/effect to exact request and current read", "access": "Gateway/custodian/limited reader, current authorization", "custody": "Opaque reference requires protected provenance; UUID alone is not proof", "minimization": "Metadata only, no snapshot/address/frame in reader", "pendingDecision": "Protected producer, access audit, encryption/key custody, retention and current floors"},
+    {"fields": ["historical mutation key"], "purpose": "Intent-scoped identity; not address equality", "access": "Protected binding only", "custody": "Source contract, not a new personal hash", "minimization": "Do not replace exact original comparison with this key or an unkeyed personal digest", "pendingDecision": "Trusted original availability and reconciliation"},
+    {"fields": ["journal/witness/COMMIT references"], "purpose": "Independent effect reconciliation", "access": "Current-authorized reconciliation", "custody": "Independent custody unaccredited", "minimization": "No raw address, token, frame or client-supplied sensitive receipts in logs", "pendingDecision": "External verification, custody, retention and recovery"}
+  ],
+  "safeFailure": "Missing/expired original or contradictory evidence => UNKNOWN; no resend or reconstruction from client/hash",
+  "a2": "Restored original remains quarantined until current independent floors, Auth and custodies are reconciled",
+  "realDataUsed": false,
+  "storageImplemented": false,
+  "keysUsed": false,
+  "legalApprovalInvented": false
+}

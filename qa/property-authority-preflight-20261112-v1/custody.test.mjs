@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {capture,id} from '../first-property-20261112-v1/fixtures.mjs';
+import {reviewReferenceShape,reviewDuplicateRemoval,createProtectedOriginalComparator} from './original-reference.mjs';
+test('the intent-only key and an opaque UUID cannot replace exact original comparison; duplicate removal remains held without approved custody',async()=>{
+ const original=capture(),candidate=capture();candidate.captureVector.privateCapture.privateAddress.unit='B';candidate.captureVector.boundInput.request.command.payload.configuration.floorOrUnit='Piso 1 / Unidad B';assert.equal(candidate.mutationKey,original.mutationKey);const r=reviewDuplicateRemoval(original,candidate);assert.equal(r.syntheticArgumentsDiffer,true);assert.equal(r.referenceAloneCanCompare,false);assert.equal(r.storageImplemented,false);assert.equal(r.personalDigestGenerated,false);assert.equal(r.sqlConflictAccredited,false);assert.equal(reviewDuplicateRemoval(original,structuredClone(original)).state,'DUPLICATE_REMOVAL_HELD');
+ const ref={mode:'OFFLINE_VECTOR',readRequestId:id(90),originalRef:id(91),intentId:id(1),attemptId:id(6)};assert.equal(reviewReferenceShape(ref).comparisonAvailable,false);for(const field of ['address','floor_or_unit','snapshot','frame','token','personalHash','trusted'])assert.equal(reviewReferenceShape({...ref,[field]:'CLIENT_VALUE'}).state,'REFERENCE_INCOMPATIBLE_HELD');
+ let touched=0;const poison=new Proxy({},{get(){touched++;throw Error();}}),a=createProtectedOriginalComparator(poison);assert.equal((await a.compare(poison)).state,'UNKNOWN');assert.equal((await createProtectedOriginalComparator().compare(ref)).comparisonAvailable,false);assert.equal(touched,0);
+});
