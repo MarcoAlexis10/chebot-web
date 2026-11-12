@@ -1,0 +1,14 @@
+web/qa/functional-contracts-20261112-v1/binding.test.mjs: PASS
+web/qa/functional-contracts-20261112-v1/candidate.mjs: PASS
+web/qa/functional-contracts-20261112-v1/capture.test.mjs: PASS
+web/qa/functional-contracts-20261112-v1/catalog.test.mjs: PASS
+web/qa/functional-contracts-20261112-v1/effect-plan.mjs: PASS
+web/qa/functional-contracts-20261112-v1/effects.test.mjs: PASS
+web/qa/functional-contracts-20261112-v1/evidence-binding.mjs: PASS
+web/qa/functional-contracts-20261112-v1/fixtures.mjs: PASS
+web/qa/functional-contracts-20261112-v1/integration.test.mjs: PASS
+web/qa/functional-contracts-20261112-v1/materialize.mjs: PASS
+web/qa/functional-contracts-20261112-v1/property-capture-adapter.mjs: PASS
+web/qa/functional-contracts-20261112-v1/public-catalog-producer.mjs: PASS
+web/qa/functional-contracts-20261112-v1/read-selection.mjs: PASS
+web/qa/functional-contracts-20261112-v1/selection.test.mjs: PASS

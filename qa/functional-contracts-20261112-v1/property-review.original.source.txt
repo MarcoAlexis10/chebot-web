@@ -1,0 +1,66 @@
+// Private address boundary. No driver, network, logger or operational default.
+import {isHex, isUuid, record} from '../../contract-v1/codec.mjs';
+
+export const PROPERTY_CAPTURE_VERSION='CHEVENI_PROPERTY_CAPTURE_1';
+const mutationVersion='CHEVENI_MUTATIONS_REVIEW_1';
+const privateFields=['street','number','floor','unit'];
+const validText=(value,max,pattern)=>typeof value==='string'&&value.length>0&&value.length<=max
+ &&value.normalize('NFC')===value&&value.trim()===value&&pattern.test(value);
+const fail=()=>{throw Error('PRIVATE_PROPERTY_CAPTURE_HELD');};
+
+export function parsePrivatePropertyCapture(raw,reconcile=false) {
+ const dto=record(raw,reconcile?['intentId']:['intentId','city','privateAddress']);
+ if (!isUuid(dto.intentId)||(!reconcile&&dto.city!=='CABA')) fail();
+ // The generic mutation key is scoped to intent. Address bytes never enter it.
+ const input=Object.freeze({intentId:dto.intentId,city:'CABA',contract:PROPERTY_CAPTURE_VERSION});
+ if (reconcile) return Object.freeze({input,privateAddress:null});
+ const address=record(dto.privateAddress,privateFields);
+ const optional=value=>value===null||validText(value,12,/^[\p{L}\p{N}][\p{L}\p{N}-]*$/u);
+ if (!validText(address.street,90,/^\p{L}[\p{L}\p{N} .'-]*$/u)
+  ||!validText(address.number,10,/^[1-9][0-9]{0,7}[A-Z]?$/)
+  ||!optional(address.floor)||!optional(address.unit)) fail();
+ return Object.freeze({input,privateAddress:address});
+}
+
+export function createPrivatePropertyReview({writeDraft,readDraft}={}) {
+ async function call(port,request,includeAddress) {
+  const {auth,scope,input,key,privateAddress,signal,remainingMs}=request;
+  const held=()=>Object.freeze({version:mutationVersion,key,state:'HELD',evidence:null,binding:null,result:null});
+  if (typeof port!=='function'||signal.aborted||scope.role!=='owner'||scope.propertyId!==null
+   ||scope.userId!==auth.userId||scope.sessionId!==auth.sessionId||!isHex(key)
+   ||input.contract!==PROPERTY_CAPTURE_VERSION) return held();
+  const context=Object.freeze({accountId:scope.accountId,memberId:scope.memberId,userId:scope.userId,
+   sessionId:scope.sessionId,role:scope.role,authorityRevision:scope.revision,tokenExpiresAt:auth.tokenExpiresAt});
+  const envelope={version:PROPERTY_CAPTURE_VERSION,intentId:input.intentId,key,context,signal,remainingMs};
+  if (includeAddress) {
+   const {street,number,floor,unit}=privateAddress;
+   envelope.draft=Object.freeze({
+    account_id:scope.accountId,
+    internal_name:'Primera propiedad',
+    address:street+' '+number,
+    floor_or_unit:floor===null&&unit===null?null:[floor===null?null:'Piso '+floor,unit===null?null:'Unidad '+unit].filter(Boolean).join(' / '),
+    city:'Buenos Aires',
+    status:'draft'
+   });
+  }
+  // The dedicated port must fence owner authority and bind a protected
+  // comparison of the exact private draft atomically with slot and outcome.
+  const receipt=record(await port(Object.freeze(envelope)),
+   ['version','key','intentId','accountId','state','propertyId']);
+  if (receipt.version!==PROPERTY_CAPTURE_VERSION||receipt.key!==key||receipt.intentId!==input.intentId
+   ||receipt.accountId!==scope.accountId) fail();
+  if (receipt.state==='COMMITTED'&&isUuid(receipt.propertyId)) return Object.freeze({
+   version:mutationVersion,key,state:'COMMITTED',evidence:'DURABLE_EFFECT',binding:null,
+   result:Object.freeze({propertyId:receipt.propertyId})
+  });
+  if (receipt.propertyId!==null||!['UNKNOWN','HELD','DENIED_NO_EFFECT'].includes(receipt.state)) fail();
+  return Object.freeze({version:mutationVersion,key,
+   state:receipt.state==='DENIED_NO_EFFECT'?'DENIED':receipt.state,
+   evidence:receipt.state==='DENIED_NO_EFFECT'?'DURABLE_NO_EFFECT':null,binding:null,result:null});
+ }
+ return Object.freeze({
+  parse:parsePrivatePropertyCapture,
+  write:request=>call(writeDraft,request,true),
+  read:request=>call(readDraft,request,false)
+ });
+}

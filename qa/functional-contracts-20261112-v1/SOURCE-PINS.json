@@ -1018,6 +1018,20 @@
       "bytes": 1442,
       "sha256": "44c8637322ff4eae16c4d251d08f62390a9365b8314be2acb67f19b4ade8fa97",
       "gitBlob": "a81f62552a045ea7ab386a33062661c251e45509"
+    },
+    {
+      "repo": "web",
+      "path": "qa/incident-native17-review-20261111-v1/revision-cut.mjs",
+      "bytes": 1809,
+      "sha256": "8cae0e7ed91b96e8401b0a9ba6affca3a7f2fa49806eca4e75f11bd6bf2320ad",
+      "gitBlob": "d4f647dd44978e47216804b34cab3901a9782cc6"
+    },
+    {
+      "repo": "web",
+      "path": "qa/incident-native17-review-20261111-v1/revision-policy.json",
+      "bytes": 432,
+      "sha256": "463ac686cb8e13e940a145da643961b2c79183b883d7cee271dd1b486e87d403",
+      "gitBlob": "39987c1c423c95e3476af156af70d781b80f92fd"
     }
   ],
   "externalSourceBlobs": [
@@ -1031,6 +1045,18 @@
       "repo": "native",
       "path": "qa/native17-closure-v1/SERVICE-PORTS.json",
       "gitBlob": "13d4103fd1c7961ed528952f0d67e31f4f293e5d",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+    },
+    {
+      "repo": "native",
+      "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+      "gitBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+    },
+    {
+      "repo": "native",
+      "path": "qa/cheveni-beta-release-candidate-v1/fencing/property-review.mjs",
+      "gitBlob": "06deafb507d84c57687c71ccfb7f7feb5472b319",
       "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
     }
   ]

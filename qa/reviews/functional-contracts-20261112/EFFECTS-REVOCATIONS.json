@@ -1,0 +1,176 @@
+{
+  "classification": "REQUIRED_SEMANTIC_EFFECTS_NOT_EXECUTED_SQL",
+  "operations": [
+    {
+      "operation": "property.draft.create",
+      "effects": [
+        "ENTITY_CREATE",
+        "ATOMIC_FOUNDER_SLOT",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "property.read",
+      "effects": [
+        "CURRENT_PRIVATE_READ"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "property.configure",
+      "effects": [
+        "ENTITY_CAS",
+        "CONFIGURATION_REVISION",
+        "PUBLIC_APPROVAL_INVALIDATION",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "property.submit",
+      "effects": [
+        "ENTITY_CAS",
+        "REVIEW_REQUEST",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "property.decision",
+      "effects": [
+        "ENTITY_CAS",
+        "CURRENT_DECISION",
+        "READINESS_RECHECK",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "property.pause",
+      "effects": [
+        "ENTITY_CAS",
+        "REVOKE_PROPERTY_ACCESS",
+        "WITHDRAW_PUBLIC_CATALOG",
+        "PUBLISH_REVOCATION_FLOOR",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "property.archive",
+      "effects": [
+        "ENTITY_CAS",
+        "REVOKE_PROPERTY_ACCESS",
+        "WITHDRAW_PUBLIC_CATALOG",
+        "PRESERVE_HISTORY_AND_SLOT",
+        "PUBLISH_REVOCATION_FLOOR",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "stay.draft.create",
+      "effects": [
+        "ENTITY_CREATE",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "stay.guest.bind",
+      "effects": [
+        "ENTITY_CAS",
+        "CURRENT_GUEST_IDENTITY_BINDING",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "stay.confirm",
+      "effects": [
+        "ENTITY_CAS",
+        "ACCESS_EXCLUSION",
+        "CURRENT_GUEST_IDENTITY_BINDING",
+        "REVIEW_INVITE_BINDINGS",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "stay.dates.change",
+      "effects": [
+        "ENTITY_CAS",
+        "ACCESS_EXCLUSION",
+        "INVALIDATE_PRIOR_STAY_BINDINGS",
+        "RECONCILE_EXISTING_INVITES",
+        "PUBLISH_REVOCATION_FLOOR",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "stay.cancel",
+      "effects": [
+        "ENTITY_CAS",
+        "REVOKE_STAY_ACCESS",
+        "REVOKE_INVITES",
+        "PUBLISH_REVOCATION_FLOOR",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "stay.checkout",
+      "effects": [
+        "ENTITY_CAS",
+        "REVOKE_PROPERTY_ACCESS_FOR_STAY",
+        "REVOKE_INVITES",
+        "AUTHORIZED_POSTCHECKOUT_CASE_ONLY",
+        "PUBLISH_REVOCATION_FLOOR",
+        "AUDIT"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    },
+    {
+      "operation": "stay.history.read",
+      "effects": [
+        "CURRENT_PRIVATE_READ"
+      ],
+      "accessGrantAllowed": false,
+      "invitationSendAllowed": false,
+      "effectReceipt": null
+    }
+  ],
+  "nativeCheckout": "PARTIAL_ABI_NO_EXECUTABLE_PLAN",
+  "nativeSuspend": "NOT_PROPERTY_PAUSE",
+  "privateCapture": "FIXED_DEFAULT_DRAFT_SUBSET_ONLY_HELD",
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

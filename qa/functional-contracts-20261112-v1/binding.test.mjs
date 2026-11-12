@@ -31,3 +31,9 @@ test('revalidation binds guest generation, building revision and decision review
  const q=propertyCase('property.draft.create');q.command.payload.buildingId=id(90);const b=bound('property',q),bh=r.compile(b).handle;assert.ok(bh);assert.equal(r.revalidate(bh,{...b.observations,building:{...b.observations.building,revision:4}},b.request.nowMs).state,'DOMAIN_SOURCES_CHANGED_HELD');
  const d=bound('property',propertyCase('property.decision','ready_for_review')),dh=r.compile(d).handle;assert.ok(dh);assert.equal(r.revalidate(dh,{...d.observations,decision:{...d.observations.decision,reviewerMemberId:id(99)}},d.request.nowMs).state,'DOMAIN_SOURCES_CHANGED_HELD');
 });
+test('Native17 revision cut uses dataset and independent inventory/restriction digests, not an invented UUID dataset type',()=>{
+ const x=bound();for(const key of ['restrictions','floor'])Object.assign(x.observations[key],{datasetId:'a'.repeat(64),inventoryDigest:'b'.repeat(64),restrictionJournalId:'qa_synthetic_only',restrictionDigest:'c'.repeat(64),bootstrapProvenanceRef:id(91),authorityCommitRef:id(92)});
+ const r=createDomainAbiReview(),p=r.compile(x);assert.equal(p.state,'DOMAIN_ABI_REVIEW_HELD');
+ for(const patch of [{datasetId:id(70)},{inventoryDigest:'B'.repeat(64)},{restrictionDigest:null},{restrictionJournalId:'unapproved journal'},{bootstrapProvenanceRef:null},{authorityCommitRef:null}])assert.equal(r.compile({...x,observations:{...x.observations,restrictions:{...x.observations.restrictions,...patch},floor:{...x.observations.floor,...patch}}}).state,'DOMAIN_ABI_INCOMPATIBLE_HELD');
+ const changed={...x.observations,restrictions:{...x.observations.restrictions,inventoryDigest:'d'.repeat(64)},floor:{...x.observations.floor,inventoryDigest:'d'.repeat(64)}};assert.equal(r.revalidate(p.handle,changed,x.request.nowMs).state,'DOMAIN_SOURCES_CHANGED_HELD');
+});

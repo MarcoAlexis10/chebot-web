@@ -1,0 +1,652 @@
+{
+  "newUniquePass": 20,
+  "newUniqueFinalFail": 0,
+  "newUniqueSkip": 0,
+  "verifiedUniqueNames": [
+    "Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions",
+    "Native17 revision cut uses dataset and independent inventory/restriction digests, not an invented UUID dataset type",
+    "actual property read DTO cannot supply missing private revision, account authority or founder slot; selection is exact and never the first row",
+    "actual stay read DTO can preserve exactly representable offset/millisecond timestamps but cannot invent entity revision or guest binding",
+    "argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals",
+    "capture port does not reuse the historical COMMITTED-on-ACK adapter or its same-principal reader",
+    "catalog approval/version and independent withdrawal must agree with exact property and current expectations",
+    "catalog closes on expiry or private/check-out phase; missing protected producer never reads adapters or supplies property content",
+    "date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity",
+    "effect plans keep creation, guest association, confirmation, cancellation, checkout and private history distinct",
+    "existing private property capture parser supports the exact fixed-default draft subset with structured synthetic address and no raw disclosure",
+    "founder contract composition keeps every operational step held, preserves UNKNOWN and reuses original inert journey assets",
+    "property capture refuses to split free address text or silently drop name/type/building/language/time and unit differences",
+    "property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority",
+    "public catalog candidate produces only the existing global template through the old consumer, with no raw private projection or approval claim",
+    "receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers",
+    "revalidation binds guest generation, building revision and decision reviewer rather than only their identifiers",
+    "source ABI confirms Native17 suspend affects launch control and checkout is not a versioned property lifecycle port",
+    "stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association",
+    "timestamp adapter refuses lossy SQL microseconds and normalized impossible dates instead of silently truncating a reservation boundary"
+  ],
+  "noDuplicateCounting": true,
+  "nodeVersion": "v24.22.1",
+  "classification": "NODE_CONTRACT_MODELS_WITH_PURE_PRODUCT_RECEIPT_HELPER; ONE SOURCE_ONLY_NATIVE_ABI_CASE; STATIC_HTML_JS_COMPOSITION; NOT_AUTH_SQL_BROWSER_OR_OPERATIONAL_E2E",
+  "executions": [
+    {
+      "log": "logs/binding-final.tap",
+      "sha256": "a953636fe6bee28d7efd54dbc7075303a400470d6aadb5930eb4cef53821406c",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/binding.test.mjs"
+      ],
+      "counts": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority",
+        "argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals",
+        "receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers",
+        "stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association",
+        "revalidation binds guest generation, building revision and decision reviewer rather than only their identifiers"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532302]",
+        "childNetns": "net:[4026532231]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/binding-first.tap",
+      "sha256": "186e00b5d93e99d3a5886ed655230c1e32e18d1acb989b81138de1c096169a92",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/binding.test.mjs"
+      ],
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority",
+        "argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals",
+        "receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers",
+        "stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532225]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/binding-generation-before.tap",
+      "sha256": "46430646f8eba4c6e017b68be8a99818d6f2c9e2df641cf449dfb9a53b97a92a",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=revalidation binds",
+        "web/qa/functional-contracts-20261112-v1/binding.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "revalidation binds guest generation, building revision and decision reviewer rather than only their identifiers"
+      ],
+      "classification": "INTERMEDIATE_NEW_QA_CANDIDATE_FAILURE",
+      "isolation": {
+        "parentNetns": "net:[4026532302]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/binding-native-format-before.tap",
+      "sha256": "c5c62faac0fac259b8aae4c1ced3931c43bd51ec9e3cc970b14f969cca7c9cab",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=Native17 revision cut uses",
+        "web/qa/functional-contracts-20261112-v1/binding.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "Native17 revision cut uses dataset and independent inventory/restriction digests, not an invented UUID dataset type"
+      ],
+      "classification": "INTERMEDIATE_NEW_QA_CANDIDATE_FAILURE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/binding-native-format-final.tap",
+      "sha256": "689c61797debb66439948ff748cdab4910e63b18100c3735f43f1d4a8c4dfd3d",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/binding.test.mjs",
+        "web/qa/functional-contracts-20261112-v1/effects.test.mjs",
+        "web/qa/functional-contracts-20261112-v1/selection.test.mjs"
+      ],
+      "counts": {
+        "tests": 13,
+        "pass": 13,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority",
+        "argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals",
+        "receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers",
+        "stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association",
+        "revalidation binds guest generation, building revision and decision reviewer rather than only their identifiers",
+        "Native17 revision cut uses dataset and independent inventory/restriction digests, not an invented UUID dataset type",
+        "date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity",
+        "effect plans keep creation, guest association, confirmation, cancellation, checkout and private history distinct",
+        "Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions",
+        "source ABI confirms Native17 suspend affects launch control and checkout is not a versioned property lifecycle port",
+        "actual property read DTO cannot supply missing private revision, account authority or founder slot; selection is exact and never the first row",
+        "actual stay read DTO can preserve exactly representable offset/millisecond timestamps but cannot invent entity revision or guest binding",
+        "timestamp adapter refuses lossy SQL microseconds and normalized impossible dates instead of silently truncating a reservation boundary"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532231]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/catalog-first.tap",
+      "sha256": "0b113aaab3bf43ac917c30628673d3967ecd744529857a291a6f032566013d83",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/catalog.test.mjs"
+      ],
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "public catalog candidate produces only the existing global template through the old consumer, with no raw private projection or approval claim",
+        "catalog approval/version and independent withdrawal must agree with exact property and current expectations",
+        "catalog closes on expiry or private/check-out phase; missing protected producer never reads adapters or supplies property content"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532231]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/effects-before.tap",
+      "sha256": "058917786ef8769a6bc1ea5f3bcdf4df89218cb145b2f89f0a0e43f3efd4278a",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--conditions=baseline",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=date changes invalidate",
+        "web/qa/functional-contracts-20261112-v1/effects.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity"
+      ],
+      "classification": "BASELINE_PREVIOUS_CANDIDATE_FAIL",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/effects-first.tap",
+      "sha256": "5929592944e2e18c8e301552e2e010d1fa10de1ba1dec336fdf7ab4a19e87f8c",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/effects.test.mjs"
+      ],
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity",
+        "effect plans keep creation, guest association, confirmation, cancellation, checkout and private history distinct",
+        "Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions",
+        "source ABI confirms Native17 suspend affects launch control and checkout is not a versioned property lifecycle port"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532231]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/effects-native-negative-final.tap",
+      "sha256": "07f3799497f90ead7b44006aa7dc2b8b1f00b0f85167be1f456a1fc770ab1241",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=Native17 checkout projection",
+        "web/qa/functional-contracts-20261112-v1/effects.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/integration-first.tap",
+      "sha256": "1debbd5fb1241568c171cf8b01e3a292556b7d5a6eb989a9bae5d9839fa99539",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/integration.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "founder contract composition keeps every operational step held, preserves UNKNOWN and reuses original inert journey assets"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/selection-cohort-before.tap",
+      "sha256": "18174b4c2e48fe0d9c7baaabf6e2cc8840b47dd6973acb2345710b6720fb963f",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=actual property read DTO",
+        "web/qa/functional-contracts-20261112-v1/selection.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "actual property read DTO cannot supply missing private revision, account authority or founder slot; selection is exact and never the first row"
+      ],
+      "classification": "INTERMEDIATE_NEW_QA_CANDIDATE_FAILURE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/selection-final.tap",
+      "sha256": "a9aea97e23baba8f121f6dccc90cc9bb4a70656e9c170ebe6ece3988d2358d7f",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/selection.test.mjs"
+      ],
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "actual property read DTO cannot supply missing private revision, account authority or founder slot; selection is exact and never the first row",
+        "actual stay read DTO can preserve exactly representable offset/millisecond timestamps but cannot invent entity revision or guest binding",
+        "timestamp adapter refuses lossy SQL microseconds and normalized impossible dates instead of silently truncating a reservation boundary"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532231]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/selection-first.tap",
+      "sha256": "ada0f4b60199eb60cc97d5a171f7b4a877eb1a1b6bb6310383ac0d2512ce3515",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/selection.test.mjs"
+      ],
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "actual property read DTO cannot supply missing private revision, account authority or founder slot; selection is exact and never the first row",
+        "actual stay read DTO can preserve exactly representable offset/millisecond timestamps but cannot invent entity revision or guest binding",
+        "timestamp adapter refuses lossy SQL microseconds and normalized impossible dates instead of silently truncating a reservation boundary"
+      ],
+      "classification": "NODE_NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/capture-first.tap",
+      "sha256": "b2af753a6624eb674261d6bd6a523c30d3d7a9344c341ac6c457618ad4c7947a",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/capture.test.mjs"
+      ],
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "existing private property capture parser supports the exact fixed-default draft subset with structured synthetic address and no raw disclosure",
+        "property capture refuses to split free address text or silently drop name/type/building/language/time and unit differences",
+        "capture port does not reuse the historical COMMITTED-on-ACK adapter or its same-principal reader"
+      ],
+      "classification": "NODE_ORIGINAL_PARSER_AND_MODEL_PLUS_SOURCE_ONLY_ASSERTIONS_NOT_SQL",
+      "isolation": {
+        "parentNetns": "net:[4026532301]",
+        "childNetns": "net:[4026532228]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/capture-integration-final.tap",
+      "sha256": "ac843a6bd84d760cca4552f1192f96b0efea4b311d589fb27f4b6967c8d264cf",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-contracts-20261112-v1/capture.test.mjs",
+        "web/qa/functional-contracts-20261112-v1/integration.test.mjs"
+      ],
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "existing private property capture parser supports the exact fixed-default draft subset with structured synthetic address and no raw disclosure",
+        "property capture refuses to split free address text or silently drop name/type/building/language/time and unit differences",
+        "capture port does not reuse the historical COMMITTED-on-ACK adapter or its same-principal reader",
+        "founder contract composition keeps every operational step held, preserves UNKNOWN and reuses original inert journey assets"
+      ],
+      "classification": "NODE_ORIGINAL_PARSER_AND_MODEL_PLUS_SOURCE_ONLY_ASSERTIONS_NOT_SQL",
+      "isolation": {
+        "parentNetns": "net:[4026532302]",
+        "childNetns": "net:[4026532224]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    }
+  ],
+  "finalCoverage": [
+    "binding-native-format-final.tap: six binding, four effects, three selection",
+    "catalog-first.tap: three catalog cases",
+    "capture-integration-final.tap: three capture cases and one default composition/HTML case"
+  ],
+  "repeatedOwnCaseJustifications": {
+    "effects-native-negative-final": "Same case strengthened to assert incompatible state, not just mappingAllowed=false which is also false for valid partial projections",
+    "binding-final": "Four own cases repeated after binding guest generation/building/reviewer; one additional new case",
+    "selection-final": "Three own cases repeated after rejecting contradictory two-property pilot DTO",
+    "binding-native-format-final": "Twelve own cases repeated because shared evidence ABI changed to Native17 revision-cut format; one new format case",
+    "capture-integration-final": "Three capture cases repeated after adding explicit missing-audit/retention flags, and composition case repeated after adding closed capture port and HTML disclosure"
+  },
+  "intermediateFailCases": 4,
+  "intermediateFails": [
+    "Prior stay review did not require binding revocation on date changes",
+    "New evidence binder omitted guest generation/building revision/decision reviewer in revalidation",
+    "New property selector did not reject contradictory two-property pilot read DTO",
+    "New proposed evidence ABI used UUID dataset instead of existing 64-hex Native17 revision format"
+  ],
+  "previous19And3Rerun": false,
+  "otherHistoricalSuitesRerun": false,
+  "existingRevisionComparatorFunctionReused": true,
+  "historicalNativeSuitesExecuted": false,
+  "nativeHostReinspected": false,
+  "native17": "HOST_NOT_AVAILABLE / N01-N12 NOT_AUTHORIZED / NOT_RUN",
+  "nativeSqlExecutions": 0,
+  "browserExecutions": 0,
+  "chromiumAttempts": 0,
+  "domRuntimeTests": 0,
+  "httpHttpsTransportTests": 0,
+  "actualAuthVerified": false,
+  "positiveAuthGrantFixtureUsed": false,
+  "positiveReadShapeFixtureUsed": true,
+  "sqlCommitObserved": false,
+  "effectiveAclObserved": false,
+  "newDurablePrivateStorage": false,
+  "servicesStarted": 0,
+  "realUsersPropertiesStaysInvitesMessagesPayments": 0,
+  "signingOrRestoreExecuted": false,
+  "pinnedLocalSources": 147,
+  "pinnedExternalNativeBlobs": 4,
+  "generatedFiles": 18,
+  "unchangedPriorJsCssAssets": 10,
+  "typescriptCompilerExecuted": false,
+  "staticChecks": [
+    {
+      "path": "STATIC-VERIFICATION.json",
+      "sha256": "a3b01fbe6b905bc50abc384af6625d54fc02969177cd75f51ea5d1d1c3ac2bc0"
+    },
+    {
+      "path": "logs/syntax.log",
+      "sha256": "912565eaafde48147efe71e35b769bfaaf72ca4113594d21bac860609522b353"
+    },
+    {
+      "path": "logs/materialize-final.log",
+      "sha256": "0b5e63e122c6833bd3aa86b6abeb3cf1b85022cc0edb641bea08d218a7603a67"
+    }
+  ],
+  "operationalApproval": false,
+  "betaDecision": "NO-GO",
+  "limits": [
+    "Raw observations, counters, DTO ok=true and reference IDs are synthetic shape inputs, never verified authority or COMMIT.",
+    "WeakMap holds only synthetic ephemeral snapshots, not trusted originals or durable idempotency.",
+    "Native17 SQL excerpt is source text only; no SQL statements, migrations or host executed.",
+    "Private producer/default dispatcher remains absent; partial checkout projection emits dispatchPlan=null.",
+    "Historical commands describe files at execution time; final format case uses existing pure revision comparator, not its historical suites.",
+    "Only original property parser runs in VM; original positive-ACK adapter is never instantiated. Capture SQL excerpt is source only."
+  ]
+}

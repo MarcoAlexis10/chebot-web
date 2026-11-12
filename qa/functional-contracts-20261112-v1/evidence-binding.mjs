@@ -1,3 +1,4 @@
+import {reviewRevisionCut} from '../incident-native17-review-20261111-v1/revision-cut.mjs';
 import {isDeepStrictEqual} from 'node:util';
 // Contract review only. No observer callback, provider, SQL, custody or dispatch.
 import {record,array,isUuid,positive,out} from '../functional-night-20261112-v1/core.mjs';
@@ -20,9 +21,10 @@ function checked(input){
  const ms=array(o.memberships,2);if(ms.length!==1)throw Error('UNIQUE_MEMBERSHIP_REQUIRED');
  const m=fresh(ms[0],['userId','sessionId','accountId','memberId','role','accountStatus','memberStatus','identityStatus','authorityRevision','restrictionsRevision'],now);
  if(m.userId!==p.userId||m.sessionId!==p.sessionId||!same(m,c,['accountId','memberId','role','authorityRevision','restrictionsRevision'])||!['active','testing'].includes(m.accountStatus)||m.memberStatus!=='active'||m.identityStatus!=='active')throw Error('CURRENT_RELATION');
- const revKeys=['accountId','propertyId','authorityRevision','restrictionsRevision','datasetId','recoveryEpoch','inventoryRevision'];
+ const revKeys=['accountId','propertyId','authorityRevision','restrictionsRevision','datasetId','recoveryEpoch','inventoryRevision','inventoryDigest','restrictionJournalId','restrictionDigest','bootstrapProvenanceRef','authorityCommitRef'];
  const r=fresh(o.restrictions,[...revKeys,'blocked'],now),f=fresh(o.floor,revKeys,now);
- if(r.blocked!==false||!same(r,f,revKeys)||!same(r,c,['accountId','propertyId','authorityRevision','restrictionsRevision','inventoryRevision'])||!isUuid(r.datasetId)||!positive(r.recoveryEpoch))throw Error('INDEPENDENT_FLOOR');
+ if(r.blocked!==false||!same(r,f,revKeys)||!same(r,c,['accountId','propertyId','authorityRevision','restrictionsRevision','inventoryRevision'])||!positive(r.recoveryEpoch))throw Error('INDEPENDENT_FLOOR');
+ const cut=reviewRevisionCut({datasetId:r.datasetId,recoveryEpoch:r.recoveryEpoch,authorityVersion:r.authorityRevision,bootstrapProvenanceRef:r.bootstrapProvenanceRef},{datasetId:r.datasetId,recoveryEpoch:r.recoveryEpoch,authorityVersion:r.authorityRevision,restrictionVersion:r.restrictionsRevision,inventoryDigest:r.inventoryDigest,restrictionJournalId:r.restrictionJournalId,restrictionDigest:r.restrictionDigest,authorityCommitRef:r.authorityCommitRef,observedAtMs:r.observedAtMs,expiresAtMs:r.expiresAtMs},now);if(cut.state!=='REVIEW_CUT_MATCHED')throw Error('NATIVE_REVISION_CUT_INCOMPATIBLE');
  const j=fresh(o.jurisdiction,['accountId','propertyId','designation','revision'],now),quota=fresh(o.quota,['accountId','allocatedCount','inventoryRevision','revision'],now);
  if(!same(j,c,['accountId','propertyId'])||j.designation!=='CABA'||!positive(j.revision)||quota.accountId!==c.accountId||quota.allocatedCount!==c.cohortCount||quota.inventoryRevision!==c.inventoryRevision||!positive(quota.revision))throw Error('JURISDICTION_OR_QUOTA');
  const buildingId=v.domain==='property'?(q.payload.buildingId??v.request.snapshot?.buildingId??null):null;
@@ -35,7 +37,7 @@ function checked(input){
  const guestRef=q.operation==='stay.guest.bind'?q.payload.protectedGuestBindingRef:q.operation==='stay.confirm'?v.request.snapshot.guestBindingRef:null;
  if(guestRef===null){if(o.guestBinding!==null)throw Error('UNEXPECTED_GUEST_BINDING');}
  else{const g=fresh(o.guestBinding,['ref','accountId','propertyId','stayId','identityGeneration','status'],now);if(g.ref!==guestRef||!same(g,c,['accountId','propertyId'])||g.stayId!==q.stayId||!positive(g.identityGeneration)||g.status!=='current')throw Error('GUEST_BINDING_SOURCE');}
- const binding=Object.freeze({userId:p.userId,sessionId:p.sessionId,sessionRevision:p.sessionRevision,accountId:c.accountId,memberId:c.memberId,role:c.role,propertyId:c.propertyId,authorityRevision:c.authorityRevision,restrictionsRevision:c.restrictionsRevision,datasetId:r.datasetId,recoveryEpoch:r.recoveryEpoch,inventoryRevision:r.inventoryRevision,jurisdictionRevision:j.revision,quotaRevision:quota.revision,buildingIdObserved:o.building?.buildingId??null,buildingRevision:o.building?.revision??null,decisionRef:o.decision?.reviewRef??null,decisionReviewer:o.decision?.reviewerMemberId??null,decisionReviewedRevision:o.decision?.reviewedRevision??null,guestRef:o.guestBinding?.ref??null,guestGeneration:o.guestBinding?.identityGeneration??null});
+ const binding=Object.freeze({userId:p.userId,sessionId:p.sessionId,sessionRevision:p.sessionRevision,accountId:c.accountId,memberId:c.memberId,role:c.role,propertyId:c.propertyId,authorityRevision:c.authorityRevision,restrictionsRevision:c.restrictionsRevision,datasetId:r.datasetId,recoveryEpoch:r.recoveryEpoch,inventoryRevision:r.inventoryRevision,inventoryDigest:r.inventoryDigest,restrictionJournalId:r.restrictionJournalId,restrictionDigest:r.restrictionDigest,bootstrapProvenanceRef:r.bootstrapProvenanceRef,authorityCommitRef:r.authorityCommitRef,jurisdictionRevision:j.revision,quotaRevision:quota.revision,buildingIdObserved:o.building?.buildingId??null,buildingRevision:o.building?.revision??null,decisionRef:o.decision?.reviewRef??null,decisionReviewer:o.decision?.reviewerMemberId??null,decisionReviewedRevision:o.decision?.reviewedRevision??null,guestRef:o.guestBinding?.ref??null,guestGeneration:o.guestBinding?.identityGeneration??null});
  return {v,verdict,binding};
 }
 export function createDomainAbiReview(){

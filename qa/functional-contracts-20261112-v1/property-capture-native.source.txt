@@ -1,0 +1,46 @@
+function concierge_invite_private.write_property_capture_v1(
+ p_user uuid,p_session uuid,p_expiry bigint,p_member uuid,p_role text,p_revision bigint,
+ p_account uuid,p_intent uuid,p_key bytea,p_address text,p_floor text
+) returns jsonb language plpgsql security definer set search_path='' set lock_timeout='500ms' as $$
+declare prior concierge_invite_private.manager_result_v1; capture concierge_invite_private.property_capture_v1;
+ property uuid;begin
+ if session_user::text<>'cheveni_private_mutation_backend_v1'
+ or current_user::text<>'cheveni_private_mutation_owner_v1'
+ or pg_catalog.current_setting('transaction_isolation')<>'read committed'
+ then raise exception 'PRIVATE_MUTATION_HELD';end if;
+ perform pg_catalog.pg_advisory_xact_lock(1129728581,1);
+ if p_intent is null or p_key is null or pg_catalog.octet_length(p_key)<>32
+ or p_address is null or length(p_address)<3 or length(p_address)>110
+ or p_address<>trim(p_address) or p_address ~ '[[:cntrl:]]'
+ or (p_floor is not null and (length(p_floor)<1 or length(p_floor)>50 or p_floor<>trim(p_floor) or p_floor ~ '[[:cntrl:]]'))
+ or concierge_invite_private.check_private_mutation_authority_v1(
+  p_user,p_session,p_expiry,p_member,p_role,p_revision,p_account,null,'property_create') is not true
+ then raise exception 'PRIVATE_MUTATION_HELD';end if;
+ select * into prior from concierge_invite_private.manager_result_v1
+  where principal_id=p_user and intent_id=p_intent for update;
+ if found then
+  select * into capture from concierge_invite_private.property_capture_v1
+   where principal_id=p_user and intent_id=p_intent;
+  if not found or capture.address is distinct from p_address or capture.floor_or_unit is distinct from p_floor
+   then raise exception 'PRIVATE_COMMAND_CONFLICT';end if;
+  return concierge_invite_private.property_receipt_v1(
+   p_user,p_session,p_expiry,p_member,p_role,p_revision,p_account,p_intent,p_key);
+ end if;
+ -- No orphaned insert survives a competing slot because all effects commit together.
+ if exists(select from concierge_invite_private.beta_property_slot_v1 where account_id=p_account)
+  or exists(select from public.concierge_properties where account_id=p_account)
+ then raise exception 'BETA_PROPERTY_SLOT_OCCUPIED';end if;
+ insert into public.concierge_properties(account_id,internal_name,address,floor_or_unit,city,status)
+ values(p_account,'Primera propiedad',p_address,p_floor,'Buenos Aires','draft') returning id into property;
+ insert into concierge_invite_private.beta_property_slot_v1(account_id,property_id,city)
+ values(p_account,property,'CABA');
+ insert into concierge_invite_private.manager_result_v1(
+  principal_id,intent_id,account_id,member_id,original_role,operation,command_digest,result_digest,state,
+  result_property_id,result_invite_id,recorded_at)
+ values(p_user,p_intent,p_account,p_member,'owner','property_create',p_key,
+  pg_catalog.sha256(pg_catalog.convert_to(property::text,'UTF8')),'committed',property,null,pg_catalog.clock_timestamp());
+ insert into concierge_invite_private.property_capture_v1(principal_id,intent_id,address,floor_or_unit)
+ values(p_user,p_intent,p_address,p_floor);
+ return pg_catalog.jsonb_build_object('version','CHEVENI_PROPERTY_CAPTURE_1','key',pg_catalog.encode(p_key,'hex'),
+  'intentId',p_intent,'accountId',p_account,'state','COMMITTED','propertyId',property);
+end$$;

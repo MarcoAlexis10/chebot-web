@@ -23,6 +23,7 @@ export function reviewEffects(input){
  catch{return out('EFFECT_CONTRACT_INCOMPATIBLE_HELD',{effects:Object.freeze([])});}finally{review.release(p.handle);}
 }
 export function reviewPrivatePrimitive(operation){
+ if(operation==='property.draft.create')return out('PRIVATE_PROPERTY_CAPTURE_SUBSET_REVIEW_REQUIRED',{businessOperationExists:true,fullLifecycleCompatible:false,sourcePrimitive:'concierge_invite_private.write_property_capture_v1',mappingAllowed:false});
  if(operation==='property.pause')return out('NATIVE_SUSPEND_NOT_PROPERTY_PAUSE',{nativeOperation:'suspend',actualTarget:'launch_control',requiredTarget:'concierge_properties',mappingAllowed:false});
  if(operation==='stay.checkout')return out('NATIVE_CHECKOUT_ABI_SUCCESSOR_REQUIRED',{businessOperationExists:true,expectedRevisionRepresentable:false,independentReadbackPresent:false,mappingAllowed:false});
  return out('PRIVATE_PRIMITIVE_NOT_MAPPED',{mappingAllowed:false});
@@ -38,3 +39,4 @@ export function reviewNativeCheckout(input){
   return out('NATIVE_CHECKOUT_BUSINESS_PROJECTION_ONLY_HELD',{nativeEntry:'concierge_service_qa_v1.manager_action(uuid,uuid,bigint,uuid,uuid,uuid,text,jsonb)',semanticProjection:Object.freeze({commandId:q.intentId,attemptIdNotUsedAsCommand:true,tokenExpiresAtSeconds:i.tokenExpiresAtSeconds,propertyId:q.propertyId,stayId:q.stayId,operation:'checkout',valueShape:'EMPTY_OBJECT'}),unrepresentedFields:Object.freeze(['entityRevision','sessionRevision','authorityRevision','restrictionsRevision','inventoryRevision','originalProtectedRef','attemptId','independentCommitReadbackBinding']),dispatchPlan:null,mappingAllowed:false,actualProviderVerified:false});
  }catch{return out('NATIVE_CHECKOUT_BINDING_INCOMPATIBLE_HELD',{dispatchPlan:null,mappingAllowed:false});}
 }
+export function effectSpecification(){return Object.freeze(Object.entries(effects).map(([operation,list])=>Object.freeze({operation,effects:Object.freeze([...list])})));}

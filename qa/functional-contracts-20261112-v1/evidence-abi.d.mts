@@ -3,7 +3,7 @@ import type {PropertyReviewInput,StayReviewInput,Held,UUID} from '../functional-
 export interface Fresh {observedAtMs:number;expiresAtMs:number}
 export interface ProviderVector extends Fresh {issuer:string;userId:UUID;sessionId:UUID;sessionRevision:number;revoked:false}
 export interface MembershipVector extends Fresh {userId:UUID;sessionId:UUID;accountId:UUID;memberId:UUID;role:'owner'|'manager'|'co_manager';accountStatus:'active'|'testing';memberStatus:'active';identityStatus:'active';authorityRevision:number;restrictionsRevision:number}
-export interface RevisionVector extends Fresh {accountId:UUID;propertyId:UUID|null;authorityRevision:number;restrictionsRevision:number;datasetId:UUID;recoveryEpoch:number;inventoryRevision:number}
+export interface RevisionVector extends Fresh {accountId:UUID;propertyId:UUID|null;authorityRevision:number;restrictionsRevision:number;datasetId:string;recoveryEpoch:number;inventoryRevision:number;inventoryDigest:string;restrictionJournalId:string;restrictionDigest:string;bootstrapProvenanceRef:UUID;authorityCommitRef:UUID}
 export interface JurisdictionVector extends Fresh {accountId:UUID;propertyId:UUID|null;designation:'CABA';revision:number}
 export interface QuotaVector extends Fresh {accountId:UUID;allocatedCount:number;inventoryRevision:number;revision:number}
 export interface BuildingVector extends Fresh {buildingId:UUID;accountId:UUID;status:'active';revision:number}
@@ -27,5 +27,8 @@ export interface CatalogInput {mode:'OFFLINE_VECTOR';reservationVector:unknown;s
 export interface PropertyReadDto {ok:true;session:{account_id:UUID;member_id:UUID;role:'owner'|'manager'|'co_manager'};properties:readonly {property_id:UUID;internal_name:string;property_status:string;member_role:string;can_manage_stays:boolean;can_manage_incidents:boolean;can_approve_requests:boolean;can_manage_knowledge:boolean;can_manage_secrets:boolean;can_manage_team:boolean}[]}
 export interface StayReadDto {ok:true;session:{account_id:UUID;member_id:UUID;role:'owner'|'manager'|'co_manager'};stays:readonly {stay_id:UUID;property_id:UUID;property_internal_name:string;check_in_at:string;check_out_at:string;access_from:string;access_until:string;status:string;created_at:string;updated_at:string}[]}
 /** Private revision supplement remains a synthetic vector, not authority. */
-export interface PropertySelectionVector {mode:'OFFLINE_VECTOR';response:PropertyReadDto;selectedPropertyId:UUID;boundInput:Input|null}
-export interface StaySelectionVector {mode:'OFFLINE_VECTOR';response:StayReadDto;selectedStayId:UUID;boundInput:Input|null}
+export interface PropertySelectionVector {mode:'OFFLINE_VECTOR';response:PropertyReadDto;selectedPropertyId:UUID;boundInput:Extract<Input,{domain:'property'}>|null}
+export interface StaySelectionVector {mode:'OFFLINE_VECTOR';response:StayReadDto;selectedStayId:UUID;boundInput:Extract<Input,{domain:'stay'}>|null}
+export interface PrivateCaptureVector {mode:'OFFLINE_VECTOR';boundInput:Extract<Input,{domain:'property'}>;privateCapture:{intentId:UUID;city:'CABA';privateAddress:{street:string;number:string;floor:string|null;unit:string|null}}}
+/** Fixed-default source-compatible subset only, never an operational writer. */
+export interface PrivateCaptureReview extends Held {dispatchPlan:null;primitiveExistsInSource?:true;privateAddressReturned?:false;sourceDefaultsRequireCatalogProof?:true;readerPrincipalReadOnlyAccredited?:false;externalCommitVerified?:false}

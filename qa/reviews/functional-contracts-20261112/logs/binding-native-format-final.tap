@@ -1,0 +1,89 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority
+ok 1 - property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority
+  ---
+  duration_ms: 5.644521
+  type: 'test'
+  ...
+# Subtest: argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals
+ok 2 - argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals
+  ---
+  duration_ms: 2.899125
+  type: 'test'
+  ...
+# Subtest: receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers
+ok 3 - receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers
+  ---
+  duration_ms: 2.035767
+  type: 'test'
+  ...
+# Subtest: stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association
+ok 4 - stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association
+  ---
+  duration_ms: 2.123358
+  type: 'test'
+  ...
+# Subtest: revalidation binds guest generation, building revision and decision reviewer rather than only their identifiers
+ok 5 - revalidation binds guest generation, building revision and decision reviewer rather than only their identifiers
+  ---
+  duration_ms: 1.10584
+  type: 'test'
+  ...
+# Subtest: Native17 revision cut uses dataset and independent inventory/restriction digests, not an invented UUID dataset type
+ok 6 - Native17 revision cut uses dataset and independent inventory/restriction digests, not an invented UUID dataset type
+  ---
+  duration_ms: 1.529642
+  type: 'test'
+  ...
+# Subtest: date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity
+ok 7 - date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity
+  ---
+  duration_ms: 23.145261
+  type: 'test'
+  ...
+# Subtest: effect plans keep creation, guest association, confirmation, cancellation, checkout and private history distinct
+ok 8 - effect plans keep creation, guest association, confirmation, cancellation, checkout and private history distinct
+  ---
+  duration_ms: 5.027371
+  type: 'test'
+  ...
+# Subtest: Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions
+ok 9 - Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions
+  ---
+  duration_ms: 2.894158
+  type: 'test'
+  ...
+# Subtest: source ABI confirms Native17 suspend affects launch control and checkout is not a versioned property lifecycle port
+ok 10 - source ABI confirms Native17 suspend affects launch control and checkout is not a versioned property lifecycle port
+  ---
+  duration_ms: 0.60339
+  type: 'test'
+  ...
+# Subtest: actual property read DTO cannot supply missing private revision, account authority or founder slot; selection is exact and never the first row
+ok 11 - actual property read DTO cannot supply missing private revision, account authority or founder slot; selection is exact and never the first row
+  ---
+  duration_ms: 6.388952
+  type: 'test'
+  ...
+# Subtest: actual stay read DTO can preserve exactly representable offset/millisecond timestamps but cannot invent entity revision or guest binding
+ok 12 - actual stay read DTO can preserve exactly representable offset/millisecond timestamps but cannot invent entity revision or guest binding
+  ---
+  duration_ms: 34.691587
+  type: 'test'
+  ...
+# Subtest: timestamp adapter refuses lossy SQL microseconds and normalized impossible dates instead of silently truncating a reservation boundary
+ok 13 - timestamp adapter refuses lossy SQL microseconds and normalized impossible dates instead of silently truncating a reservation boundary
+  ---
+  duration_ms: 2.356586
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 162.583141

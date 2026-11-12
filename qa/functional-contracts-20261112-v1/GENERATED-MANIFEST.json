@@ -1,0 +1,112 @@
+{
+  "sourceWeb": "5856a2ffdc8efac4683b390a45888aa9cbce891d",
+  "sourceBackend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "files": [
+    {
+      "path": "generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a"
+    },
+    {
+      "path": "generated/manager/index.html",
+      "bytes": 9789,
+      "sha256": "cc4389ec61da16bd9985acf0a582ef9d7c623147e50f4def74c977e3681fa231"
+    },
+    {
+      "path": "generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44"
+    },
+    {
+      "path": "generated/manager/manager-auth.js",
+      "bytes": 28100,
+      "sha256": "1929797b02ef9c0a9068c24f616c85c029f499e49cbd986b63c328ed86fdbbee"
+    },
+    {
+      "path": "generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c"
+    },
+    {
+      "path": "generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4"
+    },
+    {
+      "path": "generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50"
+    },
+    {
+      "path": "generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a"
+    },
+    {
+      "path": "generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8"
+    },
+    {
+      "path": "generated/manager/reset-password/index.html",
+      "bytes": 13664,
+      "sha256": "a37b111fc0a979cb9a9a893fbed3d3986682b393b598fc76918792265ae957e0"
+    },
+    {
+      "path": "generated/manager/activar/index.html",
+      "bytes": 12692,
+      "sha256": "3b3870bf9db94b08968b94ec548a6cbc38fa7baba01c1a7ddbb337dbba05fcaf"
+    },
+    {
+      "path": "generated/manager/altas/index.html",
+      "bytes": 22271,
+      "sha256": "d84e900677221d2796ab9283ec6def217e71029bb97f6d20048bb33d4a045446"
+    },
+    {
+      "path": "generated/manager/propiedad/index.html",
+      "bytes": 6743,
+      "sha256": "f6ed24a1f3964f4c4e79c530116f30d4fde3c02c3fad8f93426cfcdbb3992122"
+    },
+    {
+      "path": "generated/manager/planificar-estadia/index.html",
+      "bytes": 6277,
+      "sha256": "d21ba68673a76b65f2e04202d3d3e8562c4eb2a8918003f0e07f4c512275b80e"
+    },
+    {
+      "path": "generated/manager/prearrival/index.html",
+      "bytes": 2933,
+      "sha256": "0830451aa79bbd000ba7ad43f565822b6a4dfb874a09be272fee8c5be4dab20e"
+    },
+    {
+      "path": "generated/manager/qa-planning.js",
+      "bytes": 504,
+      "sha256": "5e03ec2897059fb1289a4aaa3b9edc2f605a4846f1cb41467c6e859fc7e2ff77"
+    },
+    {
+      "path": "generated/manager/qa-planning.css",
+      "bytes": 334,
+      "sha256": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a"
+    },
+    {
+      "path": "generated/manager/recorrido/index.html",
+      "bytes": 4228,
+      "sha256": "854f9d9dafa798c1649e26acddaf178a4852e7ac9aa7f44635f47e13d7e2d8f3"
+    }
+  ],
+  "primitiveReview": {
+    "propertyDraftCapture": "PRIVATE_PROPERTY_CAPTURE_SUBSET_REVIEW_REQUIRED",
+    "propertyPause": "NATIVE_SUSPEND_NOT_PROPERTY_PAUSE",
+    "checkout": "NATIVE_CHECKOUT_ABI_SUCCESSOR_REQUIRED"
+  },
+  "legalPublication": {
+    "approved": false,
+    "reason": "NO_OWNER_LEGAL_PUBLICATION_APPROVAL"
+  },
+  "formsInert": true,
+  "networkPolicy": "connect-src 'none'",
+  "sqlExecuted": false,
+  "browserExecuted": false,
+  "actualAuthVerified": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

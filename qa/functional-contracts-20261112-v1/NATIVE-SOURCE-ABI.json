@@ -142,5 +142,10 @@
       "defaultState": "HELD",
       "operationalApproval": false
     }
-  ]
+  ],
+  "excerptSha256": "13d9ca609ff4b2e1285b377779623b856c350dc5f3a82215d71a44e52c6e3eaf",
+  "portsSource": {
+    "path": "qa/native17-closure-v1/SERVICE-PORTS.json",
+    "gitBlob": "13d4103fd1c7961ed528952f0d67e31f4f293e5d"
+  }
 }

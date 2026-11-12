@@ -21,3 +21,9 @@ Fuentes/HEADs y comandos efectivos en qa/reviews/functional-contracts-20261112/.
 effect-plan.mjs conserva operaciones distintas y corrige el requerimiento de revocación en cambio de fechas. reviewNativeCheckout produce sólo una proyección semántica, dispatchPlan=null: la primitiva Native17 existente no representa todas las revisiones/recibos del contrato. No se escribe otro SQL o fallback. native17-manager-action.source.txt es un extracto literal de fuente inmóvil, nunca un instalador.
 
 public-catalog-producer.mjs separa fuente, revisión de plantilla y retirada; consume el validador público existente. No aprueba contenido, no persiste proyecciones y sólo devuelve la plantilla global segura. Produtores protegidos siguen ausentes. A este checkpoint: 11 casos únicos nuevos PASS.
+
+## Captura privada encontrada
+
+Existe write_property_capture_v1 en fuentes no aplicadas. property-capture-adapter.mjs reutiliza sólo el parser original desde texto fijado, con entrada estructurada y comparación exacta de defaults/configuración; no usa createPrivatePropertyReview ni su settlement COMMITTED-on-ACK. write HELD/read UNKNOWN. Tres casos nuevos y composición focal PASS. El alcance y restricciones están en PROPERTY-CAPTURE-COMPATIBILITY.md.
+
+Estado final del lote: 20 casos únicos nuevos PASS. Las 19 + tres anteriores no se reejecutaron. No se acredita SQL, Auth, browser, COMMIT, slot transaccional o reader mínimo. D02-A/custodia de la captura y los demás bloqueos permanecen. Reproducción adicional (sólo si hay cambio afectado): binding.test.mjs, effects.test.mjs, catalog.test.mjs, selection.test.mjs, capture.test.mjs, integration.test.mjs mediante el launcher anterior; comandos exactos en TEST-EVIDENCE.json.

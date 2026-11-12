@@ -1,0 +1,17 @@
+{
+  "classification": "STATIC_BYTES_NOT_SQL_AUTH_OR_BROWSER",
+  "pinnedLocalSources": 147,
+  "pinnedNativeSourceBlobs": 4,
+  "generatedFiles": 18,
+  "unchangedPriorJsCssAssets": 10,
+  "legalPublicationApproved": false,
+  "nativeExcerptHashMatched": true,
+  "typescriptCompilerExecuted": false,
+  "actualAuthVerified": false,
+  "sqlExecuted": false,
+  "browserExecuted": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO",
+  "originalPropertyParserGitBlobMatched": true,
+  "syntaxFiles": 14
+}

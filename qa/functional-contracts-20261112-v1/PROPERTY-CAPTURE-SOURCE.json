@@ -1,0 +1,16 @@
+{
+  "repo": "MarcoAlexis10/cheveni-qa-lab",
+  "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "parser": {
+    "path": "qa/cheveni-beta-release-candidate-v1/fencing/property-review.mjs",
+    "gitBlob": "06deafb507d84c57687c71ccfb7f7feb5472b319"
+  },
+  "writer": {
+    "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+    "gitBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c"
+  },
+  "classification": "PINNED_UNAPPLIED_SOURCES_NOT_EXECUTED_SQL",
+  "used": "Original parsePrivatePropertyCapture ONLY; createPrivatePropertyReview positive ACK settlement is not used",
+  "localParserSha256": "e82e22aac2833a263b5183dd479701071dbd29b6dc97c24a8e8954a494d246c4",
+  "localWriterExcerptSha256": "4f0eed9bb43a12d114dd14886a55aa06b9e56213d4deedd4bbe080853e7d50cf"
+}
