@@ -1,0 +1,334 @@
+{
+  "version": "property-stay-prearrival-20261112-v1",
+  "hashes": "SHA-256 and Git blob SHA-1; manifest excludes itself; verify its bytes via immutable remote tree",
+  "files": [
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/GENERATED-MANIFEST.json",
+      "bytes": 4891,
+      "sha256": "bd6d3ed67cfad40e2bfdf360e2616b8dd6fe3f46ad56977f00c8db5f2a143c19",
+      "gitBlob": "70a3a246202aa089ba45c79fce674cf2a5c86397"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/README.md",
+      "bytes": 2807,
+      "sha256": "77a724efab981fbc9e04c715659e36ff02e11f34e9b6ce3bd56e99325b3fa2f8",
+      "gitBlob": "7cb0bc8fc2dec4d7ba8f9789b3611d04d9710c13"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/SOURCE-PINS.json",
+      "bytes": 17248,
+      "sha256": "3d9226282c9b6d90453981e39666937560d55c9fc967758a70accc26bd57f295",
+      "gitBlob": "d54dc38685e95be7677af8e3fa400c727641c613"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/check-candidate.cjs",
+      "bytes": 1784,
+      "sha256": "79804cfb15441e710c7f6a9d3a19244bc7e46c59527aec11e482321329d72e5b",
+      "gitBlob": "fc85305a1385c2761ebeb85fff2ddf876d26767f"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/contracts.mjs",
+      "bytes": 6563,
+      "sha256": "9e84e49637cc43282cf28e482c2aca0810520c4caf0b4a2be6258e342859134d",
+      "gitBlob": "e4f3fbd9efe23e2b86de2a6d46e15b79899c0a41"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/contracts.test.mjs",
+      "bytes": 4150,
+      "sha256": "dbf6fbe46965b38dc6deb2e2e4c3acd452a2720954e1bac5cc8cac5ffe9a2ffe",
+      "gitBlob": "85fd7f4b126ce0e4b55b6f2e0d3da28a1ff652dc"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/fixtures.mjs",
+      "bytes": 1863,
+      "sha256": "3a703a365bd094b888403401c567c9bade5aac222c780da85903a0d28c8993dc",
+      "gitBlob": "6b95b8c263d87701b01d5db998c449065d092747"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/activar/index.html",
+      "bytes": 12717,
+      "sha256": "39fd25039f72ae08c4cf7bc0f21406e7f662917403ce23bd8e8da8648e7a65e4",
+      "gitBlob": "3b5d981e40e4a140d228489e439d0ca95a92e819"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/altas/index.html",
+      "bytes": 22209,
+      "sha256": "bf55adf9ee91e79b67c6ab025aab031eb6c8cec3730f79af57c96561425d2977",
+      "gitBlob": "49d8d56fccebf53af721204d6df13146593bc345"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/index.html",
+      "bytes": 9781,
+      "sha256": "2e93823367fbce29d24c91c5a40858e50a2568a794c2832f800e8845fe1f8fee",
+      "gitBlob": "436008762588b859683e0efab1db43fb3ad5c15b"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "gitBlob": "7a1de9e63a89d7abc376a2f5d193d1c71be07fce"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager-auth.js",
+      "bytes": 27840,
+      "sha256": "b83043edc0ddce50dd608ffe6b808da4f0be97197e37d96170203f8f44d79a52",
+      "gitBlob": "ca7419036d3bcb037649c653d9b55cfd6827cc94"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50",
+      "gitBlob": "2a638fb3fc87c72f781b40ad6b589620bab3ddb8"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "gitBlob": "eb25e4f7e24a39e0bc3bdad389613c0e5dab905c"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8",
+      "gitBlob": "70946f1ae57d8192082f5e4a0c6ba7584975ca7c"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c",
+      "gitBlob": "e6028952b6040b8ae8d38d23c3abb4f22aa7791a"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4",
+      "gitBlob": "eabac77451df362f73084c7ac8d9606c64ee863d"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a",
+      "gitBlob": "7d7b2bb37c6b5f5a8b307eda23c45a5e0e1c0670"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/planificar-estadia/index.html",
+      "bytes": 3055,
+      "sha256": "115f7121f19dcf0fdae41c5149b526294d69b49309c8af7dd2aaefb42cd71ac0",
+      "gitBlob": "81730bd438b1ae65d66d040ee89720ac67e79b8a"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/prearrival/index.html",
+      "bytes": 2299,
+      "sha256": "8c62ca231d2f08c318b0bab9af94bb60b94198298e488b2498b51f34662d0187",
+      "gitBlob": "3850909a6683c449c59fcc23c41a9c9f7cce1e5d"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/propiedad/index.html",
+      "bytes": 3508,
+      "sha256": "d49ae87f20d57c2b1721514bc34cb29834ab93b84208a8baf881726c2e10cbac",
+      "gitBlob": "d231931e034a7710aad472d54ad90b13b8077baa"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/qa-planning.css",
+      "bytes": 334,
+      "sha256": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a",
+      "gitBlob": "addaf4e5a513061a2a0281295d8ac797a65d482c"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/qa-planning.js",
+      "bytes": 504,
+      "sha256": "5e03ec2897059fb1289a4aaa3b9edc2f605a4846f1cb41467c6e859fc7e2ff77",
+      "gitBlob": "c3a9c661d46e059ea54c21050b26ea5705dbdd60"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/generated/manager/reset-password/index.html",
+      "bytes": 13602,
+      "sha256": "aadb376786a6d6c4c00e92acc8c3cf55157c05e90e335d1cc77868cd49342287",
+      "gitBlob": "92324fd651aff051e692e96aada48196cf450615"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/materialize.cjs",
+      "bytes": 8936,
+      "sha256": "6fb826a77fdd8ca91838f4403f1385415d02bcabdd27af096f7f3fb07b0d36ae",
+      "gitBlob": "26b458cde3f8a4909bb0735f5fb8a16859bfcf8c"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/planning-ui.js",
+      "bytes": 504,
+      "sha256": "5e03ec2897059fb1289a4aaa3b9edc2f605a4846f1cb41467c6e859fc7e2ff77",
+      "gitBlob": "c3a9c661d46e059ea54c21050b26ea5705dbdd60"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/prearrival.mjs",
+      "bytes": 2515,
+      "sha256": "70f2ca97087736dfc13fed11ded3b88fa680af79978d01f1540dc9379a5be3f9",
+      "gitBlob": "96a324b7f12884b1e75a5d142afbf037f25779a3"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/prearrival.test.mjs",
+      "bytes": 1983,
+      "sha256": "dea6ba1eb4597a17acf742aebf2d52044498d28f8be9009c945162ee12ae0238",
+      "gitBlob": "a050eccf92b90df8b75eb8fbcb05399b8ff95256"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/time-review.cjs",
+      "bytes": 1184,
+      "sha256": "08c374056fb814a893be1c31df1821273da13097944976138dc2acc8607c7bfb",
+      "gitBlob": "4a1a834ae582049a069e1224d96c42328339e744"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/time.test.cjs",
+      "bytes": 502,
+      "sha256": "f3704da4235f8d413bf8331175cdd5e86cf839646148b0bd61ef93b777919f57",
+      "gitBlob": "967d7d67e580bc61456853e592a5acebd909a756"
+    },
+    {
+      "path": "qa/property-stay-prearrival-20261112-v1/ui.test.cjs",
+      "bytes": 2119,
+      "sha256": "c704288e28be42abb6883d3ccd713a6bec6da3a30aa0b671da5e33f99f343fa0",
+      "gitBlob": "9fbc5cae317d062c2b6f3121ed750d8f9f5072f8"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/CLOSURE.md",
+      "bytes": 9876,
+      "sha256": "114d18b744f7b2eeeff739a23b03bb8c1fc99de4cbcc80d5fc1f32315d5ed9fe",
+      "gitBlob": "efe9d3df91922a1753b3dd6a530bf83b15af3648"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/GO-NO-GO.md",
+      "bytes": 1960,
+      "sha256": "c914d9be50813e5345a617a73079507293915d9306a9855ff8daa464c53ba7db",
+      "gitBlob": "0ab1543c68c42f69a17ab9de24883130be60033d"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/JOURNEY-MATRIX.md",
+      "bytes": 3306,
+      "sha256": "90f8543562910dbcf60ff0abec4fa5dca7d9c27b67f0a99ee757dd9c1792860e",
+      "gitBlob": "a23b4c7db6d070c81cccc19ac0e307dee6fcd294"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/NEXT-EXECUTION.md",
+      "bytes": 2198,
+      "sha256": "46ff18e631b248d6e6fb3cf64182e202805ac330d527d345561df6f5f1c4b19f",
+      "gitBlob": "ff1cce944b4613d1e7c1ae89194d5e450cb93b6d"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/PILOT-CHECKLIST.md",
+      "bytes": 2380,
+      "sha256": "468905017e6a68e52daa6c00ebeb0e1b6be10955b3fb024571676e24e575f2fd",
+      "gitBlob": "a1cdb39d0fee9929064e357bb690e91785f98cc8"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/PREARRIVAL-PRIVACY.md",
+      "bytes": 3451,
+      "sha256": "9235e3aef26a959f3f989f6ef83ee7e7781b650acc9d3e7c31673689daba7dd7",
+      "gitBlob": "2d8a36f776023ce9742ff2fa428c021d2acf293b"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/PROGRESS.md",
+      "bytes": 1338,
+      "sha256": "5a6e23e6e6b29b6e982c3cdc4232b1c30dcceb34eed68245935cba8bac8f2b62",
+      "gitBlob": "6cbeaec856f613bde4fcab937f48e8467277e125"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/PROPERTY-CONTRACT.md",
+      "bytes": 4715,
+      "sha256": "fd63c6fbdae08d485c0feaf8bf7a7173efb79be3cfe67d0f7552ded798f54a78",
+      "gitBlob": "8da4472e765fa1d88eb625f2e51effadbb4c1945"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/RELEASE-CANDIDATE.json",
+      "bytes": 3415,
+      "sha256": "5d0da6c669ea54e4ef5e68c8e898c9ad6079ee47c4fae497f362516a2f843bfc",
+      "gitBlob": "8687f06cacd1d0cb617626a2a0de9845990217ca"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/STAY-CONTRACT.md",
+      "bytes": 4232,
+      "sha256": "abb7bcad8f94239359e8eb3f39460f0e6a35bc2ed6b675e0100238d762c2ef9d",
+      "gitBlob": "4aad4c96181d00146c792e36771b952eb1a58702"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/TEST-EVIDENCE.json",
+      "bytes": 12185,
+      "sha256": "6f1085e30c4ae5579410d50b5019e08df4bf8091a4888151e567fa2e4cdc4978",
+      "gitBlob": "29212904800093257dc61c9da22f04358d484009"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/logs/calendar-after.tap",
+      "bytes": 979,
+      "sha256": "e46aeed6361e73407a91fb2372775e72a3112e8815a83996b1ec11a0c191fd8e",
+      "gitBlob": "1c900259de87b5a6da5fdc79655d70ddf05cd557"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/logs/calendar-before.tap",
+      "bytes": 2182,
+      "sha256": "5196c1efd8a7dad62f11d28c95f47f86cbeb3f2806a5fb5d0e566723e4254801",
+      "gitBlob": "bc7048cd8dfa083bf40b293dcff936dab77fa50d"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/logs/calendar-source-before.tap",
+      "bytes": 1754,
+      "sha256": "5124fb1ca3390b0b64f5afaef8947e0b8ff42ed87b9038d7c4a86019fbd8da41",
+      "gitBlob": "059a498d083de4872bb51e37f7069c87ec9ea409"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/logs/contracts-first.tap",
+      "bytes": 2641,
+      "sha256": "df28a75340ff30e814c78d67630aa3f973f5aa9a6e3312aacabfa03b571d39bb",
+      "gitBlob": "343543d820a3345853f9d7c5bb2eb99e1cbaaebe"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/materialize-final.log",
+      "bytes": 644,
+      "sha256": "e2eecc6178dad41c7aac9dc077997a13d0cb4efe6d88cafb1d91ebf1128f577b",
+      "gitBlob": "5d9963a143f83112b166a6aef370a298d0f6a90d"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/materialize.log",
+      "bytes": 644,
+      "sha256": "e2eecc6178dad41c7aac9dc077997a13d0cb4efe6d88cafb1d91ebf1128f577b",
+      "gitBlob": "5d9963a143f83112b166a6aef370a298d0f6a90d"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/static-final.log",
+      "bytes": 879,
+      "sha256": "549043686d522450a0ba75fde6a0d74723f822ece634d6c1aa0cfac3a65919af",
+      "gitBlob": "cef12064e315a269bed52a35158316d6affaef77"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/syntax.log",
+      "bytes": 680,
+      "sha256": "fe628b3c4fdc4f8b013f608ebbf8467462bdcb01f97fa61bd909084511389785",
+      "gitBlob": "cf300ef068e58541dee1dc04115ef2a4b9234957"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/ui-after.tap",
+      "bytes": 1052,
+      "sha256": "da5f3584f1d14ff8e31ac8e2b08978393f99385bf09558ac9195179d98e41895",
+      "gitBlob": "a8cd179ffacf651e66d2aa5e8be6d069b390a3c2"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/ui-final.tap",
+      "bytes": 1051,
+      "sha256": "d0cbae562a21952ad02c48fe70916ef22b4380a83dc3e3954302ba8e030b6efa",
+      "gitBlob": "673888fc162e2eb313b6f2009f6881c7776281d7"
+    },
+    {
+      "path": "qa/reviews/property-stay-prearrival-20261112/ui-first.tap",
+      "bytes": 1713,
+      "sha256": "c003db2aab99db738902ee5041db9021625f9966ba8b6ccea2d6ce251db3583b",
+      "gitBlob": "b47d5463fbf00d525be72b43a4ed36468bffbeac"
+    }
+  ],
+  "fileCount": 53,
+  "newPrefixes": [
+    "qa/property-stay-prearrival-20261112-v1/",
+    "qa/reviews/property-stay-prearrival-20261112/"
+  ],
+  "actualAuthVerified": false,
+  "browserExecuted": false,
+  "sqlExecuted": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}
