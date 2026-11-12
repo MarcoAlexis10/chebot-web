@@ -1,0 +1,35 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532225]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority
+ok 1 - property evidence ABI separates provider/member, quota, jurisdiction, building and independent floor instead of trusting UI authority
+  ---
+  duration_ms: 5.06152
+  type: 'test'
+  ...
+# Subtest: argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals
+ok 2 - argument binding is frozen before future use and key order is not a conflict; released handles never reconstruct originals
+  ---
+  duration_ms: 2.483375
+  type: 'test'
+  ...
+# Subtest: receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers
+ok 3 - receipt correlation cannot promote untrusted ACK or claimed COMMIT to success, including after restart and missing producers
+  ---
+  duration_ms: 1.170336
+  type: 'test'
+  ...
+# Subtest: stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association
+ok 4 - stay ABI requires a current guest-binding source and does not accept an opaque UUID as evidence of association
+  ---
+  duration_ms: 5.095692
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 132.623266

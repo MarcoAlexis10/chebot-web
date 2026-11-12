@@ -1,0 +1,146 @@
+{
+  "repo": "MarcoAlexis10/cheveni-qa-lab",
+  "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "path": "qa/native17-closure-v1/service-successor-REVIEW-ONLY.sql",
+  "gitBlob": "dbaa9df6389768169412bb4500c69084463ef594",
+  "excerpt": "EXACT manager_action function ONLY; source text, DO NOT EXECUTE",
+  "ports": [
+    {
+      "entry": "concierge_service_qa_v1.manager_action(uuid,uuid,bigint,uuid,uuid,uuid,text,jsonb)",
+      "arguments": [
+        {
+          "name": "p_user",
+          "type": "uuid"
+        },
+        {
+          "name": "p_session",
+          "type": "uuid"
+        },
+        {
+          "name": "p_exp",
+          "type": "bigint"
+        },
+        {
+          "name": "p_property",
+          "type": "uuid"
+        },
+        {
+          "name": "p_stay",
+          "type": "uuid"
+        },
+        {
+          "name": "p_request",
+          "type": "uuid"
+        },
+        {
+          "name": "p_op",
+          "type": "text"
+        },
+        {
+          "name": "p_value",
+          "type": "jsonb"
+        }
+      ],
+      "returns": "jsonb",
+      "operations": [
+        "checkout",
+        "suspend",
+        "incident_state"
+      ],
+      "connectionSessionUser": "cheveni_service_manager_backend_v2",
+      "connectionCurrentUser": "cheveni_service_manager_backend_v2",
+      "insideEntryCurrentUser": "cheveni_service_write_owner_v2",
+      "roleSwitchingAllowed": false,
+      "security": "DEFINER",
+      "trustedIdentitySource": "EXACT_BEARER_SDK_MANAGER_EMAIL_AND_CURRENT_SESSION; ops uses independently reviewed user/session binding, not manager role",
+      "rawClientClaimsAuthoritative": false,
+      "transport": "PRIVATE_DRIVER_MISSING_NO_PUBLIC_ROUTE",
+      "commit": "Function result is provisional until same-connection COMMIT tag + ReadyForQuery IDLE; lost ACK => UNKNOWN",
+      "response": "Exact minimal JSON, no provider payload, no address, no codes, no Wi-Fi",
+      "defaultState": "HELD",
+      "operationalApproval": false
+    },
+    {
+      "entry": "concierge_service_qa_v1.manager_case(uuid,uuid,bigint,uuid,uuid,uuid)",
+      "arguments": [
+        {
+          "name": "p_user",
+          "type": "uuid"
+        },
+        {
+          "name": "p_session",
+          "type": "uuid"
+        },
+        {
+          "name": "p_exp",
+          "type": "bigint"
+        },
+        {
+          "name": "p_property",
+          "type": "uuid"
+        },
+        {
+          "name": "p_stay",
+          "type": "uuid"
+        },
+        {
+          "name": "p_incident",
+          "type": "uuid"
+        }
+      ],
+      "returns": "jsonb",
+      "operations": [
+        "read_exact_incident"
+      ],
+      "connectionSessionUser": "cheveni_service_reader_backend_v2",
+      "connectionCurrentUser": "cheveni_service_reader_backend_v2",
+      "insideEntryCurrentUser": "cheveni_service_read_owner_v2",
+      "roleSwitchingAllowed": false,
+      "security": "DEFINER",
+      "trustedIdentitySource": "EXACT_BEARER_SDK_MANAGER_EMAIL_AND_CURRENT_SESSION; ops uses independently reviewed user/session binding, not manager role",
+      "rawClientClaimsAuthoritative": false,
+      "transport": "PRIVATE_DRIVER_MISSING_NO_PUBLIC_ROUTE",
+      "commit": "Function result is provisional until same-connection COMMIT tag + ReadyForQuery IDLE; lost ACK => UNKNOWN",
+      "response": "Exact minimal JSON, no provider payload, no address, no codes, no Wi-Fi",
+      "defaultState": "HELD",
+      "operationalApproval": false
+    },
+    {
+      "entry": "concierge_service_qa_v1.ops_review(uuid,uuid,bigint,uuid)",
+      "arguments": [
+        {
+          "name": "p_user",
+          "type": "uuid"
+        },
+        {
+          "name": "p_session",
+          "type": "uuid"
+        },
+        {
+          "name": "p_exp",
+          "type": "bigint"
+        },
+        {
+          "name": "p_task",
+          "type": "uuid"
+        }
+      ],
+      "returns": "jsonb",
+      "operations": [
+        "read_exact_task"
+      ],
+      "connectionSessionUser": "cheveni_service_ops_backend_v2",
+      "connectionCurrentUser": "cheveni_service_ops_backend_v2",
+      "insideEntryCurrentUser": "cheveni_service_ops_owner_v2",
+      "roleSwitchingAllowed": false,
+      "security": "DEFINER",
+      "trustedIdentitySource": "EXACT_BEARER_SDK_MANAGER_EMAIL_AND_CURRENT_SESSION; ops uses independently reviewed user/session binding, not manager role",
+      "rawClientClaimsAuthoritative": false,
+      "transport": "PRIVATE_DRIVER_MISSING_NO_PUBLIC_ROUTE",
+      "commit": "Function result is provisional until same-connection COMMIT tag + ReadyForQuery IDLE; lost ACK => UNKNOWN",
+      "response": "Exact minimal JSON, no provider payload, no address, no codes, no Wi-Fi",
+      "defaultState": "HELD",
+      "operationalApproval": false
+    }
+  ]
+}

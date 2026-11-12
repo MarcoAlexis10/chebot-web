@@ -1,0 +1,42 @@
+create or replace function concierge_service_qa_v1.manager_action(p_user uuid,p_session uuid,p_exp bigint,p_property uuid,p_stay uuid,p_request uuid,p_op text,p_value jsonb)
+returns jsonb language plpgsql security definer set search_path='' set lock_timeout='2s' as $$
+declare ctx jsonb;intent text;prior concierge_service_qa_v1.commands%rowtype;r jsonb;i public.concierge_incidents%rowtype;cutoff timestamptz;
+begin
+ if (session_user<>'cheveni_service_manager_backend_v2' or current_user<>'cheveni_service_write_owner_v2') or p_request is null or p_op is null or p_value is null or jsonb_typeof(p_value)<>'object' then raise insufficient_privilege using message='SERVICE_MANAGER_ROLE';end if;
+ if p_op not in('checkout','suspend','incident_state') then raise insufficient_privilege using message='SERVICE_OPERATION_DENIED';end if;
+ perform concierge_invite_private.require_writer_publication_v1();
+ ctx:=concierge_service_qa_v1.manager_scope(p_user,p_session,p_exp,p_property,case when p_op='checkout' then 'manage_stays' when p_op='suspend' then 'manage_team' else 'manage_incidents' end);
+ if not exists(select from public.concierge_stays where id=p_stay and account_id=(ctx->>'accountId')::uuid and property_id=p_property) then raise insufficient_privilege using message='SERVICE_STAY_DENIED';end if;
+ intent:=encode(sha256(convert_to(jsonb_build_array(p_property,p_stay,p_op,p_value)::text,'UTF8')),'hex');
+ select operation,intent_digest,result into prior.operation,prior.intent_digest,prior.result from concierge_service_qa_v1.commands where user_id=p_user and request_id=p_request;
+ if found then if prior.operation<>p_op or prior.intent_digest<>intent then raise exception 'SERVICE_REQUEST_CONFLICT';end if;perform concierge_service_qa_v1.manager_scope(p_user,p_session,p_exp,p_property,case when p_op='checkout' then 'manage_stays' when p_op='suspend' then 'manage_team' else 'manage_incidents' end,p_op<>'suspend');return prior.result||jsonb_build_object('replayed',true);end if;
+ if p_op='checkout' then
+  if p_value<>'{}'::jsonb then raise exception 'SERVICE_ARGUMENTS';end if;
+  if not exists(select from public.concierge_stays where id=p_stay and status in('scheduled','active')) then raise insufficient_privilege using message='SERVICE_CHECKOUT_STATE';end if;
+  cutoff:=clock_timestamp();
+  update public.concierge_stays set status='completed',updated_at=clock_timestamp() where id=p_stay;
+  update public.concierge_stay_members set status='revoked',revoked_at=cutoff,updated_at=cutoff where stay_id=p_stay and status<>'revoked';
+  update public.concierge_guest_invites set status='revoked' where stay_member_id in(select id from public.concierge_stay_members where stay_id=p_stay);
+  -- Keep only explicitly authorized case-only bindings, never property access.
+  update concierge_service_qa_v1.guest_bindings b set revoked=not exists(select from concierge_service_qa_v1.postcheckout_cases c join public.concierge_incidents ci on ci.id=c.incident_id where c.invitation_id=b.invitation_id and c.active and c.review_until>cutoff and ci.account_id=b.account_id and ci.property_id=b.property_id and ci.stay_id=b.stay_id and ci.reported_by_stay_member_id=b.stay_member_id and ci.status not in('resolved','closed')),checkout_revoked_at=cutoff,revision=revision+1 where stay_id=p_stay;
+  perform concierge_invite_private.publish_stay_heads_v1((ctx->>'accountId')::uuid,p_property,p_stay,'checkout');
+  r:=jsonb_build_object('state','CHECKOUT_RECORDED');
+ elsif p_op='suspend' then
+  if p_value<>'{}'::jsonb or p_user<>(select founder_user_id from concierge_service_qa_v1.launch_control) then raise insufficient_privilege using message='SERVICE_FOUNDER_ONLY';end if;
+  update concierge_service_qa_v1.launch_control set state='PAUSED';
+  perform concierge_invite_private.publish_property_heads_v1((ctx->>'accountId')::uuid,p_property);
+  r:=jsonb_build_object('state','SERVICE_SUSPENDED');
+ else
+  if (select array_agg(key order by key) from jsonb_object_keys(p_value) key) is distinct from array['incidentId','status','summary'] then raise exception 'SERVICE_ARGUMENTS';end if;
+  select id into i.id from public.concierge_incidents where id=(p_value->>'incidentId')::uuid and stay_id=p_stay and property_id=p_property and account_id=(ctx->>'accountId')::uuid;
+  if not found then raise insufficient_privilege using message='SERVICE_INCIDENT_DENIED';end if;
+  select to_jsonb(q) into r from concierge_runtime_qa_v2.concierge_manager_set_incident_state(i.id,(ctx->>'memberId')::uuid,p_value->>'status',p_value->>'summary') q;
+ end if;
+ if p_op='incident_state' and (r->>'incident_id' is distinct from p_value->>'incidentId' or r->>'resulting_status' is distinct from p_value->>'status') then raise insufficient_privilege using message='SERVICE_INCIDENT_STATE_DENIED';end if;
+ insert into public.concierge_audit_events(account_id,actor_type,actor_ref,property_id,stay_id,action_type,entity_type,entity_id,result)
+ values((ctx->>'accountId')::uuid,'account_member',(ctx->>'memberId')::uuid,p_property,p_stay,'service_'||p_op,'stay',p_stay,'changed');
+ r:=r||jsonb_build_object('requestId',p_request,'replayed',false,'guestAccessEnabled',false,'codesAllowed',false,'billingEnabled',false,'operationalApproval',false,'betaDecision','NO-GO');
+ insert into concierge_service_qa_v1.commands values(p_user,p_request,p_op,intent,r);
+ perform concierge_service_qa_v1.manager_scope(p_user,p_session,p_exp,p_property,case when p_op='checkout' then 'manage_stays' when p_op='suspend' then 'manage_team' else 'manage_incidents' end,p_op<>'suspend');
+ return r;
+end$$;
