@@ -1,0 +1,19 @@
+# Continuación sin reiniciar
+
+Leer CLOSURE, JOURNEY-MATRIX, PILOT-CHECKLIST, A2-INVENTORY, TEST-EVIDENCE, SOURCE-PINS y PACKAGE-MANIFEST. Verificar HEADs actuales y reconciliar avances antes de escribir; el enlace final del cierre fija el commit contenedor. Backend 9beb837a621f9a8f06601043afa64b3bba317cb5 y Native17 ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a permanecen sólo lectura.
+
+El candidato está en qa/founder-journey-20261112-v1; compose.cjs transforma cuatro generadores originales en memoria (Auth, requests/incidents sólo copy de errores e invite) y ejecuta la cadena completa de once. No se aplicó al build de producto. generated/ contiene doce salidas, CSP connect-src none y forms inert. No modificar la configuración original DEV o activar el materializado como si acreditara el backend. No introducir un fixture de autorización positiva para abrir la UI.
+
+Conservar cinco casos nuevos (cuatro de scripts completos y uno de funciones de error extraídas, DOM/transportes dobles), tres regresiones previas de restore por cambio directo, y los cinco FAIL anteriores a correcciones. El caso de invitación se amplió y repitió de forma focalizada para comprobar que 401 de bearer viejo no limpia una vista nueva; no se suma como sexto caso. Los comandos de logs intermedios corresponden al estado del archivo en ese momento. --conditions=baseline permite reproducir contra originales fijados; no es la ejecución final. No repetir suites históricas o de Native17/secretos/checkout por rutina.
+
+**Siguiente trabajo funcional concreto:** cerrar el contrato de alta/configuración de la única propiedad y el de alta/gestión de estadía en el panel, partiendo de las funciones originales y del pending-stay existente. Hoy los endpoints web de properties/stays son GET; no inventar POST ni simular creación con un response positivo. La admisión/writer debe seguir retenida hasta contrato privado aprobado, autoridad vigente y evidencias. Si no existe ese contrato, preparar únicamente validación/formulario retenido sin recopilar PII o afirmar integración.
+
+Resolver también el requisito prearrival no sensible por propiedad frente al loader privado que hoy exige check-in: documentar semántica y fuente autorizada sin relajar el límite de secretos o checkout. operational sigue siendo acceso por tarea, no un rol web de manager. Un selector comercial 1/1 no prueba unicidad SQL ni autoriza un ID ficticio como fundador.
+
+Auth real/JWT previo a revocación/refresh/COMMIT y disponibilidad actual de secretos siguen fuera de esta evidencia. UNKNOWN persiste hasta conciliación autorizada; cerrar una sesión no confirma rollback ni permite reenviar. La compatibilidad de destinos originales DEV frente al writer privado QA permanece retenida, sin reescribir issuer/token.
+
+Native17 HOST_NOT_AVAILABLE está confirmado por el propietario: no volver a inspeccionar el runtime sin nueva información, no descargar/iniciar PostgreSQL, crear infraestructura, SQL o paquetes equivalentes de revisión. D1–D8 y N01–N12 se conservan en el cierre anterior al SHA 426eae627154f5bff011335d1c5e688e32ca7d59, sin nueva autorización. No intentar Chromium.
+
+A2-INVENTORY contiene interfaces/fuentes, no recuperación. No importar/ejecutar sus módulos de claves, witness, SQL o restore. Mantener PostgreSQL/Auth/GoTrue/Vault/Storage/configuración/claves y restricciones/journal/witness/floors actuales, nunca usar el piso de un backup como vigente ni salir de cuarentena sólo por tablas. No agregar almacenamiento de payloads/PII para hacer más fácil conciliar.
+
+Publicar sólo rama web qa/cheveni-integral-held-20261111, HEAD/blob/triggers revisados, lease expected_sha y [skip ci]. Sin ramas backend, workflows, cron, CI4, Native34, DEV/PROD/DNS/Vercel/Supabase/ASUS/gastos/mensajes/altas. Las tareas autorizadas siguen siendo código/QA offline. Beta V1 NO-GO.

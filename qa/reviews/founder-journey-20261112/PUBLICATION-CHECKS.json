@@ -1,0 +1,29 @@
+{
+  "initialHeads": {
+    "web": "426eae627154f5bff011335d1c5e688e32ca7d59",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "codeCheckpoint": "45b09f50e62e9275c12f2eb6717d2b98bf0766db",
+  "allowedPrefixes": [
+    "qa/founder-journey-20261112-v1/",
+    "qa/reviews/founder-journey-20261112/"
+  ],
+  "workflowBlobs": [
+    "9540d3c50339b976e6fff19acd8283037aa000e1",
+    "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+  ],
+  "workflowSourcesRead": true,
+  "pushTriggersOtherBranchesOnly": true,
+  "actionsApiCalled": false,
+  "runsQueried": false,
+  "createBranchOrForceOrResetOrMerge": false,
+  "backendNativeWritten": false,
+  "expectedShaLease": true,
+  "postPublicationVerificationRequired": [
+    "three refs",
+    "all final artifact blobs and CLOSURE bytes",
+    "outside new prefixes unchanged"
+  ],
+  "operationalApproval": false
+}

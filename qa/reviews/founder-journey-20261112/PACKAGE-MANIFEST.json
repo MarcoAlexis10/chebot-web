@@ -1,0 +1,132 @@
+{
+  "sourceWeb": "426eae627154f5bff011335d1c5e688e32ca7d59",
+  "sourceBackend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "codeCheckpoint": "45b09f50e62e9275c12f2eb6717d2b98bf0766db",
+  "finalTestExpansion": "containing final commit",
+  "files": [
+    {
+      "path": "qa/founder-journey-20261112-v1/GENERATED-MANIFEST.json",
+      "bytes": 4156,
+      "sha256": "2e1d9dc960320d2729bb788447e83c6797b9dd6e686f3a8323d0e0b733806e62",
+      "gitBlob": "bdda6a513dbb3471ffb24717bc6162197eb00be5"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/README.md",
+      "bytes": 2371,
+      "sha256": "5dd60e8e964477da1d7d0e7d25e22941f4f665c076eb1bd31110786a3a70722f",
+      "gitBlob": "7da3f97215177049a895b3e2f305f002b2eec5af"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/check-pilot.cjs",
+      "bytes": 3784,
+      "sha256": "d20479c61052cbe74a05f84cdcf134940e8bd92b25271355398e2a5e71668252",
+      "gitBlob": "be5279a2befa8f988be28736730538daea185ce2"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/compose.cjs",
+      "bytes": 5126,
+      "sha256": "63e1905dc51098777f54558c9dc37ba1577dfed958fe9f166d26f5fbf8687828",
+      "gitBlob": "b8640f9a1ec5bd04b886d41636ac87d9af0f275c"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/dom-harness.cjs",
+      "bytes": 2821,
+      "sha256": "7b69241ba34148e6644c610488c3dde9f285a2a1493f3ae5de43bbf8520bbefd",
+      "gitBlob": "1d031679fa3d753e1861bd48e1d4846ee9efb527"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/experience.test.cjs",
+      "bytes": 5600,
+      "sha256": "3dadf36786bedda17a72dd4156bfbedf24c6a3696b6bf1faa22ebba031060bea",
+      "gitBlob": "2702542374f7fbfc381cd9523ba50bb2ce147f03"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/activar/index.html",
+      "bytes": 12287,
+      "sha256": "cd75a64ad495f97b23da3aebbb733a78b8350d4629dd844fb4a356ddfa569d4c",
+      "gitBlob": "629019055e1a8a37290bf313efad235c69293bd4"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/altas/index.html",
+      "bytes": 21779,
+      "sha256": "d2f27433b3e20aef28041edd5ecc168f8d91d4754113a7748ba95d18794d4cac",
+      "gitBlob": "0e4f1046869b87ed11c67570b1128c45918c6b64"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/index.html",
+      "bytes": 9291,
+      "sha256": "702510a02973f9e0634266023dada690089cd692bd221fed4e067b7eef2ab7b8",
+      "gitBlob": "52a586234a9bd173652dcd62dc0ee8f097c6e1ac"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "gitBlob": "7a1de9e63a89d7abc376a2f5d193d1c71be07fce"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-auth.js",
+      "bytes": 27840,
+      "sha256": "b83043edc0ddce50dd608ffe6b808da4f0be97197e37d96170203f8f44d79a52",
+      "gitBlob": "ca7419036d3bcb037649c653d9b55cfd6827cc94"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50",
+      "gitBlob": "2a638fb3fc87c72f781b40ad6b589620bab3ddb8"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "gitBlob": "eb25e4f7e24a39e0bc3bdad389613c0e5dab905c"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8",
+      "gitBlob": "70946f1ae57d8192082f5e4a0c6ba7584975ca7c"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c",
+      "gitBlob": "e6028952b6040b8ae8d38d23c3abb4f22aa7791a"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4",
+      "gitBlob": "eabac77451df362f73084c7ac8d9606c64ee863d"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a",
+      "gitBlob": "7d7b2bb37c6b5f5a8b307eda23c45a5e0e1c0670"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/reset-password/index.html",
+      "bytes": 13172,
+      "sha256": "dee6ee36f44b1b66421eaef47a0bde0a5a80af6fea5703b4d8201802af50e154",
+      "gitBlob": "42fa9ef81a988287dd4ffdc56e54036767294b03"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/materialize.cjs",
+      "bytes": 2402,
+      "sha256": "cac58fac799dfbfd4fdaa1ade9f0407bc09fd6dd1689bfba78a6f16e5cb4391c",
+      "gitBlob": "b2c5a2db8403b970cf6baa13580967abfc30ba7b"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/restore-feedback.regression.test.cjs",
+      "bytes": 3124,
+      "sha256": "9bb9c67a0dc7f1ab2254ce2d4a7edc84c5917e391c69f318969ee36333376a78",
+      "gitBlob": "938b3babc1999fe9a49864b7939a4857754fe0a8"
+    }
+  ],
+  "operationalApproval": false,
+  "browserExecuted": false,
+  "sqlExecuted": false,
+  "selfHash": "Git blob in container tree"
+}

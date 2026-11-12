@@ -1,0 +1,135 @@
+{
+  "candidateId": "CHEVENI_CONCIERGE_BETA_V1_CABA_HELD",
+  "revision": "FOUNDER_JOURNEY_QA_20261112",
+  "supersedes": "native17-readiness-20261112@426eae627154f5bff011335d1c5e688e32ca7d59",
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "sourceHeads": {
+    "web": "426eae627154f5bff011335d1c5e688e32ca7d59",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "finalClosureHead": "containing commit; exact SHA verified in final link",
+  "productOperationalSourcesUnchangedSince": "a5922972fa76a09fc210f553abbed53e2970d3bc",
+  "productAndWorkflowFilesChanged": false,
+  "elevenHistoricalMutationsHeld": true,
+  "nativeExecuted": false,
+  "providerActualVerified": false,
+  "operationalApproval": false,
+  "manifest": "PACKAGE-MANIFEST.json",
+  "sqlReview": "None added; retained preceding package only",
+  "executionPrerequisites": "../native17-readiness-20261112/NATIVE17-READINESS.md",
+  "testEvidence": "TEST-EVIDENCE.json",
+  "unconfiguredInputsWithoutSecrets": {
+    "providerAttestor": null,
+    "originalCustody": null,
+    "protectedIndependentFloor": null,
+    "sourceRlsContext": null,
+    "nativeDriver": null,
+    "journalWitness": null,
+    "expectedPrivateIssuer": "https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1",
+    "issuerRewritePermitted": false,
+    "metadataPrivacyPolicy": null
+  },
+  "blockers": [
+    "Property setup and stay create/admin web forms/contracts absent",
+    "Prearrival non-sensitive property behavior not demonstrated",
+    "Operational task access distinct from manager web roles",
+    "Native17 HOST_NOT_AVAILABLE; D1-D8 and N01-N12 unchanged",
+    "Actual managed Auth and current authorization/read scope",
+    "Target/issuer compatibility not approved",
+    "Independent commit/readback/journal and integral A2",
+    "Privacy/legal/prelegal/retention and four browser cases",
+    "Specific commercial pilot acceptance and authorization"
+  ],
+  "commercial": {
+    "city": "CABA",
+    "foundingManager": 1,
+    "property": 1,
+    "freeTrialDays": 30,
+    "automaticBilling": false,
+    "otherCities": "Che Ven\u00ed Free",
+    "enabled": false,
+    "launchDate": null,
+    "actualCohortSelected": false,
+    "managerId": null,
+    "propertyId": null
+  },
+  "qaCheckpoints": [
+    "6957b627b23644c4da81d2addf28e6bf0625677a",
+    "45b09f50e62e9275c12f2eb6717d2b98bf0766db"
+  ],
+  "qaCandidateTree": "final container commit; hashes in PACKAGE-MANIFEST and FILE-HASHES",
+  "hostDecision": "HOST_NOT_AVAILABLE",
+  "executableMaterializationSha": null,
+  "nativeAuthorization": false,
+  "nativeN01toN12Executed": 0,
+  "decisionPackage": "PILOT-CHECKLIST.md",
+  "elevenHeldOperations": [
+    {
+      "operation": "concierge_manager_decide_request",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_manager_set_incident_state",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_activate_knowledge_version",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_reject_knowledge_version",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_propose_incident_learning",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_request_guest_phone_replacement",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_approve_guest_phone_replacement",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_record_manager_signup_screening",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_resolve_manager_signup_followup",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_prepare_signup_invite",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_revoke_signup_invite",
+      "state": "HELD",
+      "enabled": false
+    }
+  ],
+  "nativeHostReinspected": false,
+  "journeyMatrix": "JOURNEY-MATRIX.json",
+  "a2Inventory": "A2-INVENTORY.json",
+  "frontendCandidate": "../../founder-journey-20261112-v1/generated/manager/index.html",
+  "candidateNetwork": "CSP connect-src none; .invalid config; forms inert",
+  "functionalPilotComplete": false,
+  "productBuildChanged": false,
+  "runtimeTargetCompatibility": "HELD: original DEV-pinned config/backend vs private QA writer; no issuer rewrite",
+  "newUniqueTestsPass": 5,
+  "focalPriorRegressionsPass": 3
+}

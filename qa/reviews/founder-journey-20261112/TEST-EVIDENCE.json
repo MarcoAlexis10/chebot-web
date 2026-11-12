@@ -132,11 +132,29 @@
       ],
       "sha256": "cb6cb5fb8921f0116d94a124ec9962280305e964c707ca31d36116a799c728d1",
       "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    },
+    {
+      "log": "logs/invite-generation-final.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='current invitation 401' web/qa/founder-journey-20261112-v1/experience.test.cjs",
+      "classification": "CHANGED_INVITE_CASE_FOCAL_REPEAT_NOT_NEW",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again"
+      ],
+      "sha256": "57199971efab9835889a5f2d3ccfe524cc61e241d9a1af38db8ebd423e511408",
+      "reason": "Assert old-bearer 401 cannot clear new view after header-invalidation change",
+      "isolation": "fresh user/net, egress ENETUNREACH=101"
     }
   ],
   "staticChecks": [
     "STATIC-CANDIDATE.json",
-    "logs/static-pilot.log"
+    "logs/static-pilot-final.log",
+    "logs/syntax.log"
   ],
   "nodeVersion": "24.22.1",
   "materializedFiles": 12,
@@ -157,5 +175,21 @@
   "priorNativeSqlSuitesRepeated": false,
   "prior31_66_14_18_17SuitesRepeated": false,
   "operationalApproval": false,
-  "betaDecision": "NO-GO"
+  "betaDecision": "NO-GO",
+  "historicalCommandsDescribeThenCurrentFileState": true,
+  "finalCoverage": "experience-sections-final.tap: five pass; current invitation case expanded and repeated in invite-generation-final.tap; restore-regression.tap: three prior cases pass",
+  "staticHashes": [
+    {
+      "path": "STATIC-CANDIDATE.json",
+      "sha256": "25bd9a4505a33768083c11d1e1db2eae785f90c38b3816f4d7555e48a6e40781"
+    },
+    {
+      "path": "logs/static-pilot-final.log",
+      "sha256": "7559957203cc3d66de64f31f531e97baac7237f597a2b805f247211e77d8090c"
+    },
+    {
+      "path": "logs/syntax.log",
+      "sha256": "1c27691f06ac84c01f93adeedccc2d2c157f1da368bbaee3f3ea19b3fd8dd916"
+    }
+  ]
 }

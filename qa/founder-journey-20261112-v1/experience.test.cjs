@@ -24,6 +24,14 @@ test('current invitation 401 invalidates visible private UI without clearing unc
  const action=row.children[0],button=action.children[0];await button.listeners.click();await settle();
  assert.equal(invalidate,1);assert.ok(h.classes.has('manager-auth-pending'));assert.equal(h.calls.length,1);assert.equal(h.storage.get('chebot_manager_invite_review_v1:'+row.dataset.stayId),'1');
  await button.listeners.click();assert.equal(h.calls.length,1);
+ // Directly affected race: a denial of the old bearer cannot clear a newer view.
+ let release,staleDenied=0;const fresh=harness('',{token:'FICTIONAL_OLD_BEARER',visible:true,fetcher:()=>new Promise(resolve=>{release=resolve})});
+ fresh.window.addEventListener('cheveni-manager-session-denied',()=>{staleDenied++});
+ const oldRow=fresh.element();oldRow.dataset={stayId:'00000000-0000-4000-8000-000000000009',stayStatus:'active',stayCheckout:'2099-01-01T00:00:00Z'};
+ fresh.context.document.querySelectorAll=s=>s==='#estadias .row[data-stay-id]'?[oldRow]:[];
+ require('node:vm').runInContext(output['manager/manager-invite.js'],fresh.context);
+ const pending=oldRow.children[0].children[0].listeners.click();fresh.storage.set(TOKEN,'FICTIONAL_NEW_BEARER');release(response(401,{ok:false,error:'AUTH_TOKEN_INVALID'}));await pending;
+ assert.equal(staleDenied,0);assert.equal(fresh.storage.get(TOKEN),'FICTIONAL_NEW_BEARER');assert.equal(fresh.calls.length,1);assert.equal(fresh.storage.get('chebot_manager_invite_review_v1:'+oldRow.dataset.stayId),'1');
 });
 test('invitation session denial clears UI at headers even when its JSON body never arrives',async()=>{
  let invalidate=0;const h=harness('',{token:'FICTIONAL_BEARER',visible:true,fetcher:async()=>({status:401,ok:false,json:()=>new Promise(()=>{})})});

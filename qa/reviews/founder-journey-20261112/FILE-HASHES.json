@@ -1,0 +1,294 @@
+{
+  "files": [
+    {
+      "path": "qa/founder-journey-20261112-v1/GENERATED-MANIFEST.json",
+      "bytes": 4156,
+      "sha256": "2e1d9dc960320d2729bb788447e83c6797b9dd6e686f3a8323d0e0b733806e62",
+      "gitBlob": "bdda6a513dbb3471ffb24717bc6162197eb00be5"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/README.md",
+      "bytes": 2371,
+      "sha256": "5dd60e8e964477da1d7d0e7d25e22941f4f665c076eb1bd31110786a3a70722f",
+      "gitBlob": "7da3f97215177049a895b3e2f305f002b2eec5af"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/check-pilot.cjs",
+      "bytes": 3784,
+      "sha256": "d20479c61052cbe74a05f84cdcf134940e8bd92b25271355398e2a5e71668252",
+      "gitBlob": "be5279a2befa8f988be28736730538daea185ce2"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/compose.cjs",
+      "bytes": 5126,
+      "sha256": "63e1905dc51098777f54558c9dc37ba1577dfed958fe9f166d26f5fbf8687828",
+      "gitBlob": "b8640f9a1ec5bd04b886d41636ac87d9af0f275c"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/dom-harness.cjs",
+      "bytes": 2821,
+      "sha256": "7b69241ba34148e6644c610488c3dde9f285a2a1493f3ae5de43bbf8520bbefd",
+      "gitBlob": "1d031679fa3d753e1861bd48e1d4846ee9efb527"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/experience.test.cjs",
+      "bytes": 5600,
+      "sha256": "3dadf36786bedda17a72dd4156bfbedf24c6a3696b6bf1faa22ebba031060bea",
+      "gitBlob": "2702542374f7fbfc381cd9523ba50bb2ce147f03"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/activar/index.html",
+      "bytes": 12287,
+      "sha256": "cd75a64ad495f97b23da3aebbb733a78b8350d4629dd844fb4a356ddfa569d4c",
+      "gitBlob": "629019055e1a8a37290bf313efad235c69293bd4"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/altas/index.html",
+      "bytes": 21779,
+      "sha256": "d2f27433b3e20aef28041edd5ecc168f8d91d4754113a7748ba95d18794d4cac",
+      "gitBlob": "0e4f1046869b87ed11c67570b1128c45918c6b64"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/index.html",
+      "bytes": 9291,
+      "sha256": "702510a02973f9e0634266023dada690089cd692bd221fed4e067b7eef2ab7b8",
+      "gitBlob": "52a586234a9bd173652dcd62dc0ee8f097c6e1ac"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "gitBlob": "7a1de9e63a89d7abc376a2f5d193d1c71be07fce"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-auth.js",
+      "bytes": 27840,
+      "sha256": "b83043edc0ddce50dd608ffe6b808da4f0be97197e37d96170203f8f44d79a52",
+      "gitBlob": "ca7419036d3bcb037649c653d9b55cfd6827cc94"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50",
+      "gitBlob": "2a638fb3fc87c72f781b40ad6b589620bab3ddb8"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "gitBlob": "eb25e4f7e24a39e0bc3bdad389613c0e5dab905c"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8",
+      "gitBlob": "70946f1ae57d8192082f5e4a0c6ba7584975ca7c"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c",
+      "gitBlob": "e6028952b6040b8ae8d38d23c3abb4f22aa7791a"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4",
+      "gitBlob": "eabac77451df362f73084c7ac8d9606c64ee863d"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a",
+      "gitBlob": "7d7b2bb37c6b5f5a8b307eda23c45a5e0e1c0670"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/generated/manager/reset-password/index.html",
+      "bytes": 13172,
+      "sha256": "dee6ee36f44b1b66421eaef47a0bde0a5a80af6fea5703b4d8201802af50e154",
+      "gitBlob": "42fa9ef81a988287dd4ffdc56e54036767294b03"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/materialize.cjs",
+      "bytes": 2402,
+      "sha256": "cac58fac799dfbfd4fdaa1ade9f0407bc09fd6dd1689bfba78a6f16e5cb4391c",
+      "gitBlob": "b2c5a2db8403b970cf6baa13580967abfc30ba7b"
+    },
+    {
+      "path": "qa/founder-journey-20261112-v1/restore-feedback.regression.test.cjs",
+      "bytes": 3124,
+      "sha256": "9bb9c67a0dc7f1ab2254ce2d4a7edc84c5917e391c69f318969ee36333376a78",
+      "gitBlob": "938b3babc1999fe9a49864b7939a4857754fe0a8"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/A2-INVENTORY.json",
+      "bytes": 4770,
+      "sha256": "892eace608cf15a8966e9acf287187523757ee97be4ae3a6759a7874f53bb6ef",
+      "gitBlob": "170f0676fba4806edf00ab61b4e0cdc253452959"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/CLOSURE.md",
+      "bytes": 12488,
+      "sha256": "84e8e3df0553c157e004d9b54ed1f797fb181c2dbf609ad016218015372ceec2",
+      "gitBlob": "0645d036dd57fe5694c74ca8655f1d7698a15741"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/GO-NO-GO.md",
+      "bytes": 2700,
+      "sha256": "ef366166d8d14ad1651d87a474880f417403f042bed51693bbe1ab2ca4c1e6ce",
+      "gitBlob": "051657f7fa186e1ce3d0f98bb0ae632e1c657ef0"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/JOURNEY-MATRIX.json",
+      "bytes": 14584,
+      "sha256": "838b317f9325c326b1b73b790417e529aa4b0187087adc385fff2bdf98b5080e",
+      "gitBlob": "7ed0fc89c1d64eadc094fbcd50fb8349c0ffaf2e"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/JOURNEY-MATRIX.md",
+      "bytes": 13127,
+      "sha256": "9d2118aa199509adc6750ced96e916b5edeb0e0972df912e9ab3057596a0c5d5",
+      "gitBlob": "fa729fd4dd7535792a264f87f883f01e11be9a07"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/NEXT-EXECUTION.md",
+      "bytes": 3884,
+      "sha256": "5ad1bb0c16167d9bc12704cb6e163c7503177462f88ae9136671000aad063aa5",
+      "gitBlob": "6c4017a4638e7501caaf9eb3b85c4b148ec76de1"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/PACKAGE-MANIFEST.json",
+      "bytes": 5495,
+      "sha256": "a31275f34fc273f6d6bfa50aef7777e076b465fcd126e23fea64f170dfc7038d",
+      "gitBlob": "9fdc3ce5d16eccdc864ae671d2074fc08518adb9"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/PILOT-CHECKLIST.json",
+      "bytes": 6600,
+      "sha256": "d4436fbc7b78377a846b94aef7f37bd92b12a7f50134793f460a6fe8293a0ebb",
+      "gitBlob": "84ba9e2c77a017d2a8e1e11a06d172564158aa81"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/PILOT-CHECKLIST.md",
+      "bytes": 4063,
+      "sha256": "a4371039edf442f7a501ae15588ae4c2f4b7192c14b2804f0eb64f30a8248d95",
+      "gitBlob": "27d5d04880c983174c35d0e5b6ac9d16cbd1fc18"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/PROGRESS.md",
+      "bytes": 1931,
+      "sha256": "ed1d3b0f2c73e573b3a806bf22da6ebc35129cd9bab8a62bd18e016503336067",
+      "gitBlob": "e8ef1d8ae8fcf7b077e29de87525e06401aedd66"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/PUBLICATION-CHECKS.json",
+      "bytes": 913,
+      "sha256": "42a52157822d89e4b1aac1db7a35244f3016de62ddddec41433fb3a7939d2cc0",
+      "gitBlob": "f6297e745eba3cb171aca9a3551cb2baf94e36ed"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/RELEASE-CANDIDATE.json",
+      "bytes": 4530,
+      "sha256": "fbca2abd275e92866aea9e406a5e876aaa2a2cb1fb992b14ee9aacc567915b7b",
+      "gitBlob": "e7ea2b00c73b62467ece05f201288743f43d0425"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/SOURCE-PINS.json",
+      "bytes": 9599,
+      "sha256": "c1a60f7dff16462f9ec7e6648f9a858882e7fa69fc4aeadb37c707a73730c33d",
+      "gitBlob": "dca6641b79bd7689140c78ee689daa88b0da8219"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/STATIC-CANDIDATE.json",
+      "bytes": 349,
+      "sha256": "25bd9a4505a33768083c11d1e1db2eae785f90c38b3816f4d7555e48a6e40781",
+      "gitBlob": "4cbb6d1e4ad1506fb76848a3e7a69656e588007e"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/TEST-EVIDENCE.json",
+      "bytes": 9327,
+      "sha256": "4822ff5740fd9de5e1ad1cb84ffd887a76bcce13c2c91f90b443ca74eb9c6c7e",
+      "gitBlob": "1d4821974d5a2b393c48f092fb7bb10666dd7753"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/experience-after.tap",
+      "bytes": 1518,
+      "sha256": "02a4cdd7d2d327519b7b9b9bf3abaa0e693a94f83d57d074bc7709637e821d45",
+      "gitBlob": "19576850e4d71d0f9cccd162ad2c0be104b3480d"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/experience-before.tap",
+      "bytes": 3447,
+      "sha256": "8de4bca331482f096daec036eaa3308a6bbbf8c638156bb4445272391a38f674",
+      "gitBlob": "879998a246a5a292f221634372df2efd87329b1e"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/experience-final.tap",
+      "bytes": 1757,
+      "sha256": "602a457c33597e398e3a4d1bfbccaf0d436bd08e827f1fb4a3d31693fd31aa1a",
+      "gitBlob": "495727bae510e3719d7857995cdad836a5334fc6"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/experience-sections-final.tap",
+      "bytes": 2009,
+      "sha256": "a4972651be07f30fd08f549be3bd15c1d1d379272317dd70d24b51c861ab671d",
+      "gitBlob": "35df22b42955d24e3aa1b3fe0d3885315239d9e3"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/invite-generation-final.tap",
+      "bytes": 990,
+      "sha256": "57199971efab9835889a5f2d3ccfe524cc61e241d9a1af38db8ebd423e511408",
+      "gitBlob": "9628950c9904944333193b18393ec7cc6b0e9363"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/invite-headers-before.tap",
+      "bytes": 1537,
+      "sha256": "6ddaa70864101dc188935b4f7fe8061ce5bcda7f1f234ab4aafbf9d946f10cb1",
+      "gitBlob": "0ee7289f0295f7130e451c9184c39e4fe79612aa"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/materialization-final.log",
+      "bytes": 667,
+      "sha256": "497384ecc9bd8037707f79ebd79d9a1eadf7717209d5ccb1b6111c3b9628c65e",
+      "gitBlob": "94805fda19b8152c617053e3edbf9a613cd459c8"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/materialization.log",
+      "bytes": 667,
+      "sha256": "497384ecc9bd8037707f79ebd79d9a1eadf7717209d5ccb1b6111c3b9628c65e",
+      "gitBlob": "94805fda19b8152c617053e3edbf9a613cd459c8"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/restore-regression.tap",
+      "bytes": 1410,
+      "sha256": "cb6cb5fb8921f0116d94a124ec9962280305e964c707ca31d36116a799c728d1",
+      "gitBlob": "b1943d37f4c413fa161717ed72377ae45073f828"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/section-copy-before.tap",
+      "bytes": 1880,
+      "sha256": "3567182a77fd09fbf9f4f221833f1dad59163670b695d8b3123536de5077abc4",
+      "gitBlob": "153a30380e47929d48e5900ddbe7d1548a3b0753"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/static-pilot-final.log",
+      "bytes": 970,
+      "sha256": "7559957203cc3d66de64f31f531e97baac7237f597a2b805f247211e77d8090c",
+      "gitBlob": "cb7ba0cb475ad12df44428cd202774609ad98605"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/static-pilot.log",
+      "bytes": 970,
+      "sha256": "7559957203cc3d66de64f31f531e97baac7237f597a2b805f247211e77d8090c",
+      "gitBlob": "cb7ba0cb475ad12df44428cd202774609ad98605"
+    },
+    {
+      "path": "qa/reviews/founder-journey-20261112/logs/syntax.log",
+      "bytes": 815,
+      "sha256": "1c27691f06ac84c01f93adeedccc2d2c157f1da368bbaee3f3ea19b3fd8dd916",
+      "gitBlob": "4ba7651db94eaceb5fa71aab15a7f7bbcacc4800"
+    }
+  ],
+  "selfHash": "Git blob in final container tree",
+  "betaDecision": "NO-GO"
+}
