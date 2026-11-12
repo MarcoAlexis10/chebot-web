@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'none'; font-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0f766e">
+  <title>Che Vení Concierge — Manager Web V1</title>
+  <meta name="description" content="Preview interna del panel de Che Vení Concierge para managers.">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/manager/manager.css">
+  <link rel="stylesheet" href="/manager/manager-auth.css">
+  <link rel="stylesheet" href="/manager/manager-invite.css">
+</head>
+<body class="manager-auth-pending"><p role="status">QA offline retenida. No ingreses datos reales. Sin servicios. Beta V1 NO-GO.</p><nav aria-label="Recorrido QA"><a href="/manager/activar/">Registro retenido</a> · <a href="/manager/">Sesión</a> · <a href="/manager/propiedad/">Propiedad</a> · <a href="/manager/planificar-estadia/">Estadía</a> · <a href="/manager/prearrival/">Pre-arrival</a> · <a href="/manager/#estadias">Huésped</a> · <a href="/manager/#solicitudes">Solicitudes</a> · <a href="/manager/#incidencias">Incidencias</a> · <a href="/manager/planificar-estadia/#checkout">Checkout retenido</a></nav>
+  <section class="manager-auth-screen" id="manager-auth" aria-labelledby="manager-login-title">
+    <div class="manager-auth-card">
+      <div class="manager-auth-brand">Che<span> Vení</span> Concierge</div>
+      <div class="manager-auth-kicker">Manager Web V1 · Beta interna</div>
+      <h1 id="manager-login-title">Ingresá a tu panel</h1>
+      <p>Acceso exclusivo para managers autorizados de Che Vení Concierge.</p>
+      <form inert data-qa-held="true" id="manager-login-form" autocomplete="on">
+        <div class="manager-auth-field">
+          <label for="manager-email">Email</label>
+          <input id="manager-email" name="email" type="email" autocomplete="username" required>
+        </div>
+        <div class="manager-auth-field">
+          <label for="manager-password">Contraseña</label>
+          <div class="manager-auth-password-wrap">
+            <input id="manager-password" name="password" type="password" autocomplete="current-password" required>
+            <button type="button" id="manager-password-visibility" class="manager-auth-visibility" aria-controls="manager-password" aria-label="Mostrar contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path class="manager-eye-slash" d="m4 4 16 16"></path></svg></button>
+          </div>
+        </div>
+        <button class="manager-auth-submit" id="manager-login-submit" type="submit">Ingresar</button>
+        <div class="manager-auth-status" id="manager-auth-status" role="status" aria-live="polite"></div>
+      </form>
+      <button type="button" id="manager-forgot" class="manager-auth-recovery-link" aria-controls="manager-recovery-form" aria-expanded="false">¿Olvidaste tu contraseña?</button>
+      <form inert data-qa-held="true" id="manager-recovery-form" class="manager-auth-recovery-form" hidden>
+        <p class="manager-auth-recovery-intro">Te enviamos un enlace al correo asociado con tu cuenta de manager. Nunca pedimos contraseñas por WhatsApp.</p>
+        <div class="manager-auth-field">
+          <label for="manager-recovery-email">Email del manager</label>
+          <input id="manager-recovery-email" type="email" autocomplete="email" required maxlength="254">
+        </div>
+        <button class="manager-auth-submit" id="manager-recovery-submit" type="submit">Enviar enlace de recuperación</button>
+        <button type="button" id="manager-recovery-cancel" class="manager-auth-recovery-cancel">Volver al ingreso</button>
+        <div class="manager-auth-status" id="manager-recovery-status" role="status" aria-live="polite"></div>
+      </form>
+      <p class="manager-auth-foot">Preview aislada. La contraseña se envía directamente a Supabase Auth y no se guarda en el sitio.</p>
+    </div>
+  </section>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">Che<span> Vení</span> Concierge</div>
+      <div class="beta">Manager Web V1 · Beta interna</div>
+      <nav class="nav" aria-label="Secciones del panel">
+        <a class="active" href="#inicio">Inicio</a>
+        <a href="#propiedades">Propiedades</a>
+        <a href="#estadias">Estadías</a>
+        <a href="#knowledge">Conocimiento</a>
+        <a href="#incidencias">Incidencias</a>
+        <a href="#solicitudes">Solicitudes</a>
+        <a href="#soporte">Soporte y cuenta</a>
+      </nav>
+      <div class="side-note">Preview autenticada. Datos reales de Che Vení Concierge Dev para las propiedades autorizadas.</div>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <strong id="manager-account-label">Che Vení Concierge · Manager</strong>
+        <div><span class="manager-auth-session" id="manager-session-label">Sesión verificada</span><button class="manager-auth-logout" id="manager-logout" type="button">Salir</button></div>
+      </header>
+
+      <div class="content">
+        <section class="hero" id="inicio">
+          <span class="eyebrow">Necesita tu atención</span>
+          <h1>Todo lo importante, sin leer chats completos.</h1>
+          <p>Che Vení resuelve lo que ya sabe y te muestra únicamente decisiones, excepciones y señales que requieren intervención.</p>
+          <div class="notice"><b>Preview autenticada:</b> acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Che Vení Concierge Dev.</div>
+          <div class="grid">
+            <article class="metric"><small>Solicitudes pendientes</small><b>—</b><span class="tag warn">Cargando…</span></article>
+            <article class="metric"><small>Incidencias abiertas</small><b>—</b><span class="tag danger">Cargando…</span></article>
+            <article class="metric"><small>Propiedades activas</small><b>—</b><span class="tag">Cargando…</span></article>
+          </div>
+          <div class="subnav mobile-nav">
+            <a href="#propiedades">Propiedades</a><a href="#estadias">Estadías</a><a href="#incidencias">Incidencias</a><a href="#solicitudes">Solicitudes</a>
+          </div>
+        </section>
+
+        <section class="section" id="solicitudes">
+          <div class="section-head"><h2>Solicitudes que requieren decisión</h2><a href="#solicitudes">Ver todas</a></div>
+          <div class="list" id="manager-requests-list">
+            <article class="card"><b>Cargando solicitudes…</b><p class="muted">Consultando Che Vení Concierge Dev.</p></article>
+          </div>
+        </section>
+
+        <section class="section" id="incidencias">
+          <div class="section-head"><h2>Incidencias</h2><a href="#incidencias">Ver historial</a></div>
+          <div class="list" id="manager-incidents-list">
+            <article class="card"><b>Cargando incidencias…</b><p class="muted">Consultando Che Vení Concierge Dev.</p></article>
+          </div>
+        </section>
+
+        <section class="section split">
+          <div id="propiedades">
+            <div class="section-head"><h2>Propiedades</h2><a href="#propiedades">Administrar</a></div>
+            <div class="list"><article class="card"><b>Cargando propiedades…</b></article></div>
+          </div>
+          <div id="knowledge">
+            <div class="section-head"><h2>Conocimiento</h2><a href="#knowledge">Versiones</a></div>
+            <div class="quick" id="manager-knowledge-list">
+              <article class="card" style="grid-column:1/-1"><b>Cargando conocimiento…</b><p class="muted">Consultando Che Vení Concierge Dev.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="estadias">
+          <div class="section-head"><h2>Estadías</h2><a href="#estadias">Ver calendario</a></div>
+          <div class="list"><article class="card"><b>Cargando estadías…</b></article></div>
+        </section>
+
+        <section class="section" id="soporte">
+          <div class="section-head"><h2>Soporte y cuenta</h2></div>
+          <div class="split">
+            <article class="card"><b>Modo manager por WhatsApp</b><p>Podés cargar estadías, responder incidencias y aprobar solicitudes hablando naturalmente con Che Vení.</p><span class="tag">Canal principal</span></article>
+            <article class="card"><b>Soporte Che Vení</b><p>Durante la Beta, los casos que requieren revisión de Sistemas quedan registrados para medir el costo operativo real.</p><span class="tag">Hasta 24 h</span></article>
+          </div>
+        </section>
+
+        <p class="footer-note">Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias reales QA · Sin secretos reales.</p>
+      </div>
+    </main>
+  </div>
+  <script src="/manager/manager-auth.js" defer></script>
+  <script src="/manager/manager-knowledge.js" defer></script>
+  <script src="/manager/manager-requests.js" defer></script>
+  <script src="/manager/manager-incidents.js" defer></script>
+  <script src="/manager/manager-invite.js" defer></script>
+</body>
+</html>
