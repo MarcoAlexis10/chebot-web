@@ -1,0 +1,65 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: missing protected producer cannot be replaced by options or client CurrentResolution
+ok 1 - missing protected producer cannot be replaced by options or client CurrentResolution
+  ---
+  duration_ms: 1.4161
+  type: 'test'
+  ...
+# Subtest: source review uses exact provider-bound identity, two unique source observations and independent floors
+ok 2 - source review uses exact provider-bound identity, two unique source observations and independent floors
+  ---
+  duration_ms: 2.469505
+  type: 'test'
+  ...
+# Subtest: zero, duplicate, accessor, extra and uncorrelated source rows cannot yield authority
+ok 3 - zero, duplicate, accessor, extra and uncorrelated source rows cannot yield authority
+  ---
+  duration_ms: 1.103901
+  type: 'test'
+  ...
+# Subtest: every incident/stay/property/account/identity join and manage_incidents is checked against source
+ok 4 - every incident/stay/property/account/identity join and manage_incidents is checked against source
+  ---
+  duration_ms: 2.774013
+  type: 'test'
+  ...
+# Subtest: JWT metadata cannot supply roles/revisions; DEV and session mismatch are rejected
+ok 5 - JWT metadata cannot supply roles/revisions; DEV and session mismatch are rejected
+  ---
+  duration_ms: 0.833784
+  type: 'test'
+  ...
+# Subtest: missing revisions, rollback floors, contradictory checkpoint and changed relations fail closed
+ok 6 - missing revisions, rollback floors, contradictory checkpoint and changed relations fail closed
+  ---
+  duration_ms: 4.119086
+  type: 'test'
+  ...
+# Subtest: local revision floor never regresses and independent floor provider is mandatory
+ok 7 - local revision floor never regresses and independent floor provider is mandatory
+  ---
+  duration_ms: 0.500573
+  type: 'test'
+  ...
+# Subtest: expiry or revocation during source awaits and capability reuse after expiry cannot pass
+ok 8 - expiry or revocation during source awaits and capability reuse after expiry cannot pass
+  ---
+  duration_ms: 0.942368
+  type: 'test'
+  ...
+# Subtest: capabilities bind the exact bearer and arguments; provider errors disclose no private message
+ok 9 - capabilities bind the exact bearer and arguments; provider errors disclose no private message
+  ---
+  duration_ms: 0.826093
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 107.473954

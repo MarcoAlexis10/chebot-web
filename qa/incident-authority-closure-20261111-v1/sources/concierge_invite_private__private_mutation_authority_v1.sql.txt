@@ -1,0 +1,6 @@
+create function concierge_invite_private.private_mutation_authority_v1(
+ p_user uuid,p_session uuid,p_expiry bigint,p_property uuid,p_operation text
+) returns table(account_id uuid,member_id uuid,member_role text,authority_revision bigint)
+language sql stable security invoker set search_path='' as $$
+ select null::uuid,null::uuid,null::text,null::bigint where false
+$$;

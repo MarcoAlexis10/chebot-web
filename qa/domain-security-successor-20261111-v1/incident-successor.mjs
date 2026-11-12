@@ -46,6 +46,11 @@ function plan(c,r) {
   nativeCommandId:c.p_intent_id,sql:SERVICE_SQL,parameters:[r.userId,r.sessionId,c.p_token_expires_at,r.propertyId,r.stayId,c.p_intent_id,'incident_state',{incidentId:a.p_incident_id,status:a.p_new_status,summary:a.p_event_summary}],
   sourceAbi:'Native17 manager_action@ce5c747c',requiredEvidenceAbi:'INCIDENT_EVIDENCE_SUCCESSOR_NOT_INSTALLED',effect:{incident_id:a.p_incident_id,resulting_status:a.p_new_status}});
 }
+// Shared compiler for successors. A decoded/client identity is never sufficient.
+export function prepareIncidentServicePlan(token,input,proof,current,now) {
+ const id=verifiedIdentity(proof,token,now),c=snapshot(input);
+ return plan(c,resolution(current,c,id,now));
+}
 const outcome = (status,reason) => frozen({status,reason,held:true,fixtureOnly:true,actualProviderVerified:false,actualSqlVerified:false,actualJournalVerified:false,operationalApproval:false,betaDecision:'NO-GO'});
 export function createHeldIncidentCandidate(options) {
  // Original guards run before reading options, token or command. No bypass flag.

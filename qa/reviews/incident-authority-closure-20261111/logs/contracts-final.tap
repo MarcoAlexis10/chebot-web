@@ -1,0 +1,119 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: missing protected producer cannot be replaced by options or client CurrentResolution
+ok 1 - missing protected producer cannot be replaced by options or client CurrentResolution
+  ---
+  duration_ms: 1.494602
+  type: 'test'
+  ...
+# Subtest: source review uses exact provider-bound identity, two unique source observations and independent floors
+ok 2 - source review uses exact provider-bound identity, two unique source observations and independent floors
+  ---
+  duration_ms: 1.980117
+  type: 'test'
+  ...
+# Subtest: zero, duplicate, accessor, extra and uncorrelated source rows cannot yield authority
+ok 3 - zero, duplicate, accessor, extra and uncorrelated source rows cannot yield authority
+  ---
+  duration_ms: 1.206371
+  type: 'test'
+  ...
+# Subtest: every incident/stay/property/account/identity join and manage_incidents is checked against source
+ok 4 - every incident/stay/property/account/identity join and manage_incidents is checked against source
+  ---
+  duration_ms: 6.022793
+  type: 'test'
+  ...
+# Subtest: JWT metadata cannot supply roles/revisions; DEV and session mismatch are rejected
+ok 5 - JWT metadata cannot supply roles/revisions; DEV and session mismatch are rejected
+  ---
+  duration_ms: 0.84996
+  type: 'test'
+  ...
+# Subtest: missing revisions, rollback floors, contradictory checkpoint and changed relations fail closed
+ok 6 - missing revisions, rollback floors, contradictory checkpoint and changed relations fail closed
+  ---
+  duration_ms: 3.742748
+  type: 'test'
+  ...
+# Subtest: local revision floor never regresses and independent floor provider is mandatory
+ok 7 - local revision floor never regresses and independent floor provider is mandatory
+  ---
+  duration_ms: 0.424404
+  type: 'test'
+  ...
+# Subtest: expiry or revocation during source awaits and capability reuse after expiry cannot pass
+ok 8 - expiry or revocation during source awaits and capability reuse after expiry cannot pass
+  ---
+  duration_ms: 0.967465
+  type: 'test'
+  ...
+# Subtest: capabilities bind the exact bearer and arguments; provider errors disclose no private message
+ok 9 - capabilities bind the exact bearer and arguments; provider errors disclose no private message
+  ---
+  duration_ms: 0.924811
+  type: 'test'
+  ...
+# Subtest: default candidate stays HELD and explicit review rejects legacy broad writer and shared reader
+ok 10 - default candidate stays HELD and explicit review rejects legacy broad writer and shared reader
+  ---
+  duration_ms: 1.260623
+  type: 'test'
+  ...
+# Subtest: durable-port review retains intent/attempt/session/authority and dispatches only incident entry
+ok 11 - durable-port review retains intent/attempt/session/authority and dispatches only incident entry
+  ---
+  duration_ms: 5.920551
+  type: 'test'
+  ...
+# Subtest: lost durable admission or dispatch-claim ACK never reaches a writer
+ok 12 - lost durable admission or dispatch-claim ACK never reaches a writer
+  ---
+  duration_ms: 2.43745
+  type: 'test'
+  ...
+# Subtest: lost write ACK and process restart cannot turn a known intent into a resend
+ok 13 - lost write ACK and process restart cannot turn a known intent into a resend
+  ---
+  duration_ms: 3.633696
+  type: 'test'
+  ...
+# Subtest: different args for same known intent conflict; simultaneous review instances rely on one custodian claim
+ok 14 - different args for same known intent conflict; simultaneous review instances rely on one custodian claim
+  ---
+  duration_ms: 3.671362
+  type: 'test'
+  ...
+# Subtest: missing original custody, wrong reference or client snapshot cannot unlock dispatch
+ok 15 - missing original custody, wrong reference or client snapshot cannot unlock dispatch
+  ---
+  duration_ms: 2.232133
+  type: 'test'
+  ...
+# Subtest: revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback
+ok 16 - revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback
+  ---
+  duration_ms: 1.431217
+  type: 'test'
+  ...
+# Subtest: reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer
+ok 17 - reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer
+  ---
+  duration_ms: 9.350442
+  type: 'test'
+  ...
+# Subtest: a role change without its authority revision is a contradictory protected source
+ok 18 - a role change without its authority revision is a contradictory protected source
+  ---
+  duration_ms: 1.467421
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 113.153344

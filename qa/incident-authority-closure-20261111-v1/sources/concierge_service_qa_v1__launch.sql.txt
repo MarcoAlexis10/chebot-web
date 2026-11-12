@@ -1,0 +1,15 @@
+create or replace function concierge_service_qa_v1.launch(p_property uuid,p_require_review boolean default true) returns uuid
+language plpgsql security invoker set search_path='' as $$declare a uuid;begin
+ if not ((session_user::text='cheveni_service_manager_backend_v2' and current_user::text='cheveni_service_write_owner_v2') or (session_user::text='cheveni_service_reader_backend_v2' and current_user::text='cheveni_service_read_owner_v2') or (session_user::text='cheveni_service_ops_backend_v2' and current_user::text='cheveni_service_ops_owner_v2')) then raise insufficient_privilege using message='SERVICE_CALLER_PAIR_HELD';end if;
+
+ select l.account_id into a from concierge_service_qa_v1.launch_control l join public.concierge_properties p
+ on p.id=l.property_id and p.account_id=l.account_id join public.concierge_accounts x on x.id=l.account_id
+ where l.singleton and l.property_id=p_property and(not p_require_review or l.state='REVIEW')
+ and x.founding_manager and x.beta_started_at<=clock_timestamp() and x.beta_ends_at>clock_timestamp()
+ and x.beta_ends_at<=x.beta_started_at+interval '30 days'
+ and exists(select from public.concierge_manager_web_identities wi join public.concierge_account_members fm on fm.id=wi.member_id and fm.account_id=wi.account_id where wi.auth_user_id=l.founder_user_id and wi.account_id=l.account_id and wi.status='active' and wi.revoked_at is null and fm.role='owner' and fm.status='active')
+ and p.status='active' and p.city in('Buenos Aires','CABA') and x.status in('active','testing')
+ and l.charge_mode='NO_BILLING' and not l.guest_access_enabled and not l.codes_allowed
+ and (select count(*) from public.concierge_properties z where z.account_id=l.account_id and z.status='active')=1;
+ if a is null then raise insufficient_privilege using message='SERVICE_LAUNCH_HELD';end if;return a;
+end$$;

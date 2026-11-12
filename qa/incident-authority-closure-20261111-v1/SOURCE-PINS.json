@@ -1,0 +1,49 @@
+{
+  "baseWeb": "a53c698c6f78f25520ef2b07f8d728caeae93677",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "nativeCatalogBlob": "00a201bc5e3959e23f0524672d4d63c4bb1258a3",
+  "nativeCatalogSha256": "5efd1ce2cb3aabe68b0fdd37454adfbec298680e7b4d523af88c985e3f90118c",
+  "previousSharedCompilerInputs": [
+    {
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.d.mts",
+      "bytes": 3287,
+      "sha256": "8cb9837b7474e886eae537e38a226a63ae9485ad62a7f1deda4457a8a393a728",
+      "gitBlob": "a52638278b73883ff49013b198299f7cdd4a5a07"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.mjs",
+      "bytes": 10901,
+      "sha256": "5bfe94fbace345aa3530af641cc6b068addb786893adf9ca16a236c0e5ca9d22",
+      "gitBlob": "8e9799cf6944d1b589b1295a24e55274d83e56ab"
+    }
+  ],
+  "additionalExtracts": [
+    {
+      "function": "concierge_service_qa_v1.auth_live",
+      "path": "sources/concierge_service_qa_v1__auth_live.sql.txt",
+      "startLine": 819,
+      "sha256": "47e7d87f28ec40a259f4354ff5af37d5744f9d4b7b8203732ec6f5cb52b4e529"
+    },
+    {
+      "function": "concierge_service_qa_v1.fence",
+      "path": "sources/concierge_service_qa_v1__fence.sql.txt",
+      "startLine": 829,
+      "sha256": "2964a01ad62181f9d3d588f2b6d4592cb36b2e707cffb0454567ab7b77319969"
+    },
+    {
+      "function": "concierge_service_qa_v1.launch",
+      "path": "sources/concierge_service_qa_v1__launch.sql.txt",
+      "startLine": 859,
+      "sha256": "4e83f3d2a8e1dbef3c2daa4190cd11e347028b03a34dbddcc23c703b1db715c9"
+    },
+    {
+      "function": "concierge_invite_private.private_mutation_authority_v1",
+      "path": "sources/concierge_invite_private__private_mutation_authority_v1.sql.txt",
+      "startLine": 2457,
+      "sha256": "e92d89a2a98e5d9479bb3585652f843e5191b9f3d68816ec74ac0448cb82fe1e"
+    }
+  ],
+  "reusedPins": "../domain-security-successor-20261111-v1/SOURCE-PINS.json",
+  "nativeCodeIsReviewSourceNotInstalled": true
+}

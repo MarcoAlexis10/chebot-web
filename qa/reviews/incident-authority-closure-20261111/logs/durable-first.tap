@@ -1,0 +1,83 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: default candidate stays HELD and explicit review rejects legacy broad writer and shared reader
+ok 1 - default candidate stays HELD and explicit review rejects legacy broad writer and shared reader
+  ---
+  duration_ms: 1.126825
+  type: 'test'
+  ...
+# Subtest: durable-port review retains intent/attempt/session/authority and dispatches only incident entry
+ok 2 - durable-port review retains intent/attempt/session/authority and dispatches only incident entry
+  ---
+  duration_ms: 5.321239
+  type: 'test'
+  ...
+# Subtest: lost durable admission or dispatch-claim ACK never reaches a writer
+ok 3 - lost durable admission or dispatch-claim ACK never reaches a writer
+  ---
+  duration_ms: 2.135043
+  type: 'test'
+  ...
+# Subtest: lost write ACK and process restart cannot turn a known intent into a resend
+ok 4 - lost write ACK and process restart cannot turn a known intent into a resend
+  ---
+  duration_ms: 3.114688
+  type: 'test'
+  ...
+# Subtest: different args for same known intent conflict; simultaneous review instances rely on one custodian claim
+ok 5 - different args for same known intent conflict; simultaneous review instances rely on one custodian claim
+  ---
+  duration_ms: 3.674166
+  type: 'test'
+  ...
+# Subtest: missing original custody, wrong reference or client snapshot cannot unlock dispatch
+ok 6 - missing original custody, wrong reference or client snapshot cannot unlock dispatch
+  ---
+  duration_ms: 5.962217
+  type: 'test'
+  ...
+# Subtest: revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback
+ok 7 - revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback
+  ---
+  duration_ms: 1.047517
+  type: 'test'
+  ...
+# Subtest: reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer
+ok 8 - reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer
+  ---
+  duration_ms: 9.106831
+  type: 'test'
+  ...
+# Subtest: a role change without its authority revision is a contradictory protected source
+not ok 9 - a role change without its authority revision is a contradictory protected source
+  ---
+  duration_ms: 2.981059
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs:50:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'REVIEW_EFFECT_OBSERVED'
+    - 'UNKNOWN'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'UNKNOWN'
+  actual: 'REVIEW_EFFECT_OBSERVED'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs:51:66)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 8
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 120.08241
