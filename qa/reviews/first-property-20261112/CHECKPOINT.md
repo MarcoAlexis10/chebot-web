@@ -9,3 +9,7 @@ Código nuevo: capture-contract.mjs, tipos y tres casos Node nuevos. Validación
 Próximo: sucesor concreto de lectura independiente, separación función/ACK/COMMIT/efecto/journal/original, política D02-A para duplicado address/floor y composición de preparación de configuración sin una propiedad creada ficticiamente.
 
 Antes de publicar: el comparador nuevo también se fijó al scope/revisiones completos reutilizando createDomainAbiReview. Se conserva un segundo FAIL/PASS focal del mismo caso al cambiar founder.scopeRevision. Los dos fallos son del candidato nuevo, sin efecto operativo ni casos únicos adicionales. Extractos de autoridad/receipt/tabla desde el blob f41c40d... se conservan como texto .source.txt, no SQL ejecutable.
+
+## Checkpoint reader y privacidad
+
+Primer commit publicado: f98af7365e045933f1c46abf902721da05c82be1. Se agregan ABI read/2, parser de recibos conservador, revisión de cadena sintética, perfil de reader y propuesta D02-A específica. Siete casos únicos nuevos PASS acumulados (tres captura, tres conciliación y uno perfil). En conciliación se corrigieron datasetId tipado incorrectamente como número (fuente: digest string) y una lectura previa a validar un accessor: FAIL/PASS conservados. Nunca se convirtieron esos errores en permiso o efecto. Los getters se rechazan antes de acceder a campos anidados. Ningún SQL generado/ejecutado. Próximo: composición del recorrido con captura estructurada inerte, lectura UNKNOWN y preparación de configuración HELD.

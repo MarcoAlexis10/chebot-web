@@ -1,0 +1,73 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532305]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: historical COMMITTED-on-ACK conversion is reproduced on the pinned adapter with a double; the candidate keeps the same function result UNKNOWN
+ok 1 - historical COMMITTED-on-ACK conversion is reproduced on the pinned adapter with a double; the candidate keeps the same function result UNKNOWN
+  ---
+  duration_ms: 4.365804
+  type: 'test'
+  ...
+# Subtest: each receipt stage requires the exact original, session, attempt, scope and current revision; consistent synthetic evidence still cannot prove COMMIT
+not ok 2 - each receipt stage requires the exact original, session, attempt, scope and current revision; consistent synthetic evidence still cannot prove COMMIT
+  ---
+  duration_ms: 1.371407
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/first-property-20261112-v1/reconciliation.test.mjs:12:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'INCOMPLETE_OR_UNTRUSTED_EVIDENCE'
+    - 'SYNTHETIC_CHAIN_NOT_ACCREDITED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'SYNTHETIC_CHAIN_NOT_ACCREDITED'
+  actual: 'INCOMPLETE_OR_UNTRUSTED_EVIDENCE'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/first-property-20261112-v1/reconciliation.test.mjs:13:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: revocation, refresh, expiry across awaits and restored client originals never expose the historical property or authorize a resend
+not ok 3 - revocation, refresh, expiry across awaits and restored client originals never expose the historical property or authorize a resend
+  ---
+  duration_ms: 0.619749
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/first-property-20261112-v1/reconciliation.test.mjs:18:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'INCOMPLETE_OR_UNTRUSTED_EVIDENCE'
+    - 'CURRENT_AUTHORITY_UNAVAILABLE'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'CURRENT_AUTHORITY_UNAVAILABLE'
+  actual: 'INCOMPLETE_OR_UNTRUSTED_EVIDENCE'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/first-property-20261112-v1/reconciliation.test.mjs:19:159)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 1
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 125.881154
