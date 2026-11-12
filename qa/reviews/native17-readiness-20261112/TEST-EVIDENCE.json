@@ -81,20 +81,38 @@
     {
       "file": "logs/static-readiness.json",
       "command": "python web/qa/native17-readiness-20261112-v1/check_readiness.py",
-      "classification": "STATIC_TEXT_HASH_ROLE_BODY_COLUMN_PLAN_SCHEMA_NOT_SQL_ENGINE"
+      "classification": "STATIC_TEXT_HASH_ROLE_BODY_COLUMN_PLAN_SCHEMA_NOT_SQL_ENGINE",
+      "sha256": "65d3b6af64d51f52e9bc29676a58af0bb452082ea0257a30ee339b22371920a2"
     },
     {
       "file": "logs/syntax.log",
-      "classification": "NODE_CHECK_PYTHON_AST_NOT_TYPESCRIPT_OR_SQL"
+      "classification": "NODE_CHECK_PYTHON_AST_NOT_TYPESCRIPT_OR_SQL",
+      "sha256": "8b72d01598e9a982643f524381355107df72b4883da9fd23284701f575b2845a"
     },
     {
       "file": "logs/coherence-report.log",
-      "classification": "NARROW_STATIC_REPORT_NOT_COMPLETE_AUDIT"
+      "classification": "NARROW_STATIC_REPORT_NOT_COMPLETE_AUDIT",
+      "sha256": "d3959fadb6fc1387e32434cb94072535ccc1046c28fba065dc5d81759be28526"
     },
     {
       "file": "logs/generation.json",
       "command": "python web/qa/native17-readiness-20261112-v1/build_review.py",
-      "classification": "TEXT_GENERATION_ONLY"
+      "classification": "TEXT_GENERATION_ONLY",
+      "sha256": "e9a094617feefb6cf2741b0e33485747044751df7370a1b13c9b2d8801b437d0"
+    },
+    {
+      "file": "logs/static-readiness-final.json",
+      "command": "python web/qa/native17-readiness-20261112-v1/check_readiness.py",
+      "classification": "STATIC_HASH_FUNCTION_OWNER_SECURITY_CALL_GRAPH_COLUMN_PLAN_SCHEMA_ONLY",
+      "executeGrantRows": 25,
+      "effectiveCallContexts": 27,
+      "sha256": "e33ebf5f52db064128f82dda799694aa516182730f9f33eb9227cd4bb0e4fe4d"
+    },
+    {
+      "file": "logs/reproducibility-final.json",
+      "classification": "DETERMINISTIC_TEXT_REGENERATION_NOT_SQL",
+      "identicalGeneratedArtifacts": 11,
+      "sha256": "abaea44512887a2d6b16517e2b8c0e0a97e3f8b84ac0e76c56c8b95371b8fac8"
     }
   ],
   "hostObservation": {
@@ -116,5 +134,7 @@
   "chromiumAttempted": false,
   "httpHttpsIntegrationExchanges": 0,
   "operationalApproval": false,
-  "betaDecision": "NO-GO"
+  "betaDecision": "NO-GO",
+  "sourceAuthorityInputsUsedAsReal": false,
+  "priorSuitesPreserved": "17 previous (one transport case extracted as justified focal regression), 22+2, 31/66/14/18/17 and Native17 historical not rerun as suites"
 }

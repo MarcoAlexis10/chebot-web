@@ -1,0 +1,127 @@
+{
+  "candidateId": "CHEVENI_CONCIERGE_BETA_V1_CABA_HELD",
+  "revision": "NATIVE17_READINESS_20261112",
+  "supersedes": "incident-native17-review-20261111@4d4467042560a56ac7af0633e7c93064d2fad2b0",
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "sourceHeads": {
+    "web": "4d4467042560a56ac7af0633e7c93064d2fad2b0",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "finalClosureHead": "containing commit; exact SHA verified in final link",
+  "productOperationalSourcesUnchangedSince": "a5922972fa76a09fc210f553abbed53e2970d3bc",
+  "productAndWorkflowFilesChanged": false,
+  "elevenHistoricalMutationsHeld": true,
+  "nativeExecuted": false,
+  "providerActualVerified": false,
+  "operationalApproval": false,
+  "manifest": "PACKAGE-MANIFEST.json",
+  "sqlReview": "SQL-REVIEW.md",
+  "executionPrerequisites": "NATIVE17-READINESS.md",
+  "testEvidence": "TEST-EVIDENCE.json",
+  "unconfiguredInputsWithoutSecrets": {
+    "providerAttestor": null,
+    "originalCustody": null,
+    "protectedIndependentFloor": null,
+    "sourceRlsContext": null,
+    "nativeDriver": null,
+    "journalWitness": null,
+    "expectedPrivateIssuer": "https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1",
+    "issuerRewritePermitted": false,
+    "metadataPrivacyPolicy": null
+  },
+  "blockers": [
+    "H0: preexisting free accredited PostgreSQL 17.11 host and disposal",
+    "M0: separately reviewed executable SQL materialization, not DO NOT APPLY scripts",
+    "D1: see package DEPENDENCIES.json",
+    "D2: see package DEPENDENCIES.json",
+    "D3: see package DEPENDENCIES.json",
+    "D4: see package DEPENDENCIES.json",
+    "D5: see package DEPENDENCIES.json",
+    "D6: see package DEPENDENCIES.json",
+    "D7: see package DEPENDENCIES.json",
+    "D8: see package DEPENDENCIES.json",
+    "Managed Auth/JWT/refresh/revocation",
+    "A2 integral/current independent floors/quarantine",
+    "Privacy/legal/prelegal/retention",
+    "Four Chromium/CORS cases NOT_RUN"
+  ],
+  "commercial": {
+    "city": "CABA",
+    "foundingManager": 1,
+    "property": 1,
+    "freeTrialDays": 30,
+    "automaticBilling": false,
+    "otherCities": "Che Ven\u00ed Free",
+    "enabled": false,
+    "launchDate": null
+  },
+  "qaCheckpoints": [
+    "5f22a62fae741745a85127ddad48e945386e8fde",
+    "a6e191e90649484425f35cb78ad7368594ce9894"
+  ],
+  "qaCandidateTree": "final container commit; exact artifact hashes in PACKAGE-MANIFEST/FILE-HASHES",
+  "hostDecision": "HOST_NOT_AVAILABLE",
+  "executableMaterializationSha": null,
+  "nativeAuthorization": false,
+  "nativeN01toN12Executed": 0,
+  "decisionPackage": "OWNER-DECISION.md",
+  "elevenHeldOperations": [
+    {
+      "operation": "concierge_manager_decide_request",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_manager_set_incident_state",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_activate_knowledge_version",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_reject_knowledge_version",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_propose_incident_learning",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_request_guest_phone_replacement",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_approve_guest_phone_replacement",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_record_manager_signup_screening",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_resolve_manager_signup_followup",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_prepare_signup_invite",
+      "state": "HELD",
+      "enabled": false
+    },
+    {
+      "operation": "concierge_revoke_signup_invite",
+      "state": "HELD",
+      "enabled": false
+    }
+  ]
+}

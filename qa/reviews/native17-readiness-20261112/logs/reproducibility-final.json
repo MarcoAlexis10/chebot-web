@@ -1,0 +1,18 @@
+{
+  "classification": "STATIC_TEXT_GENERATION",
+  "identicalGeneratedArtifacts": 11,
+  "sha256": {
+    "sql/00-roles-DO-NOT-APPLY.sql": "d87a057789e119270a21ec76b823deced8c78fd99adcd022fd00c195d25ab921",
+    "sql/00-source-base-DO-NOT-APPLY.sql": "9cc64597c3477c81a13973c52d4c6fbd240f2c048b3219436d9d8a36543a3520",
+    "sql/01-revisions-DO-NOT-APPLY.sql": "a5d42b509a3a9cd8827ad538c8e56f95bee75b0025c71e711175246f3df18cd1",
+    "sql/02-admission-DO-NOT-APPLY.sql": "953a00641f20e002bac4918240b8c51c6408e65057f2f4c6e540066fdd879e49",
+    "sql/03-bound-entries-DO-NOT-APPLY.sql": "dab85a19191fb4b9b2d49953be5d91e4dcd57f1df8b7ceff65406b81de780d73",
+    "sql/04-acl-rls-DO-NOT-APPLY.sql": "e41c26697e2f62912f2388d4b47766688ab775e71637755b3f3079d2615d6417",
+    "sql/05-catalog-capture-NOT-RUN.sql": "47aec502fa10154eb907e29084960040584a67023b313358366243a8626cfd0c",
+    "EXPECTED-CATALOG.json": "1fc5a00e500196a61c86a45f788cd4e7559370a3ac4f1795a7d2da83381f0075",
+    "provider-binding.mjs": "b0f130179462a521b39ad63e2e5860016983f45c2c843e374c84351bcafb54dc",
+    "provider-binding.d.mts": "10b766c60bdd8be3d2eb43ec9d0e5f3cb340d45e7cce54863558c5f2b7d97f0f",
+    "DERIVATION.json": "aef6bdde67ec0c9d8c170c3e3e1f89c03799875bb07c431c1284c8a702506399"
+  },
+  "sqlExecuted": false
+}

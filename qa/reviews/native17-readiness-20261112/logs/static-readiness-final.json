@@ -1,0 +1,18 @@
+{
+  "classification": "STATIC_ONLY",
+  "sqlHashesVerified": 7,
+  "functionBodiesOwnersVerified": 33,
+  "roles": 8,
+  "entries": 5,
+  "columnGrantRowsVerified": 29,
+  "executeGrantsVerified": 25,
+  "effectiveCallContextsChecked": 27,
+  "tableColumnsAndOrderVerified": 4,
+  "plannedCasesSchemaVerified": 12,
+  "dependencyContractsVerified": 8,
+  "nativeCasesExecuted": 0,
+  "sqlParsedOrExecuted": false,
+  "hostAccredited": false,
+  "nativeAuthorization": false,
+  "betaDecision": "NO-GO"
+}

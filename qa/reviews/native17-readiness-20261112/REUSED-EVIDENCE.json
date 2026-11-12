@@ -1,0 +1,14 @@
+[
+  {
+    "repo": "cheveni-qa-lab",
+    "sha": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "path": "qa/reviews/native17-preflight-20261106/ENVIRONMENT-ISOLATION.md",
+    "blob": "f6253ca42135a767e3e1fe9eaa0f642d707995a9"
+  },
+  {
+    "repo": "cheveni-qa-lab",
+    "sha": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "path": "qa/reviews/native17-policy-closure-20261107/CLOSURE.md",
+    "blob": "57158313d37c67553e56dfde81eb5388607957ec"
+  }
+]

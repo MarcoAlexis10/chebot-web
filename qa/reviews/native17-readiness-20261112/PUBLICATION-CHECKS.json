@@ -1,0 +1,31 @@
+{
+  "initialHeads": {
+    "web": "4d4467042560a56ac7af0633e7c93064d2fad2b0",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "preClosureWebHead": "a6e191e90649484425f35cb78ad7368594ce9894",
+  "workflowBlobs": {
+    "concierge-manager-preview-build-only.yml": "9540d3c50339b976e6fff19acd8283037aa000e1",
+    "qa284-che-veni-brand-build-only.yml": "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+  },
+  "workflowSourcesReadBeforePublication": true,
+  "pushTriggersTargetOtherBranchesOnly": true,
+  "workflowManualDispatchUsed": false,
+  "actionsApisUsed": false,
+  "runsQueried": false,
+  "newBranchesCreated": false,
+  "backendNativeWritten": false,
+  "forceResetMergeUsed": false,
+  "expectedShaLease": true,
+  "allowedPrefixes": [
+    "qa/native17-readiness-20261112-v1/",
+    "qa/reviews/native17-readiness-20261112/"
+  ],
+  "postPublicationRequired": [
+    "read three refs",
+    "verify exact final tree blobs and CLOSURE bytes",
+    "compare initial tree outside new prefixes unchanged"
+  ],
+  "operationalApproval": false
+}

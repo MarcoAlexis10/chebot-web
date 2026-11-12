@@ -1,0 +1,139 @@
+{
+  "sourceWebHead": "4d4467042560a56ac7af0633e7c93064d2fad2b0",
+  "qaCheckpoints": [
+    "5f22a62fae741745a85127ddad48e945386e8fde",
+    "a6e191e90649484425f35cb78ad7368594ce9894"
+  ],
+  "candidateTree": "containing final commit; exact file hashes below",
+  "packageFiles": [
+    {
+      "path": "qa/native17-readiness-20261112-v1/DEPENDENCIES.json",
+      "bytes": 6260,
+      "sha256": "dffa294ceb820d8ef168170fc7368af0124e6511c47315ae59406ee66f5b4b27",
+      "gitBlob": "c9e0aef5ed7bb476f7afdc59dcd783495fbb2d3f"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/DERIVATION.json",
+      "bytes": 1890,
+      "sha256": "aef6bdde67ec0c9d8c170c3e3e1f89c03799875bb07c431c1284c8a702506399",
+      "gitBlob": "21f1dd4a73888f32e5163916e1a6f40622f14c71"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/EXPECTED-CATALOG.json",
+      "bytes": 40863,
+      "sha256": "1fc5a00e500196a61c86a45f788cd4e7559370a3ac4f1795a7d2da83381f0075",
+      "gitBlob": "e230a4e83e4da9e64421d44e7c4e6d51fe6682ab"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/NATIVE-PLAN.json",
+      "bytes": 22841,
+      "sha256": "f41d9bc083f0cb2fd28d19cb077c809617e89d160c3fb8016f83864676b833e1",
+      "gitBlob": "959f570bb0113064b49dd138cf12012269902a1e"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/README.md",
+      "bytes": 2676,
+      "sha256": "c9d69d177d1f786ed9f349988e4911383a6191fdc8cdce416fb81c93e433370e",
+      "gitBlob": "42b54e016fe3f2a233d93e4df908501219bc053a"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/build_review.py",
+      "bytes": 11925,
+      "sha256": "20efd168806fc4f41ced5c204d22801279bc577ad97c8de88389574bccb15fa5",
+      "gitBlob": "c0ff773b93a9a3241263754ad39014b83e85a636"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/check_readiness.py",
+      "bytes": 5656,
+      "sha256": "9317a5c4caebf457541eae860cd9b21850093eae31844730bc0b9a4cfd13c46d",
+      "gitBlob": "d24c58cf0b8dafdf77598527831a4a50495a5837"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/coherence.mjs",
+      "bytes": 2931,
+      "sha256": "05a301e4c47268ce3d3a89e7f73af19e344802a0cb2e6d366307090ce9c46256",
+      "gitBlob": "fea3413bb604945cada14e1b673d7e81a0916a5b"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/coherence.test.mjs",
+      "bytes": 1487,
+      "sha256": "202dd4bdfeda8517ab4dda6ed24c6781cfc72885934fb26e983ab1b3e7fe8bed",
+      "gitBlob": "2726c872a13b6f4beaa53d2644d01b4da0c4b826"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/host-observation.py",
+      "bytes": 2242,
+      "sha256": "1fb7ffa91c9e9b57331b41ffc6e8ab451f2b09b6d5252b17704f024b5b4b5799",
+      "gitBlob": "826a7bcba0a60116486ffa231bc4ae9fc9714dbd"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/provider-binding.d.mts",
+      "bytes": 2906,
+      "sha256": "10b766c60bdd8be3d2eb43ec9d0e5f3cb340d45e7cce54863558c5f2b7d97f0f",
+      "gitBlob": "9af740ef04e351f6853cb5b517845103b910bbfd"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/provider-binding.mjs",
+      "bytes": 8938,
+      "sha256": "b0f130179462a521b39ad63e2e5860016983f45c2c843e374c84351bcafb54dc",
+      "gitBlob": "5d229734a08301a30414a9c5742878ef92a08c17"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/provider-compatibility.regression.test.mjs",
+      "bytes": 2943,
+      "sha256": "c8e88ec35f4f64a7a00b753bf1629227b15488b50d6b992a145bab429b89ea0d",
+      "gitBlob": "37f3a489054fde9c95f38d3ce6f6880d9b1630fa"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/provider-expiry.test.mjs",
+      "bytes": 2024,
+      "sha256": "8b3dc6031c93cf2ec8af398e14ce225fd19e15597d03dafeee9825ada7279922",
+      "gitBlob": "0f9e65c831c4f4e9673acef5013c4b18917e803f"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/sql/00-roles-DO-NOT-APPLY.sql",
+      "bytes": 1244,
+      "sha256": "d87a057789e119270a21ec76b823deced8c78fd99adcd022fd00c195d25ab921",
+      "gitBlob": "619c9597bc0c773ec34c909f811d7f9a0f02289e"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/sql/00-source-base-DO-NOT-APPLY.sql",
+      "bytes": 12129,
+      "sha256": "9cc64597c3477c81a13973c52d4c6fbd240f2c048b3219436d9d8a36543a3520",
+      "gitBlob": "beff0137fc8ef393146ca03d314a948f55a999b4"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/sql/01-revisions-DO-NOT-APPLY.sql",
+      "bytes": 14554,
+      "sha256": "a5d42b509a3a9cd8827ad538c8e56f95bee75b0025c71e711175246f3df18cd1",
+      "gitBlob": "17a6a3ab064ec77a66bd4eb0b0755c4fb04f5336"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/sql/02-admission-DO-NOT-APPLY.sql",
+      "bytes": 10290,
+      "sha256": "953a00641f20e002bac4918240b8c51c6408e65057f2f4c6e540066fdd879e49",
+      "gitBlob": "dc743c918024757fb2b6de2de3be8cfa60cd0981"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/sql/03-bound-entries-DO-NOT-APPLY.sql",
+      "bytes": 13208,
+      "sha256": "dab85a19191fb4b9b2d49953be5d91e4dcd57f1df8b7ceff65406b81de780d73",
+      "gitBlob": "a9b48c1471436f2a71ebec9a6cb60bb5704f394d"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/sql/04-acl-rls-DO-NOT-APPLY.sql",
+      "bytes": 27281,
+      "sha256": "e41c26697e2f62912f2388d4b47766688ab775e71637755b3f3079d2615d6417",
+      "gitBlob": "26bbcff86a896161cce5e07f35c61df7f36e5f9b"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/sql/05-catalog-capture-NOT-RUN.sql",
+      "bytes": 6391,
+      "sha256": "47aec502fa10154eb907e29084960040584a67023b313358366243a8626cfd0c",
+      "gitBlob": "0dd3789b779213d721914060e15669acf7017a66"
+    }
+  ],
+  "sqlFiles": 7,
+  "nativeExecuted": false,
+  "selfHash": "Git blob in container tree"
+}
