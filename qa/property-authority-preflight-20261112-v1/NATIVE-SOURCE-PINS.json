@@ -1,0 +1,37 @@
+[
+  {
+    "path": "qa/native17-closure-v1/service-successor-REVIEW-ONLY.sql",
+    "gitBlob": "dbaa9df6389768169412bb4500c69084463ef594",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+    "gitBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-ports.mjs",
+    "gitBlob": "d853080cd266e1c5b1a23805a0eab7dabce21ee9",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/fencing/authority.mjs",
+    "gitBlob": "f7da4b1342c61c69b7105253f82501ea5d4ec0b7",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/fencing/producer-source-UNAPPLIED.sql",
+    "gitBlob": "287ccd77df2761cc3f615be9d26cae192299a358",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/fencing/producer-UNAPPLIED.sql",
+    "gitBlob": "a3a34bbac38cae38f900913451220ea2fe3e01a2",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/fencing/property-companion-UNAPPLIED.sql",
+    "gitBlob": "da28e6ef853e0525a8b4ea40dafd1fab6491e362",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  }
+]

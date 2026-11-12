@@ -1,0 +1,276 @@
+{
+  "web": "427ec580c8562a4bd1591f392b2ec17e001f1c1f",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "classification": "STATIC_SOURCE_PINS_NOT_NATIVE_EXECUTION",
+  "inherits": "qa/first-property-20261112-v1/SOURCE-PINS.json",
+  "sources": [
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/GENERATED-MANIFEST.json",
+      "bytes": 3429,
+      "sha256": "f5aa3a5835be26a42e413890419667af791f44ae5ee881a98bf348ef4cc2b904",
+      "gitBlob": "20fa0baba7d71b63058be40d4db229de328a0f51"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/PACKAGE-MANIFEST.json",
+      "bytes": 8543,
+      "sha256": "a201ee2f197e436bd61d687b70fa1d32cad2043ea69cbed33f467a223d577904",
+      "gitBlob": "1e25c5f7a75872b8807d1e06935f0fe664c1dc59"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/README.md",
+      "bytes": 3368,
+      "sha256": "57bd5bff921b211a9bfc632ec6bce7f381c53e5d640f31d0d442d7a8a7ac5959",
+      "gitBlob": "20d2e581b3180165c5e1059771b08cc88d11d30c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/SOURCE-PINS.json",
+      "bytes": 53370,
+      "sha256": "84d871ca876dffd6a096d98927a622cc1c2632787a39a22a2a31b642226ed5a9",
+      "gitBlob": "483e3f5e746a3dc9a1c461dd1a242ba57792b1bb"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/candidate.mjs",
+      "bytes": 756,
+      "sha256": "61bbc53e82ac0a1f3bbc4e920ae4be47d703e582929c668dcc1624cde7b8f08d",
+      "gitBlob": "7c22c3560ab0c652d26227e08daa542d96d9bda4"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/capture-abi.d.mts",
+      "bytes": 1693,
+      "sha256": "b066f55ef72c20b3082757db047edf811791b5cbcd6bfff30b7c6ad94c092ebd",
+      "gitBlob": "e6eac851ab369d9b97e055bdacac216526d51218"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/capture-contract.mjs",
+      "bytes": 5676,
+      "sha256": "142fdc28435133e7a887b8dd5a7abda50a5e58476777021777500989c4a2143c",
+      "gitBlob": "62ee6947f52d1fff9252bc9ef9a9286041c8a72a"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/capture.test.mjs",
+      "bytes": 4895,
+      "sha256": "8df4d24c082fc20c85124d568c81aff09088a13c8a480e835833db03ceb26136",
+      "gitBlob": "74d24f135bef356dc74b786efda62c0dc94ef562"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/fixtures.mjs",
+      "bytes": 1673,
+      "sha256": "77363222bb3392740ab68beaf8c81246b2c2c08ce92e404627eaa387553b5134",
+      "gitBlob": "9ad6313128404ac1e479f97279614afc030a3a1c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/activar/index.html",
+      "bytes": 12692,
+      "sha256": "3b3870bf9db94b08968b94ec548a6cbc38fa7baba01c1a7ddbb337dbba05fcaf",
+      "gitBlob": "a47a8246d7355b2e6dadda314cb749e5c6ac5e47"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/altas/index.html",
+      "bytes": 22271,
+      "sha256": "d84e900677221d2796ab9283ec6def217e71029bb97f6d20048bb33d4a045446",
+      "gitBlob": "4d61fcfca5f03a8dd41e283a792ff50a1b0463a1"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/index.html",
+      "bytes": 9789,
+      "sha256": "cc4389ec61da16bd9985acf0a582ef9d7c623147e50f4def74c977e3681fa231",
+      "gitBlob": "d312c7a0d46ebad24619b13db769a4afa9181500"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "gitBlob": "7a1de9e63a89d7abc376a2f5d193d1c71be07fce"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager-auth.js",
+      "bytes": 28100,
+      "sha256": "1929797b02ef9c0a9068c24f616c85c029f499e49cbd986b63c328ed86fdbbee",
+      "gitBlob": "128fab0afe3a9fb75fe41709d85da196704abfe7"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50",
+      "gitBlob": "2a638fb3fc87c72f781b40ad6b589620bab3ddb8"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "gitBlob": "eb25e4f7e24a39e0bc3bdad389613c0e5dab905c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8",
+      "gitBlob": "70946f1ae57d8192082f5e4a0c6ba7584975ca7c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c",
+      "gitBlob": "e6028952b6040b8ae8d38d23c3abb4f22aa7791a"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4",
+      "gitBlob": "eabac77451df362f73084c7ac8d9606c64ee863d"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a",
+      "gitBlob": "7d7b2bb37c6b5f5a8b307eda23c45a5e0e1c0670"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/planificar-estadia/index.html",
+      "bytes": 6277,
+      "sha256": "d21ba68673a76b65f2e04202d3d3e8562c4eb2a8918003f0e07f4c512275b80e",
+      "gitBlob": "5fe61fb7f4db333c7e64be305d676706384c729f"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/prearrival/index.html",
+      "bytes": 2933,
+      "sha256": "0830451aa79bbd000ba7ad43f565822b6a4dfb874a09be272fee8c5be4dab20e",
+      "gitBlob": "1d442f339dfd3acb3ac7a7f905b227143c80d340"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/propiedad/index.html",
+      "bytes": 7776,
+      "sha256": "e23aeb6fea3900a3c2ff6acb5c8b09b65675af1c218108cb307fcbb42e2dd7c9",
+      "gitBlob": "ff826dc289d3dab43db2dae37849d89156637d1b"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/qa-planning.css",
+      "bytes": 334,
+      "sha256": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a",
+      "gitBlob": "addaf4e5a513061a2a0281295d8ac797a65d482c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/qa-planning.js",
+      "bytes": 504,
+      "sha256": "5e03ec2897059fb1289a4aaa3b9edc2f605a4846f1cb41467c6e859fc7e2ff77",
+      "gitBlob": "c3a9c661d46e059ea54c21050b26ea5705dbdd60"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/recorrido/index.html",
+      "bytes": 4503,
+      "sha256": "ddcf059bbf586f94323bb282580a4522284897658f054a1027d71bfea32852a8",
+      "gitBlob": "6caa730fe1b533f844c9f348191128ee5d0cc732"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/generated/manager/reset-password/index.html",
+      "bytes": 13664,
+      "sha256": "a37b111fc0a979cb9a9a893fbed3d3986682b393b598fc76918792265ae957e0",
+      "gitBlob": "1ce5daf78c0d638c0a9a962eb19a11c55023ecb0"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/integration.test.mjs",
+      "bytes": 2716,
+      "sha256": "2d2d2d067f08da63a2808f8a309834809cb8dafed7f48cf90d3e31d336aeaaf8",
+      "gitBlob": "a16fe9b5dfff97b68a0e216871a1ae6d1a868ef4"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/materialize.mjs",
+      "bytes": 4967,
+      "sha256": "150a3aef1e7246a511eb310712663012f3ee2e1b9afbc9c7f1b753e0e061baba",
+      "gitBlob": "5066cf0b50ca93f69575d782aa7999af65d49a65"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/private_mutation_authority_v1.source.txt",
+      "bytes": 371,
+      "sha256": "b53f46c12973bae6a355550b727cd68460ddb3dd5d8189939c9165958d87f1e7",
+      "gitBlob": "7a253f27d0579439c25a95ae14775954522de08d"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/profile.test.mjs",
+      "bytes": 1585,
+      "sha256": "2dc210b7fc5fa7a2168e18bcea1580fc2de3523c98654b8ec8c9cea0adbece6b",
+      "gitBlob": "791c385fdf296bb43886657c5657238d3a2d07b6"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/property_capture_v1.source.txt",
+      "bytes": 359,
+      "sha256": "47edcafc6d98c581f9f374b8ae74a36d81994a508cf9d89e792b7efd27d70676",
+      "gitBlob": "74e12714cf2a78313606d5b91e30bb7b56e9f38d"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/property_receipt_v1.source.txt",
+      "bytes": 1907,
+      "sha256": "c4bf393c07807b0df7c8cec1e9ec473960221e17b365944b8258ae04b1b01777",
+      "gitBlob": "32d5d2c0a4600ad53c421d3a1b996cfe5361794c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/reader-abi.d.mts",
+      "bytes": 1502,
+      "sha256": "03942e6147140809e9d360bfe06954eb650ec5f7771154595a1022094c02fa20",
+      "gitBlob": "d3a15511bc4aacca4199d0115dac9accdb612ff6"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/reader-profile.mjs",
+      "bytes": 2162,
+      "sha256": "0ff0a2c5198a0b5b5ef1ae38c983d831fa52a1b4ec08092fada5a9e77a7d1d81",
+      "gitBlob": "53f922ad42104683157629b334f9af47b704c96e"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/reconciliation.mjs",
+      "bytes": 5527,
+      "sha256": "e1ec4e01adf109486f1d70b76751944fd081b9ccc4fa6a6a11029e58e8968dc9",
+      "gitBlob": "32197ee0de149fef1b3b6fbabf1b1be50ee1a6e1"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/reconciliation.test.mjs",
+      "bytes": 6400,
+      "sha256": "c12b9d33c1acddbce2cd80534781d5aec0d21ffc723c062cbf596adb154c65ab",
+      "gitBlob": "4d7306dc5c9ebf49667a8a85ca77710d799a7aad"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/verify-artifacts.py",
+      "bytes": 1849,
+      "sha256": "cd0db4af840381de8c12dfb30093456152ef0881629b8015e86bebc1cae82170",
+      "gitBlob": "d1efdf4582835f1badc362cefe3e656e9701610e"
+    }
+  ],
+  "nativeSources": []
+}

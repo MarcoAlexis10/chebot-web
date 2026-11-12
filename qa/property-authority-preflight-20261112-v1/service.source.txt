@@ -1,0 +1,80 @@
+-- PINNED SOURCE EXCERPTS; NEVER EXECUTE. Original aborts remain in source repo.
+function concierge_service_qa_v1.auth_live(p_user uuid,p_session uuid,p_exp bigint) returns void
+language plpgsql security definer set search_path='' set lock_timeout='2s' as $$begin
+ if current_user<>'cheveni_service_auth_owner_v2' or session_user not in('cheveni_service_manager_backend_v2','cheveni_service_reader_backend_v2','cheveni_service_ops_backend_v2') or p_user is null or p_session is null or p_exp is null or
+ p_exp<=extract(epoch from clock_timestamp()) or not exists(select from auth.users u join auth.sessions s on s.user_id=u.id
+ where u.id=p_user and s.id=p_session and u.email_confirmed_at is not null and u.email_confirmed_at<=clock_timestamp()
+ and (u.banned_until is null or u.banned_until<=clock_timestamp()) and(s.not_after is null or s.not_after>clock_timestamp()))
+ then raise insufficient_privilege using message='SERVICE_SESSION_DENIED';end if;
+end$$;
+
+function concierge_service_qa_v1.fence() returns void language plpgsql security invoker set search_path='' as $$
+declare t text;n integer;begin
+ if not ((session_user::text='cheveni_service_manager_backend_v2' and current_user::text='cheveni_service_write_owner_v2') or (session_user::text='cheveni_service_reader_backend_v2' and current_user::text='cheveni_service_read_owner_v2') or (session_user::text='cheveni_service_ops_backend_v2' and current_user::text='cheveni_service_ops_owner_v2')) then raise insufficient_privilege using message='SERVICE_CALLER_PAIR_HELD';end if;
+
+ if current_setting('session_replication_role')<>'origin' or current_setting('transaction_isolation')<>'read committed' then raise insufficient_privilege using message='SERVICE_ISOLATION_DENIED';end if;
+ if not exists(select from pg_proc where oid=to_regprocedure('concierge_private.manager_fence_lock_v1()') and not prosecdef
+ and proowner='postgres'::regrole and 'search_path=""'=any(proconfig)
+ and not exists(select from aclexplode(coalesce(proacl,acldefault('f',proowner))) a where a.grantee<>proowner)
+ and encode(sha256(convert_to(prosrc,'UTF8')),'hex')='10ea154cd7d63f91856346d0d9619e4796637c337561b92c64b29e0863acadc6')
+ then raise insufficient_privilege using message='SERVICE_FENCE_DENIED';end if;
+ foreach t in array array['auth.users','auth.sessions','public.concierge_accounts','public.concierge_properties',
+ 'public.concierge_account_members','public.concierge_manager_web_identities','public.concierge_member_property_permissions','public.concierge_stays'] loop
+  select count(*) into n from pg_trigger where tgrelid=(select c.oid from pg_class c join pg_namespace ns on ns.oid=c.relnamespace where ns.nspname=split_part(t,'.',1) and c.relname=split_part(t,'.',2)) and tgname='cheveni_manager_fence_v1'
+  and tgfoid='concierge_private.manager_fence_lock_v1()'::regprocedure and tgenabled in('O','A') and tgtype=62
+  and not tgisinternal and tgqual is null and tgattr::text='' and tgnargs=0 and octet_length(tgargs)=0 and not tgdeferrable and not tginitdeferred and tgparentid=0 and tgconstraint=0;
+  if n<>1 then raise insufficient_privilege using message='SERVICE_FENCE_COVERAGE';end if;
+ end loop;
+ foreach t in array array['concierge_service_qa_v1.launch_control','concierge_service_qa_v1.guest_bindings',
+ 'concierge_service_qa_v1.postcheckout_cases','concierge_service_qa_v1.ops_bindings','concierge_service_qa_v1.commands',
+ 'public.concierge_guest_identities','public.concierge_stay_members','public.concierge_guest_invites',
+ 'public.concierge_guest_phone_changes','public.concierge_incidents','public.concierge_operational_people','public.concierge_operational_tasks'] loop
+  select count(*) into n from pg_trigger where tgrelid=(select c.oid from pg_class c join pg_namespace ns on ns.oid=c.relnamespace where ns.nspname=split_part(t,'.',1) and c.relname=split_part(t,'.',2)) and tgname='cheveni_service_fence_v1'
+  and tgfoid='concierge_private.manager_fence_lock_v1()'::regprocedure and tgenabled in('O','A') and tgtype=62
+  and not tgisinternal and tgqual is null and tgattr::text='' and tgnargs=0 and octet_length(tgargs)=0 and not tgdeferrable and not tginitdeferred and tgparentid=0 and tgconstraint=0;
+  if n<>1 then raise insufficient_privilege using message='SERVICE_FENCE_COVERAGE';end if;
+ end loop;
+ perform pg_advisory_xact_lock(1129728581,1);
+end$$;
+
+function concierge_service_qa_v1.launch(p_property uuid,p_require_review boolean default true) returns uuid
+language plpgsql security invoker set search_path='' as $$declare a uuid;begin
+ if not ((session_user::text='cheveni_service_manager_backend_v2' and current_user::text='cheveni_service_write_owner_v2') or (session_user::text='cheveni_service_reader_backend_v2' and current_user::text='cheveni_service_read_owner_v2') or (session_user::text='cheveni_service_ops_backend_v2' and current_user::text='cheveni_service_ops_owner_v2')) then raise insufficient_privilege using message='SERVICE_CALLER_PAIR_HELD';end if;
+
+ select l.account_id into a from concierge_service_qa_v1.launch_control l join public.concierge_properties p
+ on p.id=l.property_id and p.account_id=l.account_id join public.concierge_accounts x on x.id=l.account_id
+ where l.singleton and l.property_id=p_property and(not p_require_review or l.state='REVIEW')
+ and x.founding_manager and x.beta_started_at<=clock_timestamp() and x.beta_ends_at>clock_timestamp()
+ and x.beta_ends_at<=x.beta_started_at+interval '30 days'
+ and exists(select from public.concierge_manager_web_identities wi join public.concierge_account_members fm on fm.id=wi.member_id and fm.account_id=wi.account_id where wi.auth_user_id=l.founder_user_id and wi.account_id=l.account_id and wi.status='active' and wi.revoked_at is null and fm.role='owner' and fm.status='active')
+ and p.status='active' and p.city in('Buenos Aires','CABA') and x.status in('active','testing')
+ and l.charge_mode='NO_BILLING' and not l.guest_access_enabled and not l.codes_allowed
+ and (select count(*) from public.concierge_properties z where z.account_id=l.account_id and z.status='active')=1;
+ if a is null then raise insufficient_privilege using message='SERVICE_LAUNCH_HELD';end if;return a;
+end$$;
+
+function concierge_service_qa_v1.manager_scope(p_user uuid,p_session uuid,p_exp bigint,p_property uuid,p_action text,p_review boolean default true)
+returns jsonb language plpgsql security invoker set search_path='' as $$declare ctx jsonb;a uuid;begin
+ if not ((session_user::text='cheveni_service_manager_backend_v2' and current_user::text='cheveni_service_write_owner_v2') or (session_user::text='cheveni_service_reader_backend_v2' and current_user::text='cheveni_service_read_owner_v2')) then raise insufficient_privilege using message='SERVICE_CALLER_PAIR_HELD';end if;
+
+ perform concierge_service_qa_v1.fence();perform concierge_service_qa_v1.auth_live(p_user,p_session,p_exp);
+ a:=concierge_service_qa_v1.launch(p_property,p_review);
+ select jsonb_build_object('memberId',m.id,'accountId',m.account_id,'role',m.role) into ctx
+ from public.concierge_manager_web_identities i join public.concierge_account_members m on m.id=i.member_id and m.account_id=i.account_id
+ where i.auth_user_id=p_user and i.status='active' and i.revoked_at is null and m.status='active' and m.account_id=a;
+ if ctx is null or not exists(select from concierge_runtime_qa_v2.concierge_authorize_manager_member_action((ctx->>'memberId')::uuid,p_property,p_action) q where q.result='allow')
+ then raise insufficient_privilege using message='SERVICE_MANAGER_DENIED';end if;return ctx;
+end$$;
+
+function concierge_writer_contract_v2.scope_v2(u uuid,s uuid,e bigint,p uuid,r uuid) returns jsonb language plpgsql security definer set search_path='' set lock_timeout='2s' as $$declare live jsonb;ctx jsonb;n integer;v text[];b bytea;begin
+ perform concierge_writer_contract_v2.check_fences_v2();
+ if u is null or s is null or p is null or r is null or e is null or e<=extract(epoch from clock_timestamp()) then raise exception 'CONTRACT_SCOPE_DENIED';end if;
+ select count(*),min(x::text)::jsonb into n,live from concierge_writer_cap_v1.auth_live_v1(u,s,r) x;
+ if n<>1 or live->>'status' is distinct from 'LIVE' or live->>'userId' is distinct from u::text or live->>'sessionId' is distinct from s::text or live->>'requestId' is distinct from r::text then raise exception 'CONTRACT_SCOPE_DENIED';end if;
+ select count(*),min(to_jsonb(x)::text)::jsonb into n,ctx from concierge_runtime_qa_v2.concierge_resolve_manager_web_context(u) x;
+ if n<>1 or ctx->>'result' is distinct from 'allow' or not exists(select from concierge_runtime_qa_v2.concierge_authorize_manager_member_action((ctx->>'member_id')::uuid,p,'manage_stays') a where a.result='allow' and a.account_id=(ctx->>'account_id')::uuid)
+ or not exists(select from public.concierge_properties z where z.id=p and z.account_id=(ctx->>'account_id')::uuid and z.status='active' and z.city='Buenos Aires')
+ or (select count(*) from public.concierge_properties z where z.account_id=(ctx->>'account_id')::uuid and z.status='active')<>1 then raise exception 'CONTRACT_SCOPE_DENIED';end if;
+ v:=array['tjdgrzzeuuihhqnzvaox',r::text,u::text,s::text,e::text,ctx->>'account_id',ctx->>'member_id',ctx->>'member_role',p::text,floor(extract(epoch from clock_timestamp())*1000)::bigint::text];
+ b:=concierge_contract_v1.frame_v1('scope',v);return jsonb_build_object('frame',encode(b,'hex'),'digest',encode(sha256(b),'hex'));
+end$$;
