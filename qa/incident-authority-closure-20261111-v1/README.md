@@ -8,7 +8,11 @@ Extensión del candidato anterior, sin router, build, driver, provider, claves o
 
 Los fixtures usan un Map compartido para modelar el custodio entre instancias. Esto **no prueba** durabilidad, unicidad SQL, procesos nativos, claim/COMMIT/journal o independencia física. Una instancia nueva puede consultar KNOWN para impedir un resend, pero no recupera una capacidad de lectura privada ni autoriza un rebind: reconcile sin contexto original confiable permanece UNKNOWN.
 
+KNOWN conserva el intento, sesión, expiración y revisiones históricos. Se compara el original bajo autorización actual para responder CONFLICT cuando cambian los argumentos, pero nunca se reetiqueta esa historia como una nueva admisión. La ausencia o contradicción del original conserva UNKNOWN.
+
 Las revisiones/floors y la procedencia de los snapshots requieren productor protegido, política/custodia D02-A, journal/witness y Native17 acreditados. No se agrega almacenamiento de resúmenes, teléfonos, nombres, frames o hashes personales. Los únicos snapshots y hashes de bearer nuevos viven en memoria con datos ficticios. El gateway criptográfico de incidentes sigue sin dominio CBF1 compatible; no se firman ni inventan comprobantes.
+
+`incident-only-DO-NOT-APPLY.sql` propone tres entries, siete roles y dos tablas de metadatos con referencia original opaca. No crea roles; aborta antes del DDL y termina en ROLLBACK. El gate nativo siempre deniega, revisiones devuelve cero filas, custodia levanta excepción y dispatch_claim devuelve false. Los grants de helpers/columnas/RLS siguen ausentes deliberadamente. No instalar, no quitar gates: se necesita un artefacto nuevo revisado cuando esas dependencias puedan acreditarse. `ROLE-PROFILE.json` y `profile-check.mjs` comparan únicamente una propuesta declarada, no ACL efectivas.
 
 ```sh
 python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/current-resolution.test.mjs web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs

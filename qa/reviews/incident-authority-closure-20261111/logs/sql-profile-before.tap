@@ -1,0 +1,75 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: incident SQL has an unconditional pre-DDL abort, independent logins and no old broad service call
+ok 1 - incident SQL has an unconditional pre-DDL abort, independent logins and no old broad service call
+  ---
+  duration_ms: 6.260362
+  type: 'test'
+  ...
+# Subtest: transitive proposal graph rejects reader helper writes, old principals, owner changes, inheritance and RLS gaps
+ok 2 - transitive proposal graph rejects reader helper writes, old principals, owner changes, inheritance and RLS gaps
+  ---
+  duration_ms: 1.666832
+  type: 'test'
+  ...
+# Subtest: reader and writer compare complete scope, dataset, epoch, inventory, journal and restriction floor
+not ok 3 - reader and writer compare complete scope, dataset, epoch, inventory, journal and restriction floor
+  ---
+  duration_ms: 6.942892
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs:14:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(b.includes('p_floor is distinct from jsonb_build_object('))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs:16:28)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: durable proposal stores only opaque original reference/metadata, enforces uniqueness and never retries an existing binding
+not ok 4 - durable proposal stores only opaque original reference/metadata, enforces uniqueness and never retries an existing binding
+  ---
+  duration_ms: 0.609422
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs:20:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(w.includes('dispatch_claim_v1('))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs:23:152)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 2
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 110.569121

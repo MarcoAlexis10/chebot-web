@@ -3,7 +3,7 @@ import {createDurableIncidentReview,createHeldIncidentAuthorityCandidate,WRITE_S
 import {fixture,command,TOKEN,id} from './fixtures.mjs';
 function custodian(){
  const records=new Map(),original=command();let last;
- return {records,get last(){return last;},original,admit:async b=>{last={...b};const key=b.userId+':'+b.intentId;const prior=records.get(key);if(!prior)records.set(key,{binding:{...b},originalRef:id(100),claimed:false});return {state:prior?'KNOWN':'NEW',originalRef:id(100),...b};},loadOriginal:async q=>({originalRef:q.originalRef,userId:original.p_auth_user_id,intentId:original.p_intent_id,operation:original.p_operation,accountId:id(7),memberId:id(6),propertyId:id(8),stayId:id(9),arguments:{...original.p_arguments}}),claimDispatch:async b=>{const saved=records.get(b.userId+':'+b.intentId);if(!saved||saved.claimed)throw Error('already claimed');saved.claimed=true;return {state:'DISPATCH_CLAIMED',...b};}};
+ return {records,get last(){return last;},original,admit:async b=>{last={...b};const key=b.userId+':'+b.intentId;const prior=records.get(key);if(!prior)records.set(key,{binding:{...b},originalRef:id(100),claimed:false});return {state:prior?'KNOWN':'NEW',originalRef:id(100),...(prior?prior.binding:b)};},loadOriginal:async q=>({originalRef:q.originalRef,userId:original.p_auth_user_id,intentId:original.p_intent_id,operation:original.p_operation,accountId:id(7),memberId:id(6),propertyId:id(8),stayId:id(9),arguments:{...original.p_arguments}}),claimDispatch:async b=>{const saved=records.get(b.userId+':'+b.intentId);if(!saved||saved.claimed)throw Error('already claimed');saved.claimed=true;return {state:'DISPATCH_CLAIMED',...b};}};
 }
 function lab(shared=custodian()){
  const x=fixture();x.writes=0;x.reads=0;x.intents=shared;

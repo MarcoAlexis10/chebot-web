@@ -18,7 +18,14 @@ export function createDurableIncidentReview(options){
  if(![intents?.admit,intents?.loadOriginal,intents?.claimDispatch,writer?.dispatch,reader?.readback].every(x=>typeof x==='function')||writer.principal!==WRITER_LOGIN||reader.principal!==READER_LOGIN||writer.dispatch===reader.readback||reader.readOnly!==true)fail();
  const resolver=createCurrentResolutionReview(resolutionOptions),time=timing(clock,budgetMs),pending=new Map();
  async function current(token,c,deadline){const cap=await time.step(()=>resolver.resolve(token,c),deadline);return resolver.inspect(cap,token,c);}
- function checkedBinding(value,expected){const x=record(value,['state','originalRef',...bindingKeys]);if(!['NEW','KNOWN','DISPATCH_CLAIMED'].includes(x.state)||!isUuid(x.originalRef))fail();for(const k of bindingKeys)if(x[k]!==expected[k])fail();return Object.freeze(x);}
+ function checkedBinding(value,expected){
+  const x=record(value,['state','originalRef',...bindingKeys]);
+  if(!['NEW','KNOWN','DISPATCH_CLAIMED'].includes(x.state)||![x.originalRef,x.userId,x.intentId,x.attemptId,x.sessionId,x.dispatchId].every(isUuid)||!['tokenExpiresAt','authorityVersion','restrictionVersion'].every(k=>Number.isSafeInteger(x[k])&&x[k]>0))fail();
+  // KNOWN describes the ORIGINAL binding. Never relabel its attempt/session
+  // as the new request to make history appear compatible; it cannot dispatch.
+  for(const k of (x.state==='KNOWN'?['userId','intentId']:bindingKeys))if(x[k]!==expected[k])fail();
+  return Object.freeze(x);
+ }
  function expected(c,r){return Object.freeze({userId:c.p_auth_user_id,intentId:c.p_intent_id,attemptId:c.p_request_id,sessionId:c.p_session_id,tokenExpiresAt:c.p_token_expires_at,authorityVersion:r.resolution.authorityVersion,restrictionVersion:r.resolution.restrictionVersion,dispatchId:c.p_request_id});}
  async function original(binding,c,r,deadline){
   const value=await time.step(()=>intents.loadOriginal(Object.freeze({userId:c.p_auth_user_id,intentId:c.p_intent_id,originalRef:binding.originalRef})),deadline);

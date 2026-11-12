@@ -1,0 +1,251 @@
+{
+  "state": "REVIEW_ONLY_HELD",
+  "sourceHead": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "roles": [
+    {
+      "name": "cheveni_incident_scope_backend_v1",
+      "login": true,
+      "superuser": false,
+      "bypassRls": false,
+      "inherit": false,
+      "createDb": false,
+      "createRole": false,
+      "replication": false,
+      "memberships": [],
+      "setRoles": [],
+      "ownsDataTables": false
+    },
+    {
+      "name": "cheveni_incident_scope_owner_v1",
+      "login": false,
+      "superuser": false,
+      "bypassRls": false,
+      "inherit": false,
+      "createDb": false,
+      "createRole": false,
+      "replication": false,
+      "memberships": [],
+      "setRoles": [],
+      "ownsDataTables": false
+    },
+    {
+      "name": "cheveni_incident_writer_backend_v1",
+      "login": true,
+      "superuser": false,
+      "bypassRls": false,
+      "inherit": false,
+      "createDb": false,
+      "createRole": false,
+      "replication": false,
+      "memberships": [],
+      "setRoles": [],
+      "ownsDataTables": false
+    },
+    {
+      "name": "cheveni_incident_writer_owner_v1",
+      "login": false,
+      "superuser": false,
+      "bypassRls": false,
+      "inherit": false,
+      "createDb": false,
+      "createRole": false,
+      "replication": false,
+      "memberships": [],
+      "setRoles": [],
+      "ownsDataTables": false
+    },
+    {
+      "name": "cheveni_incident_readback_backend_v1",
+      "login": true,
+      "superuser": false,
+      "bypassRls": false,
+      "inherit": false,
+      "createDb": false,
+      "createRole": false,
+      "replication": false,
+      "memberships": [],
+      "setRoles": [],
+      "ownsDataTables": false
+    },
+    {
+      "name": "cheveni_incident_readback_owner_v1",
+      "login": false,
+      "superuser": false,
+      "bypassRls": false,
+      "inherit": false,
+      "createDb": false,
+      "createRole": false,
+      "replication": false,
+      "memberships": [],
+      "setRoles": [],
+      "ownsDataTables": false
+    },
+    {
+      "name": "cheveni_incident_data_owner_v1",
+      "login": false,
+      "superuser": false,
+      "bypassRls": false,
+      "inherit": false,
+      "createDb": false,
+      "createRole": false,
+      "replication": false,
+      "memberships": [],
+      "setRoles": [],
+      "ownsDataTables": true
+    }
+  ],
+  "entries": {
+    "cheveni_incident_scope_backend_v1": [
+      "current_resolution_v1"
+    ],
+    "cheveni_incident_writer_backend_v1": [
+      "change_state_v1"
+    ],
+    "cheveni_incident_readback_backend_v1": [
+      "read_effect_v1"
+    ]
+  },
+  "functions": {
+    "native_gate_v1": {
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": false,
+      "mutates": false,
+      "calls": [],
+      "held": true
+    },
+    "current_revisions_v1": {
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": false,
+      "mutates": false,
+      "calls": [],
+      "held": true
+    },
+    "original_intent_v1": {
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "mutates": false,
+      "calls": [],
+      "held": true
+    },
+    "dispatch_claim_v1": {
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "mutates": false,
+      "calls": [],
+      "held": true
+    },
+    "current_resolution_v1": {
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": true,
+      "mutates": false,
+      "calls": [
+        "native_gate_v1",
+        "current_revisions_v1",
+        "authorize_manager_member_action"
+      ],
+      "held": true
+    },
+    "authorize_manager_member_action": {
+      "owner": "cheveni_business_code_owner_v3",
+      "securityDefiner": false,
+      "mutates": false,
+      "calls": [],
+      "held": false
+    },
+    "business_incident_state": {
+      "owner": "cheveni_business_code_owner_v3",
+      "securityDefiner": false,
+      "mutates": true,
+      "calls": [],
+      "held": false
+    },
+    "change_state_v1": {
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": true,
+      "mutates": true,
+      "calls": [
+        "native_gate_v1",
+        "current_resolution_v1",
+        "current_revisions_v1",
+        "original_intent_v1",
+        "dispatch_claim_v1",
+        "business_incident_state"
+      ],
+      "held": true
+    },
+    "read_effect_v1": {
+      "owner": "cheveni_incident_readback_owner_v1",
+      "securityDefiner": true,
+      "mutates": false,
+      "calls": [
+        "native_gate_v1",
+        "current_resolution_v1",
+        "current_revisions_v1"
+      ],
+      "held": true
+    }
+  },
+  "publicExecute": [],
+  "loginTablePrivileges": [],
+  "schemaCreateForLogins": false,
+  "rls": {
+    "intent_binding": {
+      "enabled": true,
+      "force": true,
+      "readerCommands": [
+        "SELECT"
+      ],
+      "writerCommands": [
+        "SELECT",
+        "INSERT"
+      ]
+    },
+    "attempt_binding": {
+      "enabled": true,
+      "force": true,
+      "readerCommands": [
+        "SELECT"
+      ],
+      "writerCommands": [
+        "SELECT",
+        "INSERT",
+        "UPDATE"
+      ]
+    }
+  },
+  "ownerColumnRequirements": {
+    "scopeOwner": [
+      "auth.users(id,email_confirmed_at,banned_until):SELECT",
+      "auth.sessions(id,user_id,not_after):SELECT",
+      "concierge_manager_web_identities(auth_user_id,member_id,account_id,status,revoked_at):SELECT",
+      "concierge_account_members(id,account_id,role,status):SELECT",
+      "concierge_accounts(id,status,founding_manager,beta_started_at,beta_ends_at):SELECT",
+      "concierge_properties(id,account_id,status,city):SELECT",
+      "concierge_stays(id,account_id,property_id):SELECT",
+      "concierge_incidents(id,account_id,property_id,stay_id,status):SELECT",
+      "concierge_member_property_permissions(account_id,member_id,property_id,can_manage_incidents):SELECT"
+    ],
+    "writerOwner": [
+      "intent_binding(exact named columns):SELECT,INSERT",
+      "attempt_binding(exact named columns):SELECT,INSERT",
+      "attempt_binding(state,resulting_status):UPDATE",
+      "concierge_incidents(id,account_id,property_id,stay_id,status,manager_intervention_required,closed_at,updated_at):SELECT",
+      "concierge_incidents(status,manager_intervention_required,closed_at,updated_at):UPDATE",
+      "concierge_incident_events(account_id,incident_id,actor_type,actor_ref,event_type,event_summary):INSERT",
+      "concierge_audit_events(account_id,actor_type,actor_ref,property_id,stay_id,action_type,entity_type,entity_id,result,reason_code):INSERT"
+    ],
+    "readerOwner": [
+      "intent_binding(exact named columns):SELECT",
+      "attempt_binding(exact named columns):SELECT"
+    ]
+  },
+  "installedGrants": false,
+  "nativeObserved": false,
+  "minimumPrivilegeAccredited": false,
+  "unresolved": [
+    "full transitive function/cast/operator/RLS dependencies and complete effective ACL catalog",
+    "owner-only EXECUTE/column grants and exact RLS not emitted in SQL",
+    "managed Auth/revision/floor/original/dispatch-claim protected producers",
+    "launch/retention/legal prerequisites and metadata fence hooks"
+  ]
+}

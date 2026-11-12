@@ -1,0 +1,299 @@
+{
+  "newUniqueCases": 22,
+  "newUniqueFinalPass": 22,
+  "newUniqueFinalFail": 0,
+  "newUniqueFinalSkip": 0,
+  "classification": {
+    "CurrentResolutionNodeDoubles": 9,
+    "DurablePortsNodeDoubles": 9,
+    "SqlSourceAndProfileStatic": 4
+  },
+  "regressions": {
+    "uniqueHistoricalCases": 2,
+    "pass": 2,
+    "justification": "Shared verified compiler API exported; exercise business mapping and original default guard, no full historical suite repeated"
+  },
+  "finalCoverage": {
+    "currentResolution": "logs/contracts-final.tap (9 cases, unchanged after role correction)",
+    "durable": "logs/durable-sealed.tap (9 cases after KNOWN history fix)",
+    "sqlProfile": "logs/sql-profile-sealed.tap (4 cases); metadata-reference-focused.tap repeats affected case after opaque-reference constraint",
+    "priorFloorFix": "logs/final-floor-after.tap, included in the four sealed cases"
+  },
+  "executions": [
+    {
+      "log": "logs/contracts-final.tap",
+      "kind": "NODE_OFFLINE_DOUBLES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/current-resolution.test.mjs web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs",
+      "counts": {
+        "tests": 18,
+        "pass": 18,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "missing protected producer cannot be replaced by options or client CurrentResolution",
+        "source review uses exact provider-bound identity, two unique source observations and independent floors",
+        "zero, duplicate, accessor, extra and uncorrelated source rows cannot yield authority",
+        "every incident/stay/property/account/identity join and manage_incidents is checked against source",
+        "JWT metadata cannot supply roles/revisions; DEV and session mismatch are rejected",
+        "missing revisions, rollback floors, contradictory checkpoint and changed relations fail closed",
+        "local revision floor never regresses and independent floor provider is mandatory",
+        "expiry or revocation during source awaits and capability reuse after expiry cannot pass",
+        "capabilities bind the exact bearer and arguments; provider errors disclose no private message",
+        "default candidate stays HELD and explicit review rejects legacy broad writer and shared reader",
+        "durable-port review retains intent/attempt/session/authority and dispatches only incident entry",
+        "lost durable admission or dispatch-claim ACK never reaches a writer",
+        "lost write ACK and process restart cannot turn a known intent into a resend",
+        "different args for same known intent conflict; simultaneous review instances rely on one custodian claim",
+        "missing original custody, wrong reference or client snapshot cannot unlock dispatch",
+        "revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback",
+        "reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer",
+        "a role change without its authority revision is a contradictory protected source"
+      ],
+      "sha256": "a9ba62b5d092c4d681697f011bf3af7c101e24940465271c55f6730eca6a3ffd",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/current-resolution-first.tap",
+      "kind": "NODE_OFFLINE_DOUBLES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/current-resolution.test.mjs",
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "missing protected producer cannot be replaced by options or client CurrentResolution",
+        "source review uses exact provider-bound identity, two unique source observations and independent floors",
+        "zero, duplicate, accessor, extra and uncorrelated source rows cannot yield authority",
+        "every incident/stay/property/account/identity join and manage_incidents is checked against source",
+        "JWT metadata cannot supply roles/revisions; DEV and session mismatch are rejected",
+        "missing revisions, rollback floors, contradictory checkpoint and changed relations fail closed",
+        "local revision floor never regresses and independent floor provider is mandatory",
+        "expiry or revocation during source awaits and capability reuse after expiry cannot pass",
+        "capabilities bind the exact bearer and arguments; provider errors disclose no private message"
+      ],
+      "sha256": "f753b78346713cb5c2d2919033a986b0b03b73155b90be9beaed04c734faffb3",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/durable-first.tap",
+      "kind": "NODE_OFFLINE_DOUBLES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs",
+      "counts": {
+        "tests": 9,
+        "pass": 8,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "default candidate stays HELD and explicit review rejects legacy broad writer and shared reader",
+        "durable-port review retains intent/attempt/session/authority and dispatches only incident entry",
+        "lost durable admission or dispatch-claim ACK never reaches a writer",
+        "lost write ACK and process restart cannot turn a known intent into a resend",
+        "different args for same known intent conflict; simultaneous review instances rely on one custodian claim",
+        "missing original custody, wrong reference or client snapshot cannot unlock dispatch",
+        "revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback",
+        "reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer",
+        "a role change without its authority revision is a contradictory protected source"
+      ],
+      "sha256": "08062224cbf9e612045f1bb60254341b910c8084e6430b222c6f5fb76dbedbd5",
+      "namespaceIsolated": true,
+      "intermediateFailure": true
+    },
+    {
+      "log": "logs/durable-sealed.tap",
+      "kind": "NODE_OFFLINE_DOUBLES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs",
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "default candidate stays HELD and explicit review rejects legacy broad writer and shared reader",
+        "durable-port review retains intent/attempt/session/authority and dispatches only incident entry",
+        "lost durable admission or dispatch-claim ACK never reaches a writer",
+        "lost write ACK and process restart cannot turn a known intent into a resend",
+        "different args for same known intent conflict; simultaneous review instances rely on one custodian claim",
+        "missing original custody, wrong reference or client snapshot cannot unlock dispatch",
+        "revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback",
+        "reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer",
+        "a role change without its authority revision is a contradictory protected source"
+      ],
+      "sha256": "3b91a6a61e5a4b837edc45b746907cc14042b69f950416e8cb46ad7ad53c7512",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/final-floor-after.tap",
+      "kind": "STATIC_SQL_AND_PROPOSAL_GRAPH",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='reader and writer compare' web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "reader and writer compare complete scope, dataset, epoch, inventory, journal and restriction floor"
+      ],
+      "sha256": "a58b652d253a0b0969c3eed418253df45bd15596c46362e919f7c2d0ce471183",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/final-floor-before.tap",
+      "kind": "STATIC_SQL_AND_PROPOSAL_GRAPH",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='reader and writer compare' web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "reader and writer compare complete scope, dataset, epoch, inventory, journal and restriction floor"
+      ],
+      "sha256": "4aaa50e774da9fc679247a14d98857eb4d7b92a89e94c8f501dc9d674793c310",
+      "namespaceIsolated": true,
+      "intermediateFailure": true
+    },
+    {
+      "log": "logs/known-history-before.tap",
+      "kind": "NODE_OFFLINE_DOUBLES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='different args' web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "different args for same known intent conflict; simultaneous review instances rely on one custodian claim"
+      ],
+      "sha256": "a812ce8d7bf769b082e312dbefd165c1e4c053df1317919c245c247253ee24e5",
+      "namespaceIsolated": true,
+      "intermediateFailure": true
+    },
+    {
+      "log": "logs/metadata-reference-focused.tap",
+      "kind": "STATIC_SQL_AND_PROPOSAL_GRAPH",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='durable proposal stores' web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "durable proposal stores only opaque original reference/metadata, enforces uniqueness and never retries an existing binding"
+      ],
+      "sha256": "80ca8ed0490e22bc3a4cdfd973324eb014c6ac1fcb85cc3f071a478b7e4f18df",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/shared-compiler-regression.tap",
+      "kind": "HISTORICAL_FOCUSED_REGRESSION",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='product candidate|incident mapping' web/qa/domain-security-successor-20261111-v1/incident-successor.test.mjs",
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "product candidate keeps original guards before inspecting hostile inputs",
+        "incident mapping preserves all four historical arguments and separates stable intent from attempt"
+      ],
+      "sha256": "7d09dc7c2e31494790c3a54bf065356a08198583f51cbc9de71d4ac79b9b88a0",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/sql-profile-before.tap",
+      "kind": "STATIC_SQL_AND_PROPOSAL_GRAPH",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 4,
+        "pass": 2,
+        "fail": 2,
+        "skipped": 0
+      },
+      "names": [
+        "incident SQL has an unconditional pre-DDL abort, independent logins and no old broad service call",
+        "transitive proposal graph rejects reader helper writes, old principals, owner changes, inheritance and RLS gaps",
+        "reader and writer compare complete scope, dataset, epoch, inventory, journal and restriction floor",
+        "durable proposal stores only opaque original reference/metadata, enforces uniqueness and never retries an existing binding"
+      ],
+      "sha256": "85906705b58cf8c22477d491458eb8f5c8871956615661bc2d0e1a4d024a78e4",
+      "namespaceIsolated": true,
+      "intermediateFailure": true
+    },
+    {
+      "log": "logs/sql-profile-final.tap",
+      "kind": "STATIC_SQL_AND_PROPOSAL_GRAPH",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "incident SQL has an unconditional pre-DDL abort, independent logins and no old broad service call",
+        "transitive proposal graph rejects reader helper writes, old principals, owner changes, inheritance and RLS gaps",
+        "reader and writer compare complete scope, dataset, epoch, inventory, journal and restriction floor",
+        "durable proposal stores only opaque original reference/metadata, enforces uniqueness and never retries an existing binding"
+      ],
+      "sha256": "0dc7726b4ddd3766b3e8813d711ea85d19eca3036d232e4fed79795b92be92e7",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/sql-profile-sealed.tap",
+      "kind": "STATIC_SQL_AND_PROPOSAL_GRAPH",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "incident SQL has an unconditional pre-DDL abort, independent logins and no old broad service call",
+        "transitive proposal graph rejects reader helper writes, old principals, owner changes, inheritance and RLS gaps",
+        "reader and writer compare complete scope, dataset, epoch, inventory, journal and restriction floor",
+        "durable proposal stores only opaque original reference/metadata, enforces uniqueness and never retries an existing binding"
+      ],
+      "sha256": "f4f16f319744ac7f5b1a2405022bfc5b15610eb46d5243ced3fce514d80890df",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    }
+  ],
+  "runtime": "Node 24.22.1, recorded in static-syntax.log",
+  "staticChecks": [
+    "logs/static-syntax.log"
+  ],
+  "typescript": "d.mts declarations provided, tsc unavailable, NOT_COMPILED",
+  "unexecuted": [
+    "PostgreSQL native or remote SQL",
+    "Auth/GoTrue provider or real JWT signature",
+    "COMMIT/rollback/uniqueness between processes",
+    "journal or witness custody/signature/real independence",
+    "A2 restore",
+    "Chromium four existing cases",
+    "HTTP/HTTPS integration transport"
+  ],
+  "noRepeatedExecutionCountedAsNew": true,
+  "actualProviderVerified": false,
+  "actualSqlVerified": false,
+  "actualJournalVerified": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}
