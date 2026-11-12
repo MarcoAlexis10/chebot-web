@@ -1,0 +1,213 @@
+{
+  "date": "2026-11-12",
+  "status": "PASS_WITH_RETAINED_BLOCKERS",
+  "uniqueNewCases": 10,
+  "uniqueFinalPass": 10,
+  "finalFail": 0,
+  "preparedBrowserCasesNotRun": 4,
+  "sqlNativeCasesNotAuthorizedNotRun": "N01-N12",
+  "historicSuitesRepeated": false,
+  "nodeVersion": "v24.22.1",
+  "executionIsolation": "Existing run-isolated.py; separate user/net namespaces; no IPv4 routes; external connect errno101; inheritedCredentials=false. Not a Native17 host accreditation.",
+  "executions": [
+    {
+      "path": "logs/capture-first.tap",
+      "sha256": "d388033444101b7afd92f7fa7b00ed3205960a0a8e66f68b221595440ff50e8b",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/first-property-20261112-v1/capture.test.mjs",
+      "exitCode": 0,
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/intent-order-before.tap",
+      "sha256": "fd7e49a56d14cf132b2eb9845a4755c66d8d79f037ea21d70f6f53b077bca76c",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='capture contract preserves' web/qa/first-property-20261112-v1/capture.test.mjs",
+      "exitCode": 1,
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "path": "logs/intent-order-after.tap",
+      "sha256": "a418421bd300b97fca54d7d0804335da09804dca03e6bbd99dd28f9539026073",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='capture contract preserves' web/qa/first-property-20261112-v1/capture.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/intent-scope-before.tap",
+      "sha256": "81861e2f77fc759e0cf4f3e5bfdd51b3eb1da7fbe942a7c62be2c01d448d3ff5",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='capture contract preserves' web/qa/first-property-20261112-v1/capture.test.mjs",
+      "exitCode": 1,
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "path": "logs/intent-scope-after.tap",
+      "sha256": "81bfae949d1783df243eb252a04720e5b2662e030f836529f84619492a38affd",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='capture contract preserves' web/qa/first-property-20261112-v1/capture.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/reconciliation-first.tap",
+      "sha256": "c5df6d667421028c621133af5b550b7d8d02b13fa4837365f139ed2dc2718dec",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/first-property-20261112-v1/reconciliation.test.mjs",
+      "exitCode": 1,
+      "tests": 3,
+      "pass": 1,
+      "fail": 2,
+      "skipped": 0
+    },
+    {
+      "path": "logs/reconciliation-corrected.tap",
+      "sha256": "bf6352a92bc8c09ef77480e2df88b6b54f8ef8fe7162ff4fd6d8aea7d59d1f5b",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='each receipt|revocation, refresh' web/qa/first-property-20261112-v1/reconciliation.test.mjs",
+      "exitCode": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/receipt-getter-before.tap",
+      "sha256": "1d8261f1c6efc4e9c6ee92e5e254ef0d5a4b7def42d177fe553f9c40afe36884",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='each receipt' web/qa/first-property-20261112-v1/reconciliation.test.mjs",
+      "exitCode": 1,
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "path": "logs/receipt-getter-after.tap",
+      "sha256": "2d4d2472439dd375441e654fb992f492aa4831946937cb01f3e2d22e53e3ea90",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='each receipt' web/qa/first-property-20261112-v1/reconciliation.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/profile.tap",
+      "sha256": "593a17a1181e39c2c1924ccfd9afb2532b0051f7db9eb68a5e7514d4a7fd6c87",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/first-property-20261112-v1/profile.test.mjs",
+      "exitCode": 0,
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/integration.tap",
+      "sha256": "2700f61336241fc537048993038f7c58a48b9ee2394096aa2415fe2bde6a80f5",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/first-property-20261112-v1/integration.test.mjs",
+      "exitCode": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/token-binding-before.tap",
+      "sha256": "c71ec722df3bcb39183a0f0f5dde69fbfb1ee631324da3240bef4e199fd4744d",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='SQL p_expiry' web/qa/first-property-20261112-v1/capture.test.mjs",
+      "exitCode": 1,
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "path": "logs/token-binding-after-and-capture-regression.tap",
+      "sha256": "fdbf8ccd8a958ef0cdd9c9a276caf7432965b62d9432975cadf8e7df0c446ee8",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/first-property-20261112-v1/capture.test.mjs",
+      "exitCode": 0,
+      "tests": 4,
+      "pass": 4,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "path": "logs/token-reader-regression.tap",
+      "sha256": "8432e0aca9fbe3ffa7e4676f472d2e3d0ff7127b2eb86413d6259f3914b5e915",
+      "classification": "NODE_OFFLINE_SYNTHETIC_NOT_NATIVE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='each receipt|revocation, refresh' web/qa/first-property-20261112-v1/reconciliation.test.mjs",
+      "exitCode": 0,
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    }
+  ],
+  "focusedRegressions": "Only cases in this NEW package affected by its comparator, dataset type, descriptor validation and provider-token binding changes. Repeated passes and subassertions are not new cases.",
+  "failuresRetained": {
+    "intent-order-before.tap": "Own comparator used property enumeration order; replaced by structural equality.",
+    "intent-scope-before.tap": "Own comparison omitted founder scope revision; reused existing complete domain comparator and explicit founder binding.",
+    "reconciliation-first.tap": "Own reader declared datasetId numeric; pinned source uses a 64-hex string. Two cases failed, corrected.",
+    "receipt-getter-before.tap": "Own comparison touched unvalidated nested effect property; validate all descriptors before comparison.",
+    "token-binding-before.tap": "Own capture review lacked distinct token-expiry binding; added explicit synthetic provider-token observation with exact exp and iat/session binding."
+  },
+  "operationalEvidence": {
+    "authManagedVerified": false,
+    "nativeSqlExecuted": false,
+    "commitObserved": false,
+    "journalCustodyVerified": false,
+    "independentPhysicalConnectionsVerified": false,
+    "browserExecuted": false,
+    "typescriptCompiled": false
+  },
+  "staticVerification": {
+    "log": "logs/artifact-verification.log",
+    "localPinnedSources": 188,
+    "packageFiles": 37,
+    "generatedOutputs": 18,
+    "syntaxFiles": 16,
+    "externalNativeBlobs": 4,
+    "externalNativeMethod": "Immutable GitHub tree blob IDs compared; not SQL execution"
+  },
+  "sourcePins": "../../first-property-20261112-v1/SOURCE-PINS.json",
+  "packageManifest": "../../first-property-20261112-v1/PACKAGE-MANIFEST.json",
+  "betaDecision": "NO-GO",
+  "nonTestExecutions": [
+    {
+      "path": "logs/materialize.log",
+      "sha256": "61679ac68fed7d8872db3e1893e219a8b16eb3f676389be80ffe6264b1639e79",
+      "exitCode": 0,
+      "classification": "MATERIALIZATION",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node web/qa/first-property-20261112-v1/materialize.mjs"
+    },
+    {
+      "path": "logs/artifact-verification.log",
+      "sha256": "7d093a2c6561952a930ba9aec96b079d03439daf11243620a49f306ff6c96681",
+      "exitCode": 0,
+      "classification": "STATIC_BYTES_SYNTAX_NOT_TEST_COUNT",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- python web/qa/first-property-20261112-v1/verify-artifacts.py"
+    }
+  ]
+}
