@@ -1,0 +1,25 @@
+// Writes only this new QA directory. No server, runtime build hook or browser.
+import fs from 'node:fs';import path from 'node:path';import {createHash} from 'node:crypto';import {fileURLToPath} from 'node:url';
+import composer from './compose.cjs';import {operations as propertyOps} from './property-lifecycle.mjs';import {operations as stayOps} from './stay-lifecycle.mjs';
+const here=path.dirname(fileURLToPath(import.meta.url));
+const csp="default-src 'none'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'none'; font-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'";
+const escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const table=(title,ops)=>`<section><h2>${escape(title)}</h2><table><thead><tr><th>Contrato de revisión</th><th>Estado</th></tr></thead><tbody>${ops.map(op=>`<tr><td>${escape(op)}</td><td>HELD · productor privado ausente · sin efecto</td></tr>`).join('')}</tbody></table><p>Revisiones y transiciones propuestas; sin autorización real ni recibo de COMMIT. UNKNOWN exige conciliación, sin reenvío.</p></section>`;
+export function build(){
+ const r=composer.build(),g=r.generated;
+ const steps=[['Invitación retenida','/manager/activar/'],['Login y validación de sesión','/manager/'],['Propiedad','/manager/propiedad/'],['Estadía','/manager/planificar-estadia/'],['Pre-arrival','/manager/prearrival/'],['Huésped','/manager/#estadias'],['Solicitudes','/manager/#solicitudes'],['Incidencias','/manager/#incidencias'],['Checkout retenido','/manager/planificar-estadia/#checkout']];
+ g['manager/recorrido/index.html']=`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="${csp}"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Recorrido retenido · Che Vení QA</title><link rel="stylesheet" href="/manager/qa-planning.css"></head><body><main><h1>Recorrido fundador QA</h1><p>Beta V1 NO-GO. Sin red, datos reales ni operaciones. Las páginas son interfaces retenidas, no una sesión verificada.</p><ol>${steps.map(([label,url])=>`<li><a href="${url}">${label}</a> — HELD</li>`).join('')}</ol><p>401: sesión dejó de estar autorizada. 403: rechazo de permisos. 429: límite temporal sin reintento automático. 503 o conexión ilegible: resultado sin comprobar, no prueba de expiración ni de rollback.</p><p>Una propiedad de CABA, un manager fundador; treinta días gratuitos desde la primera estadía real verificada, aún no iniciada; sin cobro ni conversión automática. Che Vení Free permanece independiente.</p><p>Proveedor Auth, autoridad vigente, SQL/COMMIT/journal, D02-A, A2 y navegador siguen pendientes. No completar datos ni activar una reserva.</p></main></body></html>`;
+ g['manager/propiedad/index.html']=g['manager/propiedad/index.html'].replace('</main>',table('Ciclo de propiedad propuesto',propertyOps)+'</main>');
+ g['manager/planificar-estadia/index.html']=g['manager/planificar-estadia/index.html'].replace('</main>',table('Ciclo de estadía propuesto',stayOps)+'</main>');
+ g['manager/prearrival/index.html']=g['manager/prearrival/index.html'].replace('</main>','<section><h2>Proyección pública retenida</h2><p>Una categoría arrival o una versión approved de conocimiento no acreditan contenido público. Sólo plantilla global fija. Retirada de aprobación, revisión distinta, sesión cambiada o checkout cierran la proyección; sin texto libre o enlaces externos.</p></section></main>');
+ for(const [p,s]of Object.entries(g))if(p.endsWith('.html')){
+  let value=s.replace(/<link\b[^>]*href="\/favicon\.png"[^>]*>/g,'');
+  value=value.replace(/<a\b[^>]*href="\/manager\/(condiciones|privacidad)-concierge\/"[^>]*>[\s\S]*?<\/a>/g,(_,kind)=>`<span aria-disabled="true">Documento de ${kind} retenido; publicación no aprobada</span>`);
+  g[p]=value.replace('<body>','<body><p><a href="/manager/recorrido/">Recorrido QA retenido</a></p>').replace(/(<body\s[^>]*>)/,'$1<p><a href="/manager/recorrido/">Recorrido QA retenido</a></p>');
+ }
+ return r;
+}
+export function materialize(){const r=build(),files=[];for(const [p,s]of Object.entries(r.generated)){
+ if(!/^manager\/[a-z0-9/.-]+$/.test(p)||p.includes('..'))throw Error('QA_PATH_HELD');const to=path.join(here,'generated',p);fs.mkdirSync(path.dirname(to),{recursive:true});fs.writeFileSync(to,s);files.push({path:'generated/'+p,bytes:Buffer.byteLength(s),sha256:createHash('sha256').update(s).digest('hex')});}
+ const m={sourceWeb:'dd1b41fe8cbea9dda6da24d50b95c23916cb6475',sourceBackend:'9beb837a621f9a8f06601043afa64b3bba317cb5',files,legalPublication:r.legalPublication,formsInert:true,networkPolicy:"connect-src 'none'",sqlExecuted:false,browserExecuted:false,actualAuthVerified:false,operationalApproval:false,betaDecision:'NO-GO'};fs.writeFileSync(path.join(here,'GENERATED-MANIFEST.json'),JSON.stringify(m,null,2)+'\n');return m;}
+if(process.argv[1]===fileURLToPath(import.meta.url))console.log(JSON.stringify({files:materialize().files.length,servicesStarted:0,browserExecuted:false}));

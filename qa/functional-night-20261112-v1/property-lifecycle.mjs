@@ -6,7 +6,7 @@ export const contextKeys=Object.freeze(['accountId','memberId','sessionId','sess
 export function reviewContext(value,nowMs){
  const c=record(value,contextKeys);
  if(!Number.isSafeInteger(nowMs)||nowMs<0||!['accountId','memberId','sessionId'].every(k=>isUuid(c[k]))||c.propertyId!==null&&!isUuid(c.propertyId)||!['owner','manager','co_manager'].includes(c.role)||c.status!=='active'||c.revoked!==false||!['sessionRevision','authorityRevision','restrictionsRevision','inventoryRevision'].every(k=>positive(c[k]))||!Number.isSafeInteger(c.verifiedAtMs)||c.verifiedAtMs<0||c.verifiedAtMs>nowMs||!positive(c.expiresAtMs)||c.expiresAtMs<=nowMs||c.jurisdiction!=='CABA_ATTESTATION_REQUIRED'||!Number.isSafeInteger(c.cohortCount)||c.cohortCount<0)throw Error('CURRENT_CONTEXT_UNAVAILABLE');
- const p=record(c.propertyPermissions,['viewProperty','manageStays','manageIncidents','approveRequests','manageKnowledge']);if(!Object.values(p).every(x=>typeof x==='boolean'))throw Error('PERMISSIONS_SHAPE');
+ const p=record(c.propertyPermissions,['viewProperty','manageStays','manageIncidents','approveRequests','manageKnowledge','manageSecrets','manageTeam']);if(!Object.values(p).every(x=>typeof x==='boolean'))throw Error('PERMISSIONS_SHAPE');
  return Object.freeze({...c,propertyPermissions:p});
 }
 export function propertySnapshot(value,c){
@@ -16,9 +16,9 @@ export function propertySnapshot(value,c){
 export function reviewPropertyLifecycle(input){
  try{
   const v=record(input,['mode','nowMs','command','context','snapshot']);if(v.mode!=='OFFLINE_VECTOR')throw Error('OFFLINE_ONLY');
-  const q=record(v.command,['abi','operation','intentId','attemptId','propertyId','expectedRevision','expectedAuthorityRevision','expectedRestrictionsRevision','payload']);
+  const q=record(v.command,['abi','operation','intentId','attemptId','expectedSessionId','expectedSessionRevision','propertyId','expectedRevision','expectedAuthorityRevision','expectedRestrictionsRevision','payload']);
   if(q.abi!==propertyAbi||!operations.includes(q.operation)||!isUuid(q.intentId)||!isUuid(q.attemptId))throw Error('COMMAND_SHAPE');
-  const c=reviewContext(v.context,v.nowMs);if(q.expectedAuthorityRevision!==c.authorityRevision||q.expectedRestrictionsRevision!==c.restrictionsRevision)throw Error('STALE_AUTHORITY');
+  const c=reviewContext(v.context,v.nowMs);if(q.expectedSessionId!==c.sessionId||q.expectedSessionRevision!==c.sessionRevision||q.expectedAuthorityRevision!==c.authorityRevision||q.expectedRestrictionsRevision!==c.restrictionsRevision)throw Error('STALE_AUTHORITY');
   const create=q.operation==='property.draft.create';let from=null,to=null,current=null;
   if(create){if(v.snapshot!==null||q.propertyId!==null||q.expectedRevision!==null||c.propertyId!==null||c.cohortCount!==0||c.role!=='owner')throw Error('FOUNDER_COHORT_OR_ROLE');to='draft';}
   else{const s=propertySnapshot(v.snapshot,c);if(q.propertyId!==s.propertyId||q.expectedRevision!==s.revision||c.cohortCount!==1)throw Error('PROPERTY_VERSION_OR_COHORT');current=s;from=s.status;to=from;
@@ -26,7 +26,7 @@ export function reviewPropertyLifecycle(input){
    else if(c.role!=='owner')throw Error('PROPERTY_LIFECYCLE_PERMISSION_UNSPECIFIED');
   }
   if(['property.draft.create','property.configure'].includes(q.operation)){
-   const p=record(q.payload,['configuration','buildingId']);if(p.buildingId!==null&&!isUuid(p.buildingId)||reviewPropertyShape(p.configuration).shapeReviewed!==true)throw Error('PROPERTY_CONFIGURATION');
+   const p=record(q.payload,['configuration','buildingId']);const configuration=record(p.configuration,['internalName','propertyType','address','floorOrUnit','cityLabel','language','defaultCheckIn','defaultCheckOut']);if(!Object.values(configuration).every(x=>x===null||typeof x==='string'&&x.isWellFormed()))throw Error('PROPERTY_UNICODE');if(p.buildingId!==null&&!isUuid(p.buildingId)||reviewPropertyShape(p.configuration).shapeReviewed!==true)throw Error('PROPERTY_CONFIGURATION');
    if(!create&&(from!=='draft'||p.buildingId!==current.buildingId))throw Error('CONFIGURE_STATE_OR_BUILDING_REBINDING');
    // A UUID does not certify that a new building belongs to this account.
   }else if(q.operation==='property.decision'){

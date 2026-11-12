@@ -1,7 +1,7 @@
 import {record,isUuid,positive,out} from './core.mjs';
 import {reviewContext} from './property-lifecycle.mjs';
 import {previewPrearrivalVector} from '../property-stay-prearrival-20261112-v1/prearrival.mjs';
-const actions=Object.freeze({view_property:'viewProperty',manage_stays:'manageStays',manage_incidents:'manageIncidents',approve_requests:'approveRequests',manage_knowledge:'manageKnowledge'});
+const actions=Object.freeze({view_property:'viewProperty',manage_stays:'manageStays',manage_incidents:'manageIncidents',approve_requests:'approveRequests',manage_knowledge:'manageKnowledge',manage_secrets:'manageSecrets',manage_team:'manageTeam'});
 export function reviewPermissionScope(input){
  try{
   const v=record(input,['mode','nowMs','action','target','expectedAuthorityRevision','expectedRestrictionsRevision','subject']);if(v.mode!=='OFFLINE_VECTOR')throw Error();

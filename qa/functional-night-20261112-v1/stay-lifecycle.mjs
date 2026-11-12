@@ -16,9 +16,9 @@ export function reviewInventory(value,c,target=null,window=null){
 export function reviewStayLifecycle(input){
  try{
   const v=record(input,['mode','nowMs','command','context','snapshot','inventory']);if(v.mode!=='OFFLINE_VECTOR')throw Error('OFFLINE_ONLY');
-  const q=record(v.command,['abi','operation','intentId','attemptId','propertyId','stayId','expectedRevision','expectedAuthorityRevision','expectedRestrictionsRevision','expectedInventoryRevision','payload']);
+  const q=record(v.command,['abi','operation','intentId','attemptId','expectedSessionId','expectedSessionRevision','propertyId','stayId','expectedRevision','expectedAuthorityRevision','expectedRestrictionsRevision','expectedInventoryRevision','payload']);
   if(q.abi!==stayAbi||!operations.includes(q.operation)||!isUuid(q.intentId)||!isUuid(q.attemptId)||!isUuid(q.propertyId))throw Error('COMMAND');
-  const c=reviewContext(v.context,v.nowMs);if(c.propertyId!==q.propertyId||c.cohortCount!==1||q.expectedAuthorityRevision!==c.authorityRevision||q.expectedRestrictionsRevision!==c.restrictionsRevision||q.expectedInventoryRevision!==c.inventoryRevision||c.role==='co_manager'&&!c.propertyPermissions.manageStays)throw Error('CURRENT_PERMISSION_OR_REVISION');
+  const c=reviewContext(v.context,v.nowMs);if(q.expectedSessionId!==c.sessionId||q.expectedSessionRevision!==c.sessionRevision||c.propertyId!==q.propertyId||c.cohortCount!==1||q.expectedAuthorityRevision!==c.authorityRevision||q.expectedRestrictionsRevision!==c.restrictionsRevision||q.expectedInventoryRevision!==c.inventoryRevision||c.role==='co_manager'&&!c.propertyPermissions.manageStays)throw Error('CURRENT_PERMISSION_OR_REVISION');
   const create=q.operation==='stay.draft.create';let s=null,from=null,to=null,w=null;
   if(create){if(v.snapshot!==null||q.stayId!==null||q.expectedRevision!==null)throw Error('NEW_STAY_SHAPE');w=windows(q.payload);to='draft';}
   else{s=staySnapshot(v.snapshot,c);if(q.stayId!==s.stayId||q.expectedRevision!==s.revision)throw Error('STALE_STAY');from=s.status;to=from;

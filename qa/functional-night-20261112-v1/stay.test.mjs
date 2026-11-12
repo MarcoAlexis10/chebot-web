@@ -18,7 +18,7 @@ test('date changes bind current revisions, CABA UTC calendar and forbid stale in
  const x=stayCase(),r=review(x);assert.equal(r.window.checkInAt,'2027-01-12T18:00:00.000Z');
  for(const patch of [{checkInLocal:'2027-02-29T15:00'},{checkOutLocal:'2027-01-12T15:00'},{accessUntilLocal:'2027-01-12T15:00'},{accessFromLocal:'2027-01-14T15:00'}])assert.equal(review({...x,command:{...x.command,payload:{...x.command.payload,...patch}}}).state,'STAY_REVIEW_REJECTED');
  for(const payload of [{checkInLocal:'2028-02-29T23:30',checkOutLocal:'2028-03-01T10:00',accessFromLocal:'2028-02-29T23:30',accessUntilLocal:'2028-03-01T10:00'},{checkInLocal:'2027-12-31T23:30',checkOutLocal:'2028-01-01T10:00',accessFromLocal:'2027-12-31T23:30',accessUntilLocal:'2028-01-01T10:00'}])assert.equal(review({...x,command:{...x.command,payload}}).state,'STAY_TRANSITION_REVIEWED_HELD');
- for(const patch of [{expectedRevision:3},{expectedInventoryRevision:10},{expectedAuthorityRevision:6},{propertyId:id(90)}])assert.equal(review({...x,command:{...x.command,...patch}}).state,'STAY_REVIEW_REJECTED');
+ for(const patch of [{expectedSessionId:id(99)},{expectedSessionRevision:3},{expectedRevision:3},{expectedInventoryRevision:10},{expectedAuthorityRevision:6},{propertyId:id(90)}])assert.equal(review({...x,command:{...x.command,...patch}}).state,'STAY_REVIEW_REJECTED');
  assert.equal(review({...x,inventory:[...x.inventory,{...staySnapshot(),stayId:id(90),propertyId:id(91)}]}).state,'STAY_REVIEW_REJECTED');
  const stale={...x,nowMs:Date.parse(x.snapshot.checkInAt),context:{...x.context,expiresAtMs:Date.parse(x.snapshot.checkInAt)+1000}};assert.equal(review(stale).state,'STAY_REVIEW_REJECTED');
 });

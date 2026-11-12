@@ -1,0 +1,21 @@
+// Existing authGeneration pattern generalized for QA review views only.
+// This is volatile UI sequencing, not Auth, durable admission or SQL uniqueness.
+import {record,isUuid,positive,out} from './core.mjs';
+const keys=['sessionId','accountId','propertyId','stayId','authorityRevision','restrictionRevision','entityRevision','expiresAtMs','checkoutAtMs'];
+function scope(value){const s=record(value,keys);if(!['sessionId','accountId','propertyId'].every(k=>isUuid(s[k]))||s.stayId!==null&&!isUuid(s.stayId)||!['authorityRevision','restrictionRevision','entityRevision','expiresAtMs'].every(k=>positive(s[k]))||s.checkoutAtMs!==null&&!positive(s.checkoutAtMs))throw Error('VIEW_SCOPE');return Object.freeze(s);}
+const equal=(a,b)=>keys.every(k=>a[k]===b[k]);
+export function createReviewView(){
+ let generation=0,current=null;const channels=new Map(),tickets=new WeakMap(),unknown=new Set();
+ return Object.freeze({
+  select(value){generation++;channels.clear();try{current=scope(value)}catch{current=null}return out(current?'REVIEW_SCOPE_SELECTED_HELD':'REVIEW_SCOPE_UNAVAILABLE');},
+  begin(channel){if(!['property','stay','prearrival','incidents','requests'].includes(channel)||current===null)return null;const sequence=(channels.get(channel)||0)+1;channels.set(channel,sequence);const ticket=Object.freeze({kind:'QA_REVIEW_VIEW_TICKET'});tickets.set(ticket,{channel,sequence,generation,scope:current});return ticket;},
+  settle(ticket,input){
+   try{const v=record(input,['nowMs','currentScope']),s=scope(v.currentScope),t=tickets.get(ticket);if(!t||!Number.isSafeInteger(v.nowMs)||v.nowMs<0||t.generation!==generation||channels.get(t.channel)!==t.sequence||current===null||!equal(current,s)||!equal(t.scope,s)||v.nowMs>=s.expiresAtMs||s.checkoutAtMs!==null&&v.nowMs>=s.checkoutAtMs)throw Error();tickets.delete(ticket);return out('REVIEW_SCOPE_CURRENT_HELD',{publicReviewStatusOnly:true,privateViewAllowed:false});}
+   catch{if(ticket&&typeof ticket==='object')tickets.delete(ticket);return out('REVIEW_RESPONSE_DISCARDED',{privateViewAllowed:false});}
+  },
+  close(){generation++;current=null;channels.clear();return out('REVIEW_VIEW_CLEARED');},
+  noteUnknown(intentId){if(isUuid(intentId))unknown.add(intentId);return out('UNKNOWN',{reconciliationRequired:true,sqlUniquenessAccredited:false});},
+  uncertainty(intentId){return out(unknown.has(intentId)?'UNKNOWN':'HELD_NO_TRUSTED_HISTORY',{reconciliationRequired:true,originalAvailable:false});},
+  reconcile(){return out('UNKNOWN',{reconciliationRequired:true,originalAvailable:false});}
+ });
+}

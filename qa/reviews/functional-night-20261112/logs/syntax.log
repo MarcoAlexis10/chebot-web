@@ -1,0 +1,17 @@
+web/qa/functional-night-20261112-v1/auth-ui.test.cjs: PASS
+web/qa/functional-night-20261112-v1/compose.cjs: PASS
+web/qa/functional-night-20261112-v1/composition.test.mjs: PASS
+web/qa/functional-night-20261112-v1/core.mjs: PASS
+web/qa/functional-night-20261112-v1/fixtures.mjs: PASS
+web/qa/functional-night-20261112-v1/materialize.mjs: PASS
+web/qa/functional-night-20261112-v1/permissions.mjs: PASS
+web/qa/functional-night-20261112-v1/projection-permissions.test.mjs: PASS
+web/qa/functional-night-20261112-v1/property-lifecycle.mjs: PASS
+web/qa/functional-night-20261112-v1/property.test.mjs: PASS
+web/qa/functional-night-20261112-v1/public-projection.mjs: PASS
+web/qa/functional-night-20261112-v1/restore-feedback.regression.test.cjs: PASS
+web/qa/functional-night-20261112-v1/stay-lifecycle.mjs: PASS
+web/qa/functional-night-20261112-v1/stay.test.mjs: PASS
+web/qa/functional-night-20261112-v1/view-lease.mjs: PASS
+web/qa/functional-night-20261112-v1/view-work-items.test.mjs: PASS
+web/qa/functional-night-20261112-v1/work-items.mjs: PASS

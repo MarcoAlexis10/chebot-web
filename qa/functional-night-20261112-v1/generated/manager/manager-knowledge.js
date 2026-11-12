@@ -1,0 +1,490 @@
+
+(() => {
+  'use strict';
+
+  const BACKEND_KNOWLEDGE_URL = "https://fictional-api.example.invalid/api/concierge/manager/knowledge";
+  const TOKEN_KEY = 'chebot_manager_preview_access_token';
+  const list = document.getElementById('manager-knowledge-list') || document.querySelector('#knowledge .quick');
+  const authScreen = document.getElementById('manager-auth');
+
+  if (!list) return;
+
+  const categoryLabels = {
+    arrival: 'Llegada',
+    checkin: 'Check-in',
+    checkout: 'Checkout',
+    wifi: 'Wi-Fi',
+    equipment: 'Equipamiento',
+    rules: 'Reglas',
+    luggage: 'Equipaje',
+    parking: 'Estacionamiento',
+    amenities: 'Servicios',
+    incident_protocol: 'Protocolo de incidencia',
+    service: 'Servicio',
+    other: 'Otro'
+  };
+
+  const statusLabels = {
+    review: 'En revisión',
+    active: 'Activa',
+    paused: 'Pausada',
+    archived: 'Archivada'
+  };
+
+  const riskLabels = {
+    normal: 'Riesgo normal',
+    sensitive: 'Sensible',
+    safety_review: 'Revisión de seguridad'
+  };
+
+  const sourceLabels = {
+    manager_entered: 'Cargado por manager',
+    learned_from_incident: 'Aprendido de incidencia',
+    system_curated: 'Curado por sistema'
+  };
+
+  function text(value, fallback = '—') {
+    const normalized = value === null || value === undefined ? '' : String(value).trim();
+    return normalized || fallback;
+  }
+
+  function statusClass(statusValue) {
+    const value = String(statusValue || '');
+    if (value === 'active') return 'tag';
+    if (value === 'review' || value === 'paused') return 'tag warn';
+    if (value === 'archived') return 'tag danger';
+    return 'tag';
+  }
+
+  function riskClass(riskValue) {
+    const value = String(riskValue || '');
+    if (value === 'safety_review') return 'tag danger';
+    if (value === 'sensitive') return 'tag warn';
+    return 'tag';
+  }
+
+  function scopeLabel(item) {
+    const scope = item && item.scope ? item.scope : null;
+    if (scope && scope.label) return String(scope.label);
+    if (item && item.scope_type === 'account') return 'Cuenta';
+    if (item && item.scope_type === 'building') return 'Edificio';
+    if (item && item.scope_type === 'property') return 'Propiedad';
+    return 'Alcance';
+  }
+
+  function addTag(container, label, className) {
+    const tag = document.createElement('span');
+    tag.className = className || 'tag';
+    tag.textContent = label;
+    container.appendChild(tag);
+  }
+
+
+  // Durable identity is persisted before dispatch; legacy/unknown markers are
+  // never converted into permission to retry. This is not server-side auth.
+  function durableManagerIntentPending(key) {
+    return sessionStorage.getItem(key) !== null || sessionStorage.getItem(key + ':durable-intent-v2') !== null;
+  }
+  function beginManagerDurableIntent(key) {
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_REVIEW_REQUIRED');
+    const id = window.crypto.randomUUID();
+    if (typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) throw new Error('MANAGER_INTENT_UNAVAILABLE');
+    const saved = JSON.stringify({version:2,intentId:id.toLowerCase()}), durableKey = key + ':durable-intent-v2';
+    sessionStorage.setItem(durableKey, saved);
+    if (sessionStorage.getItem(durableKey) !== saved) throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    sessionStorage.setItem(key, '1');
+    if (sessionStorage.getItem(key) !== '1') throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    return id.toLowerCase();
+  }
+  function clearManagerDurableIntent(key) {
+    sessionStorage.removeItem(key + ':durable-intent-v2');
+    sessionStorage.removeItem(key);
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_NOT_CLEARED');
+  }
+  function preserveManagerDurableIntent(key) {
+    try { if (sessionStorage.getItem(key) === null) sessionStorage.setItem(key, '1'); } catch (_) {}
+  }
+
+  let knowledgeMutationPending = false;
+  const knowledgeUncertain = new Set();
+  const REVIEW_PREFIX = 'cheveni_knowledge_decision_review_v1:';
+  function needsReview(key) {
+    if (knowledgeUncertain.has(key)) return true;
+    try { return durableManagerIntentPending(REVIEW_PREFIX + key); } catch (_) { return true; }
+  }
+  function storeIntent(key) {
+    knowledgeUncertain.add(key);
+    try { return beginManagerDurableIntent(REVIEW_PREFIX + key); }
+    catch (_) { return false; }
+  }
+  function clearIntent(key) {
+    try { clearManagerDurableIntent(REVIEW_PREFIX + key); }
+    catch (_) { return false; }
+    knowledgeUncertain.delete(key); return true;
+  }
+  function validDecision(body, item, action) {
+    const d = body && body.decision;
+    const keys = action === 'approve' ? ['knowledge_item_id','version_id','version_number','resulting_status']
+      : ['knowledge_item_id','version_id','version_number','resulting_item_status','resulting_version_status'];
+    return body && body.ok === true && body.action === action && d && !Array.isArray(d)
+      && Object.keys(d).sort().join('|') === keys.sort().join('|')
+      && d.knowledge_item_id === item.id && d.version_id === item.version.id
+      && Number.isSafeInteger(d.version_number) && d.version_number > 0 && d.version_number === item.version.version_number
+      && (action === 'approve' ? d.resulting_status === 'active'
+        : d.resulting_version_status === 'rejected' && ['active','paused','review','archived'].includes(d.resulting_item_status));
+  }
+  async function decideKnowledge(item, action, button, renderToken, renderSequence) {
+    const accessToken = readSectionToken();
+    if (!accessToken || !item || !item.id || !item.version || !item.version.id) return;
+    const currentView = () => readSectionToken() === renderToken && loadSequence === renderSequence
+      && !document.body.classList.contains('manager-auth-pending');
+    if (accessToken !== renderToken || !currentView()) return;
+
+    const mutationKey = item.id + ':' + item.version.id;
+    if (button.disabled || knowledgeMutationPending || needsReview(mutationKey)) return;
+    const approve = action === 'approve';
+    const promptText = approve
+      ? '¿Aprobar esta propuesta? Una vez aprobada, Che Vení podrá usarla como conocimiento activo según su alcance y riesgo.'
+      : '¿Rechazar esta propuesta? No se activará y quedará conservada en el historial.';
+
+    if (!window.confirm(promptText)) return;
+    if (!currentView()) return;
+    const stableIntentId = storeIntent(mutationKey);
+    if (!stableIntentId) {
+      button.disabled = true;
+      window.alert('No pudimos guardar la operación pendiente. No se envió la decisión.');
+      return;
+    }
+    if (!currentView()) { clearIntent(mutationKey); return; }
+
+    knowledgeMutationPending = true;
+    const mutationSequence = ++loadSequence;
+    list.replaceChildren();
+    const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 8000);
+    let dispatched = false, confirmed = false;
+    function mutationCurrent() {
+      return loadSequence === mutationSequence && readSectionToken() === accessToken && !document.body.classList.contains('manager-auth-pending');
+    }
+    function freezeForReview() {
+      knowledgeUncertain.add(mutationKey);
+      if (!mutationCurrent()) return;
+      window.alert('No pudimos confirmar el resultado de la decisión. No la repitas: verificá el estado antes de continuar.');
+    }
+    const previousText = button.textContent;
+    button.disabled = true;
+    button.textContent = approve ? 'Aprobando…' : 'Rechazando…';
+
+    try {
+      dispatched = true;
+      const response = await fetchManager(BACKEND_KNOWLEDGE_URL, {
+        signal: controller.signal,
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-store',
+        headers: {
+          Authorization: 'Bearer ' + accessToken,
+          'Idempotency-Key': stableIntentId,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          action,
+          knowledge_item_id: item.id,
+          version_id: item.version.id
+        })
+      });
+
+      let body = null;
+      try { body = await response.json(); } catch (_) {}
+
+      if (!mutationCurrent()) return;
+      const knownDenials = {
+        MANAGER_WRITE_DENIED: 403, RESOURCE_OUT_OF_SCOPE: 403, MANAGER_PERMISSION_DENIED: 403,
+        MANAGER_OPERATIONS_NOT_RELEASED: 503,
+        KNOWLEDGE_VERSION_NOT_ACTIVATABLE: 409, KNOWLEDGE_VERSION_NOT_REJECTABLE: 409,
+        SAFETY_REVIEW_REQUIRES_SECOND_APPROVER: 409
+      };
+      const reviewedDenial = !response.ok && body && body.ok === false
+        && knownDenials[body.error] === response.status && body.reconciliation_required !== true;
+      if (!body || body.reconciliation_required === true || (!reviewedDenial && (!response.ok || !validDecision(body, item, action)))) { freezeForReview(); return; }
+      if (!response.ok || body.ok !== true) {
+        if (!clearIntent(mutationKey)) { freezeForReview(); return; }
+        const code = body && body.error ? String(body.error) : 'KNOWLEDGE_DECISION_FAILED';
+        if (code === 'SAFETY_REVIEW_REQUIRES_SECOND_APPROVER') {
+          window.alert('Esta propuesta requiere una segunda aprobación por seguridad. No fue activada.');
+        } else {
+          window.alert('No se pudo completar la decisión. Código: ' + code);
+        }
+        return;
+      }
+
+      confirmed = true; knowledgeUncertain.add(mutationKey);
+      if (loadSequence !== mutationSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      lastLoadedToken = null;
+      await maybeLoadKnowledge();
+    } catch (_) {
+      if (dispatched) freezeForReview();
+    } finally {
+      clearTimeout(timer); knowledgeMutationPending = false;
+      button.disabled = confirmed || needsReview(mutationKey);
+      button.textContent = previousText;
+      if (!needsReview(mutationKey) && loadSequence === mutationSequence && readSectionToken() === accessToken) {
+        lastLoadedToken = null; maybeLoadKnowledge();
+      }
+    }
+  }
+
+  function addDecisionButton(container, label, item, action, danger = false) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    const renderToken = readSectionToken(), renderSequence = loadSequence;
+    button.disabled = needsReview(item.id + ':' + item.version.id);
+    button.textContent = label;
+    button.style.padding = '8px 11px';
+    button.style.borderRadius = '10px';
+    button.style.cursor = 'pointer';
+    button.style.fontWeight = '800';
+    button.style.border = danger ? '1px solid #e7c8bd' : '1px solid #0f766e';
+    button.style.background = danger ? '#fff' : '#0f766e';
+    button.style.color = danger ? '#8b2f18' : '#fff';
+    button.addEventListener('click', () => decideKnowledge(item, action, button, renderToken, renderSequence));
+    container.appendChild(button);
+  }
+
+  function renderKnowledge(items) {
+    list.replaceChildren();
+
+    if (!items.length) {
+      const empty = document.createElement('article');
+      empty.className = 'card';
+      empty.style.gridColumn = '1 / -1';
+
+      const title = document.createElement('b');
+      title.textContent = 'Sin conocimiento cargado';
+
+      const detail = document.createElement('p');
+      detail.className = 'muted';
+      detail.textContent = 'El backend respondió correctamente, pero esta cuenta todavía no tiene elementos de conocimiento.';
+
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = '0 elementos reales';
+
+      empty.append(title, detail, tag);
+      list.appendChild(empty);
+      return;
+    }
+
+    items.forEach((item) => {
+      const card = document.createElement('article');
+      card.className = 'card';
+
+      const title = document.createElement('b');
+      title.textContent = text(item.knowledge_key, categoryLabels[item.category] || 'Conocimiento');
+
+      const scope = document.createElement('span');
+      scope.className = 'muted';
+      scope.textContent =
+        scopeLabel(item) + ' · ' + (categoryLabels[item.category] || text(item.category, 'Sin categoría'));
+
+      const content = document.createElement('p');
+      content.textContent = item.version && item.version.content
+        ? String(item.version.content)
+        : 'Sin versión disponible para mostrar.';
+
+      const tags = document.createElement('div');
+      tags.style.display = 'flex';
+      tags.style.flexWrap = 'wrap';
+      tags.style.gap = '6px';
+      tags.style.marginTop = '10px';
+
+      const visibleVersionIsDraft =
+        item.version &&
+        item.version.status === 'draft' &&
+        item.version.is_current !== true;
+
+      const visibleStatus = visibleVersionIsDraft ? 'review' : item.status;
+
+      addTag(
+        tags,
+        statusLabels[visibleStatus] || text(visibleStatus, 'Sin estado'),
+        statusClass(visibleStatus)
+      );
+      addTag(
+        tags,
+        riskLabels[item.risk_level] || text(item.risk_level, 'Riesgo no informado'),
+        riskClass(item.risk_level)
+      );
+
+      if (item.version) {
+        addTag(tags, 'v' + text(item.version.version_number, '?'), 'tag');
+      }
+
+      const versionMeta = document.createElement('div');
+      versionMeta.className = 'muted';
+      versionMeta.style.marginTop = '10px';
+      versionMeta.style.fontSize = '.82rem';
+
+      if (item.version) {
+        const source = sourceLabels[item.version.source_type] || text(item.version.source_type, 'Fuente no informada');
+        versionMeta.textContent =
+          source +
+          (item.version.is_current
+            ? ' · versión actual'
+            : visibleVersionIsDraft
+              ? ' · propuesta pendiente'
+              : ' · versión visible') +
+          (visibleVersionIsDraft && item.current_version_number
+            ? ' · v' + item.current_version_number + ' sigue activa'
+            : '') +
+          ' · ' +
+          text(item.version_count, '0') +
+          (Number(item.version_count) === 1 ? ' versión' : ' versiones');
+      } else {
+        versionMeta.textContent = text(item.version_count, '0') + ' versiones';
+      }
+
+      card.append(title, scope, content, tags, versionMeta);
+
+      const isDraftReview = visibleVersionIsDraft;
+
+      if (isDraftReview) {
+        const reviewNote = document.createElement('p');
+        reviewNote.className = 'muted';
+        reviewNote.style.margin = '10px 0 0';
+        reviewNote.style.fontSize = '.84rem';
+        reviewNote.textContent = needsReview(item.id + ':' + item.version.id)
+          ? 'Decisión pendiente de conciliación. No la repitas ni borres el bloqueo local; requiere revisión antes de continuar.'
+          : 'Propuesta pendiente: revisala antes de convertirla en conocimiento activo.';
+
+        const decisions = document.createElement('div');
+        decisions.style.display = 'flex';
+        decisions.style.flexWrap = 'wrap';
+        decisions.style.gap = '7px';
+        decisions.style.marginTop = '10px';
+
+        addDecisionButton(decisions, 'Aprobar', item, 'approve');
+        addDecisionButton(decisions, 'Rechazar', item, 'reject', true);
+
+        card.append(reviewNote, decisions);
+      }
+
+      list.appendChild(card);
+    });
+  }
+
+  function renderKnowledgeError(code) {
+    list.replaceChildren();
+
+    const errorCard = document.createElement('article');
+    errorCard.className = 'card';
+    errorCard.style.gridColumn = '1 / -1';
+
+    const title = document.createElement('b');
+    title.textContent = 'No pudimos cargar el conocimiento';
+
+    const detail = document.createElement('p');
+    detail.className = 'muted';
+    detail.textContent = ['KNOWLEDGE_SCOPE_REVOKED', 'KNOWLEDGE_SCOPE_CHANGED'].includes(code)
+      ? 'Tus permisos sobre este conocimiento cambiaron. Verificá el acceso antes de continuar.'
+      : 'No pudimos verificar el acceso al conocimiento. Revisá tu sesión y recargá la página.';
+
+    errorCard.append(title, detail);
+    list.appendChild(errorCard);
+  }
+
+  function readSectionToken() {
+    try { return sessionStorage.getItem(TOKEN_KEY); }
+    catch (_) { if (!document.body.classList.contains('manager-auth-pending')) window.dispatchEvent(new Event('cheveni-manager-session-denied')); return null; }
+  }
+
+  async function fetchManager(url, options) {
+    const sequence = loadSequence;
+    const accessToken = options.headers && String(options.headers.Authorization || '').replace(/^Bearer /, '');
+    const response = await fetch(url, {...options, redirect: 'error'});
+    // A current authorization denial invalidates cached private UI too.
+    if ([401, 403].includes(response.status) && !options.signal?.aborted && sequence === loadSequence && readSectionToken() === accessToken
+        && !document.body.classList.contains('manager-auth-pending')) {
+      window.dispatchEvent(new Event('cheveni-manager-session-denied'));
+    }
+    return response;
+  }
+
+  async function loadManagerKnowledge(accessToken) {
+    const controller = new AbortController();
+    let timer;
+    const deadline = new Promise((_, reject) => {
+      timer = setTimeout(() => { controller.abort(); reject(new Error('MANAGER_KNOWLEDGE_TIMEOUT')); }, 8000);
+    });
+    try {
+      // Bound both headers and JSON even if an adapter ignores cancellation.
+      const body = await Promise.race([deadline, (async () => {
+        const response = await fetchManager(BACKEND_KNOWLEDGE_URL, {
+          signal: controller.signal, method: 'GET', mode: 'cors', cache: 'no-store',
+          headers: {Authorization: 'Bearer ' + accessToken, Accept: 'application/json'}
+        });
+        let result = null;
+        try { result = await response.json(); } catch (_) {}
+        if (!response.ok || !result || result.ok !== true || !Array.isArray(result.knowledge)) {
+          const error = new Error(result && result.error ? String(result.error) : 'MANAGER_KNOWLEDGE_LOAD_FAILED');
+          error.code = result && result.error;
+          throw error;
+        }
+        return result;
+      })()]);
+      return body.knowledge;
+    } finally { clearTimeout(timer); }
+  }
+
+  let lastLoadedToken = null;
+  let loadSequence = 0;
+
+  async function maybeLoadKnowledge() {
+    const panelVisible = !document.body.classList.contains('manager-auth-pending');
+    const accessToken = readSectionToken();
+
+    if (!panelVisible || !accessToken) {
+      lastLoadedToken = null;
+      ++loadSequence;
+      list.replaceChildren();
+      return;
+    }
+
+    if (accessToken === lastLoadedToken) return;
+
+    const sequence = ++loadSequence;
+    lastLoadedToken = accessToken;
+    // Remove the previous session's content before the replacement read yields.
+    list.replaceChildren();
+
+    try {
+      const items = await loadManagerKnowledge(accessToken);
+      if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      renderKnowledge(items);
+    } catch (error) {
+      if (sequence !== loadSequence || readSectionToken() !== accessToken || document.body.classList.contains('manager-auth-pending')) return;
+      renderKnowledgeError(error && error.code);
+    }
+  }
+
+  const observer = new MutationObserver(() => {
+    maybeLoadKnowledge();
+  });
+
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['class']
+  });
+
+  if (authScreen) {
+    observer.observe(authScreen, {
+      attributes: true,
+      attributeFilter: ['hidden']
+    });
+  }
+
+  // Invalidate before the browser can suspend observer delivery into BFCache.
+  window.addEventListener('pagehide', () => { ++loadSequence; lastLoadedToken = null; list.replaceChildren(); });
+  window.addEventListener('pageshow', maybeLoadKnowledge);
+  maybeLoadKnowledge();
+})();

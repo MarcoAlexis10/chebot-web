@@ -10,7 +10,7 @@ test('property commands distinguish draft/configuration/review/decision/pause/ar
 });
 test('property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras',()=>{
  const x=propertyCase();
- for(const patch of [{role:'co_manager'},{role:'manager'},{accountId:id(91)},{authorityRevision:8},{restrictionsRevision:8},{expiresAtMs:x.nowMs},{revoked:true},{cohortCount:2},{jurisdiction:'CABA'}])assert.equal(review({...x,context:{...x.context,...patch}}).state,'PROPERTY_REVIEW_REJECTED');
+ for(const patch of [{role:'co_manager'},{role:'manager'},{sessionId:id(99)},{sessionRevision:3},{accountId:id(91)},{authorityRevision:8},{restrictionsRevision:8},{expiresAtMs:x.nowMs},{revoked:true},{cohortCount:2},{jurisdiction:'CABA'}])assert.equal(review({...x,context:{...x.context,...patch}}).state,'PROPERTY_REVIEW_REJECTED');
  for(const patch of [{expectedRevision:3},{accountId:id(3)},{role:'owner'}])assert.equal(review({...x,command:{...x.command,...patch}}).state,'PROPERTY_REVIEW_REJECTED');
  assert.equal(review({...x,snapshot:{...x.snapshot,buildingId:id(9),buildingAccountId:id(91)}}).state,'PROPERTY_REVIEW_REJECTED');
  assert.equal(review({...x,command:{...x.command,payload:{...x.command.payload,configuration:{...x.command.payload.configuration,wifi:'FICTIONAL_REJECT'}}}}).state,'PROPERTY_REVIEW_REJECTED');
@@ -21,4 +21,14 @@ test('property review rejects client authority, stale revision, wrong account/bu
 test('held property ports cannot accept a writer or ACK and never execute callbacks',async()=>{
  let touches=0;const poison=new Proxy({},{get(){touches++;throw Error()}}),ports=createPropertyPorts(poison);
  for(const op of operations){const r=await ports[op](poison);assert.equal(r.state,'PROPERTY_PORT_HELD');assert.equal(r.receipt,null);assert.equal(r.dispatchPerformed,false);assert.equal(r.automaticRetryAllowed,false);}assert.equal(touches,0);
+});
+test('property configuration rejects unpaired Unicode that cannot survive PostgreSQL UTF8 serialization',async()=>{
+ const baseline=process.execArgv.includes('--conditions=baseline');
+ const {reviewPropertyShape}=await import('../property-stay-prearrival-20261112-v1/contracts.mjs');
+ for(const key of ['internalName','address','floorOrUnit'])for(const text of ['QA\ud800','QA\udfff']){
+  const x=propertyCase();x.command.payload.configuration[key]=text;
+  if(baseline){assert.notEqual(reviewPropertyShape(x.command.payload.configuration).shapeReviewed,true);return;}
+  assert.equal(review(x).state,'PROPERTY_REVIEW_REJECTED');
+ }
+ const valid=propertyCase();valid.command.payload.configuration.internalName='QA FICTICIA 🧉';assert.equal(review(valid).state,'PROPERTY_TRANSITION_REVIEWED_HELD');
 });
