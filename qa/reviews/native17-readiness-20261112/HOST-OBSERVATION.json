@@ -1,0 +1,93 @@
+{
+  "observation": "CURRENT_WORK_METADATA_ONLY",
+  "date": "2026-11-12",
+  "noChildBinariesExecuted": true,
+  "noSocketsOpened": true,
+  "noCredentialEnvironmentValuesRead": true,
+  "pathUsedOnlyForBinaryLookup": true,
+  "uid": 1000,
+  "status": {
+    "Uid": "1000\t1000\t1000\t1000",
+    "Gid": "1000\t1000\t1000\t1000",
+    "NSpid": "6",
+    "CapEff": "0000000000000000",
+    "CapBnd": "0000000000000000",
+    "NoNewPrivs": "1",
+    "Seccomp": "2",
+    "Seccomp_filters": "1"
+  },
+  "namespaces": {
+    "user": {
+      "self": "user:[4026532373]",
+      "pid1": "user:[4026532373]"
+    },
+    "pid": {
+      "self": "pid:[4026532306]",
+      "pid1": "pid:[4026532306]"
+    },
+    "net": {
+      "self": "net:[4026532307]",
+      "pid1": "net:[4026532307]"
+    },
+    "mnt": {
+      "self": "mnt:[4026532304]",
+      "pid1": "mnt:[4026532304]"
+    }
+  },
+  "binariesLocatedNotExecuted": {
+    "postgres": null,
+    "initdb": null,
+    "pg_ctl": null,
+    "psql": null,
+    "unshare": "/usr/bin/unshare",
+    "bwrap": "/usr/bin/bwrap",
+    "node": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node"
+  },
+  "knownInstallationDirs": {
+    "/usr/lib/postgresql": null,
+    "/usr/pgsql-17": null,
+    "/opt/postgresql": null
+  },
+  "cgroupLimits": {
+    "memory.max": null,
+    "pids.max": null,
+    "cpu.max": null,
+    "memory.swap.max": null,
+    "memory/memory.limit_in_bytes": null,
+    "pids/pids.max": null,
+    "cpu/cpu.cfs_quota_us": null,
+    "cpu/cpu.cfs_period_us": null
+  },
+  "rlimits": {
+    "RLIMIT_NPROC": [
+      39792,
+      39792
+    ],
+    "RLIMIT_AS": [
+      -1,
+      -1
+    ],
+    "RLIMIT_NOFILE": [
+      16384,
+      16384
+    ],
+    "RLIMIT_CPU": [
+      -1,
+      -1
+    ],
+    "RLIMIT_FSIZE": [
+      -1,
+      -1
+    ]
+  },
+  "mountCount": 37,
+  "sharedMountCount": 0,
+  "routeEntries": 0,
+  "nativeVersionObserved": false,
+  "disposableMountPidResourcePerimeterAccredited": false,
+  "remoteResourcesInspected": false,
+  "otherHostsClaimedAbsent": false,
+  "hostDecision": "HOST_NOT_AVAILABLE",
+  "betaDecision": "NO-GO",
+  "scopeLimit": "No accredited host among currently inspectable authorized resources. Not a global inventory."
+}

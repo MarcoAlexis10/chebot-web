@@ -1,0 +1,383 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532307]", "childNetns": "net:[4026532234]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: immutable intent lock and NEW/KNOWN original provenance agree with the proposed ACL
+not ok 1 - immutable intent lock and NEW/KNOWN original provenance agree with the proposed ACL
+  ---
+  duration_ms: 2.000597
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   {
+    +     detail: 'FOR UPDATE needs UPDATE; immutable history must use the already-required fence without widening ACL',
+    +     files: [
+    +       '00-source-base-DO-NOT-APPLY.sql',
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'IMMUTABLE_INTENT_LOCK_PRIVILEGE'
+    +   },
+    +   {
+    +     detail: 'FOR UPDATE needs UPDATE; immutable history must use the already-required fence without widening ACL',
+    +     files: [
+    +       '03-bound-entries-DO-NOT-APPLY.sql',
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'IMMUTABLE_INTENT_LOCK_PRIVILEGE'
+    +   },
+    +   {
+    +     detail: 'Must not disclose prior history before protected original-reference equality',
+    +     files: [
+    +       '02-admission-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'KNOWN_ORIGINAL_NOT_COMPARED'
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      id: 'IMMUTABLE_INTENT_LOCK_PRIVILEGE'
+      files:
+        0: '00-source-base-DO-NOT-APPLY.sql'
+        1: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'FOR UPDATE needs UPDATE; immutable history must use the already-required fence without widening ACL'
+    1:
+      id: 'IMMUTABLE_INTENT_LOCK_PRIVILEGE'
+      files:
+        0: '03-bound-entries-DO-NOT-APPLY.sql'
+        1: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'FOR UPDATE needs UPDATE; immutable history must use the already-required fence without widening ACL'
+    2:
+      id: 'KNOWN_ORIGINAL_NOT_COMPARED'
+      files:
+        0: '02-admission-DO-NOT-APPLY.sql'
+      detail: 'Must not disclose prior history before protected original-reference equality'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:6:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: restrictive RLS guards cannot be OR-ed away and remain enforced on source and effect tables
+not ok 2 - restrictive RLS guards cannot be OR-ed away and remain enforced on source and effect tables
+  ---
+  duration_ms: 0.76376
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   {
+    +     detail: 'Default permissive policy can OR with an existing broader policy',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'PERMISSIVE_POLICY_BYPASS'
+    +   },
+    +   {
+    +     detail: 'auth.users',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'auth.sessions',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_manager_web_identities',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_account_members',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_accounts',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_properties',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_stays',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_incidents',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_member_property_permissions',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_incident_events',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   },
+    +   {
+    +     detail: 'public.concierge_audit_events',
+    +     files: [
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      id: 'PERMISSIVE_POLICY_BYPASS'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'Default permissive policy can OR with an existing broader policy'
+    1:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'auth.users'
+    2:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'auth.sessions'
+    3:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_manager_web_identities'
+    4:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_account_members'
+    5:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_accounts'
+    6:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_properties'
+    7:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_stays'
+    8:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_incidents'
+    9:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_member_property_permissions'
+    10:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_incident_events'
+    11:
+      id: 'RLS_ENABLE_FORCE_UNSPECIFIED'
+      files:
+        0: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'public.concierge_audit_events'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:9:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: provider projection and final revalidation agree across storage, writer and reader
+not ok 3 - provider projection and final revalidation agree across storage, writer and reader
+  ---
+  duration_ms: 0.449591
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   {
+    +     detail: 'Effect policies cannot correlate the provider without immutable row projection',
+    +     files: [
+    +       '00-source-base-DO-NOT-APPLY.sql',
+    +       '04-acl-rls-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'EFFECT_PROVIDER_PROJECTION_MISSING'
+    +   },
+    +   {
+    +     detail: 'writer must revalidate after final authority/floor reads',
+    +     files: [
+    +       '03-bound-entries-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'PROVIDER_FINAL_REVALIDATION_MISSING'
+    +   },
+    +   {
+    +     detail: 'reader must revalidate after final authority/floor reads',
+    +     files: [
+    +       '03-bound-entries-DO-NOT-APPLY.sql'
+    +     ],
+    +     id: 'PROVIDER_FINAL_REVALIDATION_MISSING'
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      id: 'EFFECT_PROVIDER_PROJECTION_MISSING'
+      files:
+        0: '00-source-base-DO-NOT-APPLY.sql'
+        1: '04-acl-rls-DO-NOT-APPLY.sql'
+      detail: 'Effect policies cannot correlate the provider without immutable row projection'
+    1:
+      id: 'PROVIDER_FINAL_REVALIDATION_MISSING'
+      files:
+        0: '03-bound-entries-DO-NOT-APPLY.sql'
+      detail: 'writer must revalidate after final authority/floor reads'
+    2:
+      id: 'PROVIDER_FINAL_REVALIDATION_MISSING'
+      files:
+        0: '03-bound-entries-DO-NOT-APPLY.sql'
+      detail: 'reader must revalidate after final authority/floor reads'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:12:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: capture covers owners/schema and all seven review artifacts preserve their hard aborts
+not ok 4 - capture covers owners/schema and all seven review artifacts preserve their hard aborts
+  ---
+  duration_ms: 0.262892
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + [
+    +   {
+    +     detail: 'Capture effective function and schema privileges of owners as well as logins',
+    +     files: [
+    +       '05-catalog-capture-NOT-RUN.sql'
+    +     ],
+    +     id: 'CAPTURE_OWNER_SCHEMA_GAP'
+    +   }
+    + ]
+    - []
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0:
+      id: 'CAPTURE_OWNER_SCHEMA_GAP'
+      files:
+        0: '05-catalog-capture-NOT-RUN.sql'
+      detail: 'Capture effective function and schema privileges of owners as well as logins'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/coherence.test.mjs:16:9)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: provider binding expiring inside the transport resolution await cannot compile a write or read
+not ok 5 - provider binding expiring inside the transport resolution await cannot compile a write or read
+  ---
+  duration_ms: 7.493307
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/provider-expiry.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'REVIEW_BOUND_SQL_REQUEST'
+    - 'HELD_BOUND_SQL_REQUEST'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'HELD_BOUND_SQL_REQUEST'
+  actual: 'REVIEW_BOUND_SQL_REQUEST'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/native17-readiness-20261112-v1/provider-expiry.test.mjs:19:10)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 0
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 88.247233
