@@ -1,0 +1,82 @@
+{
+  "web": "f1a073a9ca951025c951139d61d695b841cdc98e",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "classification": "SOURCE_ONLY_NOT_EXECUTION",
+  "inherits": [
+    "qa/property-authority-preflight-20261112-v1/SOURCE-PINS.json",
+    "qa/first-property-20261112-v1/SOURCE-PINS.json"
+  ],
+  "sources": [
+    {
+      "repo": "backend",
+      "path": "20-MIGRACION-01-ACCOUNTS-MEMBERS.sql",
+      "bytes": 4037,
+      "sha256": "70ecf2b8bdf4942c5b80e0a82afc82235490c8ed7fc9ff779cd98c8b6ca7a0bd",
+      "gitBlob": "94d872b3ce13873567c86d85a0ee4924f4b01b5f"
+    },
+    {
+      "repo": "backend",
+      "path": "25-MIGRACION-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "bytes": 7736,
+      "sha256": "3e8455810c9a68d93d444534cb7b6bac3241285b52a9a4896f59c4a2d28f7a6c",
+      "gitBlob": "a8d9e05274f3eb8012447b4609b76b68948ea4af"
+    },
+    {
+      "repo": "backend",
+      "path": "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "bytes": 13877,
+      "sha256": "9cb2a51043483a38d2d337888b01299e39aac8ffe193544dd837e1c1689f1fa3",
+      "gitBlob": "7c7ee0ece4c227a8fedfac68dc0b3eebf31e3e70"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/read-cut.mjs",
+      "bytes": 6839,
+      "sha256": "4c6303fad5e95406de9b501697f4c7045513aa96295b7413fcc78da13f30b208",
+      "gitBlob": "c7f51561621a2c3f011d369d2e02f5934445716c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/SOURCE-PINS.json",
+      "bytes": 10792,
+      "sha256": "615274ba41c15b9d91607c072a9799ef05b9871bb70d82392632269ca62ac289",
+      "gitBlob": "35bfbc552ec4cf65e8d301d2433b78e8abcb0c05"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/ASUS-MANUAL-PLAN.json",
+      "bytes": 9893,
+      "sha256": "6e1bbbf2d0769c0171f58a06994d9e76a36e593d9327034dcb061513f8e14101",
+      "gitBlob": "f3dafb2f29453f6777c32e7641370aa208de9882"
+    },
+    {
+      "repo": "web",
+      "path": "qa/reviews/property-authority-preflight-20261112/ASUS-PREFLIGHT.md",
+      "bytes": 13139,
+      "sha256": "7bb5788ee3ddda515806259a4d710ea37b1bd3d3d2db0bc04c3580ff54c5e39d",
+      "gitBlob": "2bb129eaa0a8ae71971ff08026c6685df1438a47"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/capture-contract.mjs",
+      "bytes": 5676,
+      "sha256": "142fdc28435133e7a887b8dd5a7abda50a5e58476777021777500989c4a2143c",
+      "gitBlob": "62ee6947f52d1fff9252bc9ef9a9286041c8a72a"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/candidate.mjs",
+      "bytes": 756,
+      "sha256": "61bbc53e82ac0a1f3bbc4e920ae4be47d703e582929c668dcc1624cde7b8f08d",
+      "gitBlob": "7c22c3560ab0c652d26227e08daa542d96d9bda4"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/SOURCE-PINS.json",
+      "bytes": 53370,
+      "sha256": "84d871ca876dffd6a096d98927a622cc1c2632787a39a22a2a31b642226ed5a9",
+      "gitBlob": "483e3f5e746a3dc9a1c461dd1a242ba57792b1bb"
+    }
+  ]
+}

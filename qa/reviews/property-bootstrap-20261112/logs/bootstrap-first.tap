@@ -1,0 +1,147 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: pre-property relation supports no property and no started trial, rejects duplicate/occupied/dangling-trial facts and never mints property_create authority
+not ok 1 - pre-property relation supports no property and no started trial, rejects duplicate/occupied/dangling-trial facts and never mints property_create authority
+  ---
+  duration_ms: 10.031277
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs:3:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /manage_stays|launch\(|scope_v2\(|updated_at|\bgrant\b[^\n]*\bto\b|insert into|update public/i. Input:
+    
+    '-- DO NOT APPLY. Source-compatible fact projection, NOT an authority producer.\n' +
+      '-- No SQL has been executed. No replacement of private_mutation_authority_v1.\n' +
+      'begin;\n' +
+      "do $$begin raise exception 'PROPERTY_BOOTSTRAP_REVIEW_ONLY';end$$;\n" +
+      '\n' +
+      'create function concierge_invite_private.bootstrap_relation_facts_review_v1(p_user uuid)\n' +
+      'returns table(account_id uuid,member_id uuid,member_role text,account_status text,\n' +
+      ' founding_manager boolean,beta_started_at timestamptz,beta_ends_at timestamptz,\n' +
+      ' property_count bigint,slot_count bigint,nonrevoked_owner_count bigint)\n' +
+      "language plpgsql security invoker set search_path='' as $$\n" +
+      'begin\n' +
+      ' -- A separate authorization/materialization must retain protected Auth, RLS,\n' +
+      ' -- revisions/floors, founder/jurisdiction and pre-DML fence coverage. This guard\n' +
+      ' -- intentionally blocks execution even if someone bypasses the outer abort.\n' +
+      " raise exception 'BOOTSTRAP_FACT_SOURCE_NOT_ACCREDITED';\n" +
+      ' return query\n' +
+      ' with identity_rows as materialized (\n' +
+      '  select i.account_id,i.member_id\n' +
+      '  from public.concierge_manager_web_identities i\n' +
+      "  where i.auth_user_id=p_user and i.status='active' and i.revoked_at is null\n" +
+      ' ), relation_rows as materialized (\n' +
+      '  select a.id as aid,m.id as mid,m.role,a.status,a.founding_manager,\n' +
+      '         a.beta_started_at,a.beta_ends_at\n' +
+      '  from identity_rows i\n' +
+      '  join public.concierge_account_members m on m.id=i.member_id and m.account_id=i.account_id\n' +
+      '  join public.concierge_accounts a on a.id=m.account_id\n' +
+      "  where m.status='active' and m.revoked_at is null and m.role='owner'\n" +
+      "    and a.status in ('active','testing')\n" +
+      '    and (select count(*) from identity_rows)=1\n' +
+      ' )\n' +
+      ' select r.aid,r.mid,r.role,r.status,r.founding_manager,r.beta_started_at,r.beta_ends_at,\n' +
+      '   (select count(*) from public.concierge_properties p where p.account_id=r.aid),\n' +
+      '   (select count(*) from concierge_invite_private.beta_property_slot_v1 s where s.account_id=r.aid),\n' +
+      '   (select count(*) from public.concierge_account_members o\n' +
+      "     where o.account_id=r.aid and o.role='owner' and o.status<>'revoked')\n" +
+      ' from relation_rows r where (select count(*) from relation_rows)=1;\n' +
+      ' -- No trial date update, property insert, client-selected account, jurisdiction\n' +
+      ' -- guess from timezone/city, revision from updated_at or fabricated grant.\n' +
+      'end$$;\n' +
+      'revoke all on function concierge_invite_private.bootstrap_relation_facts_review_v1(uuid)\n' +
+      ' from public;\n' +
+      'rollback;\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    -- DO NOT APPLY. Source-compatible fact projection, NOT an authority producer.
+    -- No SQL has been executed. No replacement of private_mutation_authority_v1.
+    begin;
+    do $$begin raise exception 'PROPERTY_BOOTSTRAP_REVIEW_ONLY';end$$;
+    
+    create function concierge_invite_private.bootstrap_relation_facts_review_v1(p_user uuid)
+    returns table(account_id uuid,member_id uuid,member_role text,account_status text,
+     founding_manager boolean,beta_started_at timestamptz,beta_ends_at timestamptz,
+     property_count bigint,slot_count bigint,nonrevoked_owner_count bigint)
+    language plpgsql security invoker set search_path='' as $$
+    begin
+     -- A separate authorization/materialization must retain protected Auth, RLS,
+     -- revisions/floors, founder/jurisdiction and pre-DML fence coverage. This guard
+     -- intentionally blocks execution even if someone bypasses the outer abort.
+     raise exception 'BOOTSTRAP_FACT_SOURCE_NOT_ACCREDITED';
+     return query
+     with identity_rows as materialized (
+      select i.account_id,i.member_id
+      from public.concierge_manager_web_identities i
+      where i.auth_user_id=p_user and i.status='active' and i.revoked_at is null
+     ), relation_rows as materialized (
+      select a.id as aid,m.id as mid,m.role,a.status,a.founding_manager,
+             a.beta_started_at,a.beta_ends_at
+      from identity_rows i
+      join public.concierge_account_members m on m.id=i.member_id and m.account_id=i.account_id
+      join public.concierge_accounts a on a.id=m.account_id
+      where m.status='active' and m.revoked_at is null and m.role='owner'
+        and a.status in ('active','testing')
+        and (select count(*) from identity_rows)=1
+     )
+     select r.aid,r.mid,r.role,r.status,r.founding_manager,r.beta_started_at,r.beta_ends_at,
+       (select count(*) from public.concierge_properties p where p.account_id=r.aid),
+       (select count(*) from concierge_invite_private.beta_property_slot_v1 s where s.account_id=r.aid),
+       (select count(*) from public.concierge_account_members o
+         where o.account_id=r.aid and o.role='owner' and o.status<>'revoked')
+     from relation_rows r where (select count(*) from relation_rows)=1;
+     -- No trial date update, property insert, client-selected account, jurisdiction
+     -- guess from timezone/city, revision from updated_at or fabricated grant.
+    end$$;
+    revoke all on function concierge_invite_private.bootstrap_relation_facts_review_v1(uuid)
+     from public;
+    rollback;
+    
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs:7:426)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: capture keeps intent, attempt, original and current revisions outside the legacy eleven-argument writer rather than silently dropping them
+not ok 2 - capture keeps intent, attempt, original and current revisions outside the legacy eleven-argument writer rather than silently dropping them
+  ---
+  duration_ms: 0.939818
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'PRE_PROPERTY_CAPTURE_SUBSET_REVIEWED_HELD'
+    - 'PRE_PROPERTY_BINDING_INCOMPATIBLE_HELD'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'PRE_PROPERTY_BINDING_INCOMPATIBLE_HELD'
+  actual: 'PRE_PROPERTY_CAPTURE_SUBSET_REVIEWED_HELD'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs:10:343)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 108.326761
