@@ -1,0 +1,47 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532316]", "childNetns": "net:[4026532246]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: property commands distinguish draft/configuration/review/decision/pause/archive without inventing writes or authority
+ok 1 - property commands distinguish draft/configuration/review/decision/pause/archive without inventing writes or authority
+  ---
+  duration_ms: 1.651532
+  type: 'test'
+  ...
+# Subtest: property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras
+ok 2 - property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras
+  ---
+  duration_ms: 0.398792
+  type: 'test'
+  ...
+# Subtest: held property ports cannot accept a writer or ACK and never execute callbacks
+ok 3 - held property ports cannot accept a writer or ACK and never execute callbacks
+  ---
+  duration_ms: 0.192771
+  type: 'test'
+  ...
+# Subtest: inventory accepts the six actual SQL stay states, excludes the exact edited revision and preserves half-open conflicts
+ok 4 - inventory accepts the six actual SQL stay states, excludes the exact edited revision and preserves half-open conflicts
+  ---
+  duration_ms: 14.45557
+  type: 'test'
+  ...
+# Subtest: date changes bind current revisions, CABA UTC calendar and forbid stale inventory, invalid windows or cross-property rows
+ok 5 - date changes bind current revisions, CABA UTC calendar and forbid stale inventory, invalid windows or cross-property rows
+  ---
+  duration_ms: 4.124586
+  type: 'test'
+  ...
+# Subtest: guest-free draft, association, confirmation, cancel and checkout remain distinct proposals with no fabricated guest or effect
+ok 6 - guest-free draft, association, confirmation, cancel and checkout remain distinct proposals with no fabricated guest or effect
+  ---
+  duration_ms: 1.059839
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 104.423425
