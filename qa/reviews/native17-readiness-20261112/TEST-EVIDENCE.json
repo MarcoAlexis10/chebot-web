@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-12",
+  "newUniqueTests": 5,
+  "newUniquePass": 5,
+  "newUniqueFail": 0,
+  "newUniqueSkip": 0,
+  "breakdown": {
+    "staticCrossArtifact": 4,
+    "nodeModeledAwaitWithDoubles": 1
+  },
+  "focalPriorRegressionPass": 1,
+  "focalRegressionJustification": "provider transport implementation changed to recheck independent binding expiration after await; exact prior unexpired ABI case extracted unchanged with imports targeting successor",
+  "prior17CasesExecuted": 1,
+  "prior22And2Executed": 0,
+  "historicalSuitesExecuted": 0,
+  "nativeHistoricalCasesExecuted": 0,
+  "baselineNewCasesAgainstOldSources": {
+    "pass": 0,
+    "fail": 5,
+    "note": "These are five new cases on old inputs, not five native defects or repeated unique tests"
+  },
+  "executions": [
+    {
+      "file": "logs/incompatibilities-before.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --conditions=baseline --test --test-reporter=tap web/qa/native17-readiness-20261112-v1/coherence.test.mjs web/qa/native17-readiness-20261112-v1/provider-expiry.test.mjs",
+      "counts": {
+        "tests": 5,
+        "pass": 0,
+        "fail": 5,
+        "skipped": 0
+      },
+      "names": [
+        "immutable intent lock and NEW/KNOWN original provenance agree with the proposed ACL",
+        "restrictive RLS guards cannot be OR-ed away and remain enforced on source and effect tables",
+        "provider projection and final revalidation agree across storage, writer and reader",
+        "capture covers owners/schema and all seven review artifacts preserve their hard aborts",
+        "provider binding expiring inside the transport resolution await cannot compile a write or read"
+      ],
+      "sha256": "d4ea3dc0cc012b3328babe70df984cb03ce9c4992c57ea79ac5d433137b3e5ef",
+      "classification": "NEW_OFFLINE_CASES_BASELINE",
+      "kernelIsolation": "fresh user/net, empty credentials env, no loopback/external routes; ENETUNREACH=101"
+    },
+    {
+      "file": "logs/incompatibilities-after.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/native17-readiness-20261112-v1/coherence.test.mjs web/qa/native17-readiness-20261112-v1/provider-expiry.test.mjs",
+      "counts": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "immutable intent lock and NEW/KNOWN original provenance agree with the proposed ACL",
+        "restrictive RLS guards cannot be OR-ed away and remain enforced on source and effect tables",
+        "provider projection and final revalidation agree across storage, writer and reader",
+        "capture covers owners/schema and all seven review artifacts preserve their hard aborts",
+        "provider binding expiring inside the transport resolution await cannot compile a write or read"
+      ],
+      "sha256": "4d6a0ed859ceeee19e2f04f04daddd24b68dd66f25a96d06a152eb5293a9a862",
+      "classification": "NEW_OFFLINE_CASES_FINAL",
+      "kernelIsolation": "fresh user/net, empty credentials env, no loopback/external routes; ENETUNREACH=101"
+    },
+    {
+      "file": "logs/provider-compatibility.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/native17-readiness-20261112-v1/provider-compatibility.regression.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "bound transport preserves the original ABI arguments and adds only an instance-proven provider reference"
+      ],
+      "sha256": "ce6c33a0b1d04548e16e53232954bc3b8b7c6d30ef878d844f37d028d218b58d",
+      "classification": "FOCAL_PRIOR_REGRESSION",
+      "kernelIsolation": "fresh user/net, empty credentials env, no loopback/external routes; ENETUNREACH=101"
+    }
+  ],
+  "staticChecks": [
+    {
+      "file": "logs/static-readiness.json",
+      "command": "python web/qa/native17-readiness-20261112-v1/check_readiness.py",
+      "classification": "STATIC_TEXT_HASH_ROLE_BODY_COLUMN_PLAN_SCHEMA_NOT_SQL_ENGINE"
+    },
+    {
+      "file": "logs/syntax.log",
+      "classification": "NODE_CHECK_PYTHON_AST_NOT_TYPESCRIPT_OR_SQL"
+    },
+    {
+      "file": "logs/coherence-report.log",
+      "classification": "NARROW_STATIC_REPORT_NOT_COMPLETE_AUDIT"
+    },
+    {
+      "file": "logs/generation.json",
+      "command": "python web/qa/native17-readiness-20261112-v1/build_review.py",
+      "classification": "TEXT_GENERATION_ONLY"
+    }
+  ],
+  "hostObservation": {
+    "file": "HOST-OBSERVATION.json",
+    "command": "python web/qa/native17-readiness-20261112-v1/host-observation.py",
+    "readOnly": true,
+    "nativeAdmission": "HOST_NOT_AVAILABLE",
+    "operationalHostAccredited": false
+  },
+  "typescriptCompiled": false,
+  "sqlParserUsed": false,
+  "sqlExecuted": false,
+  "postgresStarted": false,
+  "nativeN01toN12Executed": 0,
+  "realProviderJwtVerified": false,
+  "externalCommitObserved": false,
+  "journalWitnessCustodyAccredited": false,
+  "a2RestoreExecuted": false,
+  "chromiumAttempted": false,
+  "httpHttpsIntegrationExchanges": 0,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

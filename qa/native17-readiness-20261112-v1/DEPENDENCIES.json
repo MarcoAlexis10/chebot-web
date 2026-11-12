@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "sourceHeads": {
+    "web": "4d4467042560a56ac7af0633e7c93064d2fad2b0",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "dependencies": [
+    {
+      "id": "D1",
+      "name": "Protected authority revision producer",
+      "artifact": "sql/01-revisions-DO-NOT-APPLY.sql",
+      "port": "current_revisions_v1(uuid,uuid,uuid)",
+      "invariant": "Existing authority_clock row, dataset/recovery epoch/bootstrap provenance, exact current independent cut; no seed or JWT revision.",
+      "requiredEvidence": "Native observation of atomic revision advance and exact cardinality; complete participating writers/revokers and source inventory.",
+      "currentState": "Clock source in review text; producer bootstrap and external corroboration absent.",
+      "operationallyAccredited": false
+    },
+    {
+      "id": "D2",
+      "name": "Independent restrictions, inventory and floors",
+      "artifact": "sql/01-revisions-DO-NOT-APPLY.sql",
+      "port": "protected_floor_v2()",
+      "invariant": "Dataset, epoch, authority revision, restriction sequence/digest, journal, inventory, current timestamps and external commit reference; all exact, never >=.",
+      "requiredEvidence": "Trusted current independent source, provenance/custody and temporal ordering across revocation and recovery; transcript-compatible existing protocol.",
+      "currentState": "Bridge returns zero rows; no new signed protocol or fixture source.",
+      "operationallyAccredited": false
+    },
+    {
+      "id": "D3",
+      "name": "Verified provider identity to durable claim",
+      "artifact": "sql/02-admission-DO-NOT-APPLY.sql",
+      "port": "provider_binding_v2(uuid)",
+      "invariant": "Provider-bound sub/session/expiry and original/intent/attempt/dispatch/current revisions/full floor; refresh cannot inherit binding. Final await expiry checked.",
+      "requiredEvidence": "Managed-provider verification, private attestor/channel custody, durable binding and transport with actual server-side session/revocation evidence.",
+      "currentState": "WeakMap proof remains in-process review only. SQL bridge returns zero rows; response ABI adapter/custody not wired.",
+      "operationallyAccredited": false
+    },
+    {
+      "id": "D4",
+      "name": "Trusted immutable original custody",
+      "artifact": "sql/02-admission-DO-NOT-APPLY.sql",
+      "port": "original_reference_v2(uuid,uuid,uuid) + original_intent_v1(uuid,uuid,uuid)",
+      "invariant": "Private original by user/intent/ref, exact operation/scope/arguments. Never reconstruct from digest or accept client snapshot after restart.",
+      "requiredEvidence": "Purpose, minimization, access, encryption/key custody, provenance and D02-A retention; metadata also needs policy. No original frames/summaries persisted by this lot.",
+      "currentState": "Both original producers raise. Admission now checks protected scope and KNOWN original ref before history, but no storage implemented.",
+      "operationallyAccredited": false
+    },
+    {
+      "id": "D5",
+      "name": "Protected source RLS context",
+      "artifact": "sql/04-acl-rls-DO-NOT-APPLY.sql",
+      "port": "source_row_visible_v2(text,uuid[])",
+      "invariant": "Exact current actor/session/account/member/property/stay/incident context independent of client GUC/JWT metadata, no recursive source self-authority.",
+      "requiredEvidence": "Protected producer and effective source ownership/RLS/default/PUBLIC/inheritance closure; reviewed applicable permissive baseline as well as restrictive guards.",
+      "currentState": "Source function returns false. No positive callback or USING(true). FORCE/ENABLE are proposed text only.",
+      "operationallyAccredited": false
+    },
+    {
+      "id": "D6",
+      "name": "Effect providerRef projection",
+      "artifact": "sql/00-source-base-DO-NOT-APPLY.sql",
+      "port": "intent_binding / attempt_binding / admission_v2",
+      "invariant": "NOT NULL provider ref, composite user/intent/original/provider links; writer exact insert, reader matches both projections, no reference inferred from names.",
+      "requiredEvidence": "Native constraints and row-level visibility with separate actual credentials; approved metadata retention. No backfill from client or auto-retry.",
+      "currentState": "Review text projection and composite constraints prepared; not installed, no SQL uniqueness proof.",
+      "operationallyAccredited": false
+    },
+    {
+      "id": "D7",
+      "name": "All revokers and fence order",
+      "artifact": "sql/01-revisions-DO-NOT-APPLY.sql",
+      "port": "revision_before_v2 / revision_step_v2 / hooks",
+      "invariant": "Every entry/revoker obtains transaction fence before DML and relation locks; hook is backstop, not proof of pre-table-lock order. Catalog changes/restore are participants.",
+      "requiredEvidence": "Explicit revoker entry inventory and barriers, actual pg_locks observation including TRUNCATE/DDL, external GoTrue/journal sequencing and no bypass participants.",
+      "currentState": "30 proposed hooks reused; no new attested pre-DML revoker entries. Races and deadlock freedom unproved.",
+      "operationallyAccredited": false
+    },
+    {
+      "id": "D8",
+      "name": "External COMMIT and independent readback",
+      "artifact": "sql/03-bound-entries-DO-NOT-APPLY.sql",
+      "port": "read_effect_bound_v2 + external commit observer",
+      "invariant": "Correlate original/intent/attempt/provider/session/operation/arguments/authority/floor/dispatch/effect to external commit and independent reader/journal. ACK lost or incomplete means UNKNOWN; never resend.",
+      "requiredEvidence": "Original trusted source, external observer, journal/witness custody/sequence/transcript, actual reader credentials/channels and current authorization after revocation.",
+      "currentState": "SQL response says OUTCOME_REQUIRES_COMMIT_OBSERVATION/EFFECT_OBSERVED, neither proves outer COMMIT or independent custody. No observer implemented or fake signed receipt.",
+      "operationallyAccredited": false
+    }
+  ],
+  "allElevenOperations": "HELD",
+  "sqlExecuted": false,
+  "managedAuthAccredited": false,
+  "betaDecision": "NO-GO"
+}

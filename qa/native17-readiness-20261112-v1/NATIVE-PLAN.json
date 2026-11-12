@@ -1,0 +1,570 @@
+{
+  "state": "NOT_AUTHORIZED_NOT_RUN",
+  "host": "HOST_NOT_AVAILABLE",
+  "zeroCostAccredited": false,
+  "baseNativeHead": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "reviewArtifacts": "DERIVATION.json",
+  "executableMaterializationSha": null,
+  "actors": {
+    "SCOPE_LOGIN": "cheveni_incident_scope_backend_v1",
+    "WRITER_LOGIN": "cheveni_incident_writer_backend_v1",
+    "READER_LOGIN": "cheveni_incident_readback_backend_v1",
+    "LAB_CAPTURE_OPERATOR": "Separately approved ephemeral lab setup/capture actor; not an application role",
+    "LAB_REVOCATION_ACTOR": "Missing reviewed pre-DML native revoker entry/role; not authorized",
+    "LAB_AUTH_SYNTHETIC_ACTOR": "Missing synthetic Auth loader/revoker; cannot represent managed provider",
+    "COMMIT_OBSERVER": "Missing separately approved external commit observation role/channel"
+  },
+  "commonPreconditions": [
+    "Explicit owner authorization of host and executable materialization SHA is absent",
+    "H0 exact 17.11 binary/host identity and complete isolation verified before processes",
+    "All sources/custody required by case reviewed; no replacing closed producers with positive callback",
+    "Reach target branch: generic commercial/legal/native gate denial is not evidence of the tested invariant",
+    "Original/metadata policy and directed discard pre-approved; no operational payload persistence"
+  ],
+  "commonAbort": [
+    "Host/version/cost/isolation identity missing, changed or expired",
+    "Real endpoint/credential/person detected; any unexpected egress or resource",
+    "Any missing source, unsupported dependency, permission/catalog drift or unbounded capture",
+    "Native pass inferred from ACK, fixture PID, outer guard or no observed effect without branch evidence",
+    "Limits exceeded; preserve UNKNOWN, no automatic resend; only approved targeted cleanup"
+  ],
+  "cases": [
+    {
+      "id": "N01",
+      "title": "Version, connections and closed catalog",
+      "artifacts": [
+        "sql/05-catalog-capture-NOT-RUN.sql",
+        "sql/04-acl-rls-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [],
+      "actors": [
+        "LAB_CAPTURE_OPERATOR",
+        "SCOPE_LOGIN",
+        "WRITER_LOGIN",
+        "READER_LOGIN"
+      ],
+      "preconditions": [
+        "Approved empty host, binary hash and rowtypes; no mutable endpoints. Separate real login channels and connectionId/backend_start corroborated outside SQL."
+      ],
+      "expected": "Observed 170011, exact roles/owners/function bodies/ACL/RLS/defaults/memberships/schema/table capabilities; unknown dependency retains NO-GO.",
+      "evidence": [
+        "Before/after raw metadata, external host identity, connection identities, full closure without truncation."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Managed Auth, business write correctness, custody independence, A2 or browser.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N02",
+      "title": "Missing or stale independent authority cut",
+      "artifacts": [
+        "sql/01-revisions-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D5"
+      ],
+      "actors": [
+        "SCOPE_LOGIN"
+      ],
+      "preconditions": [
+        "Reachability instrumentation proves check reaches cut validation; no outer-gate denial counted as cut success. Clock bootstrap absent and mismatched synthetic cases explicitly reviewed."
+      ],
+      "expected": "Missing/NULL/stale/future/dataset/epoch/revision contradictions deny with no fabricated revision/effect.",
+      "evidence": [
+        "Branch/error trace, exact synthetic cut inputs and no effects; bootstrap provenance."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Real witness signatures/custody, managed authority, monotonicity across all systems.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N03",
+      "title": "Revoker wins before writer fence",
+      "artifacts": [
+        "sql/01-revisions-DO-NOT-APPLY.sql",
+        "sql/03-bound-entries-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D5",
+        "D7"
+      ],
+      "actors": [
+        "LAB_REVOCATION_ACTOR",
+        "WRITER_LOGIN"
+      ],
+      "preconditions": [
+        "Two actual sessions, explicit pre-DML fence entry and barriers; provider/current floor native-lab sources identified as synthetic."
+      ],
+      "expected": "Revision advances; writer re-observes and denies old authority with zero effect.",
+      "evidence": [
+        "Barrier schedule, pg_locks trace, revision transition, denied writer, independent effect absence."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "JavaScript scheduling or synthetic Auth does not prove GoTrue revocation/refresh.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N04",
+      "title": "Writer commits before revocation",
+      "artifacts": [
+        "sql/03-bound-entries-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8"
+      ],
+      "actors": [
+        "WRITER_LOGIN",
+        "LAB_REVOCATION_ACTOR",
+        "READER_LOGIN",
+        "COMMIT_OBSERVER"
+      ],
+      "preconditions": [
+        "Separate writer/revoker/observer/reader sessions, valid synthetic original and current source; exact winning fence order."
+      ],
+      "expected": "Original history preserved after externally observed commit; subsequent revoked session cannot read private effect.",
+      "evidence": [
+        "Commit corroboration, effect/original bindings, later revision/denial, independent readback traces."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Operational managed Auth/journal, full A2 or launch.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N05",
+      "title": "Relationship and bookkeeping hooks",
+      "artifacts": [
+        "sql/01-revisions-DO-NOT-APPLY.sql",
+        "sql/04-acl-rls-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D5",
+        "D7"
+      ],
+      "actors": [
+        "LAB_REVOCATION_ACTOR",
+        "WRITER_LOGIN"
+      ],
+      "preconditions": [
+        "Exact 30 hook bodies/tgtype/columns, approved loader and pre-DML fences; status-only and relationship changes distinguished."
+      ],
+      "expected": "Relation/Auth/permission changes advance authority; status-only and bookkeeping do not invalidate their own effect. INSERT/DELETE/TRUNCATE covered.",
+      "evidence": [
+        "Transition-table values, trigger invocation/locks, exact counter deltas and unchanged no-op/status path."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Coverage of unlisted external revokers, implicit table lock order from BEFORE alone.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N06",
+      "title": "Concurrent admission and write uniqueness",
+      "artifacts": [
+        "sql/02-admission-DO-NOT-APPLY.sql",
+        "sql/03-bound-entries-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8"
+      ],
+      "actors": [
+        "WRITER_LOGIN",
+        "COMMIT_OBSERVER"
+      ],
+      "preconditions": [
+        "Two independent processes/connections, same stable intent, different attempts; approved original source and native barriers."
+      ],
+      "expected": "At most one NEW/claim/effect; KNOWN keeps original refs/session/attempt, never emits another mutation.",
+      "evidence": [
+        "Both schedules, constraints/FK/CAS outcomes, native effect cardinality and external commit/readback."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Memory Map exclusion, configured PIDs or fixture ACKs do not prove this property.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N07",
+      "title": "Argument conflict vs contradictory provenance",
+      "artifacts": [
+        "sql/02-admission-DO-NOT-APPLY.sql",
+        "sql/03-bound-entries-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "actors": [
+        "WRITER_LOGIN"
+      ],
+      "preconditions": [
+        "Same immutable original; cases with distinct status/summary and separate contradictory scope/ref. Do not persist payloads just to run case."
+      ],
+      "expected": "Valid original and differing args: CONFLICT without another effect. Untrusted/contradictory original: UNKNOWN/closed without history disclosure.",
+      "evidence": [
+        "Trusted original provenance, exact request correlation, result classification and zero extra effects."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Admission metadata API alone has no argument payload: protected original/writer and server comparator remain required.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N08",
+      "title": "ACK loss and crash around COMMIT",
+      "artifacts": [
+        "sql/02-admission-DO-NOT-APPLY.sql",
+        "sql/03-bound-entries-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8"
+      ],
+      "actors": [
+        "WRITER_LOGIN",
+        "READER_LOGIN",
+        "COMMIT_OBSERVER"
+      ],
+      "preconditions": [
+        "Fault points admission/claim/write/outer COMMIT agreed; external observer and independent reader, deterministic barriers not arbitrary sleeps."
+      ],
+      "expected": "UNKNOWN after loss; committed original identified without mutating again; no success merely from ACK/result string.",
+      "evidence": [
+        "Crash/fault timestamps, connection identity/transaction record, external commit and original readback/journal correlation."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Real independent journal/witness custody or recovery of a managed provider.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N09",
+      "title": "Restart or restored incomplete history",
+      "artifacts": [
+        "sql/02-admission-DO-NOT-APPLY.sql",
+        "sql/03-bound-entries-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D6",
+        "D8"
+      ],
+      "actors": [
+        "WRITER_LOGIN",
+        "READER_LOGIN",
+        "LAB_CAPTURE_OPERATOR"
+      ],
+      "preconditions": [
+        "Only approved synthetic data copies; no restore command of real data. Distinguish process restart from A2 recovery."
+      ],
+      "expected": "Without trusted original/current floor, remain quarantined UNKNOWN, never NEW due to memory absence or client snapshot.",
+      "evidence": [
+        "Pre/post restart durable rows and external floors, rejection of client replacements, zero re-dispatch."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "A1/A2 restore, Auth/Vault/Storage/keys recovery or floor from backup as current.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N10",
+      "title": "Session/refresh and expiry while waiting",
+      "artifacts": [
+        "sql/02-admission-DO-NOT-APPLY.sql",
+        "sql/03-bound-entries-DO-NOT-APPLY.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D7"
+      ],
+      "actors": [
+        "LAB_AUTH_SYNTHETIC_ACTOR",
+        "WRITER_LOGIN",
+        "READER_LOGIN"
+      ],
+      "preconditions": [
+        "Auth.users/sessions shape is synthetic, no provider network. Explicit barriers expire/change/revoke after initial check and before final return."
+      ],
+      "expected": "Old binding cannot dispatch or disclose after session/authority/expiry drift; lost ACK remains UNKNOWN.",
+      "evidence": [
+        "Actual SQL transaction timings and branch checks, synthetic auth row mutations, no effects or private result."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "JWT cryptographic verification, real refresh protocol or GoTrue revocation. Those need separate managed-provider evidence.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N11",
+      "title": "Effective least privilege",
+      "artifacts": [
+        "sql/00-roles-DO-NOT-APPLY.sql",
+        "sql/04-acl-rls-DO-NOT-APPLY.sql",
+        "sql/05-catalog-capture-NOT-RUN.sql"
+      ],
+      "dependencies": [
+        "D5",
+        "D6",
+        "D7"
+      ],
+      "actors": [
+        "SCOPE_LOGIN",
+        "WRITER_LOGIN",
+        "READER_LOGIN",
+        "LAB_CAPTURE_OPERATOR"
+      ],
+      "preconditions": [
+        "Direct login credentials per role (not SET impersonation), owner NOLOGIN; effective catalog and policies reviewed."
+      ],
+      "expected": "Reader/scope cannot write, mutate helpers, SET owners, CREATE, TRIGGER or TRUNCATE; no broad historical entry reachable.",
+      "evidence": [
+        "Actual denied commands and catalog for PUBLIC/defaults/transitive EXECUTE/column/table/schema/membership privileges."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Native read-only from only different callbacks/PIDs or JSON expected grants.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    },
+    {
+      "id": "N12",
+      "title": "Revoker bypass and catalog mutation",
+      "artifacts": [
+        "sql/01-revisions-DO-NOT-APPLY.sql",
+        "sql/04-acl-rls-DO-NOT-APPLY.sql",
+        "sql/05-catalog-capture-NOT-RUN.sql"
+      ],
+      "dependencies": [
+        "D1",
+        "D2",
+        "D3",
+        "D5",
+        "D7",
+        "D8"
+      ],
+      "actors": [
+        "LAB_CAPTURE_OPERATOR",
+        "LAB_REVOCATION_ACTOR",
+        "WRITER_LOGIN"
+      ],
+      "preconditions": [
+        "Only separately approved temporary catalog fault injection in disposable lab; enumerate trigger-disabled, owner/ACL/RLS and pre-DML fence bypass cases."
+      ],
+      "expected": "Attested gate rejects changed catalog/unsupported revoker before effect. If gate cannot detect change, FAIL; never credit timeout or outer generic HELD.",
+      "evidence": [
+        "Sealed before/fault/after catalog, exact validation branch and locks, independent effect absence, cleanup verification."
+      ],
+      "abort": [
+        "Any commonAbort condition",
+        "Cannot observe the specific invariant or reach its target branch"
+      ],
+      "costAndIsolation": {
+        "newSpendAllowed": false,
+        "zeroCostAccredited": false,
+        "isolation": "H0: user/process/network/filesystem, no real resources or credentials, fixed limits and directed destruction",
+        "proposedCeiling": "Inherited proposal only: 2 vCPU / 4 GiB / 8 GiB / 8 connections / 60 min. Owner must approve enforceable values."
+      },
+      "doesNotDemonstrate": [
+        "Production tamper resistance, malicious superuser protection, GoTrue/journal order or complete A2.",
+        "Commercial GO, independent custody, managed Auth, full A2 or browser"
+      ],
+      "authClass": "SYNTHETIC_AUTH_ONLY",
+      "result": "NOT_RUN",
+      "authorization": false
+    }
+  ],
+  "managedProviderTests": {
+    "state": "SEPARATE_NOT_AUTHORIZED",
+    "networkAllowed": false,
+    "cases": [
+      "JWT signature verified by actual provider",
+      "pre-revocation access JWT and real session revocation",
+      "refresh rotation/session change",
+      "operation started before revocation and private read after it"
+    ],
+    "syntheticAuthCannotAccredit": true
+  },
+  "betaDecision": "NO-GO"
+}

@@ -1,0 +1,155 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532307]", "childNetns": "net:[4026532234]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+{
+  "source": {
+    "classification": "STATIC_TEXT_CROSS_ARTIFACT",
+    "findings": [
+      {
+        "id": "IMMUTABLE_INTENT_LOCK_PRIVILEGE",
+        "files": [
+          "00-source-base-DO-NOT-APPLY.sql",
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "FOR UPDATE needs UPDATE; immutable history must use the already-required fence without widening ACL"
+      },
+      {
+        "id": "IMMUTABLE_INTENT_LOCK_PRIVILEGE",
+        "files": [
+          "03-bound-entries-DO-NOT-APPLY.sql",
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "FOR UPDATE needs UPDATE; immutable history must use the already-required fence without widening ACL"
+      },
+      {
+        "id": "PERMISSIVE_POLICY_BYPASS",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "Default permissive policy can OR with an existing broader policy"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "auth.users"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "auth.sessions"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_manager_web_identities"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_account_members"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_accounts"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_properties"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_stays"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_incidents"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_member_property_permissions"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_incident_events"
+      },
+      {
+        "id": "RLS_ENABLE_FORCE_UNSPECIFIED",
+        "files": [
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "public.concierge_audit_events"
+      },
+      {
+        "id": "EFFECT_PROVIDER_PROJECTION_MISSING",
+        "files": [
+          "00-source-base-DO-NOT-APPLY.sql",
+          "04-acl-rls-DO-NOT-APPLY.sql"
+        ],
+        "detail": "Effect policies cannot correlate the provider without immutable row projection"
+      },
+      {
+        "id": "KNOWN_ORIGINAL_NOT_COMPARED",
+        "files": [
+          "02-admission-DO-NOT-APPLY.sql"
+        ],
+        "detail": "Must not disclose prior history before protected original-reference equality"
+      },
+      {
+        "id": "PROVIDER_FINAL_REVALIDATION_MISSING",
+        "files": [
+          "03-bound-entries-DO-NOT-APPLY.sql"
+        ],
+        "detail": "writer must revalidate after final authority/floor reads"
+      },
+      {
+        "id": "PROVIDER_FINAL_REVALIDATION_MISSING",
+        "files": [
+          "03-bound-entries-DO-NOT-APPLY.sql"
+        ],
+        "detail": "reader must revalidate after final authority/floor reads"
+      },
+      {
+        "id": "CAPTURE_OWNER_SCHEMA_GAP",
+        "files": [
+          "05-catalog-capture-NOT-RUN.sql"
+        ],
+        "detail": "Capture effective function and schema privileges of owners as well as logins"
+      }
+    ],
+    "sqlExecuted": false,
+    "parserUsed": false,
+    "operationalApproval": false
+  },
+  "successor": {
+    "classification": "STATIC_TEXT_CROSS_ARTIFACT",
+    "findings": [],
+    "sqlExecuted": false,
+    "parserUsed": false,
+    "operationalApproval": false
+  },
+  "scope": "narrow static checks only; not global SQL validation"
+}
