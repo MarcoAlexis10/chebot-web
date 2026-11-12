@@ -1,0 +1,348 @@
+{
+  "webHead": "426eae627154f5bff011335d1c5e688e32ca7d59",
+  "backendHead": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "rows": [
+    {
+      "id": "invitation_signup",
+      "journey": "Invitaci\u00f3n y registro del manager",
+      "implemented": "PRESENT_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-signup-v1.js",
+        "anchor": "closeForm"
+      },
+      "backend": {
+        "path": "concierge-manager-signup.js",
+        "anchor": "handler"
+      },
+      "currentBehavior": "P\u00e1gina privada con token retirado del fragmento, guard legal false, pendiente de aprobaci\u00f3n; no crea cuenta ni invita.",
+      "missingOrHeld": "Avisos/condiciones y evidencia operativa de admisi\u00f3n; no usar confirmaci\u00f3n de fixture como autorizaci\u00f3n.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "identity_session",
+      "journey": "Verificaci\u00f3n de identidad e inicio",
+      "implemented": "CANDIDATE_CORRECTED",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "verifyManagerSession"
+      },
+      "backend": {
+        "path": "concierge-manager-session.js",
+        "anchor": "handler"
+      },
+      "currentBehavior": "DTO exige account_id/member_id UUID y rol owner/manager/co_manager; rechaza vac\u00edo/tipo/rol desconocido sin cargar listas. El servidor a\u00fan debe verificar identidad y autoridad vigente.",
+      "missingOrHeld": "Auth/JWT/GoTrue real, restricciones/floors y fence de lectura; backend permanece release-held.",
+      "evidenceExecutedHere": [
+        "malformed session receipts"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "login_feedback",
+      "journey": "Errores y l\u00edmites del ingreso",
+      "implemented": "CANDIDATE_CORRECTED",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "signIn"
+      },
+      "backend": {
+        "path": "concierge-manager-auth-session.js",
+        "anchor": "managerAuthResponse"
+      },
+      "currentBehavior": "503/no confirmaci\u00f3n no se presenta como contrase\u00f1a incorrecta; 429 pide esperar; sin reintento autom\u00e1tico ni token retenido.",
+      "missingOrHeld": "Proveedor administrado y comportamiento real del navegador.",
+      "evidenceExecutedHere": [
+        "service failure and rate limit"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "restore_logout",
+      "journey": "Restauraci\u00f3n, salida y BFCache",
+      "implemented": "PRESENT_FOCAL_REGRESSION",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "restoreSession"
+      },
+      "backend": {
+        "path": "concierge-manager-auth-session.js",
+        "anchor": "sendManagerRead"
+      },
+      "currentBehavior": "Generaciones impiden que respuestas viejas reabran sesi\u00f3n; pagehide limpia; 401/403 vigente cierra; fallo ilegible/503 no se diagnostica como expiraci\u00f3n/CORS.",
+      "missingOrHeld": "Browser/BFCache y Auth real; cierre remoto no demuestra revocaci\u00f3n instant\u00e1nea del JWT.",
+      "evidenceExecutedHere": [
+        "three prior restore-feedback cases"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "property_read",
+      "journey": "Propiedades del manager",
+      "implemented": "READ_ONLY_WEB",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "loadManagerProperties"
+      },
+      "backend": {
+        "path": "concierge-manager-properties.js",
+        "anchor": "handler"
+      },
+      "currentBehavior": "GET muestra filas y permisos del contrato de propiedad. Error de secci\u00f3n no asegura sesi\u00f3n vigente.",
+      "missingOrHeld": "Current property scope/fence y cat\u00e1logo SQL; no prueba de lectura real.",
+      "evidenceExecutedHere": [
+        "read failure renderers"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "property_setup",
+      "journey": "Alta y configuraci\u00f3n de propiedad",
+      "implemented": "FUNCTIONAL_GAP",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-v1.js",
+        "anchor": "buildManagerV1"
+      },
+      "backend": {
+        "path": "vercel.json",
+        "anchor": "/api/concierge/manager/properties"
+      },
+      "currentBehavior": "Web tiene secci\u00f3n y GET, no formulario ni endpoint de creaci\u00f3n/configuraci\u00f3n correspondiente. No convertir GET o un enlace de secci\u00f3n en alta.",
+      "missingOrHeld": "Contrato y flujo administrativo aprobado para crear/configurar \u00fanica propiedad CABA; IDs y autoridad reales todav\u00eda ausentes.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "stay_read",
+      "journey": "Lectura de estad\u00edas",
+      "implemented": "READ_ONLY_WEB",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "loadManagerStays"
+      },
+      "backend": {
+        "path": "concierge-manager-stays.js",
+        "anchor": "handler"
+      },
+      "currentBehavior": "DTO lista id/propiedad/ventanas/estado sin nombre/tel\u00e9fono del hu\u00e9sped; UI usa checkout como l\u00edmite de estado efectivo.",
+      "missingOrHeld": "Auth/SQL/fence y browser; no prueba vigente de reservas.",
+      "evidenceExecutedHere": [
+        "read failure renderers"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "stay_create",
+      "journey": "Creaci\u00f3n y administraci\u00f3n de estad\u00edas",
+      "implemented": "NO_WEB_CREATE_HELD_WHATSAPP_PATH",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-v1.js",
+        "anchor": "buildManagerV1"
+      },
+      "backend": {
+        "path": "index.js",
+        "anchor": "conciergeManagerExecutePendingStay"
+      },
+      "currentBehavior": "El panel no crea/edita estad\u00edas. Ruta WhatsApp prepara/ejecuta pending create_stay mediante executeGuardedPendingStay, frenada por hard stop prelegal.",
+      "missingOrHeld": "Intake/identidad/privacidad y write privado transaccional; no abrir WhatsApp ni a\u00f1adir un POST especulativo.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "guest_invite",
+      "journey": "Invitaci\u00f3n del hu\u00e9sped",
+      "implemented": "CANDIDATE_CORRECTED_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-invite-v1.js",
+        "anchor": "sendInvite"
+      },
+      "backend": {
+        "path": "index.js",
+        "anchor": "handleConciergeManagerInviteSend"
+      },
+      "currentBehavior": "POST est\u00e1 owner-only y privacidad/prelegal retenido. 401 actual limpia UI desde headers; conserva marcador pendiente y no reenv\u00eda, incluso JSON colgado.",
+      "missingOrHeld": "Invitaci\u00f3n preparada, permisos vigentes, canal/privacidad y evidencia real de dispatch/COMMIT.",
+      "evidenceExecutedHere": [
+        "current invitation 401",
+        "at headers"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "requests",
+      "journey": "Solicitudes y decisiones",
+      "implemented": "PRESENT_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-request-actions-v1.js",
+        "anchor": "runDecision"
+      },
+      "backend": {
+        "path": "concierge-manager-requests.js",
+        "anchor": "handler"
+      },
+      "currentBehavior": "GET lista; POST decision conserva intenci\u00f3n antes de emitir, valida recibo y no reintenta UNKNOWN; mensajes de error corregidos.",
+      "missingOrHeld": "Una de once mutaciones hist\u00f3ricas sin mapeo privado aprobado; readback/SQL y UI/CORS reales.",
+      "evidenceExecutedHere": [
+        "read failure renderers"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "incidents",
+      "journey": "Incidencias y aprendizaje",
+      "implemented": "PRESENT_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-incident-actions-v1.js",
+        "anchor": "replaceRequired"
+      },
+      "backend": {
+        "path": "concierge-manager-incidents.js",
+        "anchor": "handler"
+      },
+      "currentBehavior": "Panel de estados/acci\u00f3n y recibos; sucesor de incidencias QA existe pero endpoint operativo contin\u00faa retenido.",
+      "missingOrHeld": "D1\u2013D8 de Native17, COMMIT/journal y autoridad vigente; no equivalencia con create_stay CBF1.",
+      "evidenceExecutedHere": [
+        "read failure renderers"
+      ],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "roles",
+      "journey": "Roles, permisos y revocaci\u00f3n",
+      "implemented": "PARTIAL_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "showPanel"
+      },
+      "backend": {
+        "path": "concierge-manager-auth-session.js",
+        "anchor": "parseManagerContext"
+      },
+      "currentBehavior": "owner/manager/co_manager son roles de miembro web; co_manager usa flags por propiedad. operational es otro modo ligado a persona/tarea/propiedad, no un manager renombrado.",
+      "missingOrHeld": "No UI de operativo web ni rol equivalente. Evidencia nativa de permisos/revocaci\u00f3n, incluidas sesiones iniciadas antes y refresh.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "guest_reservation",
+      "journey": "Hu\u00e9sped vinculado a la reserva",
+      "implemented": "SOURCE_ONLY_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-invite-v1.js",
+        "anchor": "sendInvite"
+      },
+      "backend": {
+        "path": "index.js",
+        "anchor": "loadConciergeGuestContext"
+      },
+      "currentBehavior": "Sesi\u00f3n, miembro, identidad activa, reserva, propiedad y cuenta deben corresponder exactamente; consulta de identidad s\u00f3lo id/status; no usa el tel\u00e9fono como autoridad del cliente.",
+      "missingOrHeld": "Instalaci\u00f3n nativa, Auth/identidad/canal real y concurrencia entre reservas; sin nueva prueba de ese flujo en este lote.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "guest_windows",
+      "journey": "Ventana temporal y secretos",
+      "implemented": "SOURCE_ONLY_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "effectiveStayStatus"
+      },
+      "backend": {
+        "path": "concierge-beta-clock-runtime-guard.js",
+        "anchor": "conciergeGuestWindowCurrent"
+      },
+      "currentBehavior": "Ventana privada max(checkin,access_from) <= now < min(access_until,checkout), con relaciones/estados actuales; property_access y RPC reveal independientes. No hay autorizaci\u00f3n positiva aqu\u00ed.",
+      "missingOrHeld": "Pre-arrival no sensible por propiedad a\u00fan no est\u00e1 demostrado: el loader actual tambi\u00e9n exige ventana de check-in. No relajar para resolverlo.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "checkout_free",
+      "journey": "Checkout y transici\u00f3n a Free",
+      "implemented": "SOURCE_ONLY_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "effectiveStayStatus"
+      },
+      "backend": {
+        "path": "index.js",
+        "anchor": "conciergePastCheckoutStayEligibleForFreeNotice"
+      },
+      "currentBehavior": "Checkout es l\u00edmite duro para datos privados; Free usa ruta/aviso no sensible y cat\u00e1logo separado, no hereda permisos de reserva anterior.",
+      "missingOrHeld": "Revocaci\u00f3n transaccional, secretos y reservas consecutivas con motor/canal reales; no se repiten ensayos hist\u00f3ricos.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "commercial",
+      "journey": "Piloto comercial",
+      "implemented": "CONTRACT_ONLY_NOT_ACTIVATED",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-signup-v1.js",
+        "anchor": "30 d\u00edas gratuitos"
+      },
+      "backend": {
+        "path": "concierge-beta-clock-runtime-guard.js",
+        "anchor": "conciergeVerifiedStayClockWindow"
+      },
+      "currentBehavior": "Un manager fundador, una propiedad CABA; 30 d\u00edas desde primera estad\u00eda real verificada; sin conversi\u00f3n/cobro autom\u00e1ticos; Free separado.",
+      "missingOrHeld": "1/1 es el alcance previsto, no un l\u00edmite probado por todos los endpoints. Faltan identidades/allowlist, reloj nativo, decisiones humanas y autorizaci\u00f3n de piloto.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "retention_a2",
+      "journey": "Privacidad, retenci\u00f3n y recuperaci\u00f3n",
+      "implemented": "SOURCE_INVENTORY_ONLY",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-auth-v1.js",
+        "anchor": "clearPanelData"
+      },
+      "backend": {
+        "path": "concierge-retention-boundary.js",
+        "anchor": "assertRetentionTransportAllowed"
+      },
+      "currentBehavior": "Datos privados visibles se limpian; marcadores de incertidumbre s\u00f3lo IDs/estado, sin payload. Guard de retenci\u00f3n conservado, sin nuevos plazos ni purge.",
+      "missingOrHeld": "Custodia/D02-A por categor\u00eda y A2 integral con Auth/Vault/Storage/claves/floors externos actuales; s\u00f3lo inventario en este lote.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    },
+    {
+      "id": "target_compatibility",
+      "journey": "Destino del build y backend",
+      "implemented": "COMPATIBILITY_HELD",
+      "operational": "HELD",
+      "web": {
+        "path": "manager-build-config.cjs",
+        "anchor": "managerBuildConfig"
+      },
+      "backend": {
+        "path": "concierge-manager-session.js",
+        "anchor": "isReviewedConciergeDevUrl"
+      },
+      "currentBehavior": "Configuraci\u00f3n original est\u00e1 fijada a DEV; writer privado distingue QA de DEV. El compositor usa s\u00f3lo .invalid para QA offline y no remapea emisor/token.",
+      "missingOrHeld": "No se ha aprobado un destino operativo compatible ni reescrito los guards. El materializado no acredita ese contrato.",
+      "evidenceExecutedHere": [],
+      "nativeOrManagedEvidenceHere": false
+    }
+  ],
+  "betaDecision": "NO-GO"
+}

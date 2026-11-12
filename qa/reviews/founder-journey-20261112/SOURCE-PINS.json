@@ -77,8 +77,160 @@
       "path": "qa/post-integration-20261111-v1/session-restore-feedback.test.cjs",
       "sha256": "ff11b922457cff270e0a660f2eacddbd641b9313c826bfb845ad80894219002d",
       "gitBlob": "93a8b53865e4e135e1461b06681530f2c32e288e"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/DEPENDENCIES.json",
+      "sha256": "dffa294ceb820d8ef168170fc7368af0124e6511c47315ae59406ee66f5b4b27",
+      "gitBlob": "c9e0aef5ed7bb476f7afdc59dcd783495fbb2d3f"
+    },
+    {
+      "path": "qa/native17-readiness-20261112-v1/NATIVE-PLAN.json",
+      "sha256": "f41d9bc083f0cb2fd28d19cb077c809617e89d160c3fb8016f83864676b833e1",
+      "gitBlob": "959f570bb0113064b49dd138cf12012269902a1e"
     }
   ],
   "positiveBackendAuthorizationFixture": false,
-  "sqlExecuted": false
+  "sqlExecuted": false,
+  "backendInputs": [
+    {
+      "path": "concierge-manager-session.js",
+      "sha256": "626352ca3b12cb1fe4643c15fd1c8db3e5c8879f762284674f70368cdbfd3db2",
+      "gitBlob": "45ed9bd92680d8e6590c0709ac24b3d8f5af3205"
+    },
+    {
+      "path": "concierge-manager-auth-session.js",
+      "sha256": "5345e5570f9ec38281c650e611678f22c0e886da7b08bec5d5424c0a2a34fc07",
+      "gitBlob": "cc2ad91c73d821e9de9a3f59efc76753d1b2e3e1"
+    },
+    {
+      "path": "concierge-manager-properties.js",
+      "sha256": "fd71eb201cd77a8479cf1830fc5eb285056be2a1830cfd1378a84705fdb0a739",
+      "gitBlob": "60e7039b0683ea1d3dd06c1b9c3c9185e10daa56"
+    },
+    {
+      "path": "concierge-manager-property-receipt.js",
+      "sha256": "44c8637322ff4eae16c4d251d08f62390a9365b8314be2acb67f19b4ade8fa97",
+      "gitBlob": "a81f62552a045ea7ab386a33062661c251e45509"
+    },
+    {
+      "path": "concierge-manager-stays.js",
+      "sha256": "37190839b9f152b1ab1d93e7bad1d8d03df87a647741a5728e726e6dbd3d70ff",
+      "gitBlob": "a7f8f527a8c794d2638739c35b971526d23c80af"
+    },
+    {
+      "path": "concierge-manager-requests.js",
+      "sha256": "8d41ca9960202c6f5b13889476c0838666b279c638d347f30197dec7cffc7c05",
+      "gitBlob": "a0cebf4b07d7dcac37928dc6783d83ec90c59f87"
+    },
+    {
+      "path": "concierge-manager-incidents.js",
+      "sha256": "af7b6716e83982ba9f521a502a05f22599f80f50a0e56ec5bc566770d00b5489",
+      "gitBlob": "8e099967b570c2a895c7179714498b0a1f19f558"
+    },
+    {
+      "path": "concierge-manager-knowledge.js",
+      "sha256": "0098f37bb62dd9ef587beb707389ed38606e98a44ca98bfbea0a6fdd7ecb5522",
+      "gitBlob": "9bd518bea2ee86fcbf2e525f4d5565b3c855528e"
+    },
+    {
+      "path": "concierge-manager-signup.js",
+      "sha256": "15475c157e2cdfe9bc3d967bd3fec1b0324fd60f9934f8eb99b39a581e5dc981",
+      "gitBlob": "8506af8ffbd1e315da013b65eb6045df1fbdd036"
+    },
+    {
+      "path": "concierge-manager-signup-admin.js",
+      "sha256": "2ab2e2694de78ec909f7ea946d209fdb24dd64a73d06a0a4aba1129cbd448b82",
+      "gitBlob": "a5942c00d0e3007c77096ecae4559a9e7f90ba5d"
+    },
+    {
+      "path": "concierge-manager-release-hold-qa.js",
+      "sha256": "2ba02ce6e454b5686c3006682d94c85ce6f1a61f4347d61cf65c5425589c6f62",
+      "gitBlob": "a4b793d2ed357fe3dda342c58439f9fae81b16da"
+    },
+    {
+      "path": "concierge-prelegal-sensitive-hold-qa.js",
+      "sha256": "80b0b9834c97f5cec68adfea89f6d44ccee3e6c9a6748d598174b5be79ca7364",
+      "gitBlob": "1f3eb182d65825dd863b1ba18421694d5f76f115"
+    },
+    {
+      "path": "concierge-guarded-intake.js",
+      "sha256": "eb643aa7ab0d284aca63776a80c55469af8b3fb060ec69d58da75b69089152d0",
+      "gitBlob": "10e1e506571280777901f08445c553ddfd34facb"
+    },
+    {
+      "path": "concierge-beta-clock-runtime-guard.js",
+      "sha256": "28fe580d341c5e3af9fb9c35cf56a2f79a1899f96f452204215240ec49d6c0ec",
+      "gitBlob": "d001a355e1b8ce76b32c82b9f6caa99a14604e59"
+    },
+    {
+      "path": "concierge-beta-ba-scope-guard.js",
+      "sha256": "6c1517ebafeaf999887be1bcdf59ff12c0e0978afedc2890239547d17f9febab",
+      "gitBlob": "4da5ec0b4a78e0997196b73c093e614fc086333a"
+    },
+    {
+      "path": "concierge-guest-private-receipts.js",
+      "sha256": "05c77b7d2f4cac1187686d49f4f7e7dd072a62d849f8b290a186b771bdd159d3",
+      "gitBlob": "9cb5cd7ec1c5410cb30d8f972a0330679aad5f7a"
+    },
+    {
+      "path": "concierge-guest-reply-guard.js",
+      "sha256": "cad6dddf4fb7dc3cde048671eaae47e8d5425a3ac90c68a3ed4e8f841a4b0baf",
+      "gitBlob": "4b540e2c28f3da3efb4ba5a5e6ba59bdf5e63a23"
+    },
+    {
+      "path": "concierge-postcheckout-private-access.js",
+      "sha256": "12d36cb5fecf6800c4be4dcb6b4588e0c4d4ca8ecc01c6d4840b5656113cea37",
+      "gitBlob": "8985c888d2cc1f110dabaf9250723acb60824788"
+    },
+    {
+      "path": "concierge-retention-boundary.js",
+      "sha256": "c80e17d45c1385490b2dc67b5aa885d4a738a686981b951077394a0793674d65",
+      "gitBlob": "b40a1eef7035bc941b8b6d44b51c7bf84f664a7f"
+    },
+    {
+      "path": "free-catalog-config.js",
+      "sha256": "b30e4100c90658e68f9af441315d81af852930006000deecb83c9af17cb8ed36",
+      "gitBlob": "09f119b292219a3519860960710135ac8a1f21c5"
+    },
+    {
+      "path": "vercel.json",
+      "sha256": "d2bc35f45e2b0b5158ce464da43021a2af22d50eb11a745b62ced00a24705099",
+      "gitBlob": "8fdd4dd5765b1ac1208a9f00809392ddf1a1da5c"
+    },
+    {
+      "path": "index.js",
+      "sha256": "06d8df39d3951324fe4777a93140636f0b74d06b725cab12bfa0e757e66af017",
+      "gitBlob": "1745cfd6d9dd374a5681aa584329fc63cedb9284"
+    },
+    {
+      "path": "98-MIGRACION-12-OPERATIONAL-ACCESS.sql",
+      "sha256": "f34b77da2fd350f647faa8867649084227c467a9f3860756be5154325679b51f",
+      "gitBlob": "a6a47ad9c1dc8d5561e1585cfec193445e8bc22a"
+    },
+    {
+      "path": "test/fixtures/concierge-runtime-dev-schema.sql",
+      "sha256": "220ca0bebd3fa3131dfdf8b8003ed88e1d048d23b035c81af4102b14d758916f",
+      "gitBlob": "acbd63785006dc14f1393171644f80c18d1bc790"
+    },
+    {
+      "path": "ops/recovery/a2-preparation-results.json",
+      "sha256": "7f9d27e9be7e3740c6775bc54a9e5113031de32dd007a8b45699342c6455ae0d",
+      "gitBlob": "944a4b80d695936b2de34dfd7cf5372ab8613b4a"
+    },
+    {
+      "path": "ops/recovery/write-fence-20261025/component-input.mjs",
+      "sha256": "7611fb8f3a74a6b2d57b2b63bad70b9e1edaef31361778049fce8e55c3ed9c39",
+      "gitBlob": "e6508efd9d5c29e6208cdee5a3a554c779f2d0f2"
+    },
+    {
+      "path": "ops/recovery/night-20261026/component-witness.mjs",
+      "sha256": "fd04c56b7cc34328bce9393fb3a98f8603c1faf712ce3dd8f06719c2a710807a",
+      "gitBlob": "9ac517d591bdd9ca70ae4084482a2f26485f64bb"
+    },
+    {
+      "path": "ops/recovery/d01-postcommit-20261024/RECUPERACION-A2-ALCANCE.md",
+      "sha256": "6f367651ef3f90f24ed8fc69eec6b7d452daf26ba25a0efc51938a4746fe03dd",
+      "gitBlob": "d00347bad2515a39f7b15ae3af073f7e81aa2755"
+    }
+  ]
 }

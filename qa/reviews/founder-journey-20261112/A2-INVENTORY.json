@@ -1,0 +1,116 @@
+{
+  "scope": "Inventory of existing source interfaces only; no imports or execution of restore/signing components",
+  "components": [
+    {
+      "id": "postgres",
+      "component": "PostgreSQL: datos, schema/roles/ACL/RLS/functions/hooks/constraints",
+      "source": {
+        "repository": "backend",
+        "path": "ops/recovery/d01-postcommit-20261024/RECUPERACION-A2-ALCANCE.md",
+        "anchor": "PostgreSQL"
+      },
+      "requiredEvidence": "Captura coherente, motor exacto aislado autorizado, reconstrucci\u00f3n y comparaci\u00f3n de cat\u00e1logo/evidencia de COMMIT; no restaurar tablas como sistema.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    },
+    {
+      "id": "auth",
+      "component": "Auth/GoTrue y sesiones/refresh",
+      "source": {
+        "repository": "backend",
+        "path": "ops/recovery/write-fence-20261025/component-input.mjs",
+        "anchor": "authSigningPrivateKey"
+      },
+      "requiredEvidence": "Estado y configuraci\u00f3n de Auth administrado, claves originales bajo custodia, revocaci\u00f3n vigente y refresh; clave ficticia/tabla auth no restaura GoTrue.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    },
+    {
+      "id": "vault",
+      "component": "Vault administrado y clave de custodia",
+      "source": {
+        "repository": "backend",
+        "path": "ops/recovery/night-20261026/component-witness.mjs",
+        "anchor": "fixtureVaultKeyDecryptsCanary"
+      },
+      "requiredEvidence": "Recuperaci\u00f3n del formato real de Vault, claves correctas y acceso seguro; canario AES ficticio no es Vault administrado.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    },
+    {
+      "id": "storage",
+      "component": "Storage bytes/inventario/buckets/policies",
+      "source": {
+        "repository": "backend",
+        "path": "ops/recovery/write-fence-20261025/component-input.mjs",
+        "anchor": "storageObjects"
+      },
+      "requiredEvidence": "Bytes completos, inventario, metadata, buckets y pol\u00edticas/versiones; un dump o digest no recupera objetos/API.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    },
+    {
+      "id": "configuration_keys",
+      "component": "Claves y configuraci\u00f3n externas",
+      "source": {
+        "repository": "backend",
+        "path": "ops/recovery/write-fence-20261025/component-input.mjs",
+        "anchor": "externalConfiguration"
+      },
+      "requiredEvidence": "Referencias de versi\u00f3n/KID, custodia/cifrado y configuraci\u00f3n de proveedores/URLs; no guardar claves o despertarlos para probar.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    },
+    {
+      "id": "revocations_floors",
+      "component": "Restricciones, inventarios y floors posteriores al backup",
+      "source": {
+        "repository": "web",
+        "path": "qa/native17-readiness-20261112-v1/DEPENDENCIES.json",
+        "anchor": "D2"
+      },
+      "requiredEvidence": "Fuente independiente vigente, dataset/recovery epoch/inventory/restriction cut exacto; nunca adoptar un floor antiguo del backup.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    },
+    {
+      "id": "journal_witness",
+      "component": "Journal, witness y COMMIT independientes",
+      "source": {
+        "repository": "web",
+        "path": "qa/native17-readiness-20261112-v1/DEPENDENCIES.json",
+        "anchor": "D8"
+      },
+      "requiredEvidence": "Historia de intent/attempt/provider/effect/COMMIT, secuencias y custodia verdaderamente independiente; dos callbacks no son independencia.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    },
+    {
+      "id": "original_quarantine",
+      "component": "Original confiable y cuarentena hasta reconciliaci\u00f3n",
+      "source": {
+        "repository": "web",
+        "path": "qa/native17-readiness-20261112-v1/DEPENDENCIES.json",
+        "anchor": "D4"
+      },
+      "requiredEvidence": "Finalidad/custodia/D02-A y recuperaci\u00f3n de original privado; sin original o cut actual no reenviar ni habilitar tr\u00e1fico.",
+      "observedOperationally": false,
+      "executedHere": false,
+      "restoreAuthorized": false
+    }
+  ],
+  "databaseTablesOnlyIsIntegralRecovery": false,
+  "originalTrustedSnapshotMayComeFromClient": false,
+  "currentFloorFromBackupAllowed": false,
+  "restoredState": "QUARANTINE_UNTIL_RECONCILED",
+  "realKeysReadOrGenerated": false,
+  "restoreOrSigningExecuted": false,
+  "betaDecision": "NO-GO"
+}

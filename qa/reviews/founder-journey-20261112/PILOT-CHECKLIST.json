@@ -1,0 +1,174 @@
+{
+  "candidateId": "CHEVENI_CONCIERGE_BETA_V1_CABA_HELD",
+  "cohort": {
+    "foundingManagers": 1,
+    "properties": 1,
+    "city": "CABA",
+    "freeTrialDays": 30,
+    "trialStarts": "FIRST_REAL_VERIFIED_STAY",
+    "automaticBilling": false,
+    "freeElsewhere": "Che Ven\u00ed Free",
+    "actualCohortSelected": false,
+    "managerId": null,
+    "propertyId": null
+  },
+  "checks": [
+    {
+      "id": "P01",
+      "acceptance": "Avisos/condiciones y admisi\u00f3n del fundador",
+      "state": "SOURCE_GUARDS_HELD",
+      "journeyId": "invitation_signup",
+      "evidenceHere": [],
+      "remaining": "Decisi\u00f3n humana espec\u00edfica y evidencia t\u00e9cnica; no crear invitaci\u00f3n para probar.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P02",
+      "acceptance": "No abrir panel con recibo de sesi\u00f3n incompleto",
+      "state": "EXECUTED_OFFLINE",
+      "journeyId": "identity_session",
+      "evidenceHere": [
+        "malformed session receipts"
+      ],
+      "remaining": "Auth administrado y navegador siguen pendientes.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P03",
+      "acceptance": "Distinguir credenciales, servicio no confirmado y rate limit",
+      "state": "EXECUTED_OFFLINE",
+      "journeyId": "login_feedback",
+      "evidenceHere": [
+        "service failure and rate limit"
+      ],
+      "remaining": "Respuesta real del proveedor y navegador, sin env\u00edos reales.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P04",
+      "acceptance": "Restauraci\u00f3n: 401 expl\u00edcito frente a 503/ilegible",
+      "state": "EXECUTED_OFFLINE_FOCAL_REGRESSION",
+      "journeyId": "restore_logout",
+      "evidenceHere": [
+        "three prior restore-feedback cases"
+      ],
+      "remaining": "BFCache/almacenamiento y revocaci\u00f3n real.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P05",
+      "acceptance": "Una propiedad CABA y alcance del fundador",
+      "state": "HUMAN_AND_NATIVE_PENDING",
+      "journeyId": "property_setup",
+      "evidenceHere": [],
+      "remaining": "Alta/configuraci\u00f3n web faltante; IDs actuales y lista de alcance aprobados, no filtrar la primera fila como si fuera unicidad.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P06",
+      "acceptance": "Alta y gesti\u00f3n de estad\u00eda segura",
+      "state": "FUNCTIONAL_GAP_AND_NATIVE_PENDING",
+      "journeyId": "stay_create",
+      "evidenceHere": [],
+      "remaining": "Formulario/contrato web no presente; canal WhatsApp retenido. No inventar endpoint o llamar create_stay en QA real.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P07",
+      "acceptance": "Owner/manager/co_manager y operativo por tarea",
+      "state": "SOURCE_ONLY_PENDING_NATIVE",
+      "journeyId": "roles",
+      "evidenceHere": [],
+      "remaining": "Flags de propiedad actuales y ACL/fence nativos; operational no es un rol de acceso al panel.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P08",
+      "acceptance": "Invitaci\u00f3n 401 limpia vista sin reenviar",
+      "state": "EXECUTED_OFFLINE",
+      "journeyId": "guest_invite",
+      "evidenceHere": [
+        "current invitation 401",
+        "at headers"
+      ],
+      "remaining": "No prueba invitaci\u00f3n entregada, permisos reales, COMMIT o WhatsApp.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P09",
+      "acceptance": "Lecturas incompletas no afirman sesi\u00f3n autorizada",
+      "state": "EXECUTED_OFFLINE",
+      "journeyId": "property_read",
+      "evidenceHere": [
+        "read failure renderers"
+      ],
+      "remaining": "Leer datos reales requerir\u00e1 autoridad vigente/Native17, sin entregar secretos en el ensayo.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P10",
+      "acceptance": "Hu\u00e9sped principal ligado a cuenta/propiedad/reserva actual",
+      "state": "SOURCE_ONLY_PENDING_NATIVE_AUTH",
+      "journeyId": "guest_reservation",
+      "evidenceHere": [],
+      "remaining": "Cardinalidad actual y cambio/revocaci\u00f3n/refresh con motor y proveedor real autorizados.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P11",
+      "acceptance": "Pre-checkin, secretos y reservas consecutivas",
+      "state": "SOURCE_ONLY_FUNCTIONAL_GAP",
+      "journeyId": "guest_windows",
+      "evidenceHere": [],
+      "remaining": "El loader privado exige check-in; informaci\u00f3n prearrival no sensible por propiedad a\u00fan no demostrada. Reconciliar requisito sin relajar guard.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P12",
+      "acceptance": "Checkout revoca y mantiene Free independiente",
+      "state": "SOURCE_ONLY_PENDING_NATIVE_BROWSER",
+      "journeyId": "checkout_free",
+      "evidenceHere": [],
+      "remaining": "Revocaci\u00f3n y acceso a secretos reales no probados aqu\u00ed; no ejecutar SQL/hist\u00f3ricos por rutina.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P13",
+      "acceptance": "Solicitudes/incidencias y UNKNOWN sin resend",
+      "state": "SOURCE_ONLY_HELD",
+      "journeyId": "requests",
+      "evidenceHere": [],
+      "remaining": "Mutaciones hist\u00f3ricas/Native17 D1\u2013D8 y readback independiente; actuales pruebas no autorizan decisiones.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P14",
+      "acceptance": "30 d\u00edas desde primera estad\u00eda real verificada, cero cobro autom\u00e1tico",
+      "state": "CONTRACT_ONLY_HUMAN_NATIVE_PENDING",
+      "journeyId": "commercial",
+      "evidenceHere": [],
+      "remaining": "Validaci\u00f3n del reloj transaccional y aceptaci\u00f3n humana; no iniciar trial ni fijar una fecha comercial.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P15",
+      "acceptance": "A2 integral, custodias y floors vigentes",
+      "state": "INVENTORY_ONLY_PENDING_AUTHORIZATION",
+      "journeyId": "retention_a2",
+      "evidenceHere": [],
+      "remaining": "Ocho componentes en A2-INVENTORY; sin restore, nuevas claves, firmas o autorizaciones.",
+      "operationalAcceptance": false
+    },
+    {
+      "id": "P16",
+      "acceptance": "Browser/CORS y activaci\u00f3n final",
+      "state": "PENDING_SAFE_ENVIRONMENT_AND_HUMAN_GO",
+      "journeyId": "target_compatibility",
+      "evidenceHere": [],
+      "remaining": "Cuatro casos Chromium conservados, no reintentados; destino y emisor compatibles pendientes, no desplegar.",
+      "operationalAcceptance": false
+    }
+  ],
+  "betaDecision": "NO-GO",
+  "activationAuthorized": false
+}

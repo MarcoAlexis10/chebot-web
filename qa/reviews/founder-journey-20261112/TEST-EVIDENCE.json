@@ -1,0 +1,161 @@
+{
+  "newUniquePass": 5,
+  "newUniqueFinalFail": 0,
+  "newUniqueSkip": 0,
+  "classification": "NODE_VM_DOM_STORAGE_TRANSPORT_DOUBLES; four full script cases and one extracted renderer case",
+  "focalPriorRegressionsPass": 3,
+  "regressionJustification": "Actual generated Auth script changed in verifier/login/copy; preserve prior network-unreadable/503/401 restore semantics using the same three existing cases",
+  "newCaseFailuresBeforeCorrection": 5,
+  "noDuplicateCounting": true,
+  "executions": [
+    {
+      "log": "logs/experience-before.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --conditions=baseline --test --test-reporter=tap web/qa/founder-journey-20261112-v1/experience.test.cjs",
+      "classification": "FIRST_THREE_NEW_CASES_BASELINE",
+      "counts": {
+        "tests": 3,
+        "pass": 0,
+        "fail": 3,
+        "skipped": 0
+      },
+      "names": [
+        "malformed session receipts never label a manager session verified or start private list reads",
+        "service failure and rate limit at sign-in do not accuse the user of an incorrect password or retry",
+        "current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again"
+      ],
+      "sha256": "8de4bca331482f096daec036eaa3308a6bbbf8c638156bb4445272391a38f674",
+      "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    },
+    {
+      "log": "logs/experience-after.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/founder-journey-20261112-v1/experience.test.cjs",
+      "classification": "INTERMEDIATE_FIRST_THREE_PASS",
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "malformed session receipts never label a manager session verified or start private list reads",
+        "service failure and rate limit at sign-in do not accuse the user of an incorrect password or retry",
+        "current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again"
+      ],
+      "sha256": "02a4cdd7d2d327519b7b9b9bf3abaa0e693a94f83d57d074bc7709637e821d45",
+      "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    },
+    {
+      "log": "logs/invite-headers-before.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='at headers' web/qa/founder-journey-20261112-v1/experience.test.cjs",
+      "classification": "FOCAL_NEW_CASE_FAIL_BEFORE_HEADER_FIX",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "invitation session denial clears UI at headers even when its JSON body never arrives"
+      ],
+      "sha256": "6ddaa70864101dc188935b4f7fe8061ce5bcda7f1f234ab4aafbf9d946f10cb1",
+      "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    },
+    {
+      "log": "logs/experience-final.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/founder-journey-20261112-v1/experience.test.cjs",
+      "classification": "INTERMEDIATE_FOUR_PASS",
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "malformed session receipts never label a manager session verified or start private list reads",
+        "service failure and rate limit at sign-in do not accuse the user of an incorrect password or retry",
+        "current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again",
+        "invitation session denial clears UI at headers even when its JSON body never arrives"
+      ],
+      "sha256": "602a457c33597e398e3a4d1bfbccaf0d436bd08e827f1fb4a3d31693fd31aa1a",
+      "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    },
+    {
+      "log": "logs/section-copy-before.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='read failure renderers' web/qa/founder-journey-20261112-v1/experience.test.cjs",
+      "classification": "FOCAL_NEW_CASE_FAIL_BEFORE_COPY_FIX",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "read failure renderers never assert that a session is still active without current evidence"
+      ],
+      "sha256": "3567182a77fd09fbf9f4f221833f1dad59163670b695d8b3123536de5077abc4",
+      "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    },
+    {
+      "log": "logs/experience-sections-final.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/founder-journey-20261112-v1/experience.test.cjs",
+      "classification": "FINAL_FIVE_NEW_PASS",
+      "counts": {
+        "tests": 5,
+        "pass": 5,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "malformed session receipts never label a manager session verified or start private list reads",
+        "service failure and rate limit at sign-in do not accuse the user of an incorrect password or retry",
+        "current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again",
+        "invitation session denial clears UI at headers even when its JSON body never arrives",
+        "read failure renderers never assert that a session is still active without current evidence"
+      ],
+      "sha256": "a4972651be07f30fd08f549be3bd15c1d1d379272317dd70d24b51c861ab671d",
+      "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    },
+    {
+      "log": "logs/restore-regression.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/founder-journey-20261112-v1/restore-feedback.regression.test.cjs",
+      "classification": "THREE_EXISTING_FOCAL_REGRESSIONS",
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "unreadable fetch does not claim session expiry or diagnose CORS; private panel stays closed",
+        "readable HTTP 503 HELD does not claim an expired session or reopen private data",
+        "explicit readable HTTP 401 retains the existing authorization-denial message"
+      ],
+      "sha256": "cb6cb5fb8921f0116d94a124ec9962280305e964c707ca31d36116a799c728d1",
+      "isolation": "fresh user/net namespace, empty credential env, no external routes/loopback; egress ENETUNREACH=101"
+    }
+  ],
+  "staticChecks": [
+    "STATIC-CANDIDATE.json",
+    "logs/static-pilot.log"
+  ],
+  "nodeVersion": "24.22.1",
+  "materializedFiles": 12,
+  "generatorsExecutedInVirtualFs": 11,
+  "positiveBackendAuthorizationFixtureUsed": false,
+  "existingVisibleViewModeledForInviteDenial": true,
+  "nativeHostReinspected": false,
+  "postgresDownloadedOrStarted": false,
+  "sqlExecuted": false,
+  "nativeN01toN12Executed": 0,
+  "realAuthManagedVerified": false,
+  "newUserOrInvitationActuallyCreated": false,
+  "realCommunicationsSent": false,
+  "browserExecuted": false,
+  "chromiumAttempted": false,
+  "httpHttpsTransportTests": 0,
+  "a2RestoreOrSigningExecuted": false,
+  "priorNativeSqlSuitesRepeated": false,
+  "prior31_66_14_18_17SuitesRepeated": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}
