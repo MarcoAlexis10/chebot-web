@@ -1,0 +1,53 @@
+{
+  "candidateId": "CHEVENI_CONCIERGE_BETA_V1_CABA_HELD",
+  "revision": "NATIVE17_PROTECTED_AUTHORITY_REVIEW_20261111",
+  "supersedes": "incident-authority-closure-20261111@a5922972fa76a09fc210f553abbed53e2970d3bc",
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "sourceHeads": {
+    "web": "2869f5793c600c9dc74655fd1ab7633009b05fdd",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "finalClosureHead": "containing commit; exact SHA verified in final link",
+  "productOperationalSourcesUnchangedSince": "a5922972fa76a09fc210f553abbed53e2970d3bc",
+  "productAndWorkflowFilesChanged": false,
+  "elevenHistoricalMutationsHeld": true,
+  "nativeExecuted": false,
+  "providerActualVerified": false,
+  "operationalApproval": false,
+  "manifest": "PACKAGE-MANIFEST.json",
+  "sqlReview": "SQL-ARTIFACTS.json",
+  "executionPrerequisites": "NATIVE17-EXECUTION-PREREQUISITES.md",
+  "testEvidence": "TEST-EVIDENCE.json",
+  "unconfiguredInputsWithoutSecrets": {
+    "providerAttestor": null,
+    "originalCustody": null,
+    "protectedIndependentFloor": null,
+    "sourceRlsContext": null,
+    "nativeDriver": null,
+    "journalWitness": null,
+    "expectedPrivateIssuer": "https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1",
+    "issuerRewritePermitted": false
+  },
+  "blockers": [
+    "Native17 isolated host and new separately approved materialization",
+    "actual provider/GoTrue identity binding and revocation",
+    "original provenance and D02-A custody/retention",
+    "independent authority/restriction floors and COMMIT observation",
+    "protected RLS source context/effect provider projection",
+    "complete native effective ACL/owner/transitive catalog",
+    "A2 integral, independent post-backup floors and quarantine",
+    "Chromium safe compatible lab (4 cases NOT_RUN)"
+  ],
+  "commercial": {
+    "city": "CABA",
+    "foundingManager": 1,
+    "property": 1,
+    "freeTrialDays": 30,
+    "automaticBilling": false,
+    "otherCities": "Che Vení Free",
+    "enabled": false,
+    "launchDate": null
+  }
+}

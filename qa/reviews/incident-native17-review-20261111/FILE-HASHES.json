@@ -1,0 +1,297 @@
+{
+  "scope": "new QA package and review only",
+  "sourceCommit": "2869f5793c600c9dc74655fd1ab7633009b05fdd",
+  "files": [
+    {
+      "path": "qa/incident-native17-review-20261111-v1/00-roles-DO-NOT-APPLY.sql",
+      "bytes": 1244,
+      "sha256": "d87a057789e119270a21ec76b823deced8c78fd99adcd022fd00c195d25ab921",
+      "gitBlob": "619c9597bc0c773ec34c909f811d7f9a0f02289e"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/00-source-base-DO-NOT-APPLY.sql",
+      "bytes": 21434,
+      "sha256": "f16b23d7746b1f9248090f7e3a597ce4e744c6b6cadb4393c39cbf24f98d1c47",
+      "gitBlob": "a906c92547c5282cd700078c7e1a4faa5fad5d7f"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/01-revisions-DO-NOT-APPLY.sql",
+      "bytes": 14473,
+      "sha256": "64eba1e69b8e6af24fd81119fe0de45c64cbb46993c1636d27247e52837cd105",
+      "gitBlob": "3c1e78b912dbe85d6d17ebb711447a189a259d75"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/02-admission-DO-NOT-APPLY.sql",
+      "bytes": 8547,
+      "sha256": "a25dce0003e462a55259b3465de5740d5303fcfce61af76f7fc2846804d8dab6",
+      "gitBlob": "5bafc080fbf27108a8431de623974c1a01f7c2c1"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/03-bound-entries-DO-NOT-APPLY.sql",
+      "bytes": 12600,
+      "sha256": "08d18b18654f3521ac386445b1007777db16c6a83f0b8102c06e0e0846663422",
+      "gitBlob": "f53ba57e121fb008094f719240698965d937268a"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/04-acl-rls-DO-NOT-APPLY.sql",
+      "bytes": 25092,
+      "sha256": "f070ee3fd4038960c349996f5c6f17bb27b0cb846050412b40c4d1936060640e",
+      "gitBlob": "6ce153b21920f1a10171668d7af77cf5d0351c02"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/05-catalog-capture-NOT-RUN.sql",
+      "bytes": 5492,
+      "sha256": "c7d8d1fc7c16b6037c9b884c7e9985f2f7c71cfdf41bf45e429ec2066fb990b3",
+      "gitBlob": "dfc85a942c86916e1d244320bb351d0e18ce829f"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/EXPECTED-CATALOG.json",
+      "bytes": 39682,
+      "sha256": "d6a6b62bad1f2b8d934d64a7bfe7c4da4cd1189c3fa1907de48f2fb70f5da2ff",
+      "gitBlob": "572be035dfd9e25a3e153c774a82b9cfe2be7e64"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/GENERATION.json",
+      "bytes": 277,
+      "sha256": "714b86a16c1f9f1b9cb14351e08a1465c5f7dfc02dcde85e6840fbcfa20b9621",
+      "gitBlob": "c551b699879cfd9071b465a922893b68ab41152f"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/HOOK-MATRIX.json",
+      "bytes": 7087,
+      "sha256": "7096ee434feb9d9df89606105471c0c8c654724e33ecfb47de4bfdc58f1471fd",
+      "gitBlob": "e1eafab7ca8d522e8249a0ebfbd1ac4866f22fd4"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/README.md",
+      "bytes": 3494,
+      "sha256": "8fe9ca08f3663b912c3e0fd74089f23c98b3bc306bb698571655d0c8c14d9ed6",
+      "gitBlob": "10d12a163523b03f51c930258b39de712ce72af0"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/SOURCE-PINS.json",
+      "bytes": 1389,
+      "sha256": "b8d28c36a03c100f2b8d8b1c6e8147b8595ffa3f80ae50cffd6eea038c2d6cfd",
+      "gitBlob": "ad3cb8c1045d5058244d9c3c8bdfb661a573a543"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/build_acl.py",
+      "bytes": 13294,
+      "sha256": "e0674cbdfca43445e603f43fe7fe267f7680cf07efb16316d122078e664ed1c3",
+      "gitBlob": "8715427ff300ce8c39361ed89f6aa3f5fc918535"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/build_review.py",
+      "bytes": 20638,
+      "sha256": "78fba40052af7a2da13840f715d10f3f2ad5549a1acc36b0994f309293c8fa46",
+      "gitBlob": "57c83d8e19ee6011a9e13027008621addb68ee55"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "bytes": 7106,
+      "sha256": "338a7666c11cab432cb5d05d08f13c33723440514590da74cc804306caa46c93",
+      "gitBlob": "2e23f91f171d2d4e13d587818a82dce9e4863b4b"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/provider-binding.d.mts",
+      "bytes": 2906,
+      "sha256": "10b766c60bdd8be3d2eb43ec9d0e5f3cb340d45e7cce54863558c5f2b7d97f0f",
+      "gitBlob": "9af740ef04e351f6853cb5b517845103b910bbfd"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/provider-binding.mjs",
+      "bytes": 8888,
+      "sha256": "48dc248139189fa40c07bc664994319ba2e78877e69e033867cbbbe5b043a467",
+      "gitBlob": "be61b220bfd89fdc3d6a485558b79af6554eb909"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/provider-binding.test.mjs",
+      "bytes": 7172,
+      "sha256": "88a00b4e6c1b63b678d2773061ccc140b38a90ea520945b57cb2553593d93941",
+      "gitBlob": "af6b84d734f57a5e3cf11546490f0b047554bbbc"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/revision-cut.mjs",
+      "bytes": 1809,
+      "sha256": "8cae0e7ed91b96e8401b0a9ba6affca3a7f2fa49806eca4e75f11bd6bf2320ad",
+      "gitBlob": "d4f647dd44978e47216804b34cab3901a9782cc6"
+    },
+    {
+      "path": "qa/incident-native17-review-20261111-v1/revision-policy.json",
+      "bytes": 432,
+      "sha256": "463ac686cb8e13e940a145da643961b2c79183b883d7cee271dd1b486e87d403",
+      "gitBlob": "39987c1c423c95e3476af156af70d781b80f92fd"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/CLOSURE.md",
+      "bytes": 12300,
+      "sha256": "d69547b848cbf1bb03496ad4c94058ebf8a514a8e7985b2932836dfefc20e7bf",
+      "gitBlob": "310e62ccbd07145a29069f085012f6ae932182cf"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/CONTRACT-DELTA.md",
+      "bytes": 6566,
+      "sha256": "4a5c4509ea8a25a7d278476a280ac54141267abf25b8f7a30dff1f2290775d23",
+      "gitBlob": "93a65aa8f8923d82cca55eec9afdd2c66677daf9"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/GO-NO-GO.md",
+      "bytes": 1815,
+      "sha256": "2b28219ece1e7633d4a60020c47d1b18d30e53b1667fd0eefcc1b500a5ef3b76",
+      "gitBlob": "be89c3e58c91f21d2113355db1197fbebd3f25a9"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/NATIVE17-EXECUTION-PREREQUISITES.md",
+      "bytes": 11971,
+      "sha256": "cdc6347b6d0e19e38d787b6f2ff8ce47f095fac26b39a5a8d5c2d7d6624b8464",
+      "gitBlob": "cb9e4c58ff384c02c2681a186ac582bba65f1b76"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/NEXT-EXECUTION.md",
+      "bytes": 3079,
+      "sha256": "960aa028d07832615f3a448671141dc1591079260b27c1167b0d41d009560448",
+      "gitBlob": "ad2cf743cc92c89d565712bff1da39e953f27454"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/PACKAGE-MANIFEST.json",
+      "bytes": 5400,
+      "sha256": "4565e774efdbf600050724c7bdd75246d4112b43f64a7334a35c0a0bd654f6ee",
+      "gitBlob": "3fe6d5e653b7f9ce7143dcc8a8fe8e7814d0540b"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/PROGRESS.md",
+      "bytes": 957,
+      "sha256": "b2ec5b3cc4699d4857d7cbff7198b5100dbc4552494c7d301a29d3724ea0974c",
+      "gitBlob": "f21bed1c6c281927c4e80a70113574f609d68ae6"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/PUBLICATION-CHECKS.json",
+      "bytes": 892,
+      "sha256": "8f1718a0885e6c38903aa23b9f70264b4abfbf287c3464255ca8032a970551ff",
+      "gitBlob": "9de97976e42fc35d398fff83e824d8f0359bdc72"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/RELEASE-CANDIDATE.json",
+      "bytes": 2084,
+      "sha256": "4a22f264b941b3c6f71fc4cbb54e34bc2f0d051be41a041fa6a268815813f232",
+      "gitBlob": "e79cd736565c45892d25ae92757c9c44c95b4701"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/SQL-ARTIFACTS.json",
+      "bytes": 2761,
+      "sha256": "c601d80c885095756eac0c65035a287e630df91250f094bc24c246ad2a15af2d",
+      "gitBlob": "432e915af3a7669fbbc0bb9ddd1f7ddcc9942d16"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/TEST-EVIDENCE.json",
+      "bytes": 15966,
+      "sha256": "fbde662383624c803b7de6809069a20025b35d75c24615552659a1f2eceaaf99",
+      "gitBlob": "9596d2d0cb330e109f31505534791c50fb504765"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/bound-abi-focused.tap",
+      "bytes": 1236,
+      "sha256": "2b9fe51035d34367cf08632baaba73d83406bb00eb5b057db4b7284a9c7d4cc9",
+      "gitBlob": "addda4b452381819381d1fcf08c984baf74fa7f2"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/cut-freshness-after.tap",
+      "bytes": 984,
+      "sha256": "6916abf8ea30681ea22939397a1a0a47fb00d7493c75f82be35ca237999aeff1",
+      "gitBlob": "9379fd560255fc49e7574c46b7bb2d8496eb72c7"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/cut-freshness-before.tap",
+      "bytes": 1836,
+      "sha256": "af03933f25e8b84635c03e42a2a9fbc4dae69fc7d4a6cff01b923fb484096fcf",
+      "gitBlob": "4f8bbf4097acdb8586720cd8fb92c6f0e270671d"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/generation-final.json",
+      "bytes": 1122,
+      "sha256": "d8ff69ec50a9c2195c228b1437c6dfde626812c9207aff40bf426424e4498707",
+      "gitBlob": "8e4bd386d314844d3377d7ca04cbfd9cdac68087"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/generation.json",
+      "bytes": 1016,
+      "sha256": "e4d83edc601d8f504dc9567e92bece0bf6e94b0319ba0562e7bd9618c5aabb45",
+      "gitBlob": "1e795f45929b6cb5d317c7acf441c27f52d67b45"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/invoker-acl-after.tap",
+      "bytes": 972,
+      "sha256": "d0893f5a8a33cacb71990442e830251b2c8e93dfa34002a5666694fa95aafdcd",
+      "gitBlob": "e8a4ce6e6c40cb619191768abc476a9244867772"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/invoker-acl-before.tap",
+      "bytes": 1699,
+      "sha256": "91b5268ef7d8e309d660430b06938c082128e1e74681c540c9028f0c7c7c5b8f",
+      "gitBlob": "ceea46e2faee095b507247c84c4e4bbd4c1ee62e"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/native-review-final.tap",
+      "bytes": 2879,
+      "sha256": "705649ab8f630dd86b286191faa33a30ef3098474c1a4865fc5ab279e12bc1f2",
+      "gitBlob": "6216bc99922c75775b26dd130cd4a939db75c8ee"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/native-review-first.tap",
+      "bytes": 2876,
+      "sha256": "06f6fd1ffcf01960ec00b09da904274fb3971a442b69b311941d5eb7d725b29d",
+      "gitBlob": "846dd7e56f99f1fb596dbfea1776d719930754a6"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/provider-abi-final.tap",
+      "bytes": 2909,
+      "sha256": "92a83a24de70f00c55285efb493640f77b2d9fc78817ecc1d31ca229bd1e2352",
+      "gitBlob": "1eee1e63dda553d59e3a317272c3f259e33ca731"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/provider-final.tap",
+      "bytes": 5144,
+      "sha256": "c21154640ce8cc0e1ba5b2b37d16fa8b0399c903d9719a725a1bc94281e8edd5",
+      "gitBlob": "eb7e409bbe35f08b66f174097d27a7454a44453f"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/provider-first.tap",
+      "bytes": 6836,
+      "sha256": "a1b77f0f9be8b573a6d22a6eb609d6a10b02ad4f87255d23f94a6561b03f8955",
+      "gitBlob": "8ac76b9cd99c414170512189e2e98df70fd8d390"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/provider-focused.tap",
+      "bytes": 1435,
+      "sha256": "a0f19e5924b4b5b878f45e721ca026899a7e3d06f072471e348e9453774ae07f",
+      "gitBlob": "efea78e85fabce9124cfd2b5ada2531f16401815"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/provider-source-reference.tap",
+      "bytes": 2629,
+      "sha256": "2eb70a2285e13001adef0f32ca465f6e161049bc03109afe0b7dcfd86dc8bc44",
+      "gitBlob": "ebaf2d73dc800e9b20e56899fb400da568bd20b2"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/rls-invoker-final.tap",
+      "bytes": 972,
+      "sha256": "cf3a52856ac63c3b76bcc4b0d0558b0f4251d302ba4deaf7a2388f939bb5bc49",
+      "gitBlob": "a72bb489daebb7e3ed739b508f6dfca7c2a27d0c"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/syntax-final.log",
+      "bytes": 793,
+      "sha256": "7daff3dcf150ca07ae9fc895b2351a87f89ec5e20d9b3541801118039cf2dff8",
+      "gitBlob": "957715941705b40adf2fae824b18d28b64372f7b"
+    },
+    {
+      "path": "qa/reviews/incident-native17-review-20261111/logs/syntax.log",
+      "bytes": 793,
+      "sha256": "7daff3dcf150ca07ae9fc895b2351a87f89ec5e20d9b3541801118039cf2dff8",
+      "gitBlob": "957715941705b40adf2fae824b18d28b64372f7b"
+    }
+  ],
+  "selfHash": "Git blob in final container tree",
+  "sqlExecuted": false,
+  "betaDecision": "NO-GO"
+}

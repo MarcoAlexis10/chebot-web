@@ -1,0 +1,21 @@
+{
+  "baseWeb": "a5922972fa76a09fc210f553abbed53e2970d3bc",
+  "codeHead": "2869f5793c600c9dc74655fd1ab7633009b05fdd",
+  "backendHead": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native17Head": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "workflowBlobs": [
+    "9540d3c50339b976e6fff19acd8283037aa000e1",
+    "6488eabdb021f61aba39ee9e45e596cdbc3ee487"
+  ],
+  "workflowSourceReadBeforeFirstPublish": true,
+  "workflowBlobsCheckedBeforeEachPublish": true,
+  "triggers": "push only to other explicit branches; manual dispatch never used; no create in web workflows",
+  "newBranchCreated": false,
+  "backendNativeWritten": false,
+  "forcePushResetMerge": false,
+  "expectedRefLeaseUsed": true,
+  "changesOutsideNewQaDirectories": [],
+  "actionsApisUsed": false,
+  "runsNotQueried": true,
+  "postPublicationVerification": "All artifact Git blobs and three refs read after final publication"
+}
