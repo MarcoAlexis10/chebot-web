@@ -1,0 +1,59 @@
+{
+  "candidateId": "CHEVENI_CONCIERGE_BETA_V1_CABA_HELD",
+  "revision": "INCIDENT_AUTHORITY_CLOSURE_20261111",
+  "supersedes": "domain-security-successor-20261111@a53c698c6f78f25520ef2b07f8d728caeae93677",
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "sourceHeads": {
+    "web": "3a99a8dcc34036c8f489f59c36b62c6df6726860",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "closureHead": "container commit, exact SHA verified in final delivery link",
+  "baseWeb": "a53c698c6f78f25520ef2b07f8d728caeae93677",
+  "productChanges": false,
+  "sharedQaApiExportAdded": true,
+  "sourcePins": "../../incident-authority-closure-20261111-v1/SOURCE-PINS.json",
+  "packageManifest": "PACKAGE-MANIFEST.json",
+  "testEvidence": "TEST-EVIDENCE.json",
+  "contracts": "CONTRACTS.md",
+  "operationInventory": "https://github.com/MarcoAlexis10/chebot-web/blob/a53c698c6f78f25520ef2b07f8d728caeae93677/qa/reviews/domain-security-successor-20261111/OPERATION-MATRIX.json",
+  "operationalHistoricalMutationsHeld": 11,
+  "operationalMigrations": 0,
+  "unconfiguredDependencies": [
+    "provider verified identity binding to dispatch claim",
+    "protected CurrentResolution/revisions/current floors",
+    "durable independent intent/attempt/original/claim custody",
+    "native role/ACL/RLS/fence hooks/driver/commit/readback",
+    "incident signed domain/journal/witness",
+    "A2 integral",
+    "Chromium safe lab"
+  ],
+  "variablesWithoutSecrets": {
+    "privateIssuerExpected": "https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1",
+    "sourceMode": "UNCONFIGURED; only explicit OFFLINE_FIXTURE available",
+    "writerDriver": null,
+    "readerDriver": null,
+    "originalCustody": null,
+    "currentFloorSource": null,
+    "journalAndWitness": null,
+    "guards": "Original code legal/prelegal retained; no environment override"
+  },
+  "commercial": {
+    "city": "CABA",
+    "foundingManager": 1,
+    "property": 1,
+    "freeTrialDays": 30,
+    "automaticBilling": false,
+    "otherCities": "Che Vení Free",
+    "enabled": false,
+    "promisedDate": null
+  },
+  "activationAndReversal": "NEXT-EXECUTION.md descriptive only; previous operational gates unchanged",
+  "actualProviderVerified": false,
+  "actualSqlVerified": false,
+  "actualJournalVerified": false,
+  "operationalApproval": false,
+  "nativeAndBackendReadOnly": true,
+  "buildDeployInfrastructureSqlAuthRestoreBrowserExecuted": false
+}

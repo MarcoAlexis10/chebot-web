@@ -1,0 +1,131 @@
+{
+  "sourceCommit": "3a99a8dcc34036c8f489f59c36b62c6df6726860",
+  "newPackageFiles": 18,
+  "sharedQaCompilerFiles": 2,
+  "files": [
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/README.md",
+      "bytes": 4362,
+      "sha256": "0090118c2a05d09bde340e7c89c40d40d87574015192cafe3484c17559d0ee02",
+      "gitBlob": "6b069385b957200aa2dd3ead2ec0b5c53b585094"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/ROLE-PROFILE.json",
+      "bytes": 7140,
+      "sha256": "2e886645d7dcbf6df58de73cf60d0d9dfc9796a84a9ef065b5d4f5cb431a9fce",
+      "gitBlob": "ab63c6e791fe7479e4d180cf19a03e4dec0b7756"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/SOURCE-PINS.json",
+      "bytes": 2358,
+      "sha256": "41c24c99bec85972ba9745ea3a1f6845a31ddfd013a03b2266f4def61cef9170",
+      "gitBlob": "71f3c4bbbe0061c89ddc10ba9dffd97cb909b121"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/current-resolution.d.mts",
+      "bytes": 2814,
+      "sha256": "f656cba39c764c163dd83550864e8e3c477c36f245b668bef17cb5131ae86b8f",
+      "gitBlob": "a190bb12e28fd69c9a25b81029d8cc491a5df919"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/current-resolution.mjs",
+      "bytes": 8688,
+      "sha256": "7b73d59124b90d5ebed1d52323b1d3444975f79cbb4f01cb52e37d5c18722ec0",
+      "gitBlob": "9fdb622729fb18cad3c49410e927dbb62919bfff"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/current-resolution.test.mjs",
+      "bytes": 5666,
+      "sha256": "786d4807937ac39824f5e63e562901777fb55f9678744d6fa70747e14678bf8c",
+      "gitBlob": "375d21a439f5eedaada5bb021ce85f8ba7423e8c"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/durable-incident-review.d.mts",
+      "bytes": 2303,
+      "sha256": "166f68a991b7e8f37bae1ee1146f3dfafc76e55aedc8a90127272055a77836ab",
+      "gitBlob": "30f7b691efb53706c2fabd0cbddd26ca4fcb90a4"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/durable-incident-review.mjs",
+      "bytes": 8392,
+      "sha256": "4af45da074f88853f36145814a8a5840a0c579d60f4bcb9b0470e79a9ad6214c",
+      "gitBlob": "bbd686db963630baa3e2e85504a82b37cfff2d0f"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs",
+      "bytes": 7097,
+      "sha256": "bcd63fe12ead226167ccae003c25b1f874e330c7ee84fe3546723571f9635791",
+      "gitBlob": "75164df34c571a55e561d84d10b3f55a03a97f7c"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/fixtures.mjs",
+      "bytes": 2514,
+      "sha256": "d19fc92e2de356434887253569522019fda8378b34dbda94e0c0c495c405b6e3",
+      "gitBlob": "7e0264a6d1463cd1fb8946563fa34b76f9c3b504"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/incident-only-DO-NOT-APPLY.sql",
+      "bytes": 21434,
+      "sha256": "f16b23d7746b1f9248090f7e3a597ce4e744c6b6cadb4393c39cbf24f98d1c47",
+      "gitBlob": "a906c92547c5282cd700078c7e1a4faa5fad5d7f"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/profile-check.mjs",
+      "bytes": 2867,
+      "sha256": "5dea2857b9f3e352ef42ac994517191f9171240029c10e82e8678be0220534ff",
+      "gitBlob": "53a81103bcae7494ccec8f38347fa15e98a76ce2"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/sources/concierge_invite_private__private_mutation_authority_v1.sql.txt",
+      "bytes": 372,
+      "sha256": "e92d89a2a98e5d9479bb3585652f843e5191b9f3d68816ec74ac0448cb82fe1e",
+      "gitBlob": "481e2dd1c6e2c5bc95bf69a3659d6d67ba55469a"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/sources/concierge_runtime_qa_v2__concierge_authorize_manager_member_action.sql.txt",
+      "bytes": 4932,
+      "sha256": "5baecc3a141f6321353f5a94284816647adefb2b8586930457cbe9c42f31d6bd",
+      "gitBlob": "c9008d707277a7e4a0d2ca85309e20d2c1e1328c"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/sources/concierge_service_qa_v1__auth_live.sql.txt",
+      "bytes": 898,
+      "sha256": "47e7d87f28ec40a259f4354ff5af37d5744f9d4b7b8203732ec6f5cb52b4e529",
+      "gitBlob": "00c2f70005394bb1135dae955679cec51ae9cb95"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/sources/concierge_service_qa_v1__fence.sql.txt",
+      "bytes": 3387,
+      "sha256": "2964a01ad62181f9d3d588f2b6d4592cb36b2e707cffb0454567ab7b77319969",
+      "gitBlob": "9a17394eebfefc77c09436fe339beb32749db1fe"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/sources/concierge_service_qa_v1__launch.sql.txt",
+      "bytes": 1841,
+      "sha256": "4e83f3d2a8e1dbef3c2daa4190cd11e347028b03a34dbddcc23c703b1db715c9",
+      "gitBlob": "14aff07c0a18b343649aeaaf4fa769e99c186ff1"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "bytes": 3914,
+      "sha256": "78432f404325fc32401e63c0283d60ff2af0cda60bc83605c6c5d05997709b63",
+      "gitBlob": "c320bdd978c29335946439fcd5aa929b71172e55"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.mjs",
+      "bytes": 11170,
+      "sha256": "0df65e9550dcfdcd4b1f6be1ecd64c3f55a2ae78d768d7212bc05aa23f9fb326",
+      "gitBlob": "e74b3d165ddb0642c4041384c2824ea45dddd5c3"
+    },
+    {
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.d.mts",
+      "bytes": 3433,
+      "sha256": "cca2571c4cf1c43b90b8b87a43375010ef4cfc4e4fed08f0adf7a6ef583ffd82",
+      "gitBlob": "1d920531df7339b5a681a7ed680fba185f2eb4bd"
+    }
+  ],
+  "previousImmutableManifest": "https://github.com/MarcoAlexis10/chebot-web/blob/a53c698c6f78f25520ef2b07f8d728caeae93677/qa/reviews/domain-security-successor-20261111/PACKAGE-MANIFEST.json",
+  "sharedCompilerChange": "Only adds verified prepareIncidentServicePlan export and declaration; prior manifest applies at immutable a53, modified files sealed here",
+  "sourcePins": "../../incident-authority-closure-20261111-v1/SOURCE-PINS.json",
+  "selfHash": "Container Git tree; no circular self hash"
+}

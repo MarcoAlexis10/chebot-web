@@ -1,0 +1,10 @@
+{
+  "kind": "STATIC_ARTIFACT_INTEGRITY",
+  "result": "PASS",
+  "packageAndSharedFiles": 20,
+  "sourceExtracts": 5,
+  "executionLogs": 16,
+  "allNewJsonParsed": true,
+  "relativeLinksExist": true,
+  "nativeOrProviderVerification": false
+}
