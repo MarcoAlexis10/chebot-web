@@ -42,6 +42,12 @@
       "path": "sources/concierge_invite_private__private_mutation_authority_v1.sql.txt",
       "startLine": 2457,
       "sha256": "e92d89a2a98e5d9479bb3585652f843e5191b9f3d68816ec74ac0448cb82fe1e"
+    },
+    {
+      "function": "concierge_runtime_qa_v2.concierge_authorize_manager_member_action",
+      "path": "sources/concierge_runtime_qa_v2__concierge_authorize_manager_member_action.sql.txt",
+      "startLine": 16,
+      "sha256": "5baecc3a141f6321353f5a94284816647adefb2b8586930457cbe9c42f31d6bd"
     }
   ],
   "reusedPins": "../domain-security-successor-20261111-v1/SOURCE-PINS.json",

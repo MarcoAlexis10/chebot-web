@@ -33,8 +33,10 @@ export function createDurableIncidentReview(options){
   if(o.originalRef!==binding.originalRef||o.userId!==c.p_auth_user_id||o.intentId!==c.p_intent_id||o.operation!==c.p_operation)fail();
   const a=record(o.arguments,['p_incident_id','p_account_member_id','p_new_status','p_event_summary']);
   const trusted=snapshot({...c,p_arguments:a});
-  const equal=immutableArgs(trusted)===immutableArgs(c)&&['accountId','memberId','propertyId','stayId'].every(k=>o[k]===r.resolution[k]);
-  return equal;
+  // Contradictory historical scope is unresolved evidence, not an argument
+  // conflict. Do not turn that uncertainty into a terminal classification.
+  if(!['accountId','memberId','propertyId','stayId'].every(k=>o[k]===r.resolution[k]))fail();
+  return immutableArgs(trusted)===immutableArgs(c);
  }
  async function read(token,e,deadline){
   if(digest(token)!==e.bearerHash)fail();

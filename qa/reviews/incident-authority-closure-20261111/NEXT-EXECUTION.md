@@ -2,7 +2,7 @@
 
 Leer CLOSURE.md, TEST-EVIDENCE.json, PACKAGE-MANIFEST.json y CONTRACTS.md. Verificar HEADs remotos y comparar cambios concurrentes antes de escribir. Usar la rama web QA existente con expected_sha y [skip ci]; no crear ramas backend ni activar workflows. El checkpoint PROGRESS.md es anterior al cierre y no debe hacer repetir tareas completadas.
 
-Conservar los 22 casos nuevos (18 con dobles, 4 estáticos) y las dos regresiones focales justificadas. Los cinco FAIL intermedios están corregidos y sus logs conservados. No sumarlos ni sumar las repeticiones como casos nuevos. No repetir las 21 pruebas anteriores ni las suites históricas por rutina. Al cambiar un contrato, repetir sólo casos directamente afectados.
+Conservar los 22 casos nuevos (18 con dobles, 4 estáticos) y las dos regresiones focales justificadas. Los seis FAIL intermedios están corregidos y sus logs conservados. No sumarlos ni sumar las repeticiones como casos nuevos. No repetir las 21 pruebas anteriores ni las suites históricas por rutina. Al cambiar un contrato, repetir sólo casos directamente afectados.
 
 Próxima dependencia concreta: implementar y acreditar el productor protegido de revisiones/floors y el vínculo de identidad del proveedor al claim de despacho, usando las proyecciones Native17 y custodia existentes. manager_scope sigue sin revisión y private_mutation_authority_v1 sigue sin filas. No llenar la revisión con 1, deducirla del JWT ni quitar el gate para obtener un pase. Resolver también la procedencia y minimización del original bajo D02-A antes de persistirlo.
 

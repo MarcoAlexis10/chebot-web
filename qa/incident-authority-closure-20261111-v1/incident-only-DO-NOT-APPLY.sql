@@ -93,6 +93,9 @@ begin
   join public.concierge_incidents i on i.account_id=a.id and i.id=p_incident
   join public.concierge_properties p on p.id=i.property_id and p.account_id=a.id
   join public.concierge_stays st on st.id=i.stay_id and st.account_id=a.id and st.property_id=p.id
+  -- The legacy authorizer uses LIMIT 1 internally. Surface duplicate property
+  -- permission rows here so cardinality cannot be manufactured by that limit.
+  left join public.concierge_member_property_permissions pp on pp.account_id=a.id and pp.member_id=m.id and pp.property_id=p.id
   join lateral concierge_runtime_qa_v2.concierge_authorize_manager_member_action(m.id,p.id,'manage_incidents') authz
     on authz.result='allow' and authz.account_id=a.id and authz.member_id=m.id and authz.property_id=p.id
   where u.id=p_user and s.id=p_session and u.email_confirmed_at is not null and u.email_confirmed_at<=clock_timestamp()
@@ -131,7 +134,8 @@ begin
  then raise insufficient_privilege using message='INCIDENT_ORIGINAL_UNAVAILABLE_UNKNOWN';end if;
  if o->>'userId' is distinct from p_user::text or o->>'intentId' is distinct from p_intent::text or o->>'operation' is distinct from 'concierge_manager_set_incident_state'
  or o->>'accountId' is distinct from p_account::text or o->>'memberId' is distinct from p_member::text or o->>'propertyId' is distinct from p_property::text or o->>'stayId' is distinct from p_stay::text
- or o->'arguments' is distinct from jsonb_build_object('p_incident_id',p_incident,'p_account_member_id',p_member,'p_new_status',p_status,'p_event_summary',p_summary) then return jsonb_build_object('state','CONFLICT');end if;
+ then raise insufficient_privilege using message='INCIDENT_ORIGINAL_SCOPE_CONTRADICTORY_UNKNOWN';end if;
+ if o->'arguments' is distinct from jsonb_build_object('p_incident_id',p_incident,'p_account_member_id',p_member,'p_new_status',p_status,'p_event_summary',p_summary) then return jsonb_build_object('state','CONFLICT');end if;
  if concierge_incident_private_v1.dispatch_claim_v1(p_user,p_intent,p_attempt,p_dispatch,p_session,p_exp,p_original,p_authority,p_floor) is distinct from true then raise insufficient_privilege using message='INCIDENT_DURABLE_DISPATCH_CLAIM_MISSING';end if;
  -- Lock order: shared fence -> intent binding -> attempt binding -> business row.
  select * into saved from concierge_incident_private_v1.intent_binding where user_id=p_user and intent_id=p_intent for update;

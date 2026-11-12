@@ -15,8 +15,8 @@
   },
   "finalCoverage": {
     "currentResolution": "logs/contracts-final.tap (9 cases, unchanged after role correction)",
-    "durable": "logs/durable-sealed.tap (9 cases after KNOWN history fix)",
-    "sqlProfile": "logs/sql-profile-sealed.tap (4 cases); metadata-reference-focused.tap repeats affected case after opaque-reference constraint",
+    "durable": "logs/durable-final.tap (9 cases after preserving UNKNOWN on contradictory original scope)",
+    "sqlProfile": "logs/sql-profile-sealed.tap (4 cases); original-scope-sql-focused.tap and cardinality-projection-focused.tap repeat the two affected cases after final source corrections",
     "priorFloorFix": "logs/final-floor-after.tap, included in the four sealed cases"
   },
   "executions": [
@@ -274,11 +274,88 @@
       "sha256": "f4f16f319744ac7f5b1a2405022bfc5b15610eb46d5243ced3fce514d80890df",
       "namespaceIsolated": true,
       "intermediateFailure": false
+    },
+    {
+      "log": "logs/cardinality-projection-focused.tap",
+      "kind": "STATIC_SQL_SOURCE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='incident SQL has' web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "incident SQL has an unconditional pre-DDL abort, independent logins and no old broad service call"
+      ],
+      "sha256": "93040388cb8114b967b06ebfce26502266328d1f2c3e8ba7269a3f36815faa05",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/durable-final.tap",
+      "kind": "NODE_OFFLINE_DOUBLES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs",
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "default candidate stays HELD and explicit review rejects legacy broad writer and shared reader",
+        "durable-port review retains intent/attempt/session/authority and dispatches only incident entry",
+        "lost durable admission or dispatch-claim ACK never reaches a writer",
+        "lost write ACK and process restart cannot turn a known intent into a resend",
+        "different args for same known intent conflict; simultaneous review instances rely on one custodian claim",
+        "missing original custody, wrong reference or client snapshot cannot unlock dispatch",
+        "revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback",
+        "reader contradictions never produce terminal success or resubmit and cannot reuse refreshed bearer",
+        "a role change without its authority revision is a contradictory protected source"
+      ],
+      "sha256": "26f2a7d335842e82f856d79e1506cee93f1b86ac802d60fe210d8092f62e0368",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
+    },
+    {
+      "log": "logs/original-scope-before.tap",
+      "kind": "NODE_OFFLINE_DOUBLES",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='missing original custody' web/qa/incident-authority-closure-20261111-v1/durable-incident.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "missing original custody, wrong reference or client snapshot cannot unlock dispatch"
+      ],
+      "sha256": "3af48942c9f00a143d5a249be08ba5be1e75e1dce1d0609e4effdf564f2fa7c2",
+      "namespaceIsolated": true,
+      "intermediateFailure": true
+    },
+    {
+      "log": "logs/original-scope-sql-focused.tap",
+      "kind": "STATIC_SQL_SOURCE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='durable proposal stores' web/qa/incident-authority-closure-20261111-v1/sql-profile.test.mjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "durable proposal stores only opaque original reference/metadata, enforces uniqueness and never retries an existing binding"
+      ],
+      "sha256": "398499b8d7d6f5664dee60de81d584e5e687f3cd30d74b4a805fe0aeb770cd2b",
+      "namespaceIsolated": true,
+      "intermediateFailure": false
     }
   ],
   "runtime": "Node 24.22.1, recorded in static-syntax.log",
   "staticChecks": [
-    "logs/static-syntax.log"
+    "logs/static-syntax.log",
+    "logs/final-syntax.log"
   ],
   "typescript": "d.mts declarations provided, tsc unavailable, NOT_COMPILED",
   "unexecuted": [
@@ -295,5 +372,14 @@
   "actualSqlVerified": false,
   "actualJournalVerified": false,
   "operationalApproval": false,
-  "betaDecision": "NO-GO"
+  "betaDecision": "NO-GO",
+  "intermediateFailAssertions": 6,
+  "correctedContracts": [
+    "role changed without authority revision",
+    "complete floor correlation and final recheck",
+    "independent dispatch claim dependency missing",
+    "KNOWN must retain original historical attempt/session",
+    "contradictory original scope stays UNKNOWN; only changed arguments under same trusted scope are CONFLICT",
+    "property permission duplicates visible despite legacy LIMIT 1 (static source finding)"
+  ]
 }

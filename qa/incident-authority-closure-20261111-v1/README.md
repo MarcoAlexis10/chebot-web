@@ -19,3 +19,5 @@ python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=ta
 ```
 
 No repetir los 21 casos anteriores. Sólo se ejecutan las dos regresiones directamente afectadas por extraer el compilador seguro; las suites de este paquete son nuevas. Los logs incluyen un fallo adversarial corregido: cambio de rol sin avance de la revisión de autoridad. La comprobación en memoria no reemplaza un incremento de revisión atómico y durable por cada revocador.
+
+El cierre conserva también fallos de comparación de floors, claim faltante, KNOWN con intento histórico y scope original contradictorio. Se corrigieron sin cambiar UNKNOWN por un desenlace terminal. La proyección SQL hace visibles permisos duplicados que el LIMIT 1 del autorizador histórico podría ocultar. Ver CONTRACTS.md y TEST-EVIDENCE.json del nuevo cierre para límites y comandos exactos.

@@ -6,6 +6,7 @@ test('incident SQL has an unconditional pre-DDL abort, independent logins and no
  const s=sql();assert.ok(s.indexOf("raise exception 'CHEVENI_INCIDENT_REVIEW_DO_NOT_APPLY'")<s.indexOf('create schema'));assert.ok(s.trim().endsWith('rollback;'));
  const writer=body('writer'),reader=body('reader');assert.ok(writer.includes('concierge_manager_set_incident_state(p_incident,p_member,p_status,p_summary)'));assert.ok(!/manager_action|checkout|suspend|set role/i.test(writer));assert.ok(!/\b(insert|update|delete|truncate|merge|change_state_v1|concierge_manager_set_incident_state)\b/i.test(reader));
  assert.equal(s.split('\n').filter(l=>l.startsWith('grant execute')).length,3);assert.ok(!/create role/i.test(s));assert.equal(reviewIncidentProfile(profile()).state,'PROFILE_REVIEW_MATCHED');
+ assert.ok(body('scope').includes('left join public.concierge_member_property_permissions pp'));
 });
 test('transitive proposal graph rejects reader helper writes, old principals, owner changes, inheritance and RLS gaps',()=>{
  const good=reviewIncidentProfile(profile());assert.equal(good.minimumPrivilegeAccredited,false);
@@ -22,6 +23,7 @@ test('durable proposal stores only opaque original reference/metadata, enforces 
  const table=sql().split('create table concierge_incident_private_v1.intent_binding(')[1].split('alter table')[0];assert.ok(!/\b(summary|phone|name|argument_digest|frame|payload)\b/i.test(table));
  assert.ok(table.includes('primary key(user_id,intent_id)'));assert.ok(table.includes('unique(user_id,attempt_id)'));assert.ok(table.includes('dispatch_id uuid not null unique'));
  const w=body('writer');assert.ok(w.indexOf("'RECONCILIATION_REQUIRED'")<w.indexOf('insert into concierge_incident_private_v1.intent_binding'));assert.ok(w.includes('dispatch_claim_v1('));
+ assert.ok(w.includes('INCIDENT_ORIGINAL_SCOPE_CONTRADICTORY_UNKNOWN'));
  assert.ok(body('gate').includes('INCIDENT_NATIVE_FENCE_AUTH_FLOORS_CUSTODY_NOT_ACCREDITED'));assert.ok(sql().includes('where false'));
  for(const t of ['intent_binding','attempt_binding'])assert.ok(sql().includes(`alter table concierge_incident_private_v1.${t} owner to cheveni_incident_data_owner_v1;`));
 });

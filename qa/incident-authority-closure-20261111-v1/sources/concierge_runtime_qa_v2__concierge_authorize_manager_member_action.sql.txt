@@ -1,0 +1,161 @@
+create or replace function concierge_runtime_qa_v2.concierge_authorize_manager_member_action(p_member_id uuid, p_property_id uuid, p_action text)
+ RETURNS TABLE(result text, reason_code text, account_id uuid, member_id uuid, member_role text, property_id uuid, can_manage_stays boolean, can_manage_incidents boolean, can_approve_requests boolean, can_manage_knowledge boolean, can_manage_secrets boolean, can_manage_team boolean)
+ LANGUAGE plpgsql
+ SECURITY INVOKER
+ SET search_path TO ''
+AS $function$
+declare
+  v_member public.concierge_account_members%rowtype;
+  v_property public.concierge_properties%rowtype;
+  v_perm public.concierge_member_property_permissions%rowtype;
+
+  v_stays boolean := false;
+  v_incidents boolean := false;
+  v_requests boolean := false;
+  v_knowledge boolean := false;
+  v_secrets boolean := false;
+  v_team boolean := false;
+  v_allowed boolean := false;
+begin
+  if not exists(select from public.concierge_account_members m join public.concierge_accounts a on a.id=m.account_id where m.id=p_member_id and a.status in ('active','testing'))
+     or not exists(select from public.concierge_properties p where p.id=p_property_id and p.status='active') then
+     return query select 'deny'::text,'ACCOUNT_OR_PROPERTY_INACTIVE'::text,null::uuid,null::uuid,null::text,null::uuid,false,false,false,false,false,false;return;
+  end if;
+  if p_action not in (
+    'view_property',
+    'manage_stays',
+    'manage_incidents',
+    'approve_requests',
+    'manage_knowledge',
+    'manage_secrets',
+    'manage_team'
+  ) then
+    return query
+    select
+      'deny'::text,
+      'INVALID_MANAGER_ACTION'::text,
+      null::uuid,
+      null::uuid,
+      null::text,
+      null::uuid,
+      false,false,false,false,false,false;
+    return;
+  end if;
+
+  select m.id, m.account_id, m.role, m.status
+ into v_member.id, v_member.account_id, v_member.role, v_member.status
+  from public.concierge_account_members m
+  where m.id=p_member_id
+  limit 1;
+
+  if not found
+     or v_member.status <> 'active' then
+    return query
+    select
+      'deny'::text,
+      'MANAGER_MEMBER_NOT_ACTIVE'::text,
+      null::uuid,
+      null::uuid,
+      null::text,
+      null::uuid,
+      false,false,false,false,false,false;
+    return;
+  end if;
+
+  select p.id, p.account_id
+ into v_property.id, v_property.account_id
+  from public.concierge_properties p
+  where p.id=p_property_id
+  limit 1;
+
+  if not found
+     or v_property.account_id <> v_member.account_id then
+    return query
+    select
+      'deny'::text,
+      'PROPERTY_OUT_OF_SCOPE'::text,
+      v_member.account_id,
+      v_member.id,
+      v_member.role,
+      null::uuid,
+      false,false,false,false,false,false;
+    return;
+  end if;
+
+  if v_member.role in ('owner','manager') then
+    v_stays := true;
+    v_incidents := true;
+    v_requests := true;
+    v_knowledge := true;
+    v_secrets := true;
+    v_team := true;
+  elsif v_member.role='co_manager' then
+    select pp.can_manage_stays, pp.can_manage_incidents, pp.can_approve_requests, pp.can_manage_knowledge, pp.can_manage_secrets, pp.can_manage_team
+ into v_perm.can_manage_stays, v_perm.can_manage_incidents, v_perm.can_approve_requests, v_perm.can_manage_knowledge, v_perm.can_manage_secrets, v_perm.can_manage_team
+    from public.concierge_member_property_permissions pp
+    where pp.account_id=v_member.account_id
+      and pp.member_id=v_member.id
+      and pp.property_id=v_property.id
+    limit 1;
+
+    if not found then
+      return query
+      select
+        'deny'::text,
+        'PROPERTY_OUT_OF_SCOPE'::text,
+        v_member.account_id,
+        v_member.id,
+        v_member.role,
+        null::uuid,
+        false,false,false,false,false,false;
+      return;
+    end if;
+
+    v_stays := v_perm.can_manage_stays;
+    v_incidents := v_perm.can_manage_incidents;
+    v_requests := v_perm.can_approve_requests;
+    v_knowledge := v_perm.can_manage_knowledge;
+    v_secrets := v_perm.can_manage_secrets;
+    v_team := v_perm.can_manage_team;
+  else
+    return query
+    select
+      'deny'::text,
+      'MANAGER_PERMISSION_DENIED'::text,
+      v_member.account_id,
+      v_member.id,
+      v_member.role,
+      null::uuid,
+      false,false,false,false,false,false;
+    return;
+  end if;
+
+  v_allowed :=
+    case p_action
+      when 'view_property' then true
+      when 'manage_stays' then v_stays
+      when 'manage_incidents' then v_incidents
+      when 'approve_requests' then v_requests
+      when 'manage_knowledge' then v_knowledge
+      when 'manage_secrets' then v_secrets
+      when 'manage_team' then v_team
+      else false
+    end;
+
+  return query
+  select
+    case when v_allowed then 'allow' else 'deny' end,
+    case when v_allowed then null::text else 'MANAGER_PERMISSION_DENIED'::text end,
+    v_member.account_id,
+    v_member.id,
+    v_member.role,
+    v_property.id,
+    v_stays,
+    v_incidents,
+    v_requests,
+    v_knowledge,
+    v_secrets,
+    v_team;
+end;
+$function$
+;

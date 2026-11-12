@@ -1,6 +1,6 @@
 # Contratos implementados y límites del sucesor
 
-Fuentes fijadas: [SOURCE-PINS](../../incident-authority-closure-20261111-v1/SOURCE-PINS.json), catálogo Native17 ce5c747c blob 00a201bc5e3959e23f0524672d4d63c4bb1258a3; cuatro extractos adicionales y los pins anteriores en a53c698c. Se releen sólo las funciones necesarias: auth_live, fence, launch, manager_scope, acción y función de negocio de incidentes, y el puerto privado de autoridad. No se ejecuta su SQL ni se repiten auditorías.
+Fuentes fijadas: [SOURCE-PINS](../../incident-authority-closure-20261111-v1/SOURCE-PINS.json), catálogo Native17 ce5c747c blob 00a201bc5e3959e23f0524672d4d63c4bb1258a3; cinco extractos adicionales y los pins anteriores en a53c698c. Se releen sólo las funciones necesarias: auth_live, fence, launch, manager_scope, acción y función de negocio de incidentes, y el puerto privado de autoridad. No se ejecuta su SQL ni se repiten auditorías.
 
 ## CurrentResolution
 
@@ -31,6 +31,8 @@ admit/claim sólo reciben metadatos; no resumen, frame, nombre, teléfono o dige
 
 Un ACK perdido después del envío no acredita rollback; después del claim tampoco se presume que la admisión no ocurrió. UNKNOWN permanece UNKNOWN ante incertidumbre de transporte, fuente original ausente, revocación, expiración o evidencia contradictoria. Un efecto confirmado antes de revocar no se borra ni se vuelve a emitir; la sesión desautorizada no recibe lectura privada. No existe un botón de reintento.
 
+CONFLICT queda reservado a argumentos distintos frente a un original confiable y el mismo scope actual. Si el original contradice la cuenta/miembro/propiedad/estadía actuales, no se clasifica como conflicto: queda UNKNOWN. Ese error se reprodujo y corrigió tanto en el reviewer como en la propuesta SQL; no se infiere un desenlace terminal desde una relación incierta.
+
 ## SQL, roles y privileges — DO NOT APPLY
 
 | Login propuesto | Owner del entry | Único entry del login |
@@ -52,3 +54,5 @@ El archivo aborta incondicionalmente antes del DDL y termina con rollback. Adem�
 OUTCOME_REQUIRES_COMMIT_OBSERVATION y EFFECT_OBSERVED no constituyen recibos de COMMIT/journal. El driver futuro debe distinguir resultado SQL, ACK externo y COMMIT auténtico; el fixture los modela sin acreditarlos. CBF1 permanece create_stay-only y no se inventa un frame firmado de incidencias. Provider binding, canonicalización, journal/witness y transcript siguen pendientes.
 
 Referencias primarias para revisión del perfil: [PostgreSQL 17 CREATE FUNCTION](https://www.postgresql.org/docs/17/sql-createfunction.html) y [Privileges](https://www.postgresql.org/docs/17/ddl-priv.html). No se cambiaron permisos instalados o configuración Supabase.
+
+El autorizador histórico selecciona la propiedad/permisos con LIMIT 1. La proyección propuesta agrega el join explícito de property permissions antes de contar candidatos, para que dos filas de permisos no se reduzcan silenciosamente a una autoridad. Las filas duplicadas de identities/permisos quedan retenidas; esto es una corrección estática del contrato, no una medición del catálogo instalado.

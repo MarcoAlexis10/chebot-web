@@ -38,6 +38,7 @@ test('different args for same known intent conflict; simultaneous review instanc
 test('missing original custody, wrong reference or client snapshot cannot unlock dispatch',async()=>{
  for(const mutation of [async()=>null,async()=>{throw Error('missing original');}]){const x=lab();x.intents.loadOriginal=mutation;assert.equal((await x.review().execute(TOKEN,command())).state,'UNKNOWN');assert.equal(x.writes,0);}
  const x=lab(),orig=x.intents.loadOriginal;x.intents.loadOriginal=async q=>({...await orig(q),originalRef:id(300)});assert.equal((await x.review().execute(TOKEN,command())).state,'UNKNOWN');assert.equal(x.writes,0);
+ const y=lab();await y.review().execute(TOKEN,command());const original=y.intents.loadOriginal;y.intents.loadOriginal=async q=>({...await original(q),stayId:id(404)});assert.equal((await y.review().execute(TOKEN,command())).state,'UNKNOWN');assert.equal(y.writes,1);
 });
 test('revocation during dispatch claim and after possible effect preserves UNKNOWN and blocks private readback',async()=>{
  const x=lab(),claim=x.intents.claimDispatch;x.intents.claimDispatch=async q=>{const b=await claim(q);x.row.sessionLive=false;return b;};assert.equal((await x.review().execute(TOKEN,command())).state,'UNKNOWN');assert.equal(x.writes,0);
