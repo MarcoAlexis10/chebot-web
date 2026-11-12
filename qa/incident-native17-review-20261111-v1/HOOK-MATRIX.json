@@ -218,6 +218,27 @@
         "property_id",
         "stay_id"
       ]
+    },
+    {
+      "table": "concierge_incident_private_v1.intent_binding",
+      "name": "incident_metadata_fence_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "mode": "FENCE_ONLY_NO_AUTHORITY_INCREMENT"
+    },
+    {
+      "table": "concierge_incident_private_v1.attempt_binding",
+      "name": "incident_metadata_fence_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "mode": "FENCE_ONLY_NO_AUTHORITY_INCREMENT"
+    },
+    {
+      "table": "concierge_incident_private_v1.admission_v2",
+      "name": "incident_metadata_fence_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "mode": "FENCE_ONLY_NO_AUTHORITY_INCREMENT"
     }
   ],
   "lockOrder": [

@@ -1,0 +1,16 @@
+{
+  "kind": "STATIC_TEXT_GENERATION",
+  "deterministic": true,
+  "hashes": {
+    "00-roles-DO-NOT-APPLY.sql": "d87a057789e119270a21ec76b823deced8c78fd99adcd022fd00c195d25ab921",
+    "00-source-base-DO-NOT-APPLY.sql": "f16b23d7746b1f9248090f7e3a597ce4e744c6b6cadb4393c39cbf24f98d1c47",
+    "01-revisions-DO-NOT-APPLY.sql": "64eba1e69b8e6af24fd81119fe0de45c64cbb46993c1636d27247e52837cd105",
+    "02-admission-DO-NOT-APPLY.sql": "a25dce0003e462a55259b3465de5740d5303fcfce61af76f7fc2846804d8dab6",
+    "03-bound-entries-DO-NOT-APPLY.sql": "d8ec453666f2104585faf295e9bf5c688be8f5cb536e923aba70430972b325d6",
+    "04-acl-rls-DO-NOT-APPLY.sql": "b14e9e7243c47e160c7447aa6bd2134eb8e0b4b0371101e6d1164149d7207633",
+    "EXPECTED-CATALOG.json": "eb34c6e1b6f8cbcb45ede11207a603e66c7e998c675386214ddab26289284286",
+    "GENERATION.json": "714b86a16c1f9f1b9cb14351e08a1465c5f7dfc02dcde85e6840fbcfa20b9621",
+    "HOOK-MATRIX.json": "7096ee434feb9d9df89606105471c0c8c654724e33ecfb47de4bfdc58f1471fd"
+  },
+  "sqlExecuted": false
+}

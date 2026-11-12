@@ -9,3 +9,16 @@ Extiende el paquete incident-authority-closure anterior. No se conecta al router
 La admisión tiene tabla propia: reservar intent_binding antes del efecto impediría la primera escritura en el writer anterior. NEW/KNOWN preservan el original por referencia privada; claim no implica COMMIT del efecto. Los entries ligados al proveedor necesitan ABI 17/10, en lugar del 16/9 anterior. No se usa el entry antiguo como fallback para perder providerBindingRef. El negocio y los controles de scope/floor se derivan del SQL anterior sellado.
 
 Los artefactos son propuestas de revisión, abortan antes de DDL y terminan en rollback. Persistencia de IDs/metadatos requiere también finalidad/minimización/custodia/retención; no se ejecuta ni se agrega almacenamiento personal. Revisión de ACL/RLS/captura y prerrequisitos se consolidan en el cierre nuevo.
+
+Generación reproducible, sólo archivos:
+
+```sh
+python web/qa/incident-native17-review-20261111-v1/build_review.py
+python web/qa/incident-native17-review-20261111-v1/build_acl.py
+```
+
+00-source-base es la copia sellada anterior. 01 deriva revisión de un clock sin bootstrap y un floor externo exacto; 02 separa admisión/claim del efecto; 03 deriva writer/reader ligados al proveedor; 04 propone owners/grants por columna/RLS y hooks de metadatos; 05 captura sólo catálogo y también está abortada. 00-roles no configura passwords o conexiones. Ningún archivo debe ejecutarse ni ensamblarse quitando abortos por cuenta propia.
+
+EXPECTED-CATALOG y HOOK-MATRIX son expectativas estáticas. El generador propaga el rol real a través de SECURITY INVOKER y cambia contexto sólo en SECURITY DEFINER. El source context RLS sigue false; las tablas de efecto sin providerRef mantienen denegación por NULL, sin un lookup permisivo. Los bridges de provider/floor/original siguen sin implementación acreditada y las fuentes base conservan el native gate cerrado. La captura pg_depend tampoco acredita por sí sola el cierre de dependencias PL/pgSQL.
+
+La conversión de transporte reutiliza WRITE_SQL/READ_SQL y añade sólo providerBindingRef: preserva cada argumento y floor, exige un claim generado por la misma instancia y vuelve a comprobar autoridad/bearer. La reserva de compilación impide reemitir localmente el write; no prueba unicidad SQL o durabilidad. El default no construye ni envía ese transporte.

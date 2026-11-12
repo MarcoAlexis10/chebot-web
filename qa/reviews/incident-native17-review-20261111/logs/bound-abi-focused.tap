@@ -1,0 +1,23 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532304]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: provider-bound ABI 17/10 preserves the source writer/reader and rejects old entry fallback
+ok 1 - provider-bound ABI 17/10 preserves the source writer/reader and rejects old entry fallback
+  ---
+  duration_ms: 2.154284
+  type: 'test'
+  ...
+# Subtest: bound transport preserves the original ABI arguments and adds only an instance-proven provider reference
+ok 2 - bound transport preserves the original ABI arguments and adds only an instance-proven provider reference
+  ---
+  duration_ms: 12.787015
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 92.865592

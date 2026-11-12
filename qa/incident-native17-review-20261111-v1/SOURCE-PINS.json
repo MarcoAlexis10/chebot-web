@@ -20,6 +20,12 @@
       "bytes": 21434,
       "sha256": "f16b23d7746b1f9248090f7e3a597ce4e744c6b6cadb4393c39cbf24f98d1c47",
       "gitBlob": "a906c92547c5282cd700078c7e1a4faa5fad5d7f"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/durable-incident-review.mjs",
+      "bytes": 8392,
+      "sha256": "4af45da074f88853f36145814a8a5840a0c579d60f4bcb9b0470e79a9ad6214c",
+      "gitBlob": "bbd686db963630baa3e2e85504a82b37cfff2d0f"
     }
   ],
   "inheritedPins": "../incident-authority-closure-20261111-v1/SOURCE-PINS.json",

@@ -1,0 +1,1216 @@
+{
+  "roles": [
+    {
+      "name": "cheveni_incident_scope_backend_v1",
+      "login": true,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    },
+    {
+      "name": "cheveni_incident_writer_backend_v1",
+      "login": true,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    },
+    {
+      "name": "cheveni_incident_readback_backend_v1",
+      "login": true,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    },
+    {
+      "name": "cheveni_incident_scope_owner_v1",
+      "login": false,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    },
+    {
+      "name": "cheveni_incident_writer_owner_v1",
+      "login": false,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    },
+    {
+      "name": "cheveni_incident_readback_owner_v1",
+      "login": false,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    },
+    {
+      "name": "cheveni_incident_revision_owner_v2",
+      "login": false,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    },
+    {
+      "name": "cheveni_incident_data_owner_v1",
+      "login": false,
+      "inherit": false,
+      "superuser": false,
+      "bypassRls": false,
+      "memberships": [],
+      "setRoles": []
+    }
+  ],
+  "entries": {
+    "cheveni_incident_scope_backend_v1": [
+      "concierge_incident_private_v1.current_resolution_v1(uuid,uuid,bigint,uuid,uuid)"
+    ],
+    "cheveni_incident_writer_backend_v1": [
+      "concierge_incident_private_v1.admit_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "concierge_incident_private_v1.claim_dispatch_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,uuid,jsonb)",
+      "concierge_incident_private_v1.change_state_bound_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,text,text,bigint,jsonb,uuid)"
+    ],
+    "cheveni_incident_readback_backend_v1": [
+      "concierge_incident_private_v1.read_effect_bound_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,jsonb,uuid)"
+    ]
+  },
+  "functions": [
+    {
+      "name": "native_gate_v1",
+      "signature": "concierge_incident_private_v1.native_gate_v1(text)",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "2ce6dedf45bf24b7dcf0becc31864ef36e69f0be351b2f5b5b09070dbc25fe8b",
+      "arity": 1,
+      "calls": []
+    },
+    {
+      "name": "current_revisions_v1",
+      "signature": "concierge_incident_private_v1.current_revisions_v1(uuid,uuid,uuid)",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "7eb4440f31f93b2135e8279448cbaa4b7851fad7a14d8e7f507f66b7cac0a13c",
+      "arity": 3,
+      "calls": [
+        "protected_floor_v2",
+        "review_prerequisites_v2"
+      ]
+    },
+    {
+      "name": "original_intent_v1",
+      "signature": "concierge_incident_private_v1.original_intent_v1(uuid,uuid,uuid)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "7215167655368e430303415fd182c24b908103efe2bdc1ee432867b16b7c4638",
+      "arity": 3,
+      "calls": []
+    },
+    {
+      "name": "dispatch_claim_v1",
+      "signature": "concierge_incident_private_v1.dispatch_claim_v1(uuid,uuid,uuid,uuid,uuid,bigint,uuid,bigint,jsonb)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "81fa21d8f826e1fe32b7e5b355b4118d5c4f3725542e26b687e3778f3fa313c2",
+      "arity": 9,
+      "calls": []
+    },
+    {
+      "name": "current_resolution_v1",
+      "signature": "concierge_incident_private_v1.current_resolution_v1(uuid,uuid,bigint,uuid,uuid)",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "cd333775be5bf2dcb6c1a80c87c79b5f444a328ba6f745da8d783e9c18a3edb9",
+      "arity": 5,
+      "calls": [
+        "current_revisions_v1",
+        "native_gate_v1"
+      ]
+    },
+    {
+      "name": "change_state_v1",
+      "signature": "concierge_incident_private_v1.change_state_v1(uuid,uuid,bigint,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,text,text,bigint,jsonb)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "ee795f13d7c46096cf35417802e63a925402617d6bea20d54577ea149584edb6",
+      "arity": 16,
+      "calls": [
+        "current_resolution_v1",
+        "current_revisions_v1",
+        "dispatch_claim_v1",
+        "native_gate_v1",
+        "original_intent_v1"
+      ]
+    },
+    {
+      "name": "read_effect_v1",
+      "signature": "concierge_incident_private_v1.read_effect_v1(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,jsonb)",
+      "owner": "cheveni_incident_readback_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "3ba4336654a9a4fd2402f0ac06718e6eaaffd3072e3f1cb03bef9ff9c24e2deb",
+      "arity": 9,
+      "calls": [
+        "current_resolution_v1",
+        "current_revisions_v1",
+        "native_gate_v1"
+      ]
+    },
+    {
+      "name": "review_prerequisites_v2",
+      "signature": "concierge_incident_private_v1.review_prerequisites_v2(text)",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "0985b0ca40f88c25830e3ea1c2609383f4186c8d2ce73020fe7b6dd6bf10bd35",
+      "arity": 1,
+      "calls": []
+    },
+    {
+      "name": "protected_floor_v2",
+      "signature": "concierge_incident_private_v1.protected_floor_v2()",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "0d886d8a354b4d9489f5ec64a6b04700735d08800e4d208f9c69fd50760200f2",
+      "arity": 0,
+      "calls": []
+    },
+    {
+      "name": "revision_before_v2",
+      "signature": "concierge_incident_private_v1.revision_before_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "45984537c9c65e609cfafa2ec8374cb041aa4fa40aaf4f7702c85819d23bfcac",
+      "arity": 0,
+      "calls": [
+        "review_prerequisites_v2"
+      ]
+    },
+    {
+      "name": "revision_step_v2",
+      "signature": "concierge_incident_private_v1.revision_step_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "9c859dbf4564231883aaa3d7d73c193a87176a79aa04652c6cc8c85332cd4509",
+      "arity": 0,
+      "calls": [
+        "review_prerequisites_v2"
+      ]
+    },
+    {
+      "name": "revision_changed_v2",
+      "signature": "concierge_incident_private_v1.revision_changed_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "1da3a9d90a7dee59f890a50429377bd71b5d704b2204bd66701af46f90f89b79",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_auth_users_v2",
+      "signature": "concierge_incident_private_v1.revision_update_auth_users_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "8940101db7150861758d235479ce0dc62594ca31f20400a2f6ade0310d46dcb0",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_auth_sessions_v2",
+      "signature": "concierge_incident_private_v1.revision_update_auth_sessions_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "8940101db7150861758d235479ce0dc62594ca31f20400a2f6ade0310d46dcb0",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_public_concierge_accounts_v2",
+      "signature": "concierge_incident_private_v1.revision_update_public_concierge_accounts_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "8940101db7150861758d235479ce0dc62594ca31f20400a2f6ade0310d46dcb0",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_public_concierge_account_members_v2",
+      "signature": "concierge_incident_private_v1.revision_update_public_concierge_account_members_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "8940101db7150861758d235479ce0dc62594ca31f20400a2f6ade0310d46dcb0",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_public_concierge_manager_web_identities_v2",
+      "signature": "concierge_incident_private_v1.revision_update_public_concierge_manager_web_identities_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "8940101db7150861758d235479ce0dc62594ca31f20400a2f6ade0310d46dcb0",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_public_concierge_member_property_permissions_v2",
+      "signature": "concierge_incident_private_v1.revision_update_public_concierge_member_property_permissions_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "8940101db7150861758d235479ce0dc62594ca31f20400a2f6ade0310d46dcb0",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_public_concierge_properties_v2",
+      "signature": "concierge_incident_private_v1.revision_update_public_concierge_properties_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "8940101db7150861758d235479ce0dc62594ca31f20400a2f6ade0310d46dcb0",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_public_concierge_stays_v2",
+      "signature": "concierge_incident_private_v1.revision_update_public_concierge_stays_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "96adbf1bd47a904f9ac1988499f76ad3575825d232a661cf03d9810daa335b62",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "revision_update_public_concierge_incidents_v2",
+      "signature": "concierge_incident_private_v1.revision_update_public_concierge_incidents_v2()",
+      "owner": "cheveni_incident_revision_owner_v2",
+      "securityDefiner": true,
+      "bodySha256": "f39e41a2fcce73aeb873a37ea4fd21507cc5415191e51cc8ee31e274e22f06c7",
+      "arity": 0,
+      "calls": [
+        "revision_step_v2"
+      ]
+    },
+    {
+      "name": "provider_binding_v2",
+      "signature": "concierge_incident_private_v1.provider_binding_v2(uuid)",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "547bb173d5a1dbd2ff236d380e4f4d3de96081888443ff1ac14ef134e1938d4c",
+      "arity": 1,
+      "calls": []
+    },
+    {
+      "name": "original_reference_v2",
+      "signature": "concierge_incident_private_v1.original_reference_v2(uuid,uuid,uuid)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "ff1ded54b38de6333f6f45ed918cb651481095d90be46b19315059d4bcab146b",
+      "arity": 3,
+      "calls": []
+    },
+    {
+      "name": "assert_provider_v2",
+      "signature": "concierge_incident_private_v1.assert_provider_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "d4a74042baa00e69696f32945d16ca9225e8e5801b87f1332d87ee6740bc0b65",
+      "arity": 11,
+      "calls": [
+        "provider_binding_v2"
+      ]
+    },
+    {
+      "name": "assert_floor_v2",
+      "signature": "concierge_incident_private_v1.assert_floor_v2(jsonb,uuid,uuid,bigint,uuid,uuid,bigint)",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "bf83f9f10fbfe4ecfaa2882735e4564367c7536795251e741b29c6324d2612ee",
+      "arity": 7,
+      "calls": [
+        "current_resolution_v1",
+        "current_revisions_v1"
+      ]
+    },
+    {
+      "name": "admit_v2",
+      "signature": "concierge_incident_private_v1.admit_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "96be98951da3eb646ba9e98e55bdf9ece9a045d17aaae818819e12542e1b0736",
+      "arity": 11,
+      "calls": [
+        "assert_floor_v2",
+        "assert_provider_v2",
+        "current_resolution_v1",
+        "current_revisions_v1",
+        "native_gate_v1",
+        "original_reference_v2",
+        "review_prerequisites_v2"
+      ]
+    },
+    {
+      "name": "claim_dispatch_v2",
+      "signature": "concierge_incident_private_v1.claim_dispatch_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,uuid,jsonb)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "4152dffc7842272ae4ee7be45460158dff9cf003513571b98df6af4ae1b5a9e9",
+      "arity": 9,
+      "calls": [
+        "assert_floor_v2",
+        "assert_provider_v2",
+        "current_resolution_v1",
+        "current_revisions_v1",
+        "native_gate_v1"
+      ]
+    },
+    {
+      "name": "bound_claim_matches_v2",
+      "signature": "concierge_incident_private_v1.bound_claim_matches_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "f117dbf87aff9fea2be8c055bed75ff09fd2c677002664cae2e6b6760ca39e66",
+      "arity": 11,
+      "calls": [
+        "assert_provider_v2"
+      ]
+    },
+    {
+      "name": "assert_claimed_admission_v2",
+      "signature": "concierge_incident_private_v1.assert_claimed_admission_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": false,
+      "bodySha256": "578006d17b91f4f1dee74c2506aa71409a4ec22a301802fc5e3a26e025aa2898",
+      "arity": 11,
+      "calls": [
+        "bound_claim_matches_v2"
+      ]
+    },
+    {
+      "name": "change_state_bound_v2",
+      "signature": "concierge_incident_private_v1.change_state_bound_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,text,text,bigint,jsonb,uuid)",
+      "owner": "cheveni_incident_writer_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "24ee5352de2b1f4d1fda04a8d7cf4c1188f57c40b07d3ebb3a967d503c35229c",
+      "arity": 17,
+      "calls": [
+        "assert_claimed_admission_v2",
+        "bound_claim_matches_v2",
+        "current_resolution_v1",
+        "current_revisions_v1",
+        "native_gate_v1",
+        "original_intent_v1"
+      ]
+    },
+    {
+      "name": "read_effect_bound_v2",
+      "signature": "concierge_incident_private_v1.read_effect_bound_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,jsonb,uuid)",
+      "owner": "cheveni_incident_readback_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "6bce77bbc7c066539d14c7af1b290e50109275b9f6f5f482a720194a9632e773",
+      "arity": 10,
+      "calls": [
+        "assert_claimed_admission_v2",
+        "current_resolution_v1",
+        "current_revisions_v1",
+        "native_gate_v1"
+      ]
+    },
+    {
+      "name": "row_visible_v2",
+      "signature": "concierge_incident_private_v1.row_visible_v2(uuid,uuid,uuid)",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "70777a7cd9a552f11aec980ffa6d3503ba50818f5f2e20c25444c4a246311649",
+      "arity": 3,
+      "calls": [
+        "provider_binding_v2"
+      ]
+    },
+    {
+      "name": "source_row_visible_v2",
+      "signature": "concierge_incident_private_v1.source_row_visible_v2(text,uuid[])",
+      "owner": "cheveni_incident_scope_owner_v1",
+      "securityDefiner": true,
+      "bodySha256": "70431e45114644ef5b55b67885387380a0195106606455480a9a8e9767fb8e51",
+      "arity": 2,
+      "calls": []
+    }
+  ],
+  "grants": [
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.current_resolution_v1(uuid,uuid,bigint,uuid,uuid)",
+      "role": "cheveni_incident_scope_backend_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.admit_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "role": "cheveni_incident_writer_backend_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.claim_dispatch_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,uuid,jsonb)",
+      "role": "cheveni_incident_writer_backend_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.change_state_bound_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,uuid,text,text,bigint,jsonb,uuid)",
+      "role": "cheveni_incident_writer_backend_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.read_effect_bound_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,jsonb,uuid)",
+      "role": "cheveni_incident_readback_backend_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.current_resolution_v1(uuid,uuid,bigint,uuid,uuid)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.current_revisions_v1(uuid,uuid,uuid)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.native_gate_v1(text)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.current_resolution_v1(uuid,uuid,bigint,uuid,uuid)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.current_revisions_v1(uuid,uuid,uuid)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.native_gate_v1(text)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.review_prerequisites_v2(text)",
+      "role": "cheveni_incident_revision_owner_v2"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.provider_binding_v2(uuid)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.assert_floor_v2(jsonb,uuid,uuid,bigint,uuid,uuid,bigint)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.review_prerequisites_v2(text)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.assert_claimed_admission_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.bound_claim_matches_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.assert_provider_v2(uuid,uuid,bigint,uuid,uuid,uuid,uuid,bigint,bigint,uuid,jsonb)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.provider_binding_v2(uuid)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_runtime_qa_v2.concierge_authorize_manager_member_action(uuid,uuid,text)",
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_runtime_qa_v2.concierge_manager_set_incident_state(uuid,uuid,text,text)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "auth.users",
+      "columns": [
+        "id",
+        "email_confirmed_at",
+        "banned_until"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "auth.sessions",
+      "columns": [
+        "id",
+        "user_id",
+        "not_after"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_manager_web_identities",
+      "columns": [
+        "auth_user_id",
+        "member_id",
+        "account_id",
+        "status",
+        "revoked_at"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_account_members",
+      "columns": [
+        "id",
+        "account_id",
+        "role",
+        "status"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_accounts",
+      "columns": [
+        "id",
+        "status"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_properties",
+      "columns": [
+        "id",
+        "account_id",
+        "status",
+        "city"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_stays",
+      "columns": [
+        "id",
+        "account_id",
+        "property_id"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_incidents",
+      "columns": [
+        "id",
+        "account_id",
+        "property_id",
+        "stay_id",
+        "status"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_member_property_permissions",
+      "columns": [
+        "account_id",
+        "member_id",
+        "property_id",
+        "can_manage_stays",
+        "can_manage_incidents",
+        "can_approve_requests",
+        "can_manage_knowledge",
+        "can_manage_secrets",
+        "can_manage_team"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_account_members",
+      "columns": [
+        "id",
+        "account_id",
+        "role",
+        "status"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_member_property_permissions",
+      "columns": [
+        "account_id",
+        "member_id",
+        "property_id",
+        "can_manage_incidents"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "public.concierge_incidents",
+      "columns": [
+        "id",
+        "account_id",
+        "property_id",
+        "stay_id",
+        "status",
+        "manager_intervention_required",
+        "closed_at",
+        "updated_at"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.intent_binding",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "original_ref",
+        "account_id",
+        "member_id",
+        "property_id",
+        "stay_id",
+        "incident_id"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.intent_binding",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "original_ref",
+        "account_id",
+        "member_id",
+        "property_id",
+        "stay_id",
+        "incident_id"
+      ],
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "INSERT",
+      "object": "concierge_incident_private_v1.intent_binding",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "original_ref",
+        "account_id",
+        "member_id",
+        "property_id",
+        "stay_id",
+        "incident_id"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.attempt_binding",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "attempt_id",
+        "session_id",
+        "token_expires_at",
+        "authority_revision",
+        "restriction_revision",
+        "dispatch_id",
+        "original_ref",
+        "recovery_epoch",
+        "state",
+        "resulting_status"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.attempt_binding",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "attempt_id",
+        "session_id",
+        "token_expires_at",
+        "authority_revision",
+        "restriction_revision",
+        "dispatch_id",
+        "original_ref",
+        "recovery_epoch",
+        "state",
+        "resulting_status"
+      ],
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "INSERT",
+      "object": "concierge_incident_private_v1.attempt_binding",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "attempt_id",
+        "session_id",
+        "token_expires_at",
+        "authority_revision",
+        "restriction_revision",
+        "dispatch_id",
+        "original_ref",
+        "recovery_epoch",
+        "state",
+        "resulting_status"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.authority_clock_v2",
+      "columns": [
+        "singleton",
+        "project_ref",
+        "dataset_id",
+        "recovery_epoch",
+        "authority_revision",
+        "bootstrap_provenance_ref"
+      ],
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.authority_clock_v2",
+      "columns": [
+        "singleton",
+        "project_ref",
+        "dataset_id",
+        "recovery_epoch",
+        "authority_revision",
+        "bootstrap_provenance_ref"
+      ],
+      "role": "cheveni_incident_revision_owner_v2"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.admission_v2",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "attempt_id",
+        "dispatch_id",
+        "session_id",
+        "token_expires_at",
+        "original_ref",
+        "provider_binding_ref",
+        "authority_revision",
+        "restriction_revision",
+        "state"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "SELECT",
+      "object": "concierge_incident_private_v1.admission_v2",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "attempt_id",
+        "dispatch_id",
+        "session_id",
+        "token_expires_at",
+        "original_ref",
+        "provider_binding_ref",
+        "authority_revision",
+        "restriction_revision",
+        "state"
+      ],
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "INSERT",
+      "object": "concierge_incident_private_v1.admission_v2",
+      "columns": [
+        "user_id",
+        "intent_id",
+        "attempt_id",
+        "dispatch_id",
+        "session_id",
+        "token_expires_at",
+        "original_ref",
+        "provider_binding_ref",
+        "authority_revision",
+        "restriction_revision",
+        "state"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "UPDATE",
+      "object": "concierge_incident_private_v1.authority_clock_v2",
+      "columns": [
+        "authority_revision"
+      ],
+      "role": "cheveni_incident_revision_owner_v2"
+    },
+    {
+      "kind": "UPDATE",
+      "object": "concierge_incident_private_v1.admission_v2",
+      "columns": [
+        "state"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "UPDATE",
+      "object": "concierge_incident_private_v1.attempt_binding",
+      "columns": [
+        "state",
+        "resulting_status"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "UPDATE",
+      "object": "public.concierge_incidents",
+      "columns": [
+        "status",
+        "manager_intervention_required",
+        "closed_at",
+        "updated_at"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "INSERT",
+      "object": "public.concierge_incident_events",
+      "columns": [
+        "account_id",
+        "incident_id",
+        "actor_type",
+        "actor_ref",
+        "event_type",
+        "event_summary"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "INSERT",
+      "object": "public.concierge_audit_events",
+      "columns": [
+        "account_id",
+        "actor_type",
+        "actor_ref",
+        "property_id",
+        "stay_id",
+        "action_type",
+        "entity_type",
+        "entity_id",
+        "result",
+        "reason_code"
+      ],
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.row_visible_v2(uuid,uuid,uuid)",
+      "role": "cheveni_incident_writer_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.row_visible_v2(uuid,uuid,uuid)",
+      "role": "cheveni_incident_readback_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.source_row_visible_v2(text,uuid[])",
+      "role": "cheveni_incident_scope_owner_v1"
+    },
+    {
+      "kind": "EXECUTE",
+      "object": "concierge_incident_private_v1.source_row_visible_v2(text,uuid[])",
+      "role": "cheveni_incident_writer_owner_v1"
+    }
+  ],
+  "policies": [
+    {
+      "table": "concierge_incident_private_v1.intent_binding",
+      "role": "cheveni_incident_readback_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,null::uuid)"
+    },
+    {
+      "table": "concierge_incident_private_v1.intent_binding",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,null::uuid)"
+    },
+    {
+      "table": "concierge_incident_private_v1.intent_binding",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "INSERT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,null::uuid)"
+    },
+    {
+      "table": "concierge_incident_private_v1.attempt_binding",
+      "role": "cheveni_incident_readback_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,null::uuid)"
+    },
+    {
+      "table": "concierge_incident_private_v1.attempt_binding",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,null::uuid)"
+    },
+    {
+      "table": "concierge_incident_private_v1.attempt_binding",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "INSERT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,null::uuid)"
+    },
+    {
+      "table": "concierge_incident_private_v1.attempt_binding",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "UPDATE",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,null::uuid)"
+    },
+    {
+      "table": "concierge_incident_private_v1.authority_clock_v2",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "singleton and project_ref='tjdgrzzeuuihhqnzvaox'"
+    },
+    {
+      "table": "concierge_incident_private_v1.authority_clock_v2",
+      "role": "cheveni_incident_revision_owner_v2",
+      "command": "SELECT",
+      "predicate": "singleton and project_ref='tjdgrzzeuuihhqnzvaox'"
+    },
+    {
+      "table": "concierge_incident_private_v1.authority_clock_v2",
+      "role": "cheveni_incident_revision_owner_v2",
+      "command": "UPDATE",
+      "predicate": "singleton and project_ref='tjdgrzzeuuihhqnzvaox'"
+    },
+    {
+      "table": "concierge_incident_private_v1.admission_v2",
+      "role": "cheveni_incident_readback_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,provider_binding_ref)"
+    },
+    {
+      "table": "concierge_incident_private_v1.admission_v2",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,provider_binding_ref)"
+    },
+    {
+      "table": "concierge_incident_private_v1.admission_v2",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "INSERT",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,provider_binding_ref)"
+    },
+    {
+      "table": "concierge_incident_private_v1.admission_v2",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "UPDATE",
+      "predicate": "concierge_incident_private_v1.row_visible_v2(user_id,intent_id,provider_binding_ref)"
+    },
+    {
+      "table": "auth.users",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('auth.users',array[id]::uuid[])"
+    },
+    {
+      "table": "auth.sessions",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('auth.sessions',array[id,user_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_manager_web_identities",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_manager_web_identities',array[auth_user_id,member_id,account_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_account_members",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_account_members',array[id,account_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_accounts",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_accounts',array[id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_properties",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_properties',array[id,account_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_stays",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_stays',array[id,account_id,property_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_incidents",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_incidents',array[id,account_id,property_id,stay_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_member_property_permissions",
+      "role": "cheveni_incident_scope_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_member_property_permissions',array[account_id,member_id,property_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_account_members",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_account_members',array[id,account_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_member_property_permissions",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_member_property_permissions',array[account_id,member_id,property_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_incidents",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "SELECT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_incidents',array[id,account_id,property_id,stay_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_incidents",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "UPDATE",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_incidents',array[id,account_id,property_id,stay_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_incident_events",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "INSERT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_incident_events',array[account_id,incident_id]::uuid[])"
+    },
+    {
+      "table": "public.concierge_audit_events",
+      "role": "cheveni_incident_writer_owner_v1",
+      "command": "INSERT",
+      "predicate": "concierge_incident_private_v1.source_row_visible_v2('public.concierge_audit_events',array[account_id,property_id,stay_id]::uuid[])"
+    }
+  ],
+  "tableColumns": {
+    "concierge_incident_private_v1.intent_binding": [
+      "user_id",
+      "intent_id",
+      "original_ref",
+      "account_id",
+      "member_id",
+      "property_id",
+      "stay_id",
+      "incident_id"
+    ],
+    "concierge_incident_private_v1.attempt_binding": [
+      "user_id",
+      "intent_id",
+      "attempt_id",
+      "session_id",
+      "token_expires_at",
+      "authority_revision",
+      "restriction_revision",
+      "dispatch_id",
+      "original_ref",
+      "recovery_epoch",
+      "state",
+      "resulting_status"
+    ],
+    "concierge_incident_private_v1.authority_clock_v2": [
+      "singleton",
+      "project_ref",
+      "dataset_id",
+      "recovery_epoch",
+      "authority_revision",
+      "bootstrap_provenance_ref"
+    ],
+    "concierge_incident_private_v1.admission_v2": [
+      "user_id",
+      "intent_id",
+      "attempt_id",
+      "dispatch_id",
+      "session_id",
+      "token_expires_at",
+      "original_ref",
+      "provider_binding_ref",
+      "authority_revision",
+      "restriction_revision",
+      "state"
+    ]
+  },
+  "externalNativeDependencies": {
+    "concierge_runtime_qa_v2.concierge_authorize_manager_member_action(uuid,uuid,text)": "cheveni_incident_scope_owner_v1",
+    "concierge_runtime_qa_v2.concierge_manager_set_incident_state(uuid,uuid,text,text)": "cheveni_incident_writer_owner_v1"
+  },
+  "captureRequiredFor": [
+    "actual owners and function body hashes",
+    "default ACL/PUBLIC and role membership SET/INHERIT closure",
+    "all transitive functions/operators/casts/policies/triggers",
+    "RLS source context and independent provider/original/floor custody"
+  ],
+  "nativeObserved": false,
+  "effectiveMinimumPrivilegeAccredited": false,
+  "rlsSourceContextImplemented": false,
+  "effectTableProviderScopeProjectionImplemented": false,
+  "operationalApproval": false
+}

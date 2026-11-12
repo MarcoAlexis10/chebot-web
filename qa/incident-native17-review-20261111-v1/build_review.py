@@ -224,6 +224,8 @@ end $claim$;
  perform concierge_incident_private_v1.assert_claimed_admission_v2(p_user,p_session,p_exp,p_intent,p_attempt,p_dispatch,p_original,p_authority,(p_floor->>'restrictionVersion')::bigint,p_provider_binding,p_floor);
 """
             block=block.replace(fence,fence+check,1)
+        block=block.replace("'dispatchId',p_dispatch);","'dispatchId',p_dispatch,'providerBindingRef',p_provider_binding);")
+        block=block.replace("'state','EFFECT_OBSERVED','originalRef'","'state','EFFECT_OBSERVED','providerBindingRef',p_provider_binding,'originalRef'")
         blocks.append(block)
     bridges='''
 create function concierge_incident_private_v1.bound_claim_matches_v2(p_user uuid,p_session uuid,p_exp bigint,p_intent uuid,p_attempt uuid,p_dispatch uuid,p_original uuid,p_authority bigint,p_restriction bigint,p_binding uuid,p_floor jsonb)

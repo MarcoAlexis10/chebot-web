@@ -63,7 +63,7 @@ begin
  'inventoryDigest',rev.inventory_digest,'restrictionJournalId',rev.restriction_journal_id,'restrictionDigest',rev.restriction_digest)
  then raise insufficient_privilege using message='INCIDENT_FINAL_FLOOR_CHANGED';end if;
  -- This row/result is not a receipt proving the outer transaction committed.
- return jsonb_build_object('state','OUTCOME_REQUIRES_COMMIT_OBSERVATION','dispatchId',p_dispatch);
+ return jsonb_build_object('state','OUTCOME_REQUIRES_COMMIT_OBSERVATION','dispatchId',p_dispatch,'providerBindingRef',p_provider_binding);
 end $writer$;
 create function concierge_incident_private_v1.read_effect_bound_v2(p_user uuid,p_session uuid,p_exp bigint,p_intent uuid,p_attempt uuid,p_dispatch uuid,p_original uuid,p_authority bigint,p_floor jsonb,p_provider_binding uuid)
 returns jsonb language plpgsql security definer set search_path='' set lock_timeout='2s' as $reader$
@@ -92,6 +92,6 @@ begin
  'authorityVersion',rev.authority_revision,'restrictionVersion',rev.restriction_revision,'datasetId',rev.dataset_id,'recoveryEpoch',rev.recovery_epoch,
  'inventoryDigest',rev.inventory_digest,'restrictionJournalId',rev.restriction_journal_id,'restrictionDigest',rev.restriction_digest)
  then raise insufficient_privilege using message='INCIDENT_READ_FINAL_FLOOR_CHANGED';end if;
- return jsonb_build_object('state','EFFECT_OBSERVED','originalRef',p_original,'userId',p_user,'intentId',p_intent,'attemptId',p_attempt,'sessionId',p_session,'tokenExpiresAt',p_exp,'authorityVersion',p_authority,'restrictionVersion',rev.restriction_revision,'dispatchId',p_dispatch,'incidentId',b.incident_id,'resultingStatus',a.resulting_status,'recoveryEpoch',rev.recovery_epoch,'observedAtMs',floor(extract(epoch from clock_timestamp())*1000),'expiresAtMs',least(p_exp*1000,floor(extract(epoch from clock_timestamp())*1000)+1000));
+ return jsonb_build_object('state','EFFECT_OBSERVED','providerBindingRef',p_provider_binding,'originalRef',p_original,'userId',p_user,'intentId',p_intent,'attemptId',p_attempt,'sessionId',p_session,'tokenExpiresAt',p_exp,'authorityVersion',p_authority,'restrictionVersion',rev.restriction_revision,'dispatchId',p_dispatch,'incidentId',b.incident_id,'resultingStatus',a.resulting_status,'recoveryEpoch',rev.recovery_epoch,'observedAtMs',floor(extract(epoch from clock_timestamp())*1000),'expiresAtMs',least(p_exp*1000,floor(extract(epoch from clock_timestamp())*1000)+1000));
 end $reader$;
 rollback;

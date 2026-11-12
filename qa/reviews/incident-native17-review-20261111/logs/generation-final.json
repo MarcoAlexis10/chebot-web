@@ -1,0 +1,17 @@
+{
+  "kind": "STATIC_TEXT_GENERATION",
+  "deterministic": true,
+  "hashes": {
+    "00-roles-DO-NOT-APPLY.sql": "d87a057789e119270a21ec76b823deced8c78fd99adcd022fd00c195d25ab921",
+    "00-source-base-DO-NOT-APPLY.sql": "f16b23d7746b1f9248090f7e3a597ce4e744c6b6cadb4393c39cbf24f98d1c47",
+    "01-revisions-DO-NOT-APPLY.sql": "64eba1e69b8e6af24fd81119fe0de45c64cbb46993c1636d27247e52837cd105",
+    "02-admission-DO-NOT-APPLY.sql": "a25dce0003e462a55259b3465de5740d5303fcfce61af76f7fc2846804d8dab6",
+    "03-bound-entries-DO-NOT-APPLY.sql": "08d18b18654f3521ac386445b1007777db16c6a83f0b8102c06e0e0846663422",
+    "04-acl-rls-DO-NOT-APPLY.sql": "f070ee3fd4038960c349996f5c6f17bb27b0cb846050412b40c4d1936060640e",
+    "05-catalog-capture-NOT-RUN.sql": "c7d8d1fc7c16b6037c9b884c7e9985f2f7c71cfdf41bf45e429ec2066fb990b3",
+    "EXPECTED-CATALOG.json": "d6a6b62bad1f2b8d934d64a7bfe7c4da4cd1189c3fa1907de48f2fb70f5da2ff",
+    "GENERATION.json": "714b86a16c1f9f1b9cb14351e08a1465c5f7dfc02dcde85e6840fbcfa20b9621",
+    "HOOK-MATRIX.json": "7096ee434feb9d9df89606105471c0c8c654724e33ecfb47de4bfdc58f1471fd"
+  },
+  "sqlExecuted": false
+}

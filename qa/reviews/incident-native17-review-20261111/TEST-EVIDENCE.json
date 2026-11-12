@@ -1,0 +1,309 @@
+{
+  "newUniqueCases": 17,
+  "newUniquePass": 17,
+  "newUniqueFail": 0,
+  "newUniqueSkip": 0,
+  "classification": {
+    "providerReviewWithDoubles": 9,
+    "pureRevisionPolicy": 2,
+    "staticSqlAclHooksCapture": 6
+  },
+  "historicalCasesExecuted": 0,
+  "old22And2RegressionsRepeated": false,
+  "executions": [
+    {
+      "log": "logs/bound-abi-focused.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='bound transport|provider-bound ABI' web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "NODE_PROVIDER_DOUBLES_AND_STATIC_CASES",
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "provider-bound ABI 17/10 preserves the source writer/reader and rejects old entry fallback",
+        "bound transport preserves the original ABI arguments and adds only an instance-proven provider reference"
+      ],
+      "sha256": "2b9fe51035d34367cf08632baaba73d83406bb00eb5b057db4b7284a9c7d4cc9",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/cut-freshness-after.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='missing clock' web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "PURE_POLICY_AND_STATIC_SQL_SOURCE",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "a missing clock or stale/different independent cut cannot bootstrap authority or admit a restored backup"
+      ],
+      "sha256": "6916abf8ea30681ea22939397a1a0a47fb00d7493c75f82be35ca237999aeff1",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/cut-freshness-before.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='missing clock' web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "PURE_POLICY_AND_STATIC_SQL_SOURCE",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "a missing clock or stale/different independent cut cannot bootstrap authority or admit a restored backup"
+      ],
+      "sha256": "af03933f25e8b84635c03e42a2a9fbc4dae69fc7d4a6cff01b923fb484096fcf",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/invoker-acl-after.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='ACL proposal' web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "PURE_POLICY_AND_STATIC_SQL_SOURCE",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "ACL proposal includes actual invoker dependencies and gives logins no DML or broad service entries"
+      ],
+      "sha256": "d0893f5a8a33cacb71990442e830251b2c8e93dfa34002a5666694fa95aafdcd",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/invoker-acl-before.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='ACL proposal' web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "PURE_POLICY_AND_STATIC_SQL_SOURCE",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "ACL proposal includes actual invoker dependencies and gives logins no DML or broad service entries"
+      ],
+      "sha256": "91b5268ef7d8e309d660430b06938c082128e1e74681c540c9028f0c7c7c5b8f",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/native-review-final.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "PURE_POLICY_AND_STATIC_SQL_SOURCE",
+      "counts": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "authority policy advances on revocation/relationship changes, without self-invalidating incident status writes",
+        "a missing clock or stale/different independent cut cannot bootstrap authority or admit a restored backup",
+        "SQL remains aborted and unbootstrapped; revision cut and binding explicitly reject NULL freshness",
+        "NEW admission is separate from effect bindings and KNOWN never mutates or rewrites original history",
+        "provider-bound ABI 17/10 preserves the source writer/reader and rejects old entry fallback",
+        "ACL proposal includes actual invoker dependencies and gives logins no DML or broad service entries",
+        "hook matrix covers before-fence ordering and does not advance authority for admission/effect bookkeeping",
+        "capture is held, metadata-only, and distinguishes pg_depend from complete late-bound dependency proof"
+      ],
+      "sha256": "705649ab8f630dd86b286191faa33a30ef3098474c1a4865fc5ab279e12bc1f2",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/native-review-first.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "PURE_POLICY_AND_STATIC_SQL_SOURCE",
+      "counts": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "authority policy advances on revocation/relationship changes, without self-invalidating incident status writes",
+        "a missing clock or stale/different independent cut cannot bootstrap authority or admit a restored backup",
+        "SQL remains aborted and unbootstrapped; revision cut and binding explicitly reject NULL freshness",
+        "NEW admission is separate from effect bindings and KNOWN never mutates or rewrites original history",
+        "provider-bound ABI 17/10 preserves the source writer/reader and rejects old entry fallback",
+        "ACL proposal includes actual invoker dependencies and gives logins no DML or broad service entries",
+        "hook matrix covers before-fence ordering and does not advance authority for admission/effect bookkeeping",
+        "capture is held, metadata-only, and distinguishes pg_depend from complete late-bound dependency proof"
+      ],
+      "sha256": "06f6fd1ffcf01960ec00b09da904274fb3971a442b69b311941d5eb7d725b29d",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/provider-abi-final.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs",
+      "kind": "NODE_PROVIDER_DOUBLES",
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "provider binding default stays closed without reading client credentials or callbacks",
+        "exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata",
+        "provider proof cannot be substituted by caller metadata or an unused attestor capability",
+        "same-claims refresh, changed session and changed attempt cannot reuse a provider binding",
+        "revocation while registering or claiming never authorizes an older operation",
+        "provider response must correlate binding, attempt, expiry, authority and independent floors",
+        "lost claim ACK and process restart cannot regenerate a dispatch authorization",
+        "token expiry during final await and late use of proof capability remain closed",
+        "bound transport preserves the original ABI arguments and adds only an instance-proven provider reference"
+      ],
+      "sha256": "92a83a24de70f00c55285efb493640f77b2d9fc78817ecc1d31ca229bd1e2352",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/provider-final.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs",
+      "kind": "NODE_PROVIDER_DOUBLES",
+      "counts": {
+        "tests": 8,
+        "pass": 6,
+        "fail": 2,
+        "skipped": 0
+      },
+      "names": [
+        "provider binding default stays closed without reading client credentials or callbacks",
+        "exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata",
+        "provider proof cannot be substituted by caller metadata or an unused attestor capability",
+        "same-claims refresh, changed session and changed attempt cannot reuse a provider binding",
+        "revocation while registering or claiming never authorizes an older operation",
+        "provider response must correlate binding, attempt, expiry, authority and independent floors",
+        "lost claim ACK and process restart cannot regenerate a dispatch authorization",
+        "token expiry during final await and late use of proof capability remain closed"
+      ],
+      "sha256": "c21154640ce8cc0e1ba5b2b37d16fa8b0399c903d9719a725a1bc94281e8edd5",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/provider-first.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs",
+      "kind": "NODE_PROVIDER_DOUBLES",
+      "counts": {
+        "tests": 8,
+        "pass": 2,
+        "fail": 6,
+        "skipped": 0
+      },
+      "names": [
+        "provider binding default stays closed without reading client credentials or callbacks",
+        "exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata",
+        "provider proof cannot be substituted by caller metadata or an unused attestor capability",
+        "same-claims refresh, changed session and changed attempt cannot reuse a provider binding",
+        "revocation while registering or claiming never authorizes an older operation",
+        "provider response must correlate binding, attempt, expiry, authority and independent floors",
+        "lost claim ACK and process restart cannot regenerate a dispatch authorization",
+        "token expiry during final await and late use of proof capability remain closed"
+      ],
+      "sha256": "a1b77f0f9be8b573a6d22a6eb609d6a10b02ad4f87255d23f94a6561b03f8955",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/provider-focused.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='exact SDK proof|provider proof cannot|revocation while' web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs",
+      "kind": "NODE_PROVIDER_DOUBLES",
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata",
+        "provider proof cannot be substituted by caller metadata or an unused attestor capability",
+        "revocation while registering or claiming never authorizes an older operation"
+      ],
+      "sha256": "a0f19e5924b4b5b878f45e721ca026899a7e3d06f072471e348e9453774ae07f",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/provider-source-reference.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs",
+      "kind": "NODE_PROVIDER_DOUBLES",
+      "counts": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "provider binding default stays closed without reading client credentials or callbacks",
+        "exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata",
+        "provider proof cannot be substituted by caller metadata or an unused attestor capability",
+        "same-claims refresh, changed session and changed attempt cannot reuse a provider binding",
+        "revocation while registering or claiming never authorizes an older operation",
+        "provider response must correlate binding, attempt, expiry, authority and independent floors",
+        "lost claim ACK and process restart cannot regenerate a dispatch authorization",
+        "token expiry during final await and late use of proof capability remain closed"
+      ],
+      "sha256": "2eb70a2285e13001adef0f32ca465f6e161049bc03109afe0b7dcfd86dc8bc44",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    },
+    {
+      "log": "logs/rls-invoker-final.tap",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='ACL proposal' web/qa/incident-native17-review-20261111-v1/native-review.test.mjs",
+      "kind": "PURE_POLICY_AND_STATIC_SQL_SOURCE",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "ACL proposal includes actual invoker dependencies and gives logins no DML or broad service entries"
+      ],
+      "sha256": "cf3a52856ac63c3b76bcc4b0d0558b0f4251d302ba4deaf7a2388f939bb5bc49",
+      "isolation": "Fresh user/net namespaces, empty environment, no loopback, ENETUNREACH=101",
+      "kernelIsolationRecorded": true
+    }
+  ],
+  "finalCoverage": {
+    "provider": "provider-abi-final.tap, with changed transport case repeated in bound-abi-focused.tap",
+    "nativeReview": "native-review-final.tap, with changed cut, bound ABI and ACL cases repeated in cut-freshness-after.tap, bound-abi-focused.tap and rls-invoker-final.tap"
+  },
+  "intermediateFailures": {
+    "fixtureClaimsCounterCollision": 8,
+    "invokerGrantPropagation": 1,
+    "modelCutFreshnessAndProvenance": 1,
+    "uniqueTestCountUnchangedByRepetitions": true
+  },
+  "staticReports": [
+    "logs/generation.json",
+    "logs/generation-final.json",
+    "logs/syntax.log",
+    "logs/syntax-final.log"
+  ],
+  "typescript": "Declaration provided, NOT_COMPILED; no dependency installed",
+  "sqlParsedOrExecutedByEngine": false,
+  "realProviderJwtSignatureVerified": false,
+  "nativeConcurrencyOrCommitTested": false,
+  "catalogQueryExecuted": false,
+  "independentCustodyAccredited": false,
+  "restoreA2Executed": false,
+  "chromiumRun": false,
+  "httpHttpsIntegrationExchanges": 0,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}
