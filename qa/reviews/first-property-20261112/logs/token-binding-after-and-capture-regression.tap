@@ -1,0 +1,35 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532305]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: property_create uses the exact null-property owner/account/member authority tuple and a distinct founder source, not a generic manager permission
+ok 1 - property_create uses the exact null-property owner/account/member authority tuple and a distinct founder source, not a generic manager permission
+  ---
+  duration_ms: 15.764305
+  type: 'test'
+  ...
+# Subtest: capture contract preserves defaults and explicit address structure; intent/attempt/session differences are not resolved using an intent-only key
+ok 2 - capture contract preserves defaults and explicit address structure; intent/attempt/session differences are not resolved using an intent-only key
+  ---
+  duration_ms: 7.486262
+  type: 'test'
+  ...
+# Subtest: missing native authority source cannot be replaced by callbacks, form roles, a committed ACK or recovered client original
+ok 3 - missing native authority source cannot be replaced by callbacks, form roles, a committed ACK or recovered client original
+  ---
+  duration_ms: 0.271296
+  type: 'test'
+  ...
+# Subtest: SQL p_expiry must match a distinct provider-token observation; observation freshness cannot stand in for JWT expiry
+ok 4 - SQL p_expiry must match a distinct provider-token observation; observation freshness cannot stand in for JWT expiry
+  ---
+  duration_ms: 1.429499
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 149.319241

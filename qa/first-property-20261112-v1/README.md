@@ -17,3 +17,11 @@ Tres casos únicos iniciales PASS; una repetición focal corrige orden de claves
 ## Reader independiente y recibos
 
 reconciliation.mjs separa función/ACK de COMMIT externo, efecto, journal y readback. Todo resultado sigue UNKNOWN, incluso una cadena sintética consistente. No es un verificador criptográfico. El binding incluye las revisiones/floors y la referencia al original; no conserva dirección. reader-profile.mjs comprueba una propuesta de privilegios mínima, nunca un catálogo real. Ver READER-ABI.md y PRIVACY-D02A.md del cierre. Se reprodujo únicamente el riesgo COMMITTED-on-ACK del adapter histórico con un doble; no se conecta ese adapter. Tipos .d.mts son contratos de revisión, no se ejecutó tsc.
+
+## Composición y expiración
+
+createFirstPropertyCandidate reutiliza el candidato funcional previo; no sustituye el writer ni el gateway. materialize.mjs reutiliza los generadores existentes y produce dieciocho salidas QA: formulario estructurado, navegación local y mensajes HELD/UNKNOWN. Los diez assets JS/CSS son idénticos al candidato anterior; sólo páginas QA se amplían. Ningún hook en package.json, build real o endpoint.
+
+ProviderTokenObservation es una observación explícitamente SYNTHETIC_NOT_VERIFIED de issuer/user/session/revisión/iat/exp; p_expiry debe coincidir exactamente con exp en segundos. La frescura de la observación no acredita vigencia del JWT. No se dispone de proveedor Auth verificado. Cambiar iat/sesión/exp altera el binding del intento y no permite reusar el original. No se convierte una fecha o un callback en autoridad.
+
+Diez casos únicos nuevos PASS. Los fallos intermedios y las regresiones propias están en los logs del cierre; no se repitieron las suites históricas. Las declaraciones .d.mts no se compilaron con TypeScript.

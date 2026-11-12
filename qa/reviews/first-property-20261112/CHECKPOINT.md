@@ -13,3 +13,9 @@ Antes de publicar: el comparador nuevo también se fijó al scope/revisiones com
 ## Checkpoint reader y privacidad
 
 Primer commit publicado: f98af7365e045933f1c46abf902721da05c82be1. Se agregan ABI read/2, parser de recibos conservador, revisión de cadena sintética, perfil de reader y propuesta D02-A específica. Siete casos únicos nuevos PASS acumulados (tres captura, tres conciliación y uno perfil). En conciliación se corrigieron datasetId tipado incorrectamente como número (fuente: digest string) y una lectura previa a validar un accessor: FAIL/PASS conservados. Nunca se convirtieron esos errores en permiso o efecto. Los getters se rechazan antes de acceder a campos anidados. Ningún SQL generado/ejecutado. Próximo: composición del recorrido con captura estructurada inerte, lectura UNKNOWN y preparación de configuración HELD.
+
+## Checkpoint de composición
+
+Segundo commit: a9e206a044c5f6cd060794edd419d3f29065f49e. Se compone el candidato existente con las nuevas fronteras cerradas. La pantalla privada reutiliza los diez assets previos intactos, reemplaza sólo el formulario incompatible de dirección libre por street/number/floor/unit inertes y enlaza revisión, borrador no creado, lectura UNKNOWN y configuración HELD. Dos casos de composición nuevos PASS.
+
+Se agregó un caso nuevo que demostró que p_expiry no estaba ligado al contrato del token: FAIL conservado, corrección con ProviderTokenObservation sintético separado y cuatro casos de captura PASS (tres son regresiones focalizadas propias, no casos nuevos). No se confunde expiresAtMs de una observación con expiración JWT. Dos casos de reader reejecutados porque se extendió su binding de sesión/issuer/iat/exp: PASS. Total único del lote: diez casos nuevos PASS, sin contar repeticiones ni subaserciones. Dieciocho archivos QA materializados con el launcher sin red; no navegador, SQL o Auth administrado.

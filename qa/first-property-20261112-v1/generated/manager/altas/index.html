@@ -1,0 +1,321 @@
+<!doctype html><html lang="es"><head><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'none'; font-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Cache-Control" content="no-store">
+
+<title>Altas privadas · Che Vení Concierge Beta</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f7f4ec;color:#16302d}
+*{box-sizing:border-box}body{margin:0;padding:26px 16px;min-height:100vh}
+main{max-width:780px;margin:0 auto}.panel{background:#fff;border:1px solid #e5ddd0;border-radius:16px;padding:clamp(18px,4vw,28px);margin-bottom:18px;box-shadow:0 10px 30px #16302d0b}
+small{color:#0f766e;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+h1{font-size:clamp(1.65rem,4vw,2.15rem)}h2{font-size:1.23rem;margin-top:0}
+p{line-height:1.6;color:#50615d}
+label{display:block;font-weight:750;margin:12px 0 7px}
+input{width:100%;font:inherit;padding:12px;border:1px solid #9cacaa;border-radius:9px}
+button{background:#0f766e;color:#fff;border:0;border-radius:9px;padding:12px 17px;font:inherit;font-weight:750;cursor:pointer}
+button.secondary{background:#e8f3ef;color:#0e625c;border:1px solid #b6d8d1}
+button.danger{background:#fff2f0;color:#a52624;border:1px solid #e3b6b2}
+button:disabled{opacity:.55;cursor:not-allowed}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #0f766e;outline-offset:2px}
+a{color:#0f766e}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.notice{padding:12px 15px;border-radius:9px;background:#edf5f2;color:#16302d;font-weight:650;margin:12px 0}
+.error{background:#fff0ee;color:#992322}.card{border:1px solid #e7e2d7;border-radius:12px;padding:16px;margin:13px 0;overflow-wrap:anywhere}
+.badge{color:#0f766e;font-weight:750;font-size:.85rem}.muted{font-size:.88rem;color:#667670}
+#prepared-link{word-break:break-all;display:block;margin:12px 0;font-family:ui-monospace,monospace;font-size:.88rem}
+[hidden]{display:none!important}
+</style></head><body><p><a href="/manager/recorrido/">Recorrido QA retenido</a></p><p role="status">QA offline retenida. No ingreses datos reales. Sin servicios. Beta V1 NO-GO.</p><nav aria-label="Recorrido QA"><a href="/manager/activar/">Registro retenido</a> · <a href="/manager/">Sesión</a> · <a href="/manager/propiedad/">Propiedad</a> · <a href="/manager/planificar-estadia/">Estadía</a> · <a href="/manager/prearrival/">Pre-arrival</a> · <a href="/manager/#estadias">Huésped</a> · <a href="/manager/#solicitudes">Solicitudes</a> · <a href="/manager/#incidencias">Incidencias</a> · <a href="/manager/planificar-estadia/#checkout">Checkout retenido</a></nav><main>
+<section class="panel">
+ <small>Che Vení Concierge Beta V1 · uso interno</small>
+ <h1>Invitaciones de managers</h1>
+ <p>Solo el operador autorizado puede preparar invitaciones. La emisión no contacta a nadie ni da de alta cuentas. El registro y el cron permanecen cerrados hasta autorización independiente.</p>
+ <div id="access-status" class="notice" role="status" aria-live="polite">Comprobando sesión de operador…</div>
+ <div class="actions"><a href="/manager/">Volver al panel</a><button type="button" id="refresh" class="secondary" hidden>Actualizar solicitudes</button></div>
+</section>
+<section class="panel" id="editor" hidden>
+ <h2>Preparar invitación individual</h2>
+ <p class="muted">Usá únicamente el correo del candidato que aceptó ser contactado. La invitación dura 48 horas y se puede usar una sola vez. No envía mensajes de forma automática.</p>
+ <form inert data-qa-held="true" id="issue-form">
+  <label for="invite-email">Correo del manager invitado</label>
+  <input type="email" id="invite-email" required autocomplete="off" maxlength="254" placeholder="correo del candidato">
+  <label class="muted"><input type="checkbox" id="issue-confirm" required style="width:auto;margin-right:8px">Confirmo que el titular de Che Vení autorizó preparar esta invitación individual.</label>
+  <button id="issue-button" type="submit">Preparar enlace privado</button>
+ </form>
+ <div id="issue-status" role="status" aria-live="polite"></div>
+ <div id="result" class="notice" hidden>
+  <strong>Enlace preparado, NO enviado.</strong>
+  <p>Copialo y conserválo en un canal privado. No se puede recuperar después de abandonar esta página. No lo publiques en GitHub.</p>
+  <code id="prepared-link"></code>
+  <button id="copy-link" type="button" class="secondary">Copiar enlace</button>
+ </div>
+</section>
+<section class="panel" id="review" hidden>
+ <h2>Estado de las solicitudes</h2>
+ <p class="muted">«Solicitud recibida» significa pendiente de revisión. No implica que se haya creado un usuario o que se haya aprobado la operación.</p>
+ <div id="applications" aria-live="polite"></div>
+</section>
+</main>
+<script>
+(function(){
+'use strict';
+var TOKEN_KEY='chebot_manager_preview_access_token';
+var token='';try{token=sessionStorage.getItem(TOKEN_KEY)||''}catch(_){}
+var REVIEW_KEY='cheveni_manager_signup_admin_review_v1';
+
+  // Durable identity is persisted before dispatch; legacy/unknown markers are
+  // never converted into permission to retry. This is not server-side auth.
+  function durableManagerIntentPending(key) {
+    return sessionStorage.getItem(key) !== null || sessionStorage.getItem(key + ':durable-intent-v2') !== null;
+  }
+  function beginManagerDurableIntent(key) {
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_REVIEW_REQUIRED');
+    const id = window.crypto.randomUUID();
+    if (typeof id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)) throw new Error('MANAGER_INTENT_UNAVAILABLE');
+    const saved = JSON.stringify({version:2,intentId:id.toLowerCase()}), durableKey = key + ':durable-intent-v2';
+    sessionStorage.setItem(durableKey, saved);
+    if (sessionStorage.getItem(durableKey) !== saved) throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    sessionStorage.setItem(key, '1');
+    if (sessionStorage.getItem(key) !== '1') throw new Error('MANAGER_INTENT_NOT_PERSISTED');
+    return id.toLowerCase();
+  }
+  function clearManagerDurableIntent(key) {
+    sessionStorage.removeItem(key + ':durable-intent-v2');
+    sessionStorage.removeItem(key);
+    if (durableManagerIntentPending(key)) throw new Error('MANAGER_INTENT_NOT_CLEARED');
+  }
+  function preserveManagerDurableIntent(key) {
+    try { if (sessionStorage.getItem(key) === null) sessionStorage.setItem(key, '1'); } catch (_) {}
+  }
+
+var EXPECTED_WEB_ORIGIN="https://fictional-web.example.invalid";
+function reviewRequired(){try{return durableManagerIntentPending(REVIEW_KEY)}catch(_){return true}}
+var API='https://fictional-api.example.invalid/api/concierge/manager/signup-admin';
+var access=document.getElementById('access-status'),issueStatus=document.getElementById('issue-status');
+var issueForm=document.getElementById('issue-form'),issueButton=document.getElementById('issue-button');
+var result=document.getElementById('result'),preparedLink=document.getElementById('prepared-link');
+var editor=document.getElementById('editor'),review=document.getElementById('review');
+var refresh=document.getElementById('refresh');
+var readGeneration=0,pageDisposed=false;
+function clearPrivateView(){
+ editor.hidden=true;review.hidden=true;refresh.hidden=true;result.hidden=true;
+ preparedLink.textContent='';document.getElementById('applications').replaceChildren();
+ document.getElementById('invite-email').value='';document.getElementById('issue-confirm').checked=false;
+}
+function currentPageSession(){try{return !pageDisposed&&token&&sessionStorage.getItem(TOKEN_KEY)===token}catch(_){return false}}
+function message(el,text,error){
+ el.textContent=text;
+ el.className=error?'notice error':'notice';
+}
+function makeText(tag,value,cls){
+ var item=document.createElement(tag);item.textContent=String(value||'');
+ if(cls)item.className=cls;return item;
+}
+var mutationPending=false,mutationUncertain=reviewRequired();
+function freezeMutation(){
+ mutationUncertain=true;readGeneration++;issueButton.disabled=true;
+ clearPrivateView();
+ message(access,'Resultado sin confirmar. No repitas la acción: verificá el estado antes de continuar.',true);
+ document.querySelectorAll('button').forEach(function(b){b.disabled=true});
+}
+function validCapability(data){
+ try{
+  if(typeof data.invitation_id!=='string'||!/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(data.invitation_id)
+    ||typeof data.expires_at!=='string'||!Number.isFinite(Date.parse(data.expires_at))||Date.parse(data.expires_at)<=Date.now()||typeof data.url!=='string')return false;
+  var u=new URL(data.url);
+  return u.origin===EXPECTED_WEB_ORIGIN&&u.pathname==='/manager/activar/'&&!u.search&&!u.username&&!u.password&&/^#invite=[A-Za-z0-9_-]{43}$/.test(u.hash);
+ }catch(_){return false}
+}
+function knownDenial(status,code){
+ var codes={400:['INVALID_REQUEST','INVALID_ACTION'],401:['LOGIN_REQUIRED'],403:['OWNER_ACCESS_REQUIRED','ORIGIN_NOT_ALLOWED','MANAGER_WRITE_DENIED'],
+  409:['ALREADY_HAS_PENDING_INVITATION','APPLICATION_ALREADY_SCREENED','APPLICATION_NOT_REVIEWABLE','FOLLOWUP_ALREADY_RESOLVED','FOLLOWUP_NOT_REVIEWABLE','INVITATION_NOT_REVOCABLE'],
+  503:['INVITATION_ADMIN_CLOSED','INVITATION_ADMIN_NOT_CONFIGURED','INVITATION_LEGAL_APPROVAL_REQUIRED','MANAGER_BETA_VERIFIED_LEGAL_ADMISSION_NOT_CONNECTED']};
+ return Boolean(codes[status]&&codes[status].includes(code));
+}
+async function api(method,body){
+ var mutating=method!=='GET',stableIntentId=null;
+ if(!currentPageSession()){clearPrivateView();throw new Error('SESSION_CHANGED')}
+ if(mutating&&(mutationPending||mutationUncertain||reviewRequired())){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
+ if(mutating&&sessionStorage.getItem(TOKEN_KEY)!==token)throw new Error('SESSION_CHANGED');
+ if(mutating){
+  mutationPending=true;readGeneration++;
+  try{stableIntentId=beginManagerDurableIntent(REVIEW_KEY)}
+  catch(_){freezeMutation();mutationPending=false;throw new Error('MUTATION_REVIEW_REQUIRED')}
+  clearPrivateView();
+ }
+ var controller=new AbortController(),timer=setTimeout(function(){controller.abort()},8000);
+
+ var options={method:method,mode:'cors',credentials:'omit',cache:'no-store',
+   headers:{Authorization:'Bearer '+token},signal:controller.signal};
+ if(mutating)options.headers['Idempotency-Key']=stableIntentId;
+ if(body){options.headers['Content-Type']='application/json';options.body=JSON.stringify(body)}
+ try{
+  var resp=await fetch(API,options),data=null;
+  try{data=await resp.json()}catch(_){}
+  if(!currentPageSession())throw new Error('SESSION_CHANGED');
+  var expected=body&&({issue:'INVITATION_PREPARED_NOT_SENT',revoke:'INVITATION_REVOKED',screen:'SCREENING_RECORDED_NO_PROVISIONING',resolve_followup:'FOLLOWUP_RESOLVED_NO_PROVISIONING'})[body.action];
+  if(mutating){
+   var valid=data&&typeof data==='object'&&!Array.isArray(data)&&data.reconciliation_required!==true;
+   var success=valid&&resp.ok&&data.ok===true&&expected&&data.code===expected&&(body.action!=='issue'||validCapability(data));
+   // Only the literal outer release-guard receipt proves a pre-dispatch hold.
+   // A proxy/CORS failure or an UNKNOWN response must keep the durable intent.
+   var releaseHeld=valid&&!resp.ok&&resp.status===503&&data.ok===false&&
+     data.error==='MANAGER_OPERATIONS_NOT_RELEASED'&&
+     Object.keys(data).sort().join('|')==='error|ok';
+   var denied=valid&&!resp.ok&&
+     ((data.ok!==true&&knownDenial(resp.status,data.code))||releaseHeld);
+   if(!success&&!denied){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
+   try{clearManagerDurableIntent(REVIEW_KEY)}
+   catch(_){freezeMutation();throw new Error('MUTATION_REVIEW_REQUIRED')}
+  }
+  return {code:resp.status,data:data||{}};
+ }catch(error){if(mutating)freezeMutation();throw error}
+ finally{clearTimeout(timer);if(mutating)mutationPending=false}
+
+}
+function dateText(value){if(!value)return '—';var d=new Date(value);return isNaN(d.valueOf())?'—':d.toLocaleString('es-AR')}
+async function update(){
+ var attempt=++readGeneration;
+ if(pageDisposed)return;
+ if(mutationPending){clearPrivateView();return}
+ if(mutationUncertain){freezeMutation();return}
+ editor.hidden=true;review.hidden=true;refresh.hidden=true;
+ if(!token){clearPrivateView();message(access,'Ingresá primero al Panel de Manager y después volvé a esta página.',true);return}
+ try{
+   var result=await api('GET');
+   if(attempt!==readGeneration||pageDisposed)return;
+   if(result.code===503){clearPrivateView();message(access,'Las invitaciones siguen cerradas por seguridad. Se requiere autorización técnica y operativa para habilitarlas.',true);return}
+   if(result.code===403||result.code===401){clearPrivateView();message(access,'Esta sesión no tiene permiso de operador o venció. Ingresá de nuevo con la cuenta autorizada.',true);return}
+   if(result.code!==200||!result.data.ok){clearPrivateView();message(access,'No se pudo validar el acceso a altas privadas.',true);return}
+   message(access,'Acceso administrativo verificado. Todavía no se activó ninguna cuenta comercial.',false);
+   editor.hidden=false;review.hidden=false;refresh.hidden=false;
+   var container=document.getElementById('applications');
+   container.replaceChildren();
+   var list=result.data.applications;
+   if(!Array.isArray(list)||!list.length){container.appendChild(makeText('p','No hay invitaciones ni solicitudes de managers.'));return}
+   for(var row of list){
+     var card=document.createElement('article');card.className='card';
+     card.appendChild(makeText('div',row.email_normalized,'badge'));
+     var state=row.status==='submitted'?'Solicitud recibida · pendiente de revisión':row.status==='revoked'?'Invitación revocada':Date.parse(row.expires_at)<=Date.now()?'Invitación vencida':'Invitación preparada';
+     card.appendChild(makeText('p',state));
+     if(row.status==='submitted'){
+       card.appendChild(makeText('p','Nombre: '+(row.manager_display_name||'—')));
+       card.appendChild(makeText('p','Negocio: '+(row.business_display_name||'—')));
+       card.appendChild(makeText('p','Aceptación Beta: '+(row.beta_terms_version||'—')+' · Privacidad: '+(row.privacy_accepted?'Sí':'No')));
+       card.appendChild(makeText('p','Versión del aviso de privacidad: '+(row.privacy_notice_version||'No registrada')));
+       card.appendChild(makeText('p','Recibida: '+dateText(row.submitted_at),'muted'));
+       if(row.screening){
+         var descriptions={
+           needs_owner_followup:'Pendiente de seguimiento humano',
+           not_selected:'No seleccionado para esta Beta',
+           shortlisted_pending_go_b:'Preseleccionado; falta autorización GO B'
+         };
+         card.appendChild(makeText('p','Evaluación interna: '+(descriptions[row.screening.decision]||'Revisar manualmente'),'badge'));
+         card.appendChild(makeText('p','Evaluada: '+dateText(row.screening.reviewed_at),'muted'));
+         if(row.screening.decision==='needs_owner_followup'){
+           card.appendChild(makeText('p','Seguimiento pendiente: después de conversar con la persona, podés cerrarlo. Ninguna decisión crea su cuenta.','muted'));
+           var finalActions=document.createElement('div');finalActions.className='actions';
+           var finalChoices=[
+             ['not_selected','Cerrar: no seleccionado','danger'],
+             ['shortlisted_pending_go_b','Cerrar: preseleccionar (requiere GO B)','secondary']
+           ];
+           for(var finalChoice of finalChoices){
+             var finalize=document.createElement('button');
+             finalize.type='button';finalize.className=finalChoice[2];finalize.textContent=finalChoice[1];
+             finalize.addEventListener('click',async function(id,decision,buttonGroup){
+               if(!window.confirm('¿Cerrar el seguimiento? Esta decisión final quedará auditada y no crea una cuenta ni habilita Concierge.'))return;
+               var buttons=buttonGroup.querySelectorAll('button');
+               buttons.forEach(function(button){button.disabled=true});
+               try{
+                 var rv=await api('POST',{action:'resolve_followup',invitationId:id,decision:decision,confirmResolution:true});
+                 if(rv.code!==200)window.alert('No se pudo cerrar el seguimiento. Verificá si ya fue resuelto.');
+                 await update();
+               }catch(_){message(access,'No se pudo confirmar el seguimiento de esta solicitud.',true)}
+               finally{buttons.forEach(function(button){button.disabled=mutationUncertain})}
+             }.bind(null,row.id,finalChoice[0],finalActions));
+             finalActions.appendChild(finalize);
+           }
+           card.appendChild(finalActions);
+         }
+       }else{
+         card.appendChild(makeText('p','Solo una evaluación interna. Ninguna opción crea cuenta, activa propiedades, envía mensajes ni inicia la Beta.','muted'));
+         var choices=[
+           ['needs_owner_followup','Necesita seguimiento','secondary'],
+           ['not_selected','No seleccionado','danger'],
+           ['shortlisted_pending_go_b','Preseleccionar · requiere GO B','secondary']
+         ];
+         var actions=document.createElement('div');actions.className='actions';
+         for(var choice of choices){
+           var evaluate=document.createElement('button');
+           evaluate.type='button';evaluate.className=choice[2];evaluate.textContent=choice[1];
+           evaluate.addEventListener('click',async function(id,decision,buttonGroup){
+             if(!window.confirm('¿Registrar esta evaluación interna? No crea cuentas ni aprueba operación comercial. Esta decisión no podrá modificarse desde esta pantalla.'))return;
+             var buttons=buttonGroup.querySelectorAll('button');
+             buttons.forEach(function(b){b.disabled=true});
+             try{
+               var rv=await api('POST',{action:'screen',invitationId:id,decision:decision,confirmScreening:true});
+               if(rv.code!==200){window.alert('No se guardó la evaluación. Revisá si ya había sido evaluada.')}
+               await update();
+             }catch(_){message(access,'No se pudo confirmar la evaluación de esta solicitud.',true)}
+             finally{buttons.forEach(function(b){b.disabled=mutationUncertain})}
+           }.bind(null,row.id,choice[0],actions));
+           actions.appendChild(evaluate);
+         }
+         card.appendChild(actions);
+       }
+     }else if(row.status==='issued'){
+       card.appendChild(makeText('p','Vence: '+dateText(row.expires_at),'muted'));
+       var revoke=document.createElement('button');
+       revoke.type='button';revoke.className='danger';revoke.textContent='Revocar invitación';
+       revoke.addEventListener('click',async function(id,el){
+         if(!window.confirm('¿Revocar esta invitación? El enlace dejará de ser válido.'))return;
+         el.disabled=true;
+         try{
+           var rv=await api('POST',{action:'revoke',invitationId:id,confirmRevoke:true});
+           if(rv.code!==200){window.alert('No se pudo revocar. Volvé a consultar el estado.')}
+           await update();
+         }catch(_){message(access,'No fue posible confirmar la revocación.',true)}
+         finally{el.disabled=mutationUncertain}
+       }.bind(null,row.id,revoke));
+       card.appendChild(revoke);
+     }
+     container.appendChild(card);
+   }
+ }catch(_){if(attempt!==readGeneration||pageDisposed)return;clearPrivateView();message(access,'No se pudo verificar el acceso. Volvé a ingresar antes de consultar altas privadas.',true)}
+}
+issueForm.addEventListener('submit',async function(e){
+ e.preventDefault();
+ if(issueButton.disabled||mutationPending||mutationUncertain||!issueForm.reportValidity())return;
+ issueButton.disabled=true;result.hidden=true;preparedLink.textContent='';
+ message(issueStatus,'Preparando invitación privada…',false);
+ try{
+   var r=await api('POST',{action:'issue',email:document.getElementById('invite-email').value,
+       confirmIssue:document.getElementById('issue-confirm').checked});
+   if(r.code===201&&r.data.code==='INVITATION_PREPARED_NOT_SENT'){
+     preparedLink.textContent=r.data.url;
+     result.hidden=false;
+     message(issueStatus,'Invitación preparada. No se envió ningún mensaje.',false);
+     issueForm.reset();
+     await update();
+   }else if(r.code===409)message(issueStatus,'Ese correo ya tiene una invitación pendiente. Revisá la lista antes de preparar otra.',true);
+   else if(r.code===503)message(issueStatus,r.data.code==='INVITATION_LEGAL_APPROVAL_REQUIRED'
+     ?'Antes de preparar invitaciones, deben aprobarse la privacidad y las condiciones de Concierge.'
+     :'Altas cerradas: se requiere autorización explícita.',true);
+   else message(issueStatus,'No se pudo preparar la invitación.',true);
+ }catch(_){message(issueStatus,'No se pudo contactar al Backend Preview.',true)}
+ finally{issueButton.disabled=mutationUncertain}
+});
+document.getElementById('copy-link').addEventListener('click',async function(){
+ if(!currentPageSession()||mutationPending||mutationUncertain){clearPrivateView();return}
+ var link=preparedLink.textContent;
+ if(!link)return;
+ try{await navigator.clipboard.writeText(link);message(issueStatus,'Enlace copiado. No enviado.',false)}
+ catch(_){message(issueStatus,'Copiá manualmente el enlace desde esta pantalla privada.',true)}
+});
+refresh.addEventListener('click',update);
+window.addEventListener('pagehide',function(){pageDisposed=true;readGeneration++;clearPrivateView()});
+window.addEventListener('pageshow',function(event){if(event.persisted){pageDisposed=false;readGeneration++;clearPrivateView();update()}});
+window.addEventListener('storage',function(event){if(event.key===TOKEN_KEY&&event.newValue!==token){pageDisposed=true;readGeneration++;clearPrivateView();message(access,'La sesión cambió. Volvé al panel e ingresá nuevamente.',true)}});
+update();
+})();
+</script></body></html>

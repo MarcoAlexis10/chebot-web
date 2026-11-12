@@ -15,3 +15,10 @@ test('capture contract preserves defaults and explicit address structure; intent
 test('missing native authority source cannot be replaced by callbacks, form roles, a committed ACK or recovered client original',async()=>{
  let touched=0;const poison=new Proxy({},{get(){touched++;throw Error()}}),p=createProtectedFirstProperty(poison);for(const f of [p.prepare,p.write])assert.equal((await f(poison)).receipt,null);assert.equal((await p.read({state:'COMMITTED',original:poison})).state,'UNKNOWN');assert.equal(touched,0);
 });
+test('SQL p_expiry must match a distinct provider-token observation; observation freshness cannot stand in for JWT expiry',()=>{
+ const absent=capture();delete absent.providerToken;assert.equal(review(absent).state,'FIRST_PROPERTY_ABI_INCOMPATIBLE_HELD');
+ const x=capture();assert.equal(review(x).state,'FIRST_PROPERTY_ABI_REVIEWED_HELD');
+ for(const patch of [{expiresAtSeconds:String(Number(x.authorityRequest.tokenExpiresAtSeconds)+1)},{sessionId:id(99)},{sessionRevision:9},{issuer:'https://dev.example.invalid/auth/v1'},{kind:'VERIFIED_JWT'},{issuedAtSeconds:String(Math.floor(x.captureVector.boundInput.request.nowMs/1000)+1)}])assert.equal(review({...x,providerToken:{...x.providerToken,...patch}}).state,'FIRST_PROPERTY_ABI_INCOMPATIBLE_HELD');
+ const refreshed=capture();refreshed.providerToken.issuedAtSeconds=String(Number(refreshed.providerToken.issuedAtSeconds)+1);assert.equal(compareIntentReview(x,refreshed).state,'CAPTURE_BINDING_DIFFERENCE_HELD');
+ const extended=capture();extended.authorityRequest.tokenExpiresAtSeconds=String(Number(extended.authorityRequest.tokenExpiresAtSeconds)+1);assert.equal(review(extended).state,'FIRST_PROPERTY_ABI_INCOMPATIBLE_HELD');
+});
