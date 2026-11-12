@@ -1,0 +1,84 @@
+{
+  "web": "426eae627154f5bff011335d1c5e688e32ca7d59",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "webInputs": [
+    {
+      "path": "manager-v1.js",
+      "sha256": "879b60dfd4ecc358c5fad5c1fed390b8ae98c2b9cea8b8ce3240d6a5f984a21b",
+      "gitBlob": "f5d5e39f5a797a00a3efa30ba3450819eb2c720f"
+    },
+    {
+      "path": "manager-auth-v1.js",
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a",
+      "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4"
+    },
+    {
+      "path": "manager-knowledge-v1.js",
+      "sha256": "23e82d1a1ac133d39b951707ed703821dcc1c37e44b6ffa0f020af7e9abf7e14",
+      "gitBlob": "32f09e5022282ff93b1d918bbad50096122314d6"
+    },
+    {
+      "path": "manager-requests-v1.js",
+      "sha256": "a7863760e63f34d91a8c7f1b32cff95fdbc6f2aebe608597337c2d8635dfa31e",
+      "gitBlob": "511c7e0c1f472c6a799a955cccbfc598b73b00c1"
+    },
+    {
+      "path": "manager-incidents-v1.js",
+      "sha256": "c25b051c53156ccaabcd5a7552976b77351c0c2567fe189fc0142f185080e24f",
+      "gitBlob": "d42c1ce4e4a478b7a87030bc2b5a5bb194fc7b52"
+    },
+    {
+      "path": "manager-request-actions-v1.js",
+      "sha256": "098a699ee0f4203763446dfaa4e1e47ca20731d3b0b7bc7dc78a1b59c7a6e58b",
+      "gitBlob": "902f02823b14f80ab6e5e52b2c808889d7718693"
+    },
+    {
+      "path": "manager-incident-actions-v1.js",
+      "sha256": "fd1b4c9ec25e00a0480ba50398ad6e2504374a6f603aabeec2cbc7eb16c306e1",
+      "gitBlob": "de4e788b944f3c8d3f8ba115e4c54ace6ddecf70"
+    },
+    {
+      "path": "manager-invite-v1.js",
+      "sha256": "8c9e86ec0dcd8d3581c17ea75aac32bf80fa483f1585c58979c8852ee24fc12a",
+      "gitBlob": "95f0555ff474109c41eac0bee54de2e2215ea30f"
+    },
+    {
+      "path": "manager-password-recovery-v1.js",
+      "sha256": "dbbea7dbc5e0a9420c4d7a3465f3aabf21b7cca04bb26a47c834ff76943f1654",
+      "gitBlob": "ca69e86420440c36179b80a80971c2793dedb03b"
+    },
+    {
+      "path": "manager-signup-v1.js",
+      "sha256": "68b26320f5e6168a5a5b57597870da08d36b6c16d075ba69823400ca389e7e1e",
+      "gitBlob": "b95b344f8f02950ca74a4b92d82bc12953880a0f"
+    },
+    {
+      "path": "manager-signup-admin-v1.js",
+      "sha256": "3398c33a31192a158c0777a0df47ed57aaacd7abfd55b21203c7b806079a72d7",
+      "gitBlob": "6a2b4cdfc0a4b27a6987e913a596ea14b19dfe88"
+    },
+    {
+      "path": "manager-legal-publication-gate-v1.cjs",
+      "sha256": "2bdd4fe60d971c0586cd8d5cab440f50909861fc767b5e70419fb058c625e90f",
+      "gitBlob": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1"
+    },
+    {
+      "path": "manager-build-config.cjs",
+      "sha256": "7b83a2a87e4b7793c53bdd445ec98be9ea7038eb1584b31a3c8c3174426cc4c1",
+      "gitBlob": "7ca9a62658bce114967e2ae82b0217121bd27adc"
+    },
+    {
+      "path": "package.json",
+      "sha256": "42ab083f30f5e9544b22758d4a91e0df0e19435b0cb3f6cc0302dfa0bb4e434f",
+      "gitBlob": "2fcc14494f8130625cc9acc514568d7d719e1282"
+    },
+    {
+      "path": "qa/post-integration-20261111-v1/session-restore-feedback.test.cjs",
+      "sha256": "ff11b922457cff270e0a660f2eacddbd641b9313c826bfb845ad80894219002d",
+      "gitBlob": "93a8b53865e4e135e1461b06681530f2c32e288e"
+    }
+  ],
+  "positiveBackendAuthorizationFixture": false,
+  "sqlExecuted": false
+}

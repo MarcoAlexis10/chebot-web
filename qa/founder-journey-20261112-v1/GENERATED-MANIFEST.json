@@ -1,0 +1,126 @@
+{
+  "sourceWeb": "426eae627154f5bff011335d1c5e688e32ca7d59",
+  "sourceBackend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "generators": [
+    {
+      "path": "manager-v1.js",
+      "sha256": "879b60dfd4ecc358c5fad5c1fed390b8ae98c2b9cea8b8ce3240d6a5f984a21b"
+    },
+    {
+      "path": "manager-auth-v1.js",
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a"
+    },
+    {
+      "path": "manager-knowledge-v1.js",
+      "sha256": "23e82d1a1ac133d39b951707ed703821dcc1c37e44b6ffa0f020af7e9abf7e14"
+    },
+    {
+      "path": "manager-requests-v1.js",
+      "sha256": "a7863760e63f34d91a8c7f1b32cff95fdbc6f2aebe608597337c2d8635dfa31e"
+    },
+    {
+      "path": "manager-incidents-v1.js",
+      "sha256": "c25b051c53156ccaabcd5a7552976b77351c0c2567fe189fc0142f185080e24f"
+    },
+    {
+      "path": "manager-request-actions-v1.js",
+      "sha256": "098a699ee0f4203763446dfaa4e1e47ca20731d3b0b7bc7dc78a1b59c7a6e58b"
+    },
+    {
+      "path": "manager-incident-actions-v1.js",
+      "sha256": "fd1b4c9ec25e00a0480ba50398ad6e2504374a6f603aabeec2cbc7eb16c306e1"
+    },
+    {
+      "path": "manager-invite-v1.js",
+      "sha256": "8c9e86ec0dcd8d3581c17ea75aac32bf80fa483f1585c58979c8852ee24fc12a"
+    },
+    {
+      "path": "manager-password-recovery-v1.js",
+      "sha256": "dbbea7dbc5e0a9420c4d7a3465f3aabf21b7cca04bb26a47c834ff76943f1654"
+    },
+    {
+      "path": "manager-signup-v1.js",
+      "sha256": "68b26320f5e6168a5a5b57597870da08d36b6c16d075ba69823400ca389e7e1e"
+    },
+    {
+      "path": "manager-signup-admin-v1.js",
+      "sha256": "3398c33a31192a158c0777a0df47ed57aaacd7abfd55b21203c7b806079a72d7"
+    }
+  ],
+  "files": [
+    {
+      "path": "generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a"
+    },
+    {
+      "path": "generated/manager/index.html",
+      "bytes": 9291,
+      "sha256": "702510a02973f9e0634266023dada690089cd692bd221fed4e067b7eef2ab7b8"
+    },
+    {
+      "path": "generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44"
+    },
+    {
+      "path": "generated/manager/manager-auth.js",
+      "bytes": 27840,
+      "sha256": "b83043edc0ddce50dd608ffe6b808da4f0be97197e37d96170203f8f44d79a52"
+    },
+    {
+      "path": "generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c"
+    },
+    {
+      "path": "generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4"
+    },
+    {
+      "path": "generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50"
+    },
+    {
+      "path": "generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a"
+    },
+    {
+      "path": "generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8"
+    },
+    {
+      "path": "generated/manager/reset-password/index.html",
+      "bytes": 13172,
+      "sha256": "dee6ee36f44b1b66421eaef47a0bde0a5a80af6fea5703b4d8201802af50e154"
+    },
+    {
+      "path": "generated/manager/activar/index.html",
+      "bytes": 12287,
+      "sha256": "cd75a64ad495f97b23da3aebbb733a78b8350d4629dd844fb4a356ddfa569d4c"
+    },
+    {
+      "path": "generated/manager/altas/index.html",
+      "bytes": 21779,
+      "sha256": "d2f27433b3e20aef28041edd5ecc168f8d91d4754113a7748ba95d18794d4cac"
+    }
+  ],
+  "legalPublication": {
+    "approved": false,
+    "reason": "NO_OWNER_LEGAL_PUBLICATION_APPROVAL"
+  },
+  "networkPolicy": "connect-src 'none'",
+  "allFormsInert": true,
+  "configuredOrigins": "FICTIONAL .invalid ONLY",
+  "actualAuthVerified": false,
+  "backendAuthorizationSimulated": false,
+  "browserExecuted": false,
+  "sqlExecuted": false,
+  "nativeAuthorization": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

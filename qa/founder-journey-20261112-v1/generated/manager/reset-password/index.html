@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; object-src 'none'; connect-src 'none'; form-action 'none'; img-src 'none'; font-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Cache-Control" content="no-store">
+
+<title>Restablecer contraseña · Che Vení Concierge</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f7f4ec;color:#16302d}
+*{box-sizing:border-box}body{min-height:100vh;margin:0;display:grid;place-items:center;padding:20px}
+main{width:min(440px,100%);padding:28px;background:white;border:1px solid #e5ddd0;border-radius:18px;box-shadow:0 12px 34px #173d3814}
+small{display:block;color:#0f766e;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:1.5rem;margin:.7rem 0}.muted{color:#61706d;line-height:1.5}
+label{display:block;font-weight:700;margin:16px 0 5px}
+input{width:100%;padding:12px;border:1px solid #b9c5c2;border-radius:9px;font:inherit}
+.password-wrap{position:relative;display:flex;align-items:center}.password-wrap input{min-width:0;padding-right:58px}
+button.password-visibility{position:absolute;right:4px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:44px;height:44px;padding:0;margin:0;border:0;border-radius:8px;background:transparent;color:#0f766e;cursor:pointer}
+.password-visibility:focus-visible{outline:2px solid #0f766e;outline-offset:-2px}
+.password-visibility .eye-slash{display:none}.password-visibility[aria-pressed="true"] .eye-slash{display:block}
+button{width:100%;margin:20px 0 8px;border:none;border-radius:9px;padding:13px;font:inherit;font-weight:750;background:#0f766e;color:#fff;cursor:pointer}
+button:disabled{opacity:.6;cursor:not-allowed}#status{min-height:1.5rem;font-size:.93rem}#status.error{color:#9b372c}#status.ok{color:#0f766e}
+a{color:#0f766e}form[hidden]{display:none}
+</style>
+</head>
+<body><p role="status" style="padding:16px;background:#fff6dc;color:#16302d">QA offline retenida. No ingreses datos reales. Sin acceso a servicios; Beta V1 NO-GO.</p>
+<main>
+<small>Che Vení Concierge · Beta interna DEV</small>
+<h1>Restablecer tu contraseña</h1>
+<p class="muted">Elegí una contraseña nueva para el acceso de prueba al Manager Web. Nunca la envíes por WhatsApp ni por chat.</p>
+<p id="status" role="status" aria-live="polite">Verificando el enlace de recuperación…</p>
+<form inert data-qa-held="true" id="recovery" hidden>
+<label for="password">Contraseña nueva (mínimo 16 caracteres)</label>
+<div class="password-wrap"><input id="password" type="password" minlength="16" required autocomplete="new-password"><button type="button" class="password-visibility" data-password-target="password" aria-controls="password" aria-label="Mostrar contraseña nueva" aria-pressed="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path class="eye-slash" d="m4 4 16 16"></path></svg></button></div>
+<label for="confirm">Repetir contraseña nueva</label>
+<div class="password-wrap"><input id="confirm" type="password" minlength="16" required autocomplete="new-password"><button type="button" class="password-visibility" data-password-target="confirm" aria-controls="confirm" aria-label="Mostrar confirmación de contraseña" aria-pressed="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle><path class="eye-slash" d="m4 4 16 16"></path></svg></button></div>
+<button id="save" type="submit">Guardar contraseña nueva</button>
+</form>
+<p><a href="/manager/">Volver al inicio de sesión</a></p>
+</main>
+<script>
+
+(() => {
+  'use strict';
+  const authUrl = "https://fictional-auth.example.invalid", publishableKey = "sb_publishable_FICTIONAL_ONLY";
+  const TOKEN_KEY = 'chebot_manager_preview_access_token';
+  const status = document.getElementById('status'), form = document.getElementById('recovery');
+  const password = document.getElementById('password'), confirm = document.getElementById('confirm'), save = document.getElementById('save');
+  const toggles = document.querySelectorAll('[data-password-target]');
+  let accessToken = '', validatedUserId = '', validated = false, updating = false, terminal = false, generation = 0;
+  const controllers = new Set();
+  save.disabled = true;
+  function message(value, kind = '') { status.className = kind; status.textContent = value; }
+  function clearManagerSession() {
+    try { sessionStorage.removeItem(TOKEN_KEY); return sessionStorage.getItem(TOKEN_KEY) === null; } catch (_) { return false; }
+  }
+  function clearFields() {
+    password.value = ''; confirm.value = '';
+    toggles.forEach(toggle => {
+      document.getElementById(toggle.dataset.passwordTarget).type = 'password';
+      toggle.setAttribute('aria-pressed', 'false');
+      toggle.setAttribute('aria-label', 'Mostrar ' + (toggle.dataset.passwordTarget === 'confirm' ? 'confirmación de contraseña' : 'contraseña nueva'));
+    });
+  }
+  function lockForm() {
+    form.hidden = true; save.disabled = true; password.disabled = true; confirm.disabled = true; clearFields();
+  }
+  function finish() {
+    accessToken = ''; validatedUserId = ''; validated = false; terminal = true; lockForm(); return clearManagerSession();
+  }
+  async function request(url, options, readIdentity = false) {
+    const controller = new AbortController(); controllers.add(controller);
+    let timer;
+    // Keep one deadline through headers AND identity-body parsing. Abort alone
+    // cannot bound a stalled adapter, so race the complete read as well.
+    const deadline = new Promise((_, reject) => {
+      timer = setTimeout(() => { controller.abort(); reject(new Error('REQUEST_TIMEOUT')); }, 8000);
+    });
+    try {
+      return await Promise.race([deadline, (async () => {
+        const response = await fetch(url, {...options, redirect: 'error', cache: 'no-store', referrerPolicy: 'no-referrer', signal: controller.signal});
+        if (!readIdentity) return response;
+        let body = null;
+        if (response.ok) { try { body = await response.json(); } catch (_) {} }
+        return {response, body};
+      })()]);
+    } finally { clearTimeout(timer); controllers.delete(controller); }
+  }
+  async function revokeSession(token) {
+    try {
+      const response = await request(authUrl + '/auth/v1/logout?scope=local', {
+        method: 'POST', cache: 'no-store', referrerPolicy: 'no-referrer',
+        headers: {apikey: publishableKey, Authorization: 'Bearer ' + token}
+      });
+      return response.ok;
+    } catch (_) { return false; }
+  }
+  function discardPage() { generation += 1; finish(); controllers.forEach(controller => controller.abort()); }
+  toggles.forEach(toggle => {
+    const field = document.getElementById(toggle.dataset.passwordTarget);
+    toggle.addEventListener('click', () => {
+      if (updating || terminal || !validated) return;
+      const reveal = field.type === 'password'; field.type = reveal ? 'text' : 'password';
+      toggle.setAttribute('aria-pressed', String(reveal));
+      toggle.setAttribute('aria-label', (reveal ? 'Ocultar ' : 'Mostrar ') + (field.id === 'confirm' ? 'confirmación de contraseña' : 'contraseña nueva'));
+    });
+  });
+  // Accept credentials only from the fragment, never query parameters.
+  const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+  const query = new URLSearchParams(window.location.search);
+  accessToken = hash.get('access_token') || '';
+  const authError = hash.get('error_code') || query.get('error_code') || hash.get('error') || query.get('error') || '';
+  const returnedCode = Boolean(query.get('code'));
+  window.history.replaceState(null, '', window.location.pathname);
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash) { discardPage(); window.location.reload(); }
+  });
+  window.addEventListener('pagehide', discardPage);
+  if (!clearManagerSession()) {
+    finish(); message('No pudimos limpiar la sesión local. Cerrá esta pestaña antes de continuar.', 'error'); return;
+  }
+  if (authError || !accessToken) {
+    finish();
+    message(authError
+      ? 'Supabase rechazó el enlace (vencido, utilizado o inválido). Solicitá uno nuevo y abrilo en Chrome.'
+      : returnedCode ? 'El enlace devolvió un código sin sesión activa. Pedí un nuevo correo y abrilo directamente en Chrome.'
+      : 'No llegó la sesión de recuperación al navegador. Pedí un correo nuevo y abrilo directamente en Chrome.', 'error');
+    return;
+  }
+  const validationGeneration = generation;
+  (async () => {
+    try {
+      const {response, body: user} = await request(authUrl + '/auth/v1/user', {
+        method: 'GET', cache: 'no-store', referrerPolicy: 'no-referrer',
+        headers: {apikey: publishableKey, Authorization: 'Bearer ' + accessToken}
+      }, true);
+      if (validationGeneration !== generation || terminal) return;
+      if (!response.ok) throw new Error('SESSION_INVALID');
+      if (validationGeneration !== generation || terminal) return;
+      if (!user || typeof user.id !== 'string' || !/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(user.id) || user.is_anonymous === true) throw new Error('SESSION_INVALID');
+      validatedUserId = user.id; validated = true; form.hidden = false; save.disabled = false; password.disabled = false; confirm.disabled = false;
+      message('Sesión validada por Supabase DEV. Elegí una contraseña nueva.');
+    } catch (_) {
+      if (validationGeneration !== generation) return;
+      finish(); message('No pudimos validar la sesión de recuperación. Solicitá otro enlace y abrilo directamente en Chrome.', 'error');
+    }
+  })();
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!validated || terminal || updating || form.hidden || save.disabled || !accessToken) return;
+    if (password.value.length < 16) { message('Usá al menos 16 caracteres.', 'error'); return; }
+    if (password.value !== confirm.value) { message('Las dos contraseñas no coinciden.', 'error'); return; }
+    updating = true; save.disabled = true; password.disabled = true; confirm.disabled = true;
+    const attemptGeneration = generation, token = accessToken, userId = validatedUserId;
+    message('Guardando contraseña en Supabase DEV…');
+    let response, receipt = null;
+    try {
+      const result = await request(authUrl + '/auth/v1/user', {
+        method: 'PUT', cache: 'no-store', referrerPolicy: 'no-referrer',
+        headers: {apikey: publishableKey, Authorization: 'Bearer ' + token, 'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({password: password.value})
+      }, true);
+      response = result.response; receipt = result.body;
+    } catch (_) {
+      // A transport failure after dispatch cannot establish whether PUT committed.
+    }
+    if (attemptGeneration !== generation) return;
+    if (response && !response.ok && [400, 422].includes(response.status)) {
+      updating = false; clearFields(); password.disabled = false; confirm.disabled = false; save.disabled = false;
+      message('Supabase rechazó la actualización. Revisá la política de contraseña antes de volver a enviarla.', 'error'); return;
+    }
+    // HTTP success alone is not an identity-bound update receipt.
+    const changed = Boolean(response && response.status === 200 && receipt && !Array.isArray(receipt) &&
+      receipt.id === userId && receipt.is_anonymous !== true);
+    const rejected = Boolean(response && [401, 403, 429].includes(response.status));
+    const localCleared = finish();
+    const revoked = await revokeSession(token);
+    if (attemptGeneration !== generation) return;
+    // Logout revokes refresh credentials; an issued JWT can remain valid until expiry.
+    if (changed) {
+      message('Contraseña actualizada. Volvé a iniciar sesión con la contraseña nueva.' +
+        (!localCleared ? ' No pudimos limpiar la sesión local; cerrá esta pestaña.' :
+         !revoked ? ' No pudimos confirmar el cierre de esta sesión en el servicio.' : ''), localCleared && revoked ? 'ok' : 'error');
+    } else {
+      message((rejected ? 'Supabase rechazó la solicitud. Solicitá un enlace nuevo antes de continuar.'
+        : 'No pudimos confirmar si la contraseña cambió. No repitas este envío: verificá el acceso o solicitá un enlace nuevo.') +
+        (!localCleared ? ' No pudimos limpiar la sesión local; cerrá esta pestaña.' : ''), 'error');
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
