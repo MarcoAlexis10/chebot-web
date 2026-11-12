@@ -1,0 +1,35 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity
+ok 1 - date changes invalidate prior stay bindings and reconcile invites instead of merely relabeling the entity
+  ---
+  duration_ms: 21.015919
+  type: 'test'
+  ...
+# Subtest: effect plans keep creation, guest association, confirmation, cancellation, checkout and private history distinct
+ok 2 - effect plans keep creation, guest association, confirmation, cancellation, checkout and private history distinct
+  ---
+  duration_ms: 3.953046
+  type: 'test'
+  ...
+# Subtest: Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions
+ok 3 - Native17 checkout projection preserves stable intent and separates token seconds from source expiry but cannot drop required revisions
+  ---
+  duration_ms: 2.825955
+  type: 'test'
+  ...
+# Subtest: source ABI confirms Native17 suspend affects launch control and checkout is not a versioned property lifecycle port
+ok 4 - source ABI confirms Native17 suspend affects launch control and checkout is not a versioned property lifecycle port
+  ---
+  duration_ms: 0.818205
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 141.337529

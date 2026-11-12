@@ -15,3 +15,9 @@ python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=ta
 ```
 
 Fuentes/HEADs y comandos efectivos en qa/reviews/functional-contracts-20261112/. Native17 HOST_NOT_AVAILABLE; N01–N12 NOT_AUTHORIZED/NOT_RUN; Chromium no se reintenta. Próximo: compatibilidad exacta del checkout Native17 (suspend no es property.pause), efectos/revocaciones y productor mínimo de catálogo.
+
+## Efectos y catálogo
+
+effect-plan.mjs conserva operaciones distintas y corrige el requerimiento de revocación en cambio de fechas. reviewNativeCheckout produce sólo una proyección semántica, dispatchPlan=null: la primitiva Native17 existente no representa todas las revisiones/recibos del contrato. No se escribe otro SQL o fallback. native17-manager-action.source.txt es un extracto literal de fuente inmóvil, nunca un instalador.
+
+public-catalog-producer.mjs separa fuente, revisión de plantilla y retirada; consume el validador público existente. No aprueba contenido, no persiste proyecciones y sólo devuelve la plantilla global segura. Produtores protegidos siguen ausentes. A este checkpoint: 11 casos únicos nuevos PASS.
