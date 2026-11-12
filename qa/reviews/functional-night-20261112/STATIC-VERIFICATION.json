@@ -1,0 +1,19 @@
+{
+  "classification": "STATIC_SOURCE_AND_BYTES_ONLY_NOT_NATIVE",
+  "pinnedSourcesMatched": 105,
+  "pinnedSourceCommits": {
+    "web": "dd1b41fe8cbea9dda6da24d50b95c23916cb6475",
+    "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+    "native": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+  },
+  "generatedFilesMatched": 18,
+  "priorAssetsIdenticalExceptAuth": 9,
+  "priorRegressionAssertionsUnchanged": 3,
+  "types": "D_MTS_DECLARATION_STATIC_ONLY_NO_TYPESCRIPT_COMPILER_RUN",
+  "legalPublicationApproved": false,
+  "sqlExecuted": false,
+  "browserExecuted": false,
+  "realAuthVerified": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

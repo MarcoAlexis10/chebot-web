@@ -1,0 +1,14 @@
+{
+  "scope": "backend root SQL sources only; not fixture/drafts or installed catalog",
+  "functions": [
+    {
+      "file": "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "function": "public.concierge_list_manager_web_properties"
+    },
+    {
+      "file": "206-QA277-BEGIN-BETA-CLOCK-DO-NOT-RUN.sql",
+      "function": "public.concierge_begin_beta_on_first_verified_stay"
+    }
+  ],
+  "sqlExecuted": false
+}

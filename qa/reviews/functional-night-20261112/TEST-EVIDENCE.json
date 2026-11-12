@@ -1,0 +1,668 @@
+{
+  "newUniquePass": 19,
+  "newUniqueFinalFail": 0,
+  "newUniqueSkip": 0,
+  "priorFocalRegressionsPass": 3,
+  "uniqueCountMethod": "union by test name, not sum of executions",
+  "classification": "NODE_CONTRACT_VECTORS_AND_NODE_VM_MINIMAL_DOM_HTML_CHECKS_ONLY",
+  "nodeVersion": "v24.22.1",
+  "executions": [
+    {
+      "log": "logs/auth-before.tap",
+      "sha256": "9d9a9c765dfd34f28511ea2c0d85488146069fa126619adb16c00dd916192cc0",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--conditions=baseline",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=current 403|logout clears",
+        "web/qa/functional-night-20261112-v1/auth-ui.test.cjs"
+      ],
+      "counts": {
+        "tests": 2,
+        "pass": 0,
+        "fail": 2,
+        "skipped": 0
+      },
+      "names": [
+        "current 403 clears access but reports permission rejection without claiming session expiry or revocation",
+        "logout clears prior session/scope labels and private rows immediately even when provider logout is unconfirmed"
+      ],
+      "classification": "BASELINE_PREVIOUS_SOURCE_FAILURE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/auth-first.tap",
+      "sha256": "9c976df955fcaca965ab6c2ec7cda7677133ff2346870f008342f391bbe7fc01",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/auth-ui.test.cjs"
+      ],
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "current 403 clears access but reports permission rejection without claiming session expiry or revocation",
+        "logout clears prior session/scope labels and private rows immediately even when provider logout is unconfirmed",
+        "late restore response after an explicit denial cannot reopen rows, scope labels or an uncertain invitation"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532246]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/composition-first.tap",
+      "sha256": "cd64c834e679629598fb3366a2d145d09cfd268fbdfb41b369f94e71050ec581",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/composition.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "full retained journey reuses prior assets, resolves local links/anchors and never presents missing legal documents as published"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/inventory-before.tap",
+      "sha256": "b25c146a373cfae36fac09c20fa4cf2ab40b4984613e65123fc1c1912fc44275",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--conditions=baseline",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=inventory accepts",
+        "web/qa/functional-night-20261112-v1/stay.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "inventory accepts the six actual SQL stay states, excludes the exact edited revision and preserves half-open conflicts"
+      ],
+      "classification": "BASELINE_PREVIOUS_SOURCE_FAILURE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/lifecycle-first.tap",
+      "sha256": "caacb78dd65dd73aa181aff1b316265de8b9e9bbf8e09acadd04561f664c76ce",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/property.test.mjs",
+        "web/qa/functional-night-20261112-v1/stay.test.mjs"
+      ],
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property commands distinguish draft/configuration/review/decision/pause/archive without inventing writes or authority",
+        "property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras",
+        "held property ports cannot accept a writer or ACK and never execute callbacks",
+        "inventory accepts the six actual SQL stay states, excludes the exact edited revision and preserves half-open conflicts",
+        "date changes bind current revisions, CABA UTC calendar and forbid stale inventory, invalid windows or cross-property rows",
+        "guest-free draft, association, confirmation, cancel and checkout remain distinct proposals with no fabricated guest or effect"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532246]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/lifecycle-session-final.tap",
+      "sha256": "38b2f4888ba765f89a89138bd74394ca3c37c7f5fe4df48bf72f282ae7b3adcf",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/property.test.mjs",
+        "web/qa/functional-night-20261112-v1/stay.test.mjs"
+      ],
+      "counts": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property commands distinguish draft/configuration/review/decision/pause/archive without inventing writes or authority",
+        "property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras",
+        "held property ports cannot accept a writer or ACK and never execute callbacks",
+        "inventory accepts the six actual SQL stay states, excludes the exact edited revision and preserves half-open conflicts",
+        "date changes bind current revisions, CABA UTC calendar and forbid stale inventory, invalid windows or cross-property rows",
+        "guest-free draft, association, confirmation, cancel and checkout remain distinct proposals with no fabricated guest or effect"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532246]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/projection-permissions-first.tap",
+      "sha256": "6e730a1540165d06e9bf9ca6795b284423705ed859b82364d5832186c6003dfc",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/projection-permissions.test.mjs"
+      ],
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "public projection never publishes historical approved knowledge text, unsafe links or private fields",
+        "public projection binds catalog versions and retirement independently of reservation, checkout and refresh",
+        "manager roles use current account/property/action flags; client JWT fields or stale authority never create a grant",
+        "operational tasks and guest reservations remain separate scopes with hard expiration and no manager promotion"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/property-unicode-before.tap",
+      "sha256": "cf646cc0d6810daa5b38bce713f1aa8192772af0d07a343fc09e97a9c120d4d9",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--conditions=baseline",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=unpaired Unicode",
+        "web/qa/functional-night-20261112-v1/property.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "property configuration rejects unpaired Unicode that cannot survive PostgreSQL UTF8 serialization"
+      ],
+      "classification": "BASELINE_PREVIOUS_SOURCE_FAILURE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532276]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/property-unicode-final.tap",
+      "sha256": "f5dc5da5bbaf91705961302c1006b11b07aed2d3209b9dc67f5bce71ce62957b",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/property.test.mjs"
+      ],
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property commands distinguish draft/configuration/review/decision/pause/archive without inventing writes or authority",
+        "property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras",
+        "held property ports cannot accept a writer or ACK and never execute callbacks",
+        "property configuration rejects unpaired Unicode that cannot survive PostgreSQL UTF8 serialization"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/property-unicode-roundtrip-final.tap",
+      "sha256": "a51e8a8ecf98046af7c9aeba91cb2a521714f8d74f78853702663d9675ad0da1",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=unpaired Unicode",
+        "web/qa/functional-night-20261112-v1/property.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property configuration rejects unpaired Unicode that cannot survive PostgreSQL UTF8 serialization"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/restore-regression.tap",
+      "sha256": "a3f872e4e19dcd4d835d17394a670afbad9512a9aa90c5b017f75067e3253f1a",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/restore-feedback.regression.test.cjs"
+      ],
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "unreadable fetch does not claim session expiry or diagnose CORS; private panel stays closed",
+        "readable HTTP 503 HELD does not claim an expired session or reopen private data",
+        "explicit readable HTTP 401 retains the existing authorization-denial message"
+      ],
+      "classification": "PRIOR_FOCAL_REGRESSION",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/shared-permission-schema-final.tap",
+      "sha256": "bbb6b020a624d3c4c418923924b117371817d7f3e6878d2e0400c968282a1add",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/property.test.mjs",
+        "web/qa/functional-night-20261112-v1/stay.test.mjs",
+        "web/qa/functional-night-20261112-v1/projection-permissions.test.mjs",
+        "web/qa/functional-night-20261112-v1/view-work-items.test.mjs"
+      ],
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "public projection never publishes historical approved knowledge text, unsafe links or private fields",
+        "public projection binds catalog versions and retirement independently of reservation, checkout and refresh",
+        "manager roles use current account/property/action flags; client JWT fields or stale authority never create a grant",
+        "operational tasks and guest reservations remain separate scopes with hard expiration and no manager promotion",
+        "property commands distinguish draft/configuration/review/decision/pause/archive without inventing writes or authority",
+        "property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras",
+        "held property ports cannot accept a writer or ACK and never execute callbacks",
+        "inventory accepts the six actual SQL stay states, excludes the exact edited revision and preserves half-open conflicts",
+        "date changes bind current revisions, CABA UTC calendar and forbid stale inventory, invalid windows or cross-property rows",
+        "guest-free draft, association, confirmation, cancel and checkout remain distinct proposals with no fabricated guest or effect",
+        "view sequencing discards responses after scope/version/session changes, newer requests, logout or checkout during awaits",
+        "UNKNOWN survives local view changes without becoming retry permission and restart cannot reconstruct an original",
+        "work-item projections reject cross-stay/property/account data, stale revision and private payloads; learning never activates",
+        "review-view clock cannot move backwards to revive an otherwise current ticket"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/view-clock-before.tap",
+      "sha256": "4920cc46089ad8ea80de41200c43ca6ed526449dd1edf5f77fa991867eb81a2b",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-name-pattern=clock cannot move",
+        "web/qa/functional-night-20261112-v1/view-work-items.test.mjs"
+      ],
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "review-view clock cannot move backwards to revive an otherwise current ticket"
+      ],
+      "classification": "INTERMEDIATE_QA_MODEL_FAILURE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/view-work-items-final.tap",
+      "sha256": "a334943ad15683c2738aa9732c9809a4c411b44ea25771c2487f88f846127670",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/view-work-items.test.mjs"
+      ],
+      "counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "view sequencing discards responses after scope/version/session changes, newer requests, logout or checkout during awaits",
+        "UNKNOWN survives local view changes without becoming retry permission and restart cannot reconstruct an original",
+        "work-item projections reject cross-stay/property/account data, stale revision and private payloads; learning never activates",
+        "review-view clock cannot move backwards to revive an otherwise current ticket"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/view-work-items-first.tap",
+      "sha256": "995f4f3e3f3739f8c18d2056513602697e58ce855d285012315749c7de80ce1b",
+      "argv": [
+        "python",
+        "web/qa/integral-held-v1/run-isolated.py",
+        "--",
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "web/qa/functional-night-20261112-v1/view-work-items.test.mjs"
+      ],
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "view sequencing discards responses after scope/version/session changes, newer requests, logout or checkout during awaits",
+        "UNKNOWN survives local view changes without becoming retry permission and restart cannot reconstruct an original",
+        "work-item projections reject cross-stay/property/account data, stale revision and private payloads; learning never activates"
+      ],
+      "classification": "NEW_CASES_OR_FOCAL_REPEATS_NOT_ADDITIVE",
+      "isolation": {
+        "parentNetns": "net:[4026532316]",
+        "childNetns": "net:[4026532243]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    }
+  ],
+  "finalCoverage": [
+    "property-unicode-final.tap: four property cases; same Unicode case expanded in property-unicode-roundtrip-final.tap",
+    "shared-permission-schema-final.tap: three stay + four projection/permissions + four view/work-items; its three property cases are superseded by later property logs",
+    "auth-first.tap: three complete generated Auth script cases",
+    "composition-first.tap: one complete HTML/link/JS composition case",
+    "restore-regression.tap: three prior cases, separate from nineteen new"
+  ],
+  "repeatJustifications": {
+    "lifecycle-session-final": "command now binds session ID and revision; six directly affected cases",
+    "view-work-items-final": "new clock floor and one new case; three earlier cases repeated",
+    "shared-permission-schema-final": "shared strict context now has all seven historical manager flags; fourteen directly affected cases",
+    "property-unicode-final": "property validator changed; three earlier cases plus new Unicode case",
+    "property-unicode-roundtrip-final": "same Unicode case expanded to execute the actual Node UTF8 lossy roundtrip",
+    "restore-regression": "generated Auth code changed at denial and clearing, so prior network/503/401 restoration assertions rerun against new composition"
+  },
+  "intermediateFailCases": 5,
+  "intermediateFailureKinds": [
+    "one old inventory-state incompatibility",
+    "two old generated Auth UX failures",
+    "one new local view model clock bug",
+    "one old property validator invalid-Unicode acceptance"
+  ],
+  "historicalEightPreviousRepeated": false,
+  "priorFounderFiveRepeated": false,
+  "priorFounderThreeRerunWithDirectJustification": true,
+  "otherHistoricalSuitesRepeated": false,
+  "nativeHostReinspected": false,
+  "native17": "HOST_NOT_AVAILABLE / N01-N12 NOT_AUTHORIZED / NOT_RUN",
+  "nativeSqlExecutions": 0,
+  "browserExecutions": 0,
+  "chromiumAttempts": 0,
+  "httpHttpsTransportTests": 0,
+  "managedAuthVerified": false,
+  "positiveBackendAuthorizationFixtureUsed": false,
+  "commitObserved": false,
+  "sqlUniquenessObserved": false,
+  "newDurablePrivateStorage": false,
+  "realUsersPropertiesStaysInvitesMessagesPayments": 0,
+  "servicesStarted": 0,
+  "restoreOrSigningExecuted": false,
+  "sourcePinsMatched": 105,
+  "generatedFiles": 18,
+  "staticChecks": [
+    {
+      "path": "STATIC-VERIFICATION.json",
+      "sha256": "ad48f293a1076f8b2011e870d1a77eb50d3cfe145325acc5d3099ba32890b425"
+    },
+    {
+      "path": "ROOT-DOMAIN-FUNCTIONS.json",
+      "sha256": "1dcc9f6ab038a09bf51606082342680fe3458340b146e08bdbb224174443b6dd"
+    },
+    {
+      "path": "logs/materialize.log",
+      "sha256": "efcda117e90f643646cc5489f8aee5136e9e267e6fa34b9942c9bb74626a8e75"
+    },
+    {
+      "path": "logs/syntax-final.log",
+      "sha256": "514284b30fd01288d10150d4488270e78ca7bf8d011e6c7e4ad58653fd1b11c7"
+    },
+    {
+      "path": "logs/view-clock-before-source.txt",
+      "sha256": "db6bde164c5453afcb30023ac8a8e3ede35577abea1f2a26fa8db43029f514d4"
+    }
+  ],
+  "operationalApproval": false,
+  "betaDecision": "NO-GO",
+  "limits": [
+    "Model contexts, references and tickets never represent verified Auth or effective privileges.",
+    "Synthetic body/status responses are not real HTTP/CORS/browser tests.",
+    "The pre-clock source text is retained only to recover the intermediate QA model failure.",
+    "Type declarations reviewed statically; no TypeScript compiler executed.",
+    "No uniqueness, COMMIT, revocation, journal or restore native guarantees claimed."
+  ],
+  "verifiedUniqueFinalNames": [
+    "UNKNOWN survives local view changes without becoming retry permission and restart cannot reconstruct an original",
+    "current 403 clears access but reports permission rejection without claiming session expiry or revocation",
+    "date changes bind current revisions, CABA UTC calendar and forbid stale inventory, invalid windows or cross-property rows",
+    "full retained journey reuses prior assets, resolves local links/anchors and never presents missing legal documents as published",
+    "guest-free draft, association, confirmation, cancel and checkout remain distinct proposals with no fabricated guest or effect",
+    "held property ports cannot accept a writer or ACK and never execute callbacks",
+    "inventory accepts the six actual SQL stay states, excludes the exact edited revision and preserves half-open conflicts",
+    "late restore response after an explicit denial cannot reopen rows, scope labels or an uncertain invitation",
+    "logout clears prior session/scope labels and private rows immediately even when provider logout is unconfirmed",
+    "manager roles use current account/property/action flags; client JWT fields or stale authority never create a grant",
+    "operational tasks and guest reservations remain separate scopes with hard expiration and no manager promotion",
+    "property commands distinguish draft/configuration/review/decision/pause/archive without inventing writes or authority",
+    "property configuration rejects unpaired Unicode that cannot survive PostgreSQL UTF8 serialization",
+    "property review rejects client authority, stale revision, wrong account/building, unprotected cohort and private extras",
+    "public projection binds catalog versions and retirement independently of reservation, checkout and refresh",
+    "public projection never publishes historical approved knowledge text, unsafe links or private fields",
+    "review-view clock cannot move backwards to revive an otherwise current ticket",
+    "view sequencing discards responses after scope/version/session changes, newer requests, logout or checkout during awaits",
+    "work-item projections reject cross-stay/property/account data, stale revision and private payloads; learning never activates"
+  ],
+  "historicalCommandsDescribeSourceAtExecution": true
+}

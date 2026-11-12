@@ -1,0 +1,139 @@
+{
+  "classification": "SOURCE_CONTRACT_AND_NODE_VECTOR_REVIEW_NOT_EFFECTIVE_NATIVE_PRIVILEGES",
+  "sourceBackend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "sources": [
+    "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql:concierge_authorize_manager_member_action",
+    "25-MIGRACION-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+    "98-MIGRACION-12-OPERATIONAL-ACCESS.sql:concierge_authorize_operational_secret_access"
+  ],
+  "managerActions": [
+    {
+      "action": "view_property",
+      "flag": "viewProperty",
+      "owner": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "manager": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "co_manager": "CURRENT_EXPLICIT_PROPERTY_ASSIGNMENT_AND_viewProperty",
+      "operational": "NO_MANAGER_ROLE",
+      "guest": "NO_MANAGER_ROLE",
+      "candidateAccessAllowed": false
+    },
+    {
+      "action": "manage_stays",
+      "flag": "manageStays",
+      "owner": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "manager": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "co_manager": "CURRENT_EXPLICIT_PROPERTY_ASSIGNMENT_AND_manageStays",
+      "operational": "NO_MANAGER_ROLE",
+      "guest": "NO_MANAGER_ROLE",
+      "candidateAccessAllowed": false
+    },
+    {
+      "action": "manage_incidents",
+      "flag": "manageIncidents",
+      "owner": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "manager": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "co_manager": "CURRENT_EXPLICIT_PROPERTY_ASSIGNMENT_AND_manageIncidents",
+      "operational": "NO_MANAGER_ROLE",
+      "guest": "NO_MANAGER_ROLE",
+      "candidateAccessAllowed": false
+    },
+    {
+      "action": "approve_requests",
+      "flag": "approveRequests",
+      "owner": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "manager": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "co_manager": "CURRENT_EXPLICIT_PROPERTY_ASSIGNMENT_AND_approveRequests",
+      "operational": "NO_MANAGER_ROLE",
+      "guest": "NO_MANAGER_ROLE",
+      "candidateAccessAllowed": false
+    },
+    {
+      "action": "manage_knowledge",
+      "flag": "manageKnowledge",
+      "owner": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "manager": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "co_manager": "CURRENT_EXPLICIT_PROPERTY_ASSIGNMENT_AND_manageKnowledge",
+      "operational": "NO_MANAGER_ROLE",
+      "guest": "NO_MANAGER_ROLE",
+      "candidateAccessAllowed": false
+    },
+    {
+      "action": "manage_secrets",
+      "flag": "manageSecrets",
+      "owner": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "manager": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "co_manager": "CURRENT_EXPLICIT_PROPERTY_ASSIGNMENT_AND_manageSecrets",
+      "operational": "NO_MANAGER_ROLE",
+      "guest": "NO_MANAGER_ROLE",
+      "candidateAccessAllowed": false
+    },
+    {
+      "action": "manage_team",
+      "flag": "manageTeam",
+      "owner": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "manager": "ACTIVE_MEMBER_SAME_ACCOUNT_PROPERTY_IN_HISTORICAL_SOURCE",
+      "co_manager": "CURRENT_EXPLICIT_PROPERTY_ASSIGNMENT_AND_manageTeam",
+      "operational": "NO_MANAGER_ROLE",
+      "guest": "NO_MANAGER_ROLE",
+      "candidateAccessAllowed": false
+    }
+  ],
+  "propertyLifecycle": {
+    "historicalPermission": "NOT_DEFINED_BY_SEVEN_ACTIONS",
+    "candidateMutationRole": "OWNER_ONLY_CONSERVATIVE_PROPOSAL_NOT_APPROVED_PERMISSION",
+    "createConfigureSubmitDecidePauseArchive": "HELD",
+    "cohort": "PROTECTED_COUNTER_AND_TRANSACTIONAL_GUARANTEE_MISSING"
+  },
+  "operational": {
+    "scope": [
+      "person",
+      "task",
+      "account",
+      "property",
+      "access_point",
+      "explicit_authorization",
+      "policy",
+      "time_window"
+    ],
+    "rolePromotionAllowed": false,
+    "reviewCovers": [
+      "person/task/account/property/status/revision/expiry/revocation"
+    ],
+    "stillMissing": [
+      "provider_identity",
+      "access_point_policy",
+      "explicit_authorization",
+      "vault",
+      "native_fence",
+      "custody"
+    ],
+    "candidateAccessAllowed": false
+  },
+  "guest": {
+    "scope": [
+      "identity",
+      "session",
+      "account",
+      "property",
+      "stay",
+      "stay_member",
+      "invitation",
+      "identity_generation",
+      "reservation_revision",
+      "time_window"
+    ],
+    "candidateAccessAllowed": false,
+    "historicalBindingDoesNotProveCurrentAuthority": true
+  },
+  "globalDependencies": [
+    "verified_provider_not_client_metadata",
+    "current_authority",
+    "independent_restrictions_and_floors",
+    "revocation_fence",
+    "readback_without_write"
+  ],
+  "actualAuthVerified": false,
+  "sqlExecuted": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

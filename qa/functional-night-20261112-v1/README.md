@@ -13,3 +13,15 @@ python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=ta
 ```
 
 No repetir suites anteriores por rutina. Primer bloque: seis casos únicos nuevos PASS; baseline de inventario FAIL conservado. Son Node/vectores, no SQL/Auth/browser. Recuperar desde el último commit QA y leer el directorio qa/reviews/functional-night-20261112/; revisar HEADs y fuentes antes de continuar. Native17 HOST_NOT_AVAILABLE, N01–N12 NOT_AUTHORIZED/NOT_RUN. Beta V1 NO-GO.
+
+## Estado consolidado
+
+19 casos únicos nuevos PASS y tres regresiones previas afectadas PASS. Nuevos módulos: public-projection/permissions, view-lease y work-items; los puertos agregados reutilizan la frontera HELD de incidencias existente y UNKNOWN anterior. El modelo de UI no autoriza vistas privadas. compose.cjs corrige 403 y limpieza de rótulos en el Auth generado; materialize.mjs añade recorrido y contratos al mismo candidato previo, sin activar nada.
+
+```sh
+python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/functional-night-20261112-v1/projection-permissions.test.mjs web/qa/functional-night-20261112-v1/view-work-items.test.mjs web/qa/functional-night-20261112-v1/auth-ui.test.cjs web/qa/functional-night-20261112-v1/composition.test.mjs
+python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/functional-night-20261112-v1/restore-feedback.regression.test.cjs
+python web/qa/integral-held-v1/run-isolated.py -- node web/qa/functional-night-20261112-v1/materialize.mjs
+```
+
+Dieciocho outputs, nueve assets anteriores idénticos y sólo Auth JS cambiado; todos los enlaces locales/anchors comprobados. d.mts es declaración tipada revisada estáticamente, sin compilación TypeScript. No repetir por rutina estos comandos; las ejecuciones exactas y focalizadas realizadas están en TEST-EVIDENCE.json. Source pins: 105 blobs remotos verificados.

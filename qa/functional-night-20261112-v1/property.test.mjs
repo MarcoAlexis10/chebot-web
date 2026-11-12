@@ -26,7 +26,7 @@ test('property configuration rejects unpaired Unicode that cannot survive Postgr
  const baseline=process.execArgv.includes('--conditions=baseline');
  const {reviewPropertyShape}=await import('../property-stay-prearrival-20261112-v1/contracts.mjs');
  for(const key of ['internalName','address','floorOrUnit'])for(const text of ['QA\ud800','QA\udfff']){
-  const x=propertyCase();x.command.payload.configuration[key]=text;
+  const x=propertyCase();x.command.payload.configuration[key]=text;assert.notEqual(Buffer.from(text,'utf8').toString('utf8'),text);
   if(baseline){assert.notEqual(reviewPropertyShape(x.command.payload.configuration).shapeReviewed,true);return;}
   assert.equal(review(x).state,'PROPERTY_REVIEW_REJECTED');
  }

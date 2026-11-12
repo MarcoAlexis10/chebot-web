@@ -1,0 +1,250 @@
+{
+  "candidate": "functional-night-20261112-v1",
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "initialWeb": "dd1b41fe8cbea9dda6da24d50b95c23916cb6475",
+  "functionalCodeCommit": "90cd364083650aadb3cfacdac4165207a2af4a18",
+  "finalWebCommit": "CONTAINING_CLOSURE_COMMIT_RESOLVED_FROM_IMMUTABLE_URL",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "components": [
+    {
+      "component": "frontend",
+      "state": "COMPOSED_INERT_QA",
+      "artifact": "functional-night-20261112-v1/materialize.mjs; GENERATED-MANIFEST.json",
+      "missingEvidence": "Browser/CORS real and operational target not accredited"
+    },
+    {
+      "component": "backend",
+      "state": "READ_ONLY_PINNED",
+      "artifact": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "missingEvidence": "No candidate connection to backend endpoint"
+    },
+    {
+      "component": "property",
+      "state": "NODE_REVIEW_IMPLEMENTED_HELD",
+      "artifact": "property-lifecycle.mjs; lifecycle-abi.d.mts",
+      "missingEvidence": "Protected lifecycle ABI/producer, account/building/jurisdiction/cohort/current authority and SQL"
+    },
+    {
+      "component": "stay",
+      "state": "NODE_REVIEW_IMPLEMENTED_HELD",
+      "artifact": "stay-lifecycle.mjs; prior pending/CBF1 unchanged",
+      "missingEvidence": "Guest-free primitive, lifecycle, protected identity, CAS/exclusion and COMMIT"
+    },
+    {
+      "component": "prearrival",
+      "state": "GLOBAL_TEMPLATE_ONLY_PROPERTY_SOURCE_HELD",
+      "artifact": "public-projection.mjs; prior prearrival.mjs",
+      "missingEvidence": "Approved minimum public catalog producer and real provider binding"
+    },
+    {
+      "component": "roles",
+      "state": "SOURCE_AND_NODE_MODEL_HELD",
+      "artifact": "permissions.mjs; PERMISSIONS-MATRIX.json",
+      "missingEvidence": "Native effective ACL/RLS/current permissions, operational policies and explicit task authorization"
+    },
+    {
+      "component": "invitations",
+      "state": "PRIOR_INERT_UI_UNCHANGED",
+      "artifact": "prior manager-invite generator and Auth composition",
+      "missingEvidence": "No real preparation, identity, delivery or channel authorized"
+    },
+    {
+      "component": "auth",
+      "state": "ORIGINAL_GENERATED_SCRIPT_QA_PATCHED",
+      "artifact": "compose.cjs; auth-ui.test.cjs",
+      "missingEvidence": "Managed provider/JWT/session revocation/refresh and current authority"
+    },
+    {
+      "component": "writer",
+      "state": "HELD_NOT_CONFIGURED",
+      "artifact": "existing private CBF1/create_stay and incident successors reused",
+      "missingEvidence": "Minimal privilege login, approved ABI and real dispatch/COMMIT"
+    },
+    {
+      "component": "reader",
+      "state": "HELD_NOT_CONNECTED",
+      "artifact": "existing separate readback-only proposal; default reconcile UNKNOWN",
+      "missingEvidence": "Independent credentials, effective read-only ACL and physical readback evidence"
+    },
+    {
+      "component": "journal_witness",
+      "state": "EXISTING_CONTRACTS_HELD",
+      "artifact": "prior journal/CI4/CBF1 contracts retained",
+      "missingEvidence": "Independent custody, real signed/transcript/COMMIT correlation; no signing here"
+    },
+    {
+      "component": "postgresql",
+      "state": "HOST_NOT_AVAILABLE",
+      "artifact": "Native17 ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "missingEvidence": "17.11 host/authorization missing; N01-N12 NOT_AUTHORIZED/NOT_RUN"
+    },
+    {
+      "component": "gotrue",
+      "state": "A2_INVENTORY_ONLY",
+      "artifact": "existing managed Auth recovery scope",
+      "missingEvidence": "Provider-specific identity/session/key recovery and revocation; not restored"
+    },
+    {
+      "component": "vault",
+      "state": "A2_INVENTORY_ONLY",
+      "artifact": "existing A2 key/secret custody scope",
+      "missingEvidence": "Independent recovery/custody evidence, no secrets read"
+    },
+    {
+      "component": "storage",
+      "state": "A2_INVENTORY_ONLY",
+      "artifact": "existing bucket/object/policy inventory scope",
+      "missingEvidence": "Objects, metadata, policies and recovery integrity, not just SQL tables"
+    },
+    {
+      "component": "configuration_keys",
+      "state": "NO_REAL_KEYS_OR_CONFIGURATION_USED",
+      "artifact": "only .invalid QA generation; synthetic strings",
+      "missingEvidence": "External custody, provider configs and verified key/config versions for future lab"
+    },
+    {
+      "component": "independent_restrictions",
+      "state": "D2_HELD",
+      "artifact": "existing Native17 source/floors/revoker contracts",
+      "missingEvidence": "Independent current producer/floor/inventory/dataset/recovery epoch; no constant revision substitute"
+    },
+    {
+      "component": "post_backup_floors",
+      "state": "A2_QUARANTINE_REQUIRED",
+      "artifact": "existing post-backup independent security floor contract",
+      "missingEvidence": "Do not adopt backup-era floor as current; reconcile revocations/journal/witness independently"
+    },
+    {
+      "component": "privacy_retention",
+      "state": "NO_NEW_PRIVATE_STORAGE_HELD",
+      "artifact": "D02-A boundary unchanged; strict public template",
+      "missingEvidence": "Purpose/minimization/access/custody/retention for actual data/originals; no new legal periods"
+    },
+    {
+      "component": "legal_prelegal",
+      "state": "ALL_GUARDS_CLOSED",
+      "artifact": "original publication and sensitive holds retained",
+      "missingEvidence": "Required human decisions and evidence; no approval invented"
+    }
+  ],
+  "commercial": {
+    "city": "CABA",
+    "foundingManagers": 1,
+    "properties": 1,
+    "freeTrialDays": 30,
+    "trialStart": "FIRST_REAL_VERIFIED_STAY_NOT_STARTED",
+    "automaticBilling": false,
+    "freeExperienceIndependent": true,
+    "launchDate": null
+  },
+  "realIds": {
+    "accountId": null,
+    "memberId": null,
+    "propertyId": null,
+    "stayId": null
+  },
+  "historicalOperations": [
+    {
+      "operation": "concierge_manager_decide_request",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_manager_set_incident_state",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_activate_knowledge_version",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_reject_knowledge_version",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_propose_incident_learning",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_request_guest_phone_replacement",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_approve_guest_phone_replacement",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_record_manager_signup_screening",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_resolve_manager_signup_followup",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_prepare_signup_invite",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_revoke_signup_invite",
+      "state": "HELD"
+    }
+  ],
+  "reviewAbis": {
+    "property": "property-lifecycle-review/1",
+    "stay": "stay-lifecycle-review/1",
+    "approval": "PROPOSED_REVIEW_ONLY_NOT_INSTALLED_SQL_HTTP_OR_SIGNED_PROTOCOL",
+    "receipt": "null; RequiredExternalEvidence declaration is not a generated proof"
+  },
+  "native": {
+    "host": "HOST_NOT_AVAILABLE",
+    "N01toN12": "NOT_AUTHORIZED / NOT_RUN",
+    "dependencies": [
+      "D1_PROTECTED_REVISIONS",
+      "D2_RESTRICTIONS_INDEPENDENT_FLOORS",
+      "D3_PROVIDER_BINDING",
+      "D4_ORIGINAL_CUSTODY",
+      "D5_RLS_CONTEXT",
+      "D6_PROVIDER_REF",
+      "D7_REVOKERS_FENCE",
+      "D8_EXTERNAL_COMMIT_READER_JOURNAL"
+    ]
+  },
+  "variablesWithoutSecrets": {
+    "network": "connect-src none/form-action none",
+    "apiOrigin": "https://fictional-api.example.invalid",
+    "authOrigin": "https://fictional-auth.example.invalid",
+    "credentials": null,
+    "privateKeys": null,
+    "providerAttestor": null,
+    "writerAdapter": null,
+    "readerAdapter": null,
+    "publicCatalogProducer": null,
+    "founderAllowlist": null,
+    "trialActivated": false
+  },
+  "recoveryA2": {
+    "executed": false,
+    "restoreIncludes": [
+      "PostgreSQL",
+      "GoTrue/Auth",
+      "Vault",
+      "Storage",
+      "keys",
+      "configuration",
+      "independent revocations",
+      "journal",
+      "witness",
+      "post-backup security floors"
+    ],
+    "quarantineUntilReconciled": true,
+    "tablesOnlySufficient": false,
+    "restoreOldPermissionsAsCurrent": false
+  },
+  "activationDescription": "DESCRIPTIVE ONLY: approve concrete protected ABIs, validate isolated native/Auth/browser/A2/privacy/legal evidence, pin reviewed compatible artifacts and obtain express commercial authorization. Separately review any deployment. No executable activation here.",
+  "reversalDescription": "DESCRIPTIVE ONLY: stop admissions, hide private scope, preserve UNKNOWN/history and reconcile original effects; revoke current accesses through reviewed revokers. Never claim rollback of committed effects from missing ACK. No command executed.",
+  "enabledOperations": [],
+  "operationalBuildConnected": false,
+  "operationalApproval": false
+}
