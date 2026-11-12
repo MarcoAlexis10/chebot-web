@@ -1,0 +1,11 @@
+qa/property-stay-prearrival-20261112-v1/ui.test.cjs: PASS
+qa/property-stay-prearrival-20261112-v1/check-candidate.cjs: PASS
+qa/property-stay-prearrival-20261112-v1/materialize.cjs: PASS
+qa/property-stay-prearrival-20261112-v1/time-review.cjs: PASS
+qa/property-stay-prearrival-20261112-v1/time.test.cjs: PASS
+qa/property-stay-prearrival-20261112-v1/contracts.test.mjs: PASS
+qa/property-stay-prearrival-20261112-v1/prearrival.test.mjs: PASS
+qa/property-stay-prearrival-20261112-v1/fixtures.mjs: PASS
+qa/property-stay-prearrival-20261112-v1/contracts.mjs: PASS
+qa/property-stay-prearrival-20261112-v1/prearrival.mjs: PASS
+qa/property-stay-prearrival-20261112-v1/planning-ui.js: PASS

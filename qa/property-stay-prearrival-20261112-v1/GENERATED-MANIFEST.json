@@ -9,8 +9,8 @@
     },
     {
       "path": "generated/manager/index.html",
-      "bytes": 9721,
-      "sha256": "c616941bb3dc59d794afb105a0e9f2e0583f57ccc6c43b7486a1c775aaf35e57"
+      "bytes": 9781,
+      "sha256": "2e93823367fbce29d24c91c5a40858e50a2568a794c2832f800e8845fe1f8fee"
     },
     {
       "path": "generated/manager/manager-auth.css",
@@ -64,8 +64,8 @@
     },
     {
       "path": "generated/manager/propiedad/index.html",
-      "bytes": 3129,
-      "sha256": "c9ef155a39fd5ac046ab3137f4b6e72bf61377b4a019660435e09c149a9510d2"
+      "bytes": 3508,
+      "sha256": "d49ae87f20d57c2b1721514bc34cb29834ab93b84208a8baf881726c2e10cbac"
     },
     {
       "path": "generated/manager/planificar-estadia/index.html",

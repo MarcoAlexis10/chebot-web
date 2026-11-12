@@ -1,0 +1,442 @@
+{
+  "web": "8cacefa024d2377e31915a9092ae4ea86f493732",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "sourceVerification": "local bytes gitBlob matched immutable remote recursive trees; not a test execution",
+  "sources": [
+    {
+      "repo": "web",
+      "path": "manager-auth-v1.js",
+      "bytes": 36188,
+      "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4",
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a"
+    },
+    {
+      "repo": "web",
+      "path": "manager-build-config.cjs",
+      "bytes": 2185,
+      "gitBlob": "7ca9a62658bce114967e2ae82b0217121bd27adc",
+      "sha256": "7b83a2a87e4b7793c53bdd445ec98be9ea7038eb1584b31a3c8c3174426cc4c1"
+    },
+    {
+      "repo": "web",
+      "path": "manager-incident-actions-v1.js",
+      "bytes": 26758,
+      "gitBlob": "de4e788b944f3c8d3f8ba115e4c54ace6ddecf70",
+      "sha256": "fd1b4c9ec25e00a0480ba50398ad6e2504374a6f603aabeec2cbc7eb16c306e1"
+    },
+    {
+      "repo": "web",
+      "path": "manager-incidents-v1.js",
+      "bytes": 12803,
+      "gitBlob": "d42c1ce4e4a478b7a87030bc2b5a5bb194fc7b52",
+      "sha256": "c25b051c53156ccaabcd5a7552976b77351c0c2567fe189fc0142f185080e24f"
+    },
+    {
+      "repo": "web",
+      "path": "manager-invite-v1.js",
+      "bytes": 12298,
+      "gitBlob": "95f0555ff474109c41eac0bee54de2e2215ea30f",
+      "sha256": "8c9e86ec0dcd8d3581c17ea75aac32bf80fa483f1585c58979c8852ee24fc12a"
+    },
+    {
+      "repo": "web",
+      "path": "manager-knowledge-v1.js",
+      "bytes": 22928,
+      "gitBlob": "32f09e5022282ff93b1d918bbad50096122314d6",
+      "sha256": "23e82d1a1ac133d39b951707ed703821dcc1c37e44b6ffa0f020af7e9abf7e14"
+    },
+    {
+      "repo": "web",
+      "path": "manager-legal-publication-gate-v1.cjs",
+      "bytes": 3161,
+      "gitBlob": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1",
+      "sha256": "2bdd4fe60d971c0586cd8d5cab440f50909861fc767b5e70419fb058c625e90f"
+    },
+    {
+      "repo": "web",
+      "path": "manager-password-recovery-v1.js",
+      "bytes": 13912,
+      "gitBlob": "ca69e86420440c36179b80a80971c2793dedb03b",
+      "sha256": "dbbea7dbc5e0a9420c4d7a3465f3aabf21b7cca04bb26a47c834ff76943f1654"
+    },
+    {
+      "repo": "web",
+      "path": "manager-request-actions-v1.js",
+      "bytes": 13307,
+      "gitBlob": "902f02823b14f80ab6e5e52b2c808889d7718693",
+      "sha256": "098a699ee0f4203763446dfaa4e1e47ca20731d3b0b7bc7dc78a1b59c7a6e58b"
+    },
+    {
+      "repo": "web",
+      "path": "manager-requests-v1.js",
+      "bytes": 12617,
+      "gitBlob": "511c7e0c1f472c6a799a955cccbfc598b73b00c1",
+      "sha256": "a7863760e63f34d91a8c7f1b32cff95fdbc6f2aebe608597337c2d8635dfa31e"
+    },
+    {
+      "repo": "web",
+      "path": "manager-signup-admin-v1.js",
+      "bytes": 22132,
+      "gitBlob": "6a2b4cdfc0a4b27a6987e913a596ea14b19dfe88",
+      "sha256": "3398c33a31192a158c0777a0df47ed57aaacd7abfd55b21203c7b806079a72d7"
+    },
+    {
+      "repo": "web",
+      "path": "manager-signup-v1.js",
+      "bytes": 12928,
+      "gitBlob": "b95b344f8f02950ca74a4b92d82bc12953880a0f",
+      "sha256": "68b26320f5e6168a5a5b57597870da08d36b6c16d075ba69823400ca389e7e1e"
+    },
+    {
+      "repo": "web",
+      "path": "manager-v1.js",
+      "bytes": 10989,
+      "gitBlob": "f5d5e39f5a797a00a3efa30ba3450819eb2c720f",
+      "sha256": "879b60dfd4ecc358c5fad5c1fed390b8ae98c2b9cea8b8ce3240d6a5f984a21b"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/GENERATED-MANIFEST.json",
+      "bytes": 4156,
+      "gitBlob": "bdda6a513dbb3471ffb24717bc6162197eb00be5",
+      "sha256": "2e1d9dc960320d2729bb788447e83c6797b9dd6e686f3a8323d0e0b733806e62"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/README.md",
+      "bytes": 2371,
+      "gitBlob": "7da3f97215177049a895b3e2f305f002b2eec5af",
+      "sha256": "5dd60e8e964477da1d7d0e7d25e22941f4f665c076eb1bd31110786a3a70722f"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/check-pilot.cjs",
+      "bytes": 3784,
+      "gitBlob": "be5279a2befa8f988be28736730538daea185ce2",
+      "sha256": "d20479c61052cbe74a05f84cdcf134940e8bd92b25271355398e2a5e71668252"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/compose.cjs",
+      "bytes": 5126,
+      "gitBlob": "b8640f9a1ec5bd04b886d41636ac87d9af0f275c",
+      "sha256": "63e1905dc51098777f54558c9dc37ba1577dfed958fe9f166d26f5fbf8687828"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/dom-harness.cjs",
+      "bytes": 2821,
+      "gitBlob": "1d031679fa3d753e1861bd48e1d4846ee9efb527",
+      "sha256": "7b69241ba34148e6644c610488c3dde9f285a2a1493f3ae5de43bbf8520bbefd"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/experience.test.cjs",
+      "bytes": 5600,
+      "gitBlob": "2702542374f7fbfc381cd9523ba50bb2ce147f03",
+      "sha256": "3dadf36786bedda17a72dd4156bfbedf24c6a3696b6bf1faa22ebba031060bea"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/activar/index.html",
+      "bytes": 12287,
+      "gitBlob": "629019055e1a8a37290bf313efad235c69293bd4",
+      "sha256": "cd75a64ad495f97b23da3aebbb733a78b8350d4629dd844fb4a356ddfa569d4c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/altas/index.html",
+      "bytes": 21779,
+      "gitBlob": "0e4f1046869b87ed11c67570b1128c45918c6b64",
+      "sha256": "d2f27433b3e20aef28041edd5ecc168f8d91d4754113a7748ba95d18794d4cac"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/index.html",
+      "bytes": 9291,
+      "gitBlob": "52a586234a9bd173652dcd62dc0ee8f097c6e1ac",
+      "sha256": "702510a02973f9e0634266023dada690089cd692bd221fed4e067b7eef2ab7b8"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "gitBlob": "7a1de9e63a89d7abc376a2f5d193d1c71be07fce",
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-auth.js",
+      "bytes": 27840,
+      "gitBlob": "ca7419036d3bcb037649c653d9b55cfd6827cc94",
+      "sha256": "b83043edc0ddce50dd608ffe6b808da4f0be97197e37d96170203f8f44d79a52"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "gitBlob": "2a638fb3fc87c72f781b40ad6b589620bab3ddb8",
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-invite.css",
+      "bytes": 875,
+      "gitBlob": "eb25e4f7e24a39e0bc3bdad389613c0e5dab905c",
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "gitBlob": "70946f1ae57d8192082f5e4a0c6ba7584975ca7c",
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "gitBlob": "e6028952b6040b8ae8d38d23c3abb4f22aa7791a",
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "gitBlob": "eabac77451df362f73084c7ac8d9606c64ee863d",
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/manager.css",
+      "bytes": 3755,
+      "gitBlob": "7d7b2bb37c6b5f5a8b307eda23c45a5e0e1c0670",
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/generated/manager/reset-password/index.html",
+      "bytes": 13172,
+      "gitBlob": "42fa9ef81a988287dd4ffdc56e54036767294b03",
+      "sha256": "dee6ee36f44b1b66421eaef47a0bde0a5a80af6fea5703b4d8201802af50e154"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/materialize.cjs",
+      "bytes": 2402,
+      "gitBlob": "b2c5a2db8403b970cf6baa13580967abfc30ba7b",
+      "sha256": "cac58fac799dfbfd4fdaa1ade9f0407bc09fd6dd1689bfba78a6f16e5cb4391c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/founder-journey-20261112-v1/restore-feedback.regression.test.cjs",
+      "bytes": 3124,
+      "gitBlob": "938b3babc1999fe9a49864b7939a4857754fe0a8",
+      "sha256": "9bb9c67a0dc7f1ab2254ce2d4a7edc84c5917e391c69f318969ee36333376a78"
+    },
+    {
+      "repo": "web",
+      "path": "qa/integral-held-v1/run-isolated.py",
+      "bytes": 3015,
+      "gitBlob": "c4ba8d2d91c6bc63902b1f63079281ec0464ac4f",
+      "sha256": "b5c84acdbf77d6cd569785dbcb3315afbe918f3afcea8344686ed7226924f29e"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/fencing/authority.mjs",
+      "bytes": 2516,
+      "gitBlob": "f7da4b1342c61c69b7105253f82501ea5d4ec0b7",
+      "sha256": "3d5732333c98d209273f447b7417458cec119aee29212e09bcacde3970c46c49"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/gateway-journal-v1/sql-ports.mjs",
+      "bytes": 3597,
+      "gitBlob": "b754d70f6d849ca2b594f05ae2f93bd551eb56c4",
+      "sha256": "e202c7643af3e1522b24221230560c1a862990d12d4bc712fbbf54db1667f286"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/gateway-journal-v1/transport-identity.mjs",
+      "bytes": 944,
+      "gitBlob": "92f279909fb3a1c1a1748aba6c73ff4b6f08eda2",
+      "sha256": "96d52be21cd34479ad95b3429244718d531ad985e268dd4d506737ca4d716024"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/writer-auth-closure-v1/authority-ports.mjs",
+      "bytes": 5146,
+      "gitBlob": "e200d39cf14b56343833ef16e8805995778939d6",
+      "sha256": "354cd37e72de73baac486360d7a96d8407f40745578e4f01168d6731e1aa9d07"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/concierge-guest-journey-review-v2/guest-journey.mjs",
+      "bytes": 2769,
+      "gitBlob": "31330c7fc3c55dc54d1522f83c55291575c45154",
+      "sha256": "b3ebfefeb206b2e225eb7bf12d9aee80389878901d1f2f81e772bfb4af79fca3"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/concierge-guest-presentation-review-v1/presentation.mjs",
+      "bytes": 1358,
+      "gitBlob": "7de123d471f6868c4cfddcac1f9ef0862e90fd38",
+      "sha256": "087e02c9bc4eea3ae72f8c027596d0246c6f05777efd833f1d7930fcd7124749"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/concierge-stay-command-review-v1/stay-command.mjs",
+      "bytes": 2543,
+      "gitBlob": "ff610557dd05459685c134c7d05ce2a91322013d",
+      "sha256": "52534af3510dc9e804a136bfe65802521a146b3aac9b141102fe65e2418e86a2"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/codec.mjs",
+      "bytes": 5545,
+      "gitBlob": "550f1fb4cab5b8279e234febe0924de8ae528672",
+      "sha256": "e52815189b4450a62bce44dab5224bd292f06237447dead8d979cd759315b57f"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/schema.json",
+      "bytes": 5955,
+      "gitBlob": "af8b9ca4b127c276fc079a53e237b8e49412a5b7",
+      "sha256": "f58c3d54026b33b017e63783e333bbf1e98b3a2fa0c3758a681e5e3d7cd4f036"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/guest-phone-authority-review-v1/guest-phone.mjs",
+      "bytes": 4792,
+      "gitBlob": "f690dfd5975ad75adeb4216fee483706a384936a",
+      "sha256": "be6fd6ec03679f3648c11797b21f917d06b6b6f3fe0b3f0ac9cc1582cf4cf20c"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/journal-contract-v2/receipts.mjs",
+      "bytes": 5001,
+      "gitBlob": "b556def28466df29f60fb11b56d188df34712216",
+      "sha256": "25d7a2db6267231ded5988425bb80c015d2094d968ec24e535814b41d6dc9fdb"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/service-integration-v1/guest-review.mjs",
+      "bytes": 4135,
+      "gitBlob": "63ed8473baaef38d8b561375b04595338342b16a",
+      "sha256": "9d3266f11c5013345c8b3ec66de40353a4a70046979e61d60de1bd91505e3297"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/writer-gateway-v2/gateway.mjs",
+      "bytes": 15572,
+      "gitBlob": "1064cd93098899208b279c2b1136cfa9a20ca8d9",
+      "sha256": "a318815ed08c64069347f5334e4bbfc650894b30a7027378da7099dac2ecf26e"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/writer-gateway-v2/sdk-identity.mjs",
+      "bytes": 2387,
+      "gitBlob": "dd10880d2b13bc9e803d9b41ee1f438814e5e27c",
+      "sha256": "277ad02565332733599886feec7b87e3b286a8ca4363aa1515e5214c5f91b35e"
+    },
+    {
+      "repo": "backend",
+      "path": "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "bytes": 13877,
+      "gitBlob": "7c7ee0ece4c227a8fedfac68dc0b3eebf31e3e70",
+      "sha256": "9cb2a51043483a38d2d337888b01299e39aac8ffe193544dd837e1c1689f1fa3"
+    },
+    {
+      "repo": "backend",
+      "path": "25-MIGRACION-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "bytes": 7736,
+      "gitBlob": "a8d9e05274f3eb8012447b4609b76b68948ea4af",
+      "sha256": "3e8455810c9a68d93d444534cb7b6bac3241285b52a9a4896f59c4a2d28f7a6c"
+    },
+    {
+      "repo": "backend",
+      "path": "98-MIGRACION-12-OPERATIONAL-ACCESS.sql",
+      "bytes": 37952,
+      "gitBlob": "a6a47ad9c1dc8d5561e1585cfec193445e8bc22a",
+      "sha256": "f34b77da2fd350f647faa8867649084227c467a9f3860756be5154325679b51f"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-beta-ba-scope-guard.js",
+      "bytes": 869,
+      "gitBlob": "4da5ec0b4a78e0997196b73c093e614fc086333a",
+      "sha256": "6c1517ebafeaf999887be1bcdf59ff12c0e0978afedc2890239547d17f9febab"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-beta-clock-runtime-guard.js",
+      "bytes": 2692,
+      "gitBlob": "d001a355e1b8ce76b32c82b9f6caa99a14604e59",
+      "sha256": "28fe580d341c5e3af9fb9c35cf56a2f79a1899f96f452204215240ec49d6c0ec"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-guarded-intake.js",
+      "bytes": 3897,
+      "gitBlob": "10e1e506571280777901f08445c553ddfd34facb",
+      "sha256": "eb643aa7ab0d284aca63776a80c55469af8b3fb060ec69d58da75b69089152d0"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-manager-auth-session.js",
+      "bytes": 22705,
+      "gitBlob": "cc2ad91c73d821e9de9a3f59efc76753d1b2e3e1",
+      "sha256": "5345e5570f9ec38281c650e611678f22c0e886da7b08bec5d5424c0a2a34fc07"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-manager-properties.js",
+      "bytes": 6450,
+      "gitBlob": "60e7039b0683ea1d3dd06c1b9c3c9185e10daa56",
+      "sha256": "fd71eb201cd77a8479cf1830fc5eb285056be2a1830cfd1378a84705fdb0a739"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-manager-session.js",
+      "bytes": 5591,
+      "gitBlob": "45ed9bd92680d8e6590c0709ac24b3d8f5af3205",
+      "sha256": "626352ca3b12cb1fe4643c15fd1c8db3e5c8879f762284674f70368cdbfd3db2"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-manager-stays.js",
+      "bytes": 9383,
+      "gitBlob": "a7f8f527a8c794d2638739c35b971526d23c80af",
+      "sha256": "37190839b9f152b1ab1d93e7bad1d8d03df87a647741a5728e726e6dbd3d70ff"
+    },
+    {
+      "repo": "backend",
+      "path": "concierge-retention-boundary.js",
+      "bytes": 2177,
+      "gitBlob": "b40a1eef7035bc941b8b6d44b51c7bf84f664a7f",
+      "sha256": "c80e17d45c1385490b2dc67b5aa885d4a738a686981b951077394a0793674d65"
+    },
+    {
+      "repo": "backend",
+      "path": "index.js",
+      "bytes": 479720,
+      "gitBlob": "1745cfd6d9dd374a5681aa584329fc63cedb9284",
+      "sha256": "06d8df39d3951324fe4777a93140636f0b74d06b725cab12bfa0e757e66af017"
+    },
+    {
+      "repo": "backend",
+      "path": "ops/drafts/GUEST-INTAKE-ATOMIC-V1-PRELEGAL-DO-NOT-APPLY.sql",
+      "bytes": 18541,
+      "gitBlob": "ce281eac435235872c7bf2926ec1db4ef3a7f644",
+      "sha256": "4e02432f248b76d8a1a1905b8e192beacac43eaea89bce7345b01802570392df"
+    },
+    {
+      "repo": "backend",
+      "path": "test/fixtures/concierge-runtime-dev-functions.sql",
+      "bytes": 203374,
+      "gitBlob": "2b47dfde22807a2c4aa068a601ae1ab8a0d3588a",
+      "sha256": "5f3a1b4814301a05f97d4a0b0031b476b23e30cf0a9d68760e87a5ec4165d429"
+    }
+  ]
+}

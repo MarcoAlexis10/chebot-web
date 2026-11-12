@@ -1,0 +1,107 @@
+{
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "sourceWeb": "8cacefa024d2377e31915a9092ae4ea86f493732",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "firstCheckpoint": "3783393f50c2cca4004ffb71ac0aaf18dc5181b9",
+  "webCandidateVersion": "property-stay-prearrival-20261112-v1",
+  "packageManifest": "PACKAGE-MANIFEST.json",
+  "generatedManifest": "../../property-stay-prearrival-20261112-v1/GENERATED-MANIFEST.json",
+  "sourcePins": "../../property-stay-prearrival-20261112-v1/SOURCE-PINS.json",
+  "commercial": {
+    "city": "CABA",
+    "foundingManagers": 1,
+    "properties": 1,
+    "freeTrialDays": 30,
+    "trialStart": "FIRST_REAL_VERIFIED_STAY_NOT_STARTED",
+    "automaticBilling": false,
+    "freeExperienceIndependent": true,
+    "launchDate": null
+  },
+  "realIds": {
+    "accountId": null,
+    "memberId": null,
+    "propertyId": null,
+    "stayId": null
+  },
+  "operations": {
+    "createStay": "EXISTING_CBF1_CONTRACT_ONLY_HELD",
+    "propertyLifecycle": "PRIVATE_ABI_MISSING_HELD",
+    "stayWithoutGuest": "PRIVATE_ABI_MISSING_HELD",
+    "guestAssociation": "PRIVATE_ABI_MISSING_HELD",
+    "modifyCancelCheckout": "PRIVATE_ABI_MISSING_HELD",
+    "prearrival": "GLOBAL_PUBLIC_TEMPLATE_VECTOR_ONLY_PROPERTY_SOURCE_MISSING_HELD"
+  },
+  "historicalOperations": [
+    {
+      "operation": "concierge_manager_decide_request",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_manager_set_incident_state",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_activate_knowledge_version",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_reject_knowledge_version",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_propose_incident_learning",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_request_guest_phone_replacement",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_approve_guest_phone_replacement",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_record_manager_signup_screening",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_resolve_manager_signup_followup",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_prepare_signup_invite",
+      "state": "HELD"
+    },
+    {
+      "operation": "concierge_revoke_signup_invite",
+      "state": "HELD"
+    }
+  ],
+  "native": {
+    "host": "HOST_NOT_AVAILABLE",
+    "N01toN12": "NOT_AUTHORIZED / NOT_RUN",
+    "dependencies": [
+      "D1_PROTECTED_REVISIONS",
+      "D2_RESTRICTIONS_INDEPENDENT_FLOORS",
+      "D3_PROVIDER_BINDING",
+      "D4_ORIGINAL_CUSTODY",
+      "D5_RLS_CONTEXT",
+      "D6_PROVIDER_REF",
+      "D7_REVOKERS_FENCE",
+      "D8_EXTERNAL_COMMIT_READER_JOURNAL"
+    ]
+  },
+  "unknown": "PRESERVE_NO_RESEND_INDEPENDENT_READBACK_REQUIRED",
+  "secrets": {
+    "source": "NONE",
+    "tokens": null,
+    "privateKeys": null,
+    "signedGrants": null
+  },
+  "activation": "DESCRIPTIVE_ONLY: satisfy native/Auth/privacy/legal/A2/browser evidence and explicit owner authorization, then review a pinned deployment separately; no action here",
+  "reversal": "DESCRIPTIVE_ONLY: keep candidate unconnected; future rollback must stop admissions, retain UNKNOWN and reconcile original effects, revoke authorized access without claiming rollback of committed writes",
+  "operationalBuildConnected": false,
+  "operationalApproval": false
+}

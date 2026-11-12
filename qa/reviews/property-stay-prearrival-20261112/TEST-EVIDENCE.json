@@ -1,0 +1,249 @@
+{
+  "newUniquePass": 8,
+  "newUniqueFinalFail": 0,
+  "newUniqueSkip": 0,
+  "noDuplicateCounting": true,
+  "finalCoverage": [
+    "logs/contracts-first.tap: seven distinct cases",
+    "ui-final.tap: one distinct case; ui-after is earlier execution of same case"
+  ],
+  "classification": "NODE_PURE_CONTRACT_AND_CALENDAR_VECTORS_PLUS_NODE_VM_MINIMAL_DOM_AND_HTML_SOURCE_CHECK; NOT_BROWSER_NOT_SQL_NOT_AUTH",
+  "nodeVersion": "v24.22.1",
+  "executions": [
+    {
+      "log": "logs/calendar-after.tap",
+      "sha256": "e46aeed6361e73407a91fb2372775e72a3112e8815a83996b1ec11a0c191fd8e",
+      "classification": "FOCAL_CALENDAR_PASS_AFTER_QA_GUARD",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-stay-prearrival-20261112-v1/time.test.cjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "impossible local dates are not normalized into a different reservation date by the existing converter"
+      ],
+      "isolation": {
+        "parentNetns": "net:[4026532313]",
+        "childNetns": "net:[4026532240]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/calendar-before.tap",
+      "sha256": "5196c1efd8a7dad62f11d28c95f47f86cbeb3f2806a5fb5d0e566723e4254801",
+      "classification": "SETUP_FAILURE_WRONG_BACKEND_RELATIVE_PATH_NOT_PRODUCT_FAILURE",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --conditions=baseline --test --test-reporter=tap web/qa/property-stay-prearrival-20261112-v1/time.test.cjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "web/qa/property-stay-prearrival-20261112-v1/time.test.cjs"
+      ],
+      "isolation": {
+        "parentNetns": "net:[4026532313]",
+        "childNetns": "net:[4026532240]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/calendar-source-before.tap",
+      "sha256": "5124fb1ca3390b0b64f5afaef8947e0b8ff42ed87b9038d7c4a86019fbd8da41",
+      "classification": "BASELINE_ORIGINAL_CALENDAR_NORMALIZATION_FAIL",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --conditions=baseline --test --test-reporter=tap web/qa/property-stay-prearrival-20261112-v1/time.test.cjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "impossible local dates are not normalized into a different reservation date by the existing converter"
+      ],
+      "isolation": {
+        "parentNetns": "net:[4026532313]",
+        "childNetns": "net:[4026532240]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "logs/contracts-first.tap",
+      "sha256": "df28a75340ff30e814c78d67630aa3f973f5aa9a6e3312aacabfa03b571d39bb",
+      "classification": "SEVEN_UNIQUE_CONTRACT_CASES_FINAL_PASS",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-stay-prearrival-20261112-v1/contracts.test.mjs web/qa/property-stay-prearrival-20261112-v1/prearrival.test.mjs web/qa/property-stay-prearrival-20261112-v1/time.test.cjs",
+      "counts": {
+        "tests": 7,
+        "pass": 7,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "property onboarding cannot become a create_stay, city authorization or uniqueness guarantee",
+        "pending-to-CBF1 compatibility rejects lost windows, scope changes and deferred guest association",
+        "web planning keeps half-open access overlap hints distinct from SQL exclusion and rejects impossible dates",
+        "all lifecycle entries stay closed and an untrusted ACK never resolves UNKNOWN or permits resend",
+        "pre-arrival review binds every reservation relation and revision without accepting client approval or private text",
+        "check-in switches to a separate closed private port; checkout/revocation never fall back to reservation data in Free",
+        "impossible local dates are not normalized into a different reservation date by the existing converter"
+      ],
+      "isolation": {
+        "parentNetns": "net:[4026532313]",
+        "childNetns": "net:[4026532240]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "ui-after.tap",
+      "sha256": "da5f3584f1d14ff8e31ac8e2b08978393f99385bf09558ac9195179d98e41895",
+      "classification": "UI_PASS_AFTER_REAL_DESTINATION_FIX",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-stay-prearrival-20261112-v1/ui.test.cjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "held property/stay/prearrival journey has local destinations, inert blank forms and a submit handler that never reads or transmits inputs"
+      ],
+      "isolation": {
+        "parentNetns": "net:[4026532313]",
+        "childNetns": "net:[4026532240]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "ui-final.tap",
+      "sha256": "d0cbae562a21952ad02c48fe70916ef22b4380a83dc3e3954302ba8e030b6efa",
+      "classification": "FOCAL_UI_REPEAT_AFTER_ROOT_LINKS_AND_LANGUAGE_CONTROL_CHANGE_NOT_NEW",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-stay-prearrival-20261112-v1/ui.test.cjs",
+      "counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0
+      },
+      "names": [
+        "held property/stay/prearrival journey has local destinations, inert blank forms and a submit handler that never reads or transmits inputs"
+      ],
+      "isolation": {
+        "parentNetns": "net:[4026532313]",
+        "childNetns": "net:[4026532240]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    },
+    {
+      "log": "ui-first.tap",
+      "sha256": "c003db2aab99db738902ee5041db9021625f9966ba8b6ccea2d6ce251db3583b",
+      "classification": "NEW_UI_NAVIGATION_FAIL_BEFORE_ROUTE_FIX",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-stay-prearrival-20261112-v1/ui.test.cjs",
+      "counts": {
+        "tests": 1,
+        "pass": 0,
+        "fail": 1,
+        "skipped": 0
+      },
+      "names": [
+        "held property/stay/prearrival journey has local destinations, inert blank forms and a submit handler that never reads or transmits inputs"
+      ],
+      "isolation": {
+        "parentNetns": "net:[4026532313]",
+        "childNetns": "net:[4026532240]",
+        "differentNamespace": true,
+        "ipv4Routes": "",
+        "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n",
+        "externalConnectErrno": 101,
+        "loopbackOnly": false,
+        "inheritedCredentials": false,
+        "uidMap": "         0       1000          1\n"
+      }
+    }
+  ],
+  "staticChecks": [
+    {
+      "path": "static-final.log",
+      "sha256": "549043686d522450a0ba75fde6a0d74723f822ece634d6c1aa0cfac3a65919af"
+    },
+    {
+      "path": "syntax.log",
+      "sha256": "fe628b3c4fdc4f8b013f608ebbf8467462bdcb01f97fa61bd909084511389785"
+    },
+    {
+      "path": "materialize.log",
+      "sha256": "e2eecc6178dad41c7aac9dc077997a13d0cb4efe6d88cafb1d91ebf1128f577b"
+    },
+    {
+      "path": "materialize-final.log",
+      "sha256": "e2eecc6178dad41c7aac9dc077997a13d0cb4efe6d88cafb1d91ebf1128f577b"
+    }
+  ],
+  "sourceBlobsMatchedAgainstRemote": 62,
+  "generatedFiles": 17,
+  "priorScriptsAndStylesUnchanged": 8,
+  "newSourceSyntaxFiles": 11,
+  "priorFounder5Plus3Repeated": false,
+  "historicalSuitesRepeated": false,
+  "nativeHostReinspected": false,
+  "chromiumAttempted": false,
+  "httpHttpsTransportTests": 0,
+  "nativeN01toN12Executed": 0,
+  "nativeStatus": "HOST_NOT_AVAILABLE / NOT_AUTHORIZED / NOT_RUN",
+  "sqlExecuted": false,
+  "browserExecuted": false,
+  "actualManagedAuthVerified": false,
+  "realBackendPositiveAuthorizationFixtureUsed": false,
+  "commitObserved": false,
+  "sqlUniquenessObserved": false,
+  "newDurablePrivateStorage": false,
+  "servicesStarted": 0,
+  "realUsersInvitesCommunications": 0,
+  "nativeRestoreOrSigningExecuted": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO",
+  "notes": [
+    "Intermediate setup and candidate failures are retained; the baseline date failure executes the existing pure converter, not backend service.",
+    "Static source verification and repeated runs are not additional unique tests.",
+    "Isolation log reports distinct network/user namespace, no inherited credentials and externalConnectErrno=101; this is not accreditation of a Native17 host.",
+    "Public preview matching vectors are review-only with all operational/authority flags false."
+  ]
+}

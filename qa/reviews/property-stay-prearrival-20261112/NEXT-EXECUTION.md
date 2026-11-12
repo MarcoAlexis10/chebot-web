@@ -1,0 +1,10 @@
+# Recuperación y próximo trabajo seguro
+
+1. Leer CLOSURE.md y TEST-EVIDENCE.json de este directorio. Verificar refs actuales de web, backend y Native17; no sobrescribir cambios posteriores. Los dos únicos prefijos de este lote son qa/property-stay-prearrival-20261112-v1/ y este directorio.
+2. Verificar PACKAGE-MANIFEST.json, SOURCE-PINS.json y GENERATED-MANIFEST.json por bytes y árbol GitHub. El primer checkpoint es 3783393f50c2cca4004ffb71ac0aaf18dc5181b9. El commit que contiene este cierre es el final del lote; su SHA no se autorreferencia dentro del documento.
+3. No repetir ocho pruebas nuevas, ni las cinco + tres del fundador, ni suites históricas sin cambio concreto. Comandos exactos en TEST-EVIDENCE.json/README. Un checkout completo necesita web y backend hermanos, en las revisiones fijadas, para extraer funciones de tiempo sin iniciar servidor.
+4. Próximo desarrollo offline útil: acordar el contrato de alta/configuración/revocación de propiedad y de estadía sin huésped con productores protegidos existentes; separar entradas de negocio de identidad/restricciones; pruebas negativas primero. No inventar POST/RPC ni rellenar los campos de huésped de create_stay con un placeholder. Revisar aprobación/minimización del catálogo pre-arrival sin persistir datos privados.
+5. Lo siguiente para validación real requiere condiciones y autorización separadas: fuente de autoridad/proveedor actual, ABI acordado, host Native17 17.11 aislado sin gasto y D1–D8, custodia D02-A, COMMIT/reader/journal, A2 y navegador seguro. HOST_NOT_AVAILABLE ya confirmado: no reinspeccionar mismo runtime, descargar PG ni reintentar Chromium.
+6. Antes de cualquier publicación: verificar ref, blobs y workflows; sólo rama QA web existente, [skip ci], CAS expected_sha, sin force/reset/merge. Backend/Native17 sólo lectura. No activar nada.
+
+Si se interrumpe Work, recuperar último commit de la rama y este cierre. PROGRESS.md conserva el alcance del primer checkpoint. Generated está inerte, sin backend ni datos reales; no desplegar, no servirlo como piloto ni conectar el build operativo. No hay una acción pendiente que se pueda convertir en GO por repetición de fixtures.
