@@ -272,5 +272,5 @@
       "gitBlob": "d1efdf4582835f1badc362cefe3e656e9701610e"
     }
   ],
-  "nativeSources": []
+  "nativeSourcePins": "NATIVE-SOURCE-PINS.json"
 }

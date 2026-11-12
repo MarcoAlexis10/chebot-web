@@ -1,0 +1,136 @@
+{
+  "date": "2026-11-12",
+  "timezone": "America/Buenos_Aires",
+  "uniqueNewCases": 6,
+  "uniqueFinalPass": 6,
+  "finalFail": 0,
+  "casesByArea": {
+    "sourceCompatibility": 1,
+    "readScopeOriginalCurrentFloor": 2,
+    "minimizedOriginalReference": 1,
+    "heldJourneyComposition": 1,
+    "manualAsusCatalogStaticOnly": 1
+  },
+  "executions": [
+    {
+      "log": "logs/authority.tap",
+      "sha256": "a79671f677c4791453e84aa022f1893f56bda2f9cb90827fdb04f191299a2f77",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-authority-preflight-20261112-v1/authority.test.mjs",
+      "exitCode": 0,
+      "classification": "OFFLINE_NODE_SOURCE_OR_SYNTHETIC_MODEL_NOT_NATIVE",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/read.tap",
+      "sha256": "5fd0e6c3f75e4fdd36e12d0cde911e11bfb6b2aa1038d34e7cd7eac25f422cf8",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-authority-preflight-20261112-v1/read.test.mjs",
+      "exitCode": 0,
+      "classification": "OFFLINE_NODE_SOURCE_OR_SYNTHETIC_MODEL_NOT_NATIVE",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/custody-integration.tap",
+      "sha256": "2dabada539b58f2ab98d29cd939504ae7e04c72294186883802ddfb7295fa568",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-authority-preflight-20261112-v1/custody.test.mjs web/qa/property-authority-preflight-20261112-v1/integration.test.mjs",
+      "exitCode": 0,
+      "classification": "OFFLINE_NODE_SOURCE_OR_SYNTHETIC_MODEL_NOT_NATIVE",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/read-floor-before.tap",
+      "sha256": "16e5cb47759a27590bf00668d5678c227054161ad669ce4f541b38a08f61fe87",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='read-boundary revalidation' web/qa/property-authority-preflight-20261112-v1/read.test.mjs",
+      "exitCode": 1,
+      "classification": "OFFLINE_NODE_SOURCE_OR_SYNTHETIC_MODEL_NOT_NATIVE",
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "log": "logs/read-floor-missing-before.tap",
+      "sha256": "1bf680a64593bf689095de66348ec9e4d99e1a762d8e52d753591de5deb6b0b4",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='read-boundary revalidation' web/qa/property-authority-preflight-20261112-v1/read.test.mjs",
+      "exitCode": 1,
+      "classification": "OFFLINE_NODE_SOURCE_OR_SYNTHETIC_MODEL_NOT_NATIVE",
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "log": "logs/read-floor-after.tap",
+      "sha256": "ada0002f9f8945fa2bc0bad1adce8369f488a23a25fbb62c74ea747ab36d74d9",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-authority-preflight-20261112-v1/read.test.mjs",
+      "exitCode": 0,
+      "classification": "OFFLINE_NODE_SOURCE_OR_SYNTHETIC_MODEL_NOT_NATIVE",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/preflight-catalog.tap",
+      "sha256": "3ae6544382751f3d8e9c8d226fa96a5546f2db722065a355883591d96ea7ce9e",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-authority-preflight-20261112-v1/preflight-plan.test.mjs",
+      "exitCode": 0,
+      "classification": "STATIC_CATALOG_IN_NODE_NOT_ASUS",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    }
+  ],
+  "intermediateFailures": [
+    {
+      "log": "logs/read-floor-before.tap",
+      "classification": "TEST_FIXTURE_PREPARATION_ERROR",
+      "reason": "Expanded test attempted to increment floor.authorityVersion before the new floor fixture existed. No product or native failure claimed."
+    },
+    {
+      "log": "logs/read-floor-missing-before.tap",
+      "classification": "OWN_QA_REVIEW_CONTRACT_DEFECT",
+      "reason": "Current read model was marked consistent without a separate floor. Corrected by requiring before/after floors and reusing reviewRevisionCut. Operational state was UNKNOWN throughout."
+    }
+  ],
+  "focusedRegressions": "Two newly added read cases rerun after their shape/current-floor comparison changed; repeated executions do not count as new cases. No previous ten, previous twenty or historic suites rerun.",
+  "nodeVersion": "v24.22.1",
+  "isolation": "Existing run-isolated.py; child net namespace differs; no IPv4 routes; external connect errno101; no inherited credentials. Not Native17 host accreditation.",
+  "staticVerification": {
+    "log": "logs/artifact-verification.log",
+    "sha256": "3bca5ffe4711f9a01b31181cdd3be8ac55432f570f351aca254e3323aa073d25",
+    "command": "python web/qa/integral-held-v1/run-isolated.py -- python web/qa/property-authority-preflight-20261112-v1/verify-artifacts.py",
+    "exitCode": 0,
+    "localSourcePins": 226,
+    "packageFiles": 17,
+    "syntaxFiles": 9,
+    "nativeFullSourceBlobIdsCompared": 7,
+    "nativeFunctionExcerptsComparedByteForByte": 9,
+    "packageManifestSha256": "d44a8329ad0d1f5cae9c91f04a0fe46a8a9b30aacb586a0f192f5e9e0f18e551",
+    "notCountedAsTests": true
+  },
+  "pendingNotExecuted": {
+    "asusPhysicalCommands": 25,
+    "asusCommandsActuallyExecuted": 0,
+    "postgresNative": "N01-N12 NOT_AUTHORIZED/NOT_RUN",
+    "host": "HOST_NOT_AVAILABLE",
+    "managedAuth": "NOT_RUN",
+    "sql": "NOT_RUN",
+    "commit": "NOT_OBSERVED",
+    "journalWitnessCustody": "NOT_ACCREDITED",
+    "chromium": "4 prepared historic cases NOT_RUN; no retry",
+    "typescriptCompile": "NOT_RUN"
+  },
+  "providerTokens": "No real token/signature. Explicit synthetic token observations only.",
+  "privacy": "No real data, storage, personal digest generation, keys or removal implemented.",
+  "betaDecision": "NO-GO"
+}
