@@ -1,0 +1,445 @@
+{
+  "candidate": "functional-contracts-20261112-v1",
+  "files": [
+    {
+      "path": "qa/functional-contracts-20261112-v1/GENERATED-MANIFEST.json",
+      "bytes": 3755,
+      "sha256": "d555a300b8828bec187264b1cbd76c15ea44806153f5e9d94652c7d1d047da9b",
+      "gitBlob": "42cd888db4d4392095b1dfdb70a3652ced0c13c1"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/NATIVE-SOURCE-ABI.json",
+      "bytes": 5024,
+      "sha256": "d2e49c204aa9dc9d2b19d085c9dcca17aa398022b73cfdb872886a67c5c54a68",
+      "gitBlob": "f498a99d6c7e40e9fdc12f6f13b6077f8b3b81e7"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/PROPERTY-CAPTURE-SOURCE.json",
+      "bytes": 809,
+      "sha256": "d9f733bb809b8edbc6755b018bacbd4643821b13c660d2be9dc46035253920d3",
+      "gitBlob": "f181c597e349f6e40ceb65a0556013247119e971"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/README.md",
+      "bytes": 3580,
+      "sha256": "1e59db7aa0079196ca80a29d8c130af445100b1c65c6abebb0374ef93f02a618",
+      "gitBlob": "906c4738fe6031e3aff2cd853bcfa9bec50f4ba4"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/SOURCE-PINS.json",
+      "bytes": 41876,
+      "sha256": "522d18570e7df5dec17497abea3413342ad3eabb703ae6c6bbd6aacefb1125c1",
+      "gitBlob": "9b606b6047929b28db14a2a273af4e226b9c25a2"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/binding.test.mjs",
+      "bytes": 7408,
+      "sha256": "ed195ed3c18774c42787189fbf1b7b5d5bcc9d545becfdb7b7b3d4b05d17c415",
+      "gitBlob": "575c326b38cdf8ab104a8ce51fe490fb1cb7ff78"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/candidate.mjs",
+      "bytes": 992,
+      "sha256": "76aae88fe141d4ae1ac2a2df731e741735fc5f2ce40675a3ffdf0ee987e87d4e",
+      "gitBlob": "fff8cf9b52da5a5808ef9dd307752f2c96fb1dd0"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/capture.test.mjs",
+      "bytes": 3536,
+      "sha256": "d7c7e1e2e7f7dcaa6e6cd4f3dbcaa5a3f08b60888c95cdbdd70c1fab09a8358c",
+      "gitBlob": "98528f8b8df15d704d22d28e2679dc771ad8bf57"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/catalog.test.mjs",
+      "bytes": 3834,
+      "sha256": "3928b21ffac23d4199d0026c359e6e924000179ec7250ad153079a1329701474",
+      "gitBlob": "593a453c8a1ea54819de3773ea715979bfaa503d"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/effect-plan.mjs",
+      "bytes": 5071,
+      "sha256": "09e9fce534fceec09713c952a8d5dbfb4fefee08711b58492f4a7d42b556b10d",
+      "gitBlob": "dfaf927cd69ba54ccb85606b8922ae5ec43bc024"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/effects.test.mjs",
+      "bytes": 4769,
+      "sha256": "daed85e4524860aa1786a78de18102de3ffc8da0bba37c96f92f2cbeaf7fa54e",
+      "gitBlob": "17773586e2d55abd7d857603ab78c898d12a739f"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/evidence-abi.d.mts",
+      "bytes": 6470,
+      "sha256": "31551ae37e800b73026721c876e3da7a20fe01dc9821a4eb8bcf435278e21ab7",
+      "gitBlob": "b19b88ee330b7d3fcaf1d845190199c50191cbe4"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/evidence-binding.mjs",
+      "bytes": 10282,
+      "sha256": "8a86e96194681502b8b992e991485f020d1befbed986ec4eb7e4d8a0b0da9bf1",
+      "gitBlob": "7b81954bdcc6aa1ea24399d3f75cad4e556272f5"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/fixtures.mjs",
+      "bytes": 2712,
+      "sha256": "a0e8d1feea54c69dee13216c6ed68f11bdf5e634aa244304a0c7fcf8bbcd2b5d",
+      "gitBlob": "eef0749bfa1bddff0f5688308a248b251e699e25"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/activar/index.html",
+      "bytes": 12692,
+      "sha256": "3b3870bf9db94b08968b94ec548a6cbc38fa7baba01c1a7ddbb337dbba05fcaf",
+      "gitBlob": "a47a8246d7355b2e6dadda314cb749e5c6ac5e47"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/altas/index.html",
+      "bytes": 22271,
+      "sha256": "d84e900677221d2796ab9283ec6def217e71029bb97f6d20048bb33d4a045446",
+      "gitBlob": "4d61fcfca5f03a8dd41e283a792ff50a1b0463a1"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/index.html",
+      "bytes": 9789,
+      "sha256": "cc4389ec61da16bd9985acf0a582ef9d7c623147e50f4def74c977e3681fa231",
+      "gitBlob": "d312c7a0d46ebad24619b13db769a4afa9181500"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "gitBlob": "7a1de9e63a89d7abc376a2f5d193d1c71be07fce"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager-auth.js",
+      "bytes": 28100,
+      "sha256": "1929797b02ef9c0a9068c24f616c85c029f499e49cbd986b63c328ed86fdbbee",
+      "gitBlob": "128fab0afe3a9fb75fe41709d85da196704abfe7"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50",
+      "gitBlob": "2a638fb3fc87c72f781b40ad6b589620bab3ddb8"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "gitBlob": "eb25e4f7e24a39e0bc3bdad389613c0e5dab905c"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8",
+      "gitBlob": "70946f1ae57d8192082f5e4a0c6ba7584975ca7c"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c",
+      "gitBlob": "e6028952b6040b8ae8d38d23c3abb4f22aa7791a"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4",
+      "gitBlob": "eabac77451df362f73084c7ac8d9606c64ee863d"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a",
+      "gitBlob": "7d7b2bb37c6b5f5a8b307eda23c45a5e0e1c0670"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/planificar-estadia/index.html",
+      "bytes": 6277,
+      "sha256": "d21ba68673a76b65f2e04202d3d3e8562c4eb2a8918003f0e07f4c512275b80e",
+      "gitBlob": "5fe61fb7f4db333c7e64be305d676706384c729f"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/prearrival/index.html",
+      "bytes": 2933,
+      "sha256": "0830451aa79bbd000ba7ad43f565822b6a4dfb874a09be272fee8c5be4dab20e",
+      "gitBlob": "1d442f339dfd3acb3ac7a7f905b227143c80d340"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/propiedad/index.html",
+      "bytes": 6743,
+      "sha256": "f6ed24a1f3964f4c4e79c530116f30d4fde3c02c3fad8f93426cfcdbb3992122",
+      "gitBlob": "fcf8d886d4b86e48cad33d22a3011beb88bd4855"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/qa-planning.css",
+      "bytes": 334,
+      "sha256": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a",
+      "gitBlob": "addaf4e5a513061a2a0281295d8ac797a65d482c"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/qa-planning.js",
+      "bytes": 504,
+      "sha256": "5e03ec2897059fb1289a4aaa3b9edc2f605a4846f1cb41467c6e859fc7e2ff77",
+      "gitBlob": "c3a9c661d46e059ea54c21050b26ea5705dbdd60"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/recorrido/index.html",
+      "bytes": 4228,
+      "sha256": "854f9d9dafa798c1649e26acddaf178a4852e7ac9aa7f44635f47e13d7e2d8f3",
+      "gitBlob": "d705f9acf1baf570b3c52c0f2a9bff67abb22c4b"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/generated/manager/reset-password/index.html",
+      "bytes": 13664,
+      "sha256": "a37b111fc0a979cb9a9a893fbed3d3986682b393b598fc76918792265ae957e0",
+      "gitBlob": "1ce5daf78c0d638c0a9a962eb19a11c55023ecb0"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/integration.test.mjs",
+      "bytes": 2204,
+      "sha256": "edac08c576eb9fea471eebd7ead8a620991c786826190eda187d1c0a1b1076cd",
+      "gitBlob": "e0b2424bc7b6de0311626c0f52b1aaf42981648c"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/materialize.mjs",
+      "bytes": 3153,
+      "sha256": "14bacc29028679cda4db39e2c2ff57ffc7fe189405d84fd1516d32a780727111",
+      "gitBlob": "3ffe87a60a148246f8941a5ca35659b4bb0a1f02"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/native17-manager-action.source.txt",
+      "bytes": 5561,
+      "sha256": "13d9ca609ff4b2e1285b377779623b856c350dc5f3a82215d71a44e52c6e3eaf",
+      "gitBlob": "f6e08fd57ac685ac6db47d562bf2bdffb323358a"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/property-capture-adapter.mjs",
+      "bytes": 2985,
+      "sha256": "f6a6fdd37305f292997171666e0d732a7a801327f05cdf82c77b17a49a885162",
+      "gitBlob": "e692610d2c12a1e56b4f95e16e58bb64b3699ae8"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/property-capture-native.source.txt",
+      "bytes": 3332,
+      "sha256": "4f0eed9bb43a12d114dd14886a55aa06b9e56213d4deedd4bbe080853e7d50cf",
+      "gitBlob": "02a43747dd4b833876ff67da8d0a625ebf7bb99f"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/property-review.original.source.txt",
+      "bytes": 3865,
+      "sha256": "e82e22aac2833a263b5183dd479701071dbd29b6dc97c24a8e8954a494d246c4",
+      "gitBlob": "06deafb507d84c57687c71ccfb7f7feb5472b319"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/public-catalog-producer.mjs",
+      "bytes": 4009,
+      "sha256": "25b8e2f9d4c9e0bbecd026c76880808a9a631b5a690b11e8ac0ad0d93798db2e",
+      "gitBlob": "a4128330c7ce184f08f4a68237ba3c49cabb7ddb"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/read-selection.mjs",
+      "bytes": 5335,
+      "sha256": "fe0631fd09ccf72f5a4e9e8629f5b863d67eb9a619353ca81f60faaee4e50b60",
+      "gitBlob": "25aa4677a71bcb45383af866d7088d80675b3d38"
+    },
+    {
+      "path": "qa/functional-contracts-20261112-v1/selection.test.mjs",
+      "bytes": 4438,
+      "sha256": "404030326a30206d40e84e3a3155f79fc5568e3b91e668c8bad53c84834bbe21",
+      "gitBlob": "68dfcb5f9fe40fc6a3ab1e13d3e0cbfdb36a2a65"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/ABI-SUCCESSOR.md",
+      "bytes": 5300,
+      "sha256": "7b4c69857d31712e6bba8e372cecf219da439d680c486a97b7321aebbe99d184",
+      "gitBlob": "b19d1222f035ce3f95aa368af402be158115021d"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/CATALOG-PRODUCER.md",
+      "bytes": 1968,
+      "sha256": "c6d59092e41abc5bfc7238d79aa61b9864cd3d2e527450668160315cdfd70b20",
+      "gitBlob": "e20b7253ff3ae52b626ba53a614c9e88c6fdcfb9"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/CHECKPOINT.md",
+      "bytes": 6886,
+      "sha256": "61f90f3a9d5e56514730f28a2f15303788ff23b840e1a5bebf5c415586b1baf7",
+      "gitBlob": "b992bda3b566ce19305fb9eb95ee78fad294b4f6"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/CLOSURE.md",
+      "bytes": 13022,
+      "sha256": "c3bcd23f13441039b8e0eed88b44e270c02f08e9f058efe087f70e7de479327b",
+      "gitBlob": "59f285818dc1a5ac71c6a1e5983549912c1fd1f2"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/DTO-COMPATIBILITY.md",
+      "bytes": 2170,
+      "sha256": "a0ee88f72523e4d877138270a7d4416590570c2ea863ea12d120bb4a313b0fa2",
+      "gitBlob": "9b742a4f543961ae30696bb2541285f2afa24fa9"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/EFFECTS-REVOCATIONS.json",
+      "bytes": 4322,
+      "sha256": "085b407b99bad7fc4362cff29a64e0e5da285feb6c82a07ca59bb7d63d1d694b",
+      "gitBlob": "0a02064f89426f97900af84a5c962c99e238b7c0"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/EXTERNAL-BLOCKERS.md",
+      "bytes": 1721,
+      "sha256": "7c669a6d55904a663ff979fd8a476e957cd37fa06a8aac153d90b171b57f8d31",
+      "gitBlob": "ab2c4fc742487652dddf04afc041a37baf944aea"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/NEXT-EXECUTION.md",
+      "bytes": 3197,
+      "sha256": "13144c12995fb458ccbc935ec1537d16acc4a3d52ea1d39c2405b73d93aedf20",
+      "gitBlob": "2e8d6a57969367877a39fc664e20d5a4861a5f62"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/PROPERTY-CAPTURE-COMPATIBILITY.md",
+      "bytes": 4027,
+      "sha256": "487e43cfc3d8e584cc598a36a28bcf641d0fd730bd59915bde5b71ecd3f5f00f",
+      "gitBlob": "47806fbb0f7c0cc6f42b42562ed433f8bc0b875f"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/RELEASE-CANDIDATE.json",
+      "bytes": 10919,
+      "sha256": "a47da58d31f38344f57f85e538dea15ca44f0728ce2ef3c6aabf217ab6fee3e5",
+      "gitBlob": "bb4d43c19a1cf604c4351f44b4230d1180e766ec"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/STATIC-VERIFICATION.json",
+      "bytes": 506,
+      "sha256": "a3b01fbe6b905bc50abc384af6625d54fc02969177cd75f51ea5d1d1c3ac2bc0",
+      "gitBlob": "cdb5940beaef2b23a74ad350a8c15d24facf4831"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/TEST-EVIDENCE.json",
+      "bytes": 32386,
+      "sha256": "ea0f2b48dc47128e22e9f12dc7f4cbde9d21fe32af85f3ba7149805c701d4d06",
+      "gitBlob": "7a46f6722b5c6ee40ca01c2e69c143c3a26cf0f8"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/binding-final.tap",
+      "bytes": 2261,
+      "sha256": "a953636fe6bee28d7efd54dbc7075303a400470d6aadb5930eb4cef53821406c",
+      "gitBlob": "26ac6eb9dbea67480564956c6e23891abd172b83"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/binding-first.tap",
+      "bytes": 1967,
+      "sha256": "186e00b5d93e99d3a5886ed655230c1e32e18d1acb989b81138de1c096169a92",
+      "gitBlob": "4d811de469dd41ba40c0d6fdd4e70726a3eb7bbd"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/binding-generation-before.tap",
+      "bytes": 1883,
+      "sha256": "46430646f8eba4c6e017b68be8a99818d6f2c9e2df641cf449dfb9a53b97a92a",
+      "gitBlob": "304dc4e8f6269f45b4dd98e0c35a39c6500dc9dd"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/binding-native-format-before.tap",
+      "bytes": 1860,
+      "sha256": "c5c62faac0fac259b8aae4c1ced3931c43bd51ec9e3cc970b14f969cca7c9cab",
+      "gitBlob": "c3bf7f94a065680054c31a45a0d729ab55a20965"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/binding-native-format-final.tap",
+      "bytes": 4822,
+      "sha256": "689c61797debb66439948ff748cdab4910e63b18100c3735f43f1d4a8c4dfd3d",
+      "gitBlob": "80047918e921aa859c9cf99ac8cef479ba7455d5"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/capture-first.tap",
+      "bytes": 1637,
+      "sha256": "b2af753a6624eb674261d6bd6a523c30d3d7a9344c341ac6c457618ad4c7947a",
+      "gitBlob": "beb8da80ae2e89d22147f0528480e1768b329607"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/capture-integration-final.tap",
+      "bytes": 1954,
+      "sha256": "ac843a6bd84d760cca4552f1192f96b0efea4b311d589fb27f4b6967c8d264cf",
+      "gitBlob": "022e4c013f391aafb5d1fde9023221d7d8d0973f"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/catalog-first.tap",
+      "bytes": 1671,
+      "sha256": "0b113aaab3bf43ac917c30628673d3967ecd744529857a291a6f032566013d83",
+      "gitBlob": "4e50e8b15ad1c8ac8bcae9fba15f248f487b12b7"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/effect-spec.log",
+      "bytes": 662,
+      "sha256": "8b270a6c439b215ad45f60c0204a459174f3de36124b1eb384ac7aa8f31efade",
+      "gitBlob": "ef76cac1dad7e3ccee8df1fa99c940f4626a78ab"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/effects-before.tap",
+      "bytes": 1697,
+      "sha256": "058917786ef8769a6bc1ea5f3bcdf4df89218cb145b2f89f0a0e43f3efd4278a",
+      "gitBlob": "cb81cd2c96de7cdb4c6365ee0cc62c5bec43f3ab"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/effects-first.tap",
+      "bytes": 1923,
+      "sha256": "5929592944e2e18c8e301552e2e010d1fa10de1ba1dec336fdf7ab4a19e87f8c",
+      "gitBlob": "933186e05579ab8607b10eb6e002f390c5377a3b"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/effects-native-negative-final.tap",
+      "bytes": 1045,
+      "sha256": "07f3799497f90ead7b44006aa7dc2b8b1f00b0f85167be1f456a1fc770ab1241",
+      "gitBlob": "5fef8170015a65673a82e568ecb1c9e28b76cb90"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/integration-first.tap",
+      "bytes": 1022,
+      "sha256": "1debbd5fb1241568c171cf8b01e3a292556b7d5a6eb989a9bae5d9839fa99539",
+      "gitBlob": "2ad303f7d288f30e176d5c2bd03ac8fd1965334d"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/materialize-final.log",
+      "bytes": 644,
+      "sha256": "0b5e63e122c6833bd3aa86b6abeb3cf1b85022cc0edb641bea08d218a7603a67",
+      "gitBlob": "9cd9b988a69e3a92d2ae16b1844573694d542029"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/materialize.log",
+      "bytes": 644,
+      "sha256": "4b85627fd967f11cbc51f344c13f64fbb596aee8e4af6054b5511d490f173526",
+      "gitBlob": "702ea236c2ab68e4714694362c0aa92a249d0783"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/selection-cohort-before.tap",
+      "bytes": 1955,
+      "sha256": "18174b4c2e48fe0d9c7baaabf6e2cc8840b47dd6973acb2345710b6720fb963f",
+      "gitBlob": "564f2e80289d3f8a143343568f076c25214cd239"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/selection-final.tap",
+      "bytes": 1744,
+      "sha256": "a9aea97e23baba8f121f6dccc90cc9bb4a70656e9c170ebe6ece3988d2358d7f",
+      "gitBlob": "ae20761524e7f63e632d973a7d367e7d449c31ab"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/selection-first.tap",
+      "bytes": 1743,
+      "sha256": "ada0f4b60199eb60cc97d5a171f7b4a877eb1a1b6bb6310383ac0d2512ce3515",
+      "gitBlob": "8025898b90ce5e95083ecf11f271fb2ab2593cce"
+    },
+    {
+      "path": "qa/reviews/functional-contracts-20261112/logs/syntax.log",
+      "bytes": 908,
+      "sha256": "912565eaafde48147efe71e35b769bfaaf72ca4113594d21bac860609522b353",
+      "gitBlob": "2e1f10d9fcebadd9fc604986db40968ed6139f5e"
+    }
+  ],
+  "fileCount": 72,
+  "selfHash": "excluded; verify manifest by immutable GitHub tree",
+  "allowedPrefixes": [
+    "qa/functional-contracts-20261112-v1/",
+    "qa/reviews/functional-contracts-20261112/"
+  ],
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}

@@ -3,7 +3,7 @@
   "state": "HELD",
   "betaDecision": "NO-GO",
   "initialWeb": "5856a2ffdc8efac4683b390a45888aa9cbce891d",
-  "functionalCodeCommit": "CONTAINING_CODE_CHECKPOINT",
+  "functionalCodeCommit": "4bbbf99634d1996f7658ab84c272ac00309d90c1",
   "finalWebCommit": "CONTAINING_CLOSURE_COMMIT_RESOLVED_FROM_IMMUTABLE_URL",
   "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
   "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
