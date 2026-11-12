@@ -1,0 +1,245 @@
+{
+  "schema": "ASUS_MANUAL_READONLY_PREFLIGHT_1",
+  "host": "ASUS_PHYSICAL_ONLY",
+  "executionState": "NOT_RUN",
+  "runAutomatically": false,
+  "nativeAuthorized": false,
+  "hostAccredited": false,
+  "knownHistoricalConfiguration": {
+    "windows": "11",
+    "wsl": "2",
+    "ubuntu": "26.04.1",
+    "dockerDesktop": "4.96.0",
+    "engine": "29.9.1",
+    "seccompAndCgroups": "historically observed, not current accreditation",
+    "usernsRootless": "not accredited",
+    "blockedFiles": "do not run"
+  },
+  "steps": [
+    {
+      "id": "W01",
+      "shell": "PowerShell normal",
+      "command": "Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object Version,BuildNumber,FreePhysicalMemory,TotalVisibleMemorySize",
+      "gate": "ASUS física, sesión local sin elevar permisos",
+      "review": "Version/build y memoria; no nombre de equipo, serie o usuario.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "W02",
+      "shell": "PowerShell normal",
+      "command": "Get-MpComputerStatus | Select-Object AMServiceEnabled,AntivirusEnabled,RealTimeProtectionEnabled,IsTamperProtected",
+      "gate": "W01 revisado",
+      "review": "Estado de protección. Si hay error o protección desactivada, detener; no modificar ni escalar.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "W03",
+      "shell": "PowerShell normal",
+      "command": "wsl --version",
+      "gate": "W02 revisado",
+      "review": "Versión instalada de WSL/kernel; no instalar ni actualizar.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "W04",
+      "shell": "PowerShell normal",
+      "command": "wsl --status",
+      "gate": "W03 revisado",
+      "review": "Configuración actual; no modificar versiones predeterminadas.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "W05",
+      "shell": "PowerShell normal",
+      "command": "wsl --list --verbose",
+      "gate": "W04 revisado",
+      "review": "Distribuciones y Running/Stopped/WSL2. Ocultar nombres personales antes de compartir; no iniciar distribuciones Stopped.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "W06",
+      "shell": "PowerShell normal",
+      "command": "Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object TotalPhysicalMemory,NumberOfLogicalProcessors,HypervisorPresent",
+      "gate": "W05 revisado",
+      "review": "Capacidad del equipo, no límites acreditados del laboratorio.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "W07",
+      "shell": "PowerShell normal",
+      "command": "Get-CimInstance -ClassName Win32_LogicalDisk -Filter \"DriveType=3\" | Select-Object DeviceID,Size,FreeSpace",
+      "gate": "W06 revisado",
+      "review": "Espacio disponible local; sin etiquetas, paths de usuario o inventario de archivos.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "D01",
+      "shell": "PowerShell normal",
+      "command": "[pscustomobject]@{DockerHostSet=[bool]$env:DOCKER_HOST;DockerContextSet=[bool]$env:DOCKER_CONTEXT;DockerTLSVerifySet=[bool]$env:DOCKER_TLS_VERIFY;DockerCertPathSet=[bool]$env:DOCKER_CERT_PATH}",
+      "gate": "W07 revisado",
+      "review": "Sólo flags, nunca valores. Si cualquiera es True detener Docker: no borrar/cambiar variables ni consultar un daemon desconocido.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "D02",
+      "shell": "PowerShell normal",
+      "command": "docker --version",
+      "gate": "D01: todos False",
+      "review": "Cliente instalado; no consulta daemon ni descarga.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "D03",
+      "shell": "PowerShell normal",
+      "command": "Get-Process -Name 'Docker Desktop','com.docker.backend' -ErrorAction SilentlyContinue | Select-Object ProcessName",
+      "gate": "D02 revisado",
+      "review": "Sólo procesos locales de Desktop ya activos. Si no está ejecutándose, detener esta rama; no iniciarlo.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "D04",
+      "shell": "PowerShell normal",
+      "command": "docker context show",
+      "gate": "D03: Desktop ya ejecutándose",
+      "review": "Lectura local del contexto. Este procedimiento sólo continúa si es desktop-linux; cualquier otro nombre requiere revisar antes de consultar daemon.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "D05",
+      "shell": "PowerShell normal",
+      "command": "docker context inspect desktop-linux --format '{{.Endpoints.docker.Host}}'",
+      "gate": "D04: exactamente desktop-linux",
+      "review": "Continuar sólo si endpoint local npipe:////./pipe/dockerDesktopLinuxEngine. TCP/SSH/otro endpoint: detener sin consultar servidor. No inspeccionar TLSMaterial o config.json.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "D06",
+      "shell": "PowerShell normal",
+      "command": "docker --context desktop-linux info --format 'Server={{.ServerVersion}};OS={{.OSType}};Platform={{.OperatingSystem}};CPUs={{.NCPU}};MemoryBytes={{.MemTotal}};Cgroup={{.CgroupVersion}};Driver={{.CgroupDriver}};Security={{json .SecurityOptions}}'",
+      "gate": "D01 sin overrides, D03 activo, D05 endpoint local exacto, resultados revisados",
+      "review": "Debe identificar Linux/Docker Desktop. Seccomp/cgroup no equivalen a rootless o userns real; ausencia de remapeo/rootless conserva NO-GO. No imprimir info completa/proxies/rutas.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "D07",
+      "shell": "PowerShell normal",
+      "command": "docker --context desktop-linux image ls postgres:17.11 --digests --no-trunc --format '{{.Repository}}:{{.Tag}} {{.Digest}} {{.ID}}'",
+      "gate": "D06 Linux/Docker Desktop local confirmado; sólo inventario de ese tag",
+      "review": "Metadata de caché, sin pull/run. Sin filas: binario no disponible. Tag/ID/digest no acreditan por sí solos un servidor PostgreSQL 17.11 ejecutado.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L01",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "cat /etc/os-release",
+      "gate": "W05 muestra esa Ubuntu Running y hay terminal ya abierta; si no, detener rama Linux",
+      "review": "Distribución observada; no iniciar WSL ni servicios para completar diagnóstico.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L02",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "uname -r",
+      "gate": "L01 revisado",
+      "review": "Kernel instalado, no prueba de namespaces del futuro worker.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L03",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "id -u",
+      "gate": "L02 revisado",
+      "review": "UID efectivo del shell. UID distinto de cero por sí solo no demuestra remapeo/container rootless.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L04",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "cat /proc/self/uid_map",
+      "gate": "L03 revisado",
+      "review": "Mapping del shell observado, no el del futuro proceso PostgreSQL.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L05",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "readlink /proc/self/ns/user /proc/self/ns/pid /proc/self/ns/net /proc/self/ns/mnt",
+      "gate": "L04 revisado",
+      "review": "IDs en orden user/pid/net/mnt. Sin proceso aislado de comparación no hay acreditación.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L06",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "awk '/^NoNewPrivs:|^Seccomp:|^CapEff:/{print}' /proc/self/status",
+      "gate": "L05 revisado",
+      "review": "Flags del shell únicamente. No relajar seccomp, capacidades o NoNewPrivs.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L07",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "findmnt -T /tmp -n -o FSTYPE,OPTIONS",
+      "gate": "L06 revisado",
+      "review": "Filesystem que alberga /tmp; no demuestra montaje privado del futuro laboratorio.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L08",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "findmnt -n -o TARGET,FSTYPE,OPTIONS /mnt/c",
+      "gate": "L07 revisado",
+      "review": "Acceso a disco Windows: si es visible, el shell no es un filesystem aislado. No listar archivos, tocar montajes o modificar configuración.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L09",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "free -b",
+      "gate": "L08 revisado",
+      "review": "Memoria actual de WSL, no límites de un cgroup de laboratorio.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L10",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "cat /sys/fs/cgroup/cgroup.controllers",
+      "gate": "L09 revisado",
+      "review": "Controladores disponibles. Ausencia/permiso denegado: evidencia faltante; no cambiar cgroups.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    },
+    {
+      "id": "L11",
+      "shell": "Terminal Ubuntu ya abierta",
+      "command": "df -B1 /tmp",
+      "gate": "L10 revisado",
+      "review": "Espacio del filesystem temporal, no cuota ni capacidad reservada.",
+      "executionState": "NOT_RUN",
+      "manualOnly": true
+    }
+  ]
+}

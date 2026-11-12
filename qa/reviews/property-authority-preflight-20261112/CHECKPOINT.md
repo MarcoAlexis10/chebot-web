@@ -13,3 +13,7 @@ authority-source.mjs reutiliza la frontera protegida anterior y fija estas incom
 Primer checkpoint publicado: 94903faa2c2c95e8853d1147e3d0a8a643944998. Cinco casos únicos nuevos aprobados hasta este checkpoint (1 fuente, 2 reader, 1 custodia, 1 composición). Sólo se reejecutaron los dos reader propios afectados por añadir floors; no los diez anteriores. Se conserva un fallo inicial de fixture incompleto y luego el FAIL específico que mostró consistencia sin floor; corrección reutilizando reviewRevisionCut y dos PASS. Ningún fallo produjo permiso o efecto; toda salida operacional siguió UNKNOWN/HELD.
 
 read/2 ahora distingue permiso de consulta post-captura, slot ocupado, identidad de la lectura actual y sesión/revisión histórica. Referencia opaca y key no reemplazan el original. Matriz D02-A concreta sin plazo nuevo, almacenamiento o clave. Próximo: procedimiento ASUS manual y verificación estática del paquete.
+
+## Preflight ASUS preparado
+
+Segundo checkpoint: 6d74363081df8d71c2e3b823157bb8b273edcee5. ASUS-MANUAL-PLAN.json y ASUS-PREFLIGHT.md preparan 25 consultas manuales condicionales, ninguna ejecutada. Un sexto caso único valida estáticamente catálogo/gates/ausencia de instalación o arranque. No valida Windows, WSL, Docker, PostgreSQL o aislamiento de ASUS. Consulta documental oficial de Microsoft/Docker; no se accedió al equipo ni se sondeó el runtime Work como reemplazo. Próximo: hashes del paquete, evidencia y cierre final.
