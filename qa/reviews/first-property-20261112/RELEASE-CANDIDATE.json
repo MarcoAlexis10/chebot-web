@@ -1,0 +1,50 @@
+{
+  "candidate": "first-property-20261112-v1",
+  "decision": "NO-GO",
+  "status": "HELD_OFFLINE_REVIEW_ONLY",
+  "webBranch": "qa/cheveni-integral-held-20261111",
+  "webSource": "f2b5819829fcb8668e698c934add058efbb3746a",
+  "webCandidateContentCommit": "0a327637e64d17c215eca244fb3de5a88e13e0d6",
+  "closurePublicationHead": "Commit containing CLOSURE.md, identified by its immutable GitHub URL; not the content commit above.",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "packageManifestSha256": "a201ee2f197e436bd61d687b70fa1d32cad2043ea69cbed33f467a223d577904",
+  "runtimeVariablesAdded": [],
+  "operationalEndpointsAdded": [],
+  "sqlArtifactsAdded": [],
+  "guardsChanged": false,
+  "operationalCodeChanged": false,
+  "effectsDispatched": 0,
+  "integration": {
+    "propertyCapture": "Exact original-parser subset; modeled ABI validation only",
+    "authority": "Empty original producer, defaults fail closed",
+    "reader": "Proposed distinct login/owner/profile; uninstalled; UNKNOWN",
+    "configuration": "Preparation boundary HELD, no property ID accepted",
+    "journey": "18 inert outputs from existing generators; no true browser",
+    "privacy": "Specific duplicate-copy proposal; no new storage",
+    "intent": "Structural synthetic comparison, not native uniqueness",
+    "auth": "Token observation explicit synthetic; not provider verification"
+  },
+  "recoveryInventoryStatus": {
+    "postgresql": "NOT_RESTORED",
+    "authGoTrue": "NOT_VERIFIED",
+    "vault": "NOT_VERIFIED",
+    "storage": "NOT_VERIFIED",
+    "keysConfiguration": "NO_REAL_KEYS_USED",
+    "independentFloors": "POST_BACKUP_CURRENT_FLOORS_REQUIRED",
+    "journalWitness": "CUSTODY_PENDING",
+    "restoredState": "QUARANTINE_REQUIRED"
+  },
+  "commercial": {
+    "jurisdiction": "CABA",
+    "founderManagers": 1,
+    "properties": 1,
+    "trialDays": 30,
+    "trialStart": "First real verified stay; not started",
+    "automaticBilling": false,
+    "automaticConversion": false,
+    "freeSeparate": true
+  },
+  "futureActivation": "Descriptive only: require owner authorization plus Native17/Auth/commit/custody/legal/A2/browser evidence; review all ACL/guards before any installation. Nothing executable supplied.",
+  "futureReversal": "Descriptive only: stop admission, preserve UNKNOWN and intent identity, reconcile dispatched effects with independent evidence; never infer rollback from lost ACK or restore stale permissions. No reversal executed."
+}
