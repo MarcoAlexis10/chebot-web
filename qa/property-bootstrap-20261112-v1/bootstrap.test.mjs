@@ -11,3 +11,8 @@ test('capture keeps intent, attempt, original and current revisions outside the 
  const r=review(bootstrap());assert.equal(r.writerArgumentCount,11);assert.equal(r.attemptRepresentableInWriter,false);assert.equal(r.originalRefRepresentableInWriter,false);assert.equal(r.admissionSidecarRequired,true);
  let reads=0;const poison=new Proxy({},{get(){reads++;throw Error();}}),p=createProtectedBootstrap(poison);for(const fn of [p.resolve,p.admit,p.write]){const r=await fn(poison);assert.equal(r.receipt,null);assert.equal(r.dispatchPerformed,false);}assert.equal(reads,0);
 });
+
+test('SQL bigint fact counters accept canonical exact text representations without lossy numeric coercion',()=>{
+ const x=bootstrap();Object.assign(x.factRows[0],{property_count:'0',slot_count:'0',nonrevoked_owner_count:'1'});assert.equal(review(x).state,'PRE_PROPERTY_CAPTURE_SUBSET_REVIEWED_HELD');
+ for(const value of ['00',' 0','+0','0.0','0e0','-0','9007199254740992','9'.repeat(10000),0.5,NaN]){const y=bootstrap();y.factRows[0].property_count=value;assert.equal(review(y).state,'PRE_PROPERTY_BINDING_INCOMPATIBLE_HELD');}
+});

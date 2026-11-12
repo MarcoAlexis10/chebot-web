@@ -1,0 +1,152 @@
+{
+  "status": "PREPARED_NOT_AUTHORIZED_NOT_RUN",
+  "host": "HOST_NOT_AVAILABLE",
+  "asusPreflight": "../property-authority-preflight-20261112/ASUS-PREFLIGHT.md",
+  "previousN01N12": "Unchanged NOT_AUTHORIZED/NOT_RUN; no execution or replacement",
+  "nativeSourceHead": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "executableMaterializationSha": null,
+  "sqlReviewArtifact": "../../property-bootstrap-20261112-v1/bootstrap-facts-DO-NOT-APPLY.sql",
+  "abortsMustRemain": true,
+  "newRunnerCreated": false,
+  "actors": {
+    "bootstrapScope": {
+      "login": "cheveni_property_bootstrap_scope_backend_v1",
+      "status": "PROPOSED_NOT_CREATED",
+      "capability": "Protected pre-property source only; no writer membership or DML",
+      "sourceRlsContext": "MISSING"
+    },
+    "writer": {
+      "login": "cheveni_private_mutation_backend_v1",
+      "currentUser": "cheveni_private_mutation_owner_v1",
+      "status": "SOURCE_ONLY_NOT_CATALOG_VERIFIED",
+      "entry": "concierge_invite_private.write_property_capture_v1",
+      "args": 11,
+      "newAttemptOriginalSidecar": "MISSING"
+    },
+    "reader": {
+      "login": "cheveni_property_capture_reader_backend_v2",
+      "currentUser": "cheveni_property_capture_read_owner_v2",
+      "status": "PROPOSED_NOT_CREATED",
+      "entry": "concierge_invite_private.read_property_capture_v2",
+      "args": 26,
+      "writerExecute": false,
+      "writerMembership": false,
+      "readOnlyNativeObserved": false
+    },
+    "commitObserver": "Separately approved physical channel/identity, not a callback ACK",
+    "journalWitness": "Independent accredited custodians missing; no private keys/signing authorized"
+  },
+  "requiredRevokerSources": [
+    "auth.users",
+    "auth.sessions",
+    "public.concierge_accounts",
+    "public.concierge_account_members",
+    "public.concierge_manager_web_identities",
+    "public.concierge_properties",
+    "concierge_invite_private.beta_property_slot_v1",
+    "Missing founder eligibility/jurisdiction/revision sources",
+    "Independent restriction/floor journal; external sequencing cannot be inferred from advisory lock"
+  ],
+  "lockOrder": "Common 1129728581/1 pre-DML fence before identity/account/member/slot/intention row locks; every revoker must participate. Existing locks in one writer do not prove universal coverage.",
+  "newPropertySpecificAssertions": [
+    {
+      "id": "BPF01",
+      "name": "Pre-property, pre-trial bootstrap",
+      "preconditions": [
+        "Accredited host/authorization/materialization",
+        "Real protected source implementations and current floor",
+        "One active web identity/owner/account, zero properties/slots, null beta dates"
+      ],
+      "actors": [
+        "bootstrapScope",
+        "writer"
+      ],
+      "expected": "Resolve exact source relation without active property, launch/manage_stays or changing trial dates. Reject duplicated identities, revoked owner, occupied slot and missing current revisions.",
+      "evidence": [
+        "Real catalog/function hashes/ACL/RLS",
+        "Before/after beta columns unchanged",
+        "Current provider/floor provenance and exact relation cardinality"
+      ],
+      "abort": "Review-only abort reached, missing producer/source/custody, or generic prelegal denial: TARGET_NOT_REACHED, not PASS",
+      "notProven": "Managed JWT, commercial eligibility approval or commercial launch",
+      "state": "NOT_AUTHORIZED_NOT_RUN"
+    },
+    {
+      "id": "BPF02",
+      "name": "First-property quota and original concurrency across processes",
+      "preconditions": [
+        "BPF01 sources",
+        "Approved durable admission and exact original policy",
+        "Two independent writer connections and separately reviewed global founder assignment",
+        "Complete account inventory under selective RLS, including draft/archived/paused properties; zero visible rows alone is not quota proof"
+      ],
+      "actors": [
+        "writer",
+        "commitObserver"
+      ],
+      "expected": "At most one effect for intent/slot; wrong arguments conflict without another write. Two accounts cannot both become the single founder via the founding_manager flag. No trial activation.",
+      "evidence": [
+        "Native lock/barrier schedule and identities",
+        "Uncommitted/committed property, slot and admission rows",
+        "Unique constraints plus explicit post-commit counts",
+        "External COMMIT/IDLE observation"
+      ],
+      "abort": "No verified common fence/revoker participation, absent unique constraints/global founder source or loss of transaction identity",
+      "notProven": "Local JS exclusion is not native uniqueness; a slot per account alone does not enforce one global founder",
+      "state": "NOT_AUTHORIZED_NOT_RUN"
+    },
+    {
+      "id": "BPF03",
+      "name": "Read/2 least privilege and current scope after creation",
+      "preconditions": [
+        "Independent reader credential/profile installed only under separate approval",
+        "Protected original resolver with attempt/key and derived account",
+        "Selective RLS/context and transitive ACLs captured"
+      ],
+      "actors": [
+        "reader",
+        "commitObserver"
+      ],
+      "expected": "Reader cannot execute writer, inherit its role, access plaintext capture or use SET ROLE; resolves account through original/member/result/slot, with one occupied slot. Current refresh/session/revocation/floor before/after disclosure cannot revive old authorization.",
+      "evidence": [
+        "session_user/current_user and backend connection identity",
+        "Effective ACL/membership/PUBLIC/default ACL/dependencies",
+        "Denied writer/DML/foreign-account probes",
+        "26 parameter binding and no private disclosure after revocation"
+      ],
+      "abort": "Same principal/shared writer capability, fake source/credential labels, incomplete RLS context or generic deny before intended branch",
+      "notProven": "Two configured callbacks/PIDs or claimed READ ONLY do not prove distinct capabilities",
+      "state": "NOT_AUTHORIZED_NOT_RUN"
+    },
+    {
+      "id": "BPF04",
+      "name": "Lost ACK/restart with exact private-original reconciliation",
+      "preconditions": [
+        "Approved original comparison/custody and D02-A treatment",
+        "Externally verifiable effect/COMMIT plus independent reader/journal/witness",
+        "No positive signer or authorization fabricated"
+      ],
+      "actors": [
+        "writer",
+        "reader",
+        "commitObserver",
+        "journalWitness"
+      ],
+      "expected": "Keep UNKNOWN on lost ACK; changed unit with same intent/key cannot write again. Restart without original remains quarantined UNKNOWN; no digest/client reconstruction. Historical committed effect is preserved but not exposed to revoked current scope.",
+      "evidence": [
+        "Exact protected comparison outcome without plaintext logs",
+        "Zero re-dispatch after restart/readback",
+        "Separate function-result, ACK, commit, effect, journal and witness evidence",
+        "Current independent floors later than backup"
+      ],
+      "abort": "Missing original, witness/custody verifier, contradictory/expired proof or unsupported property intent in existing CBF1; do not replace with positive fixture",
+      "notProven": "Tables-only restore is not A2; SQL effect alone is not signed custody or current Auth",
+      "state": "NOT_AUTHORIZED_NOT_RUN"
+    }
+  ],
+  "costIsolationDiscard": "No new resources/cost authorized. Use only a separately accredited free isolated lab. Identify exact temporary IDs/paths/volumes/PIDs/namespaces, enforce actual limits and prove directed discard; no global prune or changes to ASUS protections. No runtime/SQL commands supplied.",
+  "authorizationNeeded": "Owner must identify accredited host and approve exact materialization/binary SHAs, missing producers/roles/data policy, BPF assertions selected, scope/limits/window/cost and directed discard. This plan is not authorization.",
+  "betaDecision": "NO-GO",
+  "authModel": "SYNTHETIC_LOCAL_NOT_MANAGED; loader/roles separately approved before native tests",
+  "managedProviderTests": "SEPARATE_NOT_AUTHORIZED_NOT_RUN"
+}

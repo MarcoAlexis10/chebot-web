@@ -1,0 +1,32 @@
+[
+  {
+    "path": "qa/native17-closure-v1/service-successor-REVIEW-ONLY.sql",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "gitBlob": "dbaa9df6389768169412bb4500c69084463ef594"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "gitBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/fencing/handoff-UNAPPLIED.sql",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "gitBlob": "9f524dd437b347260171c56da3ef843b1bc0f382"
+  },
+  {
+    "path": "qa/contract-v1/codec.mjs",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "gitBlob": "550f1fb4cab5b8279e234febe0924de8ae528672"
+  },
+  {
+    "path": "qa/cheveni-beta-release-candidate-v1/gateway-journal-v1/journal-ports.mjs",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "gitBlob": "a14e576fc87ab986a268ea4646b7b1315cd39ff4"
+  },
+  {
+    "path": "qa/journal-recovery-v3/recovery-candidate.mjs",
+    "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+    "gitBlob": "03f266cc7f57c0ad5fdef8ba563e41802a58c3ed"
+  }
+]

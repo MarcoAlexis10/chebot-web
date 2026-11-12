@@ -1,0 +1,209 @@
+{
+  "date": "2026-11-12",
+  "timezone": "America/Buenos_Aires",
+  "uniqueNewCases": 9,
+  "uniqueFinalPass": 9,
+  "finalFail": 0,
+  "areas": {
+    "bootstrapAndCapture": 3,
+    "read2ArgumentBinding": 2,
+    "custodySourceCompatibility": 1,
+    "viewEpochInterleavings": 2,
+    "heldJourneyAndHtmlOverlay": 1
+  },
+  "executions": [
+    {
+      "log": "logs/bootstrap-first.tap",
+      "sha256": "d655e06c7786956f5909c2aa1a891fd4dc14ba6d8a9b560a089e8494799e5836",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs",
+      "exitCode": 1,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 2,
+      "pass": 0,
+      "fail": 2,
+      "skipped": 0
+    },
+    {
+      "log": "logs/bootstrap-corrected.tap",
+      "sha256": "0aa202df10e85289f8d2e4b4354e0e440bc49bd18726b5ddfb84b2ac983d8053",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs",
+      "exitCode": 0,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/read-binding.tap",
+      "sha256": "10849daecdaf8431f78a4ce87a0e1022ce8920cc50769dd8e1dcedcc952d50ea",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-bootstrap-20261112-v1/read-binding.test.mjs",
+      "exitCode": 0,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/custody-view.tap",
+      "sha256": "1ffd219f52607279ed01a32c5e0efffc4c723dd637cd2a7f3abde40644af504c",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-bootstrap-20261112-v1/custody.test.mjs web/qa/property-bootstrap-20261112-v1/view.test.mjs",
+      "exitCode": 0,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/view-order-before.tap",
+      "sha256": "7b4fff4f584b32d653d133e299befc17a77358d1da782a0a4b31e82473434cb7",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='late/read-duplicate' web/qa/property-bootstrap-20261112-v1/view.test.mjs",
+      "exitCode": 1,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "log": "logs/view-order-after.tap",
+      "sha256": "aadee383db1296f51874b1a4157072eca92cee31a36cf6aa41788b8d8a81b515",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-bootstrap-20261112-v1/view.test.mjs",
+      "exitCode": 0,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/integration.tap",
+      "sha256": "e62fe3513c3047be1d83fba39a59c1161fe37da7f88187b6c6f8898b5889227d",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-bootstrap-20261112-v1/integration.test.mjs",
+      "exitCode": 0,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/bigint-before.tap",
+      "sha256": "1293c78954b9c1c79de8990dcccd73970f0e31be68a4de7e88e7b82abe389dcb",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='SQL bigint' web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs",
+      "exitCode": 1,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    {
+      "log": "logs/bigint-after-and-bootstrap-regression.tap",
+      "sha256": "e06ddbe765a4ee618d7caf40d89e86c89cfcd627330bbee3bd069ba07fa8291b",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs",
+      "exitCode": 0,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0
+    },
+    {
+      "log": "logs/bigint-bounds.tap",
+      "sha256": "816cacee0820d9289c40446bf432896aa02e75a3024c59d8d06b391274c1bd5f",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='SQL bigint' web/qa/property-bootstrap-20261112-v1/bootstrap.test.mjs",
+      "exitCode": 0,
+      "classification": "NODE_SOURCE_STATIC_AND_SYNTHETIC_CONTRACTS_NOT_NATIVE",
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skipped": 0
+    }
+  ],
+  "intermediateFailures": [
+    {
+      "log": "logs/bootstrap-first.tap",
+      "failedCases": 2,
+      "causes": [
+        "Test-only SQL matcher included a comment about updated_at; matcher now excludes line comments.",
+        "Own bootstrap reference binding lacked a distinct admission metadata comparison; requestId/originalRef/intent/attempt/key now matched."
+      ],
+      "operationalEffect": "None, writer remained HELD."
+    },
+    {
+      "log": "logs/view-order-before.tap",
+      "failedCases": 1,
+      "causes": [
+        "Own QA view barrier allowed an older response in the same scope to overwrite a newer view state; added readSequence on top of generation."
+      ],
+      "operationalEffect": "No data, network or authorization."
+    },
+    {
+      "log": "logs/bigint-before.tap",
+      "failedCases": 1,
+      "causes": [
+        "New SQL fact projection declares bigint counters; own validator rejected canonical text form. Added exact bounded safe conversion, no lossy coercion."
+      ],
+      "operationalEffect": "No pg driver or PostgreSQL query executed."
+    }
+  ],
+  "focusedRegressions": "Only newly created bootstrap and view cases affected by their fixes were repeated; prior 6/10/20/19 and historic suites not run. Repeated cases/subassertions not counted as unique.",
+  "nodeVersion": "v24.22.1",
+  "isolation": "Existing run-isolated.py, child user/net namespaces, no IPv4 routes, external connect errno101, inheritedCredentials=false. Not native host accreditation.",
+  "staticVerification": {
+    "status": "PASS",
+    "classification": "STATIC_BYTES_SYNTAX_NOT_NATIVE",
+    "localSources": 248,
+    "packageFiles": 23,
+    "syntaxMjs": 13,
+    "htmlOverlays": 2,
+    "nodeVersion": "v24.22.1",
+    "typescriptCompiled": false,
+    "sqlParsedByNativeEngine": false,
+    "sqlExecuted": false,
+    "pgDriverExecuted": false,
+    "browserExecuted": false,
+    "asusExecuted": false
+  },
+  "sourceEvidence": {
+    "directLocalBlobsComparedToRemote": 31,
+    "nativeFullSourceBlobIdsCompared": 6,
+    "inviteCustodyExcerptByteMatched": true,
+    "sqlReview": "Double unconditional guards, original schemas reused. Source assertions only; no PostgreSQL parser, SQL execution or catalog guarantee.",
+    "pgDriver": "Backend pg/pg-types versions read from lockfile; driver not present/executed; textual count test uses synthetic DTO."
+  },
+  "packageManifestSha256": "3093c49d0799a00e342074dd35fa81033e50dc118d47009c8982c5ef8ebfb2fe",
+  "nonTestExecutions": [
+    {
+      "log": "logs/materialize.log",
+      "sha256": "3ea537366b976d5a1844e0a03d5a874aa5cdd42bf2f6ff6ca40f9ae536f55e88",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- node web/qa/property-bootstrap-20261112-v1/materialize.mjs",
+      "exitCode": 0,
+      "classification": "TWO_INERT_HTML_OVERLAYS_NOT_BROWSER"
+    },
+    {
+      "log": "logs/artifact-verification.log",
+      "sha256": "42a1ae63c7c904b9b46a9458eb65dbd9057d32cc9d450789ebfc7215f991660f",
+      "command": "python web/qa/integral-held-v1/run-isolated.py -- python web/qa/property-bootstrap-20261112-v1/verify-artifacts.py",
+      "exitCode": 0,
+      "classification": "STATIC_BYTES_SYNTAX_NOT_TEST_COUNT"
+    }
+  ],
+  "notRun": {
+    "sql": "NOT_RUN",
+    "nativePlanN01N12": "NOT_AUTHORIZED_NOT_RUN",
+    "propertyNativeAssertionsBPF01BPF04": "4 PREPARED_NOT_AUTHORIZED_NOT_RUN",
+    "managedAuth": "NOT_RUN",
+    "externalCommit": "NOT_OBSERVED",
+    "journalWitnessCustody": "NOT_ACCREDITED",
+    "asusCommands": 0,
+    "asusPreflight": "Preserved previous 25-step document and catalog by hash; not executed",
+    "chromium": "Not retried; 4 historic cases NOT_RUN",
+    "typescriptCompile": "NOT_RUN"
+  },
+  "privacy": "Synthetic inputs only, no new storage, real data, keys, signatures or personal digests.",
+  "betaDecision": "NO-GO"
+}

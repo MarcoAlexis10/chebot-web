@@ -77,6 +77,153 @@
       "bytes": 53370,
       "sha256": "84d871ca876dffd6a096d98927a622cc1c2632787a39a22a2a31b642226ed5a9",
       "gitBlob": "483e3f5e746a3dc9a1c461dd1a242ba57792b1bb"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/NATIVE-SOURCE-PINS.json",
+      "bytes": 1471,
+      "sha256": "f93a24a991dec21e7cf3a39d8228c1052268badaa71bbf3ffff07778baa6e810",
+      "gitBlob": "0712d41f87e197c9790834319d32831aaf94b27d"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/PACKAGE-MANIFEST.json",
+      "bytes": 3723,
+      "sha256": "d44a8329ad0d1f5cae9c91f04a0fe46a8a9b30aacb586a0f192f5e9e0f18e551",
+      "gitBlob": "63d90517b3b9c8a53c757f6eb60affe990f4c6a2"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/README.md",
+      "bytes": 2632,
+      "sha256": "0989a3abeaab12c1da5f848cb694f0b5de32e5bb7a9c1821672e3bce69f1a3c1",
+      "gitBlob": "660eb8604130b04baef1095bb25924facd0c642e"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/authority-source.mjs",
+      "bytes": 3082,
+      "sha256": "a781bd962e5188014cada6e3b832019a40b6229f78df35a08a7b543c73e7eebc",
+      "gitBlob": "ee4314126ef7f8f3996c64f67da4257bbb8e5d63"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/authority.test.mjs",
+      "bytes": 1088,
+      "sha256": "8b83d95a1c42554aece555fa6a8c1a0b60a3cfa67137e0fb86f364a14b0357ef",
+      "gitBlob": "a751b21f04ed39b75b94a67c19fd66813cccf178"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/candidate.mjs",
+      "bytes": 649,
+      "sha256": "cce64a01cd11ec7b064fc060944f205be1571a6bd18820a31fe883cda7208b7e",
+      "gitBlob": "bf77b1f92f00daa3bdfdec4907bae958e4073ebc"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/capture.source.txt",
+      "bytes": 6804,
+      "sha256": "41b196ab92bb896561b23b34884e85c5635a9d06a5c250cfa332c6c03cd7d179",
+      "gitBlob": "67712d13d0647a60c7cb04def1e37bc8228f6381"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/custody.test.mjs",
+      "bytes": 1745,
+      "sha256": "69f0a0c20ca794cf9246d0f87b40bc17bddd4d2f8c8908fd64e329deb67e0f32",
+      "gitBlob": "a9f713e589eba5bf5ddbe6b8392b9c8351e17944"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/integration.test.mjs",
+      "bytes": 1258,
+      "sha256": "151131cd626a8fdb369927c3cedac0de3b7f2375836670ec2d184b8d7435ad8a",
+      "gitBlob": "e378fb7f3fe81823db6a2744da7dc833d78b91c6"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/original-reference.mjs",
+      "bytes": 1426,
+      "sha256": "2f1020d4262b2541d10dc1939e050dd500dd009eedff7f5357fbd32b91f41a8e",
+      "gitBlob": "a9194c449ec194b6217759e1f1e0068d17d23f9f"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/preflight-plan.test.mjs",
+      "bytes": 1641,
+      "sha256": "dc6c6464b0d6beef0a4ee13e5db647ccb3c783ceb6f4e315c3611efcbe0764dc",
+      "gitBlob": "f453e2dd5a1ec5dbd32883c988effbb7c51f9c98"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/read-abi.d.mts",
+      "bytes": 2382,
+      "sha256": "5fc09fc354d92ca8fa5ba20af271e8b2a7ab42f5ae997f6772a5808fbf16ccb1",
+      "gitBlob": "655d888cbdd43a9cf56c1feb0ab133b521dce9cb"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/read.test.mjs",
+      "bytes": 5434,
+      "sha256": "96e13a512a3bd6f8511153ba1d97ec32be850a816d218d20cad15ad7c585340f",
+      "gitBlob": "91a341922403bb53d24e7ddc85754faac7e0d69a"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/service.source.txt",
+      "bytes": 9396,
+      "sha256": "9fa6509a60acb771c27c5e228c218de2cd8e72d9e34440aa1e239eda494648bf",
+      "gitBlob": "df5aca3f2f7290625107fd966d6c2b92faea5332"
+    },
+    {
+      "repo": "web",
+      "path": "qa/property-authority-preflight-20261112-v1/verify-artifacts.py",
+      "bytes": 1840,
+      "sha256": "eb8e95dfa766b73a36d262b36dd4566eeb02267ab68f16aacceec64043b4357b",
+      "gitBlob": "f91e39f34492e5f51cdd55391732938d4e3d57a9"
+    },
+    {
+      "repo": "backend",
+      "path": "package.json",
+      "bytes": 769,
+      "sha256": "ab6748bad59686e1aded8685844c0bfe9bd0f494102e0579909193e79e83f1c9",
+      "gitBlob": "e713d0954ad566db436c537e945f5306fcedfd59"
+    },
+    {
+      "repo": "backend",
+      "path": "package-lock.json",
+      "bytes": 6355,
+      "sha256": "92fd39f54d9b788b442147e8f08b00ae4ede8eeca8d84c89ba2ba27cca971a82",
+      "gitBlob": "de7fa1bfd09a93109e40d4a007638f68a497d586"
+    },
+    {
+      "repo": "web",
+      "path": "manager-auth-v1.js",
+      "bytes": 36188,
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a",
+      "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4"
+    },
+    {
+      "repo": "web",
+      "path": "qa/first-property-20261112-v1/materialize.mjs",
+      "bytes": 4967,
+      "sha256": "150a3aef1e7246a511eb310712663012f3ee2e1b9afbc9c7f1b753e0e061baba",
+      "gitBlob": "5066cf0b50ca93f69575d782aa7999af65d49a65"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/codec.mjs",
+      "bytes": 5545,
+      "sha256": "e52815189b4450a62bce44dab5224bd292f06237447dead8d979cd759315b57f",
+      "gitBlob": "550f1fb4cab5b8279e234febe0924de8ae528672"
+    },
+    {
+      "repo": "web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/schema.json",
+      "bytes": 5955,
+      "sha256": "f58c3d54026b33b017e63783e333bbf1e98b3a2fa0c3758a681e5e3d7cd4f036",
+      "gitBlob": "af8b9ca4b127c276fc079a53e237b8e49412a5b7"
     }
   ]
 }

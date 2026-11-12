@@ -15,3 +15,5 @@ view-epoch.mjs aplica el patrón authGeneration del frontend original a la nueva
 materialize.mjs produce sólo dos overlays HTML inertes sobre las 18 salidas anteriores. Deben interpretarse con el root QA base identificado en OVERLAY-MANIFEST, no como sitio independiente. No se levanta servidor o navegador; los assets JS/CSS quedan intactos.
 
 bootstrap-abi.d.mts declara tipos de revisión; no se ejecutó TypeScript. Fuentes/SHAs, comandos efectivos, fallos y límites están en el cierre. ASUS-PREFLIGHT y sus 25 comandos se conservan sin cambios ni ejecución.
+
+Los contadores bigint de la nueva proyección admiten números seguros o texto decimal canónico acotado, sin coaccionar whitespace/exponentes/overflow. Se probó el adaptador con vectores de texto; el driver pg fijado en backend no está materializado aquí y no se ejecutó su parser ni una consulta PostgreSQL.
