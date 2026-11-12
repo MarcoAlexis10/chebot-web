@@ -1,0 +1,59 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532304]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: provider binding default stays closed without reading client credentials or callbacks
+ok 1 - provider binding default stays closed without reading client credentials or callbacks
+  ---
+  duration_ms: 0.815403
+  type: 'test'
+  ...
+# Subtest: exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata
+ok 2 - exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata
+  ---
+  duration_ms: 7.932127
+  type: 'test'
+  ...
+# Subtest: provider proof cannot be substituted by caller metadata or an unused attestor capability
+ok 3 - provider proof cannot be substituted by caller metadata or an unused attestor capability
+  ---
+  duration_ms: 1.159961
+  type: 'test'
+  ...
+# Subtest: same-claims refresh, changed session and changed attempt cannot reuse a provider binding
+ok 4 - same-claims refresh, changed session and changed attempt cannot reuse a provider binding
+  ---
+  duration_ms: 3.449008
+  type: 'test'
+  ...
+# Subtest: revocation while registering or claiming never authorizes an older operation
+ok 5 - revocation while registering or claiming never authorizes an older operation
+  ---
+  duration_ms: 1.80532
+  type: 'test'
+  ...
+# Subtest: provider response must correlate binding, attempt, expiry, authority and independent floors
+ok 6 - provider response must correlate binding, attempt, expiry, authority and independent floors
+  ---
+  duration_ms: 8.501832
+  type: 'test'
+  ...
+# Subtest: lost claim ACK and process restart cannot regenerate a dispatch authorization
+ok 7 - lost claim ACK and process restart cannot regenerate a dispatch authorization
+  ---
+  duration_ms: 0.600472
+  type: 'test'
+  ...
+# Subtest: token expiry during final await and late use of proof capability remain closed
+ok 8 - token expiry during final await and late use of proof capability remain closed
+  ---
+  duration_ms: 0.749275
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 104.231741

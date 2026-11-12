@@ -1,0 +1,233 @@
+{
+  "hooks": [
+    {
+      "table": "auth.users",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": null
+    },
+    {
+      "table": "auth.users",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": null
+    },
+    {
+      "table": "auth.users",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_auth_users_v2",
+      "tgtype": 16,
+      "criticalColumns": null
+    },
+    {
+      "table": "auth.sessions",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": null
+    },
+    {
+      "table": "auth.sessions",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": null
+    },
+    {
+      "table": "auth.sessions",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_auth_sessions_v2",
+      "tgtype": 16,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_accounts",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_accounts",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_accounts",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_public_concierge_accounts_v2",
+      "tgtype": 16,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_account_members",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_account_members",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_account_members",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_public_concierge_account_members_v2",
+      "tgtype": 16,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_manager_web_identities",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_manager_web_identities",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_manager_web_identities",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_public_concierge_manager_web_identities_v2",
+      "tgtype": 16,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_member_property_permissions",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_member_property_permissions",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_member_property_permissions",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_public_concierge_member_property_permissions_v2",
+      "tgtype": 16,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_properties",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_properties",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_properties",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_public_concierge_properties_v2",
+      "tgtype": 16,
+      "criticalColumns": null
+    },
+    {
+      "table": "public.concierge_stays",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": [
+        "id",
+        "account_id",
+        "property_id",
+        "status"
+      ]
+    },
+    {
+      "table": "public.concierge_stays",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": [
+        "id",
+        "account_id",
+        "property_id",
+        "status"
+      ]
+    },
+    {
+      "table": "public.concierge_stays",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_public_concierge_stays_v2",
+      "tgtype": 16,
+      "criticalColumns": [
+        "id",
+        "account_id",
+        "property_id",
+        "status"
+      ]
+    },
+    {
+      "table": "public.concierge_incidents",
+      "name": "incident_revision_before_v2",
+      "function": "revision_before_v2",
+      "tgtype": 62,
+      "criticalColumns": [
+        "id",
+        "account_id",
+        "property_id",
+        "stay_id"
+      ]
+    },
+    {
+      "table": "public.concierge_incidents",
+      "name": "incident_revision_changed_v2",
+      "function": "revision_changed_v2",
+      "tgtype": 44,
+      "criticalColumns": [
+        "id",
+        "account_id",
+        "property_id",
+        "stay_id"
+      ]
+    },
+    {
+      "table": "public.concierge_incidents",
+      "name": "incident_revision_update_v2",
+      "function": "revision_update_public_concierge_incidents_v2",
+      "tgtype": 16,
+      "criticalColumns": [
+        "id",
+        "account_id",
+        "property_id",
+        "stay_id"
+      ]
+    }
+  ],
+  "lockOrder": [
+    "shared fence 1129728581/1 before protected DML",
+    "authority clock row",
+    "admission row",
+    "intent/effect/attempt rows",
+    "business incident row"
+  ],
+  "counterBootstrap": "NOT_IMPLEMENTED; no invented initial revision",
+  "externalWitness": "Exact committed authority revision required; no equality with restrictionSequence is assumed",
+  "nativeObserved": false
+}

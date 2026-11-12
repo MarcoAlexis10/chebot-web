@@ -1,0 +1,129 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532304]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: provider binding default stays closed without reading client credentials or callbacks
+ok 1 - provider binding default stays closed without reading client credentials or callbacks
+  ---
+  duration_ms: 0.806133
+  type: 'test'
+  ...
+# Subtest: exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata
+ok 2 - exact SDK proof is consumed privately and no bearer, digest or arguments enter durable metadata
+  ---
+  duration_ms: 4.609081
+  type: 'test'
+  ...
+# Subtest: provider proof cannot be substituted by caller metadata or an unused attestor capability
+not ok 3 - provider proof cannot be substituted by caller metadata or an unused attestor capability
+  ---
+  duration_ms: 2.256733
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs:9:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   aud: 'authenticated',
+    +   exp: 1794402000,
+    +   iat: 1794398390,
+    +   is_anonymous: false,
+    +   iss: 'https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1',
+    +   role: 'authenticated',
+    +   session_id: '00000000-0000-4000-8000-000000000002',
+    +   sub: '00000000-0000-4000-8000-000000000001'
+    + }
+    - 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual:
+    sub: '00000000-0000-4000-8000-000000000001'
+    session_id: '00000000-0000-4000-8000-000000000002'
+    iss: 'https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1'
+    exp: 1794402000
+    iat: 1794398390
+    role: 'authenticated'
+    aud: 'authenticated'
+    is_anonymous: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs:9:488)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: same-claims refresh, changed session and changed attempt cannot reuse a provider binding
+ok 4 - same-claims refresh, changed session and changed attempt cannot reuse a provider binding
+  ---
+  duration_ms: 3.318563
+  type: 'test'
+  ...
+# Subtest: revocation while registering or claiming never authorizes an older operation
+not ok 5 - revocation while registering or claiming never authorizes an older operation
+  ---
+  duration_ms: 2.493833
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   aud: 'authenticated',
+    +   exp: 1794402000,
+    +   iat: 1794398390,
+    +   is_anonymous: false,
+    +   iss: 'https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1',
+    +   role: 'authenticated',
+    +   session_id: '00000000-0000-4000-8000-000000000002',
+    +   sub: '00000000-0000-4000-8000-000000000001'
+    + }
+    - 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual:
+    sub: '00000000-0000-4000-8000-000000000001'
+    session_id: '00000000-0000-4000-8000-000000000002'
+    iss: 'https://tjdgrzzeuuihhqnzvaox.supabase.co/auth/v1'
+    exp: 1794402000
+    iat: 1794398390
+    role: 'authenticated'
+    aud: 'authenticated'
+    is_anonymous: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/211931cbaa69/web/qa/incident-native17-review-20261111-v1/provider-binding.test.mjs:11:436)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: provider response must correlate binding, attempt, expiry, authority and independent floors
+ok 6 - provider response must correlate binding, attempt, expiry, authority and independent floors
+  ---
+  duration_ms: 8.930225
+  type: 'test'
+  ...
+# Subtest: lost claim ACK and process restart cannot regenerate a dispatch authorization
+ok 7 - lost claim ACK and process restart cannot regenerate a dispatch authorization
+  ---
+  duration_ms: 0.729296
+  type: 'test'
+  ...
+# Subtest: token expiry during final await and late use of proof capability remain closed
+ok 8 - token expiry during final await and late use of proof capability remain closed
+  ---
+  duration_ms: 0.684117
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 6
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 107.566945

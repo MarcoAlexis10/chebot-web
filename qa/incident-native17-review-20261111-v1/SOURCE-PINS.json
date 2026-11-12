@@ -1,0 +1,28 @@
+{
+  "web": "a5922972fa76a09fc210f553abbed53e2970d3bc",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "native17": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "directInputs": [
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/current-resolution.mjs",
+      "bytes": 8688,
+      "sha256": "7b73d59124b90d5ebed1d52323b1d3444975f79cbb4f01cb52e37d5c18722ec0",
+      "gitBlob": "9fdb622729fb18cad3c49410e927dbb62919bfff"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/fixtures.mjs",
+      "bytes": 2514,
+      "sha256": "d19fc92e2de356434887253569522019fda8378b34dbda94e0c0c495c405b6e3",
+      "gitBlob": "7e0264a6d1463cd1fb8946563fa34b76f9c3b504"
+    },
+    {
+      "path": "qa/incident-authority-closure-20261111-v1/incident-only-DO-NOT-APPLY.sql",
+      "bytes": 21434,
+      "sha256": "f16b23d7746b1f9248090f7e3a597ce4e744c6b6cadb4393c39cbf24f98d1c47",
+      "gitBlob": "a906c92547c5282cd700078c7e1a4faa5fad5d7f"
+    }
+  ],
+  "inheritedPins": "../incident-authority-closure-20261111-v1/SOURCE-PINS.json",
+  "originalPackageImmutableReference": true,
+  "sqlExecuted": false
+}

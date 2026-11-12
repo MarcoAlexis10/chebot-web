@@ -1,0 +1,8 @@
+{
+  "source": "../incident-authority-closure-20261111-v1/incident-only-DO-NOT-APPLY.sql",
+  "sourceSha256": "f16b23d7746b1f9248090f7e3a597ce4e744c6b6cadb4393c39cbf24f98d1c47",
+  "writerArity": 17,
+  "readerArity": 10,
+  "oldEntriesAreFallback": false,
+  "sqlExecuted": false
+}

@@ -1,0 +1,11 @@
+{
+  "auth.users": null,
+  "auth.sessions": null,
+  "public.concierge_accounts": null,
+  "public.concierge_account_members": null,
+  "public.concierge_manager_web_identities": null,
+  "public.concierge_member_property_permissions": null,
+  "public.concierge_properties": null,
+  "public.concierge_stays": ["id", "account_id", "property_id", "status"],
+  "public.concierge_incidents": ["id", "account_id", "property_id", "stay_id"]
+}
