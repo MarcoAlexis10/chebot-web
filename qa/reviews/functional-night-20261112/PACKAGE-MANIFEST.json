@@ -1,0 +1,448 @@
+{
+  "candidate": "functional-night-20261112-v1",
+  "fileCount": 72,
+  "files": [
+    {
+      "path": "qa/functional-night-20261112-v1/GENERATED-MANIFEST.json",
+      "bytes": 3533,
+      "sha256": "bcd443dadcd0a88f475fee7279317c7dd9c8b0848b7da3899459bf5ab67f3cad",
+      "gitBlob": "123713f8170d0c9ee1ed53d6a6a0a07d7f99156f"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/README.md",
+      "bytes": 3166,
+      "sha256": "8d348f6caffe334416ab5ae6a7c338fcb8352625a84dd2fd399bd9697be805c0",
+      "gitBlob": "0d5f67d325438f3a97342c8d286dad9d9bfb8cbe"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/SOURCE-PINS.json",
+      "bytes": 29365,
+      "sha256": "4dd61033dba8a1d7b44cffbeecd3e49be7a55fde453d419f69c3c7a8e7d5c5db",
+      "gitBlob": "1d1a6853908c60b33c6d426434e6170f937fb507"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/auth-ui.test.cjs",
+      "bytes": 3067,
+      "sha256": "ad30100543e3b61912d038fa18e95014007c04d04e1ffc40adac8476f2a1a676",
+      "gitBlob": "8c1f702e8f6399ff2cb3246b96885d2ab44884e9"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/compose.cjs",
+      "bytes": 1306,
+      "sha256": "ef73324113acaaa8dc59dc46103e56da8687cb6a0d8e19507c1c9d9474b51dde",
+      "gitBlob": "e61c8973270d97283120e20a23a3d3fcec6f0d8f"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/composition.test.mjs",
+      "bytes": 1691,
+      "sha256": "b7a2399cc63efbdb0fdb195faa28052be8ce1e6b7ce8b97f5ce7af2d35a486da",
+      "gitBlob": "dba2717ce11187541339af37775dbbc4f50e5d7e"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/core.mjs",
+      "bytes": 710,
+      "sha256": "1a188a5eed0e4212a88d7b0447eba3a42cff3d86432232f6e8da9d58ec71e5f8",
+      "gitBlob": "aff18ccd25e94eed6065cb5d04aaeba3e8835a9d"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/fixtures.mjs",
+      "bytes": 2859,
+      "sha256": "4cb5ea6d22538ffdcc3df1a178f0a4e0ccb46e6767b7ef1fc7bd05621c0680fc",
+      "gitBlob": "32251de2226d042321e4496d25bdbcd292c834d8"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/activar/index.html",
+      "bytes": 12692,
+      "sha256": "3b3870bf9db94b08968b94ec548a6cbc38fa7baba01c1a7ddbb337dbba05fcaf",
+      "gitBlob": "a47a8246d7355b2e6dadda314cb749e5c6ac5e47"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/altas/index.html",
+      "bytes": 22271,
+      "sha256": "d84e900677221d2796ab9283ec6def217e71029bb97f6d20048bb33d4a045446",
+      "gitBlob": "4d61fcfca5f03a8dd41e283a792ff50a1b0463a1"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/index.html",
+      "bytes": 9789,
+      "sha256": "cc4389ec61da16bd9985acf0a582ef9d7c623147e50f4def74c977e3681fa231",
+      "gitBlob": "d312c7a0d46ebad24619b13db769a4afa9181500"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager-auth.css",
+      "bytes": 2863,
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "gitBlob": "7a1de9e63a89d7abc376a2f5d193d1c71be07fce"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager-auth.js",
+      "bytes": 28100,
+      "sha256": "1929797b02ef9c0a9068c24f616c85c029f499e49cbd986b63c328ed86fdbbee",
+      "gitBlob": "128fab0afe3a9fb75fe41709d85da196704abfe7"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager-incidents.js",
+      "bytes": 34177,
+      "sha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50",
+      "gitBlob": "2a638fb3fc87c72f781b40ad6b589620bab3ddb8"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager-invite.css",
+      "bytes": 875,
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "gitBlob": "eb25e4f7e24a39e0bc3bdad389613c0e5dab905c"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager-invite.js",
+      "bytes": 9614,
+      "sha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8",
+      "gitBlob": "70946f1ae57d8192082f5e4a0c6ba7584975ca7c"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager-knowledge.js",
+      "bytes": 19718,
+      "sha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c",
+      "gitBlob": "e6028952b6040b8ae8d38d23c3abb4f22aa7791a"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager-requests.js",
+      "bytes": 20813,
+      "sha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4",
+      "gitBlob": "eabac77451df362f73084c7ac8d9606c64ee863d"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/manager.css",
+      "bytes": 3755,
+      "sha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a",
+      "gitBlob": "7d7b2bb37c6b5f5a8b307eda23c45a5e0e1c0670"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/planificar-estadia/index.html",
+      "bytes": 4022,
+      "sha256": "d4c3c671b364ad8325a926da2fb962b676b5b7201d96fbd0b13194c029a0f4f9",
+      "gitBlob": "306cf3bf71bf83ab2c0d6988429a94e20eb8d2ee"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/prearrival/index.html",
+      "bytes": 2682,
+      "sha256": "f8524b45af545a48289910dc1785be7b5081553ab71fd045ad63e252539828f2",
+      "gitBlob": "dfec0811aa6b2607c6b2217362e51dd54b525c41"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/propiedad/index.html",
+      "bytes": 4488,
+      "sha256": "6fd5ae8ecb7abbe5d19ffb694203ea15e33ecb3a1b6a26eacb62688e939bf955",
+      "gitBlob": "30aa81913687c236919947f90b0dae5a11d1b36b"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/qa-planning.css",
+      "bytes": 334,
+      "sha256": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a",
+      "gitBlob": "addaf4e5a513061a2a0281295d8ac797a65d482c"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/qa-planning.js",
+      "bytes": 504,
+      "sha256": "5e03ec2897059fb1289a4aaa3b9edc2f605a4846f1cb41467c6e859fc7e2ff77",
+      "gitBlob": "c3a9c661d46e059ea54c21050b26ea5705dbdd60"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/recorrido/index.html",
+      "bytes": 1973,
+      "sha256": "a3b51e3a82fcd29f41c80f74f08bc5fe6d3679de523fcedb90db40cd3f79b4cc",
+      "gitBlob": "bc48bfe7abfbea78075bd2d6be2c1b1f71eeef62"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/generated/manager/reset-password/index.html",
+      "bytes": 13664,
+      "sha256": "a37b111fc0a979cb9a9a893fbed3d3986682b393b598fc76918792265ae957e0",
+      "gitBlob": "1ce5daf78c0d638c0a9a962eb19a11c55023ecb0"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/lifecycle-abi.d.mts",
+      "bytes": 4046,
+      "sha256": "c57fd86b88e6d656ffb964e22399c2802d276afa3241416bd357599680c50f11",
+      "gitBlob": "0137db2bffb74f15cc6e8c3dad2525927f6b61ef"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/materialize.mjs",
+      "bytes": 5160,
+      "sha256": "69619cabbd50a3a2c929aee40e7837b4a144ced625960a82b0c53086afea88c5",
+      "gitBlob": "e6331a129e6aabb29cd41f6ec81460c3b1bd150f"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/permissions.mjs",
+      "bytes": 3306,
+      "sha256": "e3f54ec10a7ec1a9b9fd7a3675c84a136f32cc5f08a525966fd7aebae1153611",
+      "gitBlob": "a41f45aaeeb587c473b2189811d265f323deb0da"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/projection-permissions.test.mjs",
+      "bytes": 5839,
+      "sha256": "c685c4dddcea9a315e3e3442c1d49c5bc4879efeb373d64e66189a85faad5e1a",
+      "gitBlob": "60fc12769f5c305061daeee568bd5e1dc1eeb66c"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/property-lifecycle.mjs",
+      "bytes": 5860,
+      "sha256": "fc71deff6231f3db4eba39cddff83cbee52ef35ea0f762d683da2f4bbf0607ef",
+      "gitBlob": "9f3cb9a4f963bed1ba49b67075e492d0855b998a"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/property.test.mjs",
+      "bytes": 4117,
+      "sha256": "de1e931032dde54febc282bb8d488c4c2222655f5f5d465602059b578df96723",
+      "gitBlob": "c3adf689d83854922dd31ad3605d3e761fc6e6d9"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/public-projection.mjs",
+      "bytes": 2237,
+      "sha256": "47a7cdd89a1ddd125e7913f86ade7179fc2a1368c65a22431a80cb03e66b3064",
+      "gitBlob": "3df10f49f6ad45f06c02538bc8a13ca9aa42803d"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/restore-feedback.regression.test.cjs",
+      "bytes": 3122,
+      "sha256": "129a194a385943d26210ed0b1a93ef83fe742c55b0c63b38b0a244fcdbf1f4f8",
+      "gitBlob": "89a13f75f1415c768c9a643a9f3c8a9b9db6603d"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/stay-lifecycle.mjs",
+      "bytes": 5307,
+      "sha256": "59ac20ef2ce18e57d6d9dc97a4385d627cfcdce874c7f1c6219bb8ee8f129c7a",
+      "gitBlob": "a9d9c183540946898c44e3d917a0b211b217747d"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/stay.test.mjs",
+      "bytes": 4464,
+      "sha256": "d138bd7345f65304a770fd1854d203fd44c15646d98adc8ee1656f088db9e090",
+      "gitBlob": "bd7f1915bd1762100aee84a631fab2e47216af8c"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/view-lease.mjs",
+      "bytes": 2655,
+      "sha256": "3a8ae7c46a6a894801ff1d52d69eb4ed95e6baa2afb9729cd448c05cfc6930c4",
+      "gitBlob": "2874a41880cfc5696d5a5920b1490fa055e561c8"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/view-work-items.test.mjs",
+      "bytes": 5156,
+      "sha256": "5493fcde88e994bec5e207c8229539a0966ed4cf4655fc32c1d9e21c1c2292b7",
+      "gitBlob": "0694008159cb52b2500428623d9d4b51c9172f7a"
+    },
+    {
+      "path": "qa/functional-night-20261112-v1/work-items.mjs",
+      "bytes": 3455,
+      "sha256": "56270bf31e5469ce3f730010d5bffdd45b16dccc934d11d3ef5f0c03f0df9bd3",
+      "gitBlob": "b5c390bd7b1a5bb3c1677165dbce95c934d6ce88"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/CHECKPOINT.md",
+      "bytes": 4564,
+      "sha256": "7cc5dfe4961ef6e2949bee7338c0727504f8235b893b72464e2543c96906a465",
+      "gitBlob": "c133442c87558495e7785e504a728e16a39d9f5d"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/CLOSURE.md",
+      "bytes": 13093,
+      "sha256": "a4e5536ca7113cd44c5024191dc4590bda0a1272faa9270415aa1f937a1fea48",
+      "gitBlob": "6123808db3029a14ed1b859425e87c21ed392629"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/GO-NO-GO.md",
+      "bytes": 1992,
+      "sha256": "fb6b523ae41fbd2e926ee313bb18c21f5d60614d43af945d132ad62b4be62a98",
+      "gitBlob": "3f75f9c69b10c3947feab925ffc0f7745bee0b21"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/MANAGER-GUEST-JOURNEY.md",
+      "bytes": 4413,
+      "sha256": "3fa978dc1412d0999c45088481080a15b211d75ff9167ced5c3183f2dc7e28c0",
+      "gitBlob": "25f753e70dc9ca45a2be87ed019a16999ec528f2"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/NEXT-EXECUTION.md",
+      "bytes": 2611,
+      "sha256": "f3f20fc00fe26ebdb344cd8df66062a0e5f09035e69ba6aef821c12e5a8940e4",
+      "gitBlob": "ed846eaeb64619c6ec965b28334f6dcf5ad9f51e"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/PERMISSIONS-MATRIX.json",
+      "bytes": 4893,
+      "sha256": "65d2cd0d944f8100ec3296d9b89ba2c3f486fb70bc946e1a425cc04c1b2e4d76",
+      "gitBlob": "32f54c5bb119911d2fb02539a80fbec349bdb46d"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/PILOT-CHECKLIST.md",
+      "bytes": 2445,
+      "sha256": "f9429c89ffe7b78dee8091af77ebb4e1d3d39b28aed12ae4e7522e484bea8bfc",
+      "gitBlob": "bd27f6737ea92cc1ea9d83a6e49bad33554c6665"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/PREARRIVAL-CONTRACT.md",
+      "bytes": 3088,
+      "sha256": "26c1593bd4e87e05cc03f044d696e977706eedd056ca3fabab8a4b7ff2462ebf",
+      "gitBlob": "e7d3c25bf5a9ba4dcf96b73f7f877404d308f438"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/PROPERTY-LIFECYCLE.md",
+      "bytes": 5077,
+      "sha256": "0e314001a9fb7eefab822fdad8d8d7657a9731358474c7ea5c22865b1b6c8f09",
+      "gitBlob": "0ace06f23dfe2384684c40ec64c9d020dadd8dd2"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/RELEASE-CANDIDATE.json",
+      "bytes": 9218,
+      "sha256": "89ae64c731f3b7ed16806ef34f088117110593a44fe4d0e7592d0bc9c6f779e7",
+      "gitBlob": "e8461c74ea5edbaaf13105213f0f0d3596047046"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/ROOT-DOMAIN-FUNCTIONS.json",
+      "bytes": 422,
+      "sha256": "1dcc9f6ab038a09bf51606082342680fe3458340b146e08bdbb224174443b6dd",
+      "gitBlob": "e06d8583965501b89a1505c0562e55623e360bd6"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/STATIC-VERIFICATION.json",
+      "bytes": 661,
+      "sha256": "ad48f293a1076f8b2011e870d1a77eb50d3cfe145325acc5d3099ba32890b425",
+      "gitBlob": "93074e8e39d264104ad64790e9af3756adc07f27"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/STAY-LIFECYCLE.md",
+      "bytes": 4500,
+      "sha256": "3d03e62177e7aec3a6946d5323372daedae1f236ebfcf441e9fa87714645ebb0",
+      "gitBlob": "4a55a6097cbd35616b292dc389b32569b5c0ef5b"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/TEST-EVIDENCE.json",
+      "bytes": 31986,
+      "sha256": "1029ab67ae6e1bc26f82ab612f9b747ba034984fed73b61932afe8d76f640e90",
+      "gitBlob": "62f946433978d0aff0b39117567feaa6e59dd60d"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/auth-before.tap",
+      "bytes": 2676,
+      "sha256": "9d9a9c765dfd34f28511ea2c0d85488146069fa126619adb16c00dd916192cc0",
+      "gitBlob": "fa9a858d1c6aeeefcc1c7cbc8c4a4ab4e36bfa17"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/auth-first.tap",
+      "bytes": 1558,
+      "sha256": "9c976df955fcaca965ab6c2ec7cda7677133ff2346870f008342f391bbe7fc01",
+      "gitBlob": "0a925181dddf64eb9a4a8f761f394228773243f5"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/composition-first.tap",
+      "bytes": 1032,
+      "sha256": "cd64c834e679629598fb3366a2d145d09cfd268fbdfb41b369f94e71050ec581",
+      "gitBlob": "21faa601d0313105fcc19478bf8300d04bc75385"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/inventory-before.tap",
+      "bytes": 1799,
+      "sha256": "b25c146a373cfae36fac09c20fa4cf2ab40b4984613e65123fc1c1912fc44275",
+      "gitBlob": "3eacfcf9228adafa18ad81051498a5a78626f43f"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/lifecycle-first.tap",
+      "bytes": 2486,
+      "sha256": "caacb78dd65dd73aa181aff1b316265de8b9e9bbf8e09acadd04561f664c76ce",
+      "gitBlob": "f8e9828b50ebe07fed262e5800b2ecba1c1e3070"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/lifecycle-session-final.tap",
+      "bytes": 2488,
+      "sha256": "38b2f4888ba765f89a89138bd74394ca3c37c7f5fe4df48bf72f282ae7b3adcf",
+      "gitBlob": "4628a8e78a06d109e764158ffefe9b1b2f1be9c4"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/materialize.log",
+      "bytes": 644,
+      "sha256": "efcda117e90f643646cc5489f8aee5136e9e267e6fa34b9942c9bb74626a8e75",
+      "gitBlob": "1a8e472f0f2223e1f43943051fa28b217718cfa2"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/projection-permissions-first.tap",
+      "bytes": 1847,
+      "sha256": "6e730a1540165d06e9bf9ca6795b284423705ed859b82364d5832186c6003dfc",
+      "gitBlob": "6b5c36cf68029fcd68ea7e0206d4c6e4f832b987"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/property-unicode-before.tap",
+      "bytes": 1562,
+      "sha256": "cf646cc0d6810daa5b38bce713f1aa8192772af0d07a343fc09e97a9c120d4d9",
+      "gitBlob": "c39983d56e09f7b0c9da2976803f469c6a83c372"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/property-unicode-final.tap",
+      "bytes": 1808,
+      "sha256": "f5dc5da5bbaf91705961302c1006b11b07aed2d3209b9dc67f5bce71ce62957b",
+      "gitBlob": "054c09af7d99c21cb2e01c333e88961f6d925e6d"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/property-unicode-roundtrip-final.tap",
+      "bytes": 970,
+      "sha256": "a51e8a8ecf98046af7c9aeba91cb2a521714f8d74f78853702663d9675ad0da1",
+      "gitBlob": "0d3cb64dcd8579aff84133d4b40a98678ab47a05"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/restore-regression.tap",
+      "bytes": 1410,
+      "sha256": "a3f872e4e19dcd4d835d17394a670afbad9512a9aa90c5b017f75067e3253f1a",
+      "gitBlob": "23c9e74dab43c48e2910bca980af40e4cc66c12a"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/shared-permission-schema-final.tap",
+      "bytes": 4787,
+      "sha256": "bbb6b020a624d3c4c418923924b117371817d7f3e6878d2e0400c968282a1add",
+      "gitBlob": "2458867a1e0c109abd95edd915d9052bd2104777"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/syntax-final.log",
+      "bytes": 1038,
+      "sha256": "514284b30fd01288d10150d4488270e78ca7bf8d011e6c7e4ad58653fd1b11c7",
+      "gitBlob": "622aa511f911d44b976ad8a1ed2ff1b13e8d2b4c"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/syntax.log",
+      "bytes": 1038,
+      "sha256": "514284b30fd01288d10150d4488270e78ca7bf8d011e6c7e4ad58653fd1b11c7",
+      "gitBlob": "622aa511f911d44b976ad8a1ed2ff1b13e8d2b4c"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/view-clock-before-source.txt",
+      "bytes": 2555,
+      "sha256": "db6bde164c5453afcb30023ac8a8e3ede35577abea1f2a26fa8db43029f514d4",
+      "gitBlob": "4f304a3ba045f1cfe8ff0c65becfc5f9df126afc"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/view-clock-before.tap",
+      "bytes": 1787,
+      "sha256": "4920cc46089ad8ea80de41200c43ca6ed526449dd1edf5f77fa991867eb81a2b",
+      "gitBlob": "b0f71eae6b184bf3e9f8c505ec518838ec1e52ab"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/view-work-items-final.tap",
+      "bytes": 1854,
+      "sha256": "a334943ad15683c2738aa9732c9809a4c411b44ea25771c2487f88f846127670",
+      "gitBlob": "c68878b2654a0a158d1c393353a34c161d6116bf"
+    },
+    {
+      "path": "qa/reviews/functional-night-20261112/logs/view-work-items-first.tap",
+      "bytes": 1630,
+      "sha256": "995f4f3e3f3739f8c18d2056513602697e58ce855d285012315749c7de80ce1b",
+      "gitBlob": "af7640589a3ba6206070ccd457cdcfe45403e99e"
+    }
+  ],
+  "selfHash": "excluded; verify this manifest by immutable remote Git tree",
+  "allowedPrefixes": [
+    "qa/functional-night-20261112-v1/",
+    "qa/reviews/functional-night-20261112/"
+  ],
+  "actualAuthVerified": false,
+  "browserExecuted": false,
+  "sqlExecuted": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO"
+}
