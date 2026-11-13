@@ -9,7 +9,7 @@
     "14fedee2f65c74ce05c805b5b3c3fdc9aa3b3948",
     "65877f04ccc601828f65e98af9a721d1fedf8590"
   ],
-  "consolidationCommit": "RESOLVE_FROM_CLOSURE_IMMUTABLE_URL_AND_PARENT",
+  "consolidationCommit": "cdb6a22dda827383b9ccae0f5160e4ca70b3774c",
   "baseCandidate": "qa/reviews/functional-night-20261112/RELEASE-CANDIDATE.json",
   "baseJourney": "qa/property-bootstrap-20261112-v1/materialize.mjs",
   "entry": "qa/pilot-integration-20261112-v1/materialize.mjs",
@@ -48,5 +48,6 @@
     "Free": "separate for other cities",
     "launchDate": null
   },
-  "activationRollback": "Descriptive prior plan retained; no installer, deploy, ref to main, service or activation performed."
+  "activationRollback": "Descriptive prior plan retained; no installer, deploy, ref to main, service or activation performed.",
+  "finalClosureCommit": "CONTAINING_COMMIT_OF_IMMUTABLE_CLOSURE_URL"
 }

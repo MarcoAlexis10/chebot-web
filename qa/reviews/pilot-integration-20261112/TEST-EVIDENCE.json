@@ -207,5 +207,6 @@
       "classification": "INTERMEDIATE_CORRECTED_FAILURE"
     }
   ],
-  "betaDecision": "NO-GO"
+  "betaDecision": "NO-GO",
+  "consolidationCommit": "cdb6a22dda827383b9ccae0f5160e4ca70b3774c"
 }
