@@ -1,0 +1,55 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532304]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: uncertain knowledge decision reaches UNKNOWN after headers stall even if transport ignores abort
+not ok 1 - uncertain knowledge decision reaches UNKNOWN after headers stall even if transport ignores abort
+  ---
+  duration_ms: 4.652814
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/pilot-integration-20261112-v1/knowledge-deadline.test.cjs:6:39'
+  failureType: 'testCodeFailure'
+  error: |-
+    abort-only mutation remained pending; UNKNOWN was never presented
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/211931cbaa69/web/qa/pilot-integration-20261112-v1/knowledge-deadline.test.cjs:16:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: uncertain knowledge decision reaches UNKNOWN after body stall even if transport ignores abort
+not ok 2 - uncertain knowledge decision reaches UNKNOWN after body stall even if transport ignores abort
+  ---
+  duration_ms: 2.475062
+  type: 'test'
+  location: '/workspace/scratch/211931cbaa69/web/qa/pilot-integration-20261112-v1/knowledge-deadline.test.cjs:6:39'
+  failureType: 'testCodeFailure'
+  error: |-
+    abort-only mutation remained pending; UNKNOWN was never presented
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/211931cbaa69/web/qa/pilot-integration-20261112-v1/knowledge-deadline.test.cjs:16:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 142.487841

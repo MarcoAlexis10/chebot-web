@@ -1,0 +1,107 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532304]", "childNetns": "net:[4026532235]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: current 403 clears access but reports permission rejection without claiming session expiry or revocation
+ok 1 - current 403 clears access but reports permission rejection without claiming session expiry or revocation
+  ---
+  duration_ms: 4.562771
+  type: 'test'
+  ...
+# Subtest: logout clears prior session/scope labels and private rows immediately even when provider logout is unconfirmed
+ok 2 - logout clears prior session/scope labels and private rows immediately even when provider logout is unconfirmed
+  ---
+  duration_ms: 3.596722
+  type: 'test'
+  ...
+# Subtest: late restore response after an explicit denial cannot reopen rows, scope labels or an uncertain invitation
+ok 3 - late restore response after an explicit denial cannot reopen rows, scope labels or an uncertain invitation
+  ---
+  duration_ms: 1.765141
+  type: 'test'
+  ...
+# Subtest: properties response from a changed account/member/role cannot populate the prior panel
+ok 4 - properties response from a changed account/member/role cannot populate the prior panel
+  ---
+  duration_ms: 12.556678
+  type: 'test'
+  ...
+# Subtest: stays response from a changed account/member/role cannot populate the prior panel
+ok 5 - stays response from a changed account/member/role cannot populate the prior panel
+  ---
+  duration_ms: 10.053594
+  type: 'test'
+  ...
+# Subtest: matching read DTOs preserve the reviewed UI context without authorizing mutations
+ok 6 - matching read DTOs preserve the reviewed UI context without authorizing mutations
+  ---
+  duration_ms: 2.974291
+  type: 'test'
+  ...
+# Subtest: 403 from requests, incidents and knowledge remains a permission denial at the shared Auth consumer
+ok 7 - 403 from requests, incidents and knowledge remains a permission denial at the shared Auth consumer
+  ---
+  duration_ms: 9.05037
+  type: 'test'
+  ...
+# Subtest: current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again
+ok 8 - current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again
+  ---
+  duration_ms: 7.486356
+  type: 'test'
+  ...
+# Subtest: invitation session denial clears UI at headers even when its JSON body never arrives
+ok 9 - invitation session denial clears UI at headers even when its JSON body never arrives
+  ---
+  duration_ms: 3.972477
+  type: 'test'
+  ...
+# Subtest: BFCache restore accepts only fresh stay controls and preserves UNKNOWN across navigation
+ok 10 - BFCache restore accepts only fresh stay controls and preserves UNKNOWN across navigation
+  ---
+  duration_ms: 5.260904
+  type: 'test'
+  ...
+# Subtest: uncertain knowledge decision reaches UNKNOWN after headers stall even if transport ignores abort
+ok 11 - uncertain knowledge decision reaches UNKNOWN after headers stall even if transport ignores abort
+  ---
+  duration_ms: 5.692051
+  type: 'test'
+  ...
+# Subtest: uncertain knowledge decision reaches UNKNOWN after body stall even if transport ignores abort
+ok 12 - uncertain knowledge decision reaches UNKNOWN after body stall even if transport ignores abort
+  ---
+  duration_ms: 3.123301
+  type: 'test'
+  ...
+# Subtest: requests metadata must match the Auth view context before rendering
+ok 13 - requests metadata must match the Auth view context before rendering
+  ---
+  duration_ms: 15.845174
+  type: 'test'
+  ...
+# Subtest: incidents metadata must match the Auth view context before rendering
+ok 14 - incidents metadata must match the Auth view context before rendering
+  ---
+  duration_ms: 13.013684
+  type: 'test'
+  ...
+# Subtest: knowledge metadata must match the Auth view context before rendering
+ok 15 - knowledge metadata must match the Auth view context before rendering
+  ---
+  duration_ms: 9.31667
+  type: 'test'
+  ...
+# Subtest: incident learning enrichment cannot import a receipt from a changed account
+ok 16 - incident learning enrichment cannot import a receipt from a changed account
+  ---
+  duration_ms: 2.397207
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 195.844543
