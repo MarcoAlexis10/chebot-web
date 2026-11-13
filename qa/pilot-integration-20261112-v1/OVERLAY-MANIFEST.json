@@ -1,0 +1,46 @@
+{
+  "classification": "RETAINED_QA_OVERLAY_NOT_OPERATIONAL_BUILD",
+  "basePackage": "qa/property-bootstrap-20261112-v1/materialize.mjs",
+  "webSource": "bca48ca6d32bbca15a1357114db46cf2fa0c23fa",
+  "backendSource": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "files": [
+    {
+      "path": "overlays/manager/manager-auth.js",
+      "bytes": 29339,
+      "sha256": "fbba396bbee1c9e66894311b981e313836bb83d8b2b5d3c07defb254594c8008",
+      "baseSha256": "1929797b02ef9c0a9068c24f616c85c029f499e49cbd986b63c328ed86fdbbee"
+    },
+    {
+      "path": "overlays/manager/manager-requests.js",
+      "bytes": 21504,
+      "sha256": "6ad718624c4653143b5a6d7239d10c6371a31497bcb3dbfc641b439be87c18d5",
+      "baseSha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4"
+    },
+    {
+      "path": "overlays/manager/manager-incidents.js",
+      "bytes": 36091,
+      "sha256": "9c5a27489141cb56cf74458337499fa309cef3cc325e2921ac06a19312299e4a",
+      "baseSha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50"
+    },
+    {
+      "path": "overlays/manager/manager-knowledge.js",
+      "bytes": 21333,
+      "sha256": "9df7579bdfaa7af9d764e1dd63156ddc61ca90838caa41825828cfd6e4d18f19",
+      "baseSha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c"
+    },
+    {
+      "path": "overlays/manager/manager-invite.js",
+      "bytes": 9809,
+      "sha256": "21ca137edd575083a601fc5568efd42028e8f2b26fcde9ea0017326cbcdde1d8",
+      "baseSha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8"
+    }
+  ],
+  "mergedFiles": 18,
+  "networkAllowed": false,
+  "formsInert": true,
+  "actualAuthVerified": false,
+  "browserExecuted": false,
+  "sqlExecuted": false,
+  "dispatchPerformed": false,
+  "betaDecision": "NO-GO"
+}

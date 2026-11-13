@@ -1,0 +1,211 @@
+{
+  "requestDate": "2026-11-12",
+  "executionDateUtc": "2026-11-13",
+  "node": "24.22.1",
+  "webInitial": "bca48ca6d32bbca15a1357114db46cf2fa0c23fa",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "qaLab": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "newUniqueCases": {
+    "PASS": 12,
+    "FAIL": 0,
+    "SKIP": 0,
+    "names": [
+      "properties response from a changed account/member/role cannot populate the prior panel",
+      "stays response from a changed account/member/role cannot populate the prior panel",
+      "matching read DTOs preserve the reviewed UI context without authorizing mutations",
+      "403 from requests, incidents and knowledge remains a permission denial at the shared Auth consumer",
+      "BFCache restore accepts only fresh stay controls and preserves UNKNOWN across navigation",
+      "uncertain knowledge decision reaches UNKNOWN after headers stall even if transport ignores abort",
+      "uncertain knowledge decision reaches UNKNOWN after body stall even if transport ignores abort",
+      "requests metadata must match the Auth view context before rendering",
+      "incidents metadata must match the Auth view context before rendering",
+      "knowledge metadata must match the Auth view context before rendering",
+      "incident learning enrichment cannot import a receipt from a changed account",
+      "compatible section metadata remains displayable; a late prior-session response cannot close a newer view"
+    ]
+  },
+  "selectedPriorRegressions": {
+    "PASS": 5,
+    "FAIL": 0,
+    "SKIP": 0,
+    "names": [
+      "current 403 clears access but reports permission rejection without claiming session expiry or revocation",
+      "logout clears prior session/scope labels and private rows immediately even when provider logout is unconfirmed",
+      "late restore response after an explicit denial cannot reopen rows, scope labels or an uncertain invitation",
+      "current invitation 401 invalidates visible private UI without clearing uncertain intent or dispatching again",
+      "invitation session denial clears UI at headers even when its JSON body never arrives"
+    ]
+  },
+  "deduplication": "checkpoint2.tap has 16 PASS; sections-final.tap has 5 PASS with 4 overlapping cases. Total unique current cases = 17, not 21. Earlier repeated passes are not additional cases.",
+  "baseline": "10 distinct failing assertions and 2 passing controls across baseline logs; expected failures demonstrate old UI behavior. Enrichment assertion was corrected; intermediate fixture/patch failures retained separately.",
+  "executedClassification": [
+    "original generated consumer functions with QA patches",
+    "Node VM and synthetic DOM/storage/fetch",
+    "controlled deadline callbacks; no wall-clock/native race",
+    "static source/hash/assembly checks"
+  ],
+  "isolation": {
+    "launcher": "qa/integral-held-v1/run-isolated.py",
+    "newUserAndNetworkNamespaces": true,
+    "externalIpv4Routes": 0,
+    "externalProbeErrno": 101,
+    "inheritedCredentials": false,
+    "loopbackEnabled": false
+  },
+  "staticAssembly": {
+    "PASS": true,
+    "sourceFilesPinned": 57,
+    "html": 8,
+    "externalScriptsParsed": 6,
+    "inlineScriptsParsed": 3,
+    "localReferences": 103,
+    "changedAssets": 5,
+    "fullGeneratedAssetsCommitted": false
+  },
+  "notRun": {
+    "browser": "NOT_RUN; four existing cases retained, no Chromium retry",
+    "httpTransport": "NOT_RUN; no HTTP service launched",
+    "managedAuth": "NOT_RUN",
+    "sql": "NOT_RUN",
+    "Native17_N01_N12": "NOT_AUTHORIZED / NOT_RUN",
+    "BPF01_BPF04": "NOT_AUTHORIZED / NOT_RUN",
+    "A2Restore": "NOT_RUN",
+    "commitJournalWitness": "NOT_ACCREDITED"
+  },
+  "logs": [
+    {
+      "path": "evidence/assembly-final.log",
+      "sha256": "f6150c5216db33954fd1c6da4da937477fda1bb38e3a1840ded176517bc962c1",
+      "tapPass": null,
+      "tapFail": null,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/assembly.log",
+      "sha256": "343e49d3e4a00fad58fe4c9f8998dc1d802222a029e99c79041f8a753da5bad6",
+      "tapPass": null,
+      "tapFail": null,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/auth-affected.tap",
+      "sha256": "71223c517d61f760cabc141fd77340bc3fa62bb29bb5905b0a496553442cb259",
+      "tapPass": 3,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/checkpoint2-enrichment-fail.tap",
+      "sha256": "9165fe212c657eccb34d1a63f651ab86fb73535a8768dd5959846f681b05abf2",
+      "tapPass": 15,
+      "tapFail": 1,
+      "classification": "INTERMEDIATE_CORRECTED_FAILURE"
+    },
+    {
+      "path": "evidence/checkpoint2.tap",
+      "sha256": "9d32b83d6cea54033fe038aaf2effaa0f85a032b935c968e99130828aba0c545",
+      "tapPass": 16,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/context-after.tap",
+      "sha256": "fc5d6ac7a895204ad064532e48faeb4b95999bc3cd7c1fdacea75978cbd6a328",
+      "tapPass": 4,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/context-before.tap",
+      "sha256": "2000f3f29c4a4648543a9a7d52e083ee60a07808d2e1d595100908fd252d76d0",
+      "tapPass": 1,
+      "tapFail": 3,
+      "classification": "BASELINE_EXPECTED_FAILURE"
+    },
+    {
+      "path": "evidence/enrichment-before-corrected-assertion.tap",
+      "sha256": "ff35b0e3e3e38e1c631f694d373e9ebb094780e3ade23070f1189b3924e32272",
+      "tapPass": 0,
+      "tapFail": 1,
+      "classification": "BASELINE_EXPECTED_FAILURE"
+    },
+    {
+      "path": "evidence/enrichment-before.tap",
+      "sha256": "80fe35a7fff3adca6efbaf98db3f363231148ccbe4174205f5578a9ab2b1e468",
+      "tapPass": 0,
+      "tapFail": 1,
+      "classification": "BASELINE_EXPECTED_FAILURE"
+    },
+    {
+      "path": "evidence/invite-after.tap",
+      "sha256": "4275a0cc0aff29cc15ba222f661dd65214a2b571994fe5a744c81053685dcd1f",
+      "tapPass": 1,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/invite-before.tap",
+      "sha256": "16006886f5ce5609971ca534a2550cd1d4484c93bb1138d9d3ca2e8ca43462f9",
+      "tapPass": 0,
+      "tapFail": 1,
+      "classification": "BASELINE_EXPECTED_FAILURE"
+    },
+    {
+      "path": "evidence/knowledge-after.tap",
+      "sha256": "bd27e98119fdd527f766255a7a4c19561b6f295b9c08da2bc2e7af18c887fcee",
+      "tapPass": 2,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/knowledge-before.tap",
+      "sha256": "713a0128d939bf96cd6c5b4a9460cb1e67cdb581f86a0d62ce6acb8e833f01b9",
+      "tapPass": 0,
+      "tapFail": 2,
+      "classification": "BASELINE_EXPECTED_FAILURE"
+    },
+    {
+      "path": "evidence/materialize.log",
+      "sha256": "fb556869bf5bb8e3ece19f937e5d721432dba4f4d52305459a730ebde053d207",
+      "tapPass": null,
+      "tapFail": null,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/sections-after.tap",
+      "sha256": "84334d344b0249d79db03ae2547a0d611bee5d364196ba3fce03ed49bd3477cf",
+      "tapPass": 3,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/sections-before.tap",
+      "sha256": "a1c39703c03ae4967f6c71f7de363971ac4f86ecf09edbbbabf4d064453b2bef",
+      "tapPass": 0,
+      "tapFail": 3,
+      "classification": "BASELINE_EXPECTED_FAILURE"
+    },
+    {
+      "path": "evidence/sections-control-before.tap",
+      "sha256": "789e376bc07b354a3de56f29daf0eb6c997034c8d89d4c122a8cdf2cdcc19e0f",
+      "tapPass": 1,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/sections-final.tap",
+      "sha256": "4cbcae5916ebd658e89e50d37a19744251d13d409f25b38ce0335ce3ecca302e",
+      "tapPass": 5,
+      "tapFail": 0,
+      "classification": "EXECUTED_OFFLINE"
+    },
+    {
+      "path": "evidence/sections-patch-drift-fail.tap",
+      "sha256": "0df36b388d04c261c257bea0531a65e73d84073b3f9f57a7a4b6a5e2dfb803e1",
+      "tapPass": 0,
+      "tapFail": 1,
+      "classification": "INTERMEDIATE_CORRECTED_FAILURE"
+    }
+  ],
+  "betaDecision": "NO-GO"
+}

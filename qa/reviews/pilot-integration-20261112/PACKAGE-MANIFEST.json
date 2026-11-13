@@ -1,0 +1,165 @@
+{
+  "classification": "CODE_AND_EXECUTION_LOG_HASHES_NOT_OPERATIONAL_EVIDENCE",
+  "files": [
+    {
+      "path": "qa/pilot-integration-20261112-v1/.gitignore",
+      "bytes": 85,
+      "sha256": "9a2a8fc4c172eb3665a625aa5ce5407623066f79e3e87316caf73b313baf9759"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/OVERLAY-MANIFEST.json",
+      "bytes": 1782,
+      "sha256": "fbd900a3fd925604007e0671701d2ecc53c2928b908b8a96a4fa33671ac7fa93"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/README.md",
+      "bytes": 2693,
+      "sha256": "262ac5dca451f77e0a68c8b1a75160af6be351f9a522c2a7f0deb29e96685acf"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/SOURCE-PINS.json",
+      "bytes": 14880,
+      "sha256": "642449be403419ee2237b6586db021bb2cfa4157f81be540f117b8f0534b501b"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/auth-affected.regression.cjs",
+      "bytes": 619,
+      "sha256": "144db71587790390451cd11ab83df63a5dff9bd321191087da913bf17221e45c"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/compose.cjs",
+      "bytes": 7568,
+      "sha256": "6fb3502675e02556ab9faee0ba32d4e91c8b9f4d949c22cacce91171a0e8b955"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/context.test.cjs",
+      "bytes": 3157,
+      "sha256": "fa16e84f7a36812456ace02c6604f212555d827fca49bfd79fe8b04081b397d9"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/invite-affected.regression.cjs",
+      "bytes": 637,
+      "sha256": "e9487c18fa0d8b73ed7ce67ed0dd57729ddb75e791a16dddee8f1da1080f0616"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/invite-bfcache.test.cjs",
+      "bytes": 2224,
+      "sha256": "b7e7cc5e481c5993a111bf1f63c9ba5d606e1ebd07fbf733726d4bb0bf29b1bd"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/knowledge-deadline.test.cjs",
+      "bytes": 2707,
+      "sha256": "c1fbf79e1370b0d8b5eb7ed662abb7047a081fc1214664488d81528af472137d"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/materialize.mjs",
+      "bytes": 1964,
+      "sha256": "1ab3c4df77c5f434a32303d624a2aac0bde9d1b8261b8d7883deae052af38c34"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/section-context.test.cjs",
+      "bytes": 4787,
+      "sha256": "354ed54ed7fdc42d6193c04b11fa8c6a832e15047243e082a59b47d2eef6c815"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/verify-composition.mjs",
+      "bytes": 2575,
+      "sha256": "7a74481b1adb743ac3b366a8e7eb70ed9acc7d7ee7c5f8fc21a6d9af4077451a"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/assembly-final.log",
+      "bytes": 806,
+      "sha256": "f6150c5216db33954fd1c6da4da937477fda1bb38e3a1840ded176517bc962c1"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/assembly.log",
+      "bytes": 787,
+      "sha256": "343e49d3e4a00fad58fe4c9f8998dc1d802222a029e99c79041f8a753da5bad6"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/auth-affected.tap",
+      "bytes": 1559,
+      "sha256": "71223c517d61f760cabc141fd77340bc3fa62bb29bb5905b0a496553442cb259"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/checkpoint2-enrichment-fail.tap",
+      "bytes": 5231,
+      "sha256": "9165fe212c657eccb34d1a63f651ab86fb73535a8768dd5959846f681b05abf2"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/checkpoint2.tap",
+      "bytes": 4680,
+      "sha256": "9d32b83d6cea54033fe038aaf2effaa0f85a032b935c968e99130828aba0c545"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/context-after.tap",
+      "bytes": 1683,
+      "sha256": "fc5d6ac7a895204ad064532e48faeb4b95999bc3cd7c1fdacea75978cbd6a328"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/context-before.tap",
+      "bytes": 3699,
+      "sha256": "2000f3f29c4a4648543a9a7d52e083ee60a07808d2e1d595100908fd252d76d0"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/enrichment-before-corrected-assertion.tap",
+      "bytes": 1534,
+      "sha256": "ff35b0e3e3e38e1c631f694d373e9ebb094780e3ade23070f1189b3924e32272"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/enrichment-before.tap",
+      "bytes": 1484,
+      "sha256": "80fe35a7fff3adca6efbaf98db3f363231148ccbe4174205f5578a9ab2b1e468"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/invite-after.tap",
+      "bytes": 953,
+      "sha256": "4275a0cc0aff29cc15ba222f661dd65214a2b571994fe5a744c81053685dcd1f"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/invite-before.tap",
+      "bytes": 1557,
+      "sha256": "16006886f5ce5609971ca534a2550cd1d4484c93bb1138d9d3ca2e8ca43462f9"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/knowledge-after.tap",
+      "bytes": 1226,
+      "sha256": "bd27e98119fdd527f766255a7a4c19561b6f295b9c08da2bc2e7af18c887fcee"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/knowledge-before.tap",
+      "bytes": 2532,
+      "sha256": "713a0128d939bf96cd6c5b4a9460cb1e67cdb581f86a0d62ce6acb8e833f01b9"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/materialize.log",
+      "bytes": 649,
+      "sha256": "fb556869bf5bb8e3ece19f937e5d721432dba4f4d52305459a730ebde053d207"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/sections-after.tap",
+      "bytes": 1327,
+      "sha256": "84334d344b0249d79db03ae2547a0d611bee5d364196ba3fce03ed49bd3477cf"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/sections-before.tap",
+      "bytes": 3280,
+      "sha256": "a1c39703c03ae4967f6c71f7de363971ac4f86ecf09edbbbabf4d064453b2bef"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/sections-control-before.tap",
+      "bytes": 986,
+      "sha256": "789e376bc07b354a3de56f29daf0eb6c997034c8d89d4c122a8cdf2cdcc19e0f"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/sections-final.tap",
+      "bytes": 1829,
+      "sha256": "4cbcae5916ebd658e89e50d37a19744251d13d409f25b38ce0335ce3ecca302e"
+    },
+    {
+      "path": "qa/reviews/pilot-integration-20261112/evidence/sections-patch-drift-fail.tap",
+      "bytes": 2338,
+      "sha256": "0df36b388d04c261c257bea0531a65e73d84073b3f9f57a7a4b6a5e2dfb803e1"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Deterministic outputs stay reproducible without copying the application.
+overlays/

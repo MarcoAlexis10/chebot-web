@@ -1,0 +1,350 @@
+{
+  "web": "bca48ca6d32bbca15a1357114db46cf2fa0c23fa",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "qaLab": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "sources": [
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-beta-clock-runtime-guard.js",
+      "gitBlob": "d001a355e1b8ce76b32c82b9f6caa99a14604e59",
+      "sha256": "28fe580d341c5e3af9fb9c35cf56a2f79a1899f96f452204215240ec49d6c0ec"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-guest-reply-guard.js",
+      "gitBlob": "4b540e2c28f3da3efb4ba5a5e6ba59bdf5e63a23",
+      "sha256": "cad6dddf4fb7dc3cde048671eaae47e8d5425a3ac90c68a3ed4e8f841a4b0baf"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-auth-session.js",
+      "gitBlob": "cc2ad91c73d821e9de9a3f59efc76753d1b2e3e1",
+      "sha256": "5345e5570f9ec38281c650e611678f22c0e886da7b08bec5d5424c0a2a34fc07"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-guest-phone-change.js",
+      "gitBlob": "47239df7e1a2ac4137a79ede8c7cb7f64c50e1ba",
+      "sha256": "e90b94701e703f559946de93a39edaa0a4a785ab188176afa359d9fccb651942"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-http-intent.js",
+      "gitBlob": "d0deb1aed55f27858de0d606811087b6757da61c",
+      "sha256": "8396a6e2dbb4346a5e298bbc63f074e4156fac6793fc2e40303be82a1bdefcd7"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-incidents.js",
+      "gitBlob": "8e099967b570c2a895c7179714498b0a1f19f558",
+      "sha256": "af7b6716e83982ba9f521a502a05f22599f80f50a0e56ec5bc566770d00b5489"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-knowledge.js",
+      "gitBlob": "9bd518bea2ee86fcbf2e525f4d5565b3c855528e",
+      "sha256": "0098f37bb62dd9ef587beb707389ed38606e98a44ca98bfbea0a6fdd7ecb5522"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-properties.js",
+      "gitBlob": "60e7039b0683ea1d3dd06c1b9c3c9185e10daa56",
+      "sha256": "fd71eb201cd77a8479cf1830fc5eb285056be2a1830cfd1378a84705fdb0a739"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-requests.js",
+      "gitBlob": "a0cebf4b07d7dcac37928dc6783d83ec90c59f87",
+      "sha256": "8d41ca9960202c6f5b13889476c0838666b279c638d347f30197dec7cffc7c05"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-session.js",
+      "gitBlob": "45ed9bd92680d8e6590c0709ac24b3d8f5af3205",
+      "sha256": "626352ca3b12cb1fe4643c15fd1c8db3e5c8879f762284674f70368cdbfd3db2"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "concierge-manager-stays.js",
+      "gitBlob": "a7f8f527a8c794d2638739c35b971526d23c80af",
+      "sha256": "37190839b9f152b1ab1d93e7bad1d8d03df87a647741a5728e726e6dbd3d70ff"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "index.js",
+      "gitBlob": "1745cfd6d9dd374a5681aa584329fc63cedb9284",
+      "sha256": "06d8df39d3951324fe4777a93140636f0b74d06b725cab12bfa0e757e66af017"
+    },
+    {
+      "repository": "chebot-backend",
+      "path": "vercel.json",
+      "gitBlob": "8fdd4dd5765b1ac1208a9f00809392ddf1a1da5c",
+      "sha256": "d2bc35f45e2b0b5158ce464da43021a2af22d50eb11a745b62ced00a24705099"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-auth-v1.js",
+      "gitBlob": "e6addc4602c28cf0d057a529927be563a2a9c8e4",
+      "sha256": "4c02487ee3983f9f0c7b80e23338328433694719314314dfe5b744677360545a"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-build-config.cjs",
+      "gitBlob": "7ca9a62658bce114967e2ae82b0217121bd27adc",
+      "sha256": "7b83a2a87e4b7793c53bdd445ec98be9ea7038eb1584b31a3c8c3174426cc4c1"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-incident-actions-v1.js",
+      "gitBlob": "de4e788b944f3c8d3f8ba115e4c54ace6ddecf70",
+      "sha256": "fd1b4c9ec25e00a0480ba50398ad6e2504374a6f603aabeec2cbc7eb16c306e1"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-incidents-v1.js",
+      "gitBlob": "d42c1ce4e4a478b7a87030bc2b5a5bb194fc7b52",
+      "sha256": "c25b051c53156ccaabcd5a7552976b77351c0c2567fe189fc0142f185080e24f"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-invite-v1.js",
+      "gitBlob": "95f0555ff474109c41eac0bee54de2e2215ea30f",
+      "sha256": "8c9e86ec0dcd8d3581c17ea75aac32bf80fa483f1585c58979c8852ee24fc12a"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-knowledge-v1.js",
+      "gitBlob": "32f09e5022282ff93b1d918bbad50096122314d6",
+      "sha256": "23e82d1a1ac133d39b951707ed703821dcc1c37e44b6ffa0f020af7e9abf7e14"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-legal-publication-gate-v1.cjs",
+      "gitBlob": "4b1d61564f22a666f9d608bcb254c2523bcb2ca1",
+      "sha256": "2bdd4fe60d971c0586cd8d5cab440f50909861fc767b5e70419fb058c625e90f"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-password-recovery-v1.js",
+      "gitBlob": "ca69e86420440c36179b80a80971c2793dedb03b",
+      "sha256": "dbbea7dbc5e0a9420c4d7a3465f3aabf21b7cca04bb26a47c834ff76943f1654"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-request-actions-v1.js",
+      "gitBlob": "902f02823b14f80ab6e5e52b2c808889d7718693",
+      "sha256": "098a699ee0f4203763446dfaa4e1e47ca20731d3b0b7bc7dc78a1b59c7a6e58b"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-requests-v1.js",
+      "gitBlob": "511c7e0c1f472c6a799a955cccbfc598b73b00c1",
+      "sha256": "a7863760e63f34d91a8c7f1b32cff95fdbc6f2aebe608597337c2d8635dfa31e"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-signup-admin-v1.js",
+      "gitBlob": "6a2b4cdfc0a4b27a6987e913a596ea14b19dfe88",
+      "sha256": "3398c33a31192a158c0777a0df47ed57aaacd7abfd55b21203c7b806079a72d7"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-signup-v1.js",
+      "gitBlob": "b95b344f8f02950ca74a4b92d82bc12953880a0f",
+      "sha256": "68b26320f5e6168a5a5b57597870da08d36b6c16d075ba69823400ca389e7e1e"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "manager-v1.js",
+      "gitBlob": "f5d5e39f5a797a00a3efa30ba3450819eb2c720f",
+      "sha256": "879b60dfd4ecc358c5fad5c1fed390b8ae98c2b9cea8b8ce3240d6a5f984a21b"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/domain-security-successor-20261111-v1/incident-successor.mjs",
+      "gitBlob": "e74b3d165ddb0642c4041384c2824ea45dddd5c3",
+      "sha256": "0df65e9550dcfdcd4b1f6be1ecd64c3f55a2ae78d768d7212bc05aa23f9fb326"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/first-property-20261112-v1/materialize.mjs",
+      "gitBlob": "5066cf0b50ca93f69575d782aa7999af65d49a65",
+      "sha256": "150a3aef1e7246a511eb310712663012f3ee2e1b9afbc9c7f1b753e0e061baba"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/founder-journey-20261112-v1/compose.cjs",
+      "gitBlob": "b8640f9a1ec5bd04b886d41636ac87d9af0f275c",
+      "sha256": "63e1905dc51098777f54558c9dc37ba1577dfed958fe9f166d26f5fbf8687828"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/founder-journey-20261112-v1/dom-harness.cjs",
+      "gitBlob": "1d031679fa3d753e1861bd48e1d4846ee9efb527",
+      "sha256": "7b69241ba34148e6644c610488c3dde9f285a2a1493f3ae5de43bbf8520bbefd"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/founder-journey-20261112-v1/experience.test.cjs",
+      "gitBlob": "2702542374f7fbfc381cd9523ba50bb2ce147f03",
+      "sha256": "3dadf36786bedda17a72dd4156bfbedf24c6a3696b6bf1faa22ebba031060bea"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-contracts-20261112-v1/effect-plan.mjs",
+      "gitBlob": "dfaf927cd69ba54ccb85606b8922ae5ec43bc024",
+      "sha256": "09e9fce534fceec09713c952a8d5dbfb4fefee08711b58492f4a7d42b556b10d"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-contracts-20261112-v1/evidence-binding.mjs",
+      "gitBlob": "7b81954bdcc6aa1ea24399d3f75cad4e556272f5",
+      "sha256": "8a86e96194681502b8b992e991485f020d1befbed986ec4eb7e4d8a0b0da9bf1"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-contracts-20261112-v1/materialize.mjs",
+      "gitBlob": "3ffe87a60a148246f8941a5ca35659b4bb0a1f02",
+      "sha256": "14bacc29028679cda4db39e2c2ff57ffc7fe189405d84fd1516d32a780727111"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-night-20261112-v1/auth-ui.test.cjs",
+      "gitBlob": "8c1f702e8f6399ff2cb3246b96885d2ab44884e9",
+      "sha256": "ad30100543e3b61912d038fa18e95014007c04d04e1ffc40adac8476f2a1a676"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-night-20261112-v1/compose.cjs",
+      "gitBlob": "e61c8973270d97283120e20a23a3d3fcec6f0d8f",
+      "sha256": "ef73324113acaaa8dc59dc46103e56da8687cb6a0d8e19507c1c9d9474b51dde"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-night-20261112-v1/core.mjs",
+      "gitBlob": "aff18ccd25e94eed6065cb5d04aaeba3e8835a9d",
+      "sha256": "1a188a5eed0e4212a88d7b0447eba3a42cff3d86432232f6e8da9d58ec71e5f8"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-night-20261112-v1/materialize.mjs",
+      "gitBlob": "e6331a129e6aabb29cd41f6ec81460c3b1bd150f",
+      "sha256": "69619cabbd50a3a2c929aee40e7837b4a144ced625960a82b0c53086afea88c5"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-night-20261112-v1/property-lifecycle.mjs",
+      "gitBlob": "9f3cb9a4f963bed1ba49b67075e492d0855b998a",
+      "sha256": "fc71deff6231f3db4eba39cddff83cbee52ef35ea0f762d683da2f4bbf0607ef"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/functional-night-20261112-v1/stay-lifecycle.mjs",
+      "gitBlob": "a9d9c183540946898c44e3d917a0b211b217747d",
+      "sha256": "59ac20ef2ce18e57d6d9dc97a4385d627cfcdce874c7f1c6219bb8ee8f129c7a"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/incident-authority-closure-20261111-v1/current-resolution.mjs",
+      "gitBlob": "9fdb622729fb18cad3c49410e927dbb62919bfff",
+      "sha256": "7b73d59124b90d5ebed1d52323b1d3444975f79cbb4f01cb52e37d5c18722ec0"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/incident-native17-review-20261111-v1/revision-cut.mjs",
+      "gitBlob": "d4f647dd44978e47216804b34cab3901a9782cc6",
+      "sha256": "8cae0e7ed91b96e8401b0a9ba6affca3a7f2fa49806eca4e75f11bd6bf2320ad"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/incident-native17-review-20261111-v1/revision-policy.json",
+      "gitBlob": "39987c1c423c95e3476af156af70d781b80f92fd",
+      "sha256": "463ac686cb8e13e940a145da643961b2c79183b883d7cee271dd1b486e87d403"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/integral-held-v1/run-isolated.py",
+      "gitBlob": "c4ba8d2d91c6bc63902b1f63079281ec0464ac4f",
+      "sha256": "b5c84acdbf77d6cd569785dbcb3315afbe918f3afcea8344686ed7226924f29e"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/backend/concierge-manager-legal-admission-guard.js",
+      "gitBlob": "28511d39e60095208d5f693f521e9461825ebe4f",
+      "sha256": "537f517c05c0d21928afdfacd894d0212ca59ce7565ad688e5d0bf4c92847d88"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/backend-candidates/concierge-independent-revocations.js",
+      "gitBlob": "5d86d993ddf210f395b669c10e0d3ee4277a2570",
+      "sha256": "3da65a79f17ed437a56fada3dd7f2a03c15f0719474f8722c0741ca2d309451d"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/backend-candidates/concierge-prelegal-sensitive-hold-qa.js",
+      "gitBlob": "1f3eb182d65825dd863b1ba18421694d5f76f115",
+      "sha256": "80b0b9834c97f5cec68adfea89f6d44ccee3e6c9a6748d598174b5be79ca7364"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/concierge-stay-command-review-v1/stay-command.mjs",
+      "gitBlob": "ff610557dd05459685c134c7d05ce2a91322013d",
+      "sha256": "52534af3510dc9e804a136bfe65802521a146b3aac9b141102fe65e2418e86a2"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/codec.mjs",
+      "gitBlob": "550f1fb4cab5b8279e234febe0924de8ae528672",
+      "sha256": "e52815189b4450a62bce44dab5224bd292f06237447dead8d979cd759315b57f"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/contract-v1/schema.json",
+      "gitBlob": "af8b9ca4b127c276fc079a53e237b8e49412a5b7",
+      "sha256": "f58c3d54026b33b017e63783e333bbf1e98b3a2fa0c3758a681e5e3d7cd4f036"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/journal-contract-v2/receipts.mjs",
+      "gitBlob": "b556def28466df29f60fb11b56d188df34712216",
+      "sha256": "25d7a2db6267231ded5988425bb80c015d2094d968ec24e535814b41d6dc9fdb"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/writer-gateway-v2/gateway.mjs",
+      "gitBlob": "1064cd93098899208b279c2b1136cfa9a20ca8d9",
+      "sha256": "a318815ed08c64069347f5334e4bbfc650894b30a7027378da7099dac2ecf26e"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/private-writer-composition-20261111-v1/vendor/qa/writer-gateway-v2/sdk-identity.mjs",
+      "gitBlob": "dd10880d2b13bc9e803d9b41ee1f438814e5e27c",
+      "sha256": "277ad02565332733599886feec7b87e3b286a8ca4363aa1515e5214c5f91b35e"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/property-bootstrap-20261112-v1/materialize.mjs",
+      "gitBlob": "12bfff0f34853cc2dacfbf7f5b7f27601b4a34ac",
+      "sha256": "c232b1d8aec80ebd05d71510ffc2fb27dd4af472210187efc2b3acc0355f416b"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/property-stay-prearrival-20261112-v1/contracts.mjs",
+      "gitBlob": "e4f3fbd9efe23e2b86de2a6d46e15b79899c0a41",
+      "sha256": "9e84e49637cc43282cf28e482c2aca0810520c4caf0b4a2be6258e342859134d"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/property-stay-prearrival-20261112-v1/materialize.cjs",
+      "gitBlob": "26b458cde3f8a4909bb0735f5fb8a16859bfcf8c",
+      "sha256": "6fb826a77fdd8ca91838f4403f1385415d02bcabdd27af096f7f3fb07b0d36ae"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/property-stay-prearrival-20261112-v1/time-review.cjs",
+      "gitBlob": "4a1a834ae582049a069e1224d96c42328339e744",
+      "sha256": "08c374056fb814a893be1c31df1821273da13097944976138dc2acc8607c7bfb"
+    }
+  ],
+  "purpose": "Pinned consumer/composition and inspected route sources; static linkage, not provider or SQL execution"
+}

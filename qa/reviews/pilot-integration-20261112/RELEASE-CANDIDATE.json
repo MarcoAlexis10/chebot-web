@@ -1,0 +1,52 @@
+{
+  "candidate": "pilot-integration-20261112-v1",
+  "state": "HELD",
+  "betaDecision": "NO-GO",
+  "webInitial": "bca48ca6d32bbca15a1357114db46cf2fa0c23fa",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "qaLab": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "technicalCheckpoints": [
+    "14fedee2f65c74ce05c805b5b3c3fdc9aa3b3948",
+    "65877f04ccc601828f65e98af9a721d1fedf8590"
+  ],
+  "consolidationCommit": "RESOLVE_FROM_CLOSURE_IMMUTABLE_URL_AND_PARENT",
+  "baseCandidate": "qa/reviews/functional-night-20261112/RELEASE-CANDIDATE.json",
+  "baseJourney": "qa/property-bootstrap-20261112-v1/materialize.mjs",
+  "entry": "qa/pilot-integration-20261112-v1/materialize.mjs",
+  "outputManifest": "qa/pilot-integration-20261112-v1/OVERLAY-MANIFEST.json",
+  "sources": "qa/pilot-integration-20261112-v1/SOURCE-PINS.json",
+  "status": {
+    "frontend": "five patched consumers; inert composed QA",
+    "property": "bootstrap/capture/readback/original HELD",
+    "stay": "distinct lifecycle QA contracts reused HELD; no POST invented",
+    "guest": "original WhatsApp scoped guard inspected only; no new private web portal",
+    "prearrival": "global public template only; property-approved producer missing",
+    "roles": "owner/manager/co_manager current DTO consistency only; operative never promoted",
+    "signupInvites": "original guards unchanged; no real admission/send",
+    "auth": "provider/session/revocation/refresh unaccredited",
+    "writerReader": "private ports held; no general DML or REST fallback",
+    "journalWitness": "custody/transcript/COMMIT unaccredited",
+    "PostgreSQL": "Native17 host not accredited, trials unauthorized",
+    "A2": "PostgreSQL+GoTrue+Vault+Storage+keys/config+independent revocations+journal/witness+post-backup floors retained as dependencies",
+    "privacyRetention": "D02-A purpose/custody/retention decisions still required",
+    "browser": "not run"
+  },
+  "variablesWithoutSecrets": {
+    "apiAndAuthOrigins": "fictional .invalid values from recovered QA composer",
+    "networkPolicy": "connect-src 'none'; form-action 'none'",
+    "operationalKeys": false,
+    "operationalActivation": false
+  },
+  "commercial": {
+    "jurisdiction": "CABA",
+    "founderManagers": 1,
+    "properties": 1,
+    "freeDays": 30,
+    "startsAt": "first real verified stay, not started",
+    "automaticCharge": false,
+    "automaticConversion": false,
+    "Free": "separate for other cities",
+    "launchDate": null
+  },
+  "activationRollback": "Descriptive prior plan retained; no installer, deploy, ref to main, service or activation performed."
+}

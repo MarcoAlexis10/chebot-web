@@ -26,3 +26,17 @@ test('incident learning enrichment cannot import a receipt from a changed accoun
  const result=await vm.runInContext("loadManagerIncidents('FICTIONAL_NOT_JWT')",h.context);assert.equal(result.length,0);
  assert.equal(reads,2);assert.ok(h.classes.has('manager-auth-pending'));assert.equal(h.storage.has(TOKEN),false);
 });
+test('compatible section metadata remains displayable; a late prior-session response cannot close a newer view',async()=>{
+ for(const kind of ['requests','incidents','knowledge']){
+  for(const stale of [false,true]){
+   const h=harness(g['manager/manager-auth.js'],{token:'FICTIONAL_NOT_JWT',fetcher:async url=>response(200,{ok:true,session:{...session},...(url.endsWith('/properties')?{properties:[]}:url.endsWith('/stays')?{stays:[]}: {})})});await settle();
+   h.context.CustomEvent=class extends Event{constructor(t,o){super(t);this.detail=o.detail}};
+   const original=h.context.document.getElementById;h.context.document.getElementById=id=>id==='manager-'+kind+'-list'?h.lists.get('#'+id):original(id);
+   let release;h.context.fetch=()=>new Promise(r=>{release=r});vm.runInContext(g['manager/manager-'+kind+'.js'],h.context);
+   if(stale)h.storage.set(TOKEN,'FICTIONAL_NEW_SESSION');
+   release(response(200,{ok:true,[kind]:[],meta:{account_id:session.account_id,member_id:session.member_id,member_role:stale?'co_manager':session.role,count:0}}));await settle();
+   assert.equal(h.classes.has('manager-auth-pending'),false);assert.equal(h.storage.get(TOKEN),stale?'FICTIONAL_NEW_SESSION':'FICTIONAL_NOT_JWT');
+   assert.equal(h.lists.get('#manager-'+kind+'-list').children.length,stale?0:1);
+  }
+ }
+});
