@@ -1,0 +1,7 @@
+{
+  "classification": "STATIC_CHECKER_IMPLEMENTATION_FAILURE",
+  "error": "Error: FUNCTION_BODY_MISSING",
+  "cause": "Over-escaped regular-expression literals in new source checker; not a PostgreSQL failure",
+  "sqlExecuted": false,
+  "nodeExecuted": false
+}

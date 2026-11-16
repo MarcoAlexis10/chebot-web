@@ -1,0 +1,7 @@
+{
+  "classification": "MANUAL_SOURCE_REVIEW_NOT_SQL_EXECUTION",
+  "draftIssue": "First draft fetched protected original before action-specific cut; identified before publication",
+  "correction": "NEW resolves property_create first; KNOWN validates current property_capture_read first; payload and metadata resolvers accept protected cut and must reject identity_only or foreign scopes before fetching",
+  "sqlExecuted": false,
+  "positiveAuthorityProduced": false
+}

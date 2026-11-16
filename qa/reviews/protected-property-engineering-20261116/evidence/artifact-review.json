@@ -1,0 +1,31 @@
+{
+  "runtime": "functions.exec V8 orchestration, NOT Node or an accredited OS/SQL laboratory",
+  "classification": "STATIC_TEXT_CONSISTENCY_ONLY",
+  "result": "PASS",
+  "sqlParsed": false,
+  "sqlExecuted": false,
+  "nodeExecuted": false,
+  "authVerified": false,
+  "externalCommitVerified": false,
+  "operationalApproval": false,
+  "betaDecision": "NO-GO",
+  "negativeTextControls": [
+    {
+      "name": "reader ABI cannot gain a client account parameter",
+      "result": "REJECTED_AS_EXPECTED",
+      "reason": "READ2_ABI_DRIFT"
+    },
+    {
+      "name": "outer review abort cannot be removed",
+      "result": "REJECTED_AS_EXPECTED",
+      "reason": "OUTER_ABORT_MISSING"
+    },
+    {
+      "name": "reader privilege proposal cannot gain write capability",
+      "result": "REJECTED_AS_EXPECTED",
+      "reason": "READER_WRITE_GRANT"
+    }
+  ],
+  "controlsAreNotOperationalTests": true,
+  "finalArtifactsRechecked": true
+}

@@ -1,0 +1,61 @@
+{
+  "date": "2026-11-16",
+  "classification": "REVIEW_ONLY_AND_STATIC_TEXT_CHECKS",
+  "initialHeads": {
+    "web": {
+      "repo": "chebot-web",
+      "branch": "qa/cheveni-integral-held-20261111",
+      "sha": "affb445ddb478b49ceef7c80c6d2a26f907de443"
+    },
+    "backend": {
+      "repo": "chebot-backend",
+      "branch": "qa/cheveni-integral-held-20261111",
+      "sha": "9beb837a621f9a8f06601043afa64b3bba317cb5"
+    },
+    "lab": {
+      "repo": "cheveni-qa-lab",
+      "branch": "qa/cheveni-native17-policy-closure-20261106",
+      "sha": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a"
+    }
+  },
+  "localRuntime": {
+    "state": "UNAVAILABLE",
+    "attemptedReadOnlyCommand": "pwd",
+    "error": "No usable execution environment is available",
+    "furtherRuntimeProbes": 0
+  },
+  "sqlArtifacts": {
+    "status": "REVIEW_ONLY_NOT_EXECUTED",
+    "count": 4,
+    "parsedByPostgreSQL": false,
+    "ddlApplied": false
+  },
+  "executed": {
+    "staticChecker": {
+      "runtime": "functions.exec V8",
+      "result": "PASS",
+      "scope": "Textual signature/guards/branch/privilege-profile consistency only",
+      "evidence": "evidence/artifact-review.json"
+    },
+    "intermediateFailure": {
+      "path": "evidence/artifact-review-intermediate.json",
+      "resolved": true,
+      "scope": "New checker's regex escaping, not SQL/compiler/product failure"
+    }
+  },
+  "tests": {
+    "nodeExecuted": 0,
+    "nativeExecuted": 0,
+    "authManagedExecuted": 0,
+    "browserExecuted": 0,
+    "httpExecuted": 0,
+    "commitWitnessVerified": 0,
+    "restoreExecuted": 0,
+    "priorSuitesRepeated": 0
+  },
+  "newAuthorityProduced": false,
+  "newFounderSelected": false,
+  "realPayloadStored": false,
+  "operationalBlocksRemoved": [],
+  "betaDecision": "NO-GO"
+}

@@ -1,0 +1,190 @@
+{
+  "classification": "READ_ONLY_SOURCE_HASHES_NOT_EXECUTION",
+  "sources": [
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/property-bootstrap-20261112-v1/bootstrap-facts-DO-NOT-APPLY.sql",
+      "gitBlob": "cf3591fa532059147b4c6745ec5a0cac70a0983c"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "20-MIGRACION-01-ACCOUNTS-MEMBERS.sql",
+      "gitBlob": "94d872b3ce13873567c86d85a0ee4924f4b01b5f"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "25-MIGRACION-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "gitBlob": "a8d9e05274f3eb8012447b4609b76b68948ea4af"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "gitBlob": "7c7ee0ece4c227a8fedfac68dc0b3eebf31e3e70"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/service-successor-REVIEW-ONLY.sql",
+      "gitBlob": "dbaa9df6389768169412bb4500c69084463ef594"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+      "gitBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/property-authority-preflight-20261112-v1/read-cut.mjs",
+      "gitBlob": "c7f51561621a2c3f011d369d2e02f5934445716c"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/property-authority-preflight-20261112-v1/read-abi.d.mts",
+      "gitBlob": "655d888cbdd43a9cf56c1feb0ab133b521dce9cb"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/first-property-20261112-v1/capture-contract.mjs",
+      "gitBlob": "62ee6947f52d1fff9252bc9ef9a9286041c8a72a"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/first-property-20261112-v1/reconciliation.mjs",
+      "gitBlob": "32197ee0de149fef1b3b6fbabf1b1be50ee1a6e1"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/first-property-20261112-v1/reader-profile.mjs",
+      "gitBlob": "53f922ad42104683157629b334f9af47b704c96e"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/property-bootstrap-20261112-v1/read-binding.mjs",
+      "gitBlob": "f0c076d9a5c61a8f0ad0c037b0c5c2382a760861"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
+      "path": "qa/property-bootstrap-20261112-v1/custody-contract.mjs",
+      "gitBlob": "e9d6e498c8e84a63f255352d0d5ea5f2821fffec"
+    }
+  ],
+  "reader26Arguments": [
+    [
+      "p_read_request",
+      "uuid"
+    ],
+    [
+      "p_user",
+      "uuid"
+    ],
+    [
+      "p_session",
+      "uuid"
+    ],
+    [
+      "p_expiry",
+      "bigint"
+    ],
+    [
+      "p_session_revision",
+      "bigint"
+    ],
+    [
+      "p_issuer",
+      "text"
+    ],
+    [
+      "p_issued_at",
+      "bigint"
+    ],
+    [
+      "p_member",
+      "uuid"
+    ],
+    [
+      "p_role",
+      "text"
+    ],
+    [
+      "p_authority_revision",
+      "bigint"
+    ],
+    [
+      "p_restrictions_revision",
+      "bigint"
+    ],
+    [
+      "p_inventory_revision",
+      "bigint"
+    ],
+    [
+      "p_founder_revision",
+      "bigint"
+    ],
+    [
+      "p_quota_revision",
+      "bigint"
+    ],
+    [
+      "p_jurisdiction_revision",
+      "bigint"
+    ],
+    [
+      "p_dataset",
+      "bytea"
+    ],
+    [
+      "p_recovery_epoch",
+      "bigint"
+    ],
+    [
+      "p_inventory_digest",
+      "bytea"
+    ],
+    [
+      "p_restriction_digest",
+      "bytea"
+    ],
+    [
+      "p_restriction_journal",
+      "text"
+    ],
+    [
+      "p_bootstrap",
+      "uuid"
+    ],
+    [
+      "p_authority_commit",
+      "uuid"
+    ],
+    [
+      "p_original_ref",
+      "uuid"
+    ],
+    [
+      "p_intent",
+      "uuid"
+    ],
+    [
+      "p_attempt",
+      "uuid"
+    ],
+    [
+      "p_key",
+      "bytea"
+    ]
+  ],
+  "originalsUnchanged": true
+}

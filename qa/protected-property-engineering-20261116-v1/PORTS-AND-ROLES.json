@@ -1,0 +1,282 @@
+{
+  "classification": "REVIEW_ONLY_NOT_EXECUTED",
+  "installed": false,
+  "sqlAuthorized": false,
+  "operationalApproval": false,
+  "originalWriter": {
+    "entry": "concierge_invite_private.write_property_capture_v1",
+    "argumentCount": 11,
+    "sessionUser": "cheveni_private_mutation_backend_v1",
+    "currentUser": "cheveni_private_mutation_owner_v1",
+    "unchanged": true,
+    "correction": "New wrapper must reuse historical session_user, and only wrapper EXECUTE may be available to that login in a future approved catalog. New login alias or SET ROLE would fail/bypass this original contract."
+  },
+  "readAbi": {
+    "name": "property-capture-independent-read/2",
+    "entry": "concierge_invite_private.read_property_capture_v2",
+    "argumentCount": 26,
+    "accountParameter": false,
+    "sessionUser": "cheveni_property_capture_reader_backend_v2",
+    "currentUser": "cheveni_property_capture_read_owner_v2",
+    "returns": "UNKNOWN, null privateResult, no address/property ID; effectObservedInTransaction is provisional, not COMMIT"
+  },
+  "owners": {
+    "cheveni_property_governance_owner_v1": {
+      "login": false,
+      "owns": [
+        "bootstrap_founder_assignment_v1",
+        "bootstrap_jurisdiction_v1"
+      ],
+      "applicationMemberships": [],
+      "assignmentIngress": "NOT IMPLEMENTED. Human decision + independently current epoch/revision required; no seeded founder."
+    },
+    "cheveni_property_bootstrap_owner_v1": {
+      "login": false,
+      "bypassRls": false,
+      "ownsTables": [],
+      "select": "Only columns in 04-role-rls; full relevant inventory, never filtered-zero evidence",
+      "execute": [
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1"
+      ]
+    },
+    "cheveni_property_admission_owner_v1": {
+      "login": false,
+      "bypassRls": false,
+      "owns": [
+        "property_admission_v1",
+        "property_dispatch_context_v1"
+      ],
+      "execute": [
+        "resolve_first_property_review_v1",
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "property_original_payload_v1",
+        "property_require_original_equal_v1",
+        "property_require_original_cut_v1",
+        "property_require_no_prior_dispatch_v1",
+        "write_property_capture_v1"
+      ],
+      "publicDml": false
+    },
+    "cheveni_property_capture_read_owner_v2": {
+      "login": false,
+      "bypassRls": false,
+      "ownsTables": [],
+      "writeGrants": [],
+      "memberships": [],
+      "execute": [
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "property_original_metadata_v1",
+        "property_require_capture_matches_original_v1"
+      ],
+      "forbiddenExecute": [
+        "write_property_capture_v1",
+        "capture_first_property_review_v1",
+        "property_original_payload_v1",
+        "property_require_no_prior_dispatch_v1"
+      ],
+      "forbiddenSelect": [
+        "property_capture_v1.address",
+        "property_capture_v1.floor_or_unit",
+        "property_dispatch_context_v1"
+      ],
+      "nativeReadOnlyAccredited": false
+    },
+    "cheveni_private_mutation_owner_v1": {
+      "historicalOwnerUnchanged": true,
+      "additionalSelect": [
+        "property_dispatch_context_v1",
+        "property_admission_v1"
+      ],
+      "additionalExecute": [
+        "resolve_first_property_review_v1",
+        "private_mutation_authority_v1"
+      ],
+      "reason": "Inner legacy SECURITY DEFINER calls narrow private_mutation_authority slice as INVOKER. This transitive closure must be observed; source text does not establish effective ACL."
+    }
+  },
+  "loginProfiles": {
+    "cheveni_property_bootstrap_scope_backend_v1": {
+      "entry": "resolve_first_property_review_v1",
+      "directTables": [],
+      "memberships": [],
+      "credentialsPresent": false
+    },
+    "cheveni_private_mutation_backend_v1": {
+      "entry": "capture_first_property_review_v1",
+      "directTables": [],
+      "memberships": [],
+      "directLegacyWriteExecute": false,
+      "otherMutationExecute": false,
+      "existingPrincipalRequiresCatalogReview": true,
+      "credentialsPresent": false
+    },
+    "cheveni_property_capture_reader_backend_v2": {
+      "entry": "read_property_capture_v2",
+      "directTables": [],
+      "memberships": [],
+      "writeExecute": false,
+      "credentialsPresent": false
+    }
+  },
+  "requiredMissingPorts": [
+    {
+      "name": "bootstrap_current_cut_v1(uuid,text,uuid)",
+      "returns": "property_current_cut_v1",
+      "owner": "provider/revision protected source owner, NOT application or reader owner",
+      "status": "MISSING_IMPLEMENTATION",
+      "requirements": [
+        "Verify provider signature/sub/session_id/issuer/iat/exp and current session/revocation at source; never use user metadata/UI DTO/auth_live request echo as proof",
+        "Configured QA issuer only; DEV cannot be rewritten into QA; signature implementation and custody absent here",
+        "identity_only returns current provider+relation cut without write/read grant or requiring property/trial; property_create is pre-property owner permission; property_capture_read is separately current read permission",
+        "Every cut field required, versions positive, four bytea values 32 bytes, observed time bounded, account derived from unique current web identity/member/account; absent/ambiguous/expired source RAISES, never positive constants",
+        "Refresh/session change cannot reuse dispatch binding; read may use a newly verified session without replacing original historical session",
+        "Current revisions need D1 producer and D2 independent restrictions/floors; no update_at/time/claim constants"
+      ]
+    },
+    {
+      "name": "bootstrap_require_independent_floor_v1(property_current_cut_v1)",
+      "returns": "void or raises",
+      "status": "MISSING_IMPLEMENTATION",
+      "owner": "independent restrictions/floor custodian",
+      "requirements": [
+        "Independently corroborate dataset/recovery epoch/revisions/inventory/restriction digests/journal/bootstrap/authority commit",
+        "Reject incomplete, stale, future, contradictory, revoked or post-restore older floor before and after observations",
+        "No same-source callback, same credential or restored local snapshot accepted as independence"
+      ]
+    },
+    {
+      "name": "bootstrap_require_complete_catalog_v1()",
+      "returns": "void or raises",
+      "status": "MISSING_IMPLEMENTATION",
+      "requirements": [
+        "Actual role/login/owner/membership, exposed schemas, EXECUTE/PUBLIC/default ACL, RLS/FORCE RLS, column grants, functions, dependencies and policy snapshot",
+        "No BYPASSRLS/ownership assumption; unknown restrictive/permissive policy, missing dependency or catalog version drift denies",
+        "Column grants in 04 alone lack schema USAGE/type USAGE/complete EXECUTE closure; future approved materialization must supply exact closure and capture it",
+        "Inventory completeness must include draft, ready_for_review, active, paused, archived, not only active rows"
+      ]
+    },
+    {
+      "name": "property_original_payload_v1(uuid,property_current_cut_v1)",
+      "returns": "property_original_payload_v1",
+      "status": "MISSING_CUSTODIAN",
+      "executeBy": [
+        "cheveni_property_admission_owner_v1"
+      ],
+      "requirements": [
+        "Immutable exact original from trusted custody, NEVER client snapshot, UUID/key or digest reconstruction",
+        "Corroborate request/intent/attempt/key/user/historical session/account/member/operation and original argument bytes/provenance",
+        "No NFC/trim/case/NULL-empty normalization to hide contradictory address or unit; no logging/raw return to login",
+        "Specific D02-A storage/access/encryption-custody/retention/backup/suppression decisions required before any persistence",
+        "Reuse qa/functional-contracts-20261112-v1/property-capture-adapter.mjs and original structured-address parser/business representability checks before projection. Reject unsupported name/type/language/hours/building/unit, never silently drop them; only historical representable defaults may reach eleven arguments.",
+        "Before fetching any raw or historical metadata, verify the current protected cut, request binding, user/member/account and exact operation; identity_only is insufficient for payload. Writer NEW has property_create; KNOWN and reader have property_capture_read. No caller-supplied snapshot accepted.",
+        "The composite parameter is NOT a capability: reload the protected provider/request/revision record by request_id, corroborate it independently and compare/expire it before returning data; a typed or matching tuple alone is insufficient."
+      ]
+    },
+    {
+      "name": "property_original_metadata_v1(uuid,property_current_cut_v1)",
+      "returns": "property_original_metadata_v1",
+      "status": "MISSING_CUSTODIAN",
+      "executeBy": [
+        "cheveni_property_capture_read_owner_v2"
+      ],
+      "requirements": [
+        "Same immutable original and provenance, metadata-only projection; no address/floor output or payload EXECUTE delegation",
+        "Before fetching any raw or historical metadata, verify the current protected cut, request binding, user/member/account and exact operation; identity_only is insufficient for payload. Writer NEW has property_create; KNOWN and reader have property_capture_read. No caller-supplied snapshot accepted.",
+        "The composite parameter is NOT a capability: reload the protected provider/request/revision record by request_id, corroborate it independently and compare/expire it before returning data; a typed or matching tuple alone is insufficient."
+      ]
+    },
+    {
+      "name": "property_require_original_equal_v1(uuid,uuid)",
+      "returns": "void or raises",
+      "status": "MISSING_CUSTODIAN",
+      "requirements": [
+        "Compare exact immutable originals/provenance, including when references are identical; pointer equality alone never sufficient"
+      ]
+    },
+    {
+      "name": "property_require_original_cut_v1(uuid,property_current_cut_v1)",
+      "returns": "void or raises",
+      "status": "MISSING_CUSTODIAN",
+      "requirements": [
+        "Match original protected request/body binding and complete historical cut to admitted current authority; changed versions require new reviewed intent, not rebinding"
+      ]
+    },
+    {
+      "name": "property_require_no_prior_dispatch_v1(uuid,uuid,bytea)",
+      "returns": "void or raises",
+      "status": "MISSING_INDEPENDENT_HISTORY",
+      "requirements": [
+        "Independent complete admission/dispatch history and current recovery epoch prove NEW eligibility; absent local row is NOT proof",
+        "Missing trusted original/history after restart or restore remains UNKNOWN; no automatic resend"
+      ]
+    },
+    {
+      "name": "property_require_capture_matches_original_v1(uuid,uuid,uuid)",
+      "returns": "void or raises",
+      "status": "MISSING_CUSTODIAN",
+      "executeBy": [
+        "cheveni_property_capture_read_owner_v2"
+      ],
+      "requirements": [
+        "Inside dedicated custodian compare historical capture address/floor exactly to original and intent/user provenance; reader cannot SELECT plaintext",
+        "No key/digest/UUID-only proof; no new duplicate address copy"
+      ]
+    },
+    {
+      "name": "bootstrap_begin_revision_change_v1(text,text,text)",
+      "returns": "void or raises",
+      "status": "MISSING_REVOCATION_IMPLEMENTATION",
+      "requirements": [
+        "Advance/invalidate participating protected revisions under shared global pre-DML fence, fail closed if independent source unavailable",
+        "No row lock before global fence; lock order is global fence -> protected source/admission metadata -> property/slot -> effects, matching historical writer",
+        "External provider/restriction/journal revokers must join the reviewed protocol; local SQL lock cannot serialize a remote provider by itself"
+      ]
+    }
+  ],
+  "revokerParticipants": [
+    "public.concierge_manager_web_identities",
+    "public.concierge_account_members",
+    "public.concierge_accounts",
+    "public.concierge_properties",
+    "concierge_invite_private.beta_property_slot_v1",
+    "bootstrap_founder_assignment_v1",
+    "bootstrap_jurisdiction_v1",
+    "original custodian/admission history",
+    "Auth user/session/revocation/refresh source",
+    "independent restrictions/floors/dataset/recovery epoch",
+    "catalog/roles/grants/RLS/EXECUTE changes"
+  ],
+  "persistence": {
+    "state": "RETAINED_D02A_NOT_APPROVED_FOR_NEW_CUSTODY",
+    "ledger": "References, versions, dispatch phases and times only; no address/floor/JWT/new personal hash",
+    "legacyCopy": "Historical property_capture_v1 kept unchanged; deletion/minimization NOT authorized by this proposal",
+    "original": "Trusted exact copy or protected original reference with immutability/comparison/custody; actual custodian missing",
+    "retentionPeriod": null,
+    "suppression": "Coordinated original/ledger/capture/results/journal/backups only after separate policy/evidence; no real deletion",
+    "a2": "PostgreSQL/Auth/GoTrue/Vault/Storage/keys/config/floors/revocations/journal/witness all retained; restored old ledger cannot reauthorize"
+  },
+  "evidenceLayers": [
+    "function result",
+    "ACK",
+    "external COMMIT",
+    "SQL effect observation",
+    "independent reader",
+    "journal confirmation",
+    "independent witness"
+  ],
+  "legalGuards": "Unchanged; no legal/prelegal/Auth/privacy/retention activation",
+  "betaDecision": "NO-GO",
+  "custodyOwnerProposal": {
+    "name": "cheveni_property_original_custody_owner_v1",
+    "login": false,
+    "installed": false,
+    "applicationMemberships": [],
+    "implementation": "MISSING; separate policy/custody decision and protected original source required. No rows or credentials supplied."
+  }
+}
