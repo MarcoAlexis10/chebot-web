@@ -6,6 +6,26 @@
   "rule": "Selection is not authorization. No executable external/native/Auth/browser/restore adapter is included. Historical cases require direct-impact justification and are not run by default.",
   "cases": [
     {
+      "id": "OFF-PROPERTY-DTO",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "67 pinned source files; Node isolation launcher; synthetic records; no Auth or SQL"
+      ],
+      "expected": "Original strict property receipt parser accepts captured fields and rejects an extra field; retained panel displays draft, property and member role; GET only, no property_create",
+      "evidence": "property-stay-consumers.test.cjs; pure original parser/projection and candidate consumer; no native exclusion or authority evidence"
+    },
+    {
+      "id": "OFF-STAY-DTO",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "67 pinned source files; Node isolation launcher; synthetic records; no Auth or SQL"
+      ],
+      "expected": "Original inline stay projection preserves distinct stay_id and property_id, adjacent checkout/checkin instants and CABA rendering; no conflation of reservations or write",
+      "evidence": "property-stay-consumers.test.cjs; pure original parser/projection and candidate consumer; no native exclusion or authority evidence"
+    },
+    {
       "id": "OFF-REQUEST-DTO",
       "layer": "OFFLINE_NODE",
       "status": "SELECTABLE_NOT_RUN",
@@ -237,5 +257,38 @@
       "H-COMMERCIAL"
     ]
   ],
-  "parallelismNote": "Middle group lists independent prerequisites; no concurrency is started by this plan. Each existing Native17 case retains its own dependencies. Blocked group cannot be promoted by a fixture."
+  "parallelismNote": "Middle group lists independent prerequisites; no concurrency is started by this plan. Each existing Native17 case retains its own dependencies. Blocked group cannot be promoted by a fixture.",
+  "minimumPilot": {
+    "mustKeep": [
+      "Founder identity and active owner/member/account binding",
+      "Protected one-property CABA admission without invented trial/property authority",
+      "Guest bound to exact stay/property and current access window",
+      "Independent restrictions/revocation at checkout and across consecutive stays",
+      "UNKNOWN with original custody, independent readback and no unsafe resend",
+      "A2 quarantine/reconciliation and post-backup independent floors",
+      "Legal/prelegal/privacy/retention gates and express commercial authorization"
+    ],
+    "mayDefer": [
+      {
+        "feature": "Learning proposal publication/approval UI",
+        "condition": "Incidents remain recordable/reviewable under real authority; never automatic activation"
+      },
+      {
+        "feature": "Co-manager and temporary-operative UI",
+        "condition": "Their distinct backend roles, task/property/expiry scope and denials remain mandatory; never promote an operative to owner"
+      },
+      {
+        "feature": "Guest-phone-replacement self-service",
+        "condition": "Lost/revoked access remains denied; any later change requires its protected contract, never inherited identity"
+      },
+      {
+        "feature": "Custom property pre-arrival content",
+        "condition": "Keep global approved public template only, without private loader or secrets"
+      },
+      {
+        "feature": "Multi-property, multi-city Concierge, bulk founder onboarding and billing automation",
+        "condition": "One CABA property/founder, Free separate, 30 free days from first verified real stay, no automatic charge/conversion"
+      }
+    ]
+  }
 }

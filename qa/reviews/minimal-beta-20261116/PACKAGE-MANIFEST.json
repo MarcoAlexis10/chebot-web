@@ -1,0 +1,80 @@
+{
+  "classification": "CODE_AND_SYNTHETIC_EXECUTION_LOG_HASHES_ONLY",
+  "files": [
+    {
+      "path": "qa/minimal-beta-20261116-v1/ACCEPTANCE-MATRIX.json",
+      "sha256": "b7f227116d1fe420f07c2ee09c2d3a93fc592cb32571f5f2b182ecfe7f9f3e42",
+      "bytes": 14637
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/README.md",
+      "sha256": "7e8ef1d817a9de1bea3d4b0a85416fe5a08495225ee6371322b62fa0614a550c",
+      "bytes": 2789
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/SOURCE-PINS.json",
+      "sha256": "b6dbf3dd3f31d0457803fe5b5a5cb0825ea110ffae9d4c32cba08b307dc9e0e1",
+      "bytes": 17388
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/acceptance-control.test.mjs",
+      "sha256": "169e21e102c19f57406f7772b460037518fa028d58ebd26142ade42ba9b93d0d",
+      "bytes": 1654
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/acceptance.mjs",
+      "sha256": "e36f64c699b5aeb8c508ba9c862ba60242f6694bf46f878c1d5e152b11209e14",
+      "bytes": 4716
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/projector-consumers.test.cjs",
+      "sha256": "67930630eb084eed9a53aece9eb4b42a8ed2e0329f384e3369b6e8ee63c89b41",
+      "bytes": 3964
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/property-stay-consumers.test.cjs",
+      "sha256": "28de0abf28c3c2b5e5d22291a3e3b7ce3b2de07fd8564894da9b3d57bd52b13f",
+      "bytes": 4105
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/acceptance-controls-final.tap",
+      "sha256": "e2c30e6a8e66c3b4a6b22cc72ca53fa14a975662d0e9e762e5036478f6684200",
+      "bytes": 1444
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/acceptance-controls.tap",
+      "sha256": "9b9509fe405c0fcf6c222c75e3cf234190e85e9eb25ebb94336e5efd4b62952e",
+      "bytes": 1444
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/historical-selection-blocked.log",
+      "sha256": "cac731017de0cf7548becfd833207c3121790f333cb86114db1419a5b2e37a6c",
+      "bytes": 89
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/native-selection-blocked.log",
+      "sha256": "9a48fffe180ea1ee75891f5467aed0358a41f01fa40149e1ccb7bd825a39d54b",
+      "bytes": 608
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/projectors.tap",
+      "sha256": "bfcbf8bb7bcdfa31ae889cd48ff8145b1dc15bad51dc9ba4bfab197ea70e5f04",
+      "bytes": 1195
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/property-stays.tap",
+      "sha256": "a01c0f7d748c0f22bb8e2f4bf40ac706c452f1fd16e9a4bc9eab5f543db55159",
+      "bytes": 1278
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/runtime.log",
+      "sha256": "a786dea7e6a56935dbf3ae8c6cfa3996ab0d70298ce4ae9a25453e31816696ff",
+      "bytes": 596
+    },
+    {
+      "path": "qa/reviews/minimal-beta-20261116/evidence/selection-executed.log",
+      "sha256": "6aa8a89e1518dc044e2e08a6e475467ca718c1bd1de39f23d0350bb20a235360",
+      "bytes": 1084
+    }
+  ]
+}

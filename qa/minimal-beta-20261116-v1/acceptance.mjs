@@ -4,6 +4,8 @@ import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} fro
 const here=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(here,'../../..');
 export const matrix=JSON.parse(fs.readFileSync(path.join(here,'ACCEPTANCE-MATRIX.json'),'utf8'));
 const targets=Object.freeze({
+ 'OFF-PROPERTY-DTO':{file:'property-stay-consumers.test.cjs',pattern:'^minimum pilot: original property receipt'},
+ 'OFF-STAY-DTO':{file:'property-stay-consumers.test.cjs',pattern:'^minimum pilot: original stay DTO'},
  'OFF-REQUEST-DTO':{file:'projector-consumers.test.cjs',pattern:'^minimum pilot: original requests projector'},
  'OFF-INCIDENT-DTO':{file:'projector-consumers.test.cjs',pattern:'^minimum pilot: original incidents projector'},
  'REG-PANEL-CONTEXT':{file:'../pilot-integration-20261112-v1/context.test.cjs',historical:true},

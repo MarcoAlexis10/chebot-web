@@ -1,6 +1,6 @@
 # Candidato mínimo · aceptación seleccionable QA
 
-Continúa el candidato `qa/pilot-integration-20261112-v1/materialize.mjs`, sin otra aplicación, gateway o productor. No se cambian sus cinco consumidores ni el build operativo. `ACCEPTANCE-MATRIX.json` vincula cada caso a entradas, precondiciones, resultado esperado y evidencia; sus 14 filas no son 14 pruebas aprobadas.
+Continúa el candidato `qa/pilot-integration-20261112-v1/materialize.mjs`, sin otra aplicación, gateway o productor. No se cambian sus cinco consumidores ni el build operativo. `ACCEPTANCE-MATRIX.json` vincula cada caso a entradas, precondiciones, resultado esperado y evidencia; sus 16 filas no son 16 pruebas aprobadas.
 
 Desde el checkout con web/backend hermanos:
 
@@ -21,4 +21,6 @@ Pruebas nuevas de herramientas de aceptación:
 python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/minimal-beta-20261116-v1/acceptance-control.test.mjs
 ```
 
-Tres controles del selector; no contarlos como evidencia funcional, de Auth o de SQL. Dos casos funcionales Node nuevos; uno se repitió para verificar la selección completa por CLI y se cuenta una sola vez. No hay nueva corrección de producto respaldada por estas comprobaciones. Beta NO-GO.
+Tres controles del selector; no contarlos como evidencia funcional, de Auth o de SQL. Cuatro casos funcionales Node nuevos; uno se repitió para verificar la selección completa por CLI y se cuenta una sola vez. No hay nueva corrección de producto respaldada por estas comprobaciones. Beta NO-GO.
+
+`OFF-PROPERTY-DTO` verifica el parser original de propiedades contra el consumidor de Auth/panel. `OFF-STAY-DTO` extrae la proyección inline original, conservando su código, y comprueba IDs distintos para reservas consecutivas y visualización CABA. No se llama al handler, SQL, creación, checkout o invitación. La primera propiedad todavía no puede admitirse sin sus productores protegidos. Las entradas de regresión del selector se ampliaron para estos dos archivos: se repitieron sólo los tres controles de esta herramienta nueva, sin sumarlos como casos nuevos.

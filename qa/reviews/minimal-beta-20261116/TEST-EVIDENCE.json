@@ -5,16 +5,17 @@
   "qaLab": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
   "productCorrections": 0,
   "functionalAcceptance": {
-    "uniquePASS": 2,
+    "uniquePASS": 4,
     "FAIL": 0,
     "SKIP": 0,
-    "classification": "Original pure backend projector plus candidate consumer in Node VM/synthetic DOM; no HTTP/Auth/SQL"
+    "classification": "Original property parser, original inline stay DTO projection and original request/incident projectors plus retained panel consumers; Node VM/synthetic DOM, no handler/HTTP/Auth/SQL"
   },
   "acceptanceSelectorControls": {
     "uniquePASS": 3,
     "FAIL": 0,
     "SKIP": 0,
-    "classification": "QA tool safety controls, not pilot functionality"
+    "classification": "QA tool safety controls, not pilot functionality",
+    "repeatedDueToImpact": "Whitelist extended to property/stay case file; three controls rerun, counted once"
   },
   "repeatedNewCase": {
     "count": 1,
@@ -47,6 +48,10 @@
   "sourcePinsVerifiedAgainstRemote": 67,
   "logs": [
     {
+      "path": "evidence/acceptance-controls-final.tap",
+      "sha256": "e2c30e6a8e66c3b4a6b22cc72ca53fa14a975662d0e9e762e5036478f6684200"
+    },
+    {
       "path": "evidence/acceptance-controls.tap",
       "sha256": "9b9509fe405c0fcf6c222c75e3cf234190e85e9eb25ebb94336e5efd4b62952e"
     },
@@ -63,9 +68,19 @@
       "sha256": "bfcbf8bb7bcdfa31ae889cd48ff8145b1dc15bad51dc9ba4bfab197ea70e5f04"
     },
     {
+      "path": "evidence/property-stays.tap",
+      "sha256": "a01c0f7d748c0f22bb8e2f4bf40ac706c452f1fd16e9a4bc9eab5f543db55159"
+    },
+    {
+      "path": "evidence/runtime.log",
+      "sha256": "a786dea7e6a56935dbf3ae8c6cfa3996ab0d70298ce4ae9a25453e31816696ff"
+    },
+    {
       "path": "evidence/selection-executed.log",
       "sha256": "6aa8a89e1518dc044e2e08a6e475467ca718c1bd1de39f23d0350bb20a235360"
     }
   ],
-  "betaDecision": "NO-GO"
+  "betaDecision": "NO-GO",
+  "checkpoint": "4a1c3f6020183cd8d4c204d07b0ea8298d134114",
+  "runtime": "v24.22.1"
 }
