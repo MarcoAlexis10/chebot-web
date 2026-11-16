@@ -82,5 +82,8 @@
   ],
   "betaDecision": "NO-GO",
   "checkpoint": "4a1c3f6020183cd8d4c204d07b0ea8298d134114",
-  "runtime": "v24.22.1"
+  "runtime": "v24.22.1",
+  "codeFinal": "d6bf8e72d49157f463750036550e8ee3d8d0cf5f",
+  "productRegressionsFound": "None reproduced in the inspected DTO consumer boundaries; not a claim of universal correctness",
+  "sourcePreservation": "Original application, five previous QA consumers, backend and lab blobs unchanged"
 }

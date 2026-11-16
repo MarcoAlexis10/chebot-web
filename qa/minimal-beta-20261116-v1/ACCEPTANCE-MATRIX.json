@@ -8,92 +8,100 @@
     {
       "id": "OFF-PROPERTY-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
       "preconditions": [
         "67 pinned source files; Node isolation launcher; synthetic records; no Auth or SQL"
       ],
       "expected": "Original strict property receipt parser accepts captured fields and rejects an extra field; retained panel displays draft, property and member role; GET only, no property_create",
-      "evidence": "property-stay-consumers.test.cjs; pure original parser/projection and candidate consumer; no native exclusion or authority evidence"
+      "evidence": "property-stay-consumers.test.cjs; pure original parser/projection and candidate consumer; no native exclusion or authority evidence",
+      "lastEvidence": "qa/reviews/minimal-beta-20261116/evidence/property-stays.tap"
     },
     {
       "id": "OFF-STAY-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
       "preconditions": [
         "67 pinned source files; Node isolation launcher; synthetic records; no Auth or SQL"
       ],
       "expected": "Original inline stay projection preserves distinct stay_id and property_id, adjacent checkout/checkin instants and CABA rendering; no conflation of reservations or write",
-      "evidence": "property-stay-consumers.test.cjs; pure original parser/projection and candidate consumer; no native exclusion or authority evidence"
+      "evidence": "property-stay-consumers.test.cjs; pure original parser/projection and candidate consumer; no native exclusion or authority evidence",
+      "lastEvidence": "qa/reviews/minimal-beta-20261116/evidence/property-stays.tap"
     },
     {
       "id": "OFF-REQUEST-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
       "preconditions": [
         "Pinned web/backend sibling sources; existing user/net namespace launcher; only synthetic rows and fetch doubles"
       ],
       "expected": "Original requestForClient projector emits exact identifiers/property/stay; retained panel renders its populated DTO; unknown-field canaries absent; GET only; no mutation",
       "evidence": "projector-consumers.test.cjs; one selected assertion; Node + VM + DOM doubles, no handler/Auth/HTTP/SQL",
-      "actor": "Node QA process without credentials"
+      "actor": "Node QA process without credentials",
+      "lastEvidence": "qa/reviews/minimal-beta-20261116/evidence/projectors.tap"
     },
     {
       "id": "OFF-INCIDENT-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
       "preconditions": [
         "Pinned web/backend sibling sources; existing user/net namespace launcher; only synthetic rows and fetch doubles"
       ],
       "expected": "Original incidentForClient projector emits exact identifiers/property/stay; retained panel renders its populated DTO; unknown-field canaries absent; GET only; no mutation",
       "evidence": "projector-consumers.test.cjs; one selected assertion; Node + VM + DOM doubles, no handler/Auth/HTTP/SQL",
-      "actor": "Node QA process without credentials"
+      "actor": "Node QA process without credentials",
+      "lastEvidence": "qa/reviews/minimal-beta-20261116/evidence/projectors.tap"
     },
     {
       "id": "REG-PANEL-CONTEXT",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
       ],
       "expected": "Account/member/role mismatch closes panel; compatible session DTO stays usable; 403 diagnosis",
       "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 4 cases",
       "previouslyAccreditedCases": 4,
-      "repetitionRequiresDirectImpact": true
+      "repetitionRequiresDirectImpact": true,
+      "lastEvidence": "qa/reviews/pilot-integration-20261112/TEST-EVIDENCE.json"
     },
     {
       "id": "REG-SECTION-CONTEXT",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
       ],
       "expected": "Section metadata and learning enrichment match current view; stale response cannot erase new session",
       "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 5 cases",
       "previouslyAccreditedCases": 5,
-      "repetitionRequiresDirectImpact": true
+      "repetitionRequiresDirectImpact": true,
+      "lastEvidence": "qa/reviews/pilot-integration-20261112/TEST-EVIDENCE.json"
     },
     {
       "id": "REG-UNKNOWN",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
       ],
       "expected": "Headers/body stall reaches UNKNOWN, retains intent, no resend or late confirmation",
       "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 2 cases",
       "previouslyAccreditedCases": 2,
-      "repetitionRequiresDirectImpact": true
+      "repetitionRequiresDirectImpact": true,
+      "lastEvidence": "qa/reviews/pilot-integration-20261112/TEST-EVIDENCE.json"
     },
     {
       "id": "REG-INVITE",
       "layer": "OFFLINE_NODE",
-      "status": "SELECTABLE_NOT_RUN",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
       ],
       "expected": "BFCache permits fresh controls only and preserves UNKNOWN",
       "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 1 cases",
       "previouslyAccreditedCases": 1,
-      "repetitionRequiresDirectImpact": true
+      "repetitionRequiresDirectImpact": true,
+      "lastEvidence": "qa/reviews/pilot-integration-20261112/TEST-EVIDENCE.json"
     },
     {
       "id": "EX-SOURCES",

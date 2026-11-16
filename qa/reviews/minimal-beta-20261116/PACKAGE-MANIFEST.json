@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "qa/minimal-beta-20261116-v1/ACCEPTANCE-MATRIX.json",
-      "sha256": "b7f227116d1fe420f07c2ee09c2d3a93fc592cb32571f5f2b182ecfe7f9f3e42",
-      "bytes": 14637
+      "sha256": "dfe2a381338474a01a997ed6de62deeba48b211c5538a5665b890dcab19a40b2",
+      "bytes": 15393
     },
     {
       "path": "qa/minimal-beta-20261116-v1/README.md",
