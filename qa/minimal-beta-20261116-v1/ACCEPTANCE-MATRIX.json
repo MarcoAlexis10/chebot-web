@@ -1,0 +1,241 @@
+{
+  "schema": "cheveni-minimal-pilot-acceptance/1",
+  "betaDecision": "NO-GO",
+  "date": "2026-11-16",
+  "existingCandidate": "qa/pilot-integration-20261112-v1/materialize.mjs",
+  "rule": "Selection is not authorization. No executable external/native/Auth/browser/restore adapter is included. Historical cases require direct-impact justification and are not run by default.",
+  "cases": [
+    {
+      "id": "OFF-REQUEST-DTO",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "Pinned web/backend sibling sources; existing user/net namespace launcher; only synthetic rows and fetch doubles"
+      ],
+      "expected": "Original requestForClient projector emits exact identifiers/property/stay; retained panel renders its populated DTO; unknown-field canaries absent; GET only; no mutation",
+      "evidence": "projector-consumers.test.cjs; one selected assertion; Node + VM + DOM doubles, no handler/Auth/HTTP/SQL",
+      "actor": "Node QA process without credentials"
+    },
+    {
+      "id": "OFF-INCIDENT-DTO",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "Pinned web/backend sibling sources; existing user/net namespace launcher; only synthetic rows and fetch doubles"
+      ],
+      "expected": "Original incidentForClient projector emits exact identifiers/property/stay; retained panel renders its populated DTO; unknown-field canaries absent; GET only; no mutation",
+      "evidence": "projector-consumers.test.cjs; one selected assertion; Node + VM + DOM doubles, no handler/Auth/HTTP/SQL",
+      "actor": "Node QA process without credentials"
+    },
+    {
+      "id": "REG-PANEL-CONTEXT",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
+      ],
+      "expected": "Account/member/role mismatch closes panel; compatible session DTO stays usable; 403 diagnosis",
+      "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 4 cases",
+      "previouslyAccreditedCases": 4,
+      "repetitionRequiresDirectImpact": true
+    },
+    {
+      "id": "REG-SECTION-CONTEXT",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
+      ],
+      "expected": "Section metadata and learning enrichment match current view; stale response cannot erase new session",
+      "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 5 cases",
+      "previouslyAccreditedCases": 5,
+      "repetitionRequiresDirectImpact": true
+    },
+    {
+      "id": "REG-UNKNOWN",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
+      ],
+      "expected": "Headers/body stall reaches UNKNOWN, retains intent, no resend or late confirmation",
+      "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 2 cases",
+      "previouslyAccreditedCases": 2,
+      "repetitionRequiresDirectImpact": true
+    },
+    {
+      "id": "REG-INVITE",
+      "layer": "OFFLINE_NODE",
+      "status": "SELECTABLE_NOT_RUN",
+      "preconditions": [
+        "Direct code impact must be stated before selecting; previous evidence preserved; never run as routine acceptance"
+      ],
+      "expected": "BFCache permits fresh controls only and preserves UNKNOWN",
+      "evidence": "pilot-integration-20261112-v1 named assertion files; prior closure already proves these 1 cases",
+      "previouslyAccreditedCases": 1,
+      "repetitionRequiresDirectImpact": true
+    },
+    {
+      "id": "EX-SOURCES",
+      "layer": "EXTERNAL",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "Protected property_create eligibility/owner-member-account/CABA/quota/revisions/floors source supplied",
+        "Trusted original/custody, dispatch admission and specific reader supplied; exact review hashes",
+        "Native artifact authorization separate; no fixture/constant/JWT metadata substitutes"
+      ],
+      "expected": "Reach pre-property admission with target NULL, no active property or trial; missing/ambiguous/stale sources deny without effect; known intent never writes again",
+      "evidence": "Actual producer provenance, relation/cardinality observations, review/ACL/fence evidence; fixture PASS does not satisfy this row",
+      "dependsOn": [],
+      "existingPlan": "qa/reviews/property-producer-gates-20261112/CLOSURE.md; property-bootstrap BPF01-BPF04 retained, not duplicated"
+    },
+    {
+      "id": "EX-NATIVE",
+      "layer": "EXTERNAL",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "Preexisting zero-cost host accredited for exact PostgreSQL 17.11 and user/process/network/filesystem isolation",
+        "Sources/roles/catalog/revokers/original dependencies of each existing case closed",
+        "Explicit per-host/materialization/operation authorization; DO NOT APPLY guards remain until separately reviewed approval"
+      ],
+      "expected": "Execute only previously authorized selections of N01-N12/BPF, reach relevant branches, exact least privilege and concurrency evidence; stop on catalog/identity/isolation drift",
+      "evidence": "Existing NATIVE-PLAN.json: actor, inputs, expected, abort, branch traces and external evidence per case; synthetic Auth cannot prove provider Auth",
+      "dependsOn": [
+        "EX-SOURCES"
+      ],
+      "existingPlan": "qa/native17-readiness-20261112-v1/NATIVE-PLAN.json",
+      "nativeIds": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12"
+      ],
+      "doesNotProve": "Managed Auth, COMMIT witness custody, browser or A2 automatically"
+    },
+    {
+      "id": "EX-AUTH",
+      "layer": "EXTERNAL",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "Separately approved isolated provider/project and synthetic identities, no operational credentials",
+        "Protected current authority and independent restrictions available",
+        "No real messages/accounts; explicit authorization absent in this batch"
+      ],
+      "expected": "Actual signature/sub/session_id/issuer/expiry verified; pre-revocation JWT, refresh/session change, expiry during await and revoked readback never recover old authority",
+      "evidence": "Provider traces without tokens, current account/member/property revisions, negative dispatch/read observations and session-change correlation",
+      "dependsOn": [
+        "EX-SOURCES"
+      ],
+      "existingPlan": "managedProviderTests in existing NATIVE-PLAN.json; separate from synthetic N10"
+    },
+    {
+      "id": "EX-COMMIT",
+      "layer": "EXTERNAL",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "Authorized native writer and physically independent minimal reader identities",
+        "Trusted original, intent/attempt/session/operation/arguments/revisions binding; independent COMMIT observer and journal/witness custody",
+        "Privileged sources/floors rechecked at dispatch and readback"
+      ],
+      "expected": "Lost ACK => UNKNOWN; commit with lost response => independent readback of original effect, no resend; restart without trusted original stays UNKNOWN; conflicting arguments conflict; revoked reader sees no private result",
+      "evidence": "External COMMIT evidence, effect/readback/journal correlation; different callbacks/PIDs or ACK COMMITTED alone insufficient",
+      "dependsOn": [
+        "EX-NATIVE",
+        "EX-AUTH",
+        "H-PRIVACY"
+      ],
+      "existingPlan": "N04, N06-N09, N11 in existing NATIVE-PLAN; no successor runner added"
+    },
+    {
+      "id": "EX-BROWSER",
+      "layer": "EXTERNAL",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "Accredited compatible browser lab with zero unauthorized egress/spend",
+        "No sandbox/seccomp/host weakening or retry of failed AF_UNIX configurations",
+        "Explicit scoped authorization of any local endpoint/fixture transport; no real Auth/SQL inferred"
+      ],
+      "expected": "Manager journey retains HELD controls; actual 401 vs 403 vs 429/503/network/CORS displayed correctly; BFCache/new session cannot reopen old private view; no cross-stay content",
+      "evidence": "Existing four prepared browser tests plus actual observed browser snapshots/console/network evidence for changed consumers; not a DOM double",
+      "dependsOn": [],
+      "existingPlan": "qa/integral-held-v1 existing browser cases; previous pilot closure limitation"
+    },
+    {
+      "id": "EX-A2",
+      "layer": "EXTERNAL",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "Explicit separately approved disposable recovery lab and complete synthetic recovery inventory",
+        "Post-backup independent floors/revocations/journal/witness available",
+        "Key/config custody approved; no restore command in this matrix"
+      ],
+      "expected": "Recovered system stays quarantined until PostgreSQL, GoTrue/Auth, Vault, Storage, keys/config and independent revocations/floors reconcile; old backup cannot restore permissions",
+      "evidence": "Approved artifact inventory and correlated restore/quarantine/reconciliation/discard evidence; tables-only restore insufficient",
+      "dependsOn": [
+        "EX-COMMIT"
+      ],
+      "existingPlan": "A2 inventory referenced by pilot RELEASE-CANDIDATE.json; no new restore architecture"
+    },
+    {
+      "id": "H-PRIVACY",
+      "layer": "HUMAN",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "Existing general D02-A decision preserved",
+        "Specific original/capture duplication minimization, access, custody, retention and coordinated suppression decisions supported by evidence"
+      ],
+      "expected": "No real data collection/persistence or operational suppression until specific policy and legal/prelegal requirements are fulfilled",
+      "evidence": "Actual decision records and custody/access/retention evidence; no invented period or approval",
+      "dependsOn": []
+    },
+    {
+      "id": "H-COMMERCIAL",
+      "layer": "HUMAN",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "preconditions": [
+        "All mandatory technical/identity/revocation/privacy/recovery conditions demonstrated",
+        "Owner commercial authorization expressly granted for real founder/property"
+      ],
+      "expected": "CABA, one founder, one property, 30 free days from first verified real stay; no automatic charge/conversion, no launch date promise; Free separate",
+      "evidence": "Explicit approval and scoped pilot checklist; Node pass cannot satisfy this row",
+      "dependsOn": [
+        "EX-SOURCES",
+        "EX-NATIVE",
+        "EX-AUTH",
+        "EX-COMMIT",
+        "EX-BROWSER",
+        "EX-A2",
+        "H-PRIVACY"
+      ]
+    }
+  ],
+  "validationSequence": [
+    [
+      "EX-SOURCES",
+      "H-PRIVACY"
+    ],
+    [
+      "EX-NATIVE",
+      "EX-AUTH",
+      "EX-BROWSER"
+    ],
+    [
+      "EX-COMMIT"
+    ],
+    [
+      "EX-A2"
+    ],
+    [
+      "H-COMMERCIAL"
+    ]
+  ],
+  "parallelismNote": "Middle group lists independent prerequisites; no concurrency is started by this plan. Each existing Native17 case retains its own dependencies. Blocked group cannot be promoted by a fixture."
+}

@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-16",
+  "webInitial": "bb27835e18d6c2f2f2656b46c1deb450b211213f",
+  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "qaLab": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "productCorrections": 0,
+  "functionalAcceptance": {
+    "uniquePASS": 2,
+    "FAIL": 0,
+    "SKIP": 0,
+    "classification": "Original pure backend projector plus candidate consumer in Node VM/synthetic DOM; no HTTP/Auth/SQL"
+  },
+  "acceptanceSelectorControls": {
+    "uniquePASS": 3,
+    "FAIL": 0,
+    "SKIP": 0,
+    "classification": "QA tool safety controls, not pilot functionality"
+  },
+  "repeatedNewCase": {
+    "count": 1,
+    "reason": "Verify new CLI actually selects one case and invokes existing isolated Node runner; not an additional unique test"
+  },
+  "previousTwelveAndFive": {
+    "executedThisBatch": 0,
+    "evidenceReused": "qa/reviews/pilot-integration-20261112/TEST-EVIDENCE.json"
+  },
+  "intentionalBlockedCLI": {
+    "EX-NATIVE": {
+      "exitCode": 3,
+      "processStarted": false
+    },
+    "REG-PANEL-CONTEXT_without_reason": {
+      "exitCode": 2,
+      "processStarted": false
+    }
+  },
+  "notRun": [
+    "Native17 N01-N12",
+    "BPF01-BPF04",
+    "Managed Auth",
+    "Browser",
+    "HTTP transport",
+    "SQL",
+    "COMMIT/journal/witness",
+    "A2 restore"
+  ],
+  "sourcePinsVerifiedAgainstRemote": 67,
+  "logs": [
+    {
+      "path": "evidence/acceptance-controls.tap",
+      "sha256": "9b9509fe405c0fcf6c222c75e3cf234190e85e9eb25ebb94336e5efd4b62952e"
+    },
+    {
+      "path": "evidence/historical-selection-blocked.log",
+      "sha256": "cac731017de0cf7548becfd833207c3121790f333cb86114db1419a5b2e37a6c"
+    },
+    {
+      "path": "evidence/native-selection-blocked.log",
+      "sha256": "9a48fffe180ea1ee75891f5467aed0358a41f01fa40149e1ccb7bd825a39d54b"
+    },
+    {
+      "path": "evidence/projectors.tap",
+      "sha256": "bfcbf8bb7bcdfa31ae889cd48ff8145b1dc15bad51dc9ba4bfab197ea70e5f04"
+    },
+    {
+      "path": "evidence/selection-executed.log",
+      "sha256": "6aa8a89e1518dc044e2e08a6e475467ca718c1bd1de39f23d0350bb20a235360"
+    }
+  ],
+  "betaDecision": "NO-GO"
+}
