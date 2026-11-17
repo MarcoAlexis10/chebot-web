@@ -1,0 +1,9 @@
+{
+  "classification": "OBSERVED_TEST_ASSERTION_ERROR_CORRECTED",
+  "command": "python3 qa/integral-held-v1/run-isolated.py -- python3 -B qa/native17-post-asus-20261117-v1/checks/lab_test.py",
+  "exitCode": 1,
+  "tests": 7,
+  "failedSubtest": "MemorySwapMax=0 incorrectly expected rejection",
+  "correction": "Invalid-value table now excludes valid zero swap. No product security check weakened.",
+  "nativeSqlRun": false
+}

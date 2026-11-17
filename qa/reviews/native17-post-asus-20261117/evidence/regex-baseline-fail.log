@@ -1,0 +1,26 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+node:assert:152
+  throw new AssertionError(obj);
+  ^
+
+AssertionError [ERR_ASSERTION]: backend-compatible QA journal rejected: qa_floor_17
+
+false !== true
+
+    at Object.<anonymous> (/workspace/scratch/211931cbaa69/web/qa/native17-post-asus-20261117-v1/checks/sql-contracts.cjs:16:70)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object..js (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

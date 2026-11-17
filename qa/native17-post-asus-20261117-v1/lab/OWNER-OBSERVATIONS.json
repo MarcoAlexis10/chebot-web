@@ -1,0 +1,39 @@
+{
+  "classification": "OWNER_REPORTED_NOT_INDEPENDENTLY_ACCREDITED",
+  "date": "2026-11-17",
+  "source": "Owner instruction in this execution",
+  "A57": {
+    "exitCode": 0,
+    "query": "170011||pgqa",
+    "startedQueriedStopped": true
+  },
+  "A58": {
+    "ownerObservedResidualProcesses": false,
+    "ownerObservedResidualUnit": false
+  },
+  "A59": {
+    "ownerObservedAuxiliaryContainers": false,
+    "temporaryFilesApproxMB": 466
+  },
+  "reportedEnvironment": {
+    "DockerEngine": "29.9.1",
+    "serverVersionNum": 170011,
+    "userPidNetworkNamespaces": true,
+    "windowsMountAbsent": true,
+    "CapEff": "0",
+    "NoNewPrivs": 1,
+    "Seccomp": 2,
+    "effectiveSystemdLimits": true,
+    "listenAddresses": ""
+  },
+  "priorRoot": "/tmp/cheveni-native17-pWSZJnLP",
+  "priorRootReusable": false,
+  "exactA29A54A57CommandsAvailable": false,
+  "limitations": [
+    "temporary storage may disappear",
+    "some earlier fsync off or no-sync",
+    "ptrace-only filter is not full policy",
+    "no concurrency/ACL/Auth/custody/A2/COMMIT accreditation"
+  ],
+  "WorkConnectedToASUS": false
+}

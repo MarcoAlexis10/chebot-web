@@ -1,0 +1,13 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532302]", "childNetns": "net:[4026532231]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+test_bound_recipe_no_network_mounts_or_implicit_fd_transfer (__main__.LabContracts.test_bound_recipe_no_network_mounts_or_implicit_fd_transfer) ... ok
+test_disabled_executor_and_pure_default (__main__.LabContracts.test_disabled_executor_and_pure_default) ... ok
+test_effective_resource_properties_must_match_not_just_configure (__main__.LabContracts.test_effective_resource_properties_must_match_not_just_configure) ... ok
+test_export_attack_paths_types_and_links (__main__.LabContracts.test_export_attack_paths_types_and_links) ... ok
+test_filter_bytes_and_fd_are_checked_without_installing_filter (__main__.LabContracts.test_filter_bytes_and_fd_are_checked_without_installing_filter) ... ok
+test_private_export_extraction_and_archive_permissions (__main__.LabContracts.test_private_export_extraction_and_archive_permissions) ... ok
+test_uncertain_commit_never_becomes_discard_or_retry (__main__.LabContracts.test_uncertain_commit_never_becomes_discard_or_retry) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.004s
+
+OK
