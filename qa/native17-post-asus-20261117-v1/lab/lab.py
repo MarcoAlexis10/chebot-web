@@ -20,7 +20,7 @@ PREFIX = 'cheveni-native17-run-'
 TARGET_VERSION = 170011
 LIMITS = dict(memoryBytes=1073741824, swapBytes=0, cpuQuotaPercent=100,
               tasks=64, runtimeSeconds=120, dataBytes=536870912,
-              tmpBytes=67108864, socketBytes=1048576,
+              tmpBytes=67108864, socketBytes=1048576, runBytes=1048576, sysBytes=1048576,
               payloadBytes=1073741824, archiveMembers=40000, evidenceBytes=1048576)
 
 
@@ -45,6 +45,44 @@ def verify_root(root, uid):
     if not stat.S_ISDIR(info.st_mode) or info.st_uid != uid or stat.S_IMODE(info.st_mode) != 0o700:
         fail('ROOT_OWNER_MODE_OR_SYMLINK')
     return p
+
+
+def spool_export(stream, destination, uid, maximum=None):
+    """Bound an already supplied byte stream; NEVER starts Docker or a process.
+
+    Partial files remain private/incomplete on error. No automatic overwrite,
+    deletion or infrastructure cleanup. A logical cap is not a host quota.
+    """
+    ceiling = LIMITS['payloadBytes'] + LIMITS['archiveMembers'] * 2048 if maximum is None else maximum
+    if not isinstance(ceiling, int) or isinstance(ceiling, bool) or ceiling < 1:
+        fail('EXPORT_BOUND_REQUIRED')
+    dest = Path(destination)
+    if dest.name != 'image-rootfs.tar' or any(x.is_symlink() for x in [dest, *dest.parents]):
+        fail('EXPORT_PATH_UNREVIEWED')
+    parent = dest.parent.lstat()
+    if not stat.S_ISDIR(parent.st_mode) or parent.st_uid != uid or stat.S_IMODE(parent.st_mode) != 0o700:
+        fail('EXPORT_PARENT_OWNER_OR_MODE')
+    fd = os.open(dest, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    total, digest = 0, hashlib.sha256()
+    try:
+        while True:
+            chunk = stream.read(min(65536, ceiling - total + 1))
+            if not isinstance(chunk, bytes):
+                fail('EXPORT_BINARY_STREAM_REQUIRED')
+            if not chunk:
+                break
+            if len(chunk) > ceiling - total:
+                fail('EXPORT_SIZE_LIMIT_INCOMPLETE_ARCHIVE')
+            total += len(chunk); digest.update(chunk)
+            view = memoryview(chunk)
+            while view:
+                written = os.write(fd, view)
+                if written < 1:
+                    fail('EXPORT_SHORT_WRITE')
+                view = view[written:]
+    finally:
+        os.close(fd)
+    return dict(bytes=total, sha256=digest.hexdigest(), classification='LOCAL_FILE_BYTES_ONLY_NOT_IMAGE_PROVENANCE')
 
 
 def archive_inventory(members, limit_bytes=None):
@@ -201,7 +239,8 @@ def plan(config):
              '--size', str(LIMITS['dataBytes']), '--tmpfs', '/data',
              '--size', str(LIMITS['tmpBytes']), '--tmpfs', '/tmp',
              '--size', str(LIMITS['socketBytes']), '--tmpfs', '/socket',
-             '--tmpfs', '/run', '--tmpfs', '/sys', '--dir', '/home/pgqa',
+             '--size', str(LIMITS['runBytes']), '--tmpfs', '/run',
+             '--size', str(LIMITS['sysBytes']), '--tmpfs', '/sys', '--dir', '/home/pgqa',
              '--ro-bind', str(root / 'control/inside-smoke.sh'), '/runner/inside-smoke.sh',
              '--ro-bind', str(root / 'control/passwd'), '/etc/passwd',
              '--ro-bind', str(root / 'control/group'), '/etc/group',

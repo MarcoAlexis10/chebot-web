@@ -1,0 +1,3 @@
+qa/native17-post-asus-20261117-v1/lab/lab.py: AST PASS
+qa/native17-post-asus-20261117-v1/checks/lab_test.py: AST PASS
+JSON PASS; SQL parser/compiler/runtime NOT_RUN

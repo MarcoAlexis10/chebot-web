@@ -1,0 +1,146 @@
+{
+  "classification": "EXECUTED_CODE_AND_STATIC_REVIEW_SEPARATED_FROM_NATIVE",
+  "runtimes": {
+    "python": "3.12.14",
+    "node": "v24.22.1"
+  },
+  "testIsolation": "existing run-isolated.py: changed user/network namespace, no routes, connect denied ENETUNREACH(101), empty inherited credential environment; not an ASUS accreditation",
+  "executed": [
+    {
+      "name": "lab code contracts",
+      "kind": "Python unittest on pure functions/synthetic local files; subprocess prohibited in default-mode test",
+      "uniqueCases": 7,
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/lab-tests.log"
+    },
+    {
+      "name": "bounded export stream",
+      "kind": "Python unittest on BytesIO/local temporary files, no Docker",
+      "uniqueCases": 2,
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/export-stream-tests.log"
+    },
+    {
+      "name": "materialization inventory tooling",
+      "kind": "Python source-subset/text review, not SQL parsing",
+      "uniqueCases": 3,
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/materialization-tests-final.log"
+    },
+    {
+      "name": "source byte integrity tooling",
+      "kind": "Python synthetic file drift/symlink tests",
+      "uniqueCases": 2,
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/source-integrity-tests.log"
+    },
+    {
+      "name": "journal identifier incompatibility",
+      "kind": "Node ASCII regex model from SQL text; no signatures/JWT",
+      "uniqueCases": 1,
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/sql-contracts-final.log",
+      "baseline": "FAIL exit1 against old pattern, retained evidence/regex-baseline-fail.log",
+      "notDemonstrated": "PostgreSQL regex/collation semantics or trusted journal identity"
+    },
+    {
+      "name": "affected four SQL structure/ABI",
+      "kind": "Existing repaired text reviewer executed in Node against changed candidates, writer11/read26 bindings",
+      "uniqueRegressionCases": 1,
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/sql-contracts-final.log",
+      "notDemonstrated": "PostgreSQL parse/compile/runtime/privileges"
+    },
+    {
+      "name": "recipe after /run and /sys size caps",
+      "kind": "Targeted repetition of one of the initial 7 code tests",
+      "additionalUniqueCases": 0,
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/recipe-resource-regression.log"
+    },
+    {
+      "name": "source snapshot bytes",
+      "kind": "25 selected files vs pinned Git blob hashes; selected snapshots, not complete checkouts",
+      "filesMatched": 25,
+      "result": "MATCH",
+      "exitCode": 0,
+      "log": "evidence/source-integrity-final.log"
+    },
+    {
+      "name": "disabled dry run",
+      "kind": "Pure plan JSON, no infrastructure command",
+      "result": "PASS",
+      "exitCode": 0,
+      "log": "evidence/dry-run-final.log"
+    },
+    {
+      "name": "syntax",
+      "kind": "Python AST, JSON decoding, sh -n, node --check",
+      "result": "PASS",
+      "exitCode": 0,
+      "logs": [
+        "evidence/syntax-and-versions.log",
+        "evidence/final-syntax.log"
+      ]
+    }
+  ],
+  "uniquePythonCodeCases": 14,
+  "newNodeRegexCase": 1,
+  "affectedNodeTextRegression": 1,
+  "repeatedPassesNotCountedAgain": true,
+  "intermediateFailures": [
+    {
+      "log": "evidence/intermediate-test-error.json",
+      "cause": "Test table incorrectly expected valid zero swap to fail",
+      "corrected": "Invalid inputs exclude valid zero; no product rule weakened"
+    },
+    {
+      "log": "evidence/source-integrity-initial-fail.log",
+      "cause": "One extra LF introduced by source hydration plus one unmaterialized selected source",
+      "corrected": "Exact Git blob check before removing LF; final 25 match; upstream remote originals unchanged",
+      "details": "evidence/hydration-correction.json"
+    }
+  ],
+  "notRun": [
+    {
+      "scope": "PostgreSQL parse/compile/protected SQL/ACL/RLS/concurrency N01-N12 BPF01-BPF04 F01-F12",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "reason": "No Work infrastructure authorization, no approved executable materialization or full protected source closure"
+    },
+    {
+      "scope": "new ASUS harness on real host",
+      "status": "NOT_RUN",
+      "reason": "No Work ASUS access; executors closed; A29/A54/A57 literal command not recovered"
+    },
+    {
+      "scope": "managed Auth/JWT/refresh/revocation",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "reason": "No provider activation or real identity/credentials authorized"
+    },
+    {
+      "scope": "external COMMIT, independent journal/witness, A1/A2 integral",
+      "status": "NOT_AUTHORIZED_NOT_RUN",
+      "reason": "Missing custody/durability/complete recovery evidence and separate authorization"
+    },
+    {
+      "scope": "browser",
+      "status": "NOT_RUN",
+      "reason": "Prior AF_UNIX/EPERM unchanged; no retry/installation"
+    },
+    {
+      "scope": "historical approved application suites",
+      "status": "NOT_REPEATED",
+      "reason": "No consumer/product-build change"
+    }
+  ],
+  "ownerASUSObservations": "../../native17-post-asus-20261117-v1/lab/OWNER-OBSERVATIONS.json",
+  "ownerObservationsAreNotWorkExecution": true,
+  "betaDecision": "NO-GO"
+}

@@ -1,0 +1,11 @@
+--- qa/protected-property-engineering-20261116-v1/01-bootstrap-DO-NOT-APPLY.sql
++++ qa/native17-post-asus-20261117-v1/sql/01-bootstrap-DO-NOT-APPLY.sql
+@@ -67,7 +67,7 @@
+  or c.dataset is null or octet_length(c.dataset)<>32
+  or c.inventory_digest is null or octet_length(c.inventory_digest)<>32
+  or c.restriction_digest is null or octet_length(c.restriction_digest)<>32
+- or c.restriction_journal is null or c.restriction_journal !~ '^qa_[a-z_]{1,64}$'
++ or c.restriction_journal is null or c.restriction_journal !~ '^qa_[a-z0-9_-]{1,61}$'
+  then raise exception 'PROPERTY_CUT_SHAPE_HELD';end if;
+ end$$;
+ revoke all on function concierge_invite_private.validate_property_cut_review_v1(

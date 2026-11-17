@@ -26,6 +26,28 @@ def member(name, kind=tarfile.REGTYPE, size=0, link=''):
     return item
 
 class LabContracts(unittest.TestCase):
+    def test_export_stream_ceiling_and_no_overwrite(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target=Path(tmp)/'image-rootfs.tar'
+            result=lab.spool_export(io.BytesIO(b'bounded'),target,os.getuid(),maximum=7)
+            self.assertEqual(result['bytes'],7)
+            self.assertEqual(target.read_bytes(),b'bounded')
+            self.assertEqual(target.stat().st_mode & 0o777,0o600)
+            with self.assertRaises(FileExistsError):lab.spool_export(io.BytesIO(b'new'),target,os.getuid(),maximum=7)
+            self.assertEqual(target.read_bytes(),b'bounded')
+
+    def test_overflow_remains_incomplete_and_symlink_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target=Path(tmp)/'image-rootfs.tar'
+            with self.assertRaisesRegex(ValueError,'INCOMPLETE_ARCHIVE'):
+                lab.spool_export(io.BytesIO(b'x'*100),target,os.getuid(),maximum=8)
+            self.assertLessEqual(target.stat().st_size,8)
+            self.assertEqual(target.stat().st_mode & 0o777,0o600)
+            other=Path(tmp)/'other';other.mkdir(mode=0o700)
+            alias=other/'image-rootfs.tar';alias.symlink_to(target)
+            with self.assertRaisesRegex(ValueError,'PATH_UNREVIEWED'):
+                lab.spool_export(io.BytesIO(b'payload'),alias,os.getuid(),maximum=8)
+
     def test_disabled_executor_and_pure_default(self):
         with patch.object(lab.subprocess, 'run', side_effect=AssertionError('EXTERNAL_COMMAND_FORBIDDEN')):
             self.assertFalse(lab.main([])['executionEnabled'])

@@ -30,6 +30,8 @@ deben obtenerse de observaciones nuevas, nunca copiar el directorio efímero A57
 ## Ingeniería implementada
 
 * Plan de exportación de imagen local por ID, sin iniciar el contenedor;
+  spool de bytes acotado, archivo privado exclusivo y evidencia parcial
+  retenida ante exceso o error (sin sobreescritura ni borrado automático);
   extracción acotada con rechazo de traversal, tipos especiales, hardlinks,
   symlinks escapados o usados como directorios. No usa `extractall`.
 * Receta Bubblewrap de montajes explícitos, red separada, socket Unix privado,

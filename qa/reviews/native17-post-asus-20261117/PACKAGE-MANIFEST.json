@@ -1,0 +1,273 @@
+{
+  "classification": "SEALED_QA_FILES_NOT_INSTALLATION_AUTHORITY",
+  "initialWebHead": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+  "lastPublishedCheckpoint": "133de9156cdac927e8ed4c04399ef1d950de88da",
+  "baselineBackend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "baselineLab": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "onlyModifiedRepository": "MarcoAlexis10/chebot-web",
+  "branch": "qa/cheveni-integral-held-20261111",
+  "paths": [
+    {
+      "path": "qa/native17-post-asus-20261117-v1/MATERIALIZATION.json",
+      "bytes": 12008,
+      "sha256": "740c0c95bf36c8be3b047f8f2eae317b4cc7750305ef63f7d06591575e698650",
+      "gitBlob": "ac6a5bc39bd722b07a5c9b8cc64f8311f49ea0f0"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/NATIVE-BINDINGS.json",
+      "bytes": 9183,
+      "sha256": "1c6ce285f9709d78fbf9dc93116898ad48044a99f7dc9495736b2a97a0dcddb1",
+      "gitBlob": "62bc50eb46bb152c177372e93c76a9285bc2718a"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/README.md",
+      "bytes": 6383,
+      "sha256": "fc590f2ed9e4966913e4d3e45857db795c8fbaa1df856bdd31d1a30253ed3d39",
+      "gitBlob": "31fbe67df58efe25eaa295c3551ea0a45493c5a7"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/SOURCE-PINS.json",
+      "bytes": 7320,
+      "sha256": "26088e01f2af81b6b90eee1b6104ff3c291c14f4178432ecec127fea79260060",
+      "gitBlob": "c16af2ddd07087ee31c19980b646ea034d46b9b9"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/lab_test.py",
+      "bytes": 7931,
+      "sha256": "4fc2b1446e3b62cb5cf5935ab0afe544dbf2f42e43b98c59a2993d4415f109fa",
+      "gitBlob": "a2f0dc59268f53a101ebc95e213343132573edb8"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/materialization.py",
+      "bytes": 3656,
+      "sha256": "206a9b7a431fd91dbfb702ae3b60e6115c6fd03614686ffe30b04daab9167389",
+      "gitBlob": "d809fef005a7c36c57207ee76938f2900cf62def"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/materialization_test.py",
+      "bytes": 1893,
+      "sha256": "ba83e2d0853f6d42561d8889da865283fa0f1b5a8f8002ea32fb9e8d4fca092c",
+      "gitBlob": "a54afbac2a4c34e9cd1d26d279952d9617e864f8"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/source_integrity.py",
+      "bytes": 2633,
+      "sha256": "6c8c1d4813e5bd0620a1650d6570d9ee6598517e19cc4115ccc1435eaa090ced",
+      "gitBlob": "b0044f154c57681854855ae77871ef0f1e7978e7"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/source_integrity_test.py",
+      "bytes": 1254,
+      "sha256": "88e0666ebf67fd5d80289f5bf8a28c80901f7fb051a5299b200f4a14b9b98b4d",
+      "gitBlob": "3b26e953b41af90d7f8eb87104d757f2bd48e09e"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/sql-contracts.cjs",
+      "bytes": 2131,
+      "sha256": "65c97e18b6dc1713eca281b0bda57fe4c08f44cf9cebebbdd7fbddbfb5c98f00",
+      "gitBlob": "c36cbc8a986c61a0d460b15480b453ec4c63c309"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/lab/OWNER-OBSERVATIONS.json",
+      "bytes": 1090,
+      "sha256": "a7873906163073e60f534daeaafe393e2dd75a99fc465986ec8d6525f7f2c032",
+      "gitBlob": "67aa4c1b861431fd2f66e6f1ea063cbe32cba13a"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/lab/config.review.json",
+      "bytes": 206,
+      "sha256": "21d6cb0915de384940735acedf0bdb347c90be3952715ce5630ba69b9317e517",
+      "gitBlob": "cf64b338d86dec69dab620d0447135d6dcb0325c"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/lab/fd_entry.py",
+      "bytes": 1231,
+      "sha256": "8aed0383f0a37df8795d09aee664b42093629f9b7f19a89490bdedf8cfa3bf31",
+      "gitBlob": "0674814224f4e428cafb3368f3705700896b5f0d"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/lab/inside-smoke.sh",
+      "bytes": 2152,
+      "sha256": "55d8405d78d9463ca8b50eb52f3d5c0ce89a2a813aa4a1c997232706edb4c66b",
+      "gitBlob": "40ca09efcc8d2f74e98ff54085b8e10cdb8ddcf0"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/lab/lab.py",
+      "bytes": 18111,
+      "sha256": "f89e04d7432a1d5c30d0f0c858278be10dfd09527e74f9898f715060a3c8a863",
+      "gitBlob": "bbce856b349063f646e506fd3ec067335c2a8804"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/sql/01-bootstrap-DO-NOT-APPLY.sql",
+      "bytes": 9892,
+      "sha256": "738056b3b7a3904aec3f150b72bab5e196e4f5cff7b7d6fbf3513c4f2230b510",
+      "gitBlob": "cd64dd2fbdbbcf6be35396ae72f806465982b943"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/sql/02-admission-DO-NOT-APPLY.sql",
+      "bytes": 14171,
+      "sha256": "2259343c8d675730860747d26984c0802a28ab6d8253882d7c9f1bb23f0af5c3",
+      "gitBlob": "3129d63834d79a7cbc4fb664454ba571ef49928d"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/sql/03-read2-DO-NOT-APPLY.sql",
+      "bytes": 7398,
+      "sha256": "df84e5c45113312cf6bfc8da3b83cc6ff53815f7cb77f64aa5063c203bfc2728",
+      "gitBlob": "59cd63cff806de7f29ee7f2c77c9c0e6d3ac77dc"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/sql/04-role-rls-DO-NOT-APPLY.sql",
+      "bytes": 7678,
+      "sha256": "ac667b7de52b9ee11a033714c4913513958853dd56ca189fe12f4318367142b3",
+      "gitBlob": "2f08abaefbbbb396cfed711c6d6f4818fe3b19e5"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/sql/catalog-capture-DO-NOT-APPLY.sql",
+      "bytes": 5032,
+      "sha256": "777ab90a905e5ad2ebf44a6982a5ed3cfb067db42cbcd111d55bb5a46d29c60a",
+      "gitBlob": "3f714dd712839298aa8c2d841dbc7877ebf8849f"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/dry-run-final.log",
+      "bytes": 6127,
+      "sha256": "04cd4cba2cd771e58bfc3664731c7e3791dcdfb658c9edb150a2240603d1e55b",
+      "gitBlob": "5a7272ef4600dd31752f9155d1069dbc83dcd961"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/dry-run.log",
+      "bytes": 6003,
+      "sha256": "5e48f2157d5338918e64ce3aa79c4ad582e16ed32f267a9d7585f7209bb615f1",
+      "gitBlob": "08aafb5fee78ef8cb98d442a3bf924a4c7f0bef5"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/export-stream-tests.log",
+      "bytes": 943,
+      "sha256": "5d3aa822846c46705df0ce0d7fe88cebf1443e299f034fda7f267f593001f3ec",
+      "gitBlob": "dc771306734efe20c29ed9371d07ea64132f9883"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/final-syntax.log",
+      "bytes": 165,
+      "sha256": "493e22403767efcc38edcc848d71666d274b240b3fae07bf69747ea5a592fd6a",
+      "gitBlob": "5af389a7b143bc868b4de92c8b0680644f70d55b"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/hydration-correction.json",
+      "bytes": 1913,
+      "sha256": "3f623ad2028829f8c799090e5f79bc9894e553a7d4fe1475552df1310e9e5952",
+      "gitBlob": "f748d4fe79d5e9c844a64284a4144e8514d8cbc0"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/intermediate-test-error.json",
+      "bytes": 423,
+      "sha256": "bca18190a98de6805d3c3af7ca94092e188cf0654a00efca9d989a1eefb05b13",
+      "gitBlob": "24a14bbcb2aa96bcfd57e43eef43faa207ce4d82"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/lab-tests.log",
+      "bytes": 1656,
+      "sha256": "a59c4c3cd94c5a017cf5f5f45686762343afd4be1f844e09e607ec3fc9e88559",
+      "gitBlob": "2540fcd0bb674c70e7b6e81c794af3dd99e318e8"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/materialization-inventory-final.log",
+      "bytes": 16755,
+      "sha256": "8a0c27894bde4115fb4ba4439f09ba645062dc45248c306ba774b2ae982decb6",
+      "gitBlob": "95b429da4bb172b95b0dd9101713ddd166b4f497"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/materialization-inventory.log",
+      "bytes": 16711,
+      "sha256": "ffb2e06404bb11c439121f833c6cecf409011056b05eaef31c8349a1604e5af6",
+      "gitBlob": "f728d7c6533faa89d6fd7b2123b93185d3c56dd2"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/materialization-tests-final.log",
+      "bytes": 1184,
+      "sha256": "fc306659095c4f85d3c33c8785faf16fd0c43fc4f3fefe8fcd7e56ca5327c879",
+      "gitBlob": "01d1725f6b5479c615549b3ab662c7a15e2741b9"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/materialization-tests.log",
+      "bytes": 1184,
+      "sha256": "1f33d208130ac8184852b03fb3753a7f27be8328ff6a8d5340ad4f7503617164",
+      "gitBlob": "cc1f80cd8c2c1e9b56fa1cfb265930f29f8fcccb"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/protected-sql-delta.diff",
+      "bytes": 689,
+      "sha256": "eeb805989900438adcf11c617634aa9c546eb8e58baed13556259b76de1e7521",
+      "gitBlob": "94dcfa3b0b4f33fde8355ee23a0cb11ce40e2afa"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/recipe-resource-regression.log",
+      "bytes": 835,
+      "sha256": "ab5497abaa1ce876d1a24f7be281093c25d6735e4b8c669e87abe922d2ac9749",
+      "gitBlob": "0e223d192e357b98490d730ba9adbce668797c06"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/regex-baseline-fail.log",
+      "bytes": 1476,
+      "sha256": "ce9fe4e03f0c42c33621e8d947f6b03be11ce17d97db65333dc2f723029a1fa8",
+      "gitBlob": "7a59389fdee83de85f4e170910751feedff43c7e"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/source-integrity-final.log",
+      "bytes": 11641,
+      "sha256": "c5bf52d15e6ae05e47b93c54a47026a42e19979e2c73c44160d28a2a7185a03c",
+      "gitBlob": "53d5f237cc1497a2acdb3bcb62c54e443ca59aac"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/source-integrity-initial-fail.log",
+      "bytes": 10362,
+      "sha256": "e944ed0452123035f97e1cfc88795eb4663fb7b47ac27b0d6b305a43f8d8487e",
+      "gitBlob": "97b714b5344065c4820a966d3b9418d60c49f92f"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/source-integrity-tests.log",
+      "bytes": 945,
+      "sha256": "e34b18fe6ae3c1515a2ed72403a4d8232d702b2f0c9487a031ebac8fa6bd471e",
+      "gitBlob": "5d67bf60f7c85c87c0a47c5cb0d7a981e037e48a"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/source-integrity.log",
+      "bytes": 10378,
+      "sha256": "678fb265ae2185d34a3766f4b90cc139e7e34cb694ccf09bcc94fe60a0065f98",
+      "gitBlob": "4f235e85a43694a6a7e60d6497d885fbd1812847"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/sql-contracts-final.log",
+      "bytes": 1004,
+      "sha256": "4c6c0ad2996fb0592eef32108428839a080de2c74a5dfa5520a510787a34a0b3",
+      "gitBlob": "31e717cd54221269949cc05cf6092651655e0683"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/sql-contracts.log",
+      "bytes": 1004,
+      "sha256": "4c6c0ad2996fb0592eef32108428839a080de2c74a5dfa5520a510787a34a0b3",
+      "gitBlob": "31e717cd54221269949cc05cf6092651655e0683"
+    },
+    {
+      "path": "qa/reviews/native17-post-asus-20261117/evidence/syntax-and-versions.log",
+      "bytes": 209,
+      "sha256": "1dcdfdc662dca24b8477aad8cbf2e3411a486a3c141cfdc67bcf9c1a2d60d2ea",
+      "gitBlob": "82f521c87446af236bd8677223bf494350dc299c"
+    }
+  ],
+  "manifestDoesNotHashItselfOrFinalClosure": true,
+  "productBuildConnected": false,
+  "executorsEnabled": false,
+  "allSQL": "REVIEW_ONLY_NOT_EXECUTED",
+  "existingHistoricalCandidatesRetained": true,
+  "commercial": {
+    "city": "CABA",
+    "founderManagers": 1,
+    "properties": 1,
+    "freeDays": 30,
+    "trialStarts": "first real verified stay only",
+    "automaticBillingOrConversion": false,
+    "FreeSeparate": true,
+    "launchDatePromised": false
+  },
+  "betaDecision": "NO-GO"
+}
