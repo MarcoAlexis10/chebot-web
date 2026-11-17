@@ -69,3 +69,13 @@ Los diez puertos protegidos sin implementación, source/cut/floors/custodia,
 RLS/roles, revisión D02-A, COMMIT independiente, revocaciones, Auth real y
 A2 integral permanecen retenidos. N01–N12, BPF01–BPF04 y F01–F12 no
 se ejecutaron. **Beta V1 continúa NO-GO.**
+
+## Recuperación de evidencia A57 del chat
+
+Se incorporó [A57-OWNER-COMMAND-REFERENCE.md](A57-OWNER-COMMAND-REFERENCE.md):
+transcripción del comando **entregado al propietario en esta conversación** y salida
+mostrada en capturas, no historial de shell exportado ni ejecución por Work.
+Permite contrastar la receta retenida con el procedimiento realmente probado:
+UID, montajes Debian, tamaños tmpfs, socket, fsync y carga de FD seccomp.
+La nueva receta de Work **no es equivalente** a A57 y permanece HELD.
+No se ejecutó ningún servicio ni SQL para incorporar esta referencia.
