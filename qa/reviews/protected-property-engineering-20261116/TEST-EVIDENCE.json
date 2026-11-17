@@ -57,5 +57,14 @@
   "newFounderSelected": false,
   "realPayloadStored": false,
   "operationalBlocksRemoved": [],
-  "betaDecision": "NO-GO"
+  "betaDecision": "NO-GO",
+  "sourcePinsVerified": 14,
+  "protectedSourceInstalled": false,
+  "proposalStages": [
+    "global founder + original-bound CABA source",
+    "11-argument wrapper and protected transaction binding",
+    "26-argument provisional reader",
+    "NOLOGIN role/RLS/column privilege review",
+    "explicit null/expiry/QA issuer/version/cut shape validation"
+  ]
 }

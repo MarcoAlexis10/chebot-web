@@ -24,11 +24,13 @@ begin
  or current_user::text<>'cheveni_property_capture_read_owner_v2'
  or pg_catalog.current_setting('transaction_isolation')<>'read committed'
  or p_read_request is null or p_original_ref is null or p_intent is null or p_attempt is null
+ or p_key is null or octet_length(p_key)<>32
  then return unknown_result;end if;
  perform pg_catalog.pg_advisory_xact_lock(1129728581,1);
  perform concierge_invite_private.bootstrap_require_complete_catalog_v1();
  -- Metadata-only resolver has NO address/floor output or payload EXECUTE grant.
  c:=concierge_invite_private.bootstrap_current_cut_v1(p_read_request,'property_capture_read',p_original_ref);
+ perform concierge_invite_private.validate_property_cut_review_v1(c,p_read_request,'property_capture_read');
  m:=concierge_invite_private.property_original_metadata_v1(p_original_ref,c);
  if m.original_ref is distinct from p_original_ref or m.intent_id is distinct from p_intent
  or m.attempt_id is distinct from p_attempt or m.key is distinct from p_key
@@ -86,6 +88,7 @@ begin
  -- reader owner receives no SELECT(address/floor) and no raw-original EXECUTE.
  perform concierge_invite_private.property_require_capture_matches_original_v1(p_original_ref,m.user_id,p_intent);
  after_cut:=concierge_invite_private.bootstrap_current_cut_v1(p_read_request,'property_capture_read',p_original_ref);
+ perform concierge_invite_private.validate_property_cut_review_v1(after_cut,p_read_request,'property_capture_read');
  perform concierge_invite_private.bootstrap_require_independent_floor_v1(after_cut);
  if after_cut is distinct from c or after_cut.revoked is distinct from false
  or after_cut.expiry is null or after_cut.expiry<=extract(epoch from clock_timestamp())

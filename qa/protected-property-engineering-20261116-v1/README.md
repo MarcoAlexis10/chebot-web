@@ -42,3 +42,5 @@ Un aborto exterior es TARGET_NOT_REACHED, nunca PASS nativo.
 
 Referencias de ingeniería: PostgreSQL 17, Row Security Policies, Explicit Locking y CREATE FUNCTION,
 consultadas sólo como documentación; no se cambió la versión objetivo ni se instaló un motor.
+
+La validación de cut tiene código SQL explícito: campos obligatorios, revisiones positivas, bytea de 32 bytes, issuer QA, permiso exacto y vigencia, incluida revalidación posterior. Es validación de forma/tiempo, NO verificación del proveedor ni autorización; permanece bloqueada y no ejecutada.

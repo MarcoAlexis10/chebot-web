@@ -38,7 +38,8 @@
       "execute": [
         "bootstrap_current_cut_v1",
         "bootstrap_require_independent_floor_v1",
-        "bootstrap_require_complete_catalog_v1"
+        "bootstrap_require_complete_catalog_v1",
+        "validate_property_cut_review_v1"
       ]
     },
     "cheveni_property_admission_owner_v1": {
@@ -57,7 +58,8 @@
         "property_require_original_equal_v1",
         "property_require_original_cut_v1",
         "property_require_no_prior_dispatch_v1",
-        "write_property_capture_v1"
+        "write_property_capture_v1",
+        "validate_property_cut_review_v1"
       ],
       "publicDml": false
     },
@@ -72,7 +74,8 @@
         "bootstrap_require_independent_floor_v1",
         "bootstrap_require_complete_catalog_v1",
         "property_original_metadata_v1",
-        "property_require_capture_matches_original_v1"
+        "property_require_capture_matches_original_v1",
+        "validate_property_cut_review_v1"
       ],
       "forbiddenExecute": [
         "write_property_capture_v1",
@@ -278,5 +281,23 @@
     "installed": false,
     "applicationMemberships": [],
     "implementation": "MISSING; separate policy/custody decision and protected original source required. No rows or credentials supplied."
+  },
+  "existingAuthIntegration": {
+    "source": "MarcoAlexis10/chebot-backend@9beb837a621f9a8f06601043afa64b3bba317cb5:concierge-manager-auth-session.js",
+    "gitBlob": "cc2ad91c73d821e9de9a3f59efc76753d1b2e3e1",
+    "reuseAsRequirements": [
+      "Provider verifies exact bearer at /auth/v1/user before claims are decoded",
+      "sub equals verified user, session_id exact, expected issuer/iat/exp/aud/non-anonymous claims",
+      "Fresh independent restriction proof before/after awaits; live session receipt bound to request/user/session and checkedAt",
+      "Server WeakMap-bound Response, never UI DTO/client metadata/cloned Response; refresh requires new admission"
+    ],
+    "incompatibilities": [
+      "Default trustedOrigin is DEV, not the QA issuer: cannot reuse it for bootstrap by rewriting a token",
+      "managerMutationResponse permits concierge_* operations and routes to historical REST durable RPC; property_create wrapper is not that contract",
+      "Native auth_live_v1 returns LIVE/request echo but has other caller pairs and no provider signature/revision bridge",
+      "WeakMap provider admission cannot be serialized into a caller-authored SQL composite; a protected request ingress/provenance source is still missing",
+      "Legacy COMMITTED function response/HTTP 200 does not establish this private composition's external COMMIT/journal/witness"
+    ],
+    "allowedAction": "No new network call, Auth factory activation, issuer override, callback returning authorized, or REST fallback implemented. New SQL current-cut source must be provided through a separately reviewed protected request ingress."
   }
 }

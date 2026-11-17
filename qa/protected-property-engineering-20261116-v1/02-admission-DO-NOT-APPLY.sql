@@ -64,6 +64,7 @@ begin
  -- Current relation/provider is checked even on KNOWN. This cut alone neither
  -- grants a second write nor requires the property inventory to be empty.
  c:=concierge_invite_private.bootstrap_current_cut_v1(p_request,'identity_only',p_original_ref);
+ perform concierge_invite_private.validate_property_cut_review_v1(c,p_request,'identity_only');
  perform concierge_invite_private.bootstrap_require_independent_floor_v1(c);
  perform concierge_invite_private.bootstrap_require_complete_catalog_v1();
  select * into old from concierge_invite_private.property_admission_v1
@@ -73,6 +74,7 @@ begin
   is distinct from (p_original_ref,p_key,c.account_id,c.member_id,'property_create'::text)
   then raise exception 'PRIVATE_COMMAND_CONFLICT';end if;
   c:=concierge_invite_private.bootstrap_current_cut_v1(p_request,'property_capture_read',p_original_ref);
+ perform concierge_invite_private.validate_property_cut_review_v1(c,p_request,'property_capture_read');
   perform concierge_invite_private.bootstrap_require_independent_floor_v1(c);
   if (c.user_id,c.account_id,c.member_id) is distinct from (old.principal_id,old.account_id,old.member_id)
   then raise exception 'PROPERTY_CURRENT_READ_HELD';end if;

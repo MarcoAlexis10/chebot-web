@@ -1,0 +1,45 @@
+{
+  "classification": "GIT_BLOB_HASHES_OF_PREPARED_SOURCE_NOT_OPERATIONAL_PROOF",
+  "files": [
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/01-bootstrap-DO-NOT-APPLY.sql",
+      "gitBlob": "ec98d0645632a88a687add6244b2241cfd3fb7bc",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/02-admission-DO-NOT-APPLY.sql",
+      "gitBlob": "3129d63834d79a7cbc4fb664454ba571ef49928d",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/03-read2-DO-NOT-APPLY.sql",
+      "gitBlob": "59cd63cff806de7f29ee7f2c77c9c0e6d3ac77dc",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/04-role-rls-DO-NOT-APPLY.sql",
+      "gitBlob": "2f08abaefbbbb396cfed711c6d6f4818fe3b19e5",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/PORTS-AND-ROLES.json",
+      "gitBlob": "da45d550c642b8b166512fca4caa22f19cdededf",
+      "classification": "QA_SOURCE_ONLY"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/artifact-review.cjs",
+      "gitBlob": "1e796acc382d289252454eebc940767617dda0ad",
+      "classification": "QA_SOURCE_ONLY"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/SOURCE-PINS.json",
+      "gitBlob": "838d7c3eb75e07ed27acb21812fa32943eba7506",
+      "classification": "QA_SOURCE_ONLY"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/README.md",
+      "gitBlob": "5528490e31d759771181514f8e270bff9776353e",
+      "classification": "QA_SOURCE_ONLY"
+    }
+  ]
+}

@@ -27,6 +27,8 @@ function review(files,originalWriter,existingReadSpec){
  requireThat(read.length===26&&JSON.stringify(read)===JSON.stringify(existingReadSpec),'READ2_ABI_DRIFT');
  const call=/ignored_function_result:=concierge_invite_private.write_property_capture_v1\(([\s\S]*?)\);/.exec(admit);
  requireThat(call&&call[1].split(',').length===11,'WRITER_COMPOSITION_DRIFT');
+ requireThat(JSON.stringify(call[1].split(',').map(x=>x.trim()))===JSON.stringify(['c.user_id','c.session_id','c.expiry','c.member_id',"'owner'",'c.authority_revision','c.account_id','p_intent','p_key','o.address','o.floor_or_unit']),'WRITER_ARGUMENT_BINDING_DRIFT');
+ requireThat(bootstrap.includes('create function concierge_invite_private.validate_property_cut_review_v1'),'CUT_VALIDATOR_MISSING');
  requireThat(bootstrap.includes('pilot_slot smallint primary key check(pilot_slot=1)'),'GLOBAL_FOUNDER_NOT_SINGLETON');
  const body=sql=>sql.replace(/--[^\n]*/g,'');
  requireThat(!/insert into concierge_invite_private.bootstrap_founder_assignment_v1/i.test(body(bootstrap)),'FOUNDER_SEEDED');

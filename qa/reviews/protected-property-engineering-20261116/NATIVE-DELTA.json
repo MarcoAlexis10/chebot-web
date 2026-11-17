@@ -1,0 +1,138 @@
+{
+  "classification": "DELTA_TO_EXISTING_PLANS_NOT_NEW_SUITE",
+  "existingMatrix": "qa/minimal-beta-20261116-v1/ACCEPTANCE-MATRIX.json",
+  "matrixUnchanged": true,
+  "existingPlans": [
+    "qa/native17-readiness-20261112-v1/NATIVE-PLAN.json",
+    "qa/reviews/property-bootstrap-20261112/NATIVE-DELTA.json"
+  ],
+  "baselineCheckpoint": "f97ed1eca243a5f8e8adbf4f7dee62ea4f07a660",
+  "executableMaterializationSha": null,
+  "authorization": false,
+  "status": "NOT_AUTHORIZED_NOT_RUN",
+  "sqlStatus": "REVIEW_ONLY_NOT_EXECUTED",
+  "requiredHost": "Observed exact PostgreSQL 17.11, independent role/connection identities, approved user/process/network/filesystem isolation, bounded resources, zero new cost and directed discard. Work/ASUS NOT accredited here.",
+  "commonAbort": [
+    "Any real identity/credential/endpoint, unexpected egress or cost",
+    "Missing provider/original/floor/catalog/custody implementation or unverifiable provenance",
+    "Guard reached instead of relevant producer/admission/readback branch => TARGET_NOT_REACHED, not PASS",
+    "Unknown ACL/membership/default privileges/RLS or missing revoker participant",
+    "No trusted original/history after restart; retain UNKNOWN and forbid redispatch"
+  ],
+  "affected": [
+    {
+      "existingIds": [
+        "BPF01",
+        "N01",
+        "N02",
+        "N05",
+        "N10"
+      ],
+      "artifacts": [
+        "01-bootstrap-DO-NOT-APPLY.sql",
+        "PORTS-AND-ROLES.json"
+      ],
+      "branch": "Protected provider/current cut -> exact owner/member/account -> singleton founder/original-bound CABA -> complete zero property/slot inventory -> pretrial",
+      "missing": [
+        "Actual trusted assignment and jurisdiction evidence, no seeded founder",
+        "D1/D2/D3/D5/D7 sources and exact complete-RLS/catalog cut",
+        "Specific roles/materialization and Auth authorization"
+      ],
+      "expected": "One active owner relation; target NULL; all property states count; both trial dates NULL; stale/missing/ambiguous/revoked source denies before effects",
+      "evidence": "Real source provenance/revisions, reached branch trace, complete catalog/RLS observation and trial unchanged",
+      "doesNotProve": "Synthetic Auth cannot prove provider signature/refresh; fact counts cannot prove inventory completeness without catalog/source evidence"
+    },
+    {
+      "existingIds": [
+        "BPF02",
+        "N03",
+        "N04",
+        "N06",
+        "N07",
+        "N12"
+      ],
+      "artifacts": [
+        "01-bootstrap-DO-NOT-APPLY.sql",
+        "02-admission-DO-NOT-APPLY.sql",
+        "04-role-rls-DO-NOT-APPLY.sql"
+      ],
+      "branch": "Global assignment key and pre-DML fence -> unique intent/key ledger -> protected exact original -> one NEW dispatch -> historical eleven-argument writer",
+      "missing": [
+        "Trusted original cut/custody and independent complete no-prior-dispatch proof",
+        "All revokers including governance/provider/floor/catalog participants",
+        "Approved direct SQL roles and schema/type/EXECUTE closure"
+      ],
+      "expected": "Two accounts cannot get simultaneous founder assignment; same intent/key never dispatches twice; different address/unit conflicts even with same key; no prior history proof => UNKNOWN",
+      "evidence": "Two actual connections, lock order/barriers, constraints, exact original comparison and independent effect/COMMIT observations; no local JS race used",
+      "doesNotProve": "An index in source or one connection does not demonstrate cross-process uniqueness or remote revoker participation"
+    },
+    {
+      "existingIds": [
+        "BPF03",
+        "N01",
+        "N10",
+        "N11",
+        "N12"
+      ],
+      "artifacts": [
+        "03-read2-DO-NOT-APPLY.sql",
+        "04-role-rls-DO-NOT-APPLY.sql"
+      ],
+      "branch": "Existing read/2 26 args -> current verified read -> metadata-only original -> result/slot/property -> exact original comparator -> current cut/floors again",
+      "missing": [
+        "Protected current-read ingress, metadata resolver/comparator and independent floor",
+        "Real minimal reader credentials/catalog, NOLOGIN owners, all transitive schema/type/EXECUTE capabilities"
+      ],
+      "expected": "Reader owns no data table, no writer membership or DML/EXECUTE; source derives account, rejects stale/revoked read and exposes no private data; provisional effect remains UNKNOWN",
+      "evidence": "Object exists and write rejected by privilege itself, not undefined_function/outer guard; actual role graph/default ACL/RLS; separate authenticated read connection",
+      "doesNotProve": "Separate configured roles/PIDs or callbacks do not prove physical isolation or native READ ONLY"
+    },
+    {
+      "existingIds": [
+        "BPF04",
+        "N04",
+        "N07",
+        "N08",
+        "N09"
+      ],
+      "artifacts": [
+        "02-admission-DO-NOT-APPLY.sql",
+        "03-read2-DO-NOT-APPLY.sql"
+      ],
+      "branch": "Lost ACK/commit -> trusted immutable original + same intent/attempt -> independent readback; restored state quarantined against external current floors",
+      "missing": [
+        "Specific D02-A custody and original lifecycle decisions",
+        "External COMMIT observer and existing journal/witness custody",
+        "Full A2 components and post-backup independent floors/revocations"
+      ],
+      "expected": "ACK or function_returned is not COMMIT; no original => UNKNOWN, no reconstruction/retry; confirmed historical effect not erased by later revocation; revoked reader sees no private result",
+      "evidence": "Commit/rollback distinction observed externally, correlated original/intent/attempt/session/key/result/journal/witness, process restart and quarantine/reconciliation proof",
+      "doesNotProve": "Restoring ledger/property tables alone is not A2 or renewed authorization"
+    }
+  ],
+  "directedDiscard": "Only after future explicit lab authorization: stop approved lab processes, revoke/destroy ephemeral lab credentials, remove named lab volumes/artifacts, verify no process/volume/endpoints survive. Preserve non-sensitive evidence hashes. No cleanup/restore command or execution included.",
+  "continuationOffline": "Review and implement missing producer/custodian/catalog ports only when their trusted inputs and decisions exist; inspect/parse SQL in an authorized available runtime. No UI repetitions or new native IDs.",
+  "betaDecision": "NO-GO",
+  "reviewArtifactGitBlobs": [
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/01-bootstrap-DO-NOT-APPLY.sql",
+      "gitBlob": "ec98d0645632a88a687add6244b2241cfd3fb7bc",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/02-admission-DO-NOT-APPLY.sql",
+      "gitBlob": "3129d63834d79a7cbc4fb664454ba571ef49928d",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/03-read2-DO-NOT-APPLY.sql",
+      "gitBlob": "59cd63cff806de7f29ee7f2c77c9c0e6d3ac77dc",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    },
+    {
+      "path": "qa/protected-property-engineering-20261116-v1/04-role-rls-DO-NOT-APPLY.sql",
+      "gitBlob": "2f08abaefbbbb396cfed711c6d6f4818fe3b19e5",
+      "classification": "REVIEW_ONLY_NOT_EXECUTED"
+    }
+  ]
+}

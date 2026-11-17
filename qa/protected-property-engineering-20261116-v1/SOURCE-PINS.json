@@ -78,6 +78,12 @@
       "ref": "affb445ddb478b49ceef7c80c6d2a26f907de443",
       "path": "qa/property-bootstrap-20261112-v1/custody-contract.mjs",
       "gitBlob": "e9d6e498c8e84a63f255352d0d5ea5f2821fffec"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-manager-auth-session.js",
+      "gitBlob": "cc2ad91c73d821e9de9a3f59efc76753d1b2e3e1"
     }
   ],
   "reader26Arguments": [

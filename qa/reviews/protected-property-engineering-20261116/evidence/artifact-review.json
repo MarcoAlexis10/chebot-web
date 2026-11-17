@@ -24,6 +24,11 @@
       "name": "reader privilege proposal cannot gain write capability",
       "result": "REJECTED_AS_EXPECTED",
       "reason": "READER_WRITE_GRANT"
+    },
+    {
+      "name": "writer address/floor arguments cannot be swapped",
+      "result": "REJECTED_AS_EXPECTED",
+      "reason": "WRITER_ARGUMENT_BINDING_DRIFT"
     }
   ],
   "controlsAreNotOperationalTests": true,
