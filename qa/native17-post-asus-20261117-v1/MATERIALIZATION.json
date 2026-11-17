@@ -1,0 +1,345 @@
+{
+  "classification": "REVIEW_ONLY_DEPENDENCY_ORDER_NOT_INSTALLER",
+  "status": "HELD_NOT_INSTALLABLE",
+  "authorization": false,
+  "sqlExecuted": false,
+  "sourcePins": "SOURCE-PINS.json",
+  "creationPhases": [
+    {
+      "order": 1,
+      "objects": [
+        "database and separate login/session channels",
+        "private and extension schemas",
+        "NOLOGIN owners and exact login roles"
+      ],
+      "sources": [
+        "04-role-rls-DO-NOT-APPLY.sql"
+      ],
+      "missing": [
+        "actual ownership/ACL/default privileges baseline",
+        "USAGE closure",
+        "credentials and connection isolation not supplied"
+      ],
+      "note": "04 combines role declarations with later object ALTER/POLICY statements; cannot execute as phase 1 file"
+    },
+    {
+      "order": 2,
+      "objects": [
+        "public.concierge_accounts",
+        "public.concierge_account_members",
+        "member (id,account_id) unique key",
+        "public.concierge_buildings",
+        "public.concierge_properties"
+      ],
+      "sources": [
+        "backend 20",
+        "backend 25"
+      ],
+      "missing": [
+        "approved lab-only extraction with historical constraints/defaults/owners/RLS preserved"
+      ],
+      "note": "Historical DEV migrations include service_role DML grants. They are sources, not a lab installer."
+    },
+    {
+      "order": 3,
+      "objects": [
+        "auth.users",
+        "auth.sessions",
+        "public.concierge_manager_web_identities"
+      ],
+      "sources": [
+        "backend 127",
+        "AUTH-LAB-REVIEW-ONLY.sql"
+      ],
+      "missing": [
+        "approved synthetic Auth-only schema/context",
+        "managed provider verification and current session/revocation source"
+      ],
+      "note": "Synthetic Auth shape does NOT verify JWT. Existing restrictive FALSE RLS is a hold; no permissive policy bypass."
+    },
+    {
+      "order": 4,
+      "objects": [
+        "concierge_invite_private.beta_property_slot_v1",
+        "concierge_invite_private.companion_binding_v1 dependency closure",
+        "concierge_invite_private.manager_result_v1",
+        "concierge_invite_private.property_capture_v1"
+      ],
+      "sources": [
+        "CATALOG-REVIEW-ONLY.sql",
+        "private-mutations-UNAPPLIED.sql"
+      ],
+      "missing": [
+        "complete companion_binding FK dependencies from existing ARTIFACT-INDEX",
+        "legacy owner/table/column/EXECUTE closure"
+      ],
+      "note": "manager_result has FK to companion_binding even for property-only use. Do not drop FK or blindly apply unrelated companion ALTERs."
+    },
+    {
+      "order": 5,
+      "objects": [
+        "bootstrap_founder_assignment_v1",
+        "bootstrap_jurisdiction_v1",
+        "property_current_cut_v1",
+        "property_original_payload_v1 TYPE",
+        "property_original_metadata_v1 TYPE",
+        "property_admission_v1",
+        "property_dispatch_context_v1"
+      ],
+      "sources": [
+        "01-bootstrap-DO-NOT-APPLY.sql",
+        "02-admission-DO-NOT-APPLY.sql"
+      ],
+      "missing": [
+        "D02-A specific metadata/original custody approval",
+        "trusted governance ingress and original-bound jurisdiction evidence"
+      ],
+      "note": "Composite types do not implement similarly named resolver functions. No founder/default evidence seeded."
+    },
+    {
+      "order": 6,
+      "objects": [
+        "bootstrap_current_cut_v1(uuid,text,uuid)",
+        "bootstrap_require_independent_floor_v1(property_current_cut_v1)",
+        "bootstrap_require_complete_catalog_v1()",
+        "property_original_payload_v1(uuid,property_current_cut_v1)",
+        "property_original_metadata_v1(uuid,property_current_cut_v1)",
+        "property_require_original_equal_v1(uuid,uuid)",
+        "property_require_original_cut_v1(uuid,property_current_cut_v1)",
+        "property_require_no_prior_dispatch_v1(uuid,uuid,bytea)",
+        "property_require_capture_matches_original_v1(uuid,uuid,uuid)",
+        "bootstrap_begin_revision_change_v1(text,text,text)"
+      ],
+      "sources": [
+        "PORTS-AND-ROLES.json"
+      ],
+      "missing": [
+        "MISSING_IMPLEMENTATION",
+        "MISSING_IMPLEMENTATION",
+        "MISSING_IMPLEMENTATION",
+        "MISSING_CUSTODIAN",
+        "MISSING_CUSTODIAN",
+        "MISSING_CUSTODIAN",
+        "MISSING_CUSTODIAN",
+        "MISSING_INDEPENDENT_HISTORY",
+        "MISSING_CUSTODIAN",
+        "MISSING_REVOCATION_IMPLEMENTATION"
+      ],
+      "note": "Implement real protected sources and custody first. No positive fixtures, constant revisions or callbacks."
+    },
+    {
+      "order": 7,
+      "objects": [
+        "validate_property_cut_review_v1",
+        "resolve_first_property_review_v1",
+        "capture_first_property_review_v1",
+        "private_mutation_authority_v1 narrow successor",
+        "read_property_capture_v2"
+      ],
+      "sources": [
+        "01",
+        "02",
+        "03",
+        "historical writer and check_private_mutation_authority_v1"
+      ],
+      "missing": [
+        "approved guard-preserving review -> separately sealed materialization",
+        "native compilation and runtime snapshot/volatility observations"
+      ],
+      "note": "Bootstrap before admission/read signatures; all composite types must exist. Body calls need actual port resolution at relevant branch."
+    },
+    {
+      "order": 8,
+      "objects": [
+        "exact function owners",
+        "column grants",
+        "schema/type USAGE",
+        "dependency EXECUTE",
+        "ENABLE/FORCE RLS and reviewed policies",
+        "revoker BEFORE STATEMENT hooks"
+      ],
+      "sources": [
+        "04",
+        "PORTS-AND-ROLES.json",
+        "RLS-REVIEW-ONLY.sql"
+      ],
+      "missing": [
+        "all grants and revoker closure reviewed against real catalog"
+      ],
+      "note": "No app DML, writer membership, SET ROLE or privileged login shortcut. Governance and private legacy owners also need narrow RLS closure."
+    },
+    {
+      "order": 9,
+      "objects": [
+        "catalog observation",
+        "separate reader/writer login identities",
+        "barrier observation",
+        "external commit/readback/journal/witness evidence"
+      ],
+      "sources": [
+        "existing N01-N12 BPF01-BPF04 F01-F12"
+      ],
+      "missing": [
+        "exact target host approval",
+        "specific native execution authorization",
+        "external custodians"
+      ],
+      "note": "An outer abort/undefined_function/missing table is TARGET_NOT_REACHED, not PASS."
+    }
+  ],
+  "extensions": {
+    "firstPropertyReviewFilesDeclare": [],
+    "coreFeatures": [
+      "uuid",
+      "jsonb",
+      "xid8",
+      "pg_current_xact_id",
+      "pg_advisory_xact_lock",
+      "core sha256",
+      "PL/pgSQL"
+    ],
+    "wholeHistoricalNative17": {
+      "btree_gist": "Historical evidence version 1.8; actual lab extension availability/version NOT_RUN; needed for stay exclusion/full historical graph, not established by smoke."
+    },
+    "pgcryptoNotAssumed": true
+  },
+  "roles": {
+    "cheveni_property_bootstrap_scope_backend_v1": {
+      "entry": "resolve_first_property_review_v1",
+      "directTables": [],
+      "memberships": [],
+      "credentialsPresent": false
+    },
+    "cheveni_private_mutation_backend_v1": {
+      "entry": "capture_first_property_review_v1",
+      "directTables": [],
+      "memberships": [],
+      "directLegacyWriteExecute": false,
+      "otherMutationExecute": false,
+      "existingPrincipalRequiresCatalogReview": true,
+      "credentialsPresent": false
+    },
+    "cheveni_property_capture_reader_backend_v2": {
+      "entry": "read_property_capture_v2",
+      "directTables": [],
+      "memberships": [],
+      "writeExecute": false,
+      "credentialsPresent": false
+    }
+  },
+  "owners": {
+    "cheveni_property_governance_owner_v1": {
+      "login": false,
+      "owns": [
+        "bootstrap_founder_assignment_v1",
+        "bootstrap_jurisdiction_v1"
+      ],
+      "applicationMemberships": [],
+      "assignmentIngress": "NOT IMPLEMENTED. Human decision + independently current epoch/revision required; no seeded founder."
+    },
+    "cheveni_property_bootstrap_owner_v1": {
+      "login": false,
+      "bypassRls": false,
+      "ownsTables": [],
+      "select": "Only columns in 04-role-rls; full relevant inventory, never filtered-zero evidence",
+      "execute": [
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "validate_property_cut_review_v1"
+      ]
+    },
+    "cheveni_property_admission_owner_v1": {
+      "login": false,
+      "bypassRls": false,
+      "owns": [
+        "property_admission_v1",
+        "property_dispatch_context_v1"
+      ],
+      "execute": [
+        "resolve_first_property_review_v1",
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "property_original_payload_v1",
+        "property_require_original_equal_v1",
+        "property_require_original_cut_v1",
+        "property_require_no_prior_dispatch_v1",
+        "write_property_capture_v1",
+        "validate_property_cut_review_v1"
+      ],
+      "publicDml": false
+    },
+    "cheveni_property_capture_read_owner_v2": {
+      "login": false,
+      "bypassRls": false,
+      "ownsTables": [],
+      "writeGrants": [],
+      "memberships": [],
+      "execute": [
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "property_original_metadata_v1",
+        "property_require_capture_matches_original_v1",
+        "validate_property_cut_review_v1"
+      ],
+      "forbiddenExecute": [
+        "write_property_capture_v1",
+        "capture_first_property_review_v1",
+        "property_original_payload_v1",
+        "property_require_no_prior_dispatch_v1"
+      ],
+      "forbiddenSelect": [
+        "property_capture_v1.address",
+        "property_capture_v1.floor_or_unit",
+        "property_dispatch_context_v1"
+      ],
+      "nativeReadOnlyAccredited": false
+    },
+    "cheveni_private_mutation_owner_v1": {
+      "historicalOwnerUnchanged": true,
+      "additionalSelect": [
+        "property_dispatch_context_v1",
+        "property_admission_v1"
+      ],
+      "additionalExecute": [
+        "resolve_first_property_review_v1",
+        "private_mutation_authority_v1"
+      ],
+      "reason": "Inner legacy SECURITY DEFINER calls narrow private_mutation_authority slice as INVOKER. This transitive closure must be observed; source text does not establish effective ACL."
+    }
+  },
+  "revokerParticipants": [
+    "public.concierge_manager_web_identities",
+    "public.concierge_account_members",
+    "public.concierge_accounts",
+    "public.concierge_properties",
+    "concierge_invite_private.beta_property_slot_v1",
+    "bootstrap_founder_assignment_v1",
+    "bootstrap_jurisdiction_v1",
+    "original custodian/admission history",
+    "Auth user/session/revocation/refresh source",
+    "independent restrictions/floors/dataset/recovery epoch",
+    "catalog/roles/grants/RLS/EXECUTE changes"
+  ],
+  "lockOrder": [
+    "shared global pre-DML fence (1129728581,1)",
+    "protected source/admission metadata",
+    "property and slot",
+    "effects/result/capture"
+  ],
+  "remoteRevokersSerializedByLocalLock": false,
+  "requiredCatalog": [
+    "roles flags/LOGIN/inheritance/memberships/SET capability",
+    "session_user/current_user/backend PID+start identity",
+    "schema/type/function EXECUTE and PUBLIC/default ACL",
+    "column/table privileges including transitive calls",
+    "owners SECURITY DEFINER search_path volatility",
+    "ENABLE/FORCE RLS policy intersections and source inventory completeness",
+    "FKs uniqueness indexes triggers revoker coverage",
+    "observed server version and extensions"
+  ],
+  "legalAndDurability": "No persistent original copy, retention period, COMMIT or A2 guarantee approved by this plan",
+  "betaDecision": "NO-GO"
+}

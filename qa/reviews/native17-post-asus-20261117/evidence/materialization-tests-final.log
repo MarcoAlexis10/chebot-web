@@ -1,0 +1,9 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+test_current_candidates_expose_missing_dependency_and_privilege_closure (__main__.MaterializationInventory.test_current_candidates_expose_missing_dependency_and_privilege_closure) ... ok
+test_type_or_comment_cannot_implement_a_protected_resolver (__main__.MaterializationInventory.test_type_or_comment_cannot_implement_a_protected_resolver) ... ok
+test_unsupported_shape_cannot_silently_pass_inventory (__main__.MaterializationInventory.test_unsupported_shape_cannot_silently_pass_inventory) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.006s
+
+OK

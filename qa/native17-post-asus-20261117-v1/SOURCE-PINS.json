@@ -1,0 +1,183 @@
+{
+  "classification": "READ_ONLY_SOURCE_PINS_NOT_EXECUTION",
+  "sources": [
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/01-bootstrap-DO-NOT-APPLY.sql",
+      "gitBlob": "3d441bad2728fb6ebfa00ebc864a5c89f32cc6d3"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/02-admission-DO-NOT-APPLY.sql",
+      "gitBlob": "3129d63834d79a7cbc4fb664454ba571ef49928d"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/03-read2-DO-NOT-APPLY.sql",
+      "gitBlob": "59cd63cff806de7f29ee7f2c77c9c0e6d3ac77dc"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/04-role-rls-DO-NOT-APPLY.sql",
+      "gitBlob": "2f08abaefbbbb396cfed711c6d6f4818fe3b19e5"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/PORTS-AND-ROLES.json",
+      "gitBlob": "da45d550c642b8b166512fca4caa22f19cdededf"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/SOURCE-PINS.json",
+      "gitBlob": "838d7c3eb75e07ed27acb21812fa32943eba7506"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/artifact-review.cjs",
+      "gitBlob": "db90a0e9087cb27e8820021a95b7a7455802d238"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/reviews/protected-property-engineering-20261116/NATIVE-DELTA.json",
+      "gitBlob": "f8845296fbb298e8815ec9f8938dc4ad11217880"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-authorization-preflight-v1/PLAN.json",
+      "gitBlob": "71291daa86b73c3c9158b96e8ab0356f10980959"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-authorization-preflight-v1/RACE-CARDS.json",
+      "gitBlob": "8939d151864ba9f510af13f16f130b54f78770a8"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/PLAN-SUCCESSOR.json",
+      "gitBlob": "74d837fe272e4ca90c2f4273b51ede3f166a6816"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/PRIVILEGES-SUCCESSOR.json",
+      "gitBlob": "084a5dcae15cb522884c6fc0af636043177b0140"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/ARTIFACT-INDEX.json",
+      "gitBlob": "55e222e8de0e27bc3d440789ff857eca15f39c9d"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/MANIFEST.json",
+      "gitBlob": "1598a21a5ff8ee521cdd3b62ffcfe9c30d074f4f"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/RLS-REVIEW-ONLY.sql",
+      "gitBlob": "8a7082ae2e5d3adc5a17622780ffdff7f4e27ee1"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/AUTH-LAB-REVIEW-ONLY.sql",
+      "gitBlob": "7279e9fcd9c1081c9f8a839390ec1f4a7cfea6b0"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+      "gitBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c"
+    },
+    {
+      "checkout": "lab",
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/cheveni-beta-release-candidate-v1/final-offline-assembly-v1/candidate/CATALOG-REVIEW-ONLY.sql",
+      "gitBlob": "6901cc36648ee9b0546964a73b91947c49f20253"
+    },
+    {
+      "checkout": "backend",
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "20-MIGRACION-01-ACCOUNTS-MEMBERS.sql",
+      "gitBlob": "94d872b3ce13873567c86d85a0ee4924f4b01b5f"
+    },
+    {
+      "checkout": "backend",
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "25-MIGRACION-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "gitBlob": "a8d9e05274f3eb8012447b4609b76b68948ea4af"
+    },
+    {
+      "checkout": "backend",
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "gitBlob": "7c7ee0ece4c227a8fedfac68dc0b3eebf31e3e70"
+    },
+    {
+      "checkout": "backend",
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-independent-revocations.js",
+      "gitBlob": "b96a2672843b924f595b32c4262a0615d6467d7d"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/native17-readiness-20261112-v1/NATIVE-PLAN.json",
+      "gitBlob": "959f570bb0113064b49dd138cf12012269902a1e"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/reviews/property-bootstrap-20261112/NATIVE-DELTA.json",
+      "gitBlob": "1704f6ecd61c2eba7bf786a1f475fd86fbb2e3fb"
+    },
+    {
+      "checkout": "web",
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/integral-held-v1/run-isolated.py",
+      "gitBlob": "c4ba8d2d91c6bc63902b1f63079281ec0464ac4f"
+    }
+  ],
+  "currentBootstrapBlob": "3d441bad2728fb6ebfa00ebc864a5c89f32cc6d3",
+  "historicalNativeDeltaBootstrapBlob": "ec98d0645632a88a687add6244b2241cfd3fb7bc",
+  "staleHistoricalDeltaMustNotSelectInstaller": true
+}

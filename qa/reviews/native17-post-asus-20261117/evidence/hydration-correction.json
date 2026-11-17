@@ -1,0 +1,26 @@
+{
+  "cause": "apply_patch source hydration added one trailing LF; one selected review input was not materialized locally",
+  "fix": "restore exact remote bytes against Git blob pins, no normalization without exact hash match",
+  "filesCorrected": [
+    "qa/protected-property-engineering-20261116-v1/01-bootstrap-DO-NOT-APPLY.sql",
+    "qa/protected-property-engineering-20261116-v1/02-admission-DO-NOT-APPLY.sql",
+    "qa/protected-property-engineering-20261116-v1/03-read2-DO-NOT-APPLY.sql",
+    "qa/protected-property-engineering-20261116-v1/04-role-rls-DO-NOT-APPLY.sql",
+    "qa/protected-property-engineering-20261116-v1/PORTS-AND-ROLES.json",
+    "qa/protected-property-engineering-20261116-v1/SOURCE-PINS.json",
+    "qa/protected-property-engineering-20261116-v1/artifact-review.cjs",
+    "../post-sources/lab/qa/native17-authorization-preflight-v1/PLAN.json",
+    "../post-sources/lab/qa/native17-authorization-preflight-v1/RACE-CARDS.json",
+    "../post-sources/lab/qa/native17-closure-v1/PLAN-SUCCESSOR.json",
+    "../post-sources/lab/qa/native17-closure-v1/PRIVILEGES-SUCCESSOR.json",
+    "../post-sources/lab/qa/native17-closure-v1/ARTIFACT-INDEX.json",
+    "../post-sources/lab/qa/native17-policy-closure-v1/MANIFEST.json",
+    "../post-sources/lab/qa/native17-policy-closure-v1/RLS-REVIEW-ONLY.sql",
+    "../post-sources/lab/qa/native17-policy-closure-v1/AUTH-LAB-REVIEW-ONLY.sql",
+    "../post-sources/lab/qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+    "../post-sources/lab/qa/cheveni-beta-release-candidate-v1/final-offline-assembly-v1/candidate/CATALOG-REVIEW-ONLY.sql"
+  ],
+  "upstreamFilesPublishedOrModified": false,
+  "candidateCopiesRestored": "02/03/04 now byte-identical to pinned sources; 01 differs only by regex",
+  "baselineRegexFailureStillValid": "newline did not affect regex; final regression repeated after exact-byte correction"
+}

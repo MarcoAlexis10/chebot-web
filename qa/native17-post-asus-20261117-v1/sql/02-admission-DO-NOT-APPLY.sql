@@ -186,4 +186,3 @@ end$$;
 revoke all on function concierge_invite_private.private_mutation_authority_v1(uuid,uuid,bigint,uuid,text)
  from public,anon,authenticated,service_role;
 rollback;
-

@@ -102,4 +102,3 @@ revoke all on function concierge_invite_private.read_property_capture_v2(
  bytea,bigint,bytea,bytea,text,uuid,uuid,uuid,uuid,uuid,bytea
 ) from public,anon,authenticated,service_role;
 rollback;
-

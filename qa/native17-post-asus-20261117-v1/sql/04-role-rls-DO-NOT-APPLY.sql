@@ -86,4 +86,3 @@ alter function concierge_invite_private.read_property_capture_v2(
 -- table DML, writer membership or owner-table capability.
 -- All dependency EXECUTEs are individually specified in PORTS-AND-ROLES.json.
 rollback;
-

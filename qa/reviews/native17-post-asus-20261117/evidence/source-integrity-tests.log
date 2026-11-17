@@ -1,0 +1,8 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+test_source_drift_is_not_a_verified_materialization (__main__.SourceIntegrity.test_source_drift_is_not_a_verified_materialization) ... ok
+test_symlink_or_path_escape_is_not_a_source (__main__.SourceIntegrity.test_symlink_or_path_escape_is_not_a_source) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK

@@ -1,0 +1,426 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+{
+  "classification": "STATIC_SUBSET_INVENTORY_NOT_SQL_COMPILATION",
+  "state": "HELD",
+  "sqlExecuted": false,
+  "installationAuthorized": false,
+  "definitions": [
+    {
+      "kind": "table",
+      "name": "concierge_invite_private.bootstrap_founder_assignment_v1",
+      "source": "01-bootstrap-DO-NOT-APPLY.sql"
+    },
+    {
+      "kind": "table",
+      "name": "concierge_invite_private.bootstrap_jurisdiction_v1",
+      "source": "01-bootstrap-DO-NOT-APPLY.sql"
+    },
+    {
+      "kind": "type",
+      "name": "concierge_invite_private.property_current_cut_v1",
+      "source": "01-bootstrap-DO-NOT-APPLY.sql"
+    },
+    {
+      "kind": "function",
+      "name": "concierge_invite_private.validate_property_cut_review_v1",
+      "source": "01-bootstrap-DO-NOT-APPLY.sql",
+      "parameters": [
+        [
+          "c",
+          "concierge_invite_private.property_current_cut_v1"
+        ],
+        [
+          "p_request",
+          "uuid"
+        ],
+        [
+          "p_permission",
+          "text"
+        ]
+      ]
+    },
+    {
+      "kind": "function",
+      "name": "concierge_invite_private.resolve_first_property_review_v1",
+      "source": "01-bootstrap-DO-NOT-APPLY.sql",
+      "parameters": [
+        [
+          "p_request",
+          "uuid"
+        ],
+        [
+          "p_original_ref",
+          "uuid"
+        ],
+        [
+          "p_target",
+          "uuid"
+        ]
+      ]
+    },
+    {
+      "kind": "function",
+      "name": "concierge_invite_private.bootstrap_before_change_review_v1",
+      "source": "01-bootstrap-DO-NOT-APPLY.sql",
+      "parameters": []
+    },
+    {
+      "kind": "type",
+      "name": "concierge_invite_private.property_original_payload_v1",
+      "source": "02-admission-DO-NOT-APPLY.sql"
+    },
+    {
+      "kind": "type",
+      "name": "concierge_invite_private.property_original_metadata_v1",
+      "source": "02-admission-DO-NOT-APPLY.sql"
+    },
+    {
+      "kind": "table",
+      "name": "concierge_invite_private.property_admission_v1",
+      "source": "02-admission-DO-NOT-APPLY.sql"
+    },
+    {
+      "kind": "table",
+      "name": "concierge_invite_private.property_dispatch_context_v1",
+      "source": "02-admission-DO-NOT-APPLY.sql"
+    },
+    {
+      "kind": "function",
+      "name": "concierge_invite_private.capture_first_property_review_v1",
+      "source": "02-admission-DO-NOT-APPLY.sql",
+      "parameters": [
+        [
+          "p_request",
+          "uuid"
+        ],
+        [
+          "p_intent",
+          "uuid"
+        ],
+        [
+          "p_attempt",
+          "uuid"
+        ],
+        [
+          "p_original_ref",
+          "uuid"
+        ],
+        [
+          "p_key",
+          "bytea"
+        ]
+      ]
+    },
+    {
+      "kind": "function",
+      "name": "concierge_invite_private.private_mutation_authority_v1",
+      "source": "02-admission-DO-NOT-APPLY.sql",
+      "parameters": [
+        [
+          "p_user",
+          "uuid"
+        ],
+        [
+          "p_session",
+          "uuid"
+        ],
+        [
+          "p_expiry",
+          "bigint"
+        ],
+        [
+          "p_property",
+          "uuid"
+        ],
+        [
+          "p_operation",
+          "text"
+        ]
+      ]
+    },
+    {
+      "kind": "function",
+      "name": "concierge_invite_private.read_property_capture_v2",
+      "source": "03-read2-DO-NOT-APPLY.sql",
+      "parameters": [
+        [
+          "p_read_request",
+          "uuid"
+        ],
+        [
+          "p_user",
+          "uuid"
+        ],
+        [
+          "p_session",
+          "uuid"
+        ],
+        [
+          "p_expiry",
+          "bigint"
+        ],
+        [
+          "p_session_revision",
+          "bigint"
+        ],
+        [
+          "p_issuer",
+          "text"
+        ],
+        [
+          "p_issued_at",
+          "bigint"
+        ],
+        [
+          "p_member",
+          "uuid"
+        ],
+        [
+          "p_role",
+          "text"
+        ],
+        [
+          "p_authority_revision",
+          "bigint"
+        ],
+        [
+          "p_restrictions_revision",
+          "bigint"
+        ],
+        [
+          "p_inventory_revision",
+          "bigint"
+        ],
+        [
+          "p_founder_revision",
+          "bigint"
+        ],
+        [
+          "p_quota_revision",
+          "bigint"
+        ],
+        [
+          "p_jurisdiction_revision",
+          "bigint"
+        ],
+        [
+          "p_dataset",
+          "bytea"
+        ],
+        [
+          "p_recovery_epoch",
+          "bigint"
+        ],
+        [
+          "p_inventory_digest",
+          "bytea"
+        ],
+        [
+          "p_restriction_digest",
+          "bytea"
+        ],
+        [
+          "p_restriction_journal",
+          "text"
+        ],
+        [
+          "p_bootstrap",
+          "uuid"
+        ],
+        [
+          "p_authority_commit",
+          "uuid"
+        ],
+        [
+          "p_original_ref",
+          "uuid"
+        ],
+        [
+          "p_intent",
+          "uuid"
+        ],
+        [
+          "p_attempt",
+          "uuid"
+        ],
+        [
+          "p_key",
+          "bytea"
+        ]
+      ]
+    }
+  ],
+  "qualifiedReferences": {
+    "01-bootstrap-DO-NOT-APPLY.sql": [
+      "concierge_invite_private.beta_property_slot_v1",
+      "concierge_invite_private.bootstrap_before_change_review_v1",
+      "concierge_invite_private.bootstrap_begin_revision_change_v1",
+      "concierge_invite_private.bootstrap_current_cut_v1",
+      "concierge_invite_private.bootstrap_founder_assignment_v1",
+      "concierge_invite_private.bootstrap_jurisdiction_v1",
+      "concierge_invite_private.bootstrap_require_complete_catalog_v1",
+      "concierge_invite_private.bootstrap_require_independent_floor_v1",
+      "concierge_invite_private.property_current_cut_v1",
+      "concierge_invite_private.resolve_first_property_review_v1",
+      "concierge_invite_private.validate_property_cut_review_v1",
+      "public.concierge_account_members",
+      "public.concierge_accounts",
+      "public.concierge_manager_web_identities",
+      "public.concierge_properties"
+    ],
+    "02-admission-DO-NOT-APPLY.sql": [
+      "concierge_invite_private.bootstrap_current_cut_v1",
+      "concierge_invite_private.bootstrap_require_complete_catalog_v1",
+      "concierge_invite_private.bootstrap_require_independent_floor_v1",
+      "concierge_invite_private.capture_first_property_review_v1",
+      "concierge_invite_private.manager_result_v1",
+      "concierge_invite_private.private_mutation_authority_v1",
+      "concierge_invite_private.property_admission_v1",
+      "concierge_invite_private.property_capture_v1",
+      "concierge_invite_private.property_current_cut_v1",
+      "concierge_invite_private.property_dispatch_context_v1",
+      "concierge_invite_private.property_original_metadata_v1",
+      "concierge_invite_private.property_original_payload_v1",
+      "concierge_invite_private.property_require_no_prior_dispatch_v1",
+      "concierge_invite_private.property_require_original_cut_v1",
+      "concierge_invite_private.property_require_original_equal_v1",
+      "concierge_invite_private.resolve_first_property_review_v1",
+      "concierge_invite_private.validate_property_cut_review_v1",
+      "concierge_invite_private.write_property_capture_v1"
+    ],
+    "03-read2-DO-NOT-APPLY.sql": [
+      "concierge_invite_private.beta_property_slot_v1",
+      "concierge_invite_private.bootstrap_current_cut_v1",
+      "concierge_invite_private.bootstrap_require_complete_catalog_v1",
+      "concierge_invite_private.bootstrap_require_independent_floor_v1",
+      "concierge_invite_private.manager_result_v1",
+      "concierge_invite_private.property_admission_v1",
+      "concierge_invite_private.property_current_cut_v1",
+      "concierge_invite_private.property_original_metadata_v1",
+      "concierge_invite_private.property_require_capture_matches_original_v1",
+      "concierge_invite_private.read_property_capture_v2",
+      "concierge_invite_private.validate_property_cut_review_v1",
+      "public.concierge_account_members",
+      "public.concierge_accounts",
+      "public.concierge_manager_web_identities",
+      "public.concierge_properties"
+    ],
+    "04-role-rls-DO-NOT-APPLY.sql": [
+      "concierge_invite_private.beta_property_slot_v1",
+      "concierge_invite_private.bootstrap_founder_assignment_v1",
+      "concierge_invite_private.bootstrap_jurisdiction_v1",
+      "concierge_invite_private.capture_first_property_review_v1",
+      "concierge_invite_private.manager_result_v1",
+      "concierge_invite_private.property_admission_v1",
+      "concierge_invite_private.property_capture_v1",
+      "concierge_invite_private.property_dispatch_context_v1",
+      "concierge_invite_private.read_property_capture_v2",
+      "concierge_invite_private.resolve_first_property_review_v1",
+      "public.concierge_account_members",
+      "public.concierge_accounts",
+      "public.concierge_manager_web_identities",
+      "public.concierge_properties"
+    ],
+    "catalog-capture-DO-NOT-APPLY.sql": []
+  },
+  "unresolvedProtectedFunctions": [
+    {
+      "name": "bootstrap_current_cut_v1(uuid,text,uuid)",
+      "status": "MISSING_IMPLEMENTATION",
+      "requirements": [
+        "Verify provider signature/sub/session_id/issuer/iat/exp and current session/revocation at source; never use user metadata/UI DTO/auth_live request echo as proof",
+        "Configured QA issuer only; DEV cannot be rewritten into QA; signature implementation and custody absent here",
+        "identity_only returns current provider+relation cut without write/read grant or requiring property/trial; property_create is pre-property owner permission; property_capture_read is separately current read permission",
+        "Every cut field required, versions positive, four bytea values 32 bytes, observed time bounded, account derived from unique current web identity/member/account; absent/ambiguous/expired source RAISES, never positive constants",
+        "Refresh/session change cannot reuse dispatch binding; read may use a newly verified session without replacing original historical session",
+        "Current revisions need D1 producer and D2 independent restrictions/floors; no update_at/time/claim constants"
+      ]
+    },
+    {
+      "name": "bootstrap_require_independent_floor_v1(property_current_cut_v1)",
+      "status": "MISSING_IMPLEMENTATION",
+      "requirements": [
+        "Independently corroborate dataset/recovery epoch/revisions/inventory/restriction digests/journal/bootstrap/authority commit",
+        "Reject incomplete, stale, future, contradictory, revoked or post-restore older floor before and after observations",
+        "No same-source callback, same credential or restored local snapshot accepted as independence"
+      ]
+    },
+    {
+      "name": "bootstrap_require_complete_catalog_v1()",
+      "status": "MISSING_IMPLEMENTATION",
+      "requirements": [
+        "Actual role/login/owner/membership, exposed schemas, EXECUTE/PUBLIC/default ACL, RLS/FORCE RLS, column grants, functions, dependencies and policy snapshot",
+        "No BYPASSRLS/ownership assumption; unknown restrictive/permissive policy, missing dependency or catalog version drift denies",
+        "Column grants in 04 alone lack schema USAGE/type USAGE/complete EXECUTE closure; future approved materialization must supply exact closure and capture it",
+        "Inventory completeness must include draft, ready_for_review, active, paused, archived, not only active rows"
+      ]
+    },
+    {
+      "name": "property_original_payload_v1(uuid,property_current_cut_v1)",
+      "status": "MISSING_CUSTODIAN",
+      "requirements": [
+        "Immutable exact original from trusted custody, NEVER client snapshot, UUID/key or digest reconstruction",
+        "Corroborate request/intent/attempt/key/user/historical session/account/member/operation and original argument bytes/provenance",
+        "No NFC/trim/case/NULL-empty normalization to hide contradictory address or unit; no logging/raw return to login",
+        "Specific D02-A storage/access/encryption-custody/retention/backup/suppression decisions required before any persistence",
+        "Reuse qa/functional-contracts-20261112-v1/property-capture-adapter.mjs and original structured-address parser/business representability checks before projection. Reject unsupported name/type/language/hours/building/unit, never silently drop them; only historical representable defaults may reach eleven arguments.",
+        "Before fetching any raw or historical metadata, verify the current protected cut, request binding, user/member/account and exact operation; identity_only is insufficient for payload. Writer NEW has property_create; KNOWN and reader have property_capture_read. No caller-supplied snapshot accepted.",
+        "The composite parameter is NOT a capability: reload the protected provider/request/revision record by request_id, corroborate it independently and compare/expire it before returning data; a typed or matching tuple alone is insufficient."
+      ]
+    },
+    {
+      "name": "property_original_metadata_v1(uuid,property_current_cut_v1)",
+      "status": "MISSING_CUSTODIAN",
+      "requirements": [
+        "Same immutable original and provenance, metadata-only projection; no address/floor output or payload EXECUTE delegation",
+        "Before fetching any raw or historical metadata, verify the current protected cut, request binding, user/member/account and exact operation; identity_only is insufficient for payload. Writer NEW has property_create; KNOWN and reader have property_capture_read. No caller-supplied snapshot accepted.",
+        "The composite parameter is NOT a capability: reload the protected provider/request/revision record by request_id, corroborate it independently and compare/expire it before returning data; a typed or matching tuple alone is insufficient."
+      ]
+    },
+    {
+      "name": "property_require_original_equal_v1(uuid,uuid)",
+      "status": "MISSING_CUSTODIAN",
+      "requirements": [
+        "Compare exact immutable originals/provenance, including when references are identical; pointer equality alone never sufficient"
+      ]
+    },
+    {
+      "name": "property_require_original_cut_v1(uuid,property_current_cut_v1)",
+      "status": "MISSING_CUSTODIAN",
+      "requirements": [
+        "Match original protected request/body binding and complete historical cut to admitted current authority; changed versions require new reviewed intent, not rebinding"
+      ]
+    },
+    {
+      "name": "property_require_no_prior_dispatch_v1(uuid,uuid,bytea)",
+      "status": "MISSING_INDEPENDENT_HISTORY",
+      "requirements": [
+        "Independent complete admission/dispatch history and current recovery epoch prove NEW eligibility; absent local row is NOT proof",
+        "Missing trusted original/history after restart or restore remains UNKNOWN; no automatic resend"
+      ]
+    },
+    {
+      "name": "property_require_capture_matches_original_v1(uuid,uuid,uuid)",
+      "status": "MISSING_CUSTODIAN",
+      "requirements": [
+        "Inside dedicated custodian compare historical capture address/floor exactly to original and intent/user provenance; reader cannot SELECT plaintext",
+        "No key/digest/UUID-only proof; no new duplicate address copy"
+      ]
+    },
+    {
+      "name": "bootstrap_begin_revision_change_v1(text,text,text)",
+      "status": "MISSING_REVOCATION_IMPLEMENTATION",
+      "requirements": [
+        "Advance/invalidate participating protected revisions under shared global pre-DML fence, fail closed if independent source unavailable",
+        "No row lock before global fence; lock order is global fence -> protected source/admission metadata -> property/slot -> effects, matching historical writer",
+        "External provider/restriction/journal revokers must join the reviewed protocol; local SQL lock cannot serialize a remote provider by itself"
+      ]
+    }
+  ],
+  "closure": {
+    "schemaUsageGrantsEmitted": false,
+    "typeUsageGrantsEmitted": false,
+    "dependencyExecuteGrantsEmitted": false
+  },
+  "note": "Declared names/columns/grants are not effective catalog privileges. No installer emitted."
+}

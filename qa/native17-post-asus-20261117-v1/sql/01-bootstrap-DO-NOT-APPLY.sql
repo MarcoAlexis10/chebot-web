@@ -152,4 +152,3 @@ revoke all on function concierge_invite_private.bootstrap_before_change_review_v
 -- No triggers installed: see PORTS-AND-ROLES.json for the complete participant set.
 -- No trial UPDATE. No property insert. No source fixture. No live grant.
 rollback;
-

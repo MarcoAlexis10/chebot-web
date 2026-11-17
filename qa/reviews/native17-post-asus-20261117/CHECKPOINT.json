@@ -1,43 +1,62 @@
 {
-  "state": "QA_CHECKPOINT_NOT_FINAL",
-  "baseWebHead": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
-  "implemented": [
-    "disabled local-lab recipe and file integrity helpers",
-    "strict resource property comparison",
-    "UNKNOWN recovery decision",
-    "journal name shape fix only in new SQL candidate"
-  ],
+  "state": "QA_CHECKPOINT_MATERIALIZATION_REVIEW_COMPLETE_NOT_FINAL",
+  "initialWebHead": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+  "priorCheckpoint": "4554b361579aeaebccdd613df446df96e7f804a2",
   "executed": {
-    "pythonCodeTests": {
-      "pass": 7
-    },
-    "nodeRegexContract": {
-      "pass": 1
-    },
-    "affectedSQLStaticRegression": {
-      "pass": 1
-    },
-    "dryRun": {
-      "exitCode": 0
-    },
-    "shellSyntax": {
-      "exitCode": 0
-    }
+    "pythonCodeTestsUnique": 12,
+    "nodeRegexCasesUnique": 1,
+    "affectedSQLStaticRegressionUnique": 1,
+    "sourceByteChecks": 25
   },
-  "sqlNativeExecuted": false,
-  "ASUSAccessedByWork": false,
-  "next": "materialization dependency scanner and existing native scenario bindings; no SQL execution",
+  "allNativeTests": "NOT_AUTHORIZED_NOT_RUN",
+  "ASUSConnectedByWork": false,
+  "next": "seal candidate manifest and final CLOSURE; operational ports remain HELD",
   "betaDecision": "NO-GO",
   "files": [
     {
+      "path": "qa/native17-post-asus-20261117-v1/MATERIALIZATION.json",
+      "sha256": "740c0c95bf36c8be3b047f8f2eae317b4cc7750305ef63f7d06591575e698650",
+      "gitBlob": "ac6a5bc39bd722b07a5c9b8cc64f8311f49ea0f0"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/NATIVE-BINDINGS.json",
+      "sha256": "1c6ce285f9709d78fbf9dc93116898ad48044a99f7dc9495736b2a97a0dcddb1",
+      "gitBlob": "62bc50eb46bb152c177372e93c76a9285bc2718a"
+    },
+    {
       "path": "qa/native17-post-asus-20261117-v1/README.md",
-      "sha256": "1fb5cf0ceb6588d1e485a51b27d17bc4a53e7c6ae795fce75909476af2ffa077",
-      "gitBlob": "13361ecd7d2eb315ae1b01937b8070f297ca7c28"
+      "sha256": "83254c82928d133e84dfa033542d1c1c9e030e61965975121fa0663e98b30662",
+      "gitBlob": "f09429b24075a661c5730275ed9c0ec2b1e0db90"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/SOURCE-PINS.json",
+      "sha256": "26088e01f2af81b6b90eee1b6104ff3c291c14f4178432ecec127fea79260060",
+      "gitBlob": "c16af2ddd07087ee31c19980b646ea034d46b9b9"
     },
     {
       "path": "qa/native17-post-asus-20261117-v1/checks/lab_test.py",
       "sha256": "5f0e581bb67ad37576ef986e3005418878a47b0d2ece45e6c6d1a14712e3dffd",
       "gitBlob": "5c2d89393166a6b16add1d874c6f52be715fcc47"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/materialization.py",
+      "sha256": "206a9b7a431fd91dbfb702ae3b60e6115c6fd03614686ffe30b04daab9167389",
+      "gitBlob": "d809fef005a7c36c57207ee76938f2900cf62def"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/materialization_test.py",
+      "sha256": "ba83e2d0853f6d42561d8889da865283fa0f1b5a8f8002ea32fb9e8d4fca092c",
+      "gitBlob": "a54afbac2a4c34e9cd1d26d279952d9617e864f8"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/source_integrity.py",
+      "sha256": "6c8c1d4813e5bd0620a1650d6570d9ee6598517e19cc4115ccc1435eaa090ced",
+      "gitBlob": "b0044f154c57681854855ae77871ef0f1e7978e7"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/checks/source_integrity_test.py",
+      "sha256": "88e0666ebf67fd5d80289f5bf8a28c80901f7fb051a5299b200f4a14b9b98b4d",
+      "gitBlob": "3b26e953b41af90d7f8eb87104d757f2bd48e09e"
     },
     {
       "path": "qa/native17-post-asus-20261117-v1/checks/sql-contracts.cjs",
@@ -71,23 +90,28 @@
     },
     {
       "path": "qa/native17-post-asus-20261117-v1/sql/01-bootstrap-DO-NOT-APPLY.sql",
-      "sha256": "617095687a1f1324108302f153b9dddeb9a2d8bb7a4933f8d2e631615c397a59",
-      "gitBlob": "d8a5b6a78c5fe4ce1257a5ec2015eb82c24c3f74"
+      "sha256": "738056b3b7a3904aec3f150b72bab5e196e4f5cff7b7d6fbf3513c4f2230b510",
+      "gitBlob": "cd64dd2fbdbbcf6be35396ae72f806465982b943"
     },
     {
       "path": "qa/native17-post-asus-20261117-v1/sql/02-admission-DO-NOT-APPLY.sql",
-      "sha256": "bdd9cc7f5a2b3424a64a9968f0bb722ca90adbb9e5ff02e8a4cb9812933eaa4a",
-      "gitBlob": "159622a70ca52589733c6c2af033b73791667ac7"
+      "sha256": "2259343c8d675730860747d26984c0802a28ab6d8253882d7c9f1bb23f0af5c3",
+      "gitBlob": "3129d63834d79a7cbc4fb664454ba571ef49928d"
     },
     {
       "path": "qa/native17-post-asus-20261117-v1/sql/03-read2-DO-NOT-APPLY.sql",
-      "sha256": "750ffc1eb338ee4496dda97a83d6519cb9c34b8453cd1b554939c96b7b1ae5cb",
-      "gitBlob": "67a4472eb31c7e0ae709074bca864f17909acbb5"
+      "sha256": "df84e5c45113312cf6bfc8da3b83cc6ff53815f7cb77f64aa5063c203bfc2728",
+      "gitBlob": "59cd63cff806de7f29ee7f2c77c9c0e6d3ac77dc"
     },
     {
       "path": "qa/native17-post-asus-20261117-v1/sql/04-role-rls-DO-NOT-APPLY.sql",
-      "sha256": "7a6108a2d2701a0d80bc85b7012499921cb46408a3562fff539aec357f918a30",
-      "gitBlob": "63e829542c674b2f195358ab4084881df965c44d"
+      "sha256": "ac667b7de52b9ee11a033714c4913513958853dd56ca189fe12f4318367142b3",
+      "gitBlob": "2f08abaefbbbb396cfed711c6d6f4818fe3b19e5"
+    },
+    {
+      "path": "qa/native17-post-asus-20261117-v1/sql/catalog-capture-DO-NOT-APPLY.sql",
+      "sha256": "777ab90a905e5ad2ebf44a6982a5ed3cfb067db42cbcd111d55bb5a46d29c60a",
+      "gitBlob": "3f714dd712839298aa8c2d841dbc7877ebf8849f"
     }
   ]
 }

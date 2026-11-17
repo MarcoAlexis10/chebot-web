@@ -65,3 +65,39 @@ operación protegida posible, preservar originales/evidencia hasta conciliación
 Los SQL conservan abortos exteriores e interiores y ROLLBACK. No son un orden
 de instalación; sus fuentes protegidas, ACL transitivas y revocadores siguen
 HELD. No concatenarlos ni quitar guards. Beta V1 NO-GO.
+
+## Materialización y captura futuras
+
+`MATERIALIZATION.json` ordena objetos, no archivos completos: 04 declara roles
+que necesitan existir antes que 01, pero sus ALTER/POLICY necesitan objetos
+posteriores. Las migraciones originales 20/25/127 contienen permisos históricos
+y dependencias adicionales; no ejecutarlas como instalador de este paquete.
+El ledger histórico también requiere `companion_binding_v1` por FK; la rama de
+propiedad no elimina esa dependencia de definición.
+
+`checks/materialization.py` inventaría sólo el subconjunto SQL conocido y
+separa TYPE de FUNCTION. Informó diez puertos sin implementación y ausencia de
+grants USAGE/EXECUTE transitivos. No compila PL/pgSQL ni evalúa ACL efectivas.
+`checks/source_integrity.py` compara bytes con blobs fijados y detecta copias
+alteradas. Los hashes prueban integridad de fuentes, no procedencia de la imagen
+ni instalación, custodia, autoridad o autorización.
+
+```sh
+python3 -B qa/native17-post-asus-20261117-v1/checks/materialization.py
+python3 -B qa/native17-post-asus-20261117-v1/checks/source_integrity.py --web . --backend ../backend --lab ../qa-lab
+```
+
+`NATIVE-BINDINGS.json` enlaza los IDs existentes N/BPF/F, actores, barreras,
+consultas parametrizadas del observador y evidencia necesaria. No crea runner
+ni nueva suite. F07 necesita la entrada de admisión retenida y el reader actual;
+el recibo histórico que exige bootstrap no resuelve lectura posterior al alta.
+F10 sigue siendo de invitaciones; para propiedad se conservan N08/BPF04.
+F12 continúa retenido por custodia/A2. Los límites propuestos del smoke no
+autorizan ni dimensionan automáticamente los ensayos de concurrencia.
+
+`sql/catalog-capture-DO-NOT-APPLY.sql` conserva aborto antes de SELECT y propone
+sólo metadatos acotados; incluye hashes de cuerpos/definiciones, no argumentos
+de triggers ni datos privados. No es una acreditación completa de catálogo:
+hay que reutilizar el cierre existente para dependencias, expresiones RLS,
+constraints/indexes y revocadores. Límite alcanzado o permiso insuficiente
+significa INCOMPLETE/ABORT. No ejecutar ahora.

@@ -1,0 +1,234 @@
+{
+  "classification": "BINDINGS_DELTA_TO_EXISTING_NATIVE_CASES_NOT_NEW_RUNNER",
+  "authorization": false,
+  "status": "NOT_AUTHORIZED_NOT_RUN",
+  "newSuite": false,
+  "smokeRecipeCannotRunNativePlans": true,
+  "ownerObservationDoesNotSelectExecutableMaterialization": true,
+  "references": [
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/native17-readiness-20261112-v1/NATIVE-PLAN.json",
+      "ids": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12"
+      ]
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/reviews/property-bootstrap-20261112/NATIVE-DELTA.json",
+      "ids": [
+        "BPF01",
+        "BPF02",
+        "BPF03",
+        "BPF04"
+      ]
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-authorization-preflight-v1/RACE-CARDS.json",
+      "ids": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12"
+      ]
+    }
+  ],
+  "targetBindings": [
+    {
+      "ids": [
+        "BPF01",
+        "N01",
+        "N02",
+        "N05",
+        "N10"
+      ],
+      "target": "Current protected property_create with target NULL and no trial/property; original-bound jurisdiction and singleton founder",
+      "artifacts": [
+        "sql/01-bootstrap-DO-NOT-APPLY.sql",
+        "sql/04-role-rls-DO-NOT-APPLY.sql"
+      ],
+      "missing": [
+        "ten protected ports as applicable",
+        "complete catalog/RLS and revoker sources",
+        "approved synthetic-only source loader without representing managed Auth"
+      ],
+      "negativeBoundary": "Outer review abort or missing function is TARGET_NOT_REACHED; journal regex model PASS is not a SQL producer PASS."
+    },
+    {
+      "ids": [
+        "BPF02",
+        "N03",
+        "N04",
+        "N06",
+        "N07",
+        "F07"
+      ],
+      "target": "NEW vs KNOWN, two connections and global founder/property slot, exact original mismatch",
+      "artifacts": [
+        "sql/01-bootstrap-DO-NOT-APPLY.sql",
+        "sql/02-admission-DO-NOT-APPLY.sql",
+        "historical write_property_capture_v1"
+      ],
+      "actors": [
+        "writer A direct LOGIN cheveni_private_mutation_backend_v1",
+        "writer B separate physical connection with same required historical login, subject to approved connection limit",
+        "separate scoped observer O",
+        "separately reviewed revoker R"
+      ],
+      "missing": [
+        "protected originals/history",
+        "global governance ingress and all revokers",
+        "catalog allowing required independent connections without widening application grants"
+      ],
+      "note": "F07 original card stays pinned. Entry goes through retained admission wrapper, not a new blanket direct-write grant. property_receipt_v1 reuses bootstrap authority and cannot substitute post-create current read/2. Observer compares internal property IDs without public disclosure; read/2 still UNKNOWN."
+    },
+    {
+      "ids": [
+        "BPF03",
+        "N01",
+        "N10",
+        "N11",
+        "F11"
+      ],
+      "target": "Independent read/2 (26 args) and effective least privilege",
+      "artifacts": [
+        "sql/03-read2-DO-NOT-APPLY.sql",
+        "sql/04-role-rls-DO-NOT-APPLY.sql"
+      ],
+      "missing": [
+        "actual reader login/owner/USAGE/EXECUTE closure",
+        "metadata resolver + exact comparison inside custodian",
+        "current floors before/after disclosure"
+      ],
+      "note": "F11 legacy invite/scope probes remain their own targets; no claim those signatures exercise read/2. Existing objects must be present before interpreting privilege denial. No SET ROLE shortcut."
+    },
+    {
+      "ids": [
+        "BPF04",
+        "N04",
+        "N08",
+        "N09"
+      ],
+      "target": "Lost ACK around actual outer COMMIT, trusted original after process restart, independent readback",
+      "artifacts": [
+        "sql/02-admission-DO-NOT-APPLY.sql",
+        "sql/03-read2-DO-NOT-APPLY.sql"
+      ],
+      "missing": [
+        "D02-A custody decision",
+        "external COMMIT observation",
+        "journal/witness independence",
+        "recovery epoch/floors"
+      ],
+      "note": "F10 remains invitation/handoff domain and is NOT relabeled property. Its barrier/evidence principles are reused; applicationAckWithheld does not prove networkAckCut. No restore or A2 execution authorized."
+    },
+    {
+      "ids": [
+        "N12",
+        "F12"
+      ],
+      "target": "Catalog/revoker drift or restored older floor",
+      "artifacts": [
+        "MATERIALIZATION.json"
+      ],
+      "missing": [
+        "specific fault-injection/restore approval",
+        "independent authentic witness",
+        "complete recovery inventory"
+      ],
+      "note": "F12 stays NOT_EXECUTED_DEPENDENCY_HELD. No restore on same cluster presented as independent custody."
+    }
+  ],
+  "connectionEvidence": {
+    "required": [
+      "role authenticated at connect",
+      "session_user and current_user at each protected boundary",
+      "backend_pid plus backend_start from independent observer",
+      "connection handle identity and transaction state outside SQL",
+      "exact sealed object/catalog hashes"
+    ],
+    "forbidden": [
+      "credential/token/private payload logging",
+      "fake PIDs",
+      "same principal reader/writer",
+      "installer used as application",
+      "implicit reconnect with redispatch"
+    ]
+  },
+  "barriers": {
+    "controller": "Reuse existing approved coordinator/collector, not a new runner",
+    "events": [
+      "A reports real transaction entered and acquired expected fence",
+      "O observes held advisory lock for A and B blocked by A using pg_blocking_pids + pg_locks",
+      "Coordinator releases A only after O observation and unchanged connection identities",
+      "Capture actual COMMIT tag and protocol IDLE or known ROLLBACK tag",
+      "Separate read connection observes effect and current authority; external journal/witness remain distinct"
+    ],
+    "timeouts": {
+      "barrierMaxMs": 500,
+      "statementTimeoutMs": 5000,
+      "lockTimeoutMs": 2000,
+      "idleTransactionTimeoutMs": 10000,
+      "scenarioMaxSeconds": 30,
+      "classification": "INHERITED_PROPOSALS_ONLY_REQUIRE_APPROVAL_AND_EFFECTIVE_OBSERVATION"
+    },
+    "forbiddenProof": "No sleep/timing-only order; lock timeout is not evidence of rollback/no effect."
+  },
+  "observerQueries": {
+    "parameters": "Only exact recorded actor PIDs/backend_start values; driver-bound int[]/timestamptz[], bounded; no client account/authority input",
+    "identities": "select pid,backend_start,usename,state,xact_start,wait_event_type,wait_event from pg_catalog.pg_stat_activity where pid = any($1::integer[])",
+    "waitEdges": "select a.pid,a.backend_start,pg_catalog.pg_blocking_pids(a.pid) as blockers from pg_catalog.pg_stat_activity a where a.pid = any($1::integer[])",
+    "locks": "select pid,locktype,mode,granted,classid,objid,objsubid,transactionid from pg_catalog.pg_locks where pid = any($1::integer[])",
+    "note": "Read-only query TEXT, NOT executed or standalone psql installer. Excludes query text/address/unit/token values. Observer privilege and visibility must be scoped and approved; missing visibility = abort."
+  },
+  "commitEvidence": {
+    "layers": [
+      "function return",
+      "application ACK",
+      "outer COMMIT protocol evidence",
+      "effect independently observed",
+      "reader current authorization and correlated original",
+      "journal",
+      "witness"
+    ],
+    "durability": "A57 volatile/tmpfs/no-sync observations cannot prove crash/power durability. New smoke fsync ON does not change volatile storage.",
+    "unknown": "Any missing/contradictory/expired evidence retains UNKNOWN; no redispatch, no reset of ledger/original."
+  },
+  "costsAndIsolation": {
+    "newSpendAllowed": false,
+    "existingNativeLimits": "Historical native proposal differs from this 120s/1GiB smoke; must approve separate enforceable native limits and connection count before any native case.",
+    "destruction": "No broad cleanup. Capture minimal redacted evidence, stop exact owned sessions/unit, verify cgroup/PIDs/backend_start/containers/volumes, discard only owned private root when COMMIT/outcome reconciliation permits."
+  },
+  "explicitFutureAuthorization": [
+    "exact ASUS host/current readonly observations and zero incremental cost",
+    "image ID, binary/library/filter hashes and exact harness revision",
+    "separately reviewed materialization SHA, sources, roles, RLS and originals/custody",
+    "selected existing case IDs, synthetic data policy, resource limits and time window",
+    "safe fault/stop/discard and evidence handling",
+    "no managed Auth, communications, A2 or production implied"
+  ],
+  "betaDecision": "NO-GO"
+}

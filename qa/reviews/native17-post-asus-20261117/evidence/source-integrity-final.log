@@ -1,0 +1,235 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532301]", "childNetns": "net:[4026532228]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+{
+  "classification": "LOCAL_BYTES_VS_PINNED_GIT_BLOBS_ONLY",
+  "allSourceBytesMatch": true,
+  "sources": [
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/01-bootstrap-DO-NOT-APPLY.sql",
+      "expectedBlob": "3d441bad2728fb6ebfa00ebc864a5c89f32cc6d3",
+      "observedBlob": "3d441bad2728fb6ebfa00ebc864a5c89f32cc6d3",
+      "matches": true,
+      "sha256": "ecf5f003db6803712c480a66f65f78f992374c927ebc122966123010fa6f5b68"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/02-admission-DO-NOT-APPLY.sql",
+      "expectedBlob": "3129d63834d79a7cbc4fb664454ba571ef49928d",
+      "observedBlob": "3129d63834d79a7cbc4fb664454ba571ef49928d",
+      "matches": true,
+      "sha256": "2259343c8d675730860747d26984c0802a28ab6d8253882d7c9f1bb23f0af5c3"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/03-read2-DO-NOT-APPLY.sql",
+      "expectedBlob": "59cd63cff806de7f29ee7f2c77c9c0e6d3ac77dc",
+      "observedBlob": "59cd63cff806de7f29ee7f2c77c9c0e6d3ac77dc",
+      "matches": true,
+      "sha256": "df84e5c45113312cf6bfc8da3b83cc6ff53815f7cb77f64aa5063c203bfc2728"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/04-role-rls-DO-NOT-APPLY.sql",
+      "expectedBlob": "2f08abaefbbbb396cfed711c6d6f4818fe3b19e5",
+      "observedBlob": "2f08abaefbbbb396cfed711c6d6f4818fe3b19e5",
+      "matches": true,
+      "sha256": "ac667b7de52b9ee11a033714c4913513958853dd56ca189fe12f4318367142b3"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/PORTS-AND-ROLES.json",
+      "expectedBlob": "da45d550c642b8b166512fca4caa22f19cdededf",
+      "observedBlob": "da45d550c642b8b166512fca4caa22f19cdededf",
+      "matches": true,
+      "sha256": "49bd360d2a57f43ea53aeedc70cd7f35ac5af32d25a82026febc7f1ec3e51d40"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/SOURCE-PINS.json",
+      "expectedBlob": "838d7c3eb75e07ed27acb21812fa32943eba7506",
+      "observedBlob": "838d7c3eb75e07ed27acb21812fa32943eba7506",
+      "matches": true,
+      "sha256": "b58e0a9291d9fa9a0a64e382d0e65d0d9aa3a90fe3151d990d2c710c322ea5dd"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/protected-property-engineering-20261116-v1/artifact-review.cjs",
+      "expectedBlob": "db90a0e9087cb27e8820021a95b7a7455802d238",
+      "observedBlob": "db90a0e9087cb27e8820021a95b7a7455802d238",
+      "matches": true,
+      "sha256": "0aa737e06c5a4e32889fe5d17f7a3673092aefccb60f4fcc3319b939023992af"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/reviews/protected-property-engineering-20261116/NATIVE-DELTA.json",
+      "expectedBlob": "f8845296fbb298e8815ec9f8938dc4ad11217880",
+      "observedBlob": "f8845296fbb298e8815ec9f8938dc4ad11217880",
+      "matches": true,
+      "sha256": "a33db829384d2b067521fce7d0170a6d04ccc2a6ee28662fe2c8a3cdec69d281"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-authorization-preflight-v1/PLAN.json",
+      "expectedBlob": "71291daa86b73c3c9158b96e8ab0356f10980959",
+      "observedBlob": "71291daa86b73c3c9158b96e8ab0356f10980959",
+      "matches": true,
+      "sha256": "700adcbf6c1976166ef2f60ec7ec245ec4ef7df86f2651074b72673b2a7d0f5f"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-authorization-preflight-v1/RACE-CARDS.json",
+      "expectedBlob": "8939d151864ba9f510af13f16f130b54f78770a8",
+      "observedBlob": "8939d151864ba9f510af13f16f130b54f78770a8",
+      "matches": true,
+      "sha256": "867ab091fc86d65889bc7253e24e80946a30e5339c85313b3c2e125cb1f36a1c"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/PLAN-SUCCESSOR.json",
+      "expectedBlob": "74d837fe272e4ca90c2f4273b51ede3f166a6816",
+      "observedBlob": "74d837fe272e4ca90c2f4273b51ede3f166a6816",
+      "matches": true,
+      "sha256": "16a49d40d288ede0c979e5f41847aa93975df1bcd895a0e5184842e5ac24bc0d"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/PRIVILEGES-SUCCESSOR.json",
+      "expectedBlob": "084a5dcae15cb522884c6fc0af636043177b0140",
+      "observedBlob": "084a5dcae15cb522884c6fc0af636043177b0140",
+      "matches": true,
+      "sha256": "b7efa08360df3bc18dc37302a2d411ae626be41360c214fa972fa8e51b00bb77"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-closure-v1/ARTIFACT-INDEX.json",
+      "expectedBlob": "55e222e8de0e27bc3d440789ff857eca15f39c9d",
+      "observedBlob": "55e222e8de0e27bc3d440789ff857eca15f39c9d",
+      "matches": true,
+      "sha256": "051c45599558db496190203d82ae8e7ae1d60af7b39948ff2907e5270fbadfd7"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/MANIFEST.json",
+      "expectedBlob": "1598a21a5ff8ee521cdd3b62ffcfe9c30d074f4f",
+      "observedBlob": "1598a21a5ff8ee521cdd3b62ffcfe9c30d074f4f",
+      "matches": true,
+      "sha256": "5a5207510b7bb1f16e3c78221f2330d2c323fe41a4e25eb98586e97cc503d341"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/RLS-REVIEW-ONLY.sql",
+      "expectedBlob": "8a7082ae2e5d3adc5a17622780ffdff7f4e27ee1",
+      "observedBlob": "8a7082ae2e5d3adc5a17622780ffdff7f4e27ee1",
+      "matches": true,
+      "sha256": "5cdf430e43014579515addb3a46b9bfb1f58d4e1456aa9833911a773c00c977f"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/native17-policy-closure-v1/AUTH-LAB-REVIEW-ONLY.sql",
+      "expectedBlob": "7279e9fcd9c1081c9f8a839390ec1f4a7cfea6b0",
+      "observedBlob": "7279e9fcd9c1081c9f8a839390ec1f4a7cfea6b0",
+      "matches": true,
+      "sha256": "291d9d3da60deb2fc8502cecdc42f28b95c9709619bb2ebafe77909e7955c21b"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql",
+      "expectedBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c",
+      "observedBlob": "f41c40d0b490b8cd57dddc13fe50c799f717331c",
+      "matches": true,
+      "sha256": "014ec3ab687289faf8e5ffe0b45a2cd2065212fcbbc4b5714ea6b4c38940fffe"
+    },
+    {
+      "repository": "MarcoAlexis10/cheveni-qa-lab",
+      "ref": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+      "path": "qa/cheveni-beta-release-candidate-v1/final-offline-assembly-v1/candidate/CATALOG-REVIEW-ONLY.sql",
+      "expectedBlob": "6901cc36648ee9b0546964a73b91947c49f20253",
+      "observedBlob": "6901cc36648ee9b0546964a73b91947c49f20253",
+      "matches": true,
+      "sha256": "24a991b90b101d490e369492f8ff49c67404ce7bc47a3cd2a44311fac5b730bf"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "20-MIGRACION-01-ACCOUNTS-MEMBERS.sql",
+      "expectedBlob": "94d872b3ce13873567c86d85a0ee4924f4b01b5f",
+      "observedBlob": "94d872b3ce13873567c86d85a0ee4924f4b01b5f",
+      "matches": true,
+      "sha256": "70ecf2b8bdf4942c5b80e0a82afc82235490c8ed7fc9ff779cd98c8b6ca7a0bd"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "25-MIGRACION-02-BUILDINGS-PROPERTIES-PERMISSIONS.sql",
+      "expectedBlob": "a8d9e05274f3eb8012447b4609b76b68948ea4af",
+      "observedBlob": "a8d9e05274f3eb8012447b4609b76b68948ea4af",
+      "matches": true,
+      "sha256": "3e8455810c9a68d93d444534cb7b6bac3241285b52a9a4896f59c4a2d28f7a6c"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "127-MIGRACION-15-MANAGER-WEB-AUTH-TENANT-GUARD.sql",
+      "expectedBlob": "7c7ee0ece4c227a8fedfac68dc0b3eebf31e3e70",
+      "observedBlob": "7c7ee0ece4c227a8fedfac68dc0b3eebf31e3e70",
+      "matches": true,
+      "sha256": "9cb2a51043483a38d2d337888b01299e39aac8ffe193544dd837e1c1689f1fa3"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-backend",
+      "ref": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+      "path": "concierge-independent-revocations.js",
+      "expectedBlob": "b96a2672843b924f595b32c4262a0615d6467d7d",
+      "observedBlob": "b96a2672843b924f595b32c4262a0615d6467d7d",
+      "matches": true,
+      "sha256": "9bf09f7af96decf1d2042346d8229266cd97c5377e7a214eb65bac3b114f995b"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/native17-readiness-20261112-v1/NATIVE-PLAN.json",
+      "expectedBlob": "959f570bb0113064b49dd138cf12012269902a1e",
+      "observedBlob": "959f570bb0113064b49dd138cf12012269902a1e",
+      "matches": true,
+      "sha256": "f41d9bc083f0cb2fd28d19cb077c809617e89d160c3fb8016f83864676b833e1"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/reviews/property-bootstrap-20261112/NATIVE-DELTA.json",
+      "expectedBlob": "1704f6ecd61c2eba7bf786a1f475fd86fbb2e3fb",
+      "observedBlob": "1704f6ecd61c2eba7bf786a1f475fd86fbb2e3fb",
+      "matches": true,
+      "sha256": "342538aee6ba32d94a653e004b0804286cb182f0f8bb8d47dd714d33dbd3a27f"
+    },
+    {
+      "repository": "MarcoAlexis10/chebot-web",
+      "ref": "afe70b7a5de3e769fbcc48d60e4207b3b6e929aa",
+      "path": "qa/integral-held-v1/run-isolated.py",
+      "expectedBlob": "c4ba8d2d91c6bc63902b1f63079281ec0464ac4f",
+      "observedBlob": "c4ba8d2d91c6bc63902b1f63079281ec0464ac4f",
+      "matches": true,
+      "sha256": "b5c84acdbf77d6cd569785dbcb3315afbe918f3afcea8344686ed7226924f29e"
+    }
+  ],
+  "nativeExecution": false,
+  "originOrHostAccreditation": false,
+  "installationAuthorized": false
+}
