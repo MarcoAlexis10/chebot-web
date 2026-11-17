@@ -1,19 +1,17 @@
-import copy
 import json
 from pathlib import Path
 import shutil
 import tempfile
 import unittest
-from unittest.mock import patch
 import checks
 import review
+import compare_lab
 
 ROOT=Path(__file__).resolve().parent
 PRIOR=ROOT.parent/'native17-post-asus-20261117-v1/sql'
 
 class ReviewRegression(unittest.TestCase):
     def test_baseline_defects_are_detected_and_candidates_close_source_findings(self):
-        historical=ROOT.parents[2]/'qa/private-writer-composition-20261111-v1/vendor/qa/cheveni-beta-release-candidate-v1/writer-integration/private-mutations-UNAPPLIED.sql'
         # This pinned legacy source is stored as a bounded review excerpt below.
         legacy=(ROOT/'LEGACY-CHECK-SOURCE.sql.txt').read_text()
         old=checks.findings((PRIOR/'02-admission-DO-NOT-APPLY.sql').read_text(),(PRIOR/'03-read2-DO-NOT-APPLY.sql').read_text(),legacy)
@@ -76,10 +74,47 @@ class ReviewRegression(unittest.TestCase):
         import ast
         tree=ast.parse((ROOT/'review.py').read_text())
         modules={n.names[0].name for n in ast.walk(tree) if isinstance(n,ast.Import)}
-        self.assertTrue(modules<={'argparse','hashlib','json','re'})
+        self.assertTrue(modules<={'argparse','hashlib','json','re','stat'})
         read=review.declarations((ROOT/'sql/03-read2-DO-NOT-APPLY.sql').read_text())
         self.assertEqual(len(read[0]['argumentTypes']),26)
         self.assertEqual(read[0]['name'],'concierge_invite_private.read_property_capture_v2')
         self.assertNotIn('grant execute', (ROOT/'sql/04-object-acl-rls-DO-NOT-APPLY.sql').read_text().lower())
+
+    def test_a57_ast_comparison_does_not_run_the_reference_or_proposed_recipe(self):
+        from unittest.mock import patch
+        # An attempted process invocation by either module makes this case fail.
+        with patch('subprocess.run',side_effect=AssertionError('PROCESS_NOT_ALLOWED')):
+            result=compare_lab.main()
+        self.assertEqual(result['state'],'HELD_RECIPES_NOT_EQUIVALENT')
+        self.assertEqual(result['historicalReference']['tasks'],32)
+        self.assertFalse(result['historicalReference']['uidArgumentPresent'])
+        self.assertFalse(result['nativeCasesAuthorized'])
+        self.assertEqual(len(result['differences']),7)
+
+    def test_manifest_traversal_and_special_file_are_rejected(self):
+        for name in ['../secret','/etc/passwd','sql/../PORT-TRACE.json','sql\\outside','./PORT-TRACE.json']:
+            with self.subTest(name=name),self.assertRaisesRegex(ValueError,'INPUT_PATH_UNREVIEWED'):
+                review.input_bytes(ROOT,name)
+        with self.assertRaisesRegex(ValueError,'INPUT_TYPE_OR_BOUND'):review.input_bytes(ROOT,'sql')
+
+    def test_empty_or_renamed_port_trace_cannot_claim_dependency_closure(self):
+        import hashlib
+        with tempfile.TemporaryDirectory() as temp:
+            target=Path(temp)/'review';shutil.copytree(ROOT,target)
+            trace=target/'PORT-TRACE.json';value=json.loads(trace.read_text());value['ports']=[]
+            trace.write_text(json.dumps(value))
+            lock=target/'SOURCE-LOCK.json';value=json.loads(lock.read_text())
+            next(x for x in value['packageInputs'] if x['path']=='PORT-TRACE.json')['sha256']=hashlib.sha256(trace.read_bytes()).hexdigest()
+            lock.write_text(json.dumps(value))
+            with self.assertRaisesRegex(ValueError,'PROTECTED_SIGNATURE_SET_DRIFT'):review.assess(target)
+
+    def test_changed_external_lab_source_is_rejected_before_import(self):
+        from unittest.mock import patch
+        read=review.input_bytes
+        def changed(root,path):
+            value=read(root,path)
+            return value+b'\n' if path=='qa/native17-post-asus-20261117-v1/lab/lab.py' else value
+        with patch.object(review,'input_bytes',side_effect=changed),patch.object(compare_lab.importlib.util,'spec_from_file_location',side_effect=AssertionError('UNVERIFIED_IMPORT')):
+            with self.assertRaisesRegex(ValueError,'COMPARISON_SOURCE_DRIFT'):compare_lab.main()
 
 if __name__=='__main__':unittest.main(verbosity=2)

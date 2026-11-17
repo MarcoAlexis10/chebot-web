@@ -12,6 +12,10 @@
   ],
   "packageInputs": [
     {
+      "path": "ASUS-SESSION.md",
+      "sha256": "b8faaa655891e78d4184a3048700579f6f70d3c8a6ba9077d43154aed3824f24"
+    },
+    {
       "path": "HISTORICAL-FK-CLOSURE.json",
       "sha256": "3bccccb0be141ee9112280fb67f012589ca33f8182137a43cd538b15bea7ea69"
     },
@@ -26,6 +30,10 @@
     {
       "path": "PORT-TRACE.json",
       "sha256": "08739bfbe3b23f4e033ed583530e42e342091cac2afdf1cc663c7f365a351137"
+    },
+    {
+      "path": "README.md",
+      "sha256": "64a13d92c6147fffa667b7d52ab0efebf859115f64a33d942072943954873801"
     },
     {
       "path": "ROLES-AND-BOUNDARIES.json",
@@ -44,8 +52,12 @@
       "sha256": "90425fc89bf8494f744ad1647b8e04429748b4701833326e948215d08b46f306"
     },
     {
+      "path": "compare_lab.py",
+      "sha256": "8169404aaf69405597c9ccd9f3be1901725f3c51413a9c21132e22f16ae03cea"
+    },
+    {
       "path": "review.py",
-      "sha256": "13d1960148cc7b5a13bc3ca75d04043280dd71af2b1e124157557d1871759e76"
+      "sha256": "53f733b9605881c6d64366f7889a0027b8000f45e2e13760df264b7fd73dfc44"
     },
     {
       "path": "sql/00-roles-DO-NOT-APPLY.sql",
@@ -77,7 +89,7 @@
     },
     {
       "path": "test_review.py",
-      "sha256": "f3d0150e0c299414218b1951070a54a7b3aae74d9335130d61e03f172852cf3b"
+      "sha256": "64cb11368b6cae0c93a6b00d13bb086ad4cc561792547b3e2458c9af4703717c"
     }
   ]
 }

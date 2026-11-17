@@ -1,0 +1,126 @@
+{
+  "state": "HELD_RECIPES_NOT_EQUIVALENT",
+  "executionEnabled": false,
+  "historicalReference": {
+    "argvText": [
+      "bwrap",
+      "--unshare-user",
+      "--unshare-pid",
+      "--unshare-net",
+      "--unshare-ipc",
+      "--unshare-uts",
+      "--die-with-parent",
+      "--new-session",
+      "--clearenv",
+      "--setenv",
+      "PATH",
+      "/usr/bin",
+      "--setenv",
+      "LANG",
+      "C",
+      "--ro-bind",
+      "<str(usr)>",
+      "/usr",
+      "--symlink",
+      "usr/bin",
+      "/bin",
+      "--symlink",
+      "usr/lib",
+      "/lib",
+      "--symlink",
+      "usr/lib64",
+      "/lib64",
+      "--dir",
+      "/etc",
+      "--ro-bind",
+      "<str(identity)>",
+      "/etc",
+      "--proc",
+      "/proc",
+      "--dev",
+      "/dev",
+      "--size",
+      "67108864",
+      "--tmpfs",
+      "/tmp",
+      "--size",
+      "536870912",
+      "--perms",
+      "0700",
+      "--tmpfs",
+      "/scratch",
+      "--chdir",
+      "/scratch",
+      "--seccomp",
+      "<str(fd)>",
+      "/usr/bin/sh",
+      "-c",
+      "<script>"
+    ],
+    "scope": true,
+    "tasks": 32,
+    "memoryBytes": 1073741824,
+    "swapBoundObserved": false,
+    "runtimeBoundObserved": false,
+    "uidArgumentPresent": false,
+    "fsyncOff": true,
+    "noSync": true,
+    "socket": "/scratch",
+    "port": 55432,
+    "inheritedFd": true,
+    "sourceClass": "COMMAND_TEXT_AND_OWNER_SCREENSHOTS_NOT_SHELL_EXPORT"
+  },
+  "differences": [
+    {
+      "component": "task cap",
+      "historical": 32,
+      "proposed": 64,
+      "requires": "effective pids/cgroup observation"
+    },
+    {
+      "component": "unit/FD handoff",
+      "historical": "scope + libseccomp memfd/pass_fds",
+      "proposed": "service + checked file opened inside unit",
+      "requires": "review fd_entry, identity and real fd inheritance; CLI remains held"
+    },
+    {
+      "component": "identity",
+      "historical": "owner-reported UID1000; no explicit --uid in argv",
+      "proposed": "--uid/--gid 65534",
+      "requires": "actual mapping, passwd/group and peer authentication; no assumed equivalence"
+    },
+    {
+      "component": "mount layout",
+      "historical": "/usr readonly + /etc identity + /scratch,/tmp tmpfs",
+      "proposed": "root payload + /data,/tmp,/socket,/run,/sys tmpfs",
+      "requires": "exact payload paths, read-only/size/mode and binary/library hashes"
+    },
+    {
+      "component": "socket and port",
+      "historical": [
+        "/scratch",
+        55432
+      ],
+      "proposed": [
+        "/socket",
+        6543
+      ],
+      "requires": "peer identity and socket mode/path observation"
+    },
+    {
+      "component": "persistence",
+      "historical": "--no-sync/fsync off",
+      "proposed": "fsync/synchronous_commit/full_page_writes on; tmpfs",
+      "requires": "neither proves crash/power durability or A2"
+    },
+    {
+      "component": "new limits/flags",
+      "historical": "no observed swap/runtime cap in reference",
+      "proposed": "swap0/runtime120/cap-drop ALL/unshare-cgroup",
+      "requires": "separate review and measured limits; never inferred from A57=0"
+    }
+  ],
+  "nativeCasesAuthorized": false,
+  "postgresExecuted": false,
+  "safeNext": "Read package/tests and local metadata only under explicit owner authorization; do not execute either recipe automatically."
+}

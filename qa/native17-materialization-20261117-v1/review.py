@@ -7,14 +7,41 @@ No network/process/database imports; output cannot authorize a mutation.
 import argparse
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path,PurePosixPath
 import re
+import stat
 
 ROOT=Path(__file__).resolve().parent
 NAME=r'[a-z_][a-z_0-9]*(?:\.[a-z_][a-z_0-9]*)?'
+REQUIRED_SIGNATURES={
+ 'bootstrap_current_cut_v1(uuid,text,uuid)',
+ 'bootstrap_require_independent_floor_v1(property_current_cut_v1)',
+ 'bootstrap_require_complete_catalog_v1()',
+ 'property_original_payload_v1(uuid,property_current_cut_v1)',
+ 'property_original_metadata_v1(uuid,property_current_cut_v1)',
+ 'property_require_original_equal_v1(uuid,uuid)',
+ 'property_require_original_cut_v1(uuid,property_current_cut_v1)',
+ 'property_require_no_prior_dispatch_v1(uuid,uuid,bytea)',
+ 'property_require_capture_matches_original_v1(uuid,uuid,uuid)',
+ 'bootstrap_begin_revision_change_v1(text,text,text)',
+}
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+def input_bytes(root,relative):
+    if not isinstance(relative,str) or '\\' in relative:
+        raise ValueError('INPUT_PATH_UNREVIEWED')
+    name=PurePosixPath(relative)
+    if name.is_absolute() or '..' in name.parts or str(name)!=relative or not name.parts:
+        raise ValueError('INPUT_PATH_UNREVIEWED')
+    path=root/name
+    if path.is_symlink() or any(p.is_symlink() for p in path.parents):raise ValueError('INPUT_SYMLINK')
+    info=path.lstat()
+    if not stat.S_ISREG(info.st_mode) or info.st_size>1048576:raise ValueError('INPUT_TYPE_OR_BOUND')
+    with path.open('rb') as stream:data=stream.read(1048577)
+    if len(data)>1048576:raise ValueError('INPUT_TYPE_OR_BOUND')
+    return data
 
 def segments(sql):
     """Bounded PostgreSQL-like lexical subset; reject unsupported escape strings.
@@ -118,14 +145,20 @@ def check_guards(sql):
     return stmts
 
 def assess(root=ROOT):
-    manifest=json.loads((root/'SOURCE-LOCK.json').read_text())
+    manifest=json.loads(input_bytes(root,'SOURCE-LOCK.json'))
+    seen=set();total=0
     for item in manifest['packageInputs']:
-        path=root/item['path']
-        if path.is_symlink() or any(p.is_symlink() for p in path.parents):
-            raise ValueError('INPUT_SYMLINK')
-        data=path.read_bytes()
+        if item['path'] in seen:raise ValueError('DUPLICATE_INPUT')
+        seen.add(item['path']);data=input_bytes(root,item['path']);total+=len(data)
+        if total>4194304:raise ValueError('TOTAL_INPUT_BOUND')
         if digest(data)!=item['sha256']:raise ValueError('INPUT_HASH_MISMATCH:'+item['path'])
-    trace=json.loads((root/'PORT-TRACE.json').read_text())
+    if not {'PORT-TRACE.json','PHASE-PLAN.json','ROLES-AND-BOUNDARIES.json','HISTORICAL-FK-CLOSURE.json','SOURCE-PINS.json'}<=seen:
+        raise ValueError('REQUIRED_INPUT_NOT_LOCKED')
+    trace=json.loads(input_bytes(root,'PORT-TRACE.json'))
+    if len(trace['ports'])!=10 or {p['signature'] for p in trace['ports']}!=REQUIRED_SIGNATURES:
+        raise ValueError('PROTECTED_SIGNATURE_SET_DRIFT')
+    if any(p['qualifiedName']!='concierge_invite_private.'+p['signature'].split('(')[0] for p in trace['ports']):
+        raise ValueError('PROTECTED_NAME_DRIFT')
     files={p.name:p.read_text() for p in sorted((root/'sql').glob('*.sql'))}
     if sorted(files)!=manifest['reviewSqlFiles']:raise ValueError('SQL_FILE_SET_DRIFT')
     defs=[];statements=[]
