@@ -18,6 +18,7 @@ import tarfile
 EXECUTION_ENABLED = False
 PREFIX = 'cheveni-native17-run-'
 TARGET_VERSION = 170011
+LOCAL_IMAGE_TAG = 'postgres:17.11-bookworm'  # Exact offline image observed on owner's ASUS; no implicit alias.
 LIMITS = dict(memoryBytes=1073741824, swapBytes=0, cpuQuotaPercent=100,
               tasks=64, runtimeSeconds=120, dataBytes=536870912,
               tmpBytes=67108864, socketBytes=1048576, runBytes=1048576, sysBytes=1048576,
@@ -295,7 +296,7 @@ def inspect_local(run=subprocess.run):
     endpoint = json.loads(probe(['docker', 'context', 'inspect', context, '--format', '{{json .Endpoints.docker.Host}}']))
     if not isinstance(endpoint, str) or not endpoint.startswith('unix:///') or '/mnt/' in endpoint:
         fail('DOCKER_ENDPOINT_NOT_APPROVED_LOCAL_UNIX')
-    image = json.loads(probe(['docker', '--context', context, 'image', 'inspect', 'postgres:17.11']))
+    image = json.loads(probe(['docker', '--context', context, 'image', 'inspect', LOCAL_IMAGE_TAG]))
     if len(image) != 1 or image[0].get('Os') != 'linux' or image[0].get('Architecture') != 'amd64' or not re.fullmatch('sha256:[a-f0-9]{64}', image[0].get('Id', '')):
         fail('LOCAL_IMAGE_METADATA_UNCONFIRMED')
     return dict(classification='OWNER_LOCAL_READONLY_OBSERVATION_NOT_ACCREDITATION', uid=os.getuid(),
