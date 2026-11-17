@@ -16,6 +16,19 @@ function review(files,originalWriter,existingReadSpec){
   requireThat(sql.indexOf('raise exception')>=0&&sql.indexOf('raise exception')<sql.search(/create (?:table|type|role|function)/i),'OUTER_ABORT_MISSING');
   requireThat(sql.trim().endsWith('rollback;'),'ROLLBACK_MISSING');
  }
+ // Structural screen, not SQL parsing: reject duplicated/unterminated
+ // function blocks and stray ROLLBACKs before checking valid inner fragments.
+ // The additional end$ belongs to the mandatory outer DO-abort block.
+ for(const [sql,declared] of [[bootstrap,3],[admit,2],[reader,1],[roles,0]]){
+  const count=re=>[...sql.matchAll(re)].length;
+  requireThat(count(/\bcreate(?: or replace)? function\b/gi)===declared,'SQL_STRUCTURE_FUNCTION_COUNT');
+  requireThat(count(/\bas \$\$/g)===declared&&count(/\bend\$\$;/g)===declared+1,'SQL_STRUCTURE_BODY_COUNT');
+  requireThat(count(/\bdo \$\$begin\s+raise exception\b/g)===1,'SQL_STRUCTURE_OUTER_DO');
+  requireThat(!/\bas \$(?!\$)|\bend\$;/.test(sql),'SQL_STRUCTURE_BARE_DOLLAR');
+  requireThat(count(/^rollback;/gm)===1,'SQL_STRUCTURE_ROLLBACK_COUNT');
+ }
+ requireThat((bootstrap.match(/perform concierge_invite_private\.validate_property_cut_review_v1\(c,p_request,'property_create'\);/g)||[]).length===1,
+  'BOOTSTRAP_CURRENT_CUT_CHECK_MISSING');
  for(const sql of [bootstrap,admit,reader]){
   const functions=[...sql.matchAll(/as \$\$([\s\S]*?)end\$\$/g)];
   requireThat(functions.length>0,'FUNCTION_BODY_MISSING');
