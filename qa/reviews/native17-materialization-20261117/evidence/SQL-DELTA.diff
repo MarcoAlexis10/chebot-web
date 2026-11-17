@@ -1,0 +1,95 @@
+--- post-asus/02-admission-DO-NOT-APPLY.sql
++++ materialization/02-admission-DO-NOT-APPLY.sql
+@@ -50,6 +50,7 @@
+  p_request uuid,p_intent uuid,p_attempt uuid,p_original_ref uuid,p_key bytea
+ ) returns jsonb language plpgsql security definer set search_path='' set lock_timeout='500ms' as $$
+ declare c concierge_invite_private.property_current_cut_v1;
++ after_cut concierge_invite_private.property_current_cut_v1;
+  o concierge_invite_private.property_original_payload_v1;
+  old concierge_invite_private.property_admission_v1;
+  ignored_function_result jsonb; historical_capture record;
+@@ -85,12 +86,24 @@
+  or o.key is distinct from p_key or o.operation is distinct from 'property_create'
+  or (o.user_id,o.account_id,o.member_id) is distinct from (c.user_id,c.account_id,c.member_id)
+  then raise exception 'PROPERTY_ORIGINAL_UNAVAILABLE_OR_CONFLICT';end if;
++  -- Compare historical provenance too; a newly verified read session does
++  -- not rewrite the original request, first attempt or historical session.
++  if (o.request_id,o.attempt_id,o.session_id,o.session_revision)
++   is distinct from
++   (old.request_id,old.first_attempt_id,old.historical_session,old.historical_session_revision)
++  then raise exception 'PROPERTY_HISTORICAL_BINDING_HELD';end if;
+   -- Protected comparator reads the original, not a hash or caller snapshot.
+   perform concierge_invite_private.property_require_original_equal_v1(old.original_ref,p_original_ref);
+   select address,floor_or_unit into historical_capture from concierge_invite_private.property_capture_v1
+    where principal_id=old.principal_id and intent_id=old.intent_id;
+   if found and (historical_capture.address,historical_capture.floor_or_unit)
+    is distinct from (o.address,o.floor_or_unit) then raise exception 'PRIVATE_COMMAND_CONFLICT';end if;
++  -- Custody/comparison can cross a protected-source boundary. Corroborate
++  -- the same current read cut again before classifying the result.
++  after_cut:=concierge_invite_private.bootstrap_current_cut_v1(p_request,'property_capture_read',p_original_ref);
++  perform concierge_invite_private.validate_property_cut_review_v1(after_cut,p_request,'property_capture_read');
++  perform concierge_invite_private.bootstrap_require_independent_floor_v1(after_cut);
++  if after_cut is distinct from c then raise exception 'PROPERTY_CURRENT_READ_CHANGED';end if;
+   return jsonb_build_object('state','UNKNOWN','admission','KNOWN',
+    'automaticRetryAllowed',false,'privateResult',null);
+  end if;
+--- post-asus/03-read2-DO-NOT-APPLY.sql
++++ materialization/03-read2-DO-NOT-APPLY.sql
+@@ -31,6 +31,8 @@
+  -- Metadata-only resolver has NO address/floor output or payload EXECUTE grant.
+  c:=concierge_invite_private.bootstrap_current_cut_v1(p_read_request,'property_capture_read',p_original_ref);
+  perform concierge_invite_private.validate_property_cut_review_v1(c,p_read_request,'property_capture_read');
++ -- Reject an uncorroborated floor BEFORE invoking the metadata custodian.
++ perform concierge_invite_private.bootstrap_require_independent_floor_v1(c);
+  m:=concierge_invite_private.property_original_metadata_v1(p_original_ref,c);
+  if m.original_ref is distinct from p_original_ref or m.intent_id is distinct from p_intent
+  or m.attempt_id is distinct from p_attempt or m.key is distinct from p_key
+--- pinned-legacy-check
++++ held-successor-check
+@@ -1,19 +1,34 @@
+-create function concierge_invite_private.check_private_mutation_authority_v1(
++-- REVIEW ONLY / DO NOT APPLY. Historical nine-argument checker successor.
++-- Writer eleven-argument ABI is preserved; no new mutation primitive.
++begin;
++do $$begin raise exception 'PROPERTY_LEGACY_CHECK_REVIEW_ONLY';end$$;
++
++create or replace function concierge_invite_private.check_private_mutation_authority_v1(
+  p_user uuid,p_session uuid,p_expiry bigint,p_member uuid,p_role text,p_revision bigint,
+  p_account uuid,p_property uuid,p_operation text
+-) returns boolean language plpgsql stable security invoker set search_path='' as $$
+-declare c record;n bigint;begin
++) returns boolean language plpgsql volatile security invoker set search_path='' as $$
++declare c record;
++begin
++ raise exception 'PROPERTY_LEGACY_CHECK_NOT_ACCREDITED';
+  if p_user is null or p_session is null or p_member is null or p_account is null
+  or p_expiry is null or p_expiry<=extract(epoch from pg_catalog.clock_timestamp())
+- or p_revision is null or p_revision<1 or p_role is null
+- or p_role not in ('owner','manager','co_manager')
+- or (p_operation='property_create' and p_role<>'owner') then return false;end if;
+- select count(*) into n from concierge_invite_private.private_mutation_authority_v1(
+-  p_user,p_session,p_expiry,p_property,p_operation);
+- if n<>1 then return false;end if;
+- select * into c from concierge_invite_private.private_mutation_authority_v1(
+-  p_user,p_session,p_expiry,p_property,p_operation);
++ or p_revision is null or p_revision<1 or p_role is distinct from 'owner'
++ or p_operation is distinct from 'property_create' or p_property is not null
++ then return false;end if;
++ -- One source observation, including cardinality, rather than count + reload.
++ -- VOLATILE is required for current source/context visibility and clock expiry;
++ -- it is not evidence of external provider serialization or durable COMMIT.
++ select x.*,count(*) over () as receipt_count into c
++ from concierge_invite_private.private_mutation_authority_v1(
++  p_user,p_session,p_expiry,p_property,p_operation) x;
++ if not found then return false;end if;
++ if c.receipt_count<>1 then return false;end if;
++ if p_expiry<=extract(epoch from pg_catalog.clock_timestamp()) then return false;end if;
+  return (c.account_id,c.member_id,c.member_role,c.authority_revision)
+   is not distinct from (p_account,p_member,p_role,p_revision);
+ end$$;
+-
++revoke all on function concierge_invite_private.check_private_mutation_authority_v1(
++ uuid,uuid,bigint,uuid,text,bigint,uuid,uuid,text) from public,anon,authenticated,service_role;
++-- SECURITY INVOKER and the historical owner must be confirmed in the catalog.
++-- Non-property callers now fail closed; companion domain is outside this plan.
++rollback;

@@ -1,0 +1,188 @@
+{
+  "classification": "QA_FILE_INTEGRITY_NOT_NATIVE_SEAL",
+  "sourceBase": "da08acf0142b11348aaaebbb869b4433e74e7574",
+  "codeHead": "4eef1b3202bfad01ef61254f09c40dbc2c1fe260",
+  "selfExcluded": true,
+  "files": [
+    {
+      "path": "qa/native17-materialization-20261117-v1/ASUS-SESSION.md",
+      "bytes": 3930,
+      "sha256": "b8faaa655891e78d4184a3048700579f6f70d3c8a6ba9077d43154aed3824f24",
+      "gitBlob": "7aecdd04ad821db5e14f9782342c8379d89dcd7b"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/HISTORICAL-FK-CLOSURE.json",
+      "bytes": 6872,
+      "sha256": "3bccccb0be141ee9112280fb67f012589ca33f8182137a43cd538b15bea7ea69",
+      "gitBlob": "061bf775d81f4f79ccd744880c43e1c2c93f2641"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/LEGACY-CHECK-SOURCE.sql.txt",
+      "bytes": 1131,
+      "sha256": "cb66608a424674fbf03a2288ab6392fdcef1c522ec9593d9892183b5a670fe38",
+      "gitBlob": "8e55e92ec58c1371bae374ff301ee31bc47858aa"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/PHASE-PLAN.json",
+      "bytes": 4816,
+      "sha256": "e8df6246bbe8769283abe295ca8758682e35b1f24e35b4c1c0ffd12d766513e1",
+      "gitBlob": "876bc23cea0b234af0d142c951c96e0f4f8f9441"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/PORT-TRACE.json",
+      "bytes": 18123,
+      "sha256": "08739bfbe3b23f4e033ed583530e42e342091cac2afdf1cc663c7f365a351137",
+      "gitBlob": "b01dc59cc4a0385da2e9803f9bbb4a5660a87e32"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/README.md",
+      "bytes": 4631,
+      "sha256": "64a13d92c6147fffa667b7d52ab0efebf859115f64a33d942072943954873801",
+      "gitBlob": "09b6d9303422eb651cd48cf7e894f97dedb6d07a"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/ROLES-AND-BOUNDARIES.json",
+      "bytes": 5084,
+      "sha256": "4a7e751bcc8d53cf74c606224cbf94de70a746e65e8b8789cf16754222630671",
+      "gitBlob": "114df6acd529ef5238f7e375be6e4b626fa950f4"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/SOURCE-LOCK.json",
+      "bytes": 3187,
+      "sha256": "df29f5c8517d0babece2524c276ba88abfc21ae01da8648b93ba47d31e2d78fd",
+      "gitBlob": "0fa5ecadf4514f6abb1875092edd0fd3ecb5e2ad"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/SOURCE-PINS.json",
+      "bytes": 14844,
+      "sha256": "c700e6363ae780f69d49cdc44b91be99a9fe5488e8bdf68d1f10d192c969d1fb",
+      "gitBlob": "898d45e0a9c2e22e14130ada5f24fd84947ad974"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/STATEMENT-INVENTORY.json",
+      "bytes": 22993,
+      "sha256": "558b2b75bdc2649a8c8551850b5640bc52ce1916e375e45668429c8a4c9c894b",
+      "gitBlob": "4f0edf7e4f5202de4f28e871c208bb7007bfbd75"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/checks.py",
+      "bytes": 1640,
+      "sha256": "90425fc89bf8494f744ad1647b8e04429748b4701833326e948215d08b46f306",
+      "gitBlob": "a9b6990e546c0c0abdb347921ecfa0ac23411a13"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/compare_lab.py",
+      "bytes": 5371,
+      "sha256": "8169404aaf69405597c9ccd9f3be1901725f3c51413a9c21132e22f16ae03cea",
+      "gitBlob": "c736b6145271946a083aae996aae019e50934fb5"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/review.py",
+      "bytes": 9756,
+      "sha256": "53f733b9605881c6d64366f7889a0027b8000f45e2e13760df264b7fd73dfc44",
+      "gitBlob": "1b9fc2f3a301f4f29b6ea7d7b19610599a58490e"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/sql/00-roles-DO-NOT-APPLY.sql",
+      "bytes": 1044,
+      "sha256": "b51db7e115b35a0f3853aceca7321921f46ba29d439047efa35a55a03ed0438c",
+      "gitBlob": "856405791925abcf63b17db37f225fae82ae63d3"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/sql/01-bootstrap-DO-NOT-APPLY.sql",
+      "bytes": 9892,
+      "sha256": "738056b3b7a3904aec3f150b72bab5e196e4f5cff7b7d6fbf3513c4f2230b510",
+      "gitBlob": "cd64dd2fbdbbcf6be35396ae72f806465982b943"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/sql/02-admission-DO-NOT-APPLY.sql",
+      "bytes": 15181,
+      "sha256": "1049f56eed2701e72105e44ce59d7dc860f64ce3e610dc779e1e755563f1f4cf",
+      "gitBlob": "d921c406a59008ef315b7749d7a7a9947aef8e12"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/sql/03-read2-DO-NOT-APPLY.sql",
+      "bytes": 7550,
+      "sha256": "d3c03583e8ae8ddceb83f3eefc582084551be536682a4822c30cf895b57f87c8",
+      "gitBlob": "f5d1d74fe99e02dda488f741223c96250cb14233"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/sql/04-object-acl-rls-DO-NOT-APPLY.sql",
+      "bytes": 6455,
+      "sha256": "3c809bbb2e142e47146606f6bb928e9200d986eae5df305704780d5ef340f22c",
+      "gitBlob": "4ca3da8bd3125342e0bb736d98b650d499ce1ca8"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/sql/05-owner-dependencies-DO-NOT-APPLY.sql",
+      "bytes": 3481,
+      "sha256": "09d8bc62d225bf8e96a6e211dfff3afc779633395922f27da430ccab959e4152",
+      "gitBlob": "d5ba9ca6c0ed9422ad971da3363ff393fdce83be"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/sql/06-legacy-check-DO-NOT-APPLY.sql",
+      "bytes": 2035,
+      "sha256": "fb073325ef935366e93966c58beb7a76cff3fb45d710cfd22c73c1fd8742e6d2",
+      "gitBlob": "372355f9e2d1717eaecc4a42c8f383fc2babc091"
+    },
+    {
+      "path": "qa/native17-materialization-20261117-v1/test_review.py",
+      "bytes": 7953,
+      "sha256": "64cb11368b6cae0c93a6b00d13bb086ad4cc561792547b3e2458c9af4703717c",
+      "gitBlob": "6bc37f057aaab2958d3b31aba3f78ed32dc873d8"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/A57-COMPARISON.json",
+      "bytes": 3320,
+      "sha256": "46bdabb539e7b0234e0d7eb69a3303bda7db2953f1f7125dc03e717589a46cc5",
+      "gitBlob": "99d6d777734a3e384c6796354bab0c93e7ec1b58"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/CLOSURE.md",
+      "bytes": 11493,
+      "sha256": "3fd7107e73a10b9fcaeaafbb14f3ede7e27254b87560913814989025f5f34b61",
+      "gitBlob": "47b8c67865025b7c4123db11e863cc635082d7f8"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/NEXT-EXECUTION.md",
+      "bytes": 2741,
+      "sha256": "39782e2faf484ab7565201c3af96f604b65cb54ab3ccd4c46aa3b9146ba766cc",
+      "gitBlob": "952ff6b655f577fc339467fe9ccb6d393c8b2ed5"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/REVIEW-RESULT.json",
+      "bytes": 31025,
+      "sha256": "2c268f5d07ca26cffe052c662a7b228964740ae40b1e49013c4646e6dfceb209",
+      "gitBlob": "cf86dd5e001d968964ac5282d04d916a7af5b963"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/TEST-EVIDENCE.json",
+      "bytes": 3078,
+      "sha256": "4751c1f9a5f4381777cafe2b82282222a3ce8a3a57e61ac65555ea6fb72d4c95",
+      "gitBlob": "c45f1011b3337fa9385530e250ff12f90ec2ab92"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/evidence/SQL-DELTA.diff",
+      "bytes": 6146,
+      "sha256": "e78fc0d11094c1d7bb844f371d7e8ea5ca6e3974c5fac3d23170602a2a3a0a90",
+      "gitBlob": "f1db0b10415c5be8335763238cbb56c54602f856"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/evidence/a57-comparison.log",
+      "bytes": 3907,
+      "sha256": "59e64d807d183f05d2974ec1f9aff3ddc153f898af8313219cb3561db058d8a5",
+      "gitBlob": "1b0de7e2d0b2c5a6efe90172e4f76048d01f381a"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/evidence/new-review-tests-final.log",
+      "bytes": 2705,
+      "sha256": "6367dacccb07b9f033c975d867da0ea38c78cb6f5a6e18d8f3c52532d29917ce",
+      "gitBlob": "dfb36ed47fd98d2a9009dbf986feb0c93b5937bd"
+    },
+    {
+      "path": "qa/reviews/native17-materialization-20261117/evidence/new-review-tests.log",
+      "bytes": 2068,
+      "sha256": "e95d325ac78e2ea3d8f5bdd46cff724b004e6f67016ee855514834949a1553f0",
+      "gitBlob": "6a4addab60940f6f459ed46f1bcf3eda255958ac"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "classification": "QA_OFFLINE_SOURCE_AND_FILE_TESTS_NOT_NATIVE",
+  "base": "da08acf0142b11348aaaebbb869b4433e74e7574",
+  "implementationHead": "4eef1b3202bfad01ef61254f09c40dbc2c1fe260",
+  "uniquePassedCases": 17,
+  "runs": [
+    {
+      "command": "python qa/integral-held-v1/run-isolated.py -- python -B qa/native17-post-asus-20261117-v1/checks/inspect_local_image_test.py",
+      "cases": 4,
+      "exitCode": 0,
+      "scope": "Previously written NOT_RUN image selector contracts; subprocess replies simulated; no real Docker/bwrap/systemd calls.",
+      "transcript": "Executed in this session before first checkpoint; summary recorded here. Four test names: accepts_exact_cold_cache_image_observed_on_asus, rejects_remote_endpoint_even_with_valid_local_image, rejects_missing_tag_without_pull_or_fallback, rejects_unexpected_architecture."
+    },
+    {
+      "command": "python qa/integral-held-v1/run-isolated.py -- python -B qa/native17-materialization-20261117-v1/test_review.py",
+      "cases": 13,
+      "exitCode": 0,
+      "log": "evidence/new-review-tests-final.log",
+      "scope": "Static source regressions, lexical boundaries, guards, FK source graph, file integrity, port-contract set and pure A57 comparison. No positive authorization or PostgreSQL.",
+      "earlierRevisions": {
+        "initialCases": 9,
+        "intermediateCases": 12,
+        "countedAgain": false,
+        "reasonForRerun": "Reviewer/input hardening and external-source verification changed code; final suite covers those changes."
+      }
+    },
+    {
+      "command": "python qa/integral-held-v1/run-isolated.py -- python -B qa/native17-materialization-20261117-v1/compare_lab.py",
+      "exitCode": 0,
+      "log": "evidence/a57-comparison.log",
+      "result": "HELD_RECIPES_NOT_EQUIVALENT",
+      "scope": "AST/text/pure plan only"
+    },
+    {
+      "command": "review.assess() + Python ast.parse + json.loads on package",
+      "exitCode": 0,
+      "result": "STOP_BEFORE_ANY_MUTATION; 0/10 protected sources; mutationSteps=[]",
+      "scope": "Local source/file processing; no SQL grammar parse"
+    }
+  ],
+  "sqlGrammarParser": {
+    "pglastAvailable": false,
+    "pg_queryAvailable": false,
+    "installedTools": false,
+    "status": "UNAVAILABLE_NOT_RUN"
+  },
+  "notRun": [
+    "PostgreSQL process/initdb/pg_ctl/psql",
+    "SQL grammar/PLpgSQL compile/runtime",
+    "real Docker/systemd/Bubblewrap inspection or execution",
+    "N01-N12",
+    "BPF01-BPF04",
+    "F01-F12",
+    "A01-A59",
+    "managed Auth/revocation/refresh",
+    "external COMMIT/readback/journal/witness",
+    "A1/A2/Native34",
+    "browser",
+    "historical suites"
+  ],
+  "preservation": {
+    "preexistingBlobsCompared": 1028,
+    "preexistingChanged": [],
+    "newBlobs": 26
+  },
+  "workflowBoundary": {
+    "workflowFilesUnchanged": true,
+    "pushBranchNames": [
+      "concierge-manager-web-v1",
+      "qa/cheveni-web-local-review-20261018",
+      "qa284-che-veni-brand-copy-preview"
+    ],
+    "newBranchOutsidePushTriggers": true,
+    "dispatchCalled": false
+  },
+  "betaDecision": "NO-GO"
+}
