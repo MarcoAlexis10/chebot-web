@@ -66,5 +66,11 @@
     "26-argument provisional reader",
     "NOLOGIN role/RLS/column privilege review",
     "explicit null/expiry/QA issuer/version/cut shape validation"
-  ]
+  ],
+  "technicalCommits": [
+    "f97ed1eca243a5f8e8adbf4f7dee62ea4f07a660",
+    "9eacd437d7d8534b09dc223bc8a1f4327143d0f3"
+  ],
+  "sqlNativeStatus": "NOT_AUTHORIZED_NOT_RUN",
+  "qualifiedResult": "Only pure V8 text-consistency checker and its negative text mutations executed; no functional/native PASS attributed"
 }
