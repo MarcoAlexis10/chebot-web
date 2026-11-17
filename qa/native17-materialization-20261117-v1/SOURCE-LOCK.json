@@ -1,0 +1,83 @@
+{
+  "classification": "LOCAL_REVIEW_INPUT_INTEGRITY_NOT_NATIVE_SEAL",
+  "sourceRef": "da08acf0142b11348aaaebbb869b4433e74e7574",
+  "reviewSqlFiles": [
+    "00-roles-DO-NOT-APPLY.sql",
+    "01-bootstrap-DO-NOT-APPLY.sql",
+    "02-admission-DO-NOT-APPLY.sql",
+    "03-read2-DO-NOT-APPLY.sql",
+    "04-object-acl-rls-DO-NOT-APPLY.sql",
+    "05-owner-dependencies-DO-NOT-APPLY.sql",
+    "06-legacy-check-DO-NOT-APPLY.sql"
+  ],
+  "packageInputs": [
+    {
+      "path": "HISTORICAL-FK-CLOSURE.json",
+      "sha256": "3bccccb0be141ee9112280fb67f012589ca33f8182137a43cd538b15bea7ea69"
+    },
+    {
+      "path": "LEGACY-CHECK-SOURCE.sql.txt",
+      "sha256": "cb66608a424674fbf03a2288ab6392fdcef1c522ec9593d9892183b5a670fe38"
+    },
+    {
+      "path": "PHASE-PLAN.json",
+      "sha256": "e8df6246bbe8769283abe295ca8758682e35b1f24e35b4c1c0ffd12d766513e1"
+    },
+    {
+      "path": "PORT-TRACE.json",
+      "sha256": "08739bfbe3b23f4e033ed583530e42e342091cac2afdf1cc663c7f365a351137"
+    },
+    {
+      "path": "ROLES-AND-BOUNDARIES.json",
+      "sha256": "4a7e751bcc8d53cf74c606224cbf94de70a746e65e8b8789cf16754222630671"
+    },
+    {
+      "path": "SOURCE-PINS.json",
+      "sha256": "c700e6363ae780f69d49cdc44b91be99a9fe5488e8bdf68d1f10d192c969d1fb"
+    },
+    {
+      "path": "STATEMENT-INVENTORY.json",
+      "sha256": "558b2b75bdc2649a8c8551850b5640bc52ce1916e375e45668429c8a4c9c894b"
+    },
+    {
+      "path": "checks.py",
+      "sha256": "90425fc89bf8494f744ad1647b8e04429748b4701833326e948215d08b46f306"
+    },
+    {
+      "path": "review.py",
+      "sha256": "13d1960148cc7b5a13bc3ca75d04043280dd71af2b1e124157557d1871759e76"
+    },
+    {
+      "path": "sql/00-roles-DO-NOT-APPLY.sql",
+      "sha256": "b51db7e115b35a0f3853aceca7321921f46ba29d439047efa35a55a03ed0438c"
+    },
+    {
+      "path": "sql/01-bootstrap-DO-NOT-APPLY.sql",
+      "sha256": "738056b3b7a3904aec3f150b72bab5e196e4f5cff7b7d6fbf3513c4f2230b510"
+    },
+    {
+      "path": "sql/02-admission-DO-NOT-APPLY.sql",
+      "sha256": "1049f56eed2701e72105e44ce59d7dc860f64ce3e610dc779e1e755563f1f4cf"
+    },
+    {
+      "path": "sql/03-read2-DO-NOT-APPLY.sql",
+      "sha256": "d3c03583e8ae8ddceb83f3eefc582084551be536682a4822c30cf895b57f87c8"
+    },
+    {
+      "path": "sql/04-object-acl-rls-DO-NOT-APPLY.sql",
+      "sha256": "3c809bbb2e142e47146606f6bb928e9200d986eae5df305704780d5ef340f22c"
+    },
+    {
+      "path": "sql/05-owner-dependencies-DO-NOT-APPLY.sql",
+      "sha256": "09d8bc62d225bf8e96a6e211dfff3afc779633395922f27da430ccab959e4152"
+    },
+    {
+      "path": "sql/06-legacy-check-DO-NOT-APPLY.sql",
+      "sha256": "fb073325ef935366e93966c58beb7a76cff3fb45d710cfd22c73c1fd8742e6d2"
+    },
+    {
+      "path": "test_review.py",
+      "sha256": "f3d0150e0c299414218b1951070a54a7b3aae74d9335130d61e03f172852cf3b"
+    }
+  ]
+}

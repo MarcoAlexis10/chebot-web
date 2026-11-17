@@ -1,0 +1,155 @@
+{
+  "classification": "REVIEW_OBJECT_PHASES_NOT_CONCATENATED_SQL",
+  "state": "HELD",
+  "executionEnabled": false,
+  "mutationSteps": [],
+  "phases": [
+    {
+      "id": "P00",
+      "name": "Pre-mutation stop",
+      "depends": [],
+      "blocked": true,
+      "requires": [
+        "all ten trusted source implementations",
+        "approved exact native/catalog baseline",
+        "custody decisions and provenance",
+        "separate materialization hash and explicit host/case authorization"
+      ]
+    },
+    {
+      "id": "P10",
+      "name": "Roles and private schema baseline",
+      "depends": [
+        "P00"
+      ],
+      "reviewFiles": [
+        "00-roles-DO-NOT-APPLY.sql"
+      ],
+      "external": [
+        "private schema exact baseline",
+        "existing historical writer LOGIN and NOLOGIN owner; no alias"
+      ]
+    },
+    {
+      "id": "P20",
+      "name": "Historical objects and keys",
+      "depends": [
+        "P10"
+      ],
+      "external": [
+        "HISTORICAL-FK-CLOSURE.json full source order",
+        "Auth users/sessions synthetic shape separately held",
+        "accounts/members unique(id,account_id)",
+        "manager web identity source and key",
+        "all source defaults/constraints/owners preserved without DEV grants"
+      ]
+    },
+    {
+      "id": "P30",
+      "name": "New types and tables",
+      "depends": [
+        "P20"
+      ],
+      "objects": [
+        "property_current_cut_v1 TYPE",
+        "bootstrap_founder_assignment_v1 TABLE",
+        "bootstrap_jurisdiction_v1 TABLE",
+        "property_original_payload_v1 TYPE",
+        "property_original_metadata_v1 TYPE",
+        "property_admission_v1 TABLE",
+        "property_dispatch_context_v1 TABLE"
+      ]
+    },
+    {
+      "id": "P35",
+      "name": "Pure cut shape validator",
+      "depends": [
+        "P30"
+      ],
+      "objects": [
+        "validate_property_cut_review_v1 FUNCTION"
+      ],
+      "note": "Shape only. Review guard retained; source accreditation is separate."
+    },
+    {
+      "id": "P40",
+      "name": "Protected source functions and revokers",
+      "depends": [
+        "P35"
+      ],
+      "external": [
+        "bootstrap_current_cut_v1(uuid,text,uuid)",
+        "bootstrap_require_independent_floor_v1(property_current_cut_v1)",
+        "bootstrap_require_complete_catalog_v1()",
+        "property_original_payload_v1(uuid,property_current_cut_v1)",
+        "property_original_metadata_v1(uuid,property_current_cut_v1)",
+        "property_require_original_equal_v1(uuid,uuid)",
+        "property_require_original_cut_v1(uuid,property_current_cut_v1)",
+        "property_require_no_prior_dispatch_v1(uuid,uuid,bytea)",
+        "property_require_capture_matches_original_v1(uuid,uuid,uuid)",
+        "bootstrap_begin_revision_change_v1(text,text,text)"
+      ],
+      "blocked": true
+    },
+    {
+      "id": "P50",
+      "name": "Reviewed function bodies",
+      "depends": [
+        "P40"
+      ],
+      "objects": [
+        "resolve_first_property_review_v1",
+        "private_mutation_authority_v1",
+        "check_private_mutation_authority_v1",
+        "capture_first_property_review_v1",
+        "read_property_capture_v2",
+        "bootstrap_before_change_review_v1"
+      ],
+      "reviewFiles": [
+        "01-bootstrap-DO-NOT-APPLY.sql",
+        "02-admission-DO-NOT-APPLY.sql",
+        "03-read2-DO-NOT-APPLY.sql",
+        "06-legacy-check-DO-NOT-APPLY.sql"
+      ],
+      "note": "Object references, not file concatenation. Functions/types inside 01/02 belong to distinct phases."
+    },
+    {
+      "id": "P60",
+      "name": "Object ownership and RLS/ACL",
+      "depends": [
+        "P50"
+      ],
+      "reviewFiles": [
+        "04-object-acl-rls-DO-NOT-APPLY.sql",
+        "05-owner-dependencies-DO-NOT-APPLY.sql"
+      ],
+      "external": [
+        "missing owner/default/ACL decisions",
+        "exact pre-statement revoker hooks and coverage"
+      ]
+    },
+    {
+      "id": "P70",
+      "name": "Separate native catalog and branch evidence",
+      "depends": [
+        "P60"
+      ],
+      "external": [
+        "N01 first",
+        "existing N/BPF/F only",
+        "COMMIT/readback/journal/witness channels"
+      ],
+      "blocked": true
+    }
+  ],
+  "historicalForeignKeyPreserved": true,
+  "requiredFutureNativeEvidence": [
+    "server 170011 and actual connection identities",
+    "function signature/body/volatility/owner/search_path fingerprint",
+    "ACL/schema/type/column/function/default privileges and memberships",
+    "FK/unique/constraints plus RLS visibility and all revoker coverage",
+    "relevant protected branch reached; otherwise TARGET_NOT_REACHED",
+    "external COMMIT protocol IDLE plus independent effect/current-reader observation",
+    "journal/witness and post-restore current floors; missing => UNKNOWN"
+  ]
+}

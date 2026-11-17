@@ -1,0 +1,226 @@
+{
+  "classification": "SOURCE_TRACE_NO_FABRICATED_AUTHORITY",
+  "resolved": 0,
+  "total": 10,
+  "scope": "Exact pinned callers/implementations and backend tree; not a claim that all historical QA snapshots were installed or executed.",
+  "ports": [
+    {
+      "qualifiedName": "concierge_invite_private.bootstrap_current_cut_v1",
+      "signature": "bootstrap_current_cut_v1(uuid,text,uuid)",
+      "returnRequirement": "property_current_cut_v1",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "concierge-manager-auth-session.js:145-203; concierge-independent-revocations.js:37-96; SQL 01:95",
+      "missingSource": "Provider verification exists in the backend, but its WeakMap admission routes DEV/historical REST and cannot be serialized into a SQL current-cut capability. Protected QA request ingress, complete current revisions, unique relation/founder/CABA authority and D1/D2 bridge are absent.",
+      "producerAuthority": "provider/revision protected source owner, NOT application or reader owner",
+      "executeBy": [],
+      "requirements": [
+        "Verify provider signature/sub/session_id/issuer/iat/exp and current session/revocation at source; never use user metadata/UI DTO/auth_live request echo as proof",
+        "Configured QA issuer only; DEV cannot be rewritten into QA; signature implementation and custody absent here",
+        "identity_only returns current provider+relation cut without write/read grant or requiring property/trial; property_create is pre-property owner permission; property_capture_read is separately current read permission",
+        "Every cut field required, versions positive, four bytea values 32 bytes, observed time bounded, account derived from unique current web identity/member/account; absent/ambiguous/expired source RAISES, never positive constants",
+        "Refresh/session change cannot reuse dispatch binding; read may use a newly verified session without replacing original historical session",
+        "Current revisions need D1 producer and D2 independent restrictions/floors; no update_at/time/claim constants"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.bootstrap_require_independent_floor_v1",
+      "signature": "bootstrap_require_independent_floor_v1(property_current_cut_v1)",
+      "returnRequirement": "void or raises",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "concierge-independent-revocations.js:37-96; SQL 01:103,135",
+      "missingSource": "Ed25519 verification code exists; live independent custodian, pinned minimum floor/recovery epoch and complete current dataset/inventory/restriction evidence are not supplied. No local snapshot or verifier callback supplies independence.",
+      "producerAuthority": "independent restrictions/floor custodian",
+      "executeBy": [],
+      "requirements": [
+        "Independently corroborate dataset/recovery epoch/revisions/inventory/restriction digests/journal/bootstrap/authority commit",
+        "Reject incomplete, stale, future, contradictory, revoked or post-restore older floor before and after observations",
+        "No same-source callback, same credential or restored local snapshot accepted as independence"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.bootstrap_require_complete_catalog_v1",
+      "signature": "bootstrap_require_complete_catalog_v1()",
+      "returnRequirement": "void or raises",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "native17-closure-v1/service-successor-REVIEW-ONLY.sql; sql/catalog-capture-DO-NOT-APPLY.sql; SQL 04",
+      "missingSource": "Catalog query/review sources exist, but no exact approved complete expected native catalog/role/policy/fingerprint baseline, effective source visibility and revoker coverage for this composition exists. A pg_catalog query alone cannot accredit completeness.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [],
+      "requirements": [
+        "Actual role/login/owner/membership, exposed schemas, EXECUTE/PUBLIC/default ACL, RLS/FORCE RLS, column grants, functions, dependencies and policy snapshot",
+        "No BYPASSRLS/ownership assumption; unknown restrictive/permissive policy, missing dependency or catalog version drift denies",
+        "Column grants in 04 alone lack schema USAGE/type USAGE/complete EXECUTE closure; future approved materialization must supply exact closure and capture it",
+        "Inventory completeness must include draft, ready_for_review, active, paused, archived, not only active rows"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.property_original_payload_v1",
+      "signature": "property_original_payload_v1(uuid,property_current_cut_v1)",
+      "returnRequirement": "property_original_payload_v1",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "property-capture-adapter.mjs:reviewPropertyCapture/createProtectedPropertyCapture; custody-contract.mjs; original-reference.mjs; SQL 02:6,81,107",
+      "missingSource": "Composite TYPE and business-subset/parser exist; no immutable original producer, approved custody/retention ingress, current protected request reload or exact recoverable original. Existing property_capture is the later effect and is not an independent original.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [
+        "cheveni_property_admission_owner_v1"
+      ],
+      "requirements": [
+        "Immutable exact original from trusted custody, NEVER client snapshot, UUID/key or digest reconstruction",
+        "Corroborate request/intent/attempt/key/user/historical session/account/member/operation and original argument bytes/provenance",
+        "No NFC/trim/case/NULL-empty normalization to hide contradictory address or unit; no logging/raw return to login",
+        "Specific D02-A storage/access/encryption-custody/retention/backup/suppression decisions required before any persistence",
+        "Reuse qa/functional-contracts-20261112-v1/property-capture-adapter.mjs and original structured-address parser/business representability checks before projection. Reject unsupported name/type/language/hours/building/unit, never silently drop them; only historical representable defaults may reach eleven arguments.",
+        "Before fetching any raw or historical metadata, verify the current protected cut, request binding, user/member/account and exact operation; identity_only is insufficient for payload. Writer NEW has property_create; KNOWN and reader have property_capture_read. No caller-supplied snapshot accepted.",
+        "The composite parameter is NOT a capability: reload the protected provider/request/revision record by request_id, corroborate it independently and compare/expire it before returning data; a typed or matching tuple alone is insufficient."
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.property_original_metadata_v1",
+      "signature": "property_original_metadata_v1(uuid,property_current_cut_v1)",
+      "returnRequirement": "property_original_metadata_v1",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "SQL 02:11; SQL 03:34; original-reference.mjs",
+      "missingSource": "Metadata TYPE exists, not a function. Same missing immutable original/custodian, current protected reload and provenance; no metadata reader may receive payload access.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [
+        "cheveni_property_capture_read_owner_v2"
+      ],
+      "requirements": [
+        "Same immutable original and provenance, metadata-only projection; no address/floor output or payload EXECUTE delegation",
+        "Before fetching any raw or historical metadata, verify the current protected cut, request binding, user/member/account and exact operation; identity_only is insufficient for payload. Writer NEW has property_create; KNOWN and reader have property_capture_read. No caller-supplied snapshot accepted.",
+        "The composite parameter is NOT a capability: reload the protected provider/request/revision record by request_id, corroborate it independently and compare/expire it before returning data; a typed or matching tuple alone is insufficient."
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.property_require_original_equal_v1",
+      "signature": "property_require_original_equal_v1(uuid,uuid)",
+      "returnRequirement": "void or raises",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "original-reference.mjs:createProtectedOriginalComparator; SQL 02:89",
+      "missingSource": "Existing comparator port always returns UNKNOWN. No exact original source/provenance can be compared, even if the two references match. Digest/reference equality does not close it.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [],
+      "requirements": [
+        "Compare exact immutable originals/provenance, including when references are identical; pointer equality alone never sufficient"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.property_require_original_cut_v1",
+      "signature": "property_require_original_cut_v1(uuid,property_current_cut_v1)",
+      "returnRequirement": "void or raises",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "property-authority-preflight-20261112-v1/read-cut.mjs; SQL 02:119",
+      "missingSource": "Shape/read-cut code exists, but no protected original historical full authority cut or current producer/floor attestation. Rebinding versions or sessions is not allowed.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [],
+      "requirements": [
+        "Match original protected request/body binding and complete historical cut to admitted current authority; changed versions require new reviewed intent, not rebinding"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.property_require_no_prior_dispatch_v1",
+      "signature": "property_require_no_prior_dispatch_v1(uuid,uuid,bytea)",
+      "returnRequirement": "void or raises",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "SQL 02:96-105; private-mutations-UNAPPLIED.sql:91-140; first-property-20261112-v1/reconciliation.mjs",
+      "missingSource": "Local admission/result/capture absence after restore does not prove no dispatch. Independent complete dispatch history, current recovery epoch and trusted custody are absent.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [],
+      "requirements": [
+        "Independent complete admission/dispatch history and current recovery epoch prove NEW eligibility; absent local row is NOT proof",
+        "Missing trusted original/history after restart or restore remains UNKNOWN; no automatic resend"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.property_require_capture_matches_original_v1",
+      "signature": "property_require_capture_matches_original_v1(uuid,uuid,uuid)",
+      "returnRequirement": "void or raises",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "SQL 03:89; private-mutations-UNAPPLIED.sql:7-16,115-139; original-reference.mjs",
+      "missingSource": "Historical capture is present in source but immutable original custodian/comparison is absent. A dedicated custodian must compare exact plaintext privately; reader gets no address/unit SELECT or payload EXECUTE.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [
+        "cheveni_property_capture_read_owner_v2"
+      ],
+      "requirements": [
+        "Inside dedicated custodian compare historical capture address/floor exactly to original and intent/user provenance; reader cannot SELECT plaintext",
+        "No key/digest/UUID-only proof; no new duplicate address copy"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    },
+    {
+      "qualifiedName": "concierge_invite_private.bootstrap_begin_revision_change_v1",
+      "signature": "bootstrap_begin_revision_change_v1(text,text,text)",
+      "returnRequirement": "void or raises",
+      "signatureStatus": "REQUIRED_ABI_NOT_DECLARED_IMPLEMENTATION",
+      "status": "HELD",
+      "resolved": false,
+      "trace": "SQL 01:141-150; PORTS-AND-ROLES.revokerParticipants; concierge-independent-revocations.js",
+      "missingSource": "Pre-statement global fence hook exists only as a guarded caller; protected revision advancement/independent floor agreement and complete local/remote revoker ingress are absent. Local advisory lock cannot serialize remote Auth or journal.",
+      "producerAuthority": "Dedicated protected source/custodian; exact owner/ingress still requires review",
+      "executeBy": [],
+      "requirements": [
+        "Advance/invalidate participating protected revisions under shared global pre-DML fence, fail closed if independent source unavailable",
+        "No row lock before global fence; lock order is global fence -> protected source/admission metadata -> property/slot -> effects, matching historical writer",
+        "External provider/restriction/journal revokers must join the reviewed protocol; local SQL lock cannot serialize a remote provider by itself"
+      ],
+      "dependencySource": "PORTS-AND-ROLES.json, MATERIALIZATION.json and pinned caller SQL",
+      "revocation": "Reload current verified session/revisions and independent floor; historical session is never current authority.",
+      "unknownBehavior": "Raise/fail closed; outward UNKNOWN where specified. No dispatch, no implicit retry.",
+      "implementableFromAvailableSources": false
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "order": [
+    {
+      "name": "public.concierge_accounts",
+      "requires": [],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "98d28d00f2b081dda2c717bd0056949d965b822854c979a6b507580397ef005d",
+            "blob": "92a4f04f28cfcc1accd205c77fd16965f1acfc13"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "public.concierge_buildings",
+      "requires": [
+        "public.concierge_accounts"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "ec058f8a536ffb7600bd838b83e9870cb0ccde570f2ec1cb7aac26b9e4c80871",
+            "blob": "149f7e3cc2e97c12cc0a6512dc94865c68c70371"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "public.concierge_properties",
+      "requires": [
+        "public.concierge_accounts",
+        "public.concierge_buildings"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "bb4310b4edd84d4684414322b5e8c73761b61fb23036918b2db99024cd0e51e9",
+            "blob": "d24940355e4061aad79200efd83c745d79ab463e"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "concierge_invite_private.beta_property_slot_v1",
+      "requires": [
+        "public.concierge_properties"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/cheveni-beta-release-candidate-v1/final-offline-assembly-v1/candidate/CATALOG-REVIEW-ONLY.sql",
+          "statementHash": {
+            "sha256": "a879ca769bd495e2c704b367e85e8cf851634987b2de3791766f6e0f0a0a1def",
+            "blob": "781312b0b731ffd60aef78575c5c49061cfa33e6"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "public.concierge_guest_identities",
+      "requires": [],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "83ddcc7edfbe5a8aae31c5a592be242e3a2fe1a30754ec22a2deda90b69c5c2c",
+            "blob": "d126073fe1108f8a0f4ec845e2d5c291fb147e92"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "public.concierge_account_members",
+      "requires": [
+        "public.concierge_accounts"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "fefb30d88532e8a704e81ad0c0be0a9756299c38bf13a9add047798032564cf8",
+            "blob": "deba724b318b2d3d0084ebbce9323217b39aa71c"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "public.concierge_stays",
+      "requires": [
+        "public.concierge_account_members",
+        "public.concierge_accounts",
+        "public.concierge_properties"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "516b2f032daa18c1801fa4670405dc0a32291dace7ce5824d16bb05b284ab82c",
+            "blob": "214ad4bb4dc1dee428dd205b19b8b528b37ddf4e"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "public.concierge_stay_members",
+      "requires": [
+        "public.concierge_guest_identities",
+        "public.concierge_stays"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "ddf77a7927c2374406e3e4ddf1c8993dce92cb137e965a942115802ab6977eae",
+            "blob": "bdaf9c6938bcbd784d2593f0e32a1d89670ebff5"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "public.concierge_guest_invites",
+      "requires": [
+        "public.concierge_stay_members"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/managed-foundation-v2/foundation-install-UNAPPLIED.sql",
+          "statementHash": {
+            "sha256": "62887f72924a56664afdf4c7eead8b12480e316e05e72dafc8d59c195f0732af",
+            "blob": "498e7b7fc5bcd94fe02b7201df1a96478a8e0f25"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "concierge_invite_private.companion_binding_v1",
+      "requires": [
+        "concierge_invite_private.beta_property_slot_v1",
+        "public.concierge_guest_identities",
+        "public.concierge_guest_invites",
+        "public.concierge_stay_members",
+        "public.concierge_stays"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/cheveni-beta-release-candidate-v1/final-offline-assembly-v1/candidate/CATALOG-REVIEW-ONLY.sql",
+          "statementHash": {
+            "sha256": "8da0725bb6e0dd59a5020690dcb2ac3da26983b33b19e58eb48ab062b6b51b9b",
+            "blob": "2629dd5626d07287c69f403a2bb5e5e0a1235113"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "concierge_invite_private.manager_result_v1",
+      "requires": [
+        "concierge_invite_private.beta_property_slot_v1",
+        "concierge_invite_private.companion_binding_v1"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/cheveni-beta-release-candidate-v1/final-offline-assembly-v1/candidate/CATALOG-REVIEW-ONLY.sql",
+          "statementHash": {
+            "sha256": "b3dd1b001794ecca8029133576761a4b5d0663c50dfcdb14d5842395b53e8873",
+            "blob": "fa146213cb4a9aeb108db20bc2a2b5dea8103876"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    },
+    {
+      "name": "concierge_invite_private.property_capture_v1",
+      "requires": [
+        "concierge_invite_private.manager_result_v1"
+      ],
+      "sourceEvidence": [
+        {
+          "source": "qa/cheveni-beta-release-candidate-v1/final-offline-assembly-v1/candidate/CATALOG-REVIEW-ONLY.sql",
+          "statementHash": {
+            "sha256": "47edcafc6d98c581f9f374b8ae74a36d81994a508cf9d89e792b7efd27d70676",
+            "blob": "74e12714cf2a78313606d5b91e30bb7b56e9f38d"
+          }
+        }
+      ],
+      "nativeObjectPresent": null,
+      "sourceDdlKnown": true
+    }
+  ],
+  "missingIndexNodes": [],
+  "nativeVerified": false
+}

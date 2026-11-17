@@ -1,0 +1,140 @@
+{
+  "owners": {
+    "cheveni_property_governance_owner_v1": {
+      "login": false,
+      "owns": [
+        "bootstrap_founder_assignment_v1",
+        "bootstrap_jurisdiction_v1"
+      ],
+      "applicationMemberships": [],
+      "assignmentIngress": "NOT IMPLEMENTED. Human decision + independently current epoch/revision required; no seeded founder."
+    },
+    "cheveni_property_bootstrap_owner_v1": {
+      "login": false,
+      "bypassRls": false,
+      "ownsTables": [],
+      "select": "Only columns in 04-role-rls; full relevant inventory, never filtered-zero evidence",
+      "execute": [
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "validate_property_cut_review_v1"
+      ]
+    },
+    "cheveni_property_admission_owner_v1": {
+      "login": false,
+      "bypassRls": false,
+      "owns": [
+        "property_admission_v1",
+        "property_dispatch_context_v1"
+      ],
+      "execute": [
+        "resolve_first_property_review_v1",
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "property_original_payload_v1",
+        "property_require_original_equal_v1",
+        "property_require_original_cut_v1",
+        "property_require_no_prior_dispatch_v1",
+        "write_property_capture_v1",
+        "validate_property_cut_review_v1"
+      ],
+      "publicDml": false
+    },
+    "cheveni_property_capture_read_owner_v2": {
+      "login": false,
+      "bypassRls": false,
+      "ownsTables": [],
+      "writeGrants": [],
+      "memberships": [],
+      "execute": [
+        "bootstrap_current_cut_v1",
+        "bootstrap_require_independent_floor_v1",
+        "bootstrap_require_complete_catalog_v1",
+        "property_original_metadata_v1",
+        "property_require_capture_matches_original_v1",
+        "validate_property_cut_review_v1"
+      ],
+      "forbiddenExecute": [
+        "write_property_capture_v1",
+        "capture_first_property_review_v1",
+        "property_original_payload_v1",
+        "property_require_no_prior_dispatch_v1"
+      ],
+      "forbiddenSelect": [
+        "property_capture_v1.address",
+        "property_capture_v1.floor_or_unit",
+        "property_dispatch_context_v1"
+      ],
+      "nativeReadOnlyAccredited": false
+    },
+    "cheveni_private_mutation_owner_v1": {
+      "historicalOwnerUnchanged": true,
+      "additionalSelect": [
+        "property_dispatch_context_v1",
+        "property_admission_v1"
+      ],
+      "additionalExecute": [
+        "resolve_first_property_review_v1",
+        "private_mutation_authority_v1"
+      ],
+      "reason": "Inner legacy SECURITY DEFINER calls narrow private_mutation_authority slice as INVOKER. This transitive closure must be observed; source text does not establish effective ACL."
+    }
+  },
+  "loginProfiles": {
+    "cheveni_property_bootstrap_scope_backend_v1": {
+      "entry": "resolve_first_property_review_v1",
+      "directTables": [],
+      "memberships": [],
+      "credentialsPresent": false
+    },
+    "cheveni_private_mutation_backend_v1": {
+      "entry": "capture_first_property_review_v1",
+      "directTables": [],
+      "memberships": [],
+      "directLegacyWriteExecute": false,
+      "otherMutationExecute": false,
+      "existingPrincipalRequiresCatalogReview": true,
+      "credentialsPresent": false
+    },
+    "cheveni_property_capture_reader_backend_v2": {
+      "entry": "read_property_capture_v2",
+      "directTables": [],
+      "memberships": [],
+      "writeExecute": false,
+      "credentialsPresent": false
+    }
+  },
+  "custodyOwnerProposal": {
+    "name": "cheveni_property_original_custody_owner_v1",
+    "login": false,
+    "installed": false,
+    "applicationMemberships": [],
+    "implementation": "MISSING; separate policy/custody decision and protected original source required. No rows or credentials supplied."
+  },
+  "revokerParticipants": [
+    "public.concierge_manager_web_identities",
+    "public.concierge_account_members",
+    "public.concierge_accounts",
+    "public.concierge_properties",
+    "concierge_invite_private.beta_property_slot_v1",
+    "bootstrap_founder_assignment_v1",
+    "bootstrap_jurisdiction_v1",
+    "original custodian/admission history",
+    "Auth user/session/revocation/refresh source",
+    "independent restrictions/floors/dataset/recovery epoch",
+    "catalog/roles/grants/RLS/EXECUTE changes"
+  ],
+  "proposedDependencyAcl": "sql/05-owner-dependencies-DO-NOT-APPLY.sql",
+  "expectedPolicies": "sql/04-object-acl-rls-DO-NOT-APPLY.sql",
+  "unresolved": [
+    "provider/floor/catalog/custodian/revoker principals and private source ACL",
+    "all composite type and pure-validator ownership/default ACL review",
+    "effective schema/table/column/function privileges, inherited SET capability and default privileges",
+    "legacy owner baseline, all FORCE RLS policy intersections and exact revoker triggers"
+  ],
+  "installationAuthorized": false,
+  "rlsBypassPermitted": false,
+  "applicationEntryGrantsEmitted": false
+}

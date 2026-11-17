@@ -1,0 +1,733 @@
+{
+  "classification": "LEXICAL_SUBSET_NOT_POSTGRESQL_PARSER",
+  "statements": [
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 0,
+      "endChar": 73,
+      "kind": "transaction",
+      "sha256": "5c2b340938302d867344fba81b12f9425bafcd70901aebc1523fbf980a702b6f"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 73,
+      "endChar": 136,
+      "kind": "guard",
+      "sha256": "f409c39e390b025d393ea4ebf1d09b2d94945cb818652028738f60698752a2c6"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 136,
+      "endChar": 267,
+      "kind": "roles",
+      "sha256": "e8f44174d937a4139c6ad66b969b45f58cff636b6677063960de6614b9b105ec"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 267,
+      "endChar": 396,
+      "kind": "roles",
+      "sha256": "a107c4e099d7b965c5a0a79a7ae47165c75396433115f45f212b909d18592bb3"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 396,
+      "endChar": 525,
+      "kind": "roles",
+      "sha256": "b94e0786edcc6ff3ad84e96dddbef6210799145695ea53db38d667fe47c76a91"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 525,
+      "endChar": 657,
+      "kind": "roles",
+      "sha256": "7b693d1272cfd3d0d8a512312e11c1edf4249654ecd4c5d9367ffdbd6858f03a"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 657,
+      "endChar": 811,
+      "kind": "roles",
+      "sha256": "19a349769b5f6937eee8e9b42f20bdbf831594a764589636af25e575453a955f"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 811,
+      "endChar": 964,
+      "kind": "roles",
+      "sha256": "32f103421595a571c65e671e174f97241a02ac9de3e259aee2e9f184c57d55e7"
+    },
+    {
+      "file": "00-roles-DO-NOT-APPLY.sql",
+      "startChar": 964,
+      "endChar": 1043,
+      "kind": "transaction",
+      "sha256": "4cf547c4cb6ea9e7c6af8bf01e07096ab8575253f12ea4ce3a90be0042426592"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 0,
+      "endChar": 83,
+      "kind": "transaction",
+      "sha256": "95829266f7fbaad680fc0e80627f29ebf8c10139940e62c4175b482209f3e9a3"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 83,
+      "endChar": 152,
+      "kind": "guard",
+      "sha256": "f52a9d0f940bc19fcdc9c0f6f333f53d79030ddb53ea384272c9bdc7f4fd19d1"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 152,
+      "endChar": 876,
+      "kind": "tables",
+      "sha256": "d30fe71dd8951045c98b2e2b7a5eff6b744b258534bb0f7b5a68383835c43683"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 876,
+      "endChar": 1490,
+      "kind": "tables",
+      "sha256": "61543ae41b0d95040f9e4a3072bcb44523292b23c4539fdafba8e230c07111f8"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 1490,
+      "endChar": 1744,
+      "kind": "object_changes",
+      "sha256": "90424fef618c8f05df0be474d5476ff6c02edf304d301d2f9e1221be9ab679c6"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 1744,
+      "endChar": 1839,
+      "kind": "object_changes",
+      "sha256": "2f5dce0a93ddc9ceeea5e8eae7b3dcf4d0f68b3d5e7573f9e24067d5708b0509"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 1839,
+      "endChar": 1929,
+      "kind": "object_changes",
+      "sha256": "69cfc9aa0e281883d50f82fec881d4b629e448beda1d747abdfd88c14165fadb"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 1929,
+      "endChar": 2018,
+      "kind": "object_changes",
+      "sha256": "ecb6e61e2dcc8dac0bb6f436fe25865d361d85f81fa8433f671cd38769179ae3"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 2018,
+      "endChar": 2187,
+      "kind": "privileges",
+      "sha256": "0094ec9cfdda551180288174770997b054cf5af9e9aa1b27e2826df479a92e6b"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 2187,
+      "endChar": 2751,
+      "kind": "types",
+      "sha256": "eb6e8714a64bf31bc15ad26e054808d981856374e97663e3abb4296953c9e450"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 2751,
+      "endChar": 4402,
+      "kind": "functions",
+      "sha256": "8048fbd0d59ab9490b2ce55300b84dcfa9ec3e26c6b9630e8c0facf69281d409"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 4402,
+      "endChar": 4589,
+      "kind": "privileges",
+      "sha256": "1e96ec4e10f5b48cf4b0693782b2b7f659e1c5a590fe1bdfcf325a30650fd031"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 4589,
+      "endChar": 8889,
+      "kind": "functions",
+      "sha256": "a310bfda78030b656e8c55ddedbd0c783c9ea8ecb4969d503c0dd88daaeda651"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 8889,
+      "endChar": 9031,
+      "kind": "privileges",
+      "sha256": "14fea57b14fc33911c1759b79104cda43a0a5589f34d1bcdb79c75c388b45128"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 9031,
+      "endChar": 9593,
+      "kind": "functions",
+      "sha256": "cef324d9865a5f47a460aa1ad1795d802bbc1695e9fc5a2a74879da83baf76f4"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 9593,
+      "endChar": 9722,
+      "kind": "privileges",
+      "sha256": "e7a2a4744bb641a2f6304c812431b2e18b0a3db39328ee87145db1b27f74f3f5"
+    },
+    {
+      "file": "01-bootstrap-DO-NOT-APPLY.sql",
+      "startChar": 9722,
+      "endChar": 9891,
+      "kind": "transaction",
+      "sha256": "581f1153f8574ed413f72cfe82e457175cbd4fab7e6b02eedc06c9de91e3e0fd"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 0,
+      "endChar": 87,
+      "kind": "transaction",
+      "sha256": "c3383cff05c54bd26f55fa764863fbe3428d3d8dacd7a6daed6860eb860cde5c"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 87,
+      "endChar": 154,
+      "kind": "guard",
+      "sha256": "65c912d3a526c0592d3a5660e62d28b425809d4e7b04fa9daca909b221cd9a3a"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 154,
+      "endChar": 512,
+      "kind": "types",
+      "sha256": "3cadad036b840b5dd10c377fdbc55d0ca5720b10d36edd4bf14d114b2ed9b952"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 512,
+      "endChar": 786,
+      "kind": "types",
+      "sha256": "53bfb3793fc9c7b86c466ed4c4f306938c68af9c670552d9bd9b587db65397e0"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 786,
+      "endChar": 2279,
+      "kind": "tables",
+      "sha256": "adbfd240906762bd084433052d750043c79b132f709e078b17c86b6ff69aa4e0"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 2279,
+      "endChar": 2873,
+      "kind": "tables",
+      "sha256": "819e6598fcff11a1444e8bc04a0703a007f7efd06a9c44a24dfa3a2a54cb1446"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 2873,
+      "endChar": 2959,
+      "kind": "object_changes",
+      "sha256": "96b14f2a5c3c3c345822c41a134cd59716fb6dbf5303365a84cc624ebf1c9aa0"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 2959,
+      "endChar": 3044,
+      "kind": "object_changes",
+      "sha256": "e6d56f6998557e736862658a0a5e551f1178298a8f2b183d3a72fbb584c63343"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 3044,
+      "endChar": 3137,
+      "kind": "object_changes",
+      "sha256": "04ea75015fbac47b35216242c0789a923d7ade876679b5ed9f88aa26945072e5"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 3137,
+      "endChar": 3229,
+      "kind": "object_changes",
+      "sha256": "3ae0782e932a7b9ef44153e861b999b1ea8c734fbf934ad7e61ac9d91550d6c1"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 3229,
+      "endChar": 3391,
+      "kind": "privileges",
+      "sha256": "ce8af08abf5985d47512c434d72ebe4d5697251cae373570f57d0a3798eb0450"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 3391,
+      "endChar": 12311,
+      "kind": "functions",
+      "sha256": "411b939dc57f5efc0408611fd35eb7995185f8a9f458923c6685f8fc8c4acf1e"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 12311,
+      "endChar": 12465,
+      "kind": "privileges",
+      "sha256": "9907a266bfe4d0b73730dcf81f62a5b93bedba610ae4023cfa2976f13013b880"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 12465,
+      "endChar": 15018,
+      "kind": "functions",
+      "sha256": "7116462f7d452eee7354a695730ee134431eda332b0558df9770d62684fddfa5"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 15018,
+      "endChar": 15170,
+      "kind": "privileges",
+      "sha256": "6e02cb8621ca55fe0db53b63a197df16780e0a44ee6dbd1c0959fb873a5f2880"
+    },
+    {
+      "file": "02-admission-DO-NOT-APPLY.sql",
+      "startChar": 15170,
+      "endChar": 15180,
+      "kind": "transaction",
+      "sha256": "df5448b33cb80ab4027075a07e42f190aec0107baf2fff392a5493ba13b9b642"
+    },
+    {
+      "file": "03-read2-DO-NOT-APPLY.sql",
+      "startChar": 0,
+      "endChar": 80,
+      "kind": "transaction",
+      "sha256": "5392a8cce40203ad1ab044cbd3b2104c7bcf9e2c067b0763fcbef14f2f789294"
+    },
+    {
+      "file": "03-read2-DO-NOT-APPLY.sql",
+      "startChar": 80,
+      "endChar": 143,
+      "kind": "guard",
+      "sha256": "828d2cd714e263ad4e98e157b80d021a11686362854617b068dbc4c68e723de2"
+    },
+    {
+      "file": "03-read2-DO-NOT-APPLY.sql",
+      "startChar": 143,
+      "endChar": 7261,
+      "kind": "functions",
+      "sha256": "f02e90fb6d19b866a132f5685fbfadaf020ae6e8594416c624127ca7ffc09165"
+    },
+    {
+      "file": "03-read2-DO-NOT-APPLY.sql",
+      "startChar": 7261,
+      "endChar": 7539,
+      "kind": "privileges",
+      "sha256": "ec6f771030c119b050dafe0a6bf4c02fd987ad7a6a9252ab7d592084a6bd1c79"
+    },
+    {
+      "file": "03-read2-DO-NOT-APPLY.sql",
+      "startChar": 7539,
+      "endChar": 7549,
+      "kind": "transaction",
+      "sha256": "df5448b33cb80ab4027075a07e42f190aec0107baf2fff392a5493ba13b9b642"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 0,
+      "endChar": 73,
+      "kind": "transaction",
+      "sha256": "5c2b340938302d867344fba81b12f9425bafcd70901aebc1523fbf980a702b6f"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 73,
+      "endChar": 136,
+      "kind": "guard",
+      "sha256": "f409c39e390b025d393ea4ebf1d09b2d94945cb818652028738f60698752a2c6"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 136,
+      "endChar": 253,
+      "kind": "object_changes",
+      "sha256": "283e33ab1ac5fdfc09d655e950ec10502012b451c9d78bad39719e2a9a70bfbd"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 253,
+      "endChar": 363,
+      "kind": "object_changes",
+      "sha256": "f02c9950507c88d2c34953341e91ba5bc1bcb8f11670308e4fa01507397dd62c"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 363,
+      "endChar": 468,
+      "kind": "object_changes",
+      "sha256": "c6e4953aa4cf5cd6030a0f9e5dcf79970a5aa11b11fd0e8211a8fe276838659a"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 468,
+      "endChar": 580,
+      "kind": "object_changes",
+      "sha256": "ceff89163fb5ac1fe49dced2c18ce2a57e2f6f38508ac9f3104602aa5806f92f"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 580,
+      "endChar": 741,
+      "kind": "policies",
+      "sha256": "d72332b798839afccf4f6c5ba341281d14876461e1ca69cae3689945631de945"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 741,
+      "endChar": 900,
+      "kind": "policies",
+      "sha256": "60f027307c1796a90cdcdfbb74e0d75032c60862db08c0b4f1000f94559ae2ff"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 900,
+      "endChar": 1070,
+      "kind": "policies",
+      "sha256": "7e5205ad901fb85ca1acd0d9cdc34121c485169247556488c72289ac49b5406f"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 1070,
+      "endChar": 1245,
+      "kind": "policies",
+      "sha256": "52dd28a02ec1fe2694ad37536401a999241f7c4186af57f7fa2d06c9b6109bef"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 1245,
+      "endChar": 1402,
+      "kind": "policies",
+      "sha256": "67eb9c38203eca4dff1f1c37df8a440aa17e75d8a24aa7cd1510ac6d5a47b081"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 1402,
+      "endChar": 1564,
+      "kind": "policies",
+      "sha256": "02f6ad99a934bba70a2ce3c17a0b5199085f23b587a5c2f29488d4889244a4e7"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 1564,
+      "endChar": 1726,
+      "kind": "policies",
+      "sha256": "66f44a969f30283d7d70e41269ef6e4f25c81777be5ef20a83776db3fa86ac9d"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 1726,
+      "endChar": 2144,
+      "kind": "policies",
+      "sha256": "cb9f18c236ad8d469820278d3a9d19517d6f24927cbbefb54ed1c66dfcbf0848"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 2144,
+      "endChar": 2328,
+      "kind": "policies",
+      "sha256": "82d5b519c037c62562de27ae45a77bdfb7b4d1581dc3295e302b168a60e98155"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 2328,
+      "endChar": 2521,
+      "kind": "policies",
+      "sha256": "e551d25816ff62d58f6520d28d593de2d8cb14cca2a694de2181940158e20a51"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 2521,
+      "endChar": 2703,
+      "kind": "policies",
+      "sha256": "16b478b1c99d5f493fcce1e3b1aba001d7b04efee2163dd69121031523972289"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 2703,
+      "endChar": 2899,
+      "kind": "policies",
+      "sha256": "d5e3b018808ee5d3a54f001b5da878c1e200a9f3c171db45308050e9d47d38c0"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 2899,
+      "endChar": 3090,
+      "kind": "policies",
+      "sha256": "51382024eac0aa7db34c9a88f00d6f1dcd24a03d03a89cef229b2d5c486f0228"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 3090,
+      "endChar": 3249,
+      "kind": "policies",
+      "sha256": "7978948a16cdb4d26bc3ea2c7248666a67a660adbced39dbf68a09ced7163bfe"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 3249,
+      "endChar": 3389,
+      "kind": "privileges",
+      "sha256": "c94a5500bce3e1bb5b5fe38dab183ae77fe8e4b40cc52c725fe52718abfd3d0f"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 3389,
+      "endChar": 3485,
+      "kind": "privileges",
+      "sha256": "139371019d78fd4a38f2fc9539a1233d4efc9b38f579b22029f6ced3235a19df"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 3485,
+      "endChar": 3652,
+      "kind": "privileges",
+      "sha256": "a3c5e7fb6f7c4081c3bbde4fef71cc3d03fe6547990c7eddaa08c6277bbf2bfe"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 3652,
+      "endChar": 3841,
+      "kind": "privileges",
+      "sha256": "cf34cfc1e8b4de9c220c1f445cfab5bc2cbfc078d86e742a5fa26fe37f3a15e3"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 3841,
+      "endChar": 3937,
+      "kind": "privileges",
+      "sha256": "3fffb9bb3f07f8ef72378ea4590033501906db6c938333756eb3438163b999a2"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 3937,
+      "endChar": 4051,
+      "kind": "privileges",
+      "sha256": "9ee043ff0c6c25405e6c3f5c27d473216897c836638e009c37919daf6071ff1a"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 4051,
+      "endChar": 4166,
+      "kind": "privileges",
+      "sha256": "84359a6814c7d4064b7808c47939bd5dfffbc8ec5a6aaf66e1b43f1d9a37bd8e"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 4166,
+      "endChar": 4301,
+      "kind": "privileges",
+      "sha256": "79ac2b0fa5757fe4df9ba322862b279e95236724fb8d67ddff5267d69bc32002"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 4301,
+      "endChar": 4465,
+      "kind": "privileges",
+      "sha256": "e7295e09a3a61f17298d6b0b6cc27b52f20c7958288eee0dba061d42e13b65c7"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 4465,
+      "endChar": 4588,
+      "kind": "privileges",
+      "sha256": "87561fc8efed15ed3a384e91f0a46169e96e7c3c24bf835532aee1e8b1e518a0"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 4588,
+      "endChar": 4735,
+      "kind": "privileges",
+      "sha256": "9e461938ae8a2e9b8f57b6cc38afb6da8af70a34e97fafe43170159d661c0310"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 4735,
+      "endChar": 4890,
+      "kind": "privileges",
+      "sha256": "773d95d2ff074efb88c06f7aa47f90993d64eede910b666f85e54d9cf777e37e"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 4890,
+      "endChar": 5146,
+      "kind": "privileges",
+      "sha256": "9c4bf453f2e9636708de2ec9b2761a14873767ba6672793fbd433b85b01cc018"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 5146,
+      "endChar": 5358,
+      "kind": "privileges",
+      "sha256": "8e4dc1993035f33a0513ff95e3b4ce3170a253d6573e9360a2f763ee0b223594"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 5358,
+      "endChar": 5574,
+      "kind": "object_changes",
+      "sha256": "bcc23b4983829446581c3ad78d269f2edb74b6ef84296a60b1f69e7ef008bd11"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 5574,
+      "endChar": 5720,
+      "kind": "object_changes",
+      "sha256": "8f8f4df309cf1af685413a4ce318a32fb3aa7150ad1052968791157477a528c5"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 5720,
+      "endChar": 5993,
+      "kind": "object_changes",
+      "sha256": "c905ebd600c7f1869451697bf86c17755aaa80fade0a870db651087d25df7ec8"
+    },
+    {
+      "file": "04-object-acl-rls-DO-NOT-APPLY.sql",
+      "startChar": 5993,
+      "endChar": 6454,
+      "kind": "transaction",
+      "sha256": "8a45f44d3a761d9f7ab5a4a5d75431e73f36a996a337c933fd72d173b786388a"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 0,
+      "endChar": 157,
+      "kind": "transaction",
+      "sha256": "0dd4c53deff61d9a9d8c5bc9204f7135c73fec39a1e34509453327d9d306a26d"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 157,
+      "endChar": 229,
+      "kind": "guard",
+      "sha256": "7d6fc1c449b0d9abe7e6daa87e9f7b591545ecc38cc22418b510215203cd8995"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 229,
+      "endChar": 436,
+      "kind": "privileges",
+      "sha256": "b29b1b477e371e6de4627a69d936d251f9e74caad3eaa987ee7668e1b729914a"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 436,
+      "endChar": 766,
+      "kind": "privileges",
+      "sha256": "94314716b96d6e4493ea727c922c44355d0ec3bb8cfd68c22713a9008a35ca9c"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 766,
+      "endChar": 993,
+      "kind": "privileges",
+      "sha256": "efc6fefb2b401de121857d1e2d045167ba78672e00fa515874081750d6f5171f"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 993,
+      "endChar": 1214,
+      "kind": "privileges",
+      "sha256": "d91d8b8d185457088bf2ba6b40fb637338bc956a48d2b62f2afe070ba52892da"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 1214,
+      "endChar": 1328,
+      "kind": "privileges",
+      "sha256": "651ab705489b42dee2911da9671f5a3453d869f6c734c1c1ac30171234d8796c"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 1328,
+      "endChar": 1446,
+      "kind": "privileges",
+      "sha256": "549ec27755aff317236acffe0067d0db8815a17d9f253546ec4e21f5557522ec"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 1446,
+      "endChar": 1958,
+      "kind": "privileges",
+      "sha256": "8a81d1f5c7dfac91c897ea85f2923f649e5fe5b3e6b20b4cd29c5c03f86c4a14"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 1958,
+      "endChar": 2134,
+      "kind": "privileges",
+      "sha256": "bc139aa1bf85c31e60f86b0193071dff3b8ae134d1de8bc8074c19ca1da7a5d6"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 2134,
+      "endChar": 2695,
+      "kind": "privileges",
+      "sha256": "51821a3b03b018301addd8d848808ffe4863bfc03456d321a8a4fa6534d6cfda"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 2695,
+      "endChar": 2964,
+      "kind": "privileges",
+      "sha256": "0f67f2bcc90254e4cbf8d5e4145101266365e181a2a01f7e97aeb14aa635221a"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 2964,
+      "endChar": 3226,
+      "kind": "privileges",
+      "sha256": "9d0843398bb57c57bd6f0b568aed4daf4b4e5f8f503fdca8acaf3c485e44aaf7"
+    },
+    {
+      "file": "05-owner-dependencies-DO-NOT-APPLY.sql",
+      "startChar": 3226,
+      "endChar": 3480,
+      "kind": "transaction",
+      "sha256": "f40511330ddfabc82cf7110d5deb20f29a2711cebd6688b65f5c5c9a4f2fc9d4"
+    },
+    {
+      "file": "06-legacy-check-DO-NOT-APPLY.sql",
+      "startChar": 0,
+      "endChar": 152,
+      "kind": "transaction",
+      "sha256": "5f17147737715937eaf5ce73a941536b8a6f845d473368c53c6e6e156545f696"
+    },
+    {
+      "file": "06-legacy-check-DO-NOT-APPLY.sql",
+      "startChar": 152,
+      "endChar": 222,
+      "kind": "guard",
+      "sha256": "9ab4709e03630988dadcf5ad08ff9b65303e7036f9a54248b5722078cd3cc03f"
+    },
+    {
+      "file": "06-legacy-check-DO-NOT-APPLY.sql",
+      "startChar": 222,
+      "endChar": 1684,
+      "kind": "functions",
+      "sha256": "2858295aed38c6a14978ec564757dab727bd60ca886f05c9bc0b748e1096ea58"
+    },
+    {
+      "file": "06-legacy-check-DO-NOT-APPLY.sql",
+      "startChar": 1684,
+      "endChar": 1865,
+      "kind": "privileges",
+      "sha256": "2799bb24e471434e8e092e77cddfb9206045a0e51d79a0961b90dedac687ac41"
+    },
+    {
+      "file": "06-legacy-check-DO-NOT-APPLY.sql",
+      "startChar": 1865,
+      "endChar": 2034,
+      "kind": "transaction",
+      "sha256": "c057cd40faea36a5db45bc58ed619b12b329a886f0d02a0f59b38872b8ad0adc"
+    }
+  ]
+}
