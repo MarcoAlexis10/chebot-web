@@ -3,49 +3,49 @@ TAP version 13
 # Subtest: product stays: cancellation, arrival and ended windows do not present dates as private access
 ok 1 - product stays: cancellation, arrival and ended windows do not present dates as private access
   ---
-  duration_ms: 60.650266
+  duration_ms: 86.362136
   type: 'test'
   ...
 # Subtest: product stays: invalid dates use a clear placeholder without echoing the raw value
 ok 2 - product stays: invalid dates use a clear placeholder without echoing the raw value
   ---
-  duration_ms: 2.204183
+  duration_ms: 2.012117
   type: 'test'
   ...
 # Subtest: product QA: panel and property descriptions do not certify synthetic identity or real data
 ok 3 - product QA: panel and property descriptions do not certify synthetic identity or real data
   ---
-  duration_ms: 2.751018
+  duration_ms: 2.379739
   type: 'test'
   ...
 # Subtest: product work items: empty requests and incidents use neutral review messages
 ok 4 - product work items: empty requests and incidents use neutral review messages
   ---
-  duration_ms: 5.633184
+  duration_ms: 5.440013
   type: 'test'
   ...
 # Subtest: product late stay read: checkout presentation and consecutive stay identities remain separate
 ok 5 - product late stay read: checkout presentation and consecutive stay identities remain separate
   ---
-  duration_ms: 3.05077
+  duration_ms: 3.289379
   type: 'test'
   ...
 # Subtest: product pages SOURCE: one retained form, clear fixed configuration and no technical customer copy
 ok 6 - product pages SOURCE: one retained form, clear fixed configuration and no technical customer copy
   ---
-  duration_ms: 0.521326
+  duration_ms: 0.647654
   type: 'test'
   ...
 # Subtest: product mobile SOURCE: navigation includes knowledge/account and visible keyboard focus
 ok 7 - product mobile SOURCE: navigation includes knowledge/account and visible keyboard focus
   ---
-  duration_ms: 0.293202
+  duration_ms: 0.277707
   type: 'test'
   ...
 # Subtest: product planning: an inert submit explains uncertainty without sending, reading fields or claiming success
 ok 8 - product planning: an inert submit explains uncertainty without sending, reading fields or claiming success
   ---
-  duration_ms: 1.348043
+  duration_ms: 1.277382
   type: 'test'
   ...
 1..8
@@ -56,4 +56,4 @@ ok 8 - product planning: an inert submit explains uncertainty without sending, r
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 151.648361
+# duration_ms 202.103132

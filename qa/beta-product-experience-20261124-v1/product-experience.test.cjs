@@ -41,6 +41,8 @@ test('product QA: panel and property descriptions do not certify synthetic ident
  assert.match(h.node('manager-session-label').textContent,/Vista QA/);
  assert.doesNotMatch(text(h.lists.get('#propiedades .list')),/dato real|propiedades reales/i);
  assert.equal(h.classes.has('manager-auth-pending'),false); // UI state, NOT Auth proof.
+ const visibleSource=(await generated)['manager/index.html'].replace(/<script\b[\s\S]*?<\/script>/g,'').replace(/<[^>]*>/g,' ');
+ assert.doesNotMatch(visibleSource,/Preview autenticada|usan datos reales|Datos reales de Che Vení|Sesión verificada|contraseña se envía directamente/);
 });
 test('product work items: empty requests and incidents use neutral review messages',async()=>{
  const g=await generated;

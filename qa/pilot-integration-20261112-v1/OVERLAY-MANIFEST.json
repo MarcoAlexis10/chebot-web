@@ -13,8 +13,8 @@
     },
     {
       "path": "overlays/manager/index.html",
-      "bytes": 10040,
-      "sha256": "98869a80cb61f1708ce21ba884e0c45a31bba0172dace07f487f4367811feb7a",
+      "bytes": 9960,
+      "sha256": "5bd1242ed95c3150191fa546cb6879a00421558e8c342546919cf86fddf73e47",
       "baseSha256": "cc4389ec61da16bd9985acf0a582ef9d7c623147e50f4def74c977e3681fa231"
     },
     {
@@ -103,7 +103,7 @@
     },
     {
       "path": "manager/index.html",
-      "sha256": "211a982d0cc7dc264bd85b2648528c7efd0f433b791a770258ce79e1c3bcb121"
+      "sha256": "6bea647dd349ec74b547ccbc824f330b684a897439ad4124ce005fe1becbc116"
     },
     {
       "path": "manager/manager-auth.css",

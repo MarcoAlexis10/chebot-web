@@ -408,14 +408,14 @@
     {
       "repository": "chebot-web",
       "path": "qa/pilot-integration-20261112-v1/materialize.mjs",
-      "sha256": "328d0b71f542ffc38d8451cb41357d089cfa12116610fb41b6b169d28cc6e1dc",
-      "gitBlob": "4da3a48977f12633cb0ba644f0b49afd99bde6a4"
+      "sha256": "35eff4cea447c370c34f33a9bfaa6a150ef6e87ee0a3076fa33fc61c0ee462d4",
+      "gitBlob": "a7fb0b30b3fc4d81ef649655f2ad29a8fd5a489d"
     },
     {
       "repository": "chebot-web",
       "path": "qa/beta-product-experience-20261124-v1/product-experience.test.cjs",
-      "sha256": "a66fa34cf66180e520930a26fb3f9413569007e08a1edc055989d1f5c336d1bf",
-      "gitBlob": "476f2a3b56b38400e21aaccbf285e2d56d487b3f"
+      "sha256": "3da213b4c8d9e308256e60702f692ca104d89b45e3a557a8c8672c6708d4d2ac",
+      "gitBlob": "8a305cf0d537dd002036a39a5b83120b5d893744"
     },
     {
       "repository": "chebot-web",
@@ -428,6 +428,12 @@
       "path": "qa/minimal-beta-20261116-v1/ACCEPTANCE-MATRIX.json",
       "sha256": "9bff001c85efd6101e54ffb40f637ac205ad9aaf1795b3a43787489acf9d15a6",
       "gitBlob": "589fccc1ed6284f99150bcc68b737c648e188a58"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/pilot-integration-20261112-v1/verify-composition.mjs",
+      "sha256": "2cd6a2066ce70cac242b3a11f25e5fe42d7ce6bac7933f2ba79ae8d47ee68968",
+      "gitBlob": "7551704ebc8ff6123dbb725828a22149c3592014"
     }
   ],
   "historicalSourceWeb": "bb27835e18d6c2f2f2656b46c1deb450b211213f",

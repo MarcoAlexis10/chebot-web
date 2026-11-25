@@ -24,5 +24,14 @@ for(const [file,source]of Object.entries(g)){
  }
 }
 for(const file of manifest.files){const text=fs.readFileSync(path.join(here,file.path),'utf8');assert.equal(text,g[file.path.replace(/^overlays\//,'')]);assert.equal(createHash('sha256').update(text).digest('hex'),file.sha256);}
+for(const file of manifest.reviewFiles||[]){
+ assert.ok(/^manager\/[a-z0-9/.-]+$/.test(file.path)&&!file.path.includes('..'));
+ const source=fs.readFileSync(path.join(here,'review',file.path),'utf8');
+ assert.equal(createHash('sha256').update(source).digest('hex'),file.sha256);
+ if(file.path.endsWith('.html')){
+  assert.doesNotMatch(source,/(?:href|src)="\/manager\//);
+  assert.match(source,/connect-src 'none'/);assert.match(source,/form-action 'none'/);
+ }
+}
 assert.equal(manifest.networkAllowed,false);assert.equal(manifest.formsInert,true);
-console.log(JSON.stringify({classification:'STATIC_ASSEMBLY_CHECK',pinnedSources:pins.sources.length,html,scripts,inline,localLinks:links,overlayFiles:manifest.files.length,actualAuthVerified:false,browserExecuted:false,sqlExecuted:false,servicesStarted:0}));
+console.log(JSON.stringify({classification:'STATIC_ASSEMBLY_CHECK',pinnedSources:pins.sources.length,html,scripts,inline,localLinks:links,overlayFiles:manifest.files.length,localReviewFiles:(manifest.reviewFiles||[]).length,actualAuthVerified:false,browserExecuted:false,sqlExecuted:false,servicesStarted:0}));

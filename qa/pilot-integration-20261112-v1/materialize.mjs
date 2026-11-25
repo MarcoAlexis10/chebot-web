@@ -44,6 +44,12 @@ function productPages(g){
  index=index.replace(/(<body[^>]*>)/,'$1<a class="qa-skip-link" href="#inicio">Ir al contenido</a>');
  index=index.replaceAll('Consultando Che Vení Concierge Dev.','Consultando la vista de revisión.').replaceAll('role="status" aria-live="polite"','role="status" aria-live="polite" aria-atomic="true"');
  index=index.replace('Podés cargar estadías, responder incidencias y aprobar solicitudes hablando naturalmente con Che Vení.','Las operaciones por WhatsApp necesitan autorización y confirmación. Esta demostración no envía mensajes.').replace('Hasta 24 h','Revisión pendiente');
+ index=index.replace('Preview aislada. La contraseña se envía directamente a Supabase Auth y no se guarda en el sitio.','Demostración QA: el formulario está bloqueado y no envía credenciales. No ingreses datos personales.')
+  .replace('Preview autenticada. Datos reales de Che Vení Concierge Dev para las propiedades autorizadas.','Demostración del panel. Sin datos privados de huéspedes ni conexión a servicios reales.')
+  .replace('>Sesión verificada</span>','>Acceso pendiente de verificación</span>')
+  .replace('acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Che Vení Concierge Dev.','Esta revisión muestra estados y componentes del producto sin una sesión, datos u operaciones reales.')
+  .replaceAll('Preview autenticada','Demostración QA')
+  .replace(/<p class="footer-note">[\s\S]*?<\/p>/,'<p class="footer-note">Che Vení Concierge · revisión QA · sin cuentas, datos o activaciones reales.</p>');
  g['manager/index.html']=index;
  for(const file of Object.keys(g).filter(p=>p.endsWith('.html')))g[file]=g[file].replace('QA offline retenida. No ingreses datos reales. Sin servicios. Beta V1 NO-GO.','Demostración QA · sin envíos ni operaciones reales. No ingreses datos personales.');
 }

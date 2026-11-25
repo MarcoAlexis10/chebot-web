@@ -1,0 +1,310 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532382]", "childNetns": "net:[4026532311]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: product QA: panel and property descriptions do not certify synthetic identity or real data
+not ok 1 - product QA: panel and property descriptions do not certify synthetic identity or real data
+  ---
+  duration_ms: 69.255144
+  type: 'test'
+  location: '/workspace/scratch/9cf61993a61f/web/qa/beta-product-experience-20261124-v1/product-experience.test.cjs:38:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Preview autenticada|usan datos reales|Datos reales de Che Vení|Sesión verificada|contraseña se envía directamente/. Input:
+    
+    ' \n' +
+      ' \n' +
+      '   \n' +
+      '   \n' +
+      '   \n' +
+      '   \n' +
+      '   \n' +
+      '   Che Vení Concierge — Manager Web V1 \n' +
+      '   \n' +
+      '  \n' +
+      '   \n' +
+      '   \n' +
+      '   \n' +
+      ' \n' +
+      '  Ir al contenido   Recorrido QA retenido   Demostración QA · sin envíos ni operaciones reales. No ingreses datos personales.   Registro retenido  ·  Sesión  ·  Propiedad  ·  Estadía  ·  Pre-arrival  ·  Huésped  ·  Solicitudes  ·  Incidencias  ·  Checkout retenido  \n' +
+      '   \n' +
+      '     \n' +
+      '       Che  Vení  Concierge \n' +
+      '       Manager Web V1 · Beta interna \n' +
+      '       Ingresá a tu panel \n' +
+      '       Acceso exclusivo para managers autorizados de Che Vení Concierge. \n' +
+      '       \n' +
+      '         \n' +
+      '           Email \n' +
+      '           \n' +
+      '         \n' +
+      '         \n' +
+      '           Contraseña \n' +
+      '           \n' +
+      '             \n' +
+      '                      \n' +
+      '           \n' +
+      '         \n' +
+      '         Ingresar \n' +
+      '          \n' +
+      '       \n' +
+      '       ¿Olvidaste tu contraseña? \n' +
+      '       \n' +
+      '         Te enviamos un enlace al correo asociado con tu cuenta de manager. Nunca pedimos contraseñas por WhatsApp. \n' +
+      '         \n' +
+      '           Email del manager \n' +
+      '           \n' +
+      '         \n' +
+      '         Enviar enlace de recuperación \n' +
+      '         Volver al ingreso \n' +
+      '          \n' +
+      '       \n' +
+      '       Preview aislada. La contraseña se envía directamente a Supabase Auth y no se guarda en el sitio. \n' +
+      '     \n' +
+      '   \n' +
+      '   \n' +
+      '     \n' +
+      '       Che  Vení  Concierge \n' +
+      '       Manager Web V1 · Beta interna \n' +
+      '       \n' +
+      '         Inicio \n' +
+      '         Propiedades \n' +
+      '         Estadías \n' +
+      '         Conocimiento \n' +
+      '         Incidencias \n' +
+      '         Solicitudes \n' +
+      '         Soporte y cuenta \n' +
+      '       \n' +
+      '       Preview autenticada. Datos reales de Che Vení Concierge Dev para las propiedades autorizadas. \n' +
+      '     \n' +
+      '\n' +
+      '     \n' +
+      '       \n' +
+      '         Che Vení Concierge · Manager \n' +
+      '          Sesión verificada  Salir  \n' +
+      '       \n' +
+      '\n' +
+      '       \n' +
+      '         \n' +
+      '           Necesita tu atención \n' +
+      '           Todo lo importante, sin leer chats completos. \n' +
+      '           Che Vení resuelve lo que ya sabe y te muestra únicamente decisiones, excepciones y señales que requieren intervención. \n' +
+      '            Preview autenticada:  acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Che Vení Concierge Dev. \n' +
+      '           \n' +
+      '              Solicitudes pendientes  —  Cargando…  \n' +
+      '              Incidencias abiertas  —  Cargando…  \n' +
+      '              Propiedades activas  —  Cargando…  \n' +
+      '           \n' +
+      '           \n' +
+      '             Propiedades  Estadías  Incidencias  Solicitudes  Conocimiento  Soporte y cuenta \n' +
+      '           \n' +
+      '         \n' +
+      '\n' +
+      '         \n' +
+      '            Solicitudes que requieren decisión  Ver todas  \n' +
+      '           \n' +
+      '              Cargando solicitudes…  Consultando la vista de revisión.  \n' +
+      '           \n' +
+      '         \n' +
+      '\n' +
+      '         \n' +
+      '            Incidencias  Ver historial  \n' +
+      '           \n' +
+      '              Cargando incidencias…  Consultando la vista de revisión.  \n' +
+      '           \n' +
+      '         \n' +
+      '\n' +
+      '         \n' +
+      '           \n' +
+      '              Propiedades  Revisar configuración retenida  \n' +
+      '               Cargando propiedades…   \n' +
+      '           \n' +
+      '           \n' +
+      '              Conocimiento  Versiones  \n' +
+      '             \n' +
+      '                Cargando conocimiento…  Consultando la vista de revisión.  \n' +
+      '             \n' +
+      '           \n' +
+      '         \n' +
+      '\n' +
+      '         \n' +
+      '            Estadías  Planificar estadía retenida  \n' +
+      '             Cargando estadías…   \n' +
+      '         \n' +
+      '\n' +
+      '         \n' +
+      '            Soporte y cuenta  \n' +
+      '           \n' +
+      '              Modo manager por WhatsApp  Las operaciones por WhatsApp necesitan autorización y confirmación. Esta demostración no envía mensajes.  Canal principal  \n' +
+      '              Soporte Che Vení  Durante la Beta, los casos que requieren revisión de Sistemas quedan registrados para medir el costo operativo real.  Revisión pendiente  \n' +
+      '           \n' +
+      '         \n' +
+      '\n' +
+      '         Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias reales QA · Sin secretos reales. \n' +
+      '       \n' +
+      '     \n' +
+      '   \n' +
+      '  \n' +
+      '  \n' +
+      '  \n' +
+      '  \n' +
+      '  \n' +
+      ' \n' +
+      ' '
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+     
+     
+       
+       
+       
+       
+       
+       Che Vení Concierge — Manager Web V1 
+       
+      
+       
+       
+       
+     
+      Ir al contenido   Recorrido QA retenido   Demostración QA · sin envíos ni operaciones reales. No ingreses datos personales.   Registro retenido  ·  Sesión  ·  Propiedad  ·  Estadía  ·  Pre-arrival  ·  Huésped  ·  Solicitudes  ·  Incidencias  ·  Checkout retenido  
+       
+         
+           Che  Vení  Concierge 
+           Manager Web V1 · Beta interna 
+           Ingresá a tu panel 
+           Acceso exclusivo para managers autorizados de Che Vení Concierge. 
+           
+             
+               Email 
+               
+             
+             
+               Contraseña 
+               
+                 
+                          
+               
+             
+             Ingresar 
+              
+           
+           ¿Olvidaste tu contraseña? 
+           
+             Te enviamos un enlace al correo asociado con tu cuenta de manager. Nunca pedimos contraseñas por WhatsApp. 
+             
+               Email del manager 
+               
+             
+             Enviar enlace de recuperación 
+             Volver al ingreso 
+              
+           
+           Preview aislada. La contraseña se envía directamente a Supabase Auth y no se guarda en el sitio. 
+         
+       
+       
+         
+           Che  Vení  Concierge 
+           Manager Web V1 · Beta interna 
+           
+             Inicio 
+             Propiedades 
+             Estadías 
+             Conocimiento 
+             Incidencias 
+             Solicitudes 
+             Soporte y cuenta 
+           
+           Preview autenticada. Datos reales de Che Vení Concierge Dev para las propiedades autorizadas. 
+         
+    
+         
+           
+             Che Vení Concierge · Manager 
+              Sesión verificada  Salir  
+           
+    
+           
+             
+               Necesita tu atención 
+               Todo lo importante, sin leer chats completos. 
+               Che Vení resuelve lo que ya sabe y te muestra únicamente decisiones, excepciones y señales que requieren intervención. 
+                Preview autenticada:  acceso, Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias usan datos reales de Che Vení Concierge Dev. 
+               
+                  Solicitudes pendientes  —  Cargando…  
+                  Incidencias abiertas  —  Cargando…  
+                  Propiedades activas  —  Cargando…  
+               
+               
+                 Propiedades  Estadías  Incidencias  Solicitudes  Conocimiento  Soporte y cuenta 
+               
+             
+    
+             
+                Solicitudes que requieren decisión  Ver todas  
+               
+                  Cargando solicitudes…  Consultando la vista de revisión.  
+               
+             
+    
+             
+                Incidencias  Ver historial  
+               
+                  Cargando incidencias…  Consultando la vista de revisión.  
+               
+             
+    
+             
+               
+                  Propiedades  Revisar configuración retenida  
+                   Cargando propiedades…   
+               
+               
+                  Conocimiento  Versiones  
+                 
+                    Cargando conocimiento…  Consultando la vista de revisión.  
+                 
+               
+             
+    
+             
+                Estadías  Planificar estadía retenida  
+                 Cargando estadías…   
+             
+    
+             
+                Soporte y cuenta  
+               
+                  Modo manager por WhatsApp  Las operaciones por WhatsApp necesitan autorización y confirmación. Esta demostración no envía mensajes.  Canal principal  
+                  Soporte Che Vení  Durante la Beta, los casos que requieren revisión de Sistemas quedan registrados para medir el costo operativo real.  Revisión pendiente  
+               
+             
+    
+             Che Vení Concierge Manager Web V1 · Preview autenticada · Propiedades, Estadías, Conocimiento, Solicitudes e Incidencias reales QA · Sin secretos reales. 
+           
+         
+       
+      
+      
+      
+      
+      
+     
+     
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/9cf61993a61f/web/qa/beta-product-experience-20261124-v1/product-experience.test.cjs:45:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 188.26052
