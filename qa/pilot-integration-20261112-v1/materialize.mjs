@@ -48,10 +48,26 @@ function productPages(g){
  for(const file of Object.keys(g).filter(p=>p.endsWith('.html')))g[file]=g[file].replace('QA offline retenida. No ingreses datos reales. Sin servicios. Beta V1 NO-GO.','Demostración QA · sin envíos ni operaciones reales. No ingreses datos personales.');
 }
 export function build({productBaseline=false}={}){const r=previous(),fixed=composer.build({productBaseline});for(const asset of assets)r.generated['manager/'+asset]=fixed.generated['manager/'+asset];if(!productBaseline)productPages(r.generated);return r;}
-export function materialize(){
+export function materialize({reviewDir=null}={}){
  const merged=build().generated,base=previous().generated,files=[];
  for(const name of Object.keys(merged)){if(merged[name]===base[name])continue;const content=merged[name],file=path.join(here,'overlays',name);if(!/^manager\/[a-z0-9/.-]+$/.test(name)||name.includes('..'))throw Error('QA_PATH_HELD');fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,content);files.push({path:'overlays/'+name,bytes:Buffer.byteLength(content),sha256:createHash('sha256').update(content).digest('hex'),baseSha256:createHash('sha256').update(base[name]).digest('hex')});}
- const manifest={classification:'RETAINED_QA_OVERLAY_NOT_OPERATIONAL_BUILD',basePackage:'qa/property-bootstrap-20261112-v1/materialize.mjs',webSource:'bca48ca6d32bbca15a1357114db46cf2fa0c23fa',backendSource:'9beb837a621f9a8f06601043afa64b3bba317cb5',files,mergedFiles:Object.keys(merged).length,networkAllowed:false,formsInert:true,actualAuthVerified:false,browserExecuted:false,sqlExecuted:false,dispatchPerformed:false,betaDecision:'NO-GO'};
+ const reviewFiles=[];
+ if(reviewDir){
+  for(const [name,source] of Object.entries(merged)){
+   const content=name.endsWith('.html')?source.replace(/(href|src)="(\/manager\/[^"\s]*)"/g,(_,attribute,url)=>{
+    let [target,fragment]=url.slice(1).split('#');if(target.endsWith('/'))target+='index.html';
+    if(!Object.hasOwn(merged,target))throw Error('QA_REVIEW_TARGET_MISSING');
+    const relative=path.posix.relative(path.posix.dirname(name),target)||path.posix.basename(target);
+    return attribute+'="'+relative+(fragment?'#'+fragment:'')+'"';
+   }):source;
+   const file=path.join(reviewDir,name);fs.mkdirSync(path.dirname(file),{recursive:true});fs.writeFileSync(file,content);
+   reviewFiles.push({path:name,sha256:createHash('sha256').update(content).digest('hex')});
+  }
+ }
+ const manifest={classification:'RETAINED_QA_OVERLAY_NOT_OPERATIONAL_BUILD',basePackage:'qa/property-bootstrap-20261112-v1/materialize.mjs',webSource:'791c0b509b7557d1f44e8011a3900ceb51f13c53',backendSource:'a86fe1cff70121838795a40139b5762c6b308b37',productReview:'20261124',files,reviewFiles,mergedFiles:Object.keys(merged).length,networkAllowed:false,formsInert:true,actualAuthVerified:false,browserExecuted:false,sqlExecuted:false,dispatchPerformed:false,betaDecision:'NO-GO'};
  fs.writeFileSync(path.join(here,'OVERLAY-MANIFEST.json'),JSON.stringify(manifest,null,2)+'\n');return manifest;
 }
-if(process.argv[1]===fileURLToPath(import.meta.url))console.log(JSON.stringify({overlayFiles:materialize().files.length,servicesStarted:0,betaDecision:'NO-GO'}));
+if(process.argv[1]===fileURLToPath(import.meta.url)){
+ const args=process.argv.slice(2);if(args.length>1||args.length===1&&args[0]!=='--review')throw Error('QA_REVIEW_USAGE');
+ const m=materialize({reviewDir:args[0]?path.join(here,'review'):null});console.log(JSON.stringify({overlayFiles:m.files.length,reviewFiles:m.reviewFiles.length,reviewEntry:m.reviewFiles.length?'review/manager/recorrido/index.html':null,servicesStarted:0,betaDecision:'NO-GO'}));
+}

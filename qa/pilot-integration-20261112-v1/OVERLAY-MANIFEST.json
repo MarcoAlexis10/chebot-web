@@ -1,26 +1,27 @@
 {
   "classification": "RETAINED_QA_OVERLAY_NOT_OPERATIONAL_BUILD",
   "basePackage": "qa/property-bootstrap-20261112-v1/materialize.mjs",
-  "webSource": "bca48ca6d32bbca15a1357114db46cf2fa0c23fa",
-  "backendSource": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "webSource": "791c0b509b7557d1f44e8011a3900ceb51f13c53",
+  "backendSource": "a86fe1cff70121838795a40139b5762c6b308b37",
+  "productReview": "20261124",
   "files": [
     {
+      "path": "overlays/manager/manager.css",
+      "bytes": 4897,
+      "sha256": "e321104a7f8870ce7f958da47a5f500fc2a2f041233c09213da7d6024b655109",
+      "baseSha256": "89dcdc53834519bbadaa6e19ce95e22b1cb034116b6d29e6368ee5851f83ce2a"
+    },
+    {
+      "path": "overlays/manager/index.html",
+      "bytes": 10040,
+      "sha256": "98869a80cb61f1708ce21ba884e0c45a31bba0172dace07f487f4367811feb7a",
+      "baseSha256": "cc4389ec61da16bd9985acf0a582ef9d7c623147e50f4def74c977e3681fa231"
+    },
+    {
       "path": "overlays/manager/manager-auth.js",
-      "bytes": 29339,
-      "sha256": "fbba396bbee1c9e66894311b981e313836bb83d8b2b5d3c07defb254594c8008",
+      "bytes": 30395,
+      "sha256": "4179b498393576c2e1a3822618df22543c32a3f7232cb0d4717f77f4c777321b",
       "baseSha256": "1929797b02ef9c0a9068c24f616c85c029f499e49cbd986b63c328ed86fdbbee"
-    },
-    {
-      "path": "overlays/manager/manager-requests.js",
-      "bytes": 21504,
-      "sha256": "6ad718624c4653143b5a6d7239d10c6371a31497bcb3dbfc641b439be87c18d5",
-      "baseSha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4"
-    },
-    {
-      "path": "overlays/manager/manager-incidents.js",
-      "bytes": 36091,
-      "sha256": "9c5a27489141cb56cf74458337499fa309cef3cc325e2921ac06a19312299e4a",
-      "baseSha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50"
     },
     {
       "path": "overlays/manager/manager-knowledge.js",
@@ -29,10 +30,144 @@
       "baseSha256": "a5e2cb8330c1e6e72b0d21e74854096e4969d33b6eff2e36e86e64def869202c"
     },
     {
+      "path": "overlays/manager/manager-requests.js",
+      "bytes": 21491,
+      "sha256": "429b08279a94ff4f83bfe714c8fee5b4cc746b5205a1dcfafec42d490c86b281",
+      "baseSha256": "cd8e038cae8556181eace6e490772922e3730950cc4dd18769e0c02dace4a2f4"
+    },
+    {
+      "path": "overlays/manager/manager-incidents.js",
+      "bytes": 36078,
+      "sha256": "942f7d628e0bd67444eb31195e8d69d8849e8df43c4794655298cd70d27b4994",
+      "baseSha256": "49ceb6ea9a84a76c1c51f34b318b7b0146ec0e4a062c7fb9eaf7948257113a50"
+    },
+    {
       "path": "overlays/manager/manager-invite.js",
       "bytes": 9809,
       "sha256": "21ca137edd575083a601fc5568efd42028e8f2b26fcde9ea0017326cbcdde1d8",
       "baseSha256": "fc04f92753fb9f81d44beb8ba84b4b4ed885a451be7cd8f8ae0134fddc8fc6c8"
+    },
+    {
+      "path": "overlays/manager/reset-password/index.html",
+      "bytes": 13672,
+      "sha256": "60b3d274673f47c3862ea7ea0c8b0cc3fc7548e80d7d0d50d74f867d75d9f1d2",
+      "baseSha256": "a37b111fc0a979cb9a9a893fbed3d3986682b393b598fc76918792265ae957e0"
+    },
+    {
+      "path": "overlays/manager/activar/index.html",
+      "bytes": 12700,
+      "sha256": "fc5681c0c6cd9a0564f680065fca00028b895841686bc69b3e2597b269c7cd7b",
+      "baseSha256": "3b3870bf9db94b08968b94ec548a6cbc38fa7baba01c1a7ddbb337dbba05fcaf"
+    },
+    {
+      "path": "overlays/manager/altas/index.html",
+      "bytes": 22279,
+      "sha256": "48c0db59d15b0186c962b22f3141ecf4f81da0d753a622aada57c869838945fa",
+      "baseSha256": "d84e900677221d2796ab9283ec6def217e71029bb97f6d20048bb33d4a045446"
+    },
+    {
+      "path": "overlays/manager/propiedad/index.html",
+      "bytes": 4624,
+      "sha256": "24c853f8b206d29e10aa6be04590888c3021d9700737749a900389b604f33a27",
+      "baseSha256": "3d0bcfbfc56f280f41e91eb87533f2c1b2c070e3c7e276cf7a74f9d9f7e9dc72"
+    },
+    {
+      "path": "overlays/manager/planificar-estadia/index.html",
+      "bytes": 3669,
+      "sha256": "ea43369427213f0f4cf62a9e23beded79b6c56ac9a0d4abb8d5ad7bac9e9b9b1",
+      "baseSha256": "d21ba68673a76b65f2e04202d3d3e8562c4eb2a8918003f0e07f4c512275b80e"
+    },
+    {
+      "path": "overlays/manager/prearrival/index.html",
+      "bytes": 2839,
+      "sha256": "669d1e706720b7688fbdace2d60a2fde1d6dcf2b321ed95a3e4fbc079f49e03b",
+      "baseSha256": "0830451aa79bbd000ba7ad43f565822b6a4dfb874a09be272fee8c5be4dab20e"
+    },
+    {
+      "path": "overlays/manager/qa-planning.js",
+      "bytes": 514,
+      "sha256": "4f33a8cea3d5d1b8727b56c4c6ef82eac7e50e339aa9f5bf585fbf1e3b512d63",
+      "baseSha256": "5e03ec2897059fb1289a4aaa3b9edc2f605a4846f1cb41467c6e859fc7e2ff77"
+    },
+    {
+      "path": "overlays/manager/recorrido/index.html",
+      "bytes": 2189,
+      "sha256": "5dee2240aa8b57055ee161761b26a7f425c630d96858c30792871091c6d30499",
+      "baseSha256": "926da9919b1742ed6b10b3033c1bfea3462548097e298b4dc8a41827c4d5e0ac"
+    }
+  ],
+  "reviewFiles": [
+    {
+      "path": "manager/manager.css",
+      "sha256": "e321104a7f8870ce7f958da47a5f500fc2a2f041233c09213da7d6024b655109"
+    },
+    {
+      "path": "manager/index.html",
+      "sha256": "211a982d0cc7dc264bd85b2648528c7efd0f433b791a770258ce79e1c3bcb121"
+    },
+    {
+      "path": "manager/manager-auth.css",
+      "sha256": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44"
+    },
+    {
+      "path": "manager/manager-auth.js",
+      "sha256": "4179b498393576c2e1a3822618df22543c32a3f7232cb0d4717f77f4c777321b"
+    },
+    {
+      "path": "manager/manager-knowledge.js",
+      "sha256": "9df7579bdfaa7af9d764e1dd63156ddc61ca90838caa41825828cfd6e4d18f19"
+    },
+    {
+      "path": "manager/manager-requests.js",
+      "sha256": "429b08279a94ff4f83bfe714c8fee5b4cc746b5205a1dcfafec42d490c86b281"
+    },
+    {
+      "path": "manager/manager-incidents.js",
+      "sha256": "942f7d628e0bd67444eb31195e8d69d8849e8df43c4794655298cd70d27b4994"
+    },
+    {
+      "path": "manager/manager-invite.css",
+      "sha256": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a"
+    },
+    {
+      "path": "manager/manager-invite.js",
+      "sha256": "21ca137edd575083a601fc5568efd42028e8f2b26fcde9ea0017326cbcdde1d8"
+    },
+    {
+      "path": "manager/reset-password/index.html",
+      "sha256": "4ad08503968e7fb4717031b73698a50766fb46bd92f70c536b8f79fc572dafb0"
+    },
+    {
+      "path": "manager/activar/index.html",
+      "sha256": "bc711f1f06cb18d88e08d615bb856226ed570180d49e25a81855f94e0185a351"
+    },
+    {
+      "path": "manager/altas/index.html",
+      "sha256": "2afdaca84dda1984beb9db066fc5fd102df7a6976abecdbb7195e8b753062c63"
+    },
+    {
+      "path": "manager/propiedad/index.html",
+      "sha256": "441891904f15e6110ee00ae1f1f219b114a975e191698ef64e26c026319aa59e"
+    },
+    {
+      "path": "manager/planificar-estadia/index.html",
+      "sha256": "7ccc2325007140eeb343702a72da95965dc5a052505e7779a9ad9beb29767ff5"
+    },
+    {
+      "path": "manager/prearrival/index.html",
+      "sha256": "afbd56f7a7759fe006ca49228db55dd6757f07be55e643b12f01054023ffd758"
+    },
+    {
+      "path": "manager/qa-planning.js",
+      "sha256": "4f33a8cea3d5d1b8727b56c4c6ef82eac7e50e339aa9f5bf585fbf1e3b512d63"
+    },
+    {
+      "path": "manager/qa-planning.css",
+      "sha256": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a"
+    },
+    {
+      "path": "manager/recorrido/index.html",
+      "sha256": "19e793414484b1829ac92fce6664214089e0653c9453b0e1872ed21b63532d64"
     }
   ],
   "mergedFiles": 18,

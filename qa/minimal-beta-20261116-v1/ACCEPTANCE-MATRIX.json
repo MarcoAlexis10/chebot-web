@@ -1,14 +1,14 @@
 {
   "schema": "cheveni-minimal-pilot-acceptance/1",
   "betaDecision": "NO-GO",
-  "date": "2026-11-16",
+  "date": "2026-11-24",
   "existingCandidate": "qa/pilot-integration-20261112-v1/materialize.mjs",
   "rule": "Selection is not authorization. No executable external/native/Auth/browser/restore adapter is included. Historical cases require direct-impact justification and are not run by default.",
   "cases": [
     {
       "id": "OFF-PROPERTY-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "67 pinned source files; Node isolation launcher; synthetic records; no Auth or SQL"
       ],
@@ -19,7 +19,7 @@
     {
       "id": "OFF-STAY-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "67 pinned source files; Node isolation launcher; synthetic records; no Auth or SQL"
       ],
@@ -30,7 +30,7 @@
     {
       "id": "OFF-REQUEST-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "Pinned web/backend sibling sources; existing user/net namespace launcher; only synthetic rows and fetch doubles"
       ],
@@ -42,7 +42,7 @@
     {
       "id": "OFF-INCIDENT-DTO",
       "layer": "OFFLINE_NODE",
-      "status": "OFFLINE_NODE_PASS_THIS_BATCH",
+      "status": "PREVIOUS_OFFLINE_PASS_NOT_RERUN",
       "preconditions": [
         "Pinned web/backend sibling sources; existing user/net namespace launcher; only synthetic rows and fetch doubles"
       ],
@@ -243,6 +243,42 @@
         "EX-A2",
         "H-PRIVACY"
       ]
+    },
+    {
+      "id": "OFF-PRODUCT-STAYS",
+      "layer": "OFFLINE_NODE",
+      "status": "OFFLINE_QA_CHECKED_NOT_OPERATIONAL",
+      "verificationKind": "DOM_SYNTHETIC",
+      "preconditions": [
+        "Existing pilot composition, synthetic input only, pinned sources and isolated Node; no service or browser"
+      ],
+      "expected": "Three DOM component cases: state labels for cancelled/ended/upcoming stays, invalid dates and late consecutive-stay response; no guest permission inferred.",
+      "evidence": "qa/reviews/beta-product-experience-20261124/evidence/product-after.tap",
+      "lastEvidence": "qa/reviews/beta-product-experience-20261124/TEST-EVIDENCE.json"
+    },
+    {
+      "id": "OFF-PRODUCT-MESSAGES",
+      "layer": "OFFLINE_NODE",
+      "status": "OFFLINE_QA_CHECKED_NOT_OPERATIONAL",
+      "verificationKind": "DOM_SYNTHETIC",
+      "preconditions": [
+        "Existing pilot composition, synthetic input only, pinned sources and isolated Node; no service or browser"
+      ],
+      "expected": "Three component cases: synthetic panel labels, empty request/incident views and inert submit uncertainty; no dispatch or Auth evidence.",
+      "evidence": "qa/reviews/beta-product-experience-20261124/evidence/product-after.tap",
+      "lastEvidence": "qa/reviews/beta-product-experience-20261124/TEST-EVIDENCE.json"
+    },
+    {
+      "id": "OFF-PRODUCT-MARKUP",
+      "layer": "OFFLINE_NODE",
+      "status": "OFFLINE_QA_CHECKED_NOT_OPERATIONAL",
+      "verificationKind": "SOURCE_ONLY",
+      "preconditions": [
+        "Existing pilot composition, synthetic input only, pinned sources and isolated Node; no service or browser"
+      ],
+      "expected": "Two source checks: retained single form, human copy, shared CSS and mobile navigation. Not browser, layout, screen-reader or accessibility-conformance evidence.",
+      "evidence": "qa/reviews/beta-product-experience-20261124/evidence/product-after.tap",
+      "lastEvidence": "qa/reviews/beta-product-experience-20261124/TEST-EVIDENCE.json"
     }
   ],
   "validationSequence": [
@@ -298,5 +334,8 @@
         "condition": "One CABA property/founder, Free separate, 30 free days from first verified real stay, no automatic charge/conversion"
       }
     ]
-  }
+  },
+  "currentQaReview": "2026-11-24",
+  "currentQaEvidence": "qa/reviews/beta-product-experience-20261124/TEST-EVIDENCE.json",
+  "previousMatrixDate": "2026-11-16"
 }

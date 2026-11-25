@@ -1,6 +1,6 @@
 {
-  "web": "bb27835e18d6c2f2f2656b46c1deb450b211213f",
-  "backend": "9beb837a621f9a8f06601043afa64b3bba317cb5",
+  "web": "791c0b509b7557d1f44e8011a3900ceb51f13c53",
+  "backend": "a86fe1cff70121838795a40139b5762c6b308b37",
   "qaLab": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
   "sources": [
     {
@@ -372,8 +372,8 @@
     {
       "repository": "chebot-web",
       "path": "qa/pilot-integration-20261112-v1/compose.cjs",
-      "sha256": "6fb3502675e02556ab9faee0ba32d4e91c8b9f4d949c22cacce91171a0e8b955",
-      "gitBlob": "269855ace5d8877fb6d5c5959bc500ecf2cb95a5"
+      "sha256": "b9dba84ae499dab7fff5333be1d9cb2212ae9047ad4a6b2121ef5c85b901601b",
+      "gitBlob": "97abf1f9038d900089f0dc8401c088cd0152333a"
     },
     {
       "repository": "chebot-web",
@@ -404,6 +404,32 @@
       "path": "qa/reviews/pilot-integration-20261112/CLOSURE.md",
       "sha256": "019edab8f9a9b9f09e058c2562377dd6221cd3c83cb33b8d6bb7a4f06c041afe",
       "gitBlob": "df8b1be01d241a1c33f07a282884519a28950db6"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/pilot-integration-20261112-v1/materialize.mjs",
+      "sha256": "328d0b71f542ffc38d8451cb41357d089cfa12116610fb41b6b169d28cc6e1dc",
+      "gitBlob": "4da3a48977f12633cb0ba644f0b49afd99bde6a4"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/beta-product-experience-20261124-v1/product-experience.test.cjs",
+      "sha256": "a66fa34cf66180e520930a26fb3f9413569007e08a1edc055989d1f5c336d1bf",
+      "gitBlob": "476f2a3b56b38400e21aaccbf285e2d56d487b3f"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/minimal-beta-20261116-v1/acceptance.mjs",
+      "sha256": "de9ba2a2bd8c3c900a5204a76ec86f38662e94f457c3df2a57afdeac4c44527e",
+      "gitBlob": "a2c3446351834ae412ed441d1ed7c406d57334d0"
+    },
+    {
+      "repository": "chebot-web",
+      "path": "qa/minimal-beta-20261116-v1/ACCEPTANCE-MATRIX.json",
+      "sha256": "9bff001c85efd6101e54ffb40f637ac205ad9aaf1795b3a43787489acf9d15a6",
+      "gitBlob": "589fccc1ed6284f99150bcc68b737c648e188a58"
     }
-  ]
+  ],
+  "historicalSourceWeb": "bb27835e18d6c2f2f2656b46c1deb450b211213f",
+  "purpose": "Current QA selector inputs; historical evidence remains pinned to its original commits, not re-accredited here."
 }

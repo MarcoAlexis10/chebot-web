@@ -4,6 +4,9 @@ import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} fro
 const here=path.dirname(fileURLToPath(import.meta.url)),root=path.resolve(here,'../../..');
 export const matrix=JSON.parse(fs.readFileSync(path.join(here,'ACCEPTANCE-MATRIX.json'),'utf8'));
 const targets=Object.freeze({
+ 'OFF-PRODUCT-STAYS':{file:'../beta-product-experience-20261124-v1/product-experience.test.cjs',pattern:'^product (stays|late stay)'},
+ 'OFF-PRODUCT-MESSAGES':{file:'../beta-product-experience-20261124-v1/product-experience.test.cjs',pattern:'^product (QA|work items|planning)'},
+ 'OFF-PRODUCT-MARKUP':{file:'../beta-product-experience-20261124-v1/product-experience.test.cjs',pattern:'^product (pages|mobile)'},
  'OFF-PROPERTY-DTO':{file:'property-stay-consumers.test.cjs',pattern:'^minimum pilot: original property receipt'},
  'OFF-STAY-DTO':{file:'property-stay-consumers.test.cjs',pattern:'^minimum pilot: original stay DTO'},
  'OFF-REQUEST-DTO':{file:'projector-consumers.test.cjs',pattern:'^minimum pilot: original requests projector'},
@@ -26,7 +29,7 @@ export function plan(id,{repeatReason=''}={}){
  if(row.layer!=='OFFLINE_NODE')return {id,status:'BLOCKED_EXTERNAL_OR_HUMAN',executionAllowed:false,expected:row.expected,preconditions:row.preconditions};
  const target=targets[id];if(target.historical&&(!repeatReason.trim()||repeatReason.length>300))throw Error('DIRECT_IMPACT_REASON_REQUIRED');
  const file=path.resolve(here,target.file);
- return {id,status:'PLAN_ONLY',executionAllowed:true,classification:'NODE_DOM_SYNTHETIC_NOT_OPERATIONAL',program:'python',
+ return {id,status:'PLAN_ONLY',executionAllowed:true,classification:row.verificationKind==='SOURCE_ONLY'?'NODE_SOURCE_CHECK_NOT_BROWSER':'NODE_DOM_SYNTHETIC_NOT_OPERATIONAL',program:'python',
   args:[path.join(root,'web/qa/integral-held-v1/run-isolated.py'),'--','node','--test','--test-reporter=tap',...(target.pattern?['--test-name-pattern='+target.pattern]:[]),file],cwd:root,historical:target.historical===true};
 }
 export function verifySources(){
