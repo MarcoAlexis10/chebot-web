@@ -88,6 +88,7 @@ function patchKnowledgeDeadline(s){
   }`);
 }
 function patchProductAuth(s){
+ s=replace(s,'el cierre en el servicio no asegura la retirada inmediata de un JWT emitido.','el cierre remoto también necesita comprobación.');
  s=replace(s,"sessionLabel.textContent = 'Sesión verificada · ' + role;","sessionLabel.textContent = 'Vista QA · ' + role;");
  s=replace(s,"source.textContent = 'Concierge Dev · dato real';","source.textContent = 'Vista QA · propiedad informada';");
  s=replace(s,"'1 propiedad real' : totalCount + ' propiedades reales'","'1 propiedad en esta vista' : totalCount + ' propiedades en esta vista'");

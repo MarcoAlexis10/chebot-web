@@ -1,0 +1,29 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532382]", "childNetns": "net:[4026532311]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+{
+  "classification": "FINAL_FILE_HASH_REPRODUCIBILITY_NOT_BROWSER",
+  "sameHashes": true,
+  "files": 18,
+  "htmlGraphUnchanged": true,
+  "graphEvidence": "review-reproducibility.log (120 links)",
+  "browserExecuted": false,
+  "fileHashes": {
+    "manager/manager-invite.css": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+    "manager/manager-auth.css": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+    "manager/manager-requests.js": "429b08279a94ff4f83bfe714c8fee5b4cc746b5205a1dcfafec42d490c86b281",
+    "manager/index.html": "6bea647dd349ec74b547ccbc824f330b684a897439ad4124ce005fe1becbc116",
+    "manager/manager-incidents.js": "942f7d628e0bd67444eb31195e8d69d8849e8df43c4794655298cd70d27b4994",
+    "manager/manager-auth.js": "b331317402e9fc37281bfae3aa915da0e07aa52b30aa9c32d40abcc4dcf8aca3",
+    "manager/qa-planning.js": "4f33a8cea3d5d1b8727b56c4c6ef82eac7e50e339aa9f5bf585fbf1e3b512d63",
+    "manager/manager-knowledge.js": "9df7579bdfaa7af9d764e1dd63156ddc61ca90838caa41825828cfd6e4d18f19",
+    "manager/manager-invite.js": "21ca137edd575083a601fc5568efd42028e8f2b26fcde9ea0017326cbcdde1d8",
+    "manager/qa-planning.css": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a",
+    "manager/manager.css": "e321104a7f8870ce7f958da47a5f500fc2a2f041233c09213da7d6024b655109",
+    "manager/prearrival/index.html": "afbd56f7a7759fe006ca49228db55dd6757f07be55e643b12f01054023ffd758",
+    "manager/activar/index.html": "bc711f1f06cb18d88e08d615bb856226ed570180d49e25a81855f94e0185a351",
+    "manager/propiedad/index.html": "441891904f15e6110ee00ae1f1f219b114a975e191698ef64e26c026319aa59e",
+    "manager/reset-password/index.html": "4ad08503968e7fb4717031b73698a50766fb46bd92f70c536b8f79fc572dafb0",
+    "manager/recorrido/index.html": "19e793414484b1829ac92fce6664214089e0653c9453b0e1872ed21b63532d64",
+    "manager/planificar-estadia/index.html": "7ccc2325007140eeb343702a72da95965dc5a052505e7779a9ad9beb29767ff5",
+    "manager/altas/index.html": "2afdaca84dda1984beb9db066fc5fd102df7a6976abecdbb7195e8b753062c63"
+  }
+}

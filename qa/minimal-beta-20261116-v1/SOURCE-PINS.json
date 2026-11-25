@@ -372,8 +372,8 @@
     {
       "repository": "chebot-web",
       "path": "qa/pilot-integration-20261112-v1/compose.cjs",
-      "sha256": "b9dba84ae499dab7fff5333be1d9cb2212ae9047ad4a6b2121ef5c85b901601b",
-      "gitBlob": "97abf1f9038d900089f0dc8401c088cd0152333a"
+      "sha256": "ded3291845282e90c284e6ed39892d502ea50574630df8957385b904d5a74d86",
+      "gitBlob": "b32670e58405a766bd20308d3bcd1772336440b8"
     },
     {
       "repository": "chebot-web",
@@ -414,8 +414,8 @@
     {
       "repository": "chebot-web",
       "path": "qa/beta-product-experience-20261124-v1/product-experience.test.cjs",
-      "sha256": "3da213b4c8d9e308256e60702f692ca104d89b45e3a557a8c8672c6708d4d2ac",
-      "gitBlob": "8a305cf0d537dd002036a39a5b83120b5d893744"
+      "sha256": "15814c5df236685fd9badb8f2f24b9584aa4707c36e01d8bd9bd7c07383cc8cf",
+      "gitBlob": "2992f03da26b4aeab8af5d072b0deeab596cc6a4"
     },
     {
       "repository": "chebot-web",

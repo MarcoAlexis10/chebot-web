@@ -1,0 +1,1019 @@
+QA_KERNEL_ISOLATION {"parentNetns": "net:[4026532382]", "childNetns": "net:[4026532311]", "differentNamespace": true, "ipv4Routes": "", "ipv6Routes": "00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n00000000000000000000000000000000 00 00000000000000000000000000000000 00 00000000000000000000000000000000 ffffffff 00000001 00000000 00200200       lo\n", "externalConnectErrno": 101, "loopbackOnly": false, "inheritedCredentials": false, "uidMap": "         0       1000          1\n"}
+TAP version 13
+# Subtest: product QA: panel and property descriptions do not certify synthetic identity or real data
+not ok 1 - product QA: panel and property descriptions do not certify synthetic identity or real data
+  ---
+  duration_ms: 68.057648
+  type: 'test'
+  location: '/workspace/scratch/9cf61993a61f/web/qa/beta-product-experience-20261124-v1/product-experience.test.cjs:38:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /JWT emitido/. Input:
+    
+    '\n' +
+      '(() => {\n' +
+      "  'use strict';\n" +
+      '\n' +
+      '  const SUPABASE_URL = "https://fictional-auth.example.invalid";\n' +
+      '  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FICTIONAL_ONLY";\n' +
+      '  const BACKEND_SESSION_URL = "https://fictional-api.example.invalid/api/concierge/manager/session";\n' +
+      '  const BACKEND_PROPERTIES_URL = "https://fictional-api.example.invalid/api/concierge/manager/properties";\n' +
+      '  const BACKEND_STAYS_URL = "https://fictional-api.example.invalid/api/concierge/manager/stays";\n' +
+      "  const TOKEN_KEY = 'chebot_manager_preview_access_token';\n" +
+      '  let authGeneration = 0;\n' +
+      '  let panelContext = null;\n' +
+      '  let signingOut = false;\n' +
+      '  let storageHealthy = true;\n' +
+      '  let recoveryGeneration = 0;\n' +
+      '  let recoveryController = null;\n' +
+      '  let recoveryPending = false;\n' +
+      '\n' +
+      "  const authScreen = document.getElementById('manager-auth');\n" +
+      "  const form = document.getElementById('manager-login-form');\n" +
+      "  const email = document.getElementById('manager-email');\n" +
+      "  const password = document.getElementById('manager-password');\n" +
+      "  const passwordVisibility = document.getElementById('manager-password-visibility');\n" +
+      "  const status = document.getElementById('manager-auth-status');\n" +
+      "  const submit = document.getElementById('manager-login-submit');\n" +
+      "  const logout = document.getElementById('manager-logout');\n" +
+      "  const forgot = document.getElementById('manager-forgot');\n" +
+      "  const recoveryForm = document.getElementById('manager-recovery-form');\n" +
+      "  const recoveryEmail = document.getElementById('manager-recovery-email');\n" +
+      "  const recoverySubmit = document.getElementById('manager-recovery-submit');\n" +
+      "  const recoveryCancel = document.getElementById('manager-recovery-cancel');\n" +
+      "  const recoveryStatus = document.getElementById('manager-recovery-status');\n" +
+      "  const sessionLabel = document.getElementById('manager-session-label');\n" +
+      "  const accountLabel = document.getElementById('manager-account-label');\n" +
+      '\n' +
+      '  function setStatus(message, kind) {\n' +
+      "    status.textContent = message || '';\n" +
+      "    status.className = 'manager-auth-status' + (kind ? ' ' + kind : '');\n" +
+      '  }\n' +
+      '\n' +
+      '  function recoveryMessage(message, kind) {\n' +
+      "    recoveryStatus.textContent = message || '';\n" +
+      "    recoveryStatus.className = 'manager-auth-status' + (kind ? ' ' + kind : '');\n" +
+      '  }\n' +
+      '\n' +
+      '  function concealManagerPassword() {\n' +
+      "    password.type = 'password';\n" +
+      "    passwordVisibility.setAttribute('aria-pressed', 'false');\n" +
+      "    passwordVisibility.setAttribute('aria-label', 'Mostrar contraseña');\n" +
+      '  }\n' +
+      '\n' +
+      "  passwordVisibility.addEventListener('click', () => {\n" +
+      "    const visible = password.type === 'password';\n" +
+      "    password.type = visible ? 'text' : 'password';\n" +
+      "    passwordVisibility.setAttribute('aria-pressed', String(visible));\n" +
+      "    passwordVisibility.setAttribute('aria-label', visible ? 'Ocultar contraseña' : 'Mostrar contraseña');\n" +
+      '  });\n' +
+      '\n' +
+      '  function cancelRecovery() {\n' +
+      '    recoveryGeneration += 1;\n' +
+      '    if (recoveryController) recoveryController.abort();\n' +
+      '    recoveryController = null;\n' +
+      '    recoveryPending = false;\n' +
+      '    recoverySubmit.disabled = false;\n' +
+      '  }\n' +
+      '\n' +
+      '  function toggleRecovery(open) {\n' +
+      '    cancelRecovery();\n' +
+      '    recoveryForm.hidden = !open;\n' +
+      "    forgot.setAttribute('aria-expanded', open ? 'true' : 'false');\n" +
+      '    forgot.hidden = open;\n' +
+      '    form.hidden = open;\n' +
+      '    if (open) {\n' +
+      '      recoveryEmail.value = email.value.trim();\n' +
+      "      recoveryMessage('');\n" +
+      '      recoveryEmail.focus();\n' +
+      '    } else {\n' +
+      "      recoveryMessage('');\n" +
+      "      recoveryEmail.value = '';\n" +
+      "      password.value = '';\n" +
+      '      concealManagerPassword();\n' +
+      '      email.focus();\n' +
+      '    }\n' +
+      '  }\n' +
+      '\n' +
+      '  function readToken() {\n' +
+      "    if (!storageHealthy) return '';\n" +
+      "    try { return sessionStorage.getItem(TOKEN_KEY) || ''; }\n" +
+      "    catch (_) { storageHealthy = false; showLogin(''); return ''; }\n" +
+      '  }\n' +
+      '\n' +
+      '  function clearToken() {\n' +
+      '    try {\n' +
+      '      sessionStorage.removeItem(TOKEN_KEY);\n' +
+      "      if (sessionStorage.getItem(TOKEN_KEY) !== null) throw new Error('TOKEN_NOT_CLEARED');\n" +
+      '      return true;\n' +
+      '    }\n' +
+      '    catch (_) { storageHealthy = false; return false; }\n' +
+      '  }\n' +
+      '\n' +
+      '  function storeToken(token) {\n' +
+      '    try {\n' +
+      "      if (!storageHealthy) throw new Error('BROWSER_STORAGE_UNAVAILABLE');\n" +
+      '      sessionStorage.setItem(TOKEN_KEY, token);\n' +
+      "      if (sessionStorage.getItem(TOKEN_KEY) !== token) throw new Error('TOKEN_NOT_PERSISTED');\n" +
+      '    }\n' +
+      "    catch (_) { storageHealthy = false; throw new Error('BROWSER_STORAGE_UNAVAILABLE'); }\n" +
+      '  }\n' +
+      '\n' +
+      '  async function fetchAuth(url, options) {\n' +
+      '    const controller = new AbortController(), external = options.signal;\n' +
+      '    const generation = authGeneration;\n' +
+      "    const accessToken = String(options.headers && options.headers.Authorization || '').replace(/^Bearer /, '');\n" +
+      '    let cancel;\n' +
+      '    const aborted = new Promise((_, reject) => {\n' +
+      "      cancel = () => { controller.abort(); reject(new Error('AUTH_REQUEST_UNCONFIRMED')); };\n" +
+      '    });\n' +
+      "    if (external) external.addEventListener('abort', cancel, {once: true});\n" +
+      '    const timer = setTimeout(cancel, 8000);\n' +
+      '    try {\n' +
+      '      if (external && external.aborted) { cancel(); return await aborted; }\n' +
+      '      // One deadline through headers and JSON, even if an adapter ignores abort.\n' +
+      '      // This never retries login, recovery or logout after an unknown outcome.\n' +
+      '      return await Promise.race([aborted, (async () => {\n' +
+      '        const response = await fetch(url, {...options, signal: controller.signal});\n' +
+      '        // A current authorization denial invalidates cached private UI too.\n' +
+      '        if ([401, 403].includes(response.status) && [BACKEND_SESSION_URL, BACKEND_PROPERTIES_URL, BACKEND_STAYS_URL].includes(url) &&\n' +
+      '            generation === authGeneration && accessToken && readToken() === accessToken) {\n' +
+      "          showLogin(response.status === 403 ? 'El acceso fue rechazado. Verificá los permisos vigentes de esta sección.' : 'La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');\n" +
+      '        }\n' +
+      '        let body = null;\n' +
+      '        try { body = await response.json(); } catch (_) {}\n' +
+      '        return {ok: response.ok, status: response.status, json: async () => body};\n' +
+      '      })()]);\n' +
+      '    } finally {\n' +
+      '      clearTimeout(timer);\n' +
+      "      if (external) external.removeEventListener('abort', cancel);\n" +
+      '    }\n' +
+      '  }\n' +
+      '\n' +
+      '  async function revokeSession(accessToken) {\n' +
+      '    if (!accessToken) return true;\n' +
+      '    const controller = new AbortController();\n' +
+      '    try {\n' +
+      "      const response = await fetchAuth(SUPABASE_URL + '/auth/v1/logout?scope=local', {\n" +
+      "        method: 'POST',\n" +
+      "        cache: 'no-store',\n" +
+      "        redirect: 'error',\n" +
+      "        referrerPolicy: 'no-referrer',\n" +
+      '        signal: controller.signal,\n' +
+      '        headers: {\n' +
+      '          apikey: SUPABASE_PUBLISHABLE_KEY,\n' +
+      "          Authorization: 'Bearer ' + accessToken\n" +
+      '        }\n' +
+      '      });\n' +
+      '      return response.ok;\n' +
+      '    } catch (_) {\n' +
+      '      return false;\n' +
+      '    }\n' +
+      '  }\n' +
+      '\n' +
+      '  function clearPanelData() {\n' +
+      '    panelContext = null;\n' +
+      '    // Clear prior scope labels at the same time as private rows.\n' +
+      "    sessionLabel.textContent = '';\n" +
+      "    accountLabel.textContent = 'Che Vení Concierge';\n" +
+      "    for (const selector of ['#propiedades .list', '#estadias .list', '#manager-knowledge-list', '#manager-requests-list', '#manager-incidents-list']) {\n" +
+      '      const list = document.querySelector(selector);\n' +
+      '      if (list) list.replaceChildren();\n' +
+      '    }\n' +
+      "    document.querySelectorAll('.metric').forEach((card) => {\n" +
+      "      const number = card.querySelector('b');\n" +
+      "      const tag = card.querySelector('.tag');\n" +
+      "      if (number) number.textContent = '—';\n" +
+      "      if (tag) { tag.textContent = 'Cargando…'; tag.className = 'tag'; }\n" +
+      '    });\n' +
+      '  }\n' +
+      '\n' +
+      '  function showLogin(message) {\n' +
+      '    authGeneration += 1;\n' +
+      "    document.body.classList.add('manager-auth-pending');\n" +
+      '    clearPanelData();\n' +
+      '    clearToken();\n' +
+      '    authScreen.hidden = false;\n' +
+      '    toggleRecovery(false);\n' +
+      "    const notice = storageHealthy ? message : 'No pudimos asegurar el almacenamiento de esta pestaña. Cerrala y abrí una nueva para ingresar.';\n" +
+      "    setStatus(notice || '', notice ? 'error' : '');\n" +
+      '    submit.disabled = !storageHealthy;\n' +
+      "    password.value = '';\n" +
+      '    concealManagerPassword();\n' +
+      '    setTimeout(() => email.focus(), 0);\n' +
+      '  }\n' +
+      '\n' +
+      '  // View consistency predicate only; never a server authority producer.\n' +
+      "  window.cheveniManagerPanelContextMatches = received => Boolean(panelContext && received && typeof received === 'object' && !Array.isArray(received) &&\n" +
+      "    Object.keys(received).sort().join('|') === 'account_id|member_id|role' &&\n" +
+      "    ['account_id','member_id','role'].every(k => received[k] === panelContext[k]));\n" +
+      '  function requirePanelContext(body) {\n' +
+      '    if (!window.cheveniManagerPanelContextMatches(body && body.session)) {\n' +
+      "      showLogin('El contexto del panel cambió o no pudo comprobarse. Validá el acceso antes de continuar.');\n" +
+      "      throw new Error('MANAGER_VIEW_CONTEXT_CHANGED');\n" +
+      '    }\n' +
+      '    // UI consistency only. Neither DTO is proof of live server authority.\n' +
+      '  }\n' +
+      '\n' +
+      '  function showPanel(session) {\n' +
+      '    panelContext = Object.freeze({account_id:session.account_id,member_id:session.member_id,role:session.role});\n' +
+      "    password.value = '';\n" +
+      '    concealManagerPassword();\n' +
+      '    authScreen.hidden = true;\n' +
+      "    document.body.classList.remove('manager-auth-pending');\n" +
+      "    const role = session && session.role ? String(session.role) : 'manager';\n" +
+      "    sessionLabel.textContent = 'Vista QA · ' + role;\n" +
+      "    accountLabel.textContent = 'Che Vení Concierge · ' + role;\n" +
+      '  }\n' +
+      '\n' +
+      '  function propertyStatusLabel(statusValue) {\n' +
+      '    const labels = {\n' +
+      "      active: 'Activa',\n" +
+      "      ready_for_review: 'Lista para revisión',\n" +
+      "      draft: 'Borrador',\n" +
+      "      paused: 'Pausada',\n" +
+      "      archived: 'Archivada'\n" +
+      '    };\n' +
+      "    return labels[String(statusValue || '')] || String(statusValue || 'Sin estado');\n" +
+      '  }\n' +
+      '\n' +
+      '  function renderPropertyMetric(properties) {\n' +
+      "    const metrics = Array.from(document.querySelectorAll('.metric'));\n" +
+      '    const card = metrics.find((item) => {\n' +
+      "      const small = item.querySelector('small');\n" +
+      "      return small && small.textContent.trim() === 'Propiedades activas';\n" +
+      '    });\n' +
+      '\n' +
+      '    if (!card) return;\n' +
+      '\n' +
+      "    const activeCount = properties.filter((property) => property.property_status === 'active').length;\n" +
+      '    const totalCount = properties.length;\n' +
+      "    const number = card.querySelector('b');\n" +
+      "    const tag = card.querySelector('.tag');\n" +
+      '\n' +
+      '    if (number) number.textContent = String(a'... 20297 more characters
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    
+    (() => {
+      'use strict';
+    
+      const SUPABASE_URL = "https://fictional-auth.example.invalid";
+      const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_FICTIONAL_ONLY";
+      const BACKEND_SESSION_URL = "https://fictional-api.example.invalid/api/concierge/manager/session";
+      const BACKEND_PROPERTIES_URL = "https://fictional-api.example.invalid/api/concierge/manager/properties";
+      const BACKEND_STAYS_URL = "https://fictional-api.example.invalid/api/concierge/manager/stays";
+      const TOKEN_KEY = 'chebot_manager_preview_access_token';
+      let authGeneration = 0;
+      let panelContext = null;
+      let signingOut = false;
+      let storageHealthy = true;
+      let recoveryGeneration = 0;
+      let recoveryController = null;
+      let recoveryPending = false;
+    
+      const authScreen = document.getElementById('manager-auth');
+      const form = document.getElementById('manager-login-form');
+      const email = document.getElementById('manager-email');
+      const password = document.getElementById('manager-password');
+      const passwordVisibility = document.getElementById('manager-password-visibility');
+      const status = document.getElementById('manager-auth-status');
+      const submit = document.getElementById('manager-login-submit');
+      const logout = document.getElementById('manager-logout');
+      const forgot = document.getElementById('manager-forgot');
+      const recoveryForm = document.getElementById('manager-recovery-form');
+      const recoveryEmail = document.getElementById('manager-recovery-email');
+      const recoverySubmit = document.getElementById('manager-recovery-submit');
+      const recoveryCancel = document.getElementById('manager-recovery-cancel');
+      const recoveryStatus = document.getElementById('manager-recovery-status');
+      const sessionLabel = document.getElementById('manager-session-label');
+      const accountLabel = document.getElementById('manager-account-label');
+    
+      function setStatus(message, kind) {
+        status.textContent = message || '';
+        status.className = 'manager-auth-status' + (kind ? ' ' + kind : '');
+      }
+    
+      function recoveryMessage(message, kind) {
+        recoveryStatus.textContent = message || '';
+        recoveryStatus.className = 'manager-auth-status' + (kind ? ' ' + kind : '');
+      }
+    
+      function concealManagerPassword() {
+        password.type = 'password';
+        passwordVisibility.setAttribute('aria-pressed', 'false');
+        passwordVisibility.setAttribute('aria-label', 'Mostrar contraseña');
+      }
+    
+      passwordVisibility.addEventListener('click', () => {
+        const visible = password.type === 'password';
+        password.type = visible ? 'text' : 'password';
+        passwordVisibility.setAttribute('aria-pressed', String(visible));
+        passwordVisibility.setAttribute('aria-label', visible ? 'Ocultar contraseña' : 'Mostrar contraseña');
+      });
+    
+      function cancelRecovery() {
+        recoveryGeneration += 1;
+        if (recoveryController) recoveryController.abort();
+        recoveryController = null;
+        recoveryPending = false;
+        recoverySubmit.disabled = false;
+      }
+    
+      function toggleRecovery(open) {
+        cancelRecovery();
+        recoveryForm.hidden = !open;
+        forgot.setAttribute('aria-expanded', open ? 'true' : 'false');
+        forgot.hidden = open;
+        form.hidden = open;
+        if (open) {
+          recoveryEmail.value = email.value.trim();
+          recoveryMessage('');
+          recoveryEmail.focus();
+        } else {
+          recoveryMessage('');
+          recoveryEmail.value = '';
+          password.value = '';
+          concealManagerPassword();
+          email.focus();
+        }
+      }
+    
+      function readToken() {
+        if (!storageHealthy) return '';
+        try { return sessionStorage.getItem(TOKEN_KEY) || ''; }
+        catch (_) { storageHealthy = false; showLogin(''); return ''; }
+      }
+    
+      function clearToken() {
+        try {
+          sessionStorage.removeItem(TOKEN_KEY);
+          if (sessionStorage.getItem(TOKEN_KEY) !== null) throw new Error('TOKEN_NOT_CLEARED');
+          return true;
+        }
+        catch (_) { storageHealthy = false; return false; }
+      }
+    
+      function storeToken(token) {
+        try {
+          if (!storageHealthy) throw new Error('BROWSER_STORAGE_UNAVAILABLE');
+          sessionStorage.setItem(TOKEN_KEY, token);
+          if (sessionStorage.getItem(TOKEN_KEY) !== token) throw new Error('TOKEN_NOT_PERSISTED');
+        }
+        catch (_) { storageHealthy = false; throw new Error('BROWSER_STORAGE_UNAVAILABLE'); }
+      }
+    
+      async function fetchAuth(url, options) {
+        const controller = new AbortController(), external = options.signal;
+        const generation = authGeneration;
+        const accessToken = String(options.headers && options.headers.Authorization || '').replace(/^Bearer /, '');
+        let cancel;
+        const aborted = new Promise((_, reject) => {
+          cancel = () => { controller.abort(); reject(new Error('AUTH_REQUEST_UNCONFIRMED')); };
+        });
+        if (external) external.addEventListener('abort', cancel, {once: true});
+        const timer = setTimeout(cancel, 8000);
+        try {
+          if (external && external.aborted) { cancel(); return await aborted; }
+          // One deadline through headers and JSON, even if an adapter ignores abort.
+          // This never retries login, recovery or logout after an unknown outcome.
+          return await Promise.race([aborted, (async () => {
+            const response = await fetch(url, {...options, signal: controller.signal});
+            // A current authorization denial invalidates cached private UI too.
+            if ([401, 403].includes(response.status) && [BACKEND_SESSION_URL, BACKEND_PROPERTIES_URL, BACKEND_STAYS_URL].includes(url) &&
+                generation === authGeneration && accessToken && readToken() === accessToken) {
+              showLogin(response.status === 403 ? 'El acceso fue rechazado. Verificá los permisos vigentes de esta sección.' : 'La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
+            }
+            let body = null;
+            try { body = await response.json(); } catch (_) {}
+            return {ok: response.ok, status: response.status, json: async () => body};
+          })()]);
+        } finally {
+          clearTimeout(timer);
+          if (external) external.removeEventListener('abort', cancel);
+        }
+      }
+    
+      async function revokeSession(accessToken) {
+        if (!accessToken) return true;
+        const controller = new AbortController();
+        try {
+          const response = await fetchAuth(SUPABASE_URL + '/auth/v1/logout?scope=local', {
+            method: 'POST',
+            cache: 'no-store',
+            redirect: 'error',
+            referrerPolicy: 'no-referrer',
+            signal: controller.signal,
+            headers: {
+              apikey: SUPABASE_PUBLISHABLE_KEY,
+              Authorization: 'Bearer ' + accessToken
+            }
+          });
+          return response.ok;
+        } catch (_) {
+          return false;
+        }
+      }
+    
+      function clearPanelData() {
+        panelContext = null;
+        // Clear prior scope labels at the same time as private rows.
+        sessionLabel.textContent = '';
+        accountLabel.textContent = 'Che Vení Concierge';
+        for (const selector of ['#propiedades .list', '#estadias .list', '#manager-knowledge-list', '#manager-requests-list', '#manager-incidents-list']) {
+          const list = document.querySelector(selector);
+          if (list) list.replaceChildren();
+        }
+        document.querySelectorAll('.metric').forEach((card) => {
+          const number = card.querySelector('b');
+          const tag = card.querySelector('.tag');
+          if (number) number.textContent = '—';
+          if (tag) { tag.textContent = 'Cargando…'; tag.className = 'tag'; }
+        });
+      }
+    
+      function showLogin(message) {
+        authGeneration += 1;
+        document.body.classList.add('manager-auth-pending');
+        clearPanelData();
+        clearToken();
+        authScreen.hidden = false;
+        toggleRecovery(false);
+        const notice = storageHealthy ? message : 'No pudimos asegurar el almacenamiento de esta pestaña. Cerrala y abrí una nueva para ingresar.';
+        setStatus(notice || '', notice ? 'error' : '');
+        submit.disabled = !storageHealthy;
+        password.value = '';
+        concealManagerPassword();
+        setTimeout(() => email.focus(), 0);
+      }
+    
+      // View consistency predicate only; never a server authority producer.
+      window.cheveniManagerPanelContextMatches = received => Boolean(panelContext && received && typeof received === 'object' && !Array.isArray(received) &&
+        Object.keys(received).sort().join('|') === 'account_id|member_id|role' &&
+        ['account_id','member_id','role'].every(k => received[k] === panelContext[k]));
+      function requirePanelContext(body) {
+        if (!window.cheveniManagerPanelContextMatches(body && body.session)) {
+          showLogin('El contexto del panel cambió o no pudo comprobarse. Validá el acceso antes de continuar.');
+          throw new Error('MANAGER_VIEW_CONTEXT_CHANGED');
+        }
+        // UI consistency only. Neither DTO is proof of live server authority.
+      }
+    
+      function showPanel(session) {
+        panelContext = Object.freeze({account_id:session.account_id,member_id:session.member_id,role:session.role});
+        password.value = '';
+        concealManagerPassword();
+        authScreen.hidden = true;
+        document.body.classList.remove('manager-auth-pending');
+        const role = session && session.role ? String(session.role) : 'manager';
+        sessionLabel.textContent = 'Vista QA · ' + role;
+        accountLabel.textContent = 'Che Vení Concierge · ' + role;
+      }
+    
+      function propertyStatusLabel(statusValue) {
+        const labels = {
+          active: 'Activa',
+          ready_for_review: 'Lista para revisión',
+          draft: 'Borrador',
+          paused: 'Pausada',
+          archived: 'Archivada'
+        };
+        return labels[String(statusValue || '')] || String(statusValue || 'Sin estado');
+      }
+    
+      function renderPropertyMetric(properties) {
+        const metrics = Array.from(document.querySelectorAll('.metric'));
+        const card = metrics.find((item) => {
+          const small = item.querySelector('small');
+          return small && small.textContent.trim() === 'Propiedades activas';
+        });
+    
+        if (!card) return;
+    
+        const activeCount = properties.filter((property) => property.property_status === 'active').length;
+        const totalCount = properties.length;
+        const number = card.querySelector('b');
+        const tag = card.querySelector('.tag');
+    
+        if (number) number.textContent = String(activeCount);
+        if (tag) {
+          tag.textContent = totalCount === 1 ? '1 propiedad en esta vista' : totalCount + ' propiedades en esta vista';
+          tag.className = 'tag';
+        }
+      }
+    
+      function renderProperties(properties) {
+        const list = document.querySelector('#propiedades .list');
+        if (!list) return;
+    
+        list.replaceChildren();
+    
+        if (!properties.length) {
+          const empty = document.createElement('article');
+          empty.className = 'card';
+          const title = document.createElement('b');
+          title.textContent = 'Sin propiedades disponibles';
+          const detail = document.createElement('p');
+          detail.className = 'muted';
+          detail.textContent = 'No hay propiedades autorizadas para esta cuenta.';
+          empty.append(title, detail);
+          list.appendChild(empty);
+          renderPropertyMetric([]);
+          return;
+        }
+    
+        properties.forEach((property) => {
+          const row = document.createElement('article');
+          row.className = 'row';
+    
+          const identity = document.createElement('div');
+          const name = document.createElement('b');
+          name.textContent = String(property.internal_name || 'Propiedad');
+          const source = document.createElement('div');
+          source.className = 'muted';
+          source.textContent = 'Vista QA · propiedad informada';
+          identity.append(name, source);
+    
+          const statusTag = document.createElement('span');
+          statusTag.className =
+            property.property_status === 'active'
+              ? 'tag'
+              : property.property_status === 'ready_for_review'
+                ? 'tag warn'
+                : 'tag';
+          statusTag.textContent = propertyStatusLabel(property.property_status);
+    
+          const role = document.createElement('span');
+          role.textContent = 'Acceso: ' + String(property.member_role || 'manager');
+    
+          const enabledPermissions = [
+            property.can_manage_stays && 'estadías',
+            property.can_manage_incidents && 'incidencias',
+            property.can_approve_requests && 'solicitudes',
+            property.can_manage_knowledge && 'conocimiento',
+            property.can_manage_secrets && 'secretos',
+            property.can_manage_team && 'equipo'
+          ].filter(Boolean);
+    
+          const permissions = document.createElement('span');
+          permissions.textContent = enabledPermissions.length
+            ? 'Permisos: ' + enabledPermissions.join(', ')
+            : 'Sin permisos operativos';
+    
+          row.append(identity, statusTag, role, permissions);
+          list.appendChild(row);
+        });
+    
+        renderPropertyMetric(properties);
+      }
+    
+      function renderPropertiesError() {
+        if (document.body.classList.contains('manager-auth-pending')) return;
+        const list = document.querySelector('#propiedades .list');
+        if (!list) return;
+        list.replaceChildren();
+    
+        const errorCard = document.createElement('article');
+        errorCard.className = 'card';
+        const title = document.createElement('b');
+        title.textContent = 'No pudimos cargar las propiedades';
+        const detail = document.createElement('p');
+        detail.className = 'muted';
+        detail.textContent = 'No pudimos comprobar esta sección. Volvé a verificar el acceso antes de continuar.';
+        errorCard.append(title, detail);
+        list.appendChild(errorCard);
+        const metric = Array.from(document.querySelectorAll('.metric')).find((card) =>
+          card.querySelector('small')?.textContent.trim() === 'Propiedades activas'
+        );
+        if (metric) {
+          const number = metric.querySelector('b');
+          const tag = metric.querySelector('.tag');
+          if (number) number.textContent = '—';
+          if (tag) { tag.textContent = 'No disponible'; tag.className = 'tag warn'; }
+        }
+      }
+    
+      async function loadManagerProperties(accessToken) {
+        const generation = authGeneration;
+        const response = await fetchAuth(BACKEND_PROPERTIES_URL, {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store',
+            redirect: 'error',
+          headers: {
+            Authorization: 'Bearer ' + accessToken,
+            Accept: 'application/json'
+          }
+        });
+    
+        let body = null;
+        try { body = await response.json(); } catch (_) {}
+    
+        if (generation !== authGeneration || readToken() !== accessToken) return [];
+        if (response.status === 401) showLogin('La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
+    
+        if (!response.ok || !body || body.ok !== true || !Array.isArray(body.properties)) {
+          const error = body && body.error ? String(body.error) : 'MANAGER_PROPERTIES_LOAD_FAILED';
+          const e = new Error(error);
+          e.code = error;
+          throw e;
+        }
+    
+        requirePanelContext(body);
+        if (generation === authGeneration && readToken() === accessToken && !document.body.classList.contains('manager-auth-pending')) renderProperties(body.properties);
+        return body.properties;
+      }
+    
+      // Display an expired stay as expired even if its DB lifecycle has not
+      // yet transitioned from scheduled/active. Never alter DB state in UI.
+      function effectiveStayStatus(stay) {
+        const status = String(stay?.status || '');
+        const checkout = Date.parse(String(stay?.check_out_at || ''));
+        if (['scheduled', 'active'].includes(status)
+            && Number.isFinite(checkout) && checkout <= Date.now()) return 'expired';
+        return status;
+      }
+    
+      function stayStatusLabel(statusValue) {
+        const labels = {
+          draft: 'Borrador',
+          scheduled: 'Programada',
+          active: 'Activa',
+          completed: 'Finalizada',
+          expired: 'Vencida',
+          cancelled: 'Cancelada',
+          revoked: 'Revocada'
+        };
+        return labels[String(statusValue || '')] || String(statusValue || 'Sin estado');
+      }
+    
+      function stayStatusClass(statusValue) {
+        const value = String(statusValue || '');
+        if (value === 'scheduled' || value === 'active' || value === 'completed') return 'tag';
+        if (value === 'draft' || value === 'expired') return 'tag warn';
+        return 'tag danger';
+      }
+    
+      // Presentation only. Dates/status NEVER authorize guest access or reveal secrets.
+      function stayAccessDescription(stay) {
+        const status = effectiveStayStatus(stay);
+        const start = Date.parse(String(stay.check_in_at || ''));
+        const until = Date.parse(String(stay.access_until || ''));
+        if (['cancelled','revoked'].includes(status)) return 'Acceso privado no disponible.';
+        if (['completed','expired'].includes(status)) return 'Estadía finalizada · acceso privado no disponible. La guía pública continúa por separado.';
+        if (![start,until].every(Number.isFinite)) return 'Ventana de acceso sin confirmar. Revisá las fechas antes de continuar.';
+        if (until <= Date.now()) return 'Ventana de acceso finalizada · acceso privado no disponible.';
+        if (status === 'draft' || start > Date.now()) return 'Check-in pendiente. No hay acceso privado antes del check-in autorizado.';
+        return 'El acceso privado requiere verificación vigente y check-in autorizado.';
+      }
+    
+      function formatStayDate(value) {
+        if (!value) return '—';
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return 'Fecha no disponible';
+    
+        return new Intl.DateTimeFormat('es-AR', {
+          timeZone: 'America/Argentina/Buenos_Aires',
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        }).format(date);
+      }
+    
+      function renderStays(stays) {
+        const list = document.querySelector('#estadias .list');
+        if (!list) return;
+    
+        list.replaceChildren();
+    
+        if (!stays.length) {
+          const empty = document.createElement('article');
+          empty.className = 'card';
+          const title = document.createElement('b');
+          title.textContent = 'Sin estadías';
+          const detail = document.createElement('p');
+          detail.className = 'muted';
+          detail.textContent = 'No hay estadías disponibles en las propiedades autorizadas.';
+          empty.append(title, detail);
+          list.appendChild(empty);
+          return;
+        }
+    
+        stays.forEach((stay) => {
+          const row = document.createElement('article');
+          row.className = 'row';
+          const stayIdentifier = stay.id || stay.stay_id || '';
+          row.dataset.stayId = String(stayIdentifier);
+          row.dataset.stayStatus = String(effectiveStayStatus(stay));
+          row.dataset.stayCheckout = String(stay.check_out_at || '');
+    
+          const identity = document.createElement('div');
+          const name = document.createElement('b');
+          name.textContent = String(stay.property_internal_name || 'Propiedad');
+          const source = document.createElement('div');
+          source.className = 'muted';
+          source.textContent = 'Estadía registrada';
+          identity.append(name, source);
+    
+          const dates = document.createElement('span');
+          dates.textContent =
+            formatStayDate(stay.check_in_at) + ' → ' + formatStayDate(stay.check_out_at);
+    
+          const statusTag = document.createElement('span');
+          statusTag.className = stayStatusClass(effectiveStayStatus(stay));
+          statusTag.textContent = stayStatusLabel(effectiveStayStatus(stay));
+    
+          const access = document.createElement('span');
+          access.textContent =
+            stayAccessDescription(stay) + ' Ventana prevista: ' + formatStayDate(stay.access_from) + ' → ' + formatStayDate(stay.access_until);
+    
+          row.append(identity, dates, statusTag, access);
+          list.appendChild(row);
+        });
+      }
+    
+      function renderStaysError() {
+        if (document.body.classList.contains('manager-auth-pending')) return;
+        const list = document.querySelector('#estadias .list');
+        if (!list) return;
+        list.replaceChildren();
+    
+        const errorCard = document.createElement('article');
+        errorCard.className = 'card';
+        const title = document.createElement('b');
+        title.textContent = 'No pudimos cargar las estadías';
+        const detail = document.createElement('p');
+        detail.className = 'muted';
+        detail.textContent = 'No pudimos comprobar esta sección. Volvé a verificar el acceso antes de continuar.';
+        errorCard.append(title, detail);
+        list.appendChild(errorCard);
+      }
+    
+      async function loadManagerStays(accessToken) {
+        const generation = authGeneration;
+        const response = await fetchAuth(BACKEND_STAYS_URL, {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store',
+            redirect: 'error',
+          headers: {
+            Authorization: 'Bearer ' + accessToken,
+            Accept: 'application/json'
+          }
+        });
+    
+        let body = null;
+        try { body = await response.json(); } catch (_) {}
+    
+        if (generation !== authGeneration || readToken() !== accessToken) return [];
+        if (response.status === 401) showLogin('La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
+    
+        if (!response.ok || !body || body.ok !== true || !Array.isArray(body.stays)) {
+          const error = body && body.error ? String(body.error) : 'MANAGER_STAYS_LOAD_FAILED';
+          const e = new Error(error);
+          e.code = error;
+          throw e;
+        }
+    
+        requirePanelContext(body);
+        if (generation === authGeneration && readToken() === accessToken && !document.body.classList.contains('manager-auth-pending')) renderStays(body.stays);
+        return body.stays;
+      }
+    
+      async function verifyManagerSession(accessToken) {
+        const response = await fetchAuth(BACKEND_SESSION_URL, {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store',
+            redirect: 'error',
+          headers: {
+            Authorization: 'Bearer ' + accessToken,
+            Accept: 'application/json'
+          }
+        });
+    
+        let body = null;
+        try { body = await response.json(); } catch (_) {}
+    
+        if (!response.ok || !body || body.ok !== true || !body.session) {
+          const error = body && body.error ? String(body.error) : 'MANAGER_SESSION_DENIED';
+          const e = new Error(error);
+          e.code = error;
+          throw e;
+        }
+    
+        const session = body.session;
+        const uuid = value => typeof value === 'string' && /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(value);
+        if (typeof session !== 'object' || Array.isArray(session) || Object.keys(session).sort().join('|') !== 'account_id|member_id|role' ||
+            !uuid(session.account_id) || !uuid(session.member_id) || !['owner','manager','co_manager'].includes(session.role)) {
+          const error = new Error('MANAGER_SESSION_RESPONSE_INVALID'); error.code = error.message; throw error;
+        }
+        // DTO compatibility only; permission/current-authority verification remains on the server.
+        return session;
+      }
+    
+      async function signIn(loginEmail, loginPassword) {
+        const response = await fetchAuth(
+          SUPABASE_URL + '/auth/v1/token?grant_type=password',
+          {
+            method: 'POST',
+            cache: 'no-store',
+            redirect: 'error',
+            headers: {
+              apikey: SUPABASE_PUBLISHABLE_KEY,
+              'Content-Type': 'application/json',
+              Accept: 'application/json'
+            },
+            body: JSON.stringify({
+              email: loginEmail,
+              password: loginPassword
+            })
+          }
+        );
+    
+        let body = null;
+        try { body = await response.json(); } catch (_) {}
+    
+        if (!response.ok || !body || !body.access_token) {
+          const code = response.status === 429 ? 'LOGIN_RATE_LIMITED' : [400,401].includes(response.status) ? 'LOGIN_INVALID' : 'LOGIN_UNCONFIRMED';
+          const e = new Error(code);
+          e.code = code;
+          throw e;
+        }
+    
+        return body.access_token;
+      }
+    
+      forgot.addEventListener('click', () => toggleRecovery(true));
+      recoveryCancel.addEventListener('click', () => toggleRecovery(false));
+      recoveryForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (recoveryPending || recoverySubmit.disabled) return;
+        const recoveryAttempt = recoveryGeneration;
+        const requestedEmail = recoveryEmail.value.trim();
+        if (!recoveryEmail.checkValidity()) {
+          recoveryMessage('Ingresá un correo válido.', 'error');
+          return;
+        }
+        const redirect = "https://fictional-web.example.invalid/manager/reset-password/";
+        recoveryPending = true;
+        recoverySubmit.disabled = true;
+        const controller = new AbortController();
+        recoveryController = controller;
+        recoveryMessage('Solicitando enlace de recuperación…');
+        try {
+          const response = await fetchAuth(
+            SUPABASE_URL + '/auth/v1/recover?redirect_to=' + encodeURIComponent(redirect),
+            {
+              signal: controller.signal,
+              method: 'POST',
+              cache: 'no-store',
+            redirect: 'error',
+              referrerPolicy: 'no-referrer',
+              headers: {
+                apikey: SUPABASE_PUBLISHABLE_KEY,
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+              },
+              body: JSON.stringify({ email: requestedEmail })
+            }
+          );
+          if (recoveryAttempt !== recoveryGeneration) return;
+          if (response.status === 429) {
+            recoveryMessage('Por seguridad se alcanzó el límite temporal de correos. Esperá antes de volver a solicitarlo.', 'error');
+          } else if (!response.ok) {
+            recoveryMessage('No se pudo solicitar el enlace en este momento. Intentá más tarde.', 'error');
+          } else {
+            recoveryMessage('Si el correo corresponde a un manager registrado, recibirás un enlace. Abrilo directamente en Chrome. Revisá también Spam.', 'ok');
+          }
+        } catch (_) {
+          if (recoveryAttempt !== recoveryGeneration) return;
+          recoveryMessage('No pudimos confirmar la solicitud. Evitá repetirla enseguida; revisá el correo antes de intentarlo más tarde.', 'error');
+        } finally {
+          if (recoveryAttempt === recoveryGeneration) { recoveryPending = false; recoveryController = null; recoverySubmit.disabled = false; }
+        }
+      });
+    
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (signingOut || submit.disabled || !storageHealthy) return;
+        const generation = ++authGeneration;
+        submit.disabled = true;
+        setStatus('Verificando acceso…');
+        let accessToken = '';
+    
+        try {
+          accessToken = await signIn(email.value.trim(), password.value);
+          if (generation !== authGeneration) { await revokeSession(accessToken); return; }
+          const managerSession = await verifyManagerSession(accessToken);
+          if (generation !== authGeneration) { await revokeSession(accessToken); return; }
+          storeToken(accessToken);
+          password.value = '';
+          setStatus('', '');
+          showPanel(managerSession);
+          loadManagerProperties(accessToken).catch(() => { if (generation === authGeneration) renderPropertiesError(); });
+          loadManagerStays(accessToken).catch(() => { if (generation === authGeneration) renderStaysError(); });
+        } catch (error) {
+          await revokeSession(accessToken);
+          if (generation !== authGeneration) return;
+          if (!clearToken() || !storageHealthy) { showLogin(''); return; }
+    
+          if (error && error.code === 'LOGIN_INVALID') {
+            setStatus('No pudimos validar el ingreso. Revisá el correo, la contraseña y el estado de tu cuenta.', 'error');
+          } else if (error && error.code === 'LOGIN_RATE_LIMITED') {
+            setStatus('Se alcanzó el límite temporal de intentos. Esperá antes de volver a ingresar.', 'error');
+          } else if (error && error.code === 'WEB_IDENTITY_UNKNOWN') {
+            setStatus('El usuario existe, pero todavía no está vinculado a un manager de Concierge.', 'error');
+          } else if (error && error.code === 'MANAGER_MEMBER_NOT_ACTIVE') {
+            setStatus('El acceso de este manager no está activo.', 'error');
+          } else {
+            setStatus('No se pudo validar el acceso. Revisaremos la conexión antes de continuar.', 'error');
+          }
+        } finally {
+          if (generation === authGeneration && !signingOut) submit.disabled = !storageHealthy;
+        }
+      });
+    
+      logout.addEventListener('click', async () => {
+        if (signingOut) return;
+        const accessToken = readToken();
+        signingOut = true;
+        // Hide and clear the panel before any network operation. In-flight
+        // admission/restore responses cannot reopen it after this generation.
+        showLogin('');
+        submit.disabled = true;
+        try {
+          const revoked = await revokeSession(accessToken);
+          if (!storageHealthy) {
+            setStatus('No pudimos limpiar la sesión local de esta pestaña. Cerrala antes de volver a ingresar; el cierre en el servicio no asegura la retirada inmediata de un JWT emitido.', 'error');
+          } else if (!revoked) {
+            setStatus('Saliste de este navegador. No pudimos confirmar el cierre de la sesión en el servicio.', 'error');
+          }
+        } finally {
+          signingOut = false;
+          submit.disabled = !storageHealthy;
+        }
+      });
+    
+      async function restoreSession() {
+        const existingToken = readToken();
+        if (!existingToken) {
+          showLogin('');
+          return;
+        }
+    
+        setStatus('Restaurando sesión…');
+        const generation = ++authGeneration;
+    
+        try {
+          const managerSession = await verifyManagerSession(existingToken);
+          if (generation !== authGeneration || readToken() !== existingToken) return;
+          setStatus('', '');
+          showPanel(managerSession);
+          loadManagerProperties(existingToken).catch(() => { if (generation === authGeneration) renderPropertiesError(); });
+          loadManagerStays(existingToken).catch(() => { if (generation === authGeneration) renderStaysError(); });
+        } catch (_) {
+          if (generation !== authGeneration) return;
+          // A fetch failure, unreadable response or HELD 503 does not prove expiry.
+          // Explicit current 401/403 responses are already handled by fetchAuth.
+          showLogin('No pudimos comprobar tu sesión. El panel sigue cerrado por seguridad.');
+        }
+      }
+      window.addEventListener('cheveni-manager-session-denied', event => {
+        showLogin(event.detail?.reason === 'VIEW_CONTEXT_CHANGED' ? 'El contexto del panel cambió o no pudo comprobarse. Validá el acceso antes de continuar.' : event.detail?.status === 403 ? 'El acceso fue rechazado. Verificá los permisos vigentes de esta sección.' : 'La sesión dejó de estar autorizada. Iniciá sesión nuevamente.');
+      });
+      window.addEventListener('pagehide', () => {
+        cancelRecovery(); recoveryEmail.value = ''; recoveryMessage('');
+        authGeneration += 1;
+        document.body.classList.add('manager-auth-pending');
+        clearPanelData();
+        authScreen.hidden = false;
+        password.value = ''; concealManagerPassword();
+      });
+      window.addEventListener('pageshow', event => {
+        if (event.persisted && !signingOut) restoreSession();
+      });
+      restoreSession();
+    })();
+    
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/workspace/scratch/9cf61993a61f/web/qa/beta-product-experience-20261124-v1/product-experience.test.cjs:46:9)
+    async Test.run (node:internal/test_runner/test:1409:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 185.877242

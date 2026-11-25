@@ -19,8 +19,8 @@
     },
     {
       "path": "overlays/manager/manager-auth.js",
-      "bytes": 30395,
-      "sha256": "4179b498393576c2e1a3822618df22543c32a3f7232cb0d4717f77f4c777321b",
+      "bytes": 30368,
+      "sha256": "b331317402e9fc37281bfae3aa915da0e07aa52b30aa9c32d40abcc4dcf8aca3",
       "baseSha256": "1929797b02ef9c0a9068c24f616c85c029f499e49cbd986b63c328ed86fdbbee"
     },
     {
@@ -111,7 +111,7 @@
     },
     {
       "path": "manager/manager-auth.js",
-      "sha256": "4179b498393576c2e1a3822618df22543c32a3f7232cb0d4717f77f4c777321b"
+      "sha256": "b331317402e9fc37281bfae3aa915da0e07aa52b30aa9c32d40abcc4dcf8aca3"
     },
     {
       "path": "manager/manager-knowledge.js",
