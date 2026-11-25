@@ -87,7 +87,30 @@ function patchKnowledgeDeadline(s){
     }
   }`);
 }
-function build({baseline=false}={}){
+function patchProductAuth(s){
+ s=replace(s,"sessionLabel.textContent = 'Sesión verificada · ' + role;","sessionLabel.textContent = 'Vista QA · ' + role;");
+ s=replace(s,"source.textContent = 'Concierge Dev · dato real';","source.textContent = 'Vista QA · propiedad informada';");
+ s=replace(s,"'1 propiedad real' : totalCount + ' propiedades reales'","'1 propiedad en esta vista' : totalCount + ' propiedades en esta vista'");
+ s=replace(s,'if (Number.isNaN(date.getTime())) return String(value);',"if (Number.isNaN(date.getTime())) return 'Fecha no disponible';");
+ s=replace(s,'  function formatStayDate(value) {',`  // Presentation only. Dates/status NEVER authorize guest access or reveal secrets.
+  function stayAccessDescription(stay) {
+    const status = effectiveStayStatus(stay);
+    const start = Date.parse(String(stay.check_in_at || ''));
+    const until = Date.parse(String(stay.access_until || ''));
+    if (['cancelled','revoked'].includes(status)) return 'Acceso privado no disponible.';
+    if (['completed','expired'].includes(status)) return 'Estadía finalizada · acceso privado no disponible. La guía pública continúa por separado.';
+    if (![start,until].every(Number.isFinite)) return 'Ventana de acceso sin confirmar. Revisá las fechas antes de continuar.';
+    if (until <= Date.now()) return 'Ventana de acceso finalizada · acceso privado no disponible.';
+    if (status === 'draft' || start > Date.now()) return 'Check-in pendiente. No hay acceso privado antes del check-in autorizado.';
+    return 'El acceso privado requiere verificación vigente y check-in autorizado.';
+  }
+
+  function formatStayDate(value) {`);
+ s=replace(s,"        'Acceso: ' + formatStayDate(stay.access_from) + ' → ' + formatStayDate(stay.access_until);",
+  "        stayAccessDescription(stay) + ' Ventana prevista: ' + formatStayDate(stay.access_from) + ' → ' + formatStayDate(stay.access_until);");
+ return s;
+}
+function build({baseline=false,productBaseline=false}={}){
  const r=prior.build();if(baseline)return r;
  r.generated['manager/manager-auth.js']=patchAuth(r.generated['manager/manager-auth.js']);
  for(const name of ['requests','incidents'])r.generated['manager/manager-'+name+'.js']=patchSection(r.generated['manager/manager-'+name+'.js']);
@@ -100,6 +123,15 @@ function build({baseline=false}={}){
  r.generated['manager/manager-invite.js']=replace(r.generated['manager/manager-invite.js'],
   "  const readToken = () =>",
   "  // BFCache restore permits only newly rendered controls, never an old binding.\n  window.addEventListener('pageshow', event => { if (event.persisted) { pageActive = true; generation += 1; } });\n  const readToken = () =>");
+ if(!productBaseline){
+  r.generated['manager/manager-auth.js']=patchProductAuth(r.generated['manager/manager-auth.js']);
+  for(const kind of ['requests','incidents']){
+   const file='manager/manager-'+kind+'.js';
+   r.generated[file]=replace(r.generated[file],
+    kind==='requests'?'No hay solicitudes reales para las propiedades autorizadas.':'No hay incidencias reales para las propiedades autorizadas.',
+    kind==='requests'?'No hay solicitudes para revisar en esta vista.':'No hay incidencias para revisar en esta vista.');
+  }
+ }
  return r;
 }
 module.exports={build,patchAuth,patchSection,patchKnowledgeDeadline,patchReadContext,replace};
