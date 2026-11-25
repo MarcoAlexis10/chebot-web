@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-24",
+  "classification": "QA_PRODUCT_COMPONENT_VM_DOM_AND_SOURCE_ONLY",
+  "branch": "qa/cheveni-beta-product-experience-20261124",
+  "initialHead": "791c0b509b7557d1f44e8011a3900ceb51f13c53",
+  "codeHead": "e2924b3a7bc667b56077b7b0a159a3f5f40a5377",
+  "backendReadOnlyRef": "a86fe1cff70121838795a40139b5762c6b308b37",
+  "qaLabReadOnlyRef": "ce5c747c3f6fd4b27e0fd32a76e01e72a3192b7a",
+  "runtime": {
+    "node": "v24.22.3",
+    "python": "3.12.14",
+    "newToolsInstalled": false
+  },
+  "newTests": {
+    "uniqueCases": 8,
+    "componentVmDomCases": 6,
+    "sourceMarkupCases": 2,
+    "baselineFinal": "8 FAIL",
+    "final": "8 PASS",
+    "caseNames": [
+      "product stays: cancellation, arrival and ended windows do not present dates as private access",
+      "product stays: invalid dates use a clear placeholder without echoing the raw value",
+      "product QA: panel and property descriptions do not certify synthetic identity or real data",
+      "product work items: empty requests and incidents use neutral review messages",
+      "product late stay read: checkout presentation and consecutive stay identities remain separate",
+      "product pages SOURCE: one retained form, clear fixed configuration and no technical customer copy",
+      "product mobile SOURCE: navigation includes knowledge/account and visible keyboard focus",
+      "product planning: an inert submit explains uncertainty without sending, reading fields or claiming success"
+    ],
+    "fixtureAuthority": "All DTO/token/clock/fetch values synthetic; no JWT/provider or positive protected issuer. A display DTO never verifies identity.",
+    "scopeRefinements": "Visible-copy assertion excludes HTML data attributes; CSS is shared, not duplicated in two sheets. Final baseline still fails all eight cases.",
+    "historicalRegressions": {
+      "consumerContext": 3,
+      "selectorToolControls": 3,
+      "reason": "Modified Auth/list projection composer and expanded fixed selector registry. Only matching DTO, 403, late section context and selector controls selected. No historical suite rerun."
+    },
+    "repeatedCasesNotAdded": "Initial seven-case baseline, subsequent copy regressions, intermediate runs and two-case selector MARKUP execution are not additional cases."
+  },
+  "logs": {
+    "affected-context.tap": {
+      "sha256": "5ffeb19ea4390597e70d8cf4b9cda2e37c788c7844e87ce6c21d0528c4768337",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0
+    },
+    "materialize-review.log": {
+      "sha256": "1f6c17961cb819cbc7930e69fafcf33dadb2de287ff4ad743da5af11b9078c5a"
+    },
+    "product-after.tap": {
+      "sha256": "f07fd369c221b940a0f6fb484a9b6804b50ca7bb1afdb4a6045712e86eeb80d8",
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "skipped": 0
+    },
+    "product-baseline-final.tap": {
+      "sha256": "3d1d0e34852047e458c3e839d20f60d5f6a8a29fccf5d1ced8449ca7ff5f1297",
+      "tests": 8,
+      "pass": 0,
+      "fail": 8,
+      "skipped": 0
+    },
+    "product-before.tap": {
+      "sha256": "7b5f56df4d2088205d550e374bcf5992557d17b121687e42f34e66b530013d2a",
+      "tests": 7,
+      "pass": 0,
+      "fail": 7,
+      "skipped": 0
+    },
+    "review-final-reproducibility.log": {
+      "sha256": "42e096f97aa093a4ba7ea8a3653eeab7abdfda563ab9100fb0b81751896c0faa"
+    },
+    "review-reproducibility.log": {
+      "sha256": "0c91347f621ee9051494d314df5c8780212d9d323f8a810dc98329620c1d8a2b"
+    },
+    "selector-native-blocked.log": {
+      "sha256": "9a48fffe180ea1ee75891f5467aed0358a41f01fa40149e1ccb7bd825a39d54b"
+    },
+    "selector-product-markup.log": {
+      "sha256": "a6c21178475f9a9512670458deca37ae9dc67f5f711776aa2382a5f1a52f0d68",
+      "tests": 2,
+      "pass": 2,
+      "fail": 0,
+      "skipped": 0
+    },
+    "selector-regressions.tap": {
+      "sha256": "00430ccc93b728bbceac8cbafd6c6a6155b8b09725219c1c452c1e1cf179c59f",
+      "tests": 3,
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0
+    },
+    "session-copy-before.tap": {
+      "sha256": "8783abbbe502f7a8ef3fd5566b33b2ae6a792fd460cf85e4fd08e8c4a39be2d3",
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    "static-auth-copy-before.tap": {
+      "sha256": "7a4d6ed96932a7f441f6edeb2335dd46d4e443cb40c02754c65a5dc0b6be5a58",
+      "tests": 1,
+      "pass": 0,
+      "fail": 1,
+      "skipped": 0
+    },
+    "verify-composition.log": {
+      "sha256": "8cc4a892eca214b71f71ca398785f2f0fb776f9213187b29a1bca33e2c40e983"
+    }
+  },
+  "modifiedExistingFiles": [
+    {
+      "path": "qa/minimal-beta-20261116-v1/ACCEPTANCE-MATRIX.json",
+      "before": "8d9efabcd7d96a117b5d4c6bd339ba531bd098e7",
+      "after": "589fccc1ed6284f99150bcc68b737c648e188a58",
+      "sha256": "9bff001c85efd6101e54ffb40f637ac205ad9aaf1795b3a43787489acf9d15a6"
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/SOURCE-PINS.json",
+      "before": "1ccddaa2130d24c50c6599a97119cff3b1cde251",
+      "after": "eb387a39c6a8a17128007ff4dcd7ab8a66740d71",
+      "sha256": "1d82601af7b5ff0e0b534e5cb6b7cb9ba3458822781312eeaf077c5af189b5da"
+    },
+    {
+      "path": "qa/minimal-beta-20261116-v1/acceptance.mjs",
+      "before": "fe4f867a4e287fcda42b890365acaf7dee0b0949",
+      "after": "a2c3446351834ae412ed441d1ed7c406d57334d0",
+      "sha256": "de9ba2a2bd8c3c900a5204a76ec86f38662e94f457c3df2a57afdeac4c44527e"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/.gitignore",
+      "before": "ee885dc08dd0c3e33d1e4d10ec013ba00990d0b4",
+      "after": "fd8d8a04f9591df94146bef863700da4d3859ab9",
+      "sha256": "9478a496da7fa0c24647cee30925424aed2f88988b425ffae0ae6cc65f6f1b0b"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/OVERLAY-MANIFEST.json",
+      "before": "88624bed899fdaebbab822076a733c92856636c3",
+      "after": "f5ec9ae458b0a1023c583d7daeb379266667b40e",
+      "sha256": "898ba2f56c87b8cb2d6d7c1974f9b0d556f611b8ae2c646f71a4fb20c438f125"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/compose.cjs",
+      "before": "269855ace5d8877fb6d5c5959bc500ecf2cb95a5",
+      "after": "b32670e58405a766bd20308d3bcd1772336440b8",
+      "sha256": "ded3291845282e90c284e6ed39892d502ea50574630df8957385b904d5a74d86"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/materialize.mjs",
+      "before": "061807947223b8f502cab140be55793046bb74ee",
+      "after": "a7fb0b30b3fc4d81ef649655f2ad29a8fd5a489d",
+      "sha256": "35eff4cea447c370c34f33a9bfaa6a150ef6e87ee0a3076fa33fc61c0ee462d4"
+    },
+    {
+      "path": "qa/pilot-integration-20261112-v1/verify-composition.mjs",
+      "before": "547bcba0722975bd7cc62184c4113d7f2b587cdb",
+      "after": "7551704ebc8ff6123dbb725828a22149c3592014",
+      "sha256": "2cd6a2066ce70cac242b3a11f25e5fe42d7ce6bac7933f2ba79ae8d47ee68968"
+    }
+  ],
+  "newTestFile": {
+    "path": "qa/beta-product-experience-20261124-v1/product-experience.test.cjs",
+    "sha256": "15814c5df236685fd9badb8f2f24b9584aa4707c36e01d8bd9bd7c07383cc8cf",
+    "gitBlob": "2992f03da26b4aeab8af5d072b0deeab596cc6a4"
+  },
+  "artifactChecks": {
+    "compositorHistoricalPins": 57,
+    "selectorCurrentPins": 72,
+    "htmlPages": 8,
+    "generatedFiles": 18,
+    "compositionLocalReferences": 103,
+    "fileReviewReferences": 120,
+    "sameFinalHashes": true,
+    "fileHashes": {
+      "manager/manager-invite.css": "083edf3fe12572f2ec802e3a99d0333b524473bd20d21a569bd3138cae8fd84a",
+      "manager/manager-auth.css": "7543deb69c23816d65afc7c429fa0c70c32429a444530d7cd1fb9af211f22a44",
+      "manager/manager-requests.js": "429b08279a94ff4f83bfe714c8fee5b4cc746b5205a1dcfafec42d490c86b281",
+      "manager/index.html": "6bea647dd349ec74b547ccbc824f330b684a897439ad4124ce005fe1becbc116",
+      "manager/manager-incidents.js": "942f7d628e0bd67444eb31195e8d69d8849e8df43c4794655298cd70d27b4994",
+      "manager/manager-auth.js": "b331317402e9fc37281bfae3aa915da0e07aa52b30aa9c32d40abcc4dcf8aca3",
+      "manager/qa-planning.js": "4f33a8cea3d5d1b8727b56c4c6ef82eac7e50e339aa9f5bf585fbf1e3b512d63",
+      "manager/manager-knowledge.js": "9df7579bdfaa7af9d764e1dd63156ddc61ca90838caa41825828cfd6e4d18f19",
+      "manager/manager-invite.js": "21ca137edd575083a601fc5568efd42028e8f2b26fcde9ea0017326cbcdde1d8",
+      "manager/qa-planning.css": "52ca35592a9c0c3aef2655d4452ce2f128884f5b3903c9b92b8a846b8576387a",
+      "manager/manager.css": "e321104a7f8870ce7f958da47a5f500fc2a2f041233c09213da7d6024b655109",
+      "manager/prearrival/index.html": "afbd56f7a7759fe006ca49228db55dd6757f07be55e643b12f01054023ffd758",
+      "manager/activar/index.html": "bc711f1f06cb18d88e08d615bb856226ed570180d49e25a81855f94e0185a351",
+      "manager/propiedad/index.html": "441891904f15e6110ee00ae1f1f219b114a975e191698ef64e26c026319aa59e",
+      "manager/reset-password/index.html": "4ad08503968e7fb4717031b73698a50766fb46bd92f70c536b8f79fc572dafb0",
+      "manager/recorrido/index.html": "19e793414484b1829ac92fce6664214089e0653c9453b0e1872ed21b63532d64",
+      "manager/planificar-estadia/index.html": "7ccc2325007140eeb343702a72da95965dc5a052505e7779a9ad9beb29767ff5",
+      "manager/altas/index.html": "2afdaca84dda1984beb9db066fc5fd102df7a6976abecdbb7195e8b753062c63"
+    },
+    "htmlGraphUnchangedAfterFinalAuthCopy": true,
+    "formsInert": true,
+    "cspConnectAndFormActionNone": true,
+    "classification": "SOURCE_GRAPH_SYNTAX_AND_REPRODUCIBILITY_NOT_VISUAL_BROWSER"
+  },
+  "executionIsolation": {
+    "launcher": "qa/integral-held-v1/run-isolated.py",
+    "separateUserNetworkNamespace": true,
+    "externalConnectErrno": 101,
+    "inheritedCredentials": false,
+    "evidence": "QA_KERNEL_ISOLATION first line of isolated logs"
+  },
+  "commands": [
+    "python web/qa/integral-held-v1/run-isolated.py -- node --conditions=product-baseline --test --test-reporter=tap web/qa/beta-product-experience-20261124-v1/product-experience.test.cjs",
+    "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap web/qa/beta-product-experience-20261124-v1/product-experience.test.cjs",
+    "python web/qa/integral-held-v1/run-isolated.py -- node --test --test-reporter=tap --test-name-pattern='^(matching read DTOs|403 from|compatible section metadata)' web/qa/pilot-integration-20261112-v1/context.test.cjs web/qa/pilot-integration-20261112-v1/section-context.test.cjs",
+    "node web/qa/minimal-beta-20261116-v1/acceptance.mjs --run OFF-PRODUCT-MARKUP",
+    "node web/qa/minimal-beta-20261116-v1/acceptance.mjs --run EX-NATIVE"
+  ],
+  "selectedConsumerPattern": "^(matching read DTOs|403 from|compatible section metadata)",
+  "selectorExternalProbe": {
+    "id": "EX-NATIVE",
+    "exitCode": 3,
+    "executed": false
+  },
+  "notExecuted": [
+    "Real browser/visual/mobile/accessibility/BFCache",
+    "Real Auth, guest access or revocation",
+    "SQL/PostgreSQL/Native17/D1/D2/COMMIT/A2",
+    "ASUS and original demo",
+    "Historical full G2-G4/original/privacy/A01-A59/infrastructure suites",
+    "Vercel/Supabase operational services",
+    "Real mutation/invitation/trial/message/payment"
+  ],
+  "preservation": {
+    "baseBlobs": 1059,
+    "codeBlobs": 1073,
+    "existingFilesModified": 8,
+    "rootOperationalFilesModified": 0,
+    "deletedFiles": 0,
+    "backendOrLabModified": false,
+    "rootGeneratorsAndWorkflowsUnchanged": true
+  },
+  "native17AccreditedFunctions": 0,
+  "browserExecuted": false,
+  "endToEndAccredited": false,
+  "operationalApproval": false,
+  "beta": "NO-GO",
+  "budgetIncrementalUSD": 0
+}
